@@ -25,12 +25,11 @@ tmp/
 *.swp
 *~.nib
 local.properties
-.settings/
 
 ### first not include this ignore ###
+#.settings/
 #.classpath
 #.project
 
 ### Project file ###
 #CommonProperties.*
-
