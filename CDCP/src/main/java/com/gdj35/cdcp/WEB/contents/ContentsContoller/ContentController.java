@@ -15,4 +15,10 @@ public class ContentController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/cardTerms")
+	public ModelAndView cardTerms(ModelAndView mav) {
+		mav.setViewName("contents/cardTerms");
+		
+		return mav;
+	}
 }
