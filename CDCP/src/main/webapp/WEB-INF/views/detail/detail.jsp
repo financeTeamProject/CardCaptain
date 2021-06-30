@@ -178,6 +178,7 @@
 	
 }
 
+
 /* 소제목 - 메달 올림픽  */
 
 #ma1{
@@ -396,7 +397,7 @@ font-size: 12px;
 #footerLogo{
 	display: inline-block;
 	vertical-align: top;
-	background-image: url("../weDoument/imageFolder/logo_white.png");
+	background-detail: url("../weDoument/detailFolder/logo_white.png");
 	background-repeat: no-repeat;
 	background-size: 180px;
 	width: 180px;
@@ -417,12 +418,12 @@ font-size: 12px;
 
 <div class = "menu">
 <div class = "menu1">
-<span id = "m1"><img alt = "로고" src = "image/Logo1.png" width = "230px"></span>
+<span id = "m1"><img alt = "로고" src = "/cdcp/detail/Logo1.png" width = "230px"></span>
 <span id = "m2">카드검색/비교</span>
 <span id = "m3">컨텐츠</span>
 <span id = "m4">카드순위</span>
 <span id = "m5">로그인</span>
-<span id = "m6"><img alt = "로그인" src = "image/login_white.png" width = "30px"></span>
+<span id = "m6"><img alt = "로그인" src = "/cdcp/detail/login_white.png" width = "30px"></span>
 </div> 
 </div>
 
@@ -435,13 +436,13 @@ font-size: 12px;
 
 <div id = "middlemain">
 <input type = "text" id = "ma1" value = "<메달 올림픽>" size= "10px;" disabled >
-<img alt="금메달" id = "gold" src="image/Gold.png" width="100px;" height="200px;">
-<img alt="롯데카드" id = "ma3" src="image/Card1.png" width="220px;" height="350px;">
+<img alt="금메달" id = "gold" src="detail/Gold.png" width="100px;" height="200px;">
+<img alt="롯데카드" id = "ma3" src="detail/Card1.png" width="220px;" height="350px;">
 <div id="ma4">롯데 Like it 카드</div>
-<img alt = "왼쪽화살표" id = "ma5" src = "image/left.png" width="80px"; height="80px";>
-<img alt = "오른쪽화살표" id = "ma6" src = "image/right.png" width="80px"; height="80px";>
-<img alt = "캡틴골드" id = "ma7" src = "image/Hero(Gold).png">
-<img alt="베스트" id = "ma8" src="image/Best.png" width="60px;" height="70px;">
+<img alt = "왼쪽화살표" id = "ma5" src="${pageContext.request.contextPath}/resources/images/detail/left.png"; width="80px"; height="80px";>
+<img alt = "오른쪽화살표" id = "ma6" src = "${pageContext.request.contextPath}/resources/images/detail/right.png" width="80px"; height="80px";>
+<img alt = "캡틴골드" id = "ma7" src = "${pageContext.request.contextPath}/resources/images/detail/Hero(Gold).png">
+<img alt="베스트" id = "ma8" src="${pageContext.request.contextPath}/resources/images/detail/Best.png" width="60px;" height="70px;">
 
 
 <div id="o">
@@ -454,7 +455,7 @@ font-size: 12px;
 <input type="text" id="o4" value="배달앱 5% 할인" readonly="readonly">
 <br>
 <input type="text" id="o5" value="상세보기" disabled>
-<img alt="상세보기" src="image/Plus.png" id="o6" width="30px;" style="cursor:pointer;"><br>
+<img alt="상세보기" src="detail/Plus.png" id="o6" width="30px;" style="cursor:pointer;"><br>
 </div>
 
 
