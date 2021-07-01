@@ -2,8 +2,12 @@ eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/contents=UTF-8
 <<<<<<< HEAD
+encoding//src/main/webapp/WEB-INF/views/search/checkSearch.jsp=UTF-8
+=======
+<<<<<<< HEAD
 encoding//src/main/webapp/WEB-INF/views/contents/Ctest3.jsp=UTF-8
 =======
 encoding//src/main/webapp/WEB-INF/views/detail/detail01.jsp=UTF-8
+>>>>>>> branch 'main' of https://github.com/financeTeamProject/CardCaptain.git
 >>>>>>> branch 'main' of https://github.com/financeTeamProject/CardCaptain.git
 encoding//src/test/java=UTF-8
