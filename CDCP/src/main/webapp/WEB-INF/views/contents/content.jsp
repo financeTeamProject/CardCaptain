@@ -21,7 +21,7 @@
 	padding: 0;
 }
 
-p {
+p {	
  margin: 0;
  text-align: center;
  font-family: 'GmarketSansLight'; 
@@ -49,7 +49,7 @@ h1 {
 	color: black;
 }
 
-.top {
+.top { /* 헤더(메뉴바) */
    width: 100%;
    height: 55px;
    border-style: solid;
@@ -179,7 +179,7 @@ h1 {
 	padding-top: 10px;
 }
 
-.test_button {
+.test_button { /* 소비심리테스트 시작버튼 */
 	margin: 0px auto;
 	width: 460px;
 	height: 53px;
@@ -205,8 +205,14 @@ h1 {
     cursor: pointer;
 }
 
+.test_button:hover {
+	background-color:#FFD400;
+	color:#282C37;
+	cursor: pointer;
+}
 
-.rayout{
+
+.rayout{	/* 전체 레이아웃 기준잡기 */
     width: 100%;
     margin: 0 auto;
     position: relative;
@@ -323,12 +329,12 @@ h1 {
 
 
 
-.box-wrapper{
+.box-wrapper{ /* 카드간단용어 전체틀 */
 	width: 650px;
 	margin: 0 auto;
 }
 
-#box {
+#box {	/* 카드간단용어 상세 */
 	height: 50px;
 	line-height: 50px;
 	background-color: #f2c3a6;
@@ -342,7 +348,7 @@ h1 {
 	font-family: 'Cafe24Ohsquare';
 }
 
-#movie {
+#movie { /* 동영상 */
 	width: 300px;
 	height: 300px;
 	background-position: center;
@@ -400,6 +406,19 @@ h1 {
 	text-align: center;
 }
 </style>
+<script type="text/javascript"
+				src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript">
+		
+		$(document).ready(function() {
+			
+			$(".test_button").on("click", function() {
+				location.href = "Ctest1";
+			});
+		});	
+		
+		
+</script>
 </head>
 <body>
 <!-- 헤더영역(메뉴바) -->
