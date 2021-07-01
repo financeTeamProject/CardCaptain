@@ -48,11 +48,11 @@
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
+/* $(document).ready(function() {
 	$("#homeBtn").on("click",function() {
 		$(location).attr('href',"/cdcp");
 	});
-});
+}); */
 </script>
 </head>
 <body>
