@@ -49,38 +49,37 @@ h1 {
 	color: black;
 }
 
-.top { /* 헤더(메뉴바) */
-   width: 100%;
-   height: 55px;
-   border-style: solid;
-   border-width: 0 0 2px 0;
-   border-color: #0047AB;
-   font-family: 'GmarketSansMedium';
-   min-width: 1830px;
-   position: fixed;
-   z-index: 9999;
-   background-color: white;
+#header {
+	width: 100%;
+	height: 55px;
+	border-style: solid;
+    border-width: 0 0 2px 0;
+    border-color: #0047AB;
+    font-family: 'GmarketSansMedium';
+    min-width: 1830px;
+    position: fixed;
+    z-index: 9999;
+    background-color: white;
 }
 
-.menu_left {
-   display: inline-block;
-   width: 50%;
-   height: 100%;
-    font-size: 18px;
-   vertical-align: top;
+
+#headerWrap {
+	width: 1600px;
+	height: 100%;
+	margin: 0 auto;
+	display: flex;
 }
-.menu_right {
-   display: inline-block;
-   width: 48%;
-   height: 100%;
-    font-size: 18px;
-   vertical-align: top;
-   text-align: right;
+#headerLeft {
+	display: inline-block;
+	width: 50%;
+	height: 100%;
+    font-size: 16px;
+	vertical-align: top;
 }
-.logo {
+#headerLogo {
     display: inline-block;
     vertical-align: top;
-    background-image: url("/cdcp/resources/images/contentimg/logo.png");
+    background-image: url("/cdcp/resources/images/main/logo.png");
     background-repeat: no-repeat;
     background-size: 120px;
     width: 120px;
@@ -88,11 +87,40 @@ h1 {
     cursor: pointer;
     text-align: center;
     margin-top: 10px;
-    margin-left: 70px;
 }
-.login {
-    display: inline-block;
-    background-image: url("/cdcp/resources/images/contentimg/login1.png");
+#headerLeft .menu1 { 
+	display: inline-block;
+	width: 130px;
+	height: 100%;
+	line-height: 65px;
+	color: #0047AB;
+	text-align: center;
+	letter-spacing: 2px;
+	vertical-align: top;
+	cursor: pointer;
+}	/* header_left 종료 */
+
+#headerRight {
+	display: inline-block;
+	width: 50%;
+	height: 100%;
+    font-size: 18px;
+	vertical-align: top;
+}
+#imgSearch {
+ 	display: inline-block;
+    background-image: url("/cdcp/resources/images/main/search.png");
+    background-repeat: no-repeat;
+    background-size: 30px;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 85%;
+}
+#imgLogin {
+ 	display: inline-block;
+    background-image: url("/cdcp/resources/images/main/login1.png");
     background-repeat: no-repeat;
     background-size: 30px;
     width: 30px;
@@ -100,58 +128,8 @@ h1 {
     cursor: pointer;
     margin-top: 15px;
 }
-.search {
-    display: inline-block;
-    background-image: url("/cdcp/resources/images/contentimg/search.png");
-    background-repeat: no-repeat;
-    background-size: 30px;
-    width: 30px;
-    height: 25px;
-    cursor: pointer;
-    text-align: center;
-}
-.menu1 {
-   display: inline-block;
-   width: 140px;
-   height: 100%;
-   line-height: 65px;
-   color: #0047AB;
-   text-align: center;
-   letter-spacing: 2px;
-   vertical-align: top;
-   cursor: pointer;
-}
-.menu2 {
-   display: inline-block;
-   width: 100px;
-   height: 100%;
-   line-height: 65px;
-   color: #0047AB;
-   text-align: center;
-   letter-spacing: 2px;
-   vertical-align: top;
-   margin-left: 10px;
-   cursor: pointer;
-}
-.text_search {
-   width: 180px;
-    height: 30px;
-   line-height: 45px;
-    border-style: solid;
-    border-width: 0 0 1px 0;
-    border-color: #0047AB;
-    padding: 11px 10px 3px 10px;
-    outline: 0;
-    border-radius: 0;
-    box-sizing: border-box;
-    caret-color: #f7e317;
-    text-decoration: none;
-   color: #0047AB;
-   font-size: 14px;
-   letter-spacing: 3px;
-   margin-left: 500px;
-    background-color: #f0f8ff00;
-}
+	/* header_right 종료 */
+	/* 헤더 종료 */
 
 .title {
 	
@@ -382,14 +360,21 @@ h1 {
 	height: 100px;
 	float:left;
 	background: gray;
+	border-radius: 5px;
+	border-style: solid;
+    border-width: 2px 0 0 0;
+    border-color: #0047AB;
+    font-family: 'Cafe24Ohsquare';
+    min-width: 600px;
+    background-color: white;	
 			
 }
 
 #footerMenu{
-	width: 80%;
-	height:inherit;
-	margin: 0 auto;
-	color: white;
+
+	height: inherit;
+    margin: 0 auto;
+    color: #0047AB;
 	text-align: center;
 	font-family: GmarketSansMedium;
 	font-size: 12px;
@@ -397,13 +382,14 @@ h1 {
 #footerLogo{
 	display: inline-block;
 	vertical-align: top;
-	background-image: url("/cdcp/resources/images/contentimg/brand1.png");
+	background-image: url("/cdcp/resources/images/contentimg/logo.png");
 	background-repeat: no-repeat;
-	background-size: 180px;
-	width: 180px;
-	height: 55px;
+	background-size: 120px;
+	width: 120px;
+	height: 40px;
 	cursor: pointer;
 	text-align: center;
+	margin-top: 10px;
 }
 </style>
 <script type="text/javascript"
@@ -416,7 +402,7 @@ h1 {
 				location.href = "Ctest1";
 			});
 			
-			$("#box").on("click", function() { // 카드간단용어 중 하나의 박스를 클릭할 시에 카드기사내용 페이지로 이동
+			$("#box").on("click", function() { // 카드간단용어 중 하나의 박스를 클릭할 시에 카드기사내용 페이지로 이동.
 				location.href = "cardTerms";
 			});
 		});	
@@ -426,19 +412,19 @@ h1 {
 </head>
 <body>
 <!-- 헤더영역(메뉴바) -->
-<div class="top">
-   <div class="menu_left">
-      <div class="logo"></div>
-      <div class="menu1">카드순위</div>
-      <div class="menu1">카드검색/비교</div>
-      <div class="menu1">컨텐츠</div>
-   </div>
-   <div class="menu_right">
-      <input type="text" class="text_search">   
-      <div class="search"></div>
-      <div class="menu2">로그인</div>
-      <div class="login"></div>
-   </div>
+<div id="header">
+	<div id="headerWrap">
+	<div id="headerLeft">
+		<div id="headerLogo"></div>
+		<div class="menu1">카드순위</div>
+		<div class="menu1">카드검색/비교</div>
+		<div class="menu1">컨텐츠</div>
+	</div>
+	<div id="headerRight">
+		<div id="imgSearch"></div>
+		<div id="imgLogin"></div>
+		</div>
+	</div>
 </div>
 <!-- 메인영역(소비심리테스트) -->
 <div class="rayout">
