@@ -20,5 +20,28 @@ public class DetailContoller {
 		
 	}
 	
+	@RequestMapping(value="/detail01")
+	
+	public ModelAndView detail01(ModelAndView mav) {
+		
+		
+		mav.setViewName("detail/detail01");
+		
+		return mav;
+			
+	}
+	
+	@RequestMapping(value="/detail02")
+	
+	public ModelAndView detail02(ModelAndView mav) {
+		
+		
+		mav.setViewName("detail/detail02");
+		
+		return mav;
+			
+	}
+	
+	
 	
 }
