@@ -21,4 +21,11 @@ public class ContentController {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value = "/Ctest1")
+	public ModelAndView Ctest1(ModelAndView mav) {
+		mav.setViewName("contents/Ctest1");
+		
+		return mav;
+	}
 }
