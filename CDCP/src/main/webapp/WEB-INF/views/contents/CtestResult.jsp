@@ -58,7 +58,7 @@ p {
 	background-color: #eee;
 	vertical-align: top;
 	text-align: center;
-	font-size: 50px;
+	font-size: 60px;
 	color: blueblack;
 	font-family: 'Cafe24Ohsquare';
 	margin: 40px auto;

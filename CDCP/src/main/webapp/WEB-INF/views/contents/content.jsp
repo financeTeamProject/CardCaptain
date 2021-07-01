@@ -412,8 +412,12 @@ h1 {
 		
 		$(document).ready(function() {
 			
-			$(".test_button").on("click", function() {
+			$(".test_button").on("click", function() { // 테스트 시작하기를 눌렀을 때, 소비심리 첫번째 페이지로 이동
 				location.href = "Ctest1";
+			});
+			
+			$("#box").on("click", function() {
+				location.href = "cardTerms";
 			});
 		});	
 		
