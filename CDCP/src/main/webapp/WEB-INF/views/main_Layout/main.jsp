@@ -49,7 +49,7 @@ body {
 #headerLogo {
     display: inline-block;
     vertical-align: top;
-    background-image: url("logo.png");
+    background-image: url("/cdcp/resources/images/main/logo.png");
     background-repeat: no-repeat;
     background-size: 120px;
     width: 120px;
@@ -79,7 +79,7 @@ body {
 }
 #imgSearch {
  	display: inline-block;
-    background-image: url("search.png");
+    background-image: url("/cdcp/resources/images/main/search.png");
     background-repeat: no-repeat;
     background-size: 30px;
     width: 30px;
@@ -90,7 +90,7 @@ body {
 }
 #imgLogin {
  	display: inline-block;
-    background-image: url("login1.png");
+    background-image: url("/cdcp/resources/images/main/login1.png");
     background-repeat: no-repeat;
     background-size: 30px;
     width: 30px;
@@ -123,7 +123,7 @@ body {
 #footerLogo {
     display: inline-block;
     vertical-align: top;
-    background-image: url("logo.png");
+    background-image: url("/cdcp/resources/images/main/logo.png");
     background-repeat: no-repeat;
     background-size: 120px;
     width: 120px;
