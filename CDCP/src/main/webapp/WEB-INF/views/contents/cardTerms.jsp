@@ -37,13 +37,13 @@ a{
 	text-decoration: none;
 }
 
-body {
-  padding-top: 100px;
-  padding-left: 30px;
-  background: #eee;
-  font-size: 0;
+html, body {
 
-  
+    margin: 0;
+    height: 100%;
+	background-color: #eee;
+	
+
 }
 
 h2 {
@@ -65,18 +65,111 @@ h1 {
 	color: black;
 }
 
-header { /* 상단메뉴바 */
-	height: 70px;
-	background: #0047AB;
-	border-radius: 5px;
-	position: fixed;
-	width: 98%;
-	z-index: 9999;
-	top: 10px;
-	left: 1%;
-	align-items: center;
-	min-width: 1210px;
+.top {
+   width: 100%;
+   height: 55px;
+   border-style: solid;
+   border-width: 0 0 2px 0;
+   border-color: #0047AB;
+   font-family: 'GmarketSansMedium';
+   min-width: 1830px;
+   position: fixed;
+   z-index: 9999;
+   background-color: white;
 }
+
+.menu_left {
+   display: inline-block;
+   width: 50%;
+   height: 100%;
+    font-size: 18px;
+   vertical-align: top;
+}
+.menu_right {
+   display: inline-block;
+   width: 48%;
+   height: 100%;
+   font-size: 18px;
+   vertical-align: top;
+   text-align: right;
+}
+.logo {
+    display: inline-block;
+    vertical-align: top;
+    background-image: url("/cdcp/resources/images/contentimg/logo.png");
+    background-repeat: no-repeat;
+    background-size: 120px;
+    width: 120px;
+    height: 40px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 70px;
+}
+.login {
+    display: inline-block;
+    background-image: url("/cdcp/resources/images/contentimg/login1.png");
+    background-repeat: no-repeat;
+    background-size: 30px;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+.search {
+    display: inline-block;
+    background-image: url("/cdcp/resources/images/contentimg/search.png");
+    background-repeat: no-repeat;
+    background-size: 30px;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    text-align: center;
+}
+.menu1 {
+   display: inline-block;
+   width: 140px;
+   height: 100%;
+   line-height: 65px;
+   color: #0047AB;
+   text-align: center;
+   letter-spacing: 2px;
+   vertical-align: top;
+   cursor: pointer;
+}
+.menu2 {
+   display: inline-block;
+   width: 100px;
+   height: 100%;
+   line-height: 65px;
+   color: #0047AB;
+   text-align: center;
+   letter-spacing: 2px;
+   vertical-align: top;
+   margin-left: 10px;
+   cursor: pointer;
+}
+.text_search {
+   width: 180px;
+    height: 30px;
+   line-height: 45px;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: #0047AB;
+    padding: 11px 10px 3px 10px;
+    outline: 0;
+    border-radius: 0;
+    box-sizing: border-box;
+    caret-color: #f7e317;
+    text-decoration: none;
+   color: #0047AB;
+   font-size: 14px;
+   letter-spacing: 3px;
+   margin-left: 500px;
+    background-color: #f0f8ff00;
+}
+
+
 
 .title {
 	
@@ -93,41 +186,8 @@ header { /* 상단메뉴바 */
 }
 
 
-.wrapper{ /* header > 하위요소 적용 */
-	width: 100%;
-	margin: 0 auto;
-	padding-left: 20px;
-}
-
-.menu{ /* 메뉴 정렬 위치 기준 */
-	float: right;	
-}
-
-.menu li a:hover {
-	color: #F5DF4D;
-	cursor: pointer;
-}
-
-.menu li{
-	text-align: center;	
-	margin-right: 70px;
-	width: auto;
-	height: 70px;
-	float: left;
-	font-family: 'Cafe24Ohsquare';	
-	display: inline-block;
-    
-}
-
-.menu a{
-	line-height: 70px;
-	color: white;
-	padding: 0 15px;
-	display: block;
-}
-
 .rayout{
-
+	
     width: 100%;
     height: 100%;
     margin: 0 auto;
@@ -158,7 +218,7 @@ header { /* 상단메뉴바 */
 }
 
 #title_termes {
-	background-image: url("../imageFolder/card_tip_4.jpg");
+	background-image: url("/cdcp/resources/images/contentimg/card_tip_4.jpg");
 	background-repeat: no-repeat;
 	background-position: right;
 	background-size:contain;
@@ -173,7 +233,7 @@ header { /* 상단메뉴바 */
 #termes {
 	border: 5px 5px 5px 5px;
 	margin: 0px auto;
-	height: 900px;
+	height: 750px;
 	width: 100%;
 	background-color: white;
 }
@@ -184,7 +244,7 @@ header { /* 상단메뉴바 */
 	bottom: 10px;
 	float: left;
 	margin: 0 auto;
-	background-image: url("../imageFolder/brand1.png");
+	background-image: url("/cdcp/resources/images/contentimg/brand1.png");
 	background-position: left;
 	background-repeat: no-repeat;
 	background-size: 180px auto;
@@ -196,7 +256,7 @@ header { /* 상단메뉴바 */
 #footer{
 	width: 100%;
 	height: 100px;
-	float:left;
+	float: left;
 	background: gray;	
 }
 
@@ -213,7 +273,7 @@ header { /* 상단메뉴바 */
 #footerLogo{
 	display: inline-block;
 	vertical-align: top;
-	background-image: url("../imageFolder/brand1.png");
+	background-image: url("/cdcp/resources/images/contentimg/brand1.png");
 	background-repeat: no-repeat;
 	background-size: 180px;
 	width: 180px;
@@ -225,17 +285,20 @@ header { /* 상단메뉴바 */
 </head>
 <body>
 <!-- 헤더영역(메뉴바) -->
-<header>
-	<div class="wrapper">
-		<div id="logo"></div>
-			<ul class="menu">
-				<li><a>카드검색/비교</a></li>
-				<li><a href="">컨텐츠</a></li>
-				<li><a>카드순위</a></li>
-				<li><a>로그인</a></li>
-			</ul>
-	</div>
-</header>
+<div class="top">
+   <div class="menu_left">
+      <div class="logo"></div>
+      <div class="menu1">카드순위</div>
+      <div class="menu1">카드검색/비교</div>
+      <div class="menu1">컨텐츠</div>
+   </div>
+   <div class="menu_right">
+      <input type="text" class="text_search">   
+      <div class="search"></div>
+      <div class="menu2">로그인</div>
+      <div class="login"></div>
+   </div>
+</div>
 <!-- 메인영역(소비심리테스트) -->
 <div class="rayout">
 	<div id="s_left"></div>
@@ -252,9 +315,7 @@ header { /* 상단메뉴바 */
 			</div>	
 	</div>	
 	<div id="s_right"></div>						
-</div>
 	<!-- 풋터영역 (하단 마무리) -->
-	<div class="rayout">
 	<div id="footer">
 		<div id="footerMenu">
 			<div id="footerLogo"></div>
@@ -262,6 +323,6 @@ header { /* 상단메뉴바 */
 			<div>Copyright © 2021-2031 CardCaptain All Rights Reserved.</div>
 		</div>
 	</div>
-	</div>
+</div>
 </body>
 </html>
