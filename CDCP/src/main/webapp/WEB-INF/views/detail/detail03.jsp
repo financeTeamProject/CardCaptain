@@ -7,6 +7,72 @@
 <script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type = "text/javascript">
 		
+		
+
+$(function(){
+	
+    var group = $(".group");
+
+    
+    group.each(function(){
+        var _group = new GroupBox(this);
+    });
+	
+    
+    // 사용자 정의 생성자 함수 정의
+    function GroupBox(groupElement){
+
+        var box = $(groupElement).find(".box");
+        var title = $(groupElement).find(".box .title a");
+
+        box.each(function(idx){
+            var newBox = new RootBox(this);
+            if (idx > 0){
+                newBox.siblingsClose();
+            }
+        });
+    }
+	    
+    
+    // 사용자 정의 생성자 함수 정의
+    function RootBox(boxElement){
+        var _this = this;
+        var boxEl = $(boxElement);
+        var target = $(boxEl).find(".title a");
+        var cont = $(boxEl).find(".cont");
+
+        // _groupParent = $(boxEl).parent();
+
+        target.on("click", anchorClickEvent);
+
+        function anchorClickEvent() {
+
+            if (cont.is(':hidden')) {
+                _this.open();
+            } else {
+                _this.close();
+            }
+        }
+		
+        _this.siblingsClose = function () {
+            cont.css('display','none');
+        }
+
+        _this.open = function() {
+            cont.slideDown();
+        }
+        _this.close = function() {
+            cont.slideUp();
+        }
+    }
+});	
+		
+		
+
+
+	/*비교함 담기  */	
+		
+		
 	$(document).ready(function(){
 				
 		
@@ -25,14 +91,11 @@
 		$("#bi").on("click",function(){
 			
 			makePopup();
-		
-			
+					
 		});
-		
-		
+				
 	});
 				
-			
 		function makePopup(){
 			
 			var html = "<div class = \"Popup\">"
@@ -459,7 +522,7 @@ body{
 					margin: 10px 10px;
 				}
 				/* 혜택 박스 틀 */
-				.bot_box{  
+				.group{  
 					margin: 10px auto;
 					width: 800px;
 					height: 100px;
@@ -485,6 +548,15 @@ body{
 						height: inherit;
 						font-family: GmarketSansMedium;
 					}
+						
+						.cont{
+																				
+							width : 200px;
+							height : 50px;
+							border: 1px solid #000000;
+						
+						}
+								
 						.name_card{
 							margin-bottom: 0;
 							text-align: left;
@@ -681,7 +753,7 @@ body{
 			<div id="bnfTxt">주요 혜택</div>
 			<div id="botArea">
 				<!-- 카페 혜택 -->
-				<div class="bot_box">
+				<div class="group">
 					<div class="bnf_icon">
 						<img alt="혜택아이콘" src="${pageContext.request.contextPath}/resources/images/detail/icon_cafe_blue.png" class="icon_img"> 
 					</div>
@@ -692,9 +764,10 @@ body{
 					<div class="open_view">
 						<img alt="펼쳐보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_down_gray.png" class="arrow_down">
 					</div>
+					<div class = "cont" style = "display:none";>가나다라마바사아자차카타파하</div>
 				</div>
 				<!-- 구독 혜택 -->
-				<div class="bot_box">	
+				<div class="group">	
 					<div class="bnf_icon">
 						<img alt="혜택아이콘" src="${pageContext.request.contextPath}/resources/images/detail/icon_subscribe_blue.png" class="icon_img"> 
 					</div>
@@ -705,9 +778,10 @@ body{
 					<div class="open_view">
 						<img alt="펼쳐보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_down_gray.png" class="arrow_down">
 					</div>
+					<div class = "cont" style = "display:none";>가나다라마바사아자차카타파하</div>
 				</div>
 				<!-- 간편결제 혜택 -->
-				<div class="bot_box">	
+				<div class="group">	
 					<div class="bnf_icon">
 						<img alt="혜택아이콘" src="${pageContext.request.contextPath}/resources/images/detail/icon_pay_blue.png" class="icon_img"> 
 					</div>
@@ -718,9 +792,10 @@ body{
 					<div class="open_view">
 						<img alt="펼쳐보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_down_gray.png" class="arrow_down">
 					</div>
+					<div class = "cont" style = "display:none";>가나다라마바사아자차카타파하</div>
 				</div>
 				<!-- 유의사항 -->
-				<div class="bot_box">	
+				<div class="group">	
 					<div class="bnf_icon">
 						<img alt="유의사항" src="${pageContext.request.contextPath}/resources/images/detail/icon_note_bule.png" class="icon_img"> 
 					</div>
@@ -731,6 +806,7 @@ body{
 					<div class="open_view">
 						<img alt="펼쳐보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_down_gray.png" class="arrow_down">
 					</div>
+					<div class = "cont" style = "display:none";>가나다라마바사아자차카타파하</div>
 				</div>
 			</div>
 			<!-- 리뷰 영역 -->
