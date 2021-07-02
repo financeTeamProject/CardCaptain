@@ -105,7 +105,6 @@ body {
 #footer {
     width: 100%;
   	height: 100px;
-	border-radius: 5px;
 	border-style: solid;
     border-width: 2px 0 0 0;
     border-color: #0047AB;
