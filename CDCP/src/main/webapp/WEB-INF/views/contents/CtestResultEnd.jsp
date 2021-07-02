@@ -117,15 +117,16 @@ input[type="radio"] {
   
 }
 
-#sobiButton {
-	width: 100%;
+.sobiButton {
+    width: 100%;
     text-align: center;
     padding-top: 45px;	
     min-width: 900px;
+    
 }
 
-#sobiButton input[type='button'] {
-	width: 80%;
+.sobiButton input[type='button'] {
+	width: 30%;
     height: 80px;
     color: white;
     border-style: none;
@@ -137,7 +138,7 @@ input[type="radio"] {
     margin: 0 auto;
 }
 
-#sobiButton input[type='button']:hover {
+.sobiButton input[type='button']:hover {
 	background-color:#FFD400;
 	color:#282C37;
 	cursor: pointer;
@@ -182,6 +183,20 @@ input[type="radio"] {
 }
 
 </style>
+<script type="text/javascript"
+				src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript">
+		
+		$(document).ready(function() {
+			
+			$("#goBtn").on("click", function() { 
+				location.href = "content";
+			});
+			
+		});	
+		
+		
+</script>
 </head>
 <body>
 
@@ -201,8 +216,9 @@ input[type="radio"] {
 		<div id="card_img_1"></div>
 		<div id="card_img_2"></div>
 		</div>
-	<div id="sobiButton">
+	<div class="sobiButton">
 		<input type="button" value="카드 확인하러 가기" id="resultend" />
+		<input type="button" value="홈페이지로 돌아가기" id="goBtn" />
 	</div>	
 	</div>	
 	<div id="s_right"></div>						

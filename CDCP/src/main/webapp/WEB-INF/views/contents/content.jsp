@@ -64,7 +64,7 @@ h1 {
 
 
 #headerWrap {
-	width: 1600px;
+	width: 1400px;
 	height: 100%;
 	margin: 0 auto;
 	display: flex;
