@@ -54,9 +54,20 @@ body {
 }
 .middle_top {
 	width: 100%;
-	height: 150px;
-	line-height: 150px;
-	font-size: 22px;
+	height: 50px;
+	line-height: 50px;
+	font-size: 13px;
+	text-align: center;
+	margin-top: 30px;
+}
+.searchId {
+	width: 100%;
+	height: 70x;
+	line-height: 70px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #0047ab;
+	margin-top: 40px;
 }
 .title {
 	width: 100%;
@@ -200,13 +211,7 @@ body {
 	<div class="back_middle">
 		<div class="middle1">
 		<div class="middle_top">ID/PW를 찾아주세요.</div>
-		<div class="title">아이디</div>
-		<input type="text" class="text" placeholder="아이디 입력" id="mem_id" />
-		<div class="title">비밀번호</div>
-		<strong><input type="password" class="text" placeholder="비밀번호(8~32자리)" id="mem_password" /></strong>
-		<input type="password" class="text" placeholder="비밀번호 재입력" id="mem_rePassword" />
-		<div class="title">닉네임</div>
-		<input type="text" class="text" placeholder="닉네임을 입력해 주세요." id="mem_nickname" />
+		<div class="searchId">*아이디 찾기</div>
 		<div class="title">전화번호</div>
 		<select name="+82" id="select_num"> 
 			<option value="+82   대한민국"></option>
@@ -225,8 +230,23 @@ body {
 				<option value="naver.com">naver.com</option>
 				<option value="google">google</option>
 			</select>
+		</div>
+		<div class="searchId">*비밀번호 찾기</div>
+		<div class="title">아이디</div>
+		<input type="text" class="text" placeholder="아이디 입력" id="mem_id" />
+		<div class="title">이메일</div>
+		<div class="title">
+			<input type="text" id="email" placeholder="이메일" />&nbsp;&nbsp;&nbsp;@&nbsp;&nbsp;&nbsp;
+			<select name="+82" id="select_email"> 
+				<option value="naver.com">naver.com</option>
+				<option value="google">google</option>
+			</select>
 			<input type="button" id="checkingEmail" value="이메일인증" />
 		</div>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
 		<br/>
 		<br/>
 		<input type="button" value="다음" id="btn_next"></div>

@@ -9,9 +9,27 @@ public class UserContoller {
 
 	//회원가입 페이지
 	@RequestMapping(value = "/join")
-	public ModelAndView search(ModelAndView mav) {
+	public ModelAndView join(ModelAndView mav) {
 		
 		mav.setViewName("user/join");
+		
+		return mav;
+	}
+	
+	//ID/PW찾기
+	@RequestMapping(value="/searchmem")
+	public ModelAndView searchmem(ModelAndView mav) {
+		
+		mav.setViewName("user/searchmem");
+		
+		return mav;
+	}
+	
+	//로그인메인
+	@RequestMapping(value="/login")
+	public ModelAndView login(ModelAndView mav) {
+		
+		mav.setViewName("user/login");
 		
 		return mav;
 	}
