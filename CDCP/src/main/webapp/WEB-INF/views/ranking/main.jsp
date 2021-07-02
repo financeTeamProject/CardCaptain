@@ -137,9 +137,10 @@ body {
 	/*슬라이드 화면부분 ~165번째줄 */
 *{margin:0;padding:0;}
 #content {
-	width: 1600px;
+	width: 1830px;
     height: 980px;
     margin: 0 auto;
+    min-width: 1830px;
 }
 ul,li{
 	list-style:none;
