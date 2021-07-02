@@ -189,102 +189,7 @@ body {
     font-family: GmarketSansMedium;
     font-size: 12px;
 	}
-/* #footerLogo {
-    display: inline-block;
-    vertical-align: top;
-    background-image: url("logo.png");
-    background-repeat: no-repeat;
-    background-size: 120px;
-    width: 120px;
-    height: 40px;
-    cursor: pointer;
-    text-align: center;
-    margin-top: 5px;
-} */
 </style>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-	var regex_kor = (/[^가-힣]$/);
-	var regex_spe = (/[~!@#$%^&*()_+|<>?:{}]/);
-	var regex_num = (/[^0-9]/g);
-	var regex_eng = (/^[a-zA-Z]*$/);
-	
-	//숫자만 입력
-	$("#phone_num").keydown(function() {
-		if (!regex_num.test($(this).val())) {
-			alert("숫자만 입력가능합니다.");
-		}
-	});
-	
-	//회원가입 필터링	
-	$("#btn_next").on("click",function() {
-		var memId = $.trim($("#mem_id").val());
-		var memPw = $.trim($("#mem_password").val());
-		var memRePw = $.trim($("#mem_rePassword").val());
-		var memNick = $.trim($("#mem_nickname").val());
-		var memPhone1 = $("select_num option:selected").val();
-		var memPhone2 = $.trim($("#phone_num").val());
-		var memRRN = $.trim($("#text_num").val());
-		var memGender = $.trim($("#text_num2").val());
-		var memEmail = $.trim($("#email").val());
-		var memEmailOpt = $("#select_email option:selected").val();
-		var chk_num = memPw.search(/[0-9]/g);
-	    var chk_eng = memPw.search(/[a-z]/ig);
-		
-		if(memId == "") {
-			alert("아이디를 입력하세요");
-			$("#mem_id").focus();
-		} else if (!regex_kor.test(memId)) {
-			alert("아이디는 한글로 만들 수 없습니다.");
-			$("#mem_id").val('');
-			$("#mem_id").focus();
-		} else if(memPw == "") {
-			alert("비밀번호를 입력하세요");
-			$("#mem_password").focus();
-		} else if(chk_num < 0 || chk_eng < 0) {
-			alert("비밀번호는 영문과 숫자를 혼용해 주세요");
-			$("#mem_password").focus();
-		} else if (memRePw == "") {
-			alert("비밀번호를 확인해 주세요");
-			$("#mem_rePassword").focus();
-		} else if (memPw.length < 8 || memPw.length > 32) {
-			alert("비밀번호는 8자리 이상 32자리 이하만 가능합니다.");
-			$("#mem_password").val('');
-			$("#mem_rePassword").val('');
-			$("#mem_password").focus();
-		} else if (memPw != memRePw) {
-			alert("비밀번호를 다시 확인해 주세요");
-			$("#mem_password").focus();
-		} else if (memNick == "") {
-			alert("닉네임을 입력해 주세요");
-			$("#mem_nickname").focus();
-		} else if (memPhone2.length < 8) {
-			alert("핸드폰번호 8자리를 입력해 주세요");
-			$("#phone_num").focus();
-		} else if (memRRN.length < 6) {
-			alert("주민번호 앞의 6자리를 입력해 주세요");
-			$("#text_num").focus();
-		} else if (memGender == "") {
-			alert("주민번호 뒤의 1자리를 입력해 주세요");
-			$("#text_num2").focus();
-		} else if (memEmail == "" && memEmailOpt == "") {
-			alert("이메일을 입력해 주세요.");
-		}
-	});
-});
-
-function SetNum(obj) {
-	var keyVal = event.keyCode;
-	
-	if((keyVal >= 48) && (keyVal <= 57)) {
-		return true;
-	} else {
-		alert("숫자만 입력가능합니다.");
-		return false;
-	}
-}
-</script>
 </head>
 <body>
 <form action="#" id="checkEmailForm">
@@ -294,7 +199,7 @@ function SetNum(obj) {
 	<div class="back_top">C&nbsp;A&nbsp;R&nbsp;D&nbsp;&nbsp;&nbsp;C&nbsp;A&nbsp;P&nbsp;T&nbsp;A&nbsp;I&nbsp;N</div>
 	<div class="back_middle">
 		<div class="middle1">
-		<div class="middle_top">회원가입 정보를 입력해주세요.</div>
+		<div class="middle_top">ID/PW를 찾아주세요.</div>
 		<div class="title">아이디</div>
 		<input type="text" class="text" placeholder="아이디 입력" id="mem_id" />
 		<div class="title">비밀번호</div>
