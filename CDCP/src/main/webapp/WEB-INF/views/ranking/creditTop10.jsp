@@ -28,7 +28,7 @@ body{
 }
 /*	헤더 영역	*/
 	#header{
-		min-width: 1500px;
+		min-width: 1600px;
 		width: 1500px;
 		height: 70px;
 		border-radius: 5px;
@@ -498,7 +498,7 @@ body{
 				<div class="rank_box">	<!-- 2등 -->
 					<div class="rank_num">2</div>
 					<div class="box_card">
-						<img alt="카드" src="../weDoument/imageFolder/card/credit/sh_mrlife_card.png" class="card_img"/> 
+						<img alt="카드" src= "resources/images/ranking/card/credit/sh/sh_mrlife_card.png" class="card_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_card">신한카드 Mr.Life</h2>

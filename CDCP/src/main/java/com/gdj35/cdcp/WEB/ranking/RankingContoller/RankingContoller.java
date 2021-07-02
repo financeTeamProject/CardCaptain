@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 public class RankingContoller {
 	
 	@RequestMapping(value="/ranking")
-	
 	public ModelAndView ranking (ModelAndView mav) {
 		
 		mav.setViewName("ranking/ranking");

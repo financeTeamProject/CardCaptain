@@ -10,7 +10,9 @@ public class UserContoller {
 	//회원가입 페이지
 	@RequestMapping(value = "/join")
 	public ModelAndView search(ModelAndView mav) {
+		
 		mav.setViewName("user/join");
+		
 		return mav;
 	}
 }
