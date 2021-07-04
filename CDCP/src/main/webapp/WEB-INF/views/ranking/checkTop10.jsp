@@ -177,7 +177,7 @@ body{
 						}
 					/* TOP1 오른쪽 영역*/
 					#rightSct{
-						width: 390px;
+						width: 400px;
 						height: 200px;
 						float: right;
 					}
@@ -236,20 +236,20 @@ body{
 						text-align: center;
 					}
 						#dtBtn{
-							width: 200px;
+							width: 150px;
 							height: 50px;
-							font-size: 20px;
 							color: white;
-							background-color: #0047ab;
-							padding: 10px;
-							margin: 25px;
-							
+							border-style: none;
+						    background-color: #0047AB;
+						    border-radius: 5px;
+						    font-size: 18px;
+						    font-family: 'GmarketSansMedium';
+							margin: 25px 5px;
 						}	
 							#dtBtn:hover{
-								cursor: pointer;
 								color: black;
-								font-weight: bold;
-								background-color: white;
+							    background-color: #F5DF4D;
+							    cursor: pointer;
 							}
 			/* 2~10위 박스 영역*/
 			#contentBot{
@@ -425,7 +425,8 @@ body{
 					</div>
 				</div>
 				<div id="btnBox">
-					<input type="button" value="자세히 보기" id="dtBtn" />
+					<input type="button" value="상세보기" id="dtBtn" />
+					<input type="button" value="비교함 담기" id="dtBtn" />
 				</div>
 			</div>
 			<div id="contentBot">
