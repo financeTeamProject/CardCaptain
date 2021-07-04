@@ -103,27 +103,9 @@
 	/* 헤더 종료 */
 
 	/*	내용 영역	*/	
-/* 	#content{
-	width: 1830px;
-    height: 980px;
-    margin: 0 auto;
-    min-width: 1830px;
-	}
-		.side_area{ 
-			display:inline-block;
-			vertical-align: top;
-			width: 140px;
-			height: inherit;
-		}
-		#contentMenu{
-			display:inline-block;
-			vertical-align: top;
-			width: 1200px;
-			height: inherit;
-		}  */
-		#content{
-		width: 100%;
-		height: 100%;
+	#content{
+	width: 100%;
+	height: 100%;
 	}
 		#contentMenu{
 			width: 1600px;
@@ -153,7 +135,7 @@
 					vertical-align: top;
 					width: 360px;
 					height: 220px;
-					margin-left: 150px;
+					margin-left: 350px;
 				}
 					.big_img{	
 						width: 350px;
@@ -308,35 +290,34 @@
 						display: inline-block;
 						vertical-align: top;
 						width: 15%;
-						height: 80%;
+						height: inherit;
 						cursor: pointer;
 					}
 						.arrow_down{
-							width: 70%;
-							height: 100%;
-							padding: 10px;
+							width: 50%;
+							height: 50%;
+							margin: 20px 30px;
 						}				
 				/* 리뷰 영역 */	
 				#review_name{
 					height: 50px;
 					margin: 10px auto;
-					margin-left: 10px;
 					font-family: Cafe24Ohsquare;
 					font-size: 30px;
 					line-height: 60px;
 				}	
 				.review_area{
+					display: flex;
+					justify-content: space-around;
 					width: 100%;
 					background-color: #f2f2f2;
 					border-radius: 50px;
 					padding: 20px 0px;
-					margin: 20px 0;
 				}		
+					/* 사용자 평점 영역 */
 					.star_area{
 						display: inline-block;
 						vertical-align: top;
-						margin-left: 100px;
-						
 					}
 						h2 {
 						font-size:20px;
@@ -350,7 +331,7 @@
 							display:inline-block; 
 							height:55px; 
 							overflow:hidden; 
-							background-image: url("../weDoument/imageFolder/background/star.png");
+							background-image: url("resources/images/ranking/background/star.png");
 							background-repeat: no-repeat;
 							}
 						.star-rating span{
@@ -358,10 +339,10 @@
 						line-height:0; 
 						vertical-align:top; 
 						}
+					/* 전체 리뷰 수 영역 */	
 					.review_total{
 						display: inline-block;
 						vertical-align: top;
-						margin-left: 100px;
 						
 					}
 						.review_img{
@@ -369,7 +350,7 @@
 							vertical-align: top;
 							width: 40px;
 							height: 40px;
-							background-image: url("../weDoument/imageFolder/icon/review.png");
+							background-image: url("resources/images/ranking/icon/review.png");
 							background-repeat: no-repeat;
 							background-size: 40px;
 							margin: 0 10px;
@@ -384,6 +365,36 @@
 							text-align: center;
 							margin: 0 10px;
 						}
+					.click_total{
+						display: inline-block;
+						vertical-align: top;
+						
+					}
+						.click_img{
+							display: inline-block;
+							vertical-align: top;
+							width: 40px;
+							height: 40px;
+							background-image: url("resources/images/ranking/icon/click.png");
+							background-repeat: no-repeat;
+							background-size: 40px;
+							margin: 0 10px;
+							
+						}
+						.click_cnt{
+							display: inline-block;
+							vertical-align: top;
+							font-family: GmarketSansMedium;
+							font-size: 40px;
+							font-weight: bold;
+							text-align: center;
+							margin: 0 10px;
+						}
+					/* 리뷰 작성 영역 */
+					.review_write_area{
+						width: 100%;
+						height: 500px; 
+					}
 
 	/* 풋터 영역 */
 	#footer {
@@ -456,14 +467,14 @@
 						<div id="cardCmp">KB국민카드</div>
 				</div>
 				<div id="mainImg">
-					<img alt="혜택카드" src="../weDoument/imageFolder/card/credit/kb_toktokwith.png" width="350px" height="200px" class="big_img"/>
+					<img alt="혜택카드" src="resources/images/ranking/card/credit/kb/kb_toktokwith.png" width="350px" height="200px" class="big_img"/>
 				</div>
 				<!-- 혜택  영역 -->
 				<div id="cardBnf">
 					<div id="imgSct">
 						<!-- 카페 혜택 -->
 						<div class="bnf_sct">
-							<img alt="카페" src="../weDoument/imageFolder/icon/benefit/icon_cafe_blue.png" width="100px" height="100px"/>
+							<img alt="카페" src="resources/images/ranking/icon/benefit/icon_cafe_blue.png" width="100px" height="100px"/>
 							<div class="bnf_dsc">
 								<div class="bnf_name">스타벅스</div>
 								<div class="bnf_box">
@@ -474,7 +485,7 @@
 						</div>
 						<!-- 간편결제 혜택 -->
 						<div class="bnf_sct">
-							<img alt="간편결제" src="../weDoument/imageFolder/icon/benefit/icon_pay_blue.png" width="100px" height="100px"/>
+							<img alt="간편결제" src="resources/images/ranking/icon/benefit/icon_pay_blue.png" width="100px" height="100px"/>
 							<div class="bnf_dsc">
 								<div class="bnf_name">온라인 간편결제</div>
 								<div class="bnf_box">
@@ -485,7 +496,7 @@
 						</div>
 						<!-- 구독 혜택 -->
 						<div class="bnf_sct">
-							<img alt="구독" src="../weDoument/imageFolder/icon/benefit/icon_subscribe_blue.png" width="100px" height="100px"/>
+							<img alt="구독" src="resources/images/ranking/icon/benefit/icon_subscribe_blue.png" width="100px" height="100px"/>
 							<div class="bnf_dsc">
 								<div class="bnf_name">구독</div>
 								<div class="bnf_box">
@@ -506,53 +517,53 @@
 				<!-- 카페 혜택 -->
 				<div class="bot_box">
 					<div class="bnf_icon">
-						<img alt="혜택아이콘" src="../weDoument/imageFolder/icon/benefit/icon_cafe_blue.png" class="icon_img"/> 
+						<img alt="혜택아이콘" src="resources/images/ranking/icon/benefit/icon_cafe_blue.png" class="icon_img"/> 
 					</div>
 					<div class="box_txt"> 
 						<h2 class="name_card">카페</h2>
 						<h4 class="cmp_card">스타벅스 50%할인</h4>
 					</div>
 					<div class="open_view">
-						<img alt="펼쳐보기" src="../weDoument/imageFolder/icon/arrow_down_gray.png" class="arrow_down"/>
+						<img alt="펼쳐보기" src="resources/images/ranking/icon/arrow_down_gray.png" class="arrow_down"/>
 					</div>
 				</div>
 				<!-- 구독 혜택 -->
 				<div class="bot_box">	
 					<div class="bnf_icon">
-						<img alt="혜택아이콘" src="../weDoument/imageFolder/icon/benefit/icon_subscribe_blue.png" class="icon_img"/> 
+						<img alt="혜택아이콘" src="resources/images/ranking/icon/benefit/icon_subscribe_blue.png" class="icon_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_card">디지털 구독</h2>
 						<h4 class="cmp_card">구독(YouTube premium,넷플릭스,웨이브,티빙)20% 할인</h4>
 					</div>
 					<div class="open_view">
-						<img alt="펼쳐보기" src="../weDoument/imageFolder/icon/arrow_down_gray.png" class="arrow_down"/>
+						<img alt="펼쳐보기" src="resources/images/ranking/icon/arrow_down_gray.png" class="arrow_down"/>
 					</div>
 				</div>
 				<!-- 간편결제 혜택 -->
 				<div class="bot_box">	
 					<div class="bnf_icon">
-						<img alt="혜택아이콘" src="../weDoument/imageFolder/icon/benefit/icon_pay_blue.png" class="icon_img"/> 
+						<img alt="혜택아이콘" src="resources/images/ranking/icon/benefit/icon_pay_blue.png" class="icon_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_card">간편결제</h2>
 						<h4 class="cmp_card">온라인 간편결제 10% 할인</h4>
 					</div>
 					<div class="open_view">
-						<img alt="펼쳐보기" src="../weDoument/imageFolder/icon/arrow_down_gray.png" class="arrow_down"/>
+						<img alt="펼쳐보기" src="resources/images/ranking/icon/arrow_down_gray.png" class="arrow_down"/>
 					</div>
 				</div>
 				<!-- 유의사항 -->
 				<div class="bot_box">	
 					<div class="bnf_icon">
-						<img alt="유의사항" src="../weDoument/imageFolder/icon/benefit/icon_note_bule.png" class="icon_img"/> 
+						<img alt="유의사항" src="resources/images/ranking/icon/benefit/icon_note_bule.png" class="icon_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_card">유의사항</h2>
 						<h4 class="cmp_card">꼭 확인하세요!</h4>
 					</div>
 					<div class="open_view">
-						<img alt="펼쳐보기" src="../weDoument/imageFolder/icon/arrow_down_gray.png" class="arrow_down"/>
+						<img alt="펼쳐보기" src="resources/images/ranking/icon/arrow_down_gray.png" class="arrow_down"/>
 					</div>
 				</div>
 			</div>
@@ -572,6 +583,17 @@
 					<div class="review_img"></div>
 					<div class="review_cnt">100건</div>
 				</div>
+				<!-- 전체 조회수 영역 -->
+				<div class="click_total">
+					<h2>카드 조회수</h2>
+					<div class="click_img"></div>
+					<div class="click_cnt">5건</div>
+				</div>
+			</div>
+			<!-- 리뷰 작성 영역 -->
+			<hr style="border: 2px dashed black"/>
+			<div class="review_write_area">
+					
 			</div>
 		</div>
 		<div class=side_area></div>	

@@ -108,223 +108,236 @@ body{
 	#content{
 		width: 100%;
 		height: 100%;
+		min-width: 1830px;
+		margin: 0 auto;
 	}
 		#contentMenu{
+			display: flex;
+			justify-content: center;
 			width: 1600px;
 			height: 100%;
 			margin: 0 auto;
 		}
 			/* 소주제 영역 */
 			#menuName{
+				width: 250px;
 				height: 50px;
-				margin: 10px auto;
+				margin: 10px;
 				margin-left: 10px;
 				font-family: Cafe24Ohsquare;
 				font-size: 30px;
 				line-height: 60px;			
-			}		
+			}
+			.nav_menubar{
+				width: 1400px;
+				height: inherit;
+			}
+			/* 네비 버튼 통합 - 크기 조절 */
+			.nav_btn{
+				display: inline-block;
+				height: inherit;
+				width: 120px;
+				text-decoration: none;
+				padding: 20px 10px 0px;
+				margin: 0 10px;
+				font-family: 'GmarketSansMedium';
+				font-size: 25px;
+				color: rgba(51, 51, 51, 0.6);
+			}
+			a:active{
+				color: #0047AB;
+			}
 			/* 카드사별 top3 배경 */
-			#topBg{ 
+			.contentBg{ 
 				width: 100%;
-				height: 600px;
 				background-color: #333a44;
 				margin-bottom: 10px;
+				padding: 10px;
 			}
-			/* TOP1  영역*/
-			#contentTop{
+			/* TOP3  영역*/
+			.card_1{
+				display: block;
 				width: 100%;
-				height: 300px;
+				height: auto;
+				padding-top: 50px;
 			}
-				/* TOP1 왼쪽 영역*/
-				#leftSct{
-					display: inline-block;
-					vertical-align: top; 
-					width: 390px;
-					height: inherit;
-					text-align: center;
-					color: white;
+				.card_title{
+				    width: 1600px;
+				    height: 130px;
+				    margin: 0px auto;
 				}
-					#nameSct{
+				.title{
 					width: 100%;
-					height: 100px;
-					color: white;
-					margin-top: 80px;
-					}
-						#cardName{
-						height: 60px;
-						font-size: 25px;
-						line-height: 80px;
-						font-family: MaruBuri-Regular;
-						font-weight: bold;
-						}
-						#cardCmp{
-						height: 40px;
-						font-size: 20px;
-						font-family: MaruBuri-Regular;
-						font-weight: bold;
-						}
-				/* TOP1 가운데 영역*/
-				#centerSct{
-					display: inline-block;
-					vertical-align: top; 
-					width: 400px;
 					height: inherit;
-					text-align: center;
+					vertical-align: middle;
 				}
-					#imgSct{
-						background-image: url("../weDoument/imageFolder/card/credit/kb_toktokwith.png");
-						background-repeat: no-repeat;
-						background-size: 100%;
-						width: 80%;
-						height: 200px;
-						margin: 20px auto 0px auto;
+				/* 카드 이름 */
+					.card_name_block{
+					    font-family: 'GmarketSansMedium';
+					    color: white;
+					    font-size: 35px;
+					    font-weight: bold;
+					    text-align: center;
 					}
-					/* 버튼 박스 영역*/	
-					#btnBox{
-						width: 100%;
-						height: 50px;
-						text-align: center;
+					.selection_criteria{
+					    font-family: 'GmarketSansMedium';
+					    color: white;
+					    font-size: 14px;
 						margin-top: 10px;
-					}
-						#dtBtn{
-							width: 200px;
-							height: 50px;
-							font-size: 20px;
-							color: white;
-							background-color: #0047ab;
-							padding: 10px;
-							
-						}	
-							#dtBtn:hover{
-								cursor: pointer;
-								color: black;
-								font-weight: bold;
-								background-color: white;
-							}
-				/* TOP1 오른쪽 영역*/
-				#rightSct{
-					display: inline-block;
-					vertical-align: top; 
-					width: 390px;
-					height: inherit;
-					float: right;
-				}
-					/* 간단혜택 영역*/
-					#bnfArea{
-						width: 100%;
-						height:150px;
-						margin-top: 60px;
-					}
-						.bnf_dsc{
-							width: 100%;
-							height: 50px;
-							color: white;
-							line-height: 50px;
-						}
-							.bnf_name{	/* 혜택내용 */
-								display: inline-block;
-								vertical-align: top; 
-								text-align: center;
-								width: 220px;
-								height: inherit;
-								font-size: 20px;
-								font-family: GmarketSansMedium;
-								font-weight: bold;
-							}
-							.bnf_box{	
-								display: inline-block;
-								vertical-align: top;
-								width: 140px;
-								height: inherit;
-								text-align: center;
-							}
-								.bnf_dt{	 /* %표시 */
-									display: inline-block;
-									vertical-align: top;
-									text-align: right;
-									width: 70px;
-									height: inherit;
-									font-size: 20px;
-									font-family: GmarketSansMedium;
-									font-weight: bold;
-								}
-								.bnf_small{	/* 할인 */
-									display: inline-block;
-									vertical-align: top;
-									text-align: left;
-									width: 60px;
-									height: inherit;
-									font-size: 15px;
-									font-family: GmarketSansMedium;
-								}
-				#contentBot{ /* 2등 3등 영역 */
-					width: 100%;
-					height: 300px;
-				}
-					.under_rank{	/* 왼쪽 오른쪽 공통 영역 */
-						display: inline-block;
-						vertical-align: top; 
-						width: 400px;
-						height: 300px;
 						text-align: center;
+					}
+			/* 카드 TOP3 영역*/
+			.card_contents_area{
+				position: relative;
+			    z-index: 0;
+			    width: auto;
+			    margin: 50px auto 20px;
+			    display: flex;
+			    justify-content: center;
+			}	
+				/* 카드 박스 영역*/
+				.card_box{
+					position: relative;
+				    display: flex;
+				    width: 375px;
+				    text-align: center;
+				    margin-right: 20px;
+				    margin-left: 20px;
+				    padding: 24px 25px 40px;
+				    flex-direction: column;
+				    justify-content: flex-start;
+				    border-radius: 12px;
+				    background-color: white;
+				    box-shadow: 0 0 22px 4px rgb(26 37 48 / 6%), 0 1px 3px 0 rgb(20 33 41 / 6%);
+				}
+				/* 카드 TOP1,2,3 이미지*/
+				.img_top1{
+				position: absolute;
+			    left: 0%;
+			    top: -4%;
+			    right: 0%;
+			    bottom: auto;
+			    width: 40px;
+			    height: 40px;
+			    margin-right: auto;
+			    margin-left: auto;
+			    background-image: url("resources/images/ranking/icon/rank1.svg");
+			    background-position: 50% 50%;
+			    background-size: auto;
+				}
+				.img_top2{
+				position: absolute;
+			    left: 0%;
+			    top: -4%;
+			    right: 0%;
+			    bottom: auto;
+			    width: 40px;
+			    height: 40px;
+			    margin-right: auto;
+			    margin-left: auto;
+			    background-image: url("resources/images/ranking/icon/rank2.svg");
+			    background-position: 50% 50%;
+			    background-size: auto;
+				}
+				.img_top3{
+				position: absolute;
+			    left: 0%;
+			    top: -4%;
+			    right: 0%;
+			    bottom: auto;
+			    width: 40px;
+			    height: 40px;
+			    margin-right: auto;
+			    margin-left: auto;
+			    background-image: url("resources/images/ranking/icon/rank3.svg");
+			    background-position: 50% 50%;
+			    background-size: auto;
+				}
+				/* 카드 이름 */
+				.card_title_text{
+					display: block;
+					margin-top: 20px;
+				    margin-bottom: 0px;
+				    font-family: 'GmarketSansMedium';
+				    font-size: 24px;
+				    font-weight: bold;
+				}
+				/* 카드 설명 */
+				.card_contents{
+					display: block;
+				    height: 20px;
+				    margin: 16px auto;
+				    color: #666c77;
+				    font-size: 14px;
+				    line-height: 20px;
+				}
+				/* 카드 태그 */
+				.tag_set{
+					display: flex;
+					justify-content: center;
+   					width: 100%;
+   					margin-top: 20px;
+				}
+				.tag_age{
+					display: flex;
+					align-items: center;
+				    height: 30px;
+				    margin: 0 5px;
+				    padding: 10px 12px;
+				    border-radius: 8px;
+				    background-color: #f4f5f9;
+    				color: #868686;
+				    font-family: 'GmarketSansMedium';
+				}
+				.tag_ment{
+				 	display: flex;
+					align-items: center;
+				    height: 30px;
+				    margin: 0 5px;
+				    padding: 10px 12px;
+				    border-radius: 8px;
+				    background-color: #f4f5f9;
+    				color: #868686;
+				    font-family: 'GmarketSansMedium';
+				}
+				.tag_event{
+				 	display: flex;
+					align-items: center;
+				    height: 30px;
+				    margin: 0 5px;
+				    padding: 10px 12px;
+				    border-radius: 8px;
+				    background-color: #e6ffff;
+				    color: #0047ab;
+				    font-family: 'GmarketSansMedium';
+				}
+				   
+				/* 카드 이미지  */
+				.card_box_img{
+					display: block;
+				    height: 150px;
+				    margin: 40px auto 40px auto;
+				}
+				/* 카드 상세보기 버튼  */
+				.card_btn_area{
+					width: 100%;
+					height: 50px;
+				}
+					.card_box_btn{
+						width: 200px;
+						height: 50px;
+						background: #0047AB;
 						color: white;
-						margin: 5px;
+						border-style: none;
+						border-radius: 5px;
+						font-size: 20px;
+						font-family: 'GmarketSansMedium';
 					}
-						.under_name{
-							width: 100%;
-							height: 50px;
-							color: white;
-							margin-top: 10px;
-						}
-							.top_name{
-								height: 30px;
-								font-size: 25px;
-								line-height: 30px;
-								font-family: Cafe24Ohsquare;
-							}
-							.bot_cmp{
-								height: 20px;
-								font-size: 20px;
-								font-family: GmarketSansMedium;
-							}
-						.under_card{	/* 카드 사진 영역 */
-							text-align: center;
-							width: 270px;
-							height: 160px;
-							margin: 0 auto;
-						}
-							.card_img{
-								width: 80%;
-								height: 80%;
-								padding: 10px;
-							}
-						.under_btn{ /* 버튼 영역 */
-							width: 100%;
-							height: 50px;
-							text-align: center;
-						}
-							.btn_mini{
-							width: 100px;
-							height: 40px;
-							font-size: 15px;
-							color: white;
-							background-color: #0047ab;
-							padding: 10px;
-							
-						}	
-							.btn_mini:hover{
-								cursor: pointer;
-								color: black;
-								font-weight: bold;
-								background-color: white;
-							}
-					#spcArea{ /* 사이 공백 영역 */
-						display: inline-block;
-						vertical-align: top;
-						width: 368px;
-						height: inherit;
+					.card_box_btn:hover{
+						color: black;
+					    background-color: #F5DF4D;
+					    cursor: pointer;
 					}
-				
 	/*	풋터 영역	*/			
 	#footer {
     width: 100%;
@@ -386,78 +399,119 @@ body{
 	</div>
 <!-- 내용 영역 -->	
 	<div id="content">
+		<!-- 카드사 선택 목록 -->
 		<div id="contentMenu">
-			<div id="menuName">KB국민은행 TOP3</div>
-			<div id="topBg">
-				<div id="contentTop">
-					<!-- top 왼쪽 영역 -->
-					<div id="leftSct">
-						<div id="nameSct">
-							<div id="cardName">톡톡 with 카드</div>
-							<div id="cardCmp">KB국민카드</div>
-						</div>
-					</div>
-					<!-- top 중앙 영역 -->
-					<div id="centerSct">
-						<div id="imgSct"></div>
-						<div id="btnBox">
-							<input type="button" value="자세히 보기" id="dtBtn" />
-						</div>
-					</div>
-					<!-- top 오른쪽 영역 -->
-					<div id="rightSct">
-						<div id="bnfArea">
-							<div class="bnf_dsc">
-								<div class="bnf_name">스타벅스</div>
-								<div class="bnf_box">
-									<div class="bnf_dt">50%</div>
-									<div class="bnf_small">할인</div>
-								</div>
-							</div>
-							<div class="bnf_dsc">
-								<div class="bnf_name">온라인 간편결제</div>
-								<div class="bnf_dt">10%</div>
-								<div class="bnf_small">할인</div>
-							</div>
-							<div class="bnf_dsc">
-								<div class="bnf_name">구독</div>
-								<div class="bnf_dt">20%</div>
-								<div class="bnf_small">할인</div>
-							</div>
+			<div id="menuName">카드사별 TOP3</div>
+			<div class="nav_menubar">
+				<a href="#card_1" class="nav_btn" id="kbCard">국민 카드</a>
+				<a href="#card_2" class="nav_btn" id="samsumgCard">삼성 카드</a>
+				<a href="#card_3" class="nav_btn" id="lotteCard">롯데 카드</a>
+				<a href="#card_4" class="nav_btn" id="shCard">신한 카드</a>
+				<a href="#card_5" class="nav_btn" id="weCard">우리 카드</a>
+				<a href="#card_6" class="nav_btn" id="hdCard">현대 카드</a>
+				<a href="#card_7" class="nav_btn" id="kbCard">농협 카드</a>
+				<a href="#card_8" class="nav_btn" id="kbCard">IBK 카드</a>
+			</div>
+		</div>
+		<!-- 카드 TOP3 영역 -->
+		<div class=contentBg>
+			<!-- card_1 영역 시작 -->
+			<div class="card_1" id="card_1">
+				<!-- 카드 이름 영역 -->
+				<div class="card_title">
+					<div class="title">
+						<div class="card_name_block">#국민카드 인기 TOP3</div>
+						<div class="selection_criteria">
+						2021.01.01 ~ 2021.06.30 카드캡틴 신청클릭 기준입니다.
 						</div>
 					</div>
 				</div>
-				<!-- 2등 3등 영역 -->
-				<div id="contentBot">
-					<div class="under_rank">
-						<div class="under_name">
-							<div class="top_name">탄탄대로 올쇼핑 티타늄카드</div>
-							<div class="bot_cmp">KB국민카드</div>
+				<div class="card_contents_area">
+					<!-- 카드 TOP1 영역 -->
+					<div class="card_box">
+						<div class="img_top1"></div>
+						<div class="card_title_text">
+						탄탄대로 올쇼핑티타늄카드
 						</div>
-						<div class="under_card">
-							<img alt="카드" src="../weDoument/imageFolder/card/credit/kb_tantandaero.png" class="card_img"/>
+						<div class="card_contents">
+						여기저기 빈틈없이 챙겨받는
 						</div>
-						<div class="under_btn">
-							<input type="button" value="자세히 보기" class="btn_mini" />
+						<div class="tag_set">
+							<div class="tag_age">
+							30대 추천
+							</div>
+							<div class="tag_event">
+							연회비 캐시백 이벤트
+							</div>
+						</div>
+						<div class="card_box_img">
+							<img alt="카드" 
+							src="resources/images/ranking/card/credit/kb/kb_tantandaero.png"
+							width="250px" height="150px">
+						</div>
+						<div class="card_btn_area">
+							<input type="button" value="카드 상세보기  >" class="card_box_btn" id="cardBoxBtn1" />
 						</div>
 					</div>
-					<!-- 사이공백 영역 -->
-					<div id="spcArea"></div> 
-					<div class="under_rank">
-						<div class="under_name">
-							<div class="top_name">다담카드</div>
-							<div class="bot_cmp">KB국민카드</div>
+					<!-- 카드 TOP2 영역 -->
+					<div class="card_box">
+						<div class="img_top2"></div>
+						<div class="card_title_text">
+						청춘대로 톡톡 WITH 카드
 						</div>
-						<div class="under_card">
-							<img alt="카드" src="../weDoument/imageFolder/card/credit/kb_dadam_card.png" class="card_img"/>
+						<div class="card_contents">
+						Simple하게 즐기자! 혜택 톡톡!
 						</div>
-						<div class="under_btn">
-							<input type="button" value="자세히 보기" class="btn_mini" />
+						<div class="tag_set">
+							<div class="tag_age">
+							20대 추천
+							</div>
+							<div class="tag_event">
+							연회비 캐시백 이벤트
+							</div>
+						</div>
+						<div class="card_box_img">
+							<img alt="카드" 
+							src="resources/images/ranking/card/credit/kb/kb_toktokwith.png"
+							width="250px" height="150px">
+						</div>
+						<div class="card_btn_area">
+							<input type="button" value="카드 상세보기  >" class="card_box_btn" id="cardBoxBtn2" />
+						</div>
+					</div>
+					<!-- 카드 TOP3 영역 -->
+					<div class="card_box">
+						<div class="img_top3"></div>
+						<div class="card_title_text">
+						다담카드
+						</div>
+						<div class="card_contents">
+						KB국민 훈민정음 두번째 이야기
+						<br/>
+						모두의 이야기를 담은 카드
+						</div>
+						<div class="tag_set">
+							<div class="tag_ment">
+							할인 집중
+							</div>
+							<div class="tag_event">
+							연회비 캐시백 이벤트
+							</div>
+						</div>
+						<div class="card_box_img">
+							<img alt="카드" 
+							src="resources/images/ranking/card/credit/kb/kb_dadam_card.png"
+							width="250px" height="150px">
+						</div>
+						<div class="card_btn_area">
+							<input type="button" value="카드 상세보기  >" class="card_box_btn" id="cardBoxBtn3" />
 						</div>
 					</div>
 				</div>
 			</div>
+			<!-- card_1 영역 끝 -->
 		</div>
+		
 	</div>
 <!-- 풋터영역 -->
 	<div id="footer">

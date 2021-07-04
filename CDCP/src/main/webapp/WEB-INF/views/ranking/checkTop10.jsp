@@ -251,6 +251,22 @@ body{
 							    background-color: #F5DF4D;
 							    cursor: pointer;
 							}
+						#compareBtn{
+							width: 150px;
+							height: 50px;
+							color: white;
+							border-style: none;
+						    background-color: #808080;
+						    border-radius: 5px;
+						    font-size: 18px;
+						    font-family: 'GmarketSansMedium';
+							margin: 25px 5px;
+						}
+							#compareBtn:hover{
+								color: black;
+							    background-color: #F5DF4D;
+							    cursor: pointer;
+							}
 			/* 2~10위 박스 영역*/
 			#contentBot{
 				width: 100%;
@@ -426,7 +442,7 @@ body{
 				</div>
 				<div id="btnBox">
 					<input type="button" value="상세보기" id="dtBtn" />
-					<input type="button" value="비교함 담기" id="dtBtn" />
+					<input type="button" value="비교함 담기" id="compareBtn" />
 				</div>
 			</div>
 			<div id="contentBot">
