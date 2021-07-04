@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>체크카드 TOP10-카드캡틴</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style type="text/css">
 body{
 	margin: 0;
@@ -120,145 +121,145 @@ body{
 				line-height: 60px;			
 			}
 			/* TOP1  영역*/
-			#contentTop{
-				background-image: url("../weDoument/imageFolder/background/chart_top_bg_polygon.png");
-				background-color: rgba(50, 50, 50, 0.9);
+			#midArea{
+				display: flex;
 				width: 100%;
-				height: 400px;
-				margin-bottom: 30px;
-				box-shadow: 0px 10px 10px 1px rgba(1, 1, 1, 0.6);
+				height: 200px;
+				justify-content: space-around;
 			}
-				#nameSct{
-							height: 100px;
-							color: white;
-							text-align: center;
+				#contentTop{
+					background-image: url("resources/images/ranking/background/chart_top_bg_polygon.png");
+					background-color: rgba(50, 50, 50, 0.9);
+					width: 100%;
+					height: 400px;
+					margin-bottom: 30px;
+					box-shadow: 0px 10px 10px 1px rgba(1, 1, 1, 0.6);
+				}
+					#nameSct{
+								height: 100px;
+								color: white;
+								text-align: center;
+							}
+						#cardName{
+							height: 60px;
+							font-size: 30px;
+							line-height: 80px;
+							font-family: Cafe24Ohsquare;
 						}
-					#cardName{
-						height: 60px;
-						font-size: 25px;
-						line-height: 80px;
+						#cardCmp{
+							height: 40px;
+							font-size: 25px;
+							font-family: GmarketSansMedium;
+						}
+					/* TOP1 왼쪽 영역*/
+					#leftSct{
+						width: 400px;
+						text-align: center;
+						line-height: 200px;
+						color: white;
+						font-size: 100px;
 						font-family: Cafe24Ohsquare;
+						text-shadow: 5px 5px 5px black;
 					}
-					#cardCmp{
-						height: 40px;
-						font-size: 20px;
-						font-family: GmarketSansMedium;
-					}
-				/* TOP1 왼쪽 영역*/
-				#leftSct{
-					display: inline-block;
-					vertical-align: top; 
-					width: 390px;
-					height: 200px;
-					text-align: center;
-					line-height: 200px;
-					color: white;
-					font-weight: bold;
-					font-size: 80px;
-					font-family: Cafe24Ohsquare;
-					text-shadow: 5px 5px 5px black;
-				}
-				/* TOP1 가운데 영역*/
-				#centerSct{
-					display: inline-block;
-					vertical-align: top; 
-					width: 400px;
-					height: 200px;
-					text-align: center;
-				}
-					#imgSct{
-						background-image: url("../weDoument/imageFolder/card/check/we_naver_check_card.png");
-						background-repeat: no-repeat;
-						background-size: 100%;
-						width: 300px;
+					/* TOP1 가운데 영역*/
+					#centerSct{
+						width: 400px;
 						height: 200px;
-						margin: 0 auto;
+						text-align: center;
 					}
-				/* TOP1 오른쪽 영역*/
-				#rightSct{
-					display: inline-block;
-					vertical-align: top; 
-					width: 390px;
-					height: 200px;
-					float: right;
-				}
-					/* 간단혜택 영역*/
-					#bnfArea{
-						width: 100%;
-						height:150px;
-						margin-top: 10px;
-					}
-						.bnf_dsc{
-							width: 100%;
-							height: 50px;
-							color: white;
-							line-height: 50px;
+						#imgSct{
+							background-image: url("resources/images/ranking/card/check/we/we_naver_check_card.png");
+							background-repeat: round;
+							background-size: 100%;
+							width: 350px;
+							height: 200px;
+							margin: 0 auto;
 						}
-							.bnf_name{	/* 혜택내용 */
-								display: inline-block;
-								vertical-align: top; 
-								text-align: center;
-								width: 220px;
-								height: inherit;
-								font-size: 20px;
-								font-family: GmarketSansMedium;
-								font-weight: bold;
+					/* TOP1 오른쪽 영역*/
+					#rightSct{
+						width: 400px;
+						height: 200px;
+						float: right;
+					}
+						/* 간단혜택 영역*/
+						#bnfArea{
+							width: 100%;
+							height:150px;
+							margin-top: 30px;
+						}
+							.bnf_dsc{
+								width: 100%;
+								height: 50px;
+								color: white;
+								line-height: 50px;
 							}
-							.bnf_box{	
-								display: inline-block;
-								vertical-align: top;
-								width: 140px;
-								height: inherit;
-								text-align: center;
-							}
-								.bnf_dt{	 /* %표시 */
+								.bnf_name{	/* 혜택내용 */
 									display: inline-block;
-									vertical-align: top;
-									text-align: right;
-									width: 70px;
+									vertical-align: top; 
+									text-align: center;
+									width: 220px;
 									height: inherit;
-									font-size: 20px;
+									font-size: 25px;
 									font-family: GmarketSansMedium;
 									font-weight: bold;
 								}
-								.bnf_small{	/* 할인 */
+								.bnf_box{	
 									display: inline-block;
 									vertical-align: top;
-									text-align: left;
-									width: 60px;
+									width: 140px;
 									height: inherit;
-									font-size: 15px;
-									font-family: GmarketSansMedium;
+									text-align: center;
 								}
+									.bnf_dt{	 /* %표시 */
+										display: inline-block;
+										vertical-align: top;
+										text-align: right;
+										width: 70px;
+										height: inherit;
+										font-size: 25px;
+										font-family: GmarketSansMedium;
+										font-weight: bold;
+									}
+									.bnf_small{	/* 할인 */
+										display: inline-block;
+										vertical-align: top;
+										text-align: left;
+										width: 60px;
+										height: inherit;
+										font-size: 20px;
+										font-family: GmarketSansMedium;
+									}
 					/* 버튼 박스 영역*/	
 					#btnBox{
 						width: 100%;
 						height: 100px;
 						text-align: center;
-						margin-top: 10px;
 					}
 						#dtBtn{
-							width: 200px;
+							width: 150px;
 							height: 50px;
-							font-size: 20px;
 							color: white;
-							background-color: #0047ab;
-							padding: 10px;
-							
+							border-style: none;
+						    background-color: #0047AB;
+						    border-radius: 5px;
+						    font-size: 18px;
+						    font-family: 'GmarketSansMedium';
+							margin: 25px 5px;
 						}	
 							#dtBtn:hover{
-								cursor: pointer;
 								color: black;
-								font-weight: bold;
-								background-color: white;
+							    background-color: #F5DF4D;
+							    cursor: pointer;
 							}
 			/* 2~10위 박스 영역*/
 			#contentBot{
 				width: 100%;
 			}
 				.rank_box{  /* 랭크 박스 틀 */
+					display: flex;
+					justify-content: space-around;
 					margin: 10px auto;
-					width: 800px;
+					width: 1000px;
 					height: 100px;
 					box-shadow: 5px 0px 5px -1px rgba(1, 1, 1, 0.6),
 								-5px 0px 5px -1px rgba(1, 1, 1, 0.6);
@@ -289,7 +290,7 @@ body{
 						display: inline-block;
 						vertical-align: top;
 						text-align: left;
-						width: 400px;
+						width: 500px;
 						height: inherit;
 						font-family: GmarketSansMedium;
 					}
@@ -301,24 +302,31 @@ body{
 							margin-top: 0;
 						}
 					.dsc_view{
-						display: inline-block;
-						vertical-align: top;
+						display: flex;
+						flex-wrap: wrap;
+						align-content: space-around;
 						width: 130px;
 						height: inherit;
 					}
-						.dsc_btn{
-							width: 100px;
-							height: 50px;
-							font-size: 15px;
-							color: white;
-							background-color: #0047ab;		
-							font-family: GmarketSansMedium;
-							margin: 25px 15px;			
-						}	
-						.dsc_btn:hover{
+					.view_box{
+						font-family: GmarketSansMedium;
+						font-size: 15px;
+					}
+						.view_box:hover{
 							cursor: pointer;
-							opacity: 0.6;
+							color: #0047ab;
+							font-weight: bold;
 						}
+					.view_dt{
+						font-family: GmarketSansMedium;
+						font-size: 15px;
+					}
+						.view_dt:hover{
+							cursor: pointer;
+							color: #0047ab;
+							font-weight: bold;
+						}
+					
 			
 /*	풋터 영역	*/			
 	#footer {
@@ -380,7 +388,7 @@ body{
 	</div>
 <!-- 내용 영역 -->	
 	<div id="content">
-		<div class=side_area></div>	
+		<!-- 1위 카드 이름 영역 -->
 		<div id="contentMenu">
 			<div id="menuName">체크카드 TOP10</div>
 			<div id="contentTop">
@@ -388,156 +396,168 @@ body{
 					<div id="cardName">네이버페이 우리카드 체크</div>
 					<div id="cardCmp">우리카드</div>
 				</div>
-				<div id="leftSct">TOP 1</div>
-				<div id="centerSct">
-					<div id="imgSct"></div>
-				</div>
-				<div id="rightSct">
-					<div id="bnfArea">
-						<div class="bnf_dsc">
-							<div class="bnf_name">네이버페이</div>
-							<div class="bnf_box">
-								<div class="bnf_dt">1%</div>
-								<div class="bnf_small">적립</div>
+				<!-- 1위 카드 내용 영역 -->
+				<div id="midArea">
+					<div id="leftSct">TOP 1</div>
+					<div id="centerSct">
+						<div id="imgSct"></div>
+					</div>
+					<div id="rightSct">
+						<div id="bnfArea">
+							<div class="bnf_dsc">
+								<div class="bnf_name">네이버페이</div>
+								<div class="bnf_box">
+									<div class="bnf_dt">1%</div>
+									<div class="bnf_small">적립</div>
+								</div>
 							</div>
-						</div>
-						<div class="bnf_dsc">
-							<div class="bnf_name">공항라운지</div>
-							<div class="bnf_dt">무료</div>
-							<div class="bnf_small">이용</div>
-						</div>
-						<div class="bnf_dsc">
-							<div class="bnf_name">해외수수료</div>
-							<div class="bnf_dt">면제</div>
-							<div class="bnf_small">서비스</div>
+							<div class="bnf_dsc">
+								<div class="bnf_name">공항라운지</div>
+								<div class="bnf_dt">무료</div>
+								<div class="bnf_small">이용</div>
+							</div>
+							<div class="bnf_dsc">
+								<div class="bnf_name">해외수수료</div>
+								<div class="bnf_dt">면제</div>
+								<div class="bnf_small">서비스</div>
+							</div>
 						</div>
 					</div>
 				</div>
 				<div id="btnBox">
-					<input type="button" value="자세히 보기" id="dtBtn" />
+					<input type="button" value="상세보기" id="dtBtn" />
+					<input type="button" value="비교함 담기" id="dtBtn" />
 				</div>
 			</div>
 			<div id="contentBot">
 				<div class="rank_box">	<!-- 2등 -->
 					<div class="rank_num">2</div>
 					<div class="box_card">
-						<img alt="카드" src="../weDoument/imageFolder/card/check/we_joungsuck_card.png" class="card_img"/> 
+						<img alt="카드" src="resources/images/ranking/card/check/we/we_joungsuck_card.png" class="card_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_card">카드의정석COOKIE CHECK</h2>
 						<h5 class="cmp_card">우리카드</h5>
 					</div>
 					<div class="dsc_view">
-						<input type="button" value="자세히보기" class="dsc_btn"/>
+						<div class="view_box" id="viewBox2"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
+						<div class="view_dt" id="viewDt2"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
 					</div>
 				</div>
 				<div class="rank_box">	<!-- 3등 -->
 					<div class="rank_num">3</div>
 					<div class="box_card">
-						<img alt="카드" src="../weDoument/imageFolder/card/check/nh_haebom_checkcard.png" class="card_img"/> 
+						<img alt="카드" src="resources/images/ranking/card/check//nh/nh_haebom_checkcard.png" class="card_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_card">NH20해봄체크카드</h2>
 						<h5 class="cmp_card">NH농협카드</h5>
 					</div>
 					<div class="dsc_view">
-						<input type="button" value="자세히보기" class="dsc_btn"/>
+						<div class="view_box" id="viewBox3"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
+						<div class="view_dt" id="viewDt3"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
 					</div>
 				</div>
 				<div class="rank_box">	<!-- 4등 -->
 					<div class="rank_num">4</div>
 					<div class="box_card">
-						<img alt="카드" src="../weDoument/imageFolder/card/check/sh_DeepDreamcheck_card.png" class="card_img"/> 
+						<img alt="카드" src="resources/images/ranking/card/check/sh/sh_DeepDreamcheck_card.png" class="card_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_card">신한카드 Deep Dream체크</h2>
 						<h5 class="cmp_card">신한카드</h5>
 					</div>
 					<div class="dsc_view">
-						<input type="button" value="자세히보기" class="dsc_btn"/>
+						<div class="view_box" id="viewBox4"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
+						<div class="view_dt" id="viewDt4"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
 					</div>
 				</div>
 				<div class="rank_box">	<!-- 5등 -->
 					<div class="rank_num">5</div>
 					<div class="box_card">
-						<img alt="카드" src="../weDoument/imageFolder/card/check/kb_noricheck_card.png" class="card_img"/> 
+						<img alt="카드" src="resources/images/ranking/card/check/kb/kb_noricheck_card.png" class="card_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_card">노리체크카드</h2>
 						<h5 class="cmp_card">KB국민카드</h5>
 					</div>
 					<div class="dsc_view">
-						<input type="button" value="자세히보기" class="dsc_btn"/>
+						<div class="view_box" id="viewBox5"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
+						<div class="view_dt" id="viewDt5"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
 					</div>
 				</div>
 				<div class="rank_box">	<!-- 6등 -->
 					<div class="rank_num">6</div>
 					<div class="box_card">
-						<img alt="카드" src="../weDoument/imageFolder/card/check/nh_allpoint_checkcard.png" class="card_img"/> 
+						<img alt="카드" src="resources/images/ranking/card/check/nh/nh_allpoint_checkcard.png" class="card_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_card">올바른POINT체크카드</h2>
 						<h5 class="cmp_card">NH농협카드</h5>
 					</div>
 					<div class="dsc_view">
-						<input type="button" value="자세히보기" class="dsc_btn"/>
+						<div class="view_box" id="viewBox6"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
+						<div class="view_dt" id="viewDt6"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
 					</div>
 				</div>
 				<div class="rank_box">	<!-- 7등 -->
 					<div class="rank_num">7</div>
 					<div class="box_card">
-						<img alt="카드" src="../weDoument/imageFolder/card/check/sh_heyyoung-check2.png" class="card_img"/> 
+						<img alt="카드" src="resources/images/ranking/card/check/sh/sh_heyyoung-check2.png" class="card_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_card">신한카드 HeyYoung체크</h2>
 						<h5 class="cmp_card">신한카드</h5>
 					</div>
 					<div class="dsc_view">
-						<input type="button" value="자세히보기" class="dsc_btn"/>
+						<div class="view_box" id="viewBox7"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
+						<div class="view_dt" id="viewDt7"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
 					</div>
 				</div>
 				<div class="rank_box">	<!-- 8등 -->
 					<div class="rank_num">8</div>
 					<div class="box_card">
-						<img alt="카드" src="../weDoument/imageFolder/card/check/kb_kakaopay_checkcard2.png" class="card_img"/> 
+						<img alt="카드" src="resources/images/ranking/card/check/kb/kb_kakaopay_checkcard2.png" class="card_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_card">카카오페이KB국민 체크카드</h2>
 						<h5 class="cmp_card">KB국민카드</h5>
 					</div>
 					<div class="dsc_view">
-						<input type="button" value="자세히보기" class="dsc_btn"/>
+						<div class="view_box" id="viewBox8"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
+						<div class="view_dt" id="viewDt8"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
 					</div>
 				</div>
 				<div class="rank_box">	<!-- 9등 -->
 					<div class="rank_num">9</div>
 					<div class="box_card">
-						<img alt="카드" src="../weDoument/imageFolder/card/check/kkb_kakao_check2.png" class="card_img"/> 
+						<img alt="카드" src="resources/images/ranking/card/check/kkb/kkb_kakao_check2.png" class="card_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_Card">카카오뱅크 프렌즈 체크카드</h2>
 						<h5 class="cmp_card">카카오뱅크</h5>
 					</div>
 					<div class="dsc_view">
-						<input type="button" value="자세히보기" class="dsc_btn"/>
+						<div class="view_box" id="viewBox9"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
+						<div class="view_dt" id="viewDt9"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
 					</div>
 				</div>
 				<div class="rank_box">	<!-- 10등 -->
 					<div class="rank_num">10</div>
 					<div class="box_card">
-						<img alt="카드" src="../weDoument/imageFolder/card/check/kb_bonus_checkcard.png" class="card_img"/> 
+						<img alt="카드" src="resources/images/ranking/card/check/kb/kb_bonus_checkcard.png" class="card_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_card">직장인보너스체크카드</h2>
 						<h5 class="cmp_card">KB국민카드</h5>
 					</div>
 					<div class="dsc_view">
-						<input type="button" value="자세히보기" class="dsc_btn"/>
+						<div class="view_box" id="viewBox10"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
+						<div class="view_dt" id="viewDt10"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class=side_area></div>	
 	</div>
 <!-- 풋터영역 -->
 	<div id="footer">
