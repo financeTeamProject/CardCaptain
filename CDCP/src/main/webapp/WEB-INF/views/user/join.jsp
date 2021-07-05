@@ -60,8 +60,8 @@ body {
 }
 .title {
    width: 100%;
-   height: 45px;
-   line-height: 45px;
+   height: 50px;
+   line-height: 50px;
    font-size: 16px;
 }
 .text {
@@ -96,7 +96,7 @@ body {
    letter-spacing: 4px;
 }
 #phone_num {
-   width: 390px;
+   width: 320px;
    height: 45px;
    border-style: solid;
    border-width: 0 0 1px 0;
@@ -115,22 +115,22 @@ body {
    border-style: solid;
    border-width: 0 0 1px 0;
    border-color: #0047AB;
-    outline: 0;
+   outline: 0;
    caret-color: #f7e317;
    color: #0047AB;
    box-sizing: border-box;
    font-size: 13px;
 }
-#select_num {
-   width: 80px;
+#select_tel {
+   width: 150px;
    height: 45px;
    border-style: solid;
    border-width: 0 0 1px 0;
    border-color: #0047AB;
-   padding: 11px 70px 8px 0;
-    outline: 0;
+   outline: 0;
    caret-color: #f7e317;
    color: #0047AB;
+   letter-spacing: 3px;
 }
 #email {
    width: 200px;
@@ -152,10 +152,12 @@ body {
    border-style: solid;
    border-width: 0 0 1px 0;
    border-color: #0047AB;
-   padding: 11px 70px 8px 0;
-    outline: 0;
+   padding: 11px 20px 8px 20px;
+   outline: 0;
    caret-color: #f7e317;
    color: #0047AB;
+   letter-spacing: 3px;
+   font-size: inherit;
 }
 #btn_next {
     display: block;
@@ -230,14 +232,14 @@ $(document).ready(function() {
       var memPw = $.trim($("#mem_password").val());
       var memRePw = $.trim($("#mem_rePassword").val());
       var memNick = $.trim($("#mem_nickname").val());
-      var memPhone1 = $("select_num option:selected").val();
-      var memPhone2 = $.trim($("#phone_num").val());
+      var memPhoneOpt = $("select_tel option:selected").val();
+      var memPhone = $.trim($("#phone_num").val());
       var memRRN = $.trim($("#text_num").val());
       var memGender = $.trim($("#text_num2").val());
       var memEmail = $.trim($("#email").val());
       var memEmailOpt = $("#select_email option:selected").val();
       var chk_num = memPw.search(/[0-9]/g);
-       var chk_eng = memPw.search(/[a-z]/ig);
+      var chk_eng = memPw.search(/[a-z]/ig);
       
        
       if(memId == "") {
@@ -275,11 +277,11 @@ $(document).ready(function() {
       } else if (memNick == "") {
          alert("닉네임을 입력해 주세요.");
          $("#mem_nickname").focus();
-      } else if (memPhone2.length < 12) {
+      } else if (memPhone.length < 12) {
          alert("핸드폰번호 11자리를 입력해 주세요.");
          $("#phone_num").focus();
-      } else if (memRRN.length < 6) {
-         alert("주민번호 앞의 6자리를 입력해 주세요.");
+      } else if (memRRN.length < 9) {
+         alert("주민번호 앞의 8자리를 입력해 주세요.");
          $("#text_num").focus();
       } else if (memGender == "") {
          alert("주민번호 뒤의 1자리를 입력해 주세요.");
@@ -318,22 +320,23 @@ function SetNum(obj) {
       <div class="title">닉네임</div>
       <input type="text" class="text" placeholder="닉네임을 입력해 주세요." id="mem_nickname" />
       <div class="title">전화번호</div>
-      <select name="+82" id="select_num"> 
+      <select name="telnum" id="select_tel"> 
+         <option value="+82   대한민국">+82&nbsp;&nbsp;대한민국</option>
          <option value="+82   대한민국"></option>
       </select>
       <input type="text" id="phone_num" placeholder=" - 없이 입력해주세요." maxlength="11" onkeyup="SetNum(this);"/>
       <div class="title">생일/성별</div>
       <div class="title">
-         <input type="text" id="text_num" placeholder="주민번호 앞자리" maxlength="6" onkeyup="SetNum(this);"/>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+         <input type="text" id="text_num" placeholder="예) 19940507" maxlength="8" onkeyup="SetNum(this);"/>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
          <input type="text" id="text_num2" maxlength="1" onkeyup="SetNum(this);"/>
          <span id="txt">*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*</span>
       </div>
       <div class="title">이메일</div>
       <div class="title">
          <input type="text" id="email" placeholder="이메일" />&nbsp;&nbsp;&nbsp;@&nbsp;&nbsp;&nbsp;
-         <select name="+82" id="select_email"> 
+         <select name="email" id="select_email"> 
             <option value="naver.com">naver.com</option>
-            <option value="google">google</option>
+            <option value="google.com">google.com</option>
          </select>
          <input type="button" id="checkingEmail" value="이메일인증" />
       </div>
