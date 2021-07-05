@@ -482,7 +482,7 @@ body{
 				<div class="rank_box">	<!-- 4등 -->
 					<div class="rank_num">4</div>
 					<div class="box_card">
-						<img alt="카드" src="resources/images/ranking/card/credit/hd/hd_zero_ed2_3.png" class="card_img"/> 
+						<img alt="카드" src="resources/images/ranking/card/credit/hd/hd_zero_ed2_h.png" class="card_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_Card">현대카드ZERO Edition2(할인형)</h2>
