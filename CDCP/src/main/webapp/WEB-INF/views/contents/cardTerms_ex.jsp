@@ -311,7 +311,7 @@ span {
 			</div>
 			<div id="termes">
 				<div id="guideimg"></div>
-					<div>*금융감독원에서 발행한 ‘신용카드 소비자 가이드’를 바탕으로 하였습니다.</div>
+					<div></div>
 					<div><strong>용어(10)</strong></div>
 					<div>
 					<span>■</span>신용카드 </div>
