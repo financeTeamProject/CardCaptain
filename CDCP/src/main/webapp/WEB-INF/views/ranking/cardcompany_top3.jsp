@@ -458,17 +458,17 @@ body{
 					<!-- 카드 TOP1 영역 -->
 					<div class="card_box">
 						<div class="img_top1"></div>
-						<div class="card_title_text">
+						<div class="card_title_text" id="card_title_text_2">
 						탄탄대로 올쇼핑티타늄카드
 						</div>
-						<div class="card_contents">
+						<div class="card_contents" id="card_contents_1">
 						여기저기 빈틈없이 챙겨받는
 						</div>
 						<div class="tag_set">
-							<div class="tag_age">
+							<div class="tag_age" id="tag_age_1">
 							30대 추천
 							</div>
-							<div class="tag_event">
+							<div class="tag_event" id="tag_event_1">
 							연회비 캐시백 이벤트
 							</div>
 						</div>
@@ -484,17 +484,17 @@ body{
 					<!-- 카드 TOP2 영역 -->
 					<div class="card_box">
 						<div class="img_top2"></div>
-						<div class="card_title_text">
+						<div class="card_title_text" id="card_title_text_2">
 						청춘대로 톡톡 WITH 카드
 						</div>
-						<div class="card_contents">
+						<div class="card_contents" id="card_contents_2">
 						Simple하게 즐기자! 혜택 톡톡!
 						</div>
 						<div class="tag_set">
-							<div class="tag_age">
+							<div class="tag_age" id="tag_age_2">
 							20대 추천
 							</div>
-							<div class="tag_event">
+							<div class="tag_event" id="tag_event_2">
 							연회비 캐시백 이벤트
 							</div>
 						</div>
@@ -510,19 +510,19 @@ body{
 					<!-- 카드 TOP3 영역 -->
 					<div class="card_box">
 						<div class="img_top3"></div>
-						<div class="card_title_text">
+						<div class="card_title_text" id="card_title_text_3">
 						다담카드
 						</div>
-						<div class="card_contents">
+						<div class="card_contents" id="card_contents_3">
 						KB국민 훈민정음 두번째 이야기
 						<br/>
 						모두의 이야기를 담은 카드
 						</div>
 						<div class="tag_set">
-							<div class="tag_ment">
+							<div class="tag_ment" id="tag_ment_3">
 							할인 집중
 							</div>
-							<div class="tag_event">
+							<div class="tag_event" id="tag_event_3">
 							연회비 캐시백 이벤트
 							</div>
 						</div>
