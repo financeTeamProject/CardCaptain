@@ -225,43 +225,48 @@ $(document).ready(function() {
 		var chk_num = memPw.search(/[0-9]/g);
 	    var chk_eng = memPw.search(/[a-z]/ig);
 		
-		if(memId == "") {
+		if(memId == "") {										//아이디 확인
 			alert("아이디를 입력하세요");
 			$("#mem_id").focus();
-		} else if (!regex_kor.test(memId)) {
+		} else if (!regex_kor.test(memId)) {					//아이디 한글입력 불가
 			alert("아이디는 한글로 만들 수 없습니다.");
 			$("#mem_id").val('');
 			$("#mem_id").focus();
-		} else if(memPw == "") {
+		} else if(memPw == "") {								//비밀번호 확인
 			alert("비밀번호를 입력하세요");
 			$("#mem_password").focus();
-		} else if(chk_num < 0 || chk_eng < 0) {
-			alert("비밀번호는 영문과 숫자를 혼용해 주세요");
-			$("#mem_password").focus();
-		} else if (memRePw == "") {
+		} else if(memPw != "") {								//비밀번호 안정성 검사
+			/* if() {				//안전
+				$("#pwCheckColor").html("");
+			} else if () {		//보통
+				
+			} else {			//위험
+				
+			} */
+		} else if (memRePw == "") {								//비밀번호 재확인
 			alert("비밀번호를 확인해 주세요");
 			$("#mem_rePassword").focus();
-		} else if (memPw.length < 8 || memPw.length > 32) {
+		} else if (memPw.length < 8 || memPw.length > 32) {		//비밀번호 길이 확인
 			alert("비밀번호는 8자리 이상 32자리 이하만 가능합니다.");
 			$("#mem_password").val('');
 			$("#mem_rePassword").val('');
 			$("#mem_password").focus();
-		} else if (memPw != memRePw) {
+		} else if (memPw != memRePw) {							//비밀번호 이중체크
 			alert("비밀번호를 다시 확인해 주세요");
 			$("#mem_password").focus();
-		} else if (memNick == "") {
+		} else if (memNick == "") {								//닉네임 확인
 			alert("닉네임을 입력해 주세요");
 			$("#mem_nickname").focus();
-		} else if (memPhone2.length < 8) {
+		} else if (memPhone2.length < 8) {						//핸드폰번호 확인
 			alert("핸드폰번호 8자리를 입력해 주세요");
 			$("#phone_num").focus();
-		} else if (memRRN.length < 6) {
+		} else if (memRRN.length < 6) {							//생년월일(주민번호 앞자리) 확인
 			alert("주민번호 앞의 6자리를 입력해 주세요");
 			$("#text_num").focus();
-		} else if (memGender == "") {
+		} else if (memGender == "") {							//성별(주민번호 뒷자리) 확인
 			alert("주민번호 뒤의 1자리를 입력해 주세요");
 			$("#text_num2").focus();
-		} else if (memEmail == "" && memEmailOpt == "") {
+		} else if (memEmail == "" && memEmailOpt == "") {		//이메일 확인
 			alert("이메일을 입력해 주세요.");
 		}
 	});
@@ -290,7 +295,7 @@ function SetNum(obj) {
 		<div class="middle_top">회원가입 정보를 입력해주세요.</div>
 		<div class="title">아이디</div>
 		<input type="text" class="text" placeholder="아이디 입력" id="mem_id" />
-		<div class="title">비밀번호</div>
+		<div class="title">비밀번호<span id="pwCheckColor" class="pw_check_color"></span></div>
 		<strong><input type="password" class="text" placeholder="비밀번호(8~32자리)" id="mem_password" /></strong>
 		<input type="password" class="text" placeholder="비밀번호 재입력" id="mem_rePassword" />
 		<div class="title">닉네임</div>
