@@ -386,8 +386,22 @@ body{
 			src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		/* 카드순위 페이지 이동 */
+		$("#ranking").on("click", function(){
+			location.href = "card_rank";
+		}); // ranking click end
+		/* 카드검색/비교 페이지 이동 */
+		 $("#search").on("click", function(){
+			location.href = "search";
+		});// search click end
+		/* 컨텐츠 페이지 이동 */
+		$("#contents").on("click", function(){
+			location.href = "content";
+		});// contents click end
+		
+		/* 메인페이지 이동 */
 		$("#headerLogo").on("click", function(){
-			location.href = "ranking";
+			location.href = "/cdcp";
 		}); // headerLogo click end
 	}); // document ready end
 </script>
