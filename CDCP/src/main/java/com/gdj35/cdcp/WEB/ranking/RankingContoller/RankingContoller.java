@@ -9,13 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 @Controller 
 public class RankingContoller {
 	
-	@RequestMapping(value="/")
-	public ModelAndView home (ModelAndView mav) {
-		
-		mav.setViewName("home");
-		
-		return mav;
-	}
+
 //	card rank 메인페이지
 	@RequestMapping(value="/card_rank")
 	public ModelAndView card_rank(ModelAndView mav) {

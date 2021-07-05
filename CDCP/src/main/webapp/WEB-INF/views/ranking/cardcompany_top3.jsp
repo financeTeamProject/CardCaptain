@@ -398,9 +398,9 @@ body{
 		<div id="headerWrap">
 			<div id="headerLeft">
 				<div id="headerLogo"></div>
-				<div class="menu1">카드순위</div>
-				<div class="menu1">카드검색/비교</div>
-				<div class="menu1">컨텐츠</div>
+				<div class="menu1" id="ranking">카드순위</div>
+				<div class="menu1" id="search">카드검색/비교</div>
+				<div class="menu1" id="contents">컨텐츠</div>
 			</div>
 			<div id="headerRight">
 				<div id="imgSearch"></div>

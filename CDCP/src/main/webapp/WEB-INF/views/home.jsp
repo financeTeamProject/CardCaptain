@@ -229,9 +229,9 @@ input#pos1,#pos2,#pos3,#pos4 {
 			location.href = "card_rank";
 		});
 		/* 카드검색/비교 페이지 이동 */
-		/* $("#search").on("click", function(){
-			location.href = "card_rank";
-		}); */
+		 $("#search").on("click", function(){
+			location.href = "search";
+		});
 		/* 컨텐츠 페이지 이동 */
 		$("#contents").on("click", function(){
 			location.href = "content";

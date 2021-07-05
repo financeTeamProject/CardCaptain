@@ -300,18 +300,33 @@ body{
 			src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#headerLogo").on("click", function(){
-			location.href = "home";
-		}); // headerLogo click end
+		/* 카드순위 페이지 이동 */
+		$("#ranking").on("click", function(){
+			location.href = "card_rank";
+		});
+		/* 카드검색/비교 페이지 이동 */
+		 $("#search").on("click", function(){
+			location.href = "search";
+		});
+		/* 컨텐츠 페이지 이동 */
+		$("#contents").on("click", function(){
+			location.href = "content";
+		});
 		
+		/* 메인페이지 이동 */
+		$("#headerLogo").on("click", function(){
+			location.href = "/cdcp";
+			/* $(location).attr('href',"/cdcp"); */
+		}); // headerLogo click end
+		/* 신용카드 top10 페이지 이동 */
 		$("#viewBtn").on("click", function(){
 			location.href = "creditTop10";
 		}); // viewBtn click end
-		
+		/* 카드사별 top3 페이지 이동 */
 		$("#midCmp").on("click", function(){
 			location.href = "cardcompany_top3";
 		}); // viewBtn click end
-		
+		/* 체크카드 top10 페이지 이동 */
 		$("#midCheck").on("click", function(){
 			location.href = "checkTop10";
 		}); // viewBtn click end
@@ -324,9 +339,9 @@ body{
 		<div id="headerWrap">
 			<div id="headerLeft">
 				<div id="headerLogo"></div>
-				<div class="menu1">카드순위</div>
-				<div class="menu1">카드검색/비교</div>
-				<div class="menu1">컨텐츠</div>
+				<div class="menu1" id="ranking">카드순위</div>
+				<div class="menu1" id="search">카드검색/비교</div>
+				<div class="menu1" id="contents">컨텐츠</div>
 			</div>
 			<div id="headerRight">
 				<div id="imgSearch"></div>
