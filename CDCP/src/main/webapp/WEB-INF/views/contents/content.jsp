@@ -397,7 +397,25 @@ h1 {
 		<script type="text/javascript">
 		
 		$(document).ready(function() {
+			/* 카드순위 페이지 이동 */
+			$("#ranking").on("click", function(){
+				location.href = "card_rank";
+			}); // ranking click end
+			/* 카드검색/비교 페이지 이동 */
+			 $("#search").on("click", function(){
+				location.href = "search";
+			});// search click end
+			/* 컨텐츠 페이지 이동 */
+			$("#contents").on("click", function(){
+				location.href = "content";
+			});// contents click end
 			
+			/* 메인페이지 이동 */
+			$("#headerLogo").on("click", function(){
+				location.href = "/cdcp";
+			}); // headerLogo click end
+			
+			/* 컨텐츠 페이지내 이동 이벤트 */
 			$(".test_button").on("click", function() { // 테스트 시작하기를 눌렀을 때, 소비심리 첫번째 페이지로 이동
 				location.href = "Ctest1";
 			});
@@ -407,7 +425,6 @@ h1 {
 			});
 		});	
 		
-		
 </script>
 </head>
 <body>
@@ -416,9 +433,9 @@ h1 {
 	<div id="headerWrap">
 	<div id="headerLeft">
 		<div id="headerLogo"></div>
-		<div class="menu1">카드순위</div>
-		<div class="menu1">카드검색/비교</div>
-		<div class="menu1">컨텐츠</div>
+		<div class="menu1" id="ranking">카드순위</div>
+		<div class="menu1" id="search">카드검색/비교</div>
+		<div class="menu1" id="contents">컨텐츠</div>
 	</div>
 	<div id="headerRight">
 		<div id="imgSearch"></div>

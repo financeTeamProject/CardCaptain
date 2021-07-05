@@ -131,7 +131,7 @@ body{
 		}
 			/* 소주제 영역 */
 			#menuName{
-				width: 250px;
+				width: 200px;
 				height: 50px;
 				margin: 10px;
 				margin-left: 10px;
@@ -140,20 +140,19 @@ body{
 				line-height: 60px;			
 			}
 			.nav_menubar{
-				
+				display: flex;
 				width: 1400px;
 				height: inherit;
 			}
 			/* 네비 버튼 통합 - 크기 조절 */
 			.nav_btn{
-				display: inline-block;
-				height: inherit;
-				width: 120px;
+				display: flex;
+				align-items: center;
+				width: 90px;
 				text-decoration: none;
-				padding: 20px 10px 0px;
-				margin: 0 10px;
+				margin: 0 30px;
 				font-family: 'GmarketSansMedium';
-				font-size: 25px;
+				font-size: 20px;
 				color: rgba(51, 51, 51, 0.6);
 			}
 			a:active{
@@ -387,8 +386,22 @@ body{
 			src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		/* 카드순위 페이지 이동 */
+		$("#ranking").on("click", function(){
+			location.href = "card_rank";
+		}); // ranking click end
+		/* 카드검색/비교 페이지 이동 */
+		 $("#search").on("click", function(){
+			location.href = "search";
+		});// search click end
+		/* 컨텐츠 페이지 이동 */
+		$("#contents").on("click", function(){
+			location.href = "content";
+		});// contents click end
+		
+		/* 메인페이지 이동 */
 		$("#headerLogo").on("click", function(){
-			location.href = "ranking";
+			location.href = "/cdcp";
 		}); // headerLogo click end
 	}); // document ready end
 </script>
@@ -399,9 +412,9 @@ body{
 		<div id="headerWrap">
 			<div id="headerLeft">
 				<div id="headerLogo"></div>
-				<div class="menu1">카드순위</div>
-				<div class="menu1">카드검색/비교</div>
-				<div class="menu1">컨텐츠</div>
+				<div class="menu1" id="ranking">카드순위</div>
+				<div class="menu1" id="search">카드검색/비교</div>
+				<div class="menu1" id="contents">컨텐츠</div>
 			</div>
 			<div id="headerRight">
 				<div id="imgSearch"></div>
@@ -420,8 +433,9 @@ body{
 				<a href="#card_4" class="nav_btn" id="shCard">신한 카드</a>
 				<a href="#card_5" class="nav_btn" id="weCard">우리 카드</a>
 				<a href="#card_6" class="nav_btn" id="hdCard">현대 카드</a>
-				<a href="#card_7" class="nav_btn" id="kbCard">농협 카드</a>
-				<a href="#card_8" class="nav_btn" id="kbCard">IBK 카드</a>
+				<a href="#card_7" class="nav_btn" id="nhCard">농협 카드</a>
+				<a href="#card_8" class="nav_btn" id="hanaCard">하나 카드</a>
+				<a href="#card_9" class="nav_btn" id="ibkCard">IBK 카드</a>
 			</div>
 		</div>
 	</div>
@@ -444,17 +458,17 @@ body{
 					<!-- 카드 TOP1 영역 -->
 					<div class="card_box">
 						<div class="img_top1"></div>
-						<div class="card_title_text">
+						<div class="card_title_text" id="card_title_text_2">
 						탄탄대로 올쇼핑티타늄카드
 						</div>
-						<div class="card_contents">
+						<div class="card_contents" id="card_contents_1">
 						여기저기 빈틈없이 챙겨받는
 						</div>
 						<div class="tag_set">
-							<div class="tag_age">
+							<div class="tag_age" id="tag_age_1">
 							30대 추천
 							</div>
-							<div class="tag_event">
+							<div class="tag_event" id="tag_event_1">
 							연회비 캐시백 이벤트
 							</div>
 						</div>
@@ -470,17 +484,17 @@ body{
 					<!-- 카드 TOP2 영역 -->
 					<div class="card_box">
 						<div class="img_top2"></div>
-						<div class="card_title_text">
+						<div class="card_title_text" id="card_title_text_2">
 						청춘대로 톡톡 WITH 카드
 						</div>
-						<div class="card_contents">
+						<div class="card_contents" id="card_contents_2">
 						Simple하게 즐기자! 혜택 톡톡!
 						</div>
 						<div class="tag_set">
-							<div class="tag_age">
+							<div class="tag_age" id="tag_age_2">
 							20대 추천
 							</div>
-							<div class="tag_event">
+							<div class="tag_event" id="tag_event_2">
 							연회비 캐시백 이벤트
 							</div>
 						</div>
@@ -496,19 +510,19 @@ body{
 					<!-- 카드 TOP3 영역 -->
 					<div class="card_box">
 						<div class="img_top3"></div>
-						<div class="card_title_text">
+						<div class="card_title_text" id="card_title_text_3">
 						다담카드
 						</div>
-						<div class="card_contents">
+						<div class="card_contents" id="card_contents_3">
 						KB국민 훈민정음 두번째 이야기
 						<br/>
 						모두의 이야기를 담은 카드
 						</div>
 						<div class="tag_set">
-							<div class="tag_ment">
+							<div class="tag_ment" id="tag_ment_3">
 							할인 집중
 							</div>
-							<div class="tag_event">
+							<div class="tag_event" id="tag_event_3">
 							연회비 캐시백 이벤트
 							</div>
 						</div>

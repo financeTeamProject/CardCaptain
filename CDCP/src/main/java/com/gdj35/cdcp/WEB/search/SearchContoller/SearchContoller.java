@@ -7,12 +7,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class SearchContoller {
 	//search main page
-	@RequestMapping(value = "/search")
-	public ModelAndView search(ModelAndView mav) {
-		mav.setViewName("search/search");
-		return mav;
-	}
-	
 	//맞춤카드검색 페이지
 	@RequestMapping(value = "/checkSearch")
 	public ModelAndView checkSearch(ModelAndView mav) {
