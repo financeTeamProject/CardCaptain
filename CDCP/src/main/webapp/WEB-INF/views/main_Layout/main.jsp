@@ -132,6 +132,7 @@ body {
     text-align: center;
     margin-top: 10px;
 }
+
 	/* 풋터 종료 */
 
 	/*슬라이드 화면부분 ~165번째줄 */
