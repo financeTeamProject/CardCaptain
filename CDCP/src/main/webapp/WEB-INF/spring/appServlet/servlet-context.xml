@@ -48,4 +48,4 @@
 	<!-- AOP -->
 	<aop:aspectj-autoproxy />
 	<beans:bean id="commonAop" class="com.gdj35.cdcp.common.controller.CommonAOP" /> 
-</beans:beans>
+	</beans:beans>

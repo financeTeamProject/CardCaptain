@@ -64,7 +64,7 @@ h1 {
 
 
 #headerWrap {
-	width: 1600px;
+	width: 1400px;
 	height: 100%;
 	margin: 0 auto;
 	display: flex;
@@ -312,7 +312,7 @@ h1 {
 	margin: 0 auto;
 }
 
-#box {	/* 카드간단용어 상세 */
+.box {	/* 카드간단용어 상세 */
 	height: 50px;
 	line-height: 50px;
 	background-color: #f2c3a6;
@@ -402,7 +402,7 @@ h1 {
 				location.href = "Ctest1";
 			});
 			
-			$("#box").on("click", function() { // 카드간단용어 중 하나의 박스를 클릭할 시에 카드기사내용 페이지로 이동.
+			$(".box").on("click", function() { // 카드간단용어 중 하나의 박스를 클릭할 시에 카드기사내용 페이지로 이동.
 				location.href = "cardTerms";
 			});
 		});	
@@ -493,13 +493,13 @@ h1 {
 							<div></div>
 							<h1>신용카드 기본 개념, 용어</h1>
 								<div class="box-wrapper">		
-									<div id="box">#연회비</div>
-									<div id="box">#비자카드</div>
-									<div id="box">#마스터카드</div>
-									<div id="box">#전월실적</div>
-									<div id="box">#신용</div>	
-									<div id="box">#체크</div>	
-									<div id="box">#할부</div>			
+									<div class="box">#연회비</div>
+									<div class="box">#비자카드</div>
+									<div class="box">#마스터카드</div>
+									<div class="box">#전월실적</div>
+									<div class="box">#신용</div>	
+									<div class="box">#체크</div>	
+									<div class="box">#할부</div>			
 								</div>	
 							</div>
 						</div>				

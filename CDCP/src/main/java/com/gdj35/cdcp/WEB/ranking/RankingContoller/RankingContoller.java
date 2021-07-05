@@ -10,14 +10,22 @@ import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 public class RankingContoller {
 	
 	@RequestMapping(value="/ranking")
-	
 	public ModelAndView ranking (ModelAndView mav) {
 		
 		mav.setViewName("ranking/ranking");
 		
 		return mav;
 	}
+//	card rank 페이지
+	@RequestMapping(value="/card_rank")
+	public ModelAndView card_rank(ModelAndView mav) {
+		
+		mav.setViewName("ranking/card_rank");
+		
+		return mav;
+	}
 	
+//	신용카드 top10 페이지
 	@RequestMapping(value="/creditTop10")
 	public ModelAndView creditTop10(ModelAndView mav) {
 		
@@ -25,4 +33,30 @@ public class RankingContoller {
 		
 		return mav;
 	}
+//	체크카드 top10  페이지
+	@RequestMapping(value="/checkTop10")
+	public ModelAndView checkTop10(ModelAndView mav) {
+		
+		mav.setViewName("ranking/checkTop10");
+		
+		return mav;
+	}
+	
+//	카드사별 top3 페이지
+	@RequestMapping(value="/cardcompany_top3")
+	public ModelAndView cardcompany_top3(ModelAndView mav) {
+		
+		mav.setViewName("ranking/cardcompany_top3");
+		
+		return mav;
+	}
+//	카드상세보기 페이지
+	@RequestMapping(value="/cardview")
+	public ModelAndView cardview(ModelAndView mav) {
+		
+		mav.setViewName("ranking/cardview");
+		
+		return mav;
+	}
+
 }

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>신용카드 TOP 10-카드캡틴</title>
 <style type="text/css">
 body{
 	margin: 0;
@@ -22,129 +22,76 @@ body{
     font-style: normal;
 }
 
-#wrapper{
-	max-width: 1500px;
-	margin: 0 auto;
-}
 /*	헤더 영역	*/
-	#header{
-		min-width: 1500px;
-		width: 1500px;
-		height: 70px;
-		border-radius: 5px;
-		background-color: #0047ab;
-		font-family: Cafe24Ohsquare;
-		position: fixed;
-		top: 0;
+	#header {
+		width: 100%;
+		height: 55px;
+		border-style: solid;
+	    border-width: 0 0 2px 0;
+	    border-color: #0047AB;
+	    font-family: 'GmarketSansMedium';
+	    min-width: 1830px;
 	}
-		#headerMenu{
-			width: 80%;
-			height:inherit;
-			margin: 0 auto;
-			font-size: 20px;
-			font-weight: bold;
-			color: white;
-		}
-			#menuLogo{
-				display: inline-block;
-				vertical-align: top;
-				width: 200px;
-				height: inherit;
-				background-image: url("resources/images/ranking/logo/logo_white.png");
-				background-position: left;
-				background-repeat: no-repeat;
-				background-size: 200px;
-				cursor: pointer;
-				float: left;
-			}
-			#menuList{
-				display: inline-block;
-				vertical-align: top;
-				height: inherit;
-				width: 70%;	
-				text-align: right;	
-			}
-			#menuList > ul li{
-				display: inline-block;
-				vertical-align: top;
-				list-style: none;
-				margin-left: 15px;
-				cursor: pointer;	
-			}
-			#menuList ul li:hover {	/* 메뉴 목록 mouse over */
-				color: #F5DF4D;		/* 나중에 변경 */
-				cursor: pointer;
-			}
-			#menuList > ul{
-			display: inline-block;
-				vertical-align: top;
-				margin: 0;
-				padding: 0;
-				margin-top: 30px;
-				width:100%;
-			}
-			#menuLogin{
-				display:inline-block;
-				vertical-align: top;
-				height: inherit;
-				cursor: pointer;
-				float: right;		
-			}
-			#menuLogin:hover {	/* 메뉴 목록 mouse over */
-				color: #F5DF4D;	
-				cursor: pointer;
-			}
-				#loginName{
-					display: inline-block;
-					vertical-align: top;
-					margin-top: 30px;
-				}
-				#loginImg{
-					display: inline-block;
-					vertical-align: top;
-					width: 50px;
-					height: inherit;
-					background-image: url("../weDoument/imageFolder/icon/login_white.png");
-					background-repeat: no-repeat;
-					background-position:center;
-					background-size: 40px;
-				}
+	#headerWrap {
+		width: 1600px;
+		height: 100%;
+		margin: 0 auto;
+		display: flex;
+	}
+	#headerLeft {
+		display: inline-block;
+		width: 50%;
+		height: 100%;
+	    font-size: 16px;
+		vertical-align: top;
+	}
+	#headerLogo {
+	    display: inline-block;
+	    vertical-align: top;
+	    background-image: url("/cdcp/resources/images/main/logo.png");
+	    background-repeat: no-repeat;
+	    background-size: 120px;
+	    width: 120px;
+	    height: 40px;
+	    cursor: pointer;
+	    text-align: center;
+	    margin-top: 10px;
+	}
+	#headerLeft .menu1 { 
+		display: inline-block;
+		width: 130px;
+		height: 100%;
+		line-height: 65px;
+		color: #0047AB;
+		text-align: center;
+		letter-spacing: 2px;
+		vertical-align: top;
+		cursor: pointer;
+	}	
+	/* header_left 종료 */
+	
 /*	내용 영역	*/	
 	#content{
-		margin-top: 70px;
-		
-		min-width: 1500px;
 		width: 100%;
 		height: 100%;
-		/* 추후 인기순위 영역 범위 height: 830px; */
 	}
-		.side_area{ /* 양 사이드 영역(공백) */
-			display:inline-block;
-			vertical-align: top;
-			width: 140px;
-			height: inherit;
-		}
-		/* 내용 영역 */
 		#contentMenu{
-			display:inline-block;
-			vertical-align: top;
-			width: 1200px;
-			height: inherit;
+			width: 1600px;
+			height: 100%;
+			margin: 0 auto;
 		}
 			/* 소주제 영역 */
 			#menuName{
-				width: 500px;
-				height: 60px;
+				height: 50px;
 				margin: 10px auto;
-				text-align: center;
+				margin-left: 10px;
 				font-family: Cafe24Ohsquare;
-				font-weight: bold;
-				font-size: 50px;
-				line-height: 70px;			
+				font-size: 30px;
+				line-height: 60px;			
 			}
 			/* TOP1  영역*/
 			#contentTop{
-				background-image: url("../weDoument/imageFolder/background/chart_top_bg_polygon.png");
+				background-image: url("resources/images/ranking/background/chart_top_bg_polygon.png");
 				background-color: rgba(50, 50, 50, 0.9);
 				width: 100%;
 				height: 400px;
@@ -189,7 +136,7 @@ body{
 						font-family: GmarketSansMedium;
 						}
 					#imgSct{
-						background-image: url("../weDoument/imageFolder/card/credit/kb_toktokwith.png");
+						background-image: url("resources/images/ranking/card/credit/kb/kb_toktokwith.png");
 						background-repeat: no-repeat;
 						background-size: 100%;
 						height: 250px;
@@ -399,52 +346,60 @@ body{
 						}
 			
 /*	풋터 영역	*/			
-	#footer{
-		min-width: 1500px;
-		width: 100%;
-		height: 100px;
-		/* border-radius: 5px; */
-		/* background-color: #0047ab;*/	
-		background-color: gray;
+	#footer {
+	    width: 100%;
+	  	height: 100px;
+		border-style: solid;
+	    border-width: 2px 0 0 0;
+	    border-color: #0047AB;
+	    font-family: 'Cafe24Ohsquare';
+		min-width: 1830px;	
 	}
-		#footerMenu{
-			width: 80%;
-			height:inherit;
-			margin: 0 auto;
-			color: white;
-			text-align: center;
-			font-family: GmarketSansMedium;
-			font-size: 12px;
-		}
-			#footerLogo{
-				display: inline-block;
-				vertical-align: top;
-				background-image: url("../weDoument/imageFolder/logo_white.png");
-				background-repeat: no-repeat;
-				background-size: 180px;
-				width: 180px;
-				height: 55px;
-				cursor: pointer;
-				text-align: center;
-			}
+	#footerMenu {
+		width: 80%;
+	    height: inherit;
+	    margin: 0 auto;
+	    color: #0047AB;
+	    text-align: center;
+	    font-family: GmarketSansMedium;
+	    font-size: 12px;
+	}	
+	#footerLogo {
+	    display: inline-block;
+	    vertical-align: top;
+	    background-image: url("/cdcp/resources/images/main/logo.png");
+	    background-repeat: no-repeat;
+	    background-size: 120px;
+	    width: 120px;
+	    height: 40px;
+	    cursor: pointer;
+	    text-align: center;
+	    margin-top: 10px;
+	}
 </style>
+<script type="text/javascript"
+			src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#headerLogo").on("click", function(){
+			location.href = "ranking";
+		}); // headerLogo click end
+	}); // document ready end
+</script>
 </head>
 <body>
-<div id="wrapper">
 <!-- 헤더영역 -->
 	<div id="header">
-		<div id="headerMenu">
-			<div id="menuLogo"></div>
-			<div id="menuList">
-				<ul>
-					<li>카드검색/비교</li>
-					<li>컨텐츠</li>
-					<li>카드순위</li>
-				</ul>
+		<div id="headerWrap">
+			<div id="headerLeft">
+				<div id="headerLogo"></div>
+				<div class="menu1">카드순위</div>
+				<div class="menu1">카드검색/비교</div>
+				<div class="menu1">컨텐츠</div>
 			</div>
-			<div id="menuLogin">
-				<div id="loginName">로그인</div>
-				<div id="loginImg"></div>
+			<div id="headerRight">
+				<div id="imgSearch"></div>
+				<div id="imgLogin"></div>
 			</div>
 		</div>
 	</div>
@@ -498,7 +453,7 @@ body{
 				<div class="rank_box">	<!-- 2등 -->
 					<div class="rank_num">2</div>
 					<div class="box_card">
-						<img alt="카드" src="../weDoument/imageFolder/card/credit/sh_mrlife_card.png" class="card_img"/> 
+						<img alt="카드" src= "resources/images/ranking/card/credit/sh/sh_mrlife_card.png" class="card_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_card">신한카드 Mr.Life</h2>
@@ -514,7 +469,7 @@ body{
 				<div class="rank_box">	<!-- 3등 -->
 					<div class="rank_num">3</div>
 					<div class="box_card">
-						<img alt="카드" src="../weDoument/imageFolder/card/credit/kb_tantandaero.png" class="card_img"/> 
+						<img alt="카드" src="resources/images/ranking/card/credit/kb/kb_tantandaero.png" class="card_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_card">탄탄대로 올쇼핑 티타늄카드</h2>
@@ -527,7 +482,7 @@ body{
 				<div class="rank_box">	<!-- 4등 -->
 					<div class="rank_num">4</div>
 					<div class="box_card">
-						<img alt="카드" src="../weDoument/imageFolder/card/credit/hd_zero_ed2_3.png" class="card_img"/> 
+						<img alt="카드" src="resources/images/ranking/card/credit/hd/hd_zero_ed2_3.png" class="card_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_Card">현대카드ZERO Edition2(할인형)</h2>
@@ -540,7 +495,7 @@ body{
 				<div class="rank_box">	<!-- 5등 -->
 					<div class="rank_num">5</div>
 					<div class="box_card">
-						<img alt="카드" src="../weDoument/imageFolder/card/credit/kb_dadam_card.png" class="card_img"/> 
+						<img alt="카드" src="resources/images/ranking/card/credit/kb/kb_dadam_card.png" class="card_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_card">다담카드</h2>
@@ -553,7 +508,7 @@ body{
 				<div class="rank_box">	<!-- 6등 -->
 					<div class="rank_num">6</div>
 					<div class="box_card">
-						<img alt="카드" src="../weDoument/imageFolder/card/credit/ss_taptap0_card.png" class="card_img"/> 
+						<img alt="카드" src="resources/images/ranking/card/credit/samsung/ss_taptap0_card.png" class="card_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_card">삼성카드 taptap O</h2>
@@ -566,7 +521,7 @@ body{
 				<div class="rank_box">	<!-- 7등 -->
 					<div class="rank_num">7</div>
 					<div class="box_card">
-						<img alt="카드" src="../weDoument/imageFolder/card/credit/km_cheongchuntocktock_card.png" class="card_img"/> 
+						<img alt="카드" src="resources/images/ranking/card/credit/kb/km_cheongchuntocktock_card.png" class="card_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_card">청춘대로 톡톡카드</h2>
@@ -579,7 +534,7 @@ body{
 				<div class="rank_box">	<!-- 8등 -->
 					<div class="rank_num">8</div>
 					<div class="box_card">
-						<img alt="카드" src="../weDoument/imageFolder/card/credit/nh_all1_pie_card.png" class="card_img"/> 
+						<img alt="카드" src="resources/images/ranking/card/credit/nh/nh_all1_pie_card.png" class="card_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_card">NH올원 파이카드</h2>
@@ -592,7 +547,7 @@ body{
 				<div class="rank_box">	<!-- 9등 -->
 					<div class="rank_num">9</div>
 					<div class="box_card">
-						<img alt="카드" src="../weDoument/imageFolder/card/credit/sh_the_more_card2.png" class="card_img"/> 
+						<img alt="카드" src="resources/images/ranking/card/credit/sh/sh_the_more_card2.png" class="card_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_card">신한카드 The More(더모아)</h2>
@@ -605,7 +560,7 @@ body{
 				<div class="rank_box">	<!-- 10등 -->
 					<div class="rank_num">10</div>
 					<div class="box_card">
-						<img alt="카드" src="../weDoument/imageFolder/card/credit/wr_dAcjs_card3.png" class="card_img"/> 
+						<img alt="카드" src="resources/images/ranking/card/credit/we/wr_dAcjs_card3.png" class="card_img"/> 
 					</div>
 					<div class="box_txt">
 						<h2 class="name_card">DA@카드의 정석</h2>
@@ -627,6 +582,5 @@ body{
 			<div>Copyright © 2021-2031 CardCaptain All Rights Reserved.</div>
 		</div>
 	</div>
-</div>
 </body>
 </html>
