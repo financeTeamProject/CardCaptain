@@ -64,7 +64,7 @@ body {
 	width: 100%;
 	height: 70x;
 	line-height: 70px;
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: bold;
 	color: #0047ab;
 	margin-top: 40px;
@@ -243,8 +243,6 @@ body {
 			</select>
 			<input type="button" id="checkingEmail" value="이메일인증" />
 		</div>
-		<br/>
-		<br/>
 		<br/>
 		<br/>
 		<br/>
