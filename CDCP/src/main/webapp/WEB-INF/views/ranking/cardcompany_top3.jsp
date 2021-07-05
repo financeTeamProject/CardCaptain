@@ -103,7 +103,18 @@ body{
 	    margin-top: 15px;
 	}
 	/* header_right 종료 */
+	#midHeader{
+		width: 100%;
+	    height: 70px;
+	    background-color: white;
+	    position: sticky;
+	    top: 0;
+	    z-index: 100;
+	    min-width: 1830px;
+	}
+	
 	/* 헤더 종료 */
+	
 /*	내용 영역	*/	
 	#content{
 		width: 100%;
@@ -129,6 +140,7 @@ body{
 				line-height: 60px;			
 			}
 			.nav_menubar{
+				
 				width: 1400px;
 				height: inherit;
 			}
@@ -152,14 +164,14 @@ body{
 				width: 100%;
 				background-color: #333a44;
 				margin-bottom: 10px;
-				padding: 10px;
+				padding: 0 0 50px 0;
 			}
 			/* TOP3  영역*/
 			.card_1{
 				display: block;
 				width: 100%;
 				height: auto;
-				padding-top: 50px;
+				padding-top: 150px;
 			}
 				.card_title{
 				    width: 1600px;
@@ -397,9 +409,8 @@ body{
 			</div>
 		</div>
 	</div>
-<!-- 내용 영역 -->	
-	<div id="content">
-		<!-- 카드사 선택 목록 -->
+	<!-- 카드사 선택 목록 -->
+	<div id="midHeader">
 		<div id="contentMenu">
 			<div id="menuName">카드사별 TOP3</div>
 			<div class="nav_menubar">
@@ -413,6 +424,9 @@ body{
 				<a href="#card_8" class="nav_btn" id="kbCard">IBK 카드</a>
 			</div>
 		</div>
+	</div>
+<!-- 내용 영역 -->	
+	<div id="content">
 		<!-- 카드 TOP3 영역 -->
 		<div class=contentBg>
 			<!-- card_1 영역 시작 -->
