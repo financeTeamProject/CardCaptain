@@ -210,13 +210,6 @@ $(document).ready(function() {
 	var regex_num = (/[^0-9]/g);
 	var regex_eng = (/^[a-zA-Z]*$/);
 	
-	//숫자만 입력
-	$("#phone_num").keydown(function() {
-		if (!regex_num.test($(this).val())) {
-			alert("숫자만 입력가능합니다.");
-		}
-	});
-	
 	//회원가입 필터링	
 	$("#btn_next").on("click",function() {
 		var memId = $.trim($("#mem_id").val());
@@ -280,8 +273,8 @@ function SetNum(obj) {
 	if((keyVal >= 48) && (keyVal <= 57)) {
 		return true;
 	} else {
-		alert("숫자만 입력가능합니다.");
-		return false;
+		alert("숫자만 입력가능합니다."); 
+		$("#" + obj.id).val(obj.value.slice(0,-1));
 	}
 }
 </script>
