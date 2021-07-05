@@ -66,17 +66,17 @@ body {
 }
 .text {
    width: 100%;
-    height: 55px;
+   height: 55px;
    line-height: 55px;
-    border-style: solid;
-    border-width: 0 0 1px 0;
-    border-color: #0047AB;
-    padding: 11px 70px 8px 0;
-    outline: 0;
-    border-radius: 0;
-    box-sizing: border-box;
-    caret-color: #f7e317;
-    text-decoration: none;
+   border-style: solid;
+   border-width: 0 0 1px 0;
+   border-color: #0047AB;
+   padding: 11px 70px 8px 0;
+   outline: 0;
+   border-radius: 0;
+   box-sizing: border-box;
+   caret-color: red;
+   text-decoration: none;
    color: #0047AB;
    font-size: 14px;
    letter-spacing: 3px;
@@ -89,7 +89,7 @@ body {
    border-color: #0047AB;
    padding: 11px 70px 8px 0;
    outline: 0;
-   caret-color: #f7e317;
+   caret-color: red;
    color: #0047AB;
    box-sizing: border-box;
    font-size: 13px;
@@ -103,7 +103,7 @@ body {
    border-color: #0047AB;
    padding: 11px 70px 8px 0;
    outline: 0;
-   caret-color: #f7e317;
+   caret-color: red;
    color: #0047AB;
    box-sizing: border-box;
    font-size: 13px;
@@ -128,36 +128,36 @@ body {
    border-width: 0 0 1px 0;
    border-color: #0047AB;
    outline: 0;
-   caret-color: #f7e317;
+   caret-color: red;
    color: #0047AB;
    letter-spacing: 3px;
 }
 #email {
-   width: 200px;
+   width: 150px;
    height: 45px;
    border-style: solid;
    border-width: 0 0 1px 0;
    border-color: #0047AB;
-   padding: 11px 70px 8px 0;
+   padding: 10px 0px 8px 0;
    outline: 0;
-   caret-color: #f7e317;
+   caret-color: red;
    color: #0047AB;
    box-sizing: border-box;
    font-size: 13px;
    letter-spacing: 4px;
 }
 #select_email {
-   width: 200px;
+   width: 150px;
    height: 45px;
    border-style: solid;
    border-width: 0 0 1px 0;
    border-color: #0047AB;
-   padding: 11px 20px 8px 20px;
+   padding: 11px 5px 8px 5px;
    outline: 0;
-   caret-color: #f7e317;
+   caret-color: red;
    color: #0047AB;
    letter-spacing: 3px;
-   font-size: inherit;
+   font-size: 14px;
 }
 #btn_next {
     display: block;
@@ -191,6 +191,15 @@ body {
     font-family: GmarketSansMedium;
     font-size: 12px;
    }
+#checkingEmail{
+	width: 85px;
+	height: 50px;
+	margin-left: 25px;
+	background-color: white;
+	color: #0047AB;
+	cursor: pointer;
+	border-radius: 15px;
+}
 /* #footerLogo {
     display: inline-block;
     vertical-align: top;
@@ -213,15 +222,17 @@ $(document).ready(function() {
    var regex_eng = (/^[a-zA-Z]*$/);
    
    //숫자만 입력
-   $("#phone_num").keydown(function() {
+   $("#phone_num").keyup(function() {
       if (regex_num.test($(this).val())) {
+    	  $("#phone_num").val('');
          alert("잘못된 휴대폰 번호입니다. 숫자, - 를 제외한 숫자만 입력하세요.");
       }
    });
    
    //숫자만 입력
-   $("#text_num").keydown(function() {
+  $("#text_num").keyup(function() {
       if (regex_num.test($(this).val())) {
+    	  $("#text_num").val('');
          alert("숫자만 입력 가능합니다.");
       }
    });
@@ -254,7 +265,7 @@ $(document).ready(function() {
          $("#mem_id").val('');
          $("#mem_id").focus();
       } else if (!regex_kor.test(memId)) {
-         alert("아이디는 한글로 만들 수 없습니다.");
+         alert("아이디는 영문과 숫자 조합으로 만들 수 있습니다.");
          $("#mem_id").val('');
          $("#mem_id").focus();
       } else if(memPw == "") {
@@ -266,41 +277,53 @@ $(document).ready(function() {
       } else if (memRePw == "") {
          alert("비밀번호를 확인해 주세요.");
          $("#mem_rePassword").focus();
-      } else if (memPw.length < 8 || memPw.length > 32) {
-         alert("비밀번호는 8자리 이상 32자리 이하만 가능합니다.");
+      } else if (memPw.length < 10 || memPw.length > 25) {
+         alert("비밀번호는 10 ~ 24자로 작성해주세요.");
          $("#mem_password").val('');
          $("#mem_rePassword").val('');
          $("#mem_password").focus();
       } else if (memPw != memRePw) {
          alert("비밀번호를 다시 확인해 주세요.");
-         $("#mem_password").focus();
+         $("#mem_rePassword").focus();
       } else if (memNick == "") {
          alert("닉네임을 입력해 주세요.");
          $("#mem_nickname").focus();
-      } else if (memPhone.length < 12) {
-         alert("핸드폰번호 11자리를 입력해 주세요.");
+      } else if (memNick.length < 4 || memNick.length > 10) {
+          alert("닉네임은 4자 ~ 10자로 작성해주세요.");
+          $("#mem_nickname").focus();
+      } else if (regex_spe.test(memNick)) {
+         alert("닉네임은 한글,영문,숫자 조합으로 작성해주세요.");
+         $("#mem_nickname").focus();
+      } else if (memPhone.length > 11) {
+         alert("-를 제외한 11자리를 입력해 주세요.");
          $("#phone_num").focus();
-      } else if (memRRN.length < 9) {
-         alert("주민번호 앞의 8자리를 입력해 주세요.");
+		
+      } else if (memRRN == "") {
+         alert("생년월일을 입력해 주세요.");
          $("#text_num").focus();
       } else if (memGender == "") {
-         alert("주민번호 뒤의 1자리를 입력해 주세요.");
+         alert("주민번호 뒤의 첫번째자리를 입력해 주세요.");
          $("#text_num2").focus();
       } else if (memEmail == "" && memEmailOpt == "") {
          alert("이메일을 입력해 주세요.");
       }
+      
+      
    });
 });
 
-function SetNum(obj) {
+/* function SetNum(obj) {
       var keyVal = event.keyCode;
       if((keyVal >= 48) && (keyVal <= 57) || (keyVal >= 96) && (keyVal <= 105) || (keyVal >= 8)) {
          return true;
       } else {
          alert("숫자만 입력가능합니다."); 
-         $("#" + obj.id).val(obj.value.slice(0,-1));
+         var member_id = obj.id;
+         var member_val = obj.value;
+         
+         $("#" + member_id).val(member_val.slice(0,-1));
       }
-}
+}; */
 </script>
 </head>
 <body>
@@ -308,15 +331,15 @@ function SetNum(obj) {
    <input type="hidden" name="checkEmail" id="checkEmail" value="" />
 </form>
 <div class="back_main">
-   <div class="back_top">C&nbsp;A&nbsp;R&nbsp;D&nbsp;&nbsp;&nbsp;C&nbsp;A&nbsp;P&nbsp;T&nbsp;A&nbsp;I&nbsp;N</div>
+   <div class="back_top">C&nbsp;A&nbsp;R&nbsp;&nbsp;&nbsp;&nbsp;C&nbsp;A&nbsp;P&nbsp;T&nbsp;A&nbsp;I&nbsp;N</div>
    <div class="back_middle">
       <div class="middle1">
       <div class="middle_top">회원가입 정보를 입력해주세요.</div>
       <div class="title">아이디</div>
       <input type="text" class="text" placeholder="아이디 입력" id="mem_id" />
       <div class="title">비밀번호</div>
-      <strong><input type="password" class="text" placeholder="비밀번호(8~32자리)" id="mem_password" /></strong>
-      <input type="password" class="text" placeholder="비밀번호 재입력" id="mem_rePassword" />
+      <strong><input type="password" class="text" placeholder="비밀번호(10~24자)" id="mem_password" /></strong>
+      <input type="password" class="text" placeholder="비밀번호 확인" id="mem_rePassword" />
       <div class="title">닉네임</div>
       <input type="text" class="text" placeholder="닉네임을 입력해 주세요." id="mem_nickname" />
       <div class="title">전화번호</div>
@@ -324,23 +347,22 @@ function SetNum(obj) {
          <option value="+82   대한민국">+82&nbsp;&nbsp;대한민국</option>
          <option value="+82   대한민국"></option>
       </select>
-      <input type="text" id="phone_num" placeholder=" - 없이 입력해주세요." maxlength="11" onkeyup="SetNum(this);"/>
-      <div class="title">생일/성별</div>
+      <input type="text" id="phone_num" placeholder=" - 없이 입력해주세요." maxlength="11" />
+      <div class="title">생년월일</div>
       <div class="title">
-         <input type="text" id="text_num" placeholder="예) 19940507" maxlength="8" onkeyup="SetNum(this);"/>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
-         <input type="text" id="text_num2" maxlength="1" onkeyup="SetNum(this);"/>
+         <input type="text" id="text_num" placeholder="예) 19940507" maxlength="8" />&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+         <input type="text" id="text_num2" maxlength="1" />
          <span id="txt">*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*</span>
       </div>
       <div class="title">이메일</div>
       <div class="title">
-         <input type="text" id="email" placeholder="이메일" />&nbsp;&nbsp;&nbsp;@&nbsp;&nbsp;&nbsp;
+         <input type="text" id="email" placeholder="이메일" />&nbsp;&nbsp;@&nbsp;
          <select name="email" id="select_email"> 
             <option value="naver.com">naver.com</option>
             <option value="google.com">google.com</option>
          </select>
          <input type="button" id="checkingEmail" value="이메일인증" />
       </div>
-      <br/>
       <br/>
       <br/>
       <br/>
