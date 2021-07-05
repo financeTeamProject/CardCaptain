@@ -36,14 +36,39 @@ public class HomeController {
 		
 		return "home";
 	}
-	
+	// ????
 	@RequestMapping(value="/adm")
 	public ModelAndView adm(ModelAndView mav) {
 		
 		mav.setViewName("main_Layout/adm");
 		
 		return mav;
-		
 	}
+	
+	@RequestMapping(value="/cardRank")
+	public ModelAndView cardRank(ModelAndView mav) {
+		
+		mav.setViewName("ranking/card_rank");
+		
+		return mav;
+	}
+	
+	/*
+	 * @RequestMapping(value="/search") public ModelAndView search(ModelAndView mav)
+	 * {
+	 * 
+	 * mav.setViewName("search/search");
+	 * 
+	 * return mav; }
+	 */
+	
+	@RequestMapping(value="/contents")
+	public ModelAndView contents(ModelAndView mav) {
+		
+		mav.setViewName("contents/content");
+		
+		return mav;
+	}
+	
 	
 }

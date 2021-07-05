@@ -301,8 +301,20 @@ body{
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#headerLogo").on("click", function(){
-			location.href = "ranking";
+			location.href = "home";
 		}); // headerLogo click end
+		
+		$("#viewBtn").on("click", function(){
+			location.href = "creditTop10";
+		}); // viewBtn click end
+		
+		$("#midCmp").on("click", function(){
+			location.href = "cardcompany_top3";
+		}); // viewBtn click end
+		
+		$("#midCheck").on("click", function(){
+			location.href = "checkTop10";
+		}); // viewBtn click end
 	}); // document ready end
 </script>
 </head>

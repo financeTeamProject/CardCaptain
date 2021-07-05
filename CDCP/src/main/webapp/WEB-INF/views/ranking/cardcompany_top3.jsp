@@ -131,7 +131,7 @@ body{
 		}
 			/* 소주제 영역 */
 			#menuName{
-				width: 250px;
+				width: 200px;
 				height: 50px;
 				margin: 10px;
 				margin-left: 10px;
@@ -140,20 +140,19 @@ body{
 				line-height: 60px;			
 			}
 			.nav_menubar{
-				
+				display: flex;
 				width: 1400px;
 				height: inherit;
 			}
 			/* 네비 버튼 통합 - 크기 조절 */
 			.nav_btn{
-				display: inline-block;
-				height: inherit;
-				width: 120px;
+				display: flex;
+				align-items: center;
+				width: 90px;
 				text-decoration: none;
-				padding: 20px 10px 0px;
-				margin: 0 10px;
+				margin: 0 30px;
 				font-family: 'GmarketSansMedium';
-				font-size: 25px;
+				font-size: 20px;
 				color: rgba(51, 51, 51, 0.6);
 			}
 			a:active{
@@ -420,8 +419,9 @@ body{
 				<a href="#card_4" class="nav_btn" id="shCard">신한 카드</a>
 				<a href="#card_5" class="nav_btn" id="weCard">우리 카드</a>
 				<a href="#card_6" class="nav_btn" id="hdCard">현대 카드</a>
-				<a href="#card_7" class="nav_btn" id="kbCard">농협 카드</a>
-				<a href="#card_8" class="nav_btn" id="kbCard">IBK 카드</a>
+				<a href="#card_7" class="nav_btn" id="nhCard">농협 카드</a>
+				<a href="#card_8" class="nav_btn" id="hanaCard">하나 카드</a>
+				<a href="#card_9" class="nav_btn" id="ibkCard">IBK 카드</a>
 			</div>
 		</div>
 	</div>
