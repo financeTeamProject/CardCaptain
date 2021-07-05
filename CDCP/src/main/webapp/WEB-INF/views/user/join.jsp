@@ -239,6 +239,7 @@ $(document).ready(function() {
 		var chk_num = memPw.search(/[0-9]/g);
 	    var chk_eng = memPw.search(/[a-z]/ig);
 		
+	    
 		if(memId == "") {
 			alert("아이디를 입력하세요.");
 			$("#mem_id").focus();
