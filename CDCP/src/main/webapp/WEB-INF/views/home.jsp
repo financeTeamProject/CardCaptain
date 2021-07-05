@@ -18,7 +18,6 @@
     font-weight: normal;
     font-style: normal;
 }
-
 body {
 	margin: 0;
 	top: 0;
