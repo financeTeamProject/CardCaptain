@@ -212,8 +212,15 @@ $(document).ready(function() {
 	
 	//숫자만 입력
 	$("#phone_num").keydown(function() {
-		if (!regex_num.test($(this).val())) {
-			alert("숫자만 입력가능합니다.");
+		if (regex_num.test($(this).val())) {
+			alert("잘못된 휴대폰 번호입니다. 숫자, - 를 제외한 숫자만 입력하세요.");
+		}
+	});
+	
+	//숫자만 입력
+	$("#text_num").keydown(function() {
+		if (regex_num.test($(this).val())) {
+			alert("숫자만 입력 가능합니다.");
 		}
 	});
 	
@@ -234,6 +241,14 @@ $(document).ready(function() {
 		
 		if(memId == "") {
 			alert("아이디를 입력하세요.");
+			$("#mem_id").focus();
+		} else if (memId.length < 6 || memId.length > 16) {
+			 alert("아이디는 6자리 이상 16자리 이하로 입력해주세요.");
+			 $("#mem_id").val('');
+			 $("#mem_id").focus();
+		} else if (regex_spe.test(memId)) {
+			alert("특수문자를 사용할 수 없습니다.");
+			$("#mem_id").val('');
 			$("#mem_id").focus();
 		} else if (!regex_kor.test(memId)) {
 			alert("아이디는 한글로 만들 수 없습니다.");
@@ -259,8 +274,8 @@ $(document).ready(function() {
 		} else if (memNick == "") {
 			alert("닉네임을 입력해 주세요.");
 			$("#mem_nickname").focus();
-		} else if (memPhone2.length < 8) {
-			alert("핸드폰번호 8자리를 입력해 주세요.");
+		} else if (memPhone2.length < 12) {
+			alert("핸드폰번호 11자리를 입력해 주세요.");
 			$("#phone_num").focus();
 		} else if (memRRN.length < 6) {
 			alert("주민번호 앞의 6자리를 입력해 주세요.");
@@ -275,14 +290,13 @@ $(document).ready(function() {
 });
 
 function SetNum(obj) {
-	var keyVal = event.keyCode;
-	
-	if((keyVal >= 48) && (keyVal <= 57)) {
-		return true;
-	} else {
-		alert("숫자만 입력가능합니다.");
-		return false;
-	}
+	   var keyVal = event.keyCode;
+	   if((keyVal >= 48) && (keyVal <= 57) || (keyVal >= 96) && (keyVal <= 105) || (keyVal >= 8)) {
+	      return true;
+	   } else {
+	      alert("숫자만 입력가능합니다."); 
+	      $("#" + obj.id).val(obj.value.slice(0,-1));
+	   }
 }
 </script>
 </head>
@@ -306,7 +320,7 @@ function SetNum(obj) {
 		<select name="+82" id="select_num"> 
 			<option value="+82   대한민국"></option>
 		</select>
-		<input type="text" id="phone_num" placeholder="전화번호" onkeyup="SetNum(this);"/>
+		<input type="text" id="phone_num" placeholder=" - 없이 입력해주세요." maxlength="11" onkeyup="SetNum(this);"/>
 		<div class="title">생일/성별</div>
 		<div class="title">
 			<input type="text" id="text_num" placeholder="주민번호 앞자리" maxlength="6" onkeyup="SetNum(this);"/>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
