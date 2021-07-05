@@ -233,20 +233,20 @@ $(document).ready(function() {
 	    var chk_eng = memPw.search(/[a-z]/ig);
 		
 		if(memId == "") {
-			alert("아이디를 입력하세요");
+			alert("아이디를 입력하세요.");
 			$("#mem_id").focus();
 		} else if (!regex_kor.test(memId)) {
 			alert("아이디는 한글로 만들 수 없습니다.");
 			$("#mem_id").val('');
 			$("#mem_id").focus();
 		} else if(memPw == "") {
-			alert("비밀번호를 입력하세요");
+			alert("비밀번호를 입력하세요.");
 			$("#mem_password").focus();
 		} else if(chk_num < 0 || chk_eng < 0) {
-			alert("비밀번호는 영문과 숫자를 혼용해 주세요");
+			alert("비밀번호는 영문과 숫자를 같이 사용해주세요.");
 			$("#mem_password").focus();
 		} else if (memRePw == "") {
-			alert("비밀번호를 확인해 주세요");
+			alert("비밀번호를 확인해 주세요.");
 			$("#mem_rePassword").focus();
 		} else if (memPw.length < 8 || memPw.length > 32) {
 			alert("비밀번호는 8자리 이상 32자리 이하만 가능합니다.");
@@ -254,19 +254,19 @@ $(document).ready(function() {
 			$("#mem_rePassword").val('');
 			$("#mem_password").focus();
 		} else if (memPw != memRePw) {
-			alert("비밀번호를 다시 확인해 주세요");
+			alert("비밀번호를 다시 확인해 주세요.");
 			$("#mem_password").focus();
 		} else if (memNick == "") {
-			alert("닉네임을 입력해 주세요");
+			alert("닉네임을 입력해 주세요.");
 			$("#mem_nickname").focus();
 		} else if (memPhone2.length < 8) {
-			alert("핸드폰번호 8자리를 입력해 주세요");
+			alert("핸드폰번호 8자리를 입력해 주세요.");
 			$("#phone_num").focus();
 		} else if (memRRN.length < 6) {
-			alert("주민번호 앞의 6자리를 입력해 주세요");
+			alert("주민번호 앞의 6자리를 입력해 주세요.");
 			$("#text_num").focus();
 		} else if (memGender == "") {
-			alert("주민번호 뒤의 1자리를 입력해 주세요");
+			alert("주민번호 뒤의 1자리를 입력해 주세요.");
 			$("#text_num2").focus();
 		} else if (memEmail == "" && memEmailOpt == "") {
 			alert("이메일을 입력해 주세요.");
@@ -322,6 +322,8 @@ function SetNum(obj) {
 			</select>
 			<input type="button" id="checkingEmail" value="이메일인증" />
 		</div>
+		<br/>
+		<br/>
 		<br/>
 		<br/>
 		<input type="button" value="다음" id="btn_next"></div>
