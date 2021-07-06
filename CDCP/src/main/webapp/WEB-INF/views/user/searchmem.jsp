@@ -66,7 +66,6 @@ body {
 	font-size: 18px;
 	font-weight: bold;
 	color: #0047ab;
-	margin-top: 40px;
 }
 .title {
 	width: 100%;
@@ -167,7 +166,7 @@ body {
 	caret-color: #f7e317;
 	color: #0047AB;
 }
-#checkingEmailNum {
+.checkingEmailNum {
 	width: 250px;
 	height: 45px;
 	border-style: solid;
@@ -178,10 +177,10 @@ body {
 	caret-color: #f7e317;
 	color: #0047AB;
 }
-#checkingEmailBtn:hover {
+.checkingEmailBtn:hover {
 	cursor: pointer;
 }
-#checkingEmailBtn {
+.checkingEmailBtn {
 	width: 130px;
     height: 35px;
     color: white;
@@ -191,6 +190,10 @@ body {
     font-size: 15px;
     font-family: 'GmarketSansMedium';
     margin-left: 15px;
+}
+.emailTxt {
+	color: red;
+	font-size: 14px;
 }
 #btn_next {
     display: block;
@@ -228,8 +231,11 @@ body {
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	$("#checkingEmailBtn").on("click", function() {
-		$("#checkEmail").val($("#pwEmail").val() + "@" + $("#pw_select_email option:selected").val());
+	$(".checkingEmailBtn").on("click", function() {
+		var ival = $(this).prop("id").split("_");
+		$("#findType").val(ival[0]);
+		$("#checkEmail").val($("." + ival[0] + "Email").val() + "@" + $("." + ival[0] + "_select_email option:selected").val());
+		
 		var params = $("#checkEmailForm").serialize();
 		
 		$.ajax({
@@ -238,7 +244,7 @@ $(document).ready(function() {
 			dataType: "json",
 			data: params,
 			success: function(res) {					
-					$("#emailTxt").html("이메일 인증코드를 적어주세요");
+					$("#" + ival[0] + "_emailTxt").html("*이메일 인증코드를 적어주세요");
 			},
 			error: function(request, status, error) {
 				console.log(error);
@@ -250,7 +256,8 @@ $(document).ready(function() {
 </head>
 <body>
 <form action="#" id="checkEmailForm">
-	<input type="hidden" name="checkEmail" id="checkEmail" value="" />
+	<input type="hidden" name="checkEmail" id="checkEmail" value="" /><!-- 이메일 주소 -->
+	<input type="hidden" name="" id="findType" value="" /><!--  -->
 </form>
 <div class="back_main">
 	<div class="back_top">C&nbsp;A&nbsp;R&nbsp;D&nbsp;&nbsp;&nbsp;C&nbsp;A&nbsp;P&nbsp;T&nbsp;A&nbsp;I&nbsp;N</div>
@@ -271,30 +278,38 @@ $(document).ready(function() {
 		</div>
 		<div class="title">이메일</div>
 		<div class="title">
-			<input type="text" id="idEmail" placeholder="이메일" />&nbsp;&nbsp;&nbsp;@&nbsp;&nbsp;&nbsp;
-			<select name="+82" id="id_select_email"> 
+			<input type="text" id="idEmail" class="idEmail" placeholder="이메일" />&nbsp;&nbsp;&nbsp;@&nbsp;&nbsp;&nbsp;
+			<select name="+82" id="id_select_email" class="id_select_email">
 				<option value="naver.com">naver.com</option>
 				<option value="gmail.com">gmail.com</option>
 			</select>
+			<input type="text" id="idFindEmail" class="checkingEmailNum" placeholder="인증번호" />
+			<input type="button" id="id_FindBtn" class="checkingEmailBtn" value="이메일인증" />
 		</div>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<span class="emailTxt" id="id_emailTxt"></span>
+		<br/>
 		<div class="searchId">*비밀번호 찾기</div>
 		<div class="title">아이디</div>
 		<input type="text" class="text" placeholder="아이디 입력" id="mem_id" />
 		<div class="title">이메일</div>
 		<div class="title">
-			<input type="text" id="pwEmail" placeholder="이메일" />&nbsp;&nbsp;&nbsp;@&nbsp;&nbsp;&nbsp;
-			<select name="+82" id="pw_select_email"> 
+			<input type="text" id="pwEmail" class="pwEmail" placeholder="이메일" />&nbsp;&nbsp;&nbsp;@&nbsp;&nbsp;&nbsp;
+			<select name="+82" id="pw_select_email" class="pw_select_email"> 
 				<option value="naver.com">naver.com</option>
 				<option value="gmail.com">gmail.com</option>
 			</select>
-			<input type="text" id="checkingEmailNum" placeholder="인증번호" />
-			<input type="button" id="checkingEmailBtn" value="이메일인증" />
+			<input type="text" id="pwFindEmail" class="checkingEmailNum" placeholder="인증번호" />
+			<input type="button" id="pw_FindBtn" class="checkingEmailBtn" value="이메일인증" />
 		</div>
 		<br/>
 		<br/>
 		<br/>
 		<br/>
-		<span id="emailTxt"></span>
+		<span class="emailTxt" id="pw_emailTxt"></span>
 		<br/>
 		<br/>
 		<input type="button" value="다음" id="btn_next"></div>
