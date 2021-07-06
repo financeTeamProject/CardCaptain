@@ -46,7 +46,7 @@ public class UserContoller {
 		return mav;
 	}
 
-	//user - searchmem 이메일인증
+	//user - searchmem 이메일인증ㅇㅇㅇ
 	@RequestMapping(value = "/checkingEmail", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
 	@ResponseBody
 	public String checkingEmail(@RequestParam HashMap<String,String> params) throws Throwable {
