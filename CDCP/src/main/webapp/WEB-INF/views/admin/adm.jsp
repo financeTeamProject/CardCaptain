@@ -215,7 +215,15 @@ body {
 	background: gray;
 }
 
+.content_content {
+	width: 400px;
+	height: 50%;
+	background: #eee;
+	font-size: 30px;
+	color: black;
+}
 
+/* 풋터영역 */
 #footer{
 	width: 100%;
 	height: 100px;
@@ -322,9 +330,10 @@ body {
 <div class="content_area">
 	<div class="contents">
 		<div class="left_content">
+			<div class="content_content">1</div>
+			<div class="content_content">2</div>
 		</div>
-		<div class="right_content">
-		</div>
+		<div class="right_content"></div>
 	</div>
 </div>
 	
