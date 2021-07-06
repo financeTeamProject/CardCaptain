@@ -496,9 +496,9 @@ h1 {
 				</div>
 				<div class="content">
 					<div id="content_1">
-						<div id="movie"><div id="video_rayout_1"></div></div>
-						<div id="movie"><div id="video_rayout_2"></div></div>
-						<div id="movie"><div id="video_rayout_3"></div></div>
+						<div id="movie"><div id="video_rayout_1" onclick="location.href='https://youtu.be/AgzSzAuQzs0';"></div></div>
+						<div id="movie"><div id="video_rayout_2" onclick="location.href='https://youtu.be/ld8M47X6fF8';"></div></div>
+						<div id="movie"><div id="video_rayout_3" onclick="location.href='https://youtu.be/VrKFLX2rP5M';"></div></div>
 					</div>
 				</div>
 				<div class="title">카드용어정리</div>

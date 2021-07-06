@@ -41,7 +41,7 @@ public class HomeController {
 	@RequestMapping(value = "/adm")
 	public ModelAndView adm(ModelAndView mav) {
 
-		mav.setViewName("main_Layout/adm");
+		mav.setViewName("admin/adm");
 
 		return mav;
 	}
