@@ -251,6 +251,14 @@ img {
     text-decoration:underline;
 }
 </style>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#subBtn").on("click", function() {
+		location.href = "searchingCardList";
+	});
+});
+</script>
 </head>
 <body>
 <!-- Start Header by KJ -->
