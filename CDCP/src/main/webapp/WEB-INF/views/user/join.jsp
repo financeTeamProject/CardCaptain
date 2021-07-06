@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,6 +37,7 @@ body {
    color: #0047AB;
    font-family: 'Cafe24Ohsquare';
    text-shadow: 2px 3px 4px gray;
+   letter-spacing: 8px;
 }
 .back_middle {
    font-family: 'GmarketSansMedium';
@@ -59,103 +59,114 @@ body {
    font-size: 22px;
 }
 .title {
-   width: 100%;
-   height: 45px;
-   line-height: 45px;
-   font-size: 16px;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
 }
 .text {
-   width: 100%;
+	width: 100%;
     height: 55px;
-   line-height: 55px;
+    line-height: 55px;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: #0047AB;
+    padding: 11px 0 8px 0;
+    outline: 0;
+    border-radius: 0;
+    box-sizing: border-box;
+    caret-color: red;
+    text-decoration: none;
+    color: #0047AB;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+.errorMsg {
+	width: auto;
+	height: 100%;
+	display:none;
+	vertical-align:top;
+    color: #e65f3e;
+    font-size: 13px;
+    float: right;
+}
+#text_num {
+	width: 200px;
+    height: 45px;
     border-style: solid;
     border-width: 0 0 1px 0;
     border-color: #0047AB;
     padding: 11px 70px 8px 0;
     outline: 0;
-    border-radius: 0;
+    caret-color: red;
+    color: #0047AB;
     box-sizing: border-box;
-    caret-color: #f7e317;
-    text-decoration: none;
-   color: #0047AB;
-   font-size: 14px;
-   letter-spacing: 3px;
-}
-#text_num {
-   width: 200px;
-   height: 45px;
-   border-style: solid;
-   border-width: 0 0 1px 0;
-   border-color: #0047AB;
-   padding: 11px 70px 8px 0;
-   outline: 0;
-   caret-color: #f7e317;
-   color: #0047AB;
-   box-sizing: border-box;
-   font-size: 13px;
-   letter-spacing: 4px;
+    font-size: 13px;
+    letter-spacing: 4px;
 }
 #phone_num {
-   width: 390px;
-   height: 45px;
-   border-style: solid;
-   border-width: 0 0 1px 0;
-   border-color: #0047AB;
-   padding: 11px 70px 8px 0;
-   outline: 0;
-   caret-color: #f7e317;
-   color: #0047AB;
-   box-sizing: border-box;
-   font-size: 13px;
-   letter-spacing: 4px;
+	width: 300px;
+    height: 45px;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: #0047AB;
+    padding: 11px 70px 8px 0;
+    outline: 0;
+    caret-color: red;
+    color: #0047AB;
+    box-sizing: border-box;
+    font-size: 13px;
+    letter-spacing: 4px;
 }
 #text_num2 {
-   width: 13px;
-   height: 40px;
-   border-style: solid;
-   border-width: 0 0 1px 0;
-   border-color: #0047AB;
+    width: 15px;
+    height: 40px;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: #0047AB;
     outline: 0;
-   caret-color: #f7e317;
-   color: #0047AB;
-   box-sizing: border-box;
-   font-size: 13px;
+    caret-color: red;
+    color: #0047AB;
+    box-sizing: border-box;
+    font-size: 13px;
 }
-#select_num {
-   width: 80px;
-   height: 45px;
-   border-style: solid;
-   border-width: 0 0 1px 0;
-   border-color: #0047AB;
-   padding: 11px 70px 8px 0;
+#select_tel {
+    width: 170px;
+    height: 43px;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: #0047AB;
     outline: 0;
-   caret-color: #f7e317;
-   color: #0047AB;
+    caret-color: red;
+    color: #0047AB;
+    letter-spacing: 3px;
 }
 #email {
-   width: 200px;
+   width: 150px;
    height: 45px;
    border-style: solid;
    border-width: 0 0 1px 0;
    border-color: #0047AB;
-   padding: 11px 70px 8px 0;
+   padding: 10px 0px 8px 0;
    outline: 0;
-   caret-color: #f7e317;
+   caret-color: red;
    color: #0047AB;
    box-sizing: border-box;
    font-size: 13px;
    letter-spacing: 4px;
 }
 #select_email {
-   width: 200px;
-   height: 45px;
-   border-style: solid;
-   border-width: 0 0 1px 0;
-   border-color: #0047AB;
-   padding: 11px 70px 8px 0;
+    width: 150px;
+    height: 45px;
+    border-style: solid;
+	border-width: 0 0 1px 0;
+    border-color: #0047AB;
+    padding: 11px 5px 8px 5px;
     outline: 0;
-   caret-color: #f7e317;
-   color: #0047AB;
+    caret-color: red;
+    color: #0047AB;
+    letter-spacing: 3px;
+    font-size: 14px;
 }
 #btn_next {
     display: block;
@@ -170,16 +181,16 @@ body {
     cursor: pointer;
 }
 #txt {
-   height: 45px;
-   line-height: 45px;
-   letter-spacing: 5px;
-   color: #0047AB;
+    height: 45px;
+    line-height: 45px;
+    letter-spacing: 5px;
+    color: #0047AB;
 }
 #footer {
-   min-width: 600px;   
+    min-width: 600px;   
     width: 100%;
-     height: 100px;
-   border-radius: 5px;
+	height: 100px;
+    border-radius: 5px;
 }
 #footerMenu {
     height: inherit;
@@ -189,6 +200,15 @@ body {
     font-family: GmarketSansMedium;
     font-size: 12px;
    }
+#checkingEmail{
+	width: 85px;
+	height: 50px;
+	margin-left: 25px;
+	background-color: white;
+	color: #0047AB;
+	cursor: pointer;
+	border-radius: 15px;
+}
 /* #footerLogo {
     display: inline-block;
     vertical-align: top;
@@ -210,38 +230,85 @@ $(document).ready(function() {
    var regex_num = (/[^0-9]/g);
    var regex_eng = (/^[a-zA-Z]*$/);
    
-   //숫자만 입력
-   $("#phone_num").keydown(function() {
-      if (regex_num.test($(this).val())) {
-         alert("잘못된 휴대폰 번호입니다. 숫자, - 를 제외한 숫자만 입력하세요.");
-      }
-   });
+    //숫자만 입력
+    $("#phone_num").keyup(function() {
+       if (regex_num.test($(this).val())) {
+     	  $("#phone_num").val('');
+          alert("잘못된 휴대폰 번호입니다. 숫자, - 를 제외한 숫자만 입력하세요.");
+       }
+    });
    
-   //숫자만 입력
-   $("#text_num").keydown(function() {
-      if (regex_num.test($(this).val())) {
-         alert("숫자만 입력 가능합니다.");
-      }
-   });
+	//숫자만 입력
+	$("#text_num").keyup(function() {
+		if (regex_num.test($(this).val())) {
+			$("#text_num").val('');
+			alert("숫자만 입력 가능합니다.");
+		}
+	});
    
+	//블러
+	$("input").blur(function () {
+	      var memId = $.trim($("#mem_id").val());
+	      var memPw = $.trim($("#mem_password").val());
+	      var memRePw = $.trim($("#mem_rePassword").val());
+	      var memNick = $.trim($("#mem_nickname").val());
+	      var memPhoneOpt = $("select_tel option:selected").val();
+	      var memPhone = $.trim($("#phone_num").val());
+	      var memRRN = $.trim($("#text_num").val());
+	      var memGender = $.trim($("#text_num2").val());
+	      var memEmail = $.trim($("#email").val());
+	      var memEmailOpt = $("#select_email option:selected").val();
+	      var chk_num = memPw.search(/[0-9]/g);
+	      var chk_eng = memPw.search(/[a-z]/ig);
+	      
+	      
+		if(memId == "") {
+			$("#errorMsgId").css("display","inline");
+		} else if(!memId == "") {
+			$("#errorMsgId").css("display","none");
+		}
+		if(memPw == "") {
+			$("#errorMsgPw").css("display","inline");
+		} else if(!memPw == "") {
+			$("#errorMsgPw").css("display","none");
+		}
+		if(memNick == "") {
+			$("#errorMsgNick").css("display","inline");
+		} else if(!memNick == "") {
+			$("#errorMsgNick").css("display","none");
+		}
+		if(memPhone == "") {
+			$("#errorMsgTel").css("display","inline");
+		} else if(!memPhone == "") {
+			$("#errorMsgTel").css("display","none");
+		}
+		if(memRRN == "") {
+			$("#errorMsgBirth").css("display","inline");
+		} else if(!memRRN == "") {
+			$("#errorMsgBirth").css("display","none");
+		}
+	});
+
    //회원가입 필터링   
    $("#btn_next").on("click",function() {
       var memId = $.trim($("#mem_id").val());
       var memPw = $.trim($("#mem_password").val());
       var memRePw = $.trim($("#mem_rePassword").val());
       var memNick = $.trim($("#mem_nickname").val());
-      var memPhone1 = $("select_num option:selected").val();
-      var memPhone2 = $.trim($("#phone_num").val());
+      var memPhoneOpt = $("select_tel option:selected").val();
+      var memPhone = $.trim($("#phone_num").val());
       var memRRN = $.trim($("#text_num").val());
       var memGender = $.trim($("#text_num2").val());
       var memEmail = $.trim($("#email").val());
       var memEmailOpt = $("#select_email option:selected").val();
       var chk_num = memPw.search(/[0-9]/g);
-       var chk_eng = memPw.search(/[a-z]/ig);
+      var chk_eng = memPw.search(/[a-z]/ig);
       
        
       if(memId == "") {
          alert("아이디를 입력하세요.");
+    	 /* alert(document.getElementById("errorMsg").style.visibility); 
+         document.getElementById("errorMsg").style.visibility='visible'; */
          $("#mem_id").focus();
       } else if (memId.length < 6 || memId.length > 16) {
           alert("아이디는 6자리 이상 16자리 이하로 입력해주세요.");
@@ -252,7 +319,7 @@ $(document).ready(function() {
          $("#mem_id").val('');
          $("#mem_id").focus();
       } else if (!regex_kor.test(memId)) {
-         alert("아이디는 한글로 만들 수 없습니다.");
+         alert("아이디는 영문과 숫자 조합으로 만들 수 있습니다.");
          $("#mem_id").val('');
          $("#mem_id").focus();
       } else if(memPw == "") {
@@ -264,41 +331,61 @@ $(document).ready(function() {
       } else if (memRePw == "") {
          alert("비밀번호를 확인해 주세요.");
          $("#mem_rePassword").focus();
-      } else if (memPw.length < 8 || memPw.length > 32) {
-         alert("비밀번호는 8자리 이상 32자리 이하만 가능합니다.");
+      } else if (memPw.length < 10 || memPw.length > 25) {
+         alert("비밀번호는 10 ~ 24자로 작성해주세요.");
          $("#mem_password").val('');
          $("#mem_rePassword").val('');
          $("#mem_password").focus();
       } else if (memPw != memRePw) {
          alert("비밀번호를 다시 확인해 주세요.");
-         $("#mem_password").focus();
+         $("#mem_rePassword").focus();
       } else if (memNick == "") {
          alert("닉네임을 입력해 주세요.");
          $("#mem_nickname").focus();
-      } else if (memPhone2.length < 12) {
-         alert("핸드폰번호 11자리를 입력해 주세요.");
+      } else if (memNick.length < 4 || memNick.length > 10) {
+          alert("닉네임은 4자 ~ 10자로 작성해주세요.");
+          $("#mem_nickname").focus();
+      } else if (regex_spe.test(memNick)) {
+         alert("닉네임은 한글,영문,숫자 조합으로 작성해주세요.");
+         $("#mem_nickname").focus();
+         
+      } else if (memPhone == "") {
+         alert("전화번호를 입력해주세요.");
          $("#phone_num").focus();
-      } else if (memRRN.length < 6) {
-         alert("주민번호 앞의 6자리를 입력해 주세요.");
+      } else if (memPhone.length < 11) {
+          alert("-를 제외한 11자리를 입력해 주세요.");
+          $("#phone_num").focus();
+         
+      } else if (memRRN == "") {
+         alert("생년월일을 입력해 주세요.");
          $("#text_num").focus();
+      } else if (memRRN < 8) {
+         alert("생년월일을 8자리를 입력해 주세요.");
+         $("#text_num").focus();
+         
       } else if (memGender == "") {
-         alert("주민번호 뒤의 1자리를 입력해 주세요.");
+         alert("주민번호 뒤의 첫번째자리를 입력해 주세요.");
          $("#text_num2").focus();
-      } else if (memEmail == "" && memEmailOpt == "") {
+         
+      } else if (memEmail == "") {
          alert("이메일을 입력해 주세요.");
       }
    });
+   
 });
 
-function SetNum(obj) {
+/* function SetNum(obj) {
       var keyVal = event.keyCode;
       if((keyVal >= 48) && (keyVal <= 57) || (keyVal >= 96) && (keyVal <= 105) || (keyVal >= 8)) {
          return true;
       } else {
          alert("숫자만 입력가능합니다."); 
-         $("#" + obj.id).val(obj.value.slice(0,-1));
+         var member_id = obj.id;
+         var member_val = obj.value;
+         
+         $("#" + member_id).val(member_val.slice(0,-1));
       }
-}
+}; */
 </script>
 </head>
 <body>
@@ -306,50 +393,62 @@ function SetNum(obj) {
    <input type="hidden" name="checkEmail" id="checkEmail" value="" />
 </form>
 <div class="back_main">
-   <div class="back_top">C&nbsp;A&nbsp;R&nbsp;D&nbsp;&nbsp;&nbsp;C&nbsp;A&nbsp;P&nbsp;T&nbsp;A&nbsp;I&nbsp;N</div>
+   <div class="back_top">CARD CAPTAIN</div>
    <div class="back_middle">
-      <div class="middle1">
-      <div class="middle_top">회원가입 정보를 입력해주세요.</div>
-      <div class="title">아이디</div>
-      <input type="text" class="text" placeholder="아이디 입력" id="mem_id" />
-      <div class="title">비밀번호</div>
-      <strong><input type="password" class="text" placeholder="비밀번호(8~32자리)" id="mem_password" /></strong>
-      <input type="password" class="text" placeholder="비밀번호 재입력" id="mem_rePassword" />
-      <div class="title">닉네임</div>
-      <input type="text" class="text" placeholder="닉네임을 입력해 주세요." id="mem_nickname" />
-      <div class="title">전화번호</div>
-      <select name="+82" id="select_num"> 
-         <option value="+82   대한민국"></option>
-      </select>
-      <input type="text" id="phone_num" placeholder=" - 없이 입력해주세요." maxlength="11" onkeyup="SetNum(this);"/>
-      <div class="title">생일/성별</div>
-      <div class="title">
-         <input type="text" id="text_num" placeholder="주민번호 앞자리" maxlength="6" onkeyup="SetNum(this);"/>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
-         <input type="text" id="text_num2" maxlength="1" onkeyup="SetNum(this);"/>
-         <span id="txt">*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*</span>
-      </div>
-      <div class="title">이메일</div>
-      <div class="title">
-         <input type="text" id="email" placeholder="이메일" />&nbsp;&nbsp;&nbsp;@&nbsp;&nbsp;&nbsp;
-         <select name="+82" id="select_email"> 
-            <option value="naver.com">naver.com</option>
-            <option value="google">google</option>
-         </select>
-         <input type="button" id="checkingEmail" value="이메일인증" />
-      </div>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <input type="button" value="다음" id="btn_next"></div>
-   </div>
-   <br/>
-   <br/>
-   <div id="footer">
-      <div id="footerMenu">
-         <div>서울시 금천구 가산디지털2로 115,509호,811호,1109-1호(가산동,대륭테크노타운3차) 금융조 조장 : 주건정</div>
-         <div>Copyright © 2021-2031 CardCaptain All Rights Reserved.</div>
-      </div>
-   </div>
+		<div class="middle1">
+		<div class="middle_top">회원가입 정보를 입력해주세요.</div>
+		<div class="title">아이디
+			<div class="errorMsg" id="errorMsgId">아이디를 입력해 주세요.</div>
+      	</div>
+      	<input type="text" class="text" placeholder="아이디 입력" id="mem_id" />
+      	<div class="title">비밀번호
+      		<div class="errorMsg" id="errorMsgPw">비밀번호를 입력해 주세요.</div>
+      	</div>
+      	<strong><input type="password" class="text" placeholder="비밀번호(10~24자리)" id="mem_password" /></strong>
+      	<input type="password" class="text" placeholder="비밀번호 확인" id="mem_rePassword" />
+      	<div class="title">닉네임
+      		<div class="errorMsg" id="errorMsgNick">닉네임을 입력해 주세요.</div>
+      	</div>
+      	<input type="text" class="text" placeholder="닉네임(4~10자리)" id="mem_nickname" />
+      	<div class="title">전화번호
+      		<div class="errorMsg" id="errorMsgTel">전화번호를 입력해 주세요.</div>
+      	</div>
+      	<select name="telnum" id="select_tel"> 
+			<option value="+82   대한민국">+82&nbsp;&nbsp;대한민국</option>
+         	<option value="+82   대한민국"></option>
+      	</select>
+      	<input type="text" id="phone_num" placeholder=" - 없이 입력해주세요." maxlength="11" />
+      	<div class="title">생년월일
+      		<div class="errorMsg" id="errorMsgBirth">생년월일을 입력해 주세요.</div>
+      	</div>
+      	<div class="title">
+         	<input type="text" id="text_num" placeholder="예) 19940507" maxlength="8" />&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;
+         	<input type="text" id="text_num2" maxlength="1" />
+         	<span id="txt">*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*</span>
+      	</div>
+      	<div class="title">이메일
+      		<div class="errorMsg" id="errorMsgEmail">이메일을 입력해 주세요.</div>
+      	</div>
+      	<div class="title">
+         	<input type="text" id="email" placeholder="이메일" />&nbsp;&nbsp;@&nbsp;
+         	<select name="email" id="select_email"> 
+            	<option value="naver.com">naver.com</option>
+            	<option value="google.com">google.com</option>
+         	</select>
+         	<input type="button" id="checkingEmail" value="이메일인증" />
+      	</div>
+      	<br/>
+      	<br/>
+      	<br/>
+      	<input type="button" value="다음" id="btn_next"></div>
+	</div>
+	<br/>
+	<br/>
+	<div id="footer">
+		<div id="footerMenu">
+			<div>서울시 금천구 가산디지털2로 115,509호,811호,1109-1호(가산동,대륭테크노타운3차) 금융조 조장 : 주건정</div>
+         	<div>Copyright © 2021-2031 CardCaptain All Rights Reserved.</div>
+      	</div>
+   	</div>
 </div>
 </html>

@@ -69,8 +69,8 @@ body {
 }
 .title {
 	width: 100%;
-	height: 45px;
-	line-height: 45px;
+	height: 50px;
+	line-height: 50px;
 	font-size: 16px;
 }
 .text {
@@ -165,6 +165,8 @@ body {
     outline: 0;
 	caret-color: #f7e317;
 	color: #0047AB;
+	letter-spacing: 3px;
+    font-size: inherit;
 }
 .checkingEmailNum {
 	width: 250px;
@@ -235,7 +237,7 @@ $(document).ready(function() {
 		var ival = $(this).prop("id").split("_");
 		$("#findType").val(ival[0]);
 		$("#checkEmail").val($("." + ival[0] + "Email").val() + "@" + $("." + ival[0] + "_select_email option:selected").val());
-		
+		dfsdf
 		var params = $("#checkEmailForm").serialize();
 		
 		$.ajax({
@@ -257,7 +259,7 @@ $(document).ready(function() {
 <body>
 <form action="#" id="checkEmailForm">
 	<input type="hidden" name="checkEmail" id="checkEmail" value="" /><!-- 이메일 주소 -->
-	<input type="hidden" name="" id="findType" value="" /><!--  -->
+	<input type="hidden" name="findType" id="findType" value="" /><!--  -->
 </form>
 <div class="back_main">
 	<div class="back_top">C&nbsp;A&nbsp;R&nbsp;D&nbsp;&nbsp;&nbsp;C&nbsp;A&nbsp;P&nbsp;T&nbsp;A&nbsp;I&nbsp;N</div>
@@ -272,7 +274,7 @@ $(document).ready(function() {
 		<input type="text" id="phone_num" placeholder="전화번호" onkeyup="SetNum(this);"/>
 		<div class="title">생일/성별</div>
 		<div class="title">
-			<input type="text" id="text_num" placeholder="주민번호 앞자리" maxlength="6" onkeyup="SetNum(this);"/>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+         	<input type="text" id="text_num" placeholder="예) 19940507" maxlength="8" onkeyup="SetNum(this);"/>
 			<input type="text" id="text_num2" maxlength="1" onkeyup="SetNum(this);"/>
 			<span id="txt">*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*</span>
 		</div>
