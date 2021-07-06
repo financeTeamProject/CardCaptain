@@ -239,88 +239,81 @@ body{
 
 
 /*	헤더 영역	*/
-	#header{
-		min-width: 1500px;
-		width: 1500px;
-		height: 70px;
-		border-radius: 5px;
-		background-color: #0047ab;
-		font-family: Cafe24Ohsquare;
-		position: fixed;
-		top: 0;
-	}
-		#headerMenu{
-			width: 80%;
-			height:inherit;
-			margin: 0 auto;
-			font-size: 20px;
-			font-weight: bold;
-			color: white;
-		}
-			#menuLogo{
-				display: inline-block;
-				vertical-align: top;
-				width: 200px;
-				height: inherit;
-				background-image: url("/cdcp/resources/images/detail/logo_white.png");
-				background-position: left;
-				background-repeat: no-repeat;
-				background-size: 200px;
-				cursor: pointer;
-				float: left;
-			}
-			#menuList{
-				display: inline-block;
-				vertical-align: top;
-				height: inherit;
-				width: 70%;	
-				text-align: right;	
-			}
-			#menuList > ul li{
-				display: inline-block;
-				vertical-align: top;
-				list-style: none;
-				margin-left: 15px;
-				cursor: pointer;	
-			}
-			#menuList ul li:hover {	/* 메뉴 목록 mouse over */
-				color: #F5DF4D;		/* 나중에 변경 */
-				cursor: pointer;
-			}
-			#menuList > ul{
-			display: inline-block;
-				vertical-align: top;
-				margin: 0;
-				padding: 0;
-				margin-top: 30px;
-				width:100%;				
-			}
-			#menuLogin{
-				display:inline-block;
-				vertical-align: top;
-				height: inherit;
-				cursor: pointer;
-				float: right;		
-			}
-			#menuLogin:hover {	/* 메뉴 목록 mouse over */
-				color: #F5DF4D;	
-				cursor: pointer;
-			}
-				#loginName{
-					display: inline-block;
-					vertical-align: top;
-					margin-top: 30px;
-				}
-				#loginImg{
-					display: inline-block;
-					vertical-align: top;
-					width: 50px;
-					height: inherit;
-					background-image: url("/cdcp/resources/images/detail/login_white.png");
-					background-repeat: no-repeat;
-					background-position:center;
-					background-size: 40px;
-				}
+	#header {
+	width: 100%;
+	height: 55px;
+	border-style: solid;
+    border-width: 0 0 2px 0;
+    border-color: #0047AB;
+    font-family: 'GmarketSansMedium';
+    min-width: 1500px;
+}
+#headerWrap {
+	width: 80%;
+	height: 100%;
+	margin: 0 auto;
+	display: flex;
+}
+#headerLeft {
+	display: inline-block;
+	width: 50%;
+	height: 100%;
+    font-size: 16px;
+	vertical-align: top;
+}
+#headerLogo {
+    display: inline-block;
+    vertical-align: top;
+    background-image: url("/cdcp/resources/images/main/logo.png");
+    background-repeat: no-repeat;
+    background-size: 120px;
+    width: 120px;
+    height: 40px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 10px;
+}
+#headerLeft .menu1 { 
+	display: inline-block;
+	width: 130px;
+	height: 100%;
+	line-height: 65px;
+	color: #0047AB;
+	text-align: center;
+	letter-spacing: 2px;
+	vertical-align: top;
+	cursor: pointer;
+}	/* header_left 종료 */
+
+#headerRight {
+	display: inline-block;
+	width: 50%;
+	height: 100%;
+    font-size: 18px;
+	vertical-align: top;
+}
+#imgSearch {
+ 	display: inline-block;
+    background-image: url("/cdcp/resources/images/main/search.png");
+    background-repeat: no-repeat;
+    background-size: 30px;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 85%;
+}
+#imgLogin {
+ 	display: inline-block;
+    background-image: url("/cdcp/resources/images/main/login1.png");
+    background-repeat: no-repeat;
+    background-size: 30px;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
 /*	내용 영역	*/	
 	#content{
 		margin-top: 70px;
@@ -477,9 +470,8 @@ body{
 						/* 비교함 담기 */
 						
 						#btnbi{
-						
-						
-						   width: 130px;
+													
+						    width: 130px;
 						    height: 40px;
 						    font-size: 18px;
 						    color: white;
@@ -500,9 +492,7 @@ body{
 							opacity: 0.6;
 							
 						}
-						
-						
-						
+								
 						
 			/* 혜택 하위 영역 */
 			#botArea{
@@ -642,55 +632,56 @@ body{
 							margin: 0 10px;
 						}
 /*	풋터 영역	*/			
-	#footer{
-		min-width: 1500px;
-		width: 100%;
-		height: 100px;
-		/* border-radius: 5px; */
-		/* background-color: #0047ab;*/	
-		background-color: gray;
-	}
-		#footerMenu{
-			width: 80%;
-			height:inherit;
-			margin: 0 auto;
-			color: white;
-			text-align: center;
-			font-family: GmarketSansMedium;
-			font-size: 12px;
-		}
-			#footerLogo{
-				display: inline-block;
-				vertical-align: top;
-				background-image: url("/cdcp/resources/images/detail/logo_white.png");
-				background-repeat: no-repeat;
-				background-size: 180px;
-				width: 180px;
-				height: 55px;
-				cursor: pointer;
-				text-align: center;
+				#footer {
+				min-width: 600px;	
+			    width: 100%;
+			  	height: 100px;
+				border-radius: 5px;
+				border-style: solid;
+			    border-width: 2px 0 0 0;
+			    border-color: #0047AB;
+			    font-family: 'Cafe24Ohsquare';
+				}
+			#footerMenu {
+			    height: inherit;
+			    margin: 0 auto;
+			    color: #0047AB;
+			    text-align: center;
+			    font-family: GmarketSansMedium;
+			    font-size: 12px;
+			}	
+			#footerLogo {
+			    display: inline-block;
+			    vertical-align: top;
+			    background-image: url("/cdcp/resources/images/main/logo.png");
+			    background-repeat: no-repeat;
+			    background-size: 120px;
+			    width: 120px;
+			    height: 40px;
+			    cursor: pointer;
+			    text-align: center;
+			    margin-top: 10px;
 			}
+
 </style>
 </head>
 <body>
 <div id="wrapper">
 <!-- 헤더영역 -->
-	<div id="header">
-		<div id="headerMenu">
-			<div id="menuLogo"></div>
-			<div id="menuList">
-				<ul>
-					<li>카드검색/비교</li>
-					<li>컨텐츠</li>
-					<li>카드순위</li>
-				</ul>
-			</div>
-			<div id="menuLogin">
-				<div id="loginName">로그인</div>
-				<div id="loginImg"></div>
-			</div>
+<div id="header">
+	<div id="headerWrap">
+	<div id="headerLeft">
+		<div id="headerLogo"></div>
+		<div class="menu1">카드순위</div>
+		<div class="menu1">카드검색/비교</div>
+		<div class="menu1">컨텐츠</div>
+	</div>
+	<div id="headerRight">
+		<div id="imgSearch"></div>
+		<div id="imgLogin"></div>
 		</div>
 	</div>
+</div>
 <!-- 내용 영역 -->	
 	<div id="content">
 		<div class="side_area"></div>	
