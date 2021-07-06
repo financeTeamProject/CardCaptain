@@ -6,37 +6,134 @@
 <meta charset="UTF-8">
 <title>어드민페이지양식2</title>
 <style type="text/css">
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Cafe24Ohsquare';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
+
+body {
+        margin: 0;
+    }
+
+/*	헤더 영역	*/
+	#header {
+		width: 100%;
+		height: 55px;
+	    font-family: 'GmarketSansMedium';
+	    min-width: 1830px;
+	    background-color: white;
+	}
+	#headerWrap {
+		width: 1600px;
+		height: 100%;
+		margin: 0 auto;
+		display: flex;
+	}
+	#headerLeft {
+		display: inline-block;
+		width: 50%;
+		height: 100%;
+	    font-size: 16px;
+		vertical-align: top;
+	}
+	#headerLogo {
+	    display: inline-block;
+	    vertical-align: top;
+	    background-image: url("/cdcp/resources/images/main/logo.png");
+	    background-repeat: no-repeat;
+	    background-size: 120px;
+	    width: 120px;
+	    height: 40px;
+	    cursor: pointer;
+	    text-align: center;
+	    margin-top: 10px;
+	}
+	#headerLeft .menu1 { 
+		display: inline-block;
+		width: 130px;
+		height: 100%;
+		line-height: 65px;
+		color: #0047AB;
+		text-align: center;
+		letter-spacing: 2px;
+		vertical-align: top;
+		cursor: pointer;
+	}	
+	/* header_left 종료 */
+	
+	#headerRight {
+		display: inline-block;
+		width: 50%;
+		height: 100%;
+	    font-size: 18px;
+		vertical-align: top;
+	}
+	#imgSearch {
+	 	display: inline-block;
+	    background-image: url("/cdcp/resources/images/main/search.png");
+	    background-repeat: no-repeat;
+	    background-size: 30px;
+	    width: 30px;
+	    height: 25px;
+	    cursor: pointer;
+	    text-align: center;
+	    margin-left: 85%;
+	}
+	#imgLogin {
+	 	display: inline-block;
+	    background-image: url("/cdcp/resources/images/main/login1.png");
+	    background-repeat: no-repeat;
+	    background-size: 30px;
+	    width: 30px;
+	    height: 25px;
+	    cursor: pointer;
+	    margin-top: 15px;
+	}
+	/* header_right 종료 */
+
+
+
+ 	/* 메뉴바영역 */
    * {
         box-sizing: border-box;
     }
 
-    body {
-        font-family: sans-serif;
-        padding: 10px;
-        background: #f1f1f1;
-    }
 
-    .header {
     
-        padding: 30px;
-        text-align: center;
-        background: white;
-    }
-
-    .header h1 {
-        font-size: 50px;
-    }
-
+	/* 네비메뉴바 영역 */
+	nav {
+		width:100%;
+		height: 60px;
+		background: #0047ab;
+		min-width: 1830px;
+	}
+	
+	#smallMeunName {
+		width: 130px;
+		font-family: 'GmarketSansMedium';
+		font-size: 20px;
+		color: white;
+	}
+	
     nav ul {
-                width: 100%;
-                background-color: #0047AB;
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-            }
+		width: 1600px;
+        margin: 0px auto;
+		list-style-type: none;
+		padding: 0px;
+	}
             nav ul li {
                 display: inline-block;
+                height: 60px;
+                font-family: '맑은고딕';
             }
             
             .home {
@@ -61,9 +158,10 @@
             .dropdown-menu {
                 /*background-color: darkorange; */
                 color: white;
-                padding: 16px;
+                padding: 20px;
                 font-size: 16px;
                 cursor: pointer;
+                font-family: 'GmarketSansMedium';
             }
 
             .dropdown-content {
@@ -91,87 +189,104 @@
                 background-color: darkorange;
                 color: white;
             }
-
-
-
-.rayout{
+/* 내용 영역 */          
+	.content_area {
+		width: 100%;
+		height: 500px;
+		min-width: 1830px;
+	}
 	
-    width: 100%;
-    height: 100%;
+	.contents {
+		display: flex;
+		width: 1600px;
+		height: 500px;
+		margin: 0px auto;
+	}
+
+.left_content {
+	width: 400px;
+	height: inherit;
+	background: yellow;
+}
+
+.right_content {
+	width: 1200px;
+	height: inherit;
+	background: gray;
+}
+
+.content_content {
+	width: 400px;
+	height: 50%;
+	background: #eee;
+	font-size: 30px;
+	color: black;
+}
+
+/* 풋터영역 */
+#footer{
+	width: 100%;
+	height: 100px;
+	float:left;
+	background: gray;
+	border-radius: 5px;
+	border-style: solid;
+    border-width: 2px 0 0 0;
+    border-color: #0047AB;
+    font-family: 'Cafe24Ohsquare';
+    min-width: 600px;
+    background-color: white;	
+			
+}
+
+#footerMenu{
+
+	height: inherit;
     margin: 0 auto;
+    color: #0047AB;
+	text-align: center;
+	font-family: GmarketSansMedium;
+	font-size: 12px;
+}
+#footerLogo{
+	display: inline-block;
+	vertical-align: top;
+	background-image: url("/cdcp/resources/images/contentimg/logo.png");
+	background-repeat: no-repeat;
+	background-size: 120px;
+	width: 120px;
+	height: 40px;
+	cursor: pointer;
+	text-align: center;
+	margin-top: 10px;
 }
 
-#s_left { /* 왼쪽 사이드바 공백 레이아웃 틀 */
-	width: 20%;
-	height: 100%;
-	float:left;
-	background-color: #eee;
-	min-height: 1400px;
-}
-
-#main { /* 가운데 메인 내용 틀 */
-	width: 60%;
-	height: 100%;
-	float:left;
-	background: white;
-	min-height: 1400px;
-}
-
-#s_right { /* 오른쪽 사이드 바 공백 레이아웃 틀 */
-	width: 20%;
-	height: 100%;
-	float:left;
-	background-color: #eee;
-	min-height: 1400px;
-}
-
-#content {
-	width: 80%;
-	height: 20%;
-	min-height: 300px;
-	margin: 30px auto;
-	background-color: #eee;
-	padding: 30px 40px 40px;
-}
-
-#content_content {
-	width: 80%;
-	height: 40%;
-	min-height: 600px;
-	margin: 30px auto;
-	background-color: #eee;
-	padding: 30px 40px 40px;
-}
-
-#s_left_menu {
-	width: 80%;
-	height: 20%;
-	min-height: 300px;
-	margin: 30px auto;
-	background-color: white;
-	padding: 30px 40px 40px;
-}
-
-#s_left_menu2 {
-	width: 80%;
-	height: 40%;
-	min-height: 600px;
-	margin: 30px auto;
-	background-color: white;
-	padding: 30px 40px 40px;
-}
 </style>
 
 </head>
 <body>
-
-<div class="header">
-  <h1>관리자페이지</h1>
-  <p>관리자페이지</p>
+<!-- 헤더영역(메뉴바) -->
+<div id="header">
+	<div id="headerWrap">
+	<div id="headerLeft">
+		<div id="headerLogo"></div>
+		<div class="menu1" id="ranking">카드순위</div>
+		<div class="menu1" id="search">카드검색/비교</div>
+		<div class="menu1" id="contents">컨텐츠</div>
+	</div>
+	<div id="headerRight">
+		<div id="imgSearch"></div>
+		<div id="imgLogin"></div>
+		</div>
+	</div>
 </div>
 
-<nav>
+<!-- 메뉴바영역 -->
+	<nav>
         <ul>
+        	<li class="dropdown">
+                <div id="smallMeunName">관리자페이지</div>
+            </li>
             <li class="dropdown">
                 <div class="dropdown-menu">카드</div>
                 <div class="dropdown-content">
@@ -211,20 +326,26 @@
             <li class="home"><a href="#">Home</a></li>
         </ul>
     </nav>
-
-<div class="rayout">
-	<div id="s_left">
-		<div id="s_left_menu">CardCaptian !!
-			<div>KOREA</div>
+<!-- 컨텐츠 영역 -->
+<div class="content_area">
+	<div class="contents">
+		<div class="left_content">
+			<div class="content_content">1</div>
+			<div class="content_content">2</div>
 		</div>
-		<div id="s_left_menu2">test</div>
+		<div class="right_content"></div>
 	</div>
-		<div id="main">
-			<div id="content">가나다라마바사</div>
-			<div id="content_content">ABCD</div>
-			<div id="content_content">갑을병정</div>
+</div>
+	
+<!-- 풋터영역 (하단 마무리) -->
+<div class="rayout">
+	<div id="footer">
+		<div id="footerMenu">
+			<div id="footerLogo"></div>
+			<div>서울시 금천구 가산디지털2로 115,509호,811호,1109-1호(가산동,대륭테크노타운3차) 금융조 조장 : 주건정</div>
+			<div>Copyright © 2021-2031 CardCaptain All Rights Reserved.</div>
 		</div>
-	<div id="s_right"></div>
+	</div>
 </div>
 
 </body>
