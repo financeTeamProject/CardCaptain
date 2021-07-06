@@ -190,7 +190,7 @@ input[type="radio"] {
 		$(document).ready(function() {
 			
 			$("#goBtn").on("click", function() { 
-				location.href = "content";
+				location.href = "/cdcp";
 			});
 			
 		});	

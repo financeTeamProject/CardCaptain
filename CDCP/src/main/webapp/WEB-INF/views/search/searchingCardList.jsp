@@ -161,6 +161,7 @@ body{
 }
 .choiceList {
 	font-family: 'GmarketSansLight';
+	margin-top: 20px;
 }
 .choiceList:hover {
 	color: #0047AB;
@@ -234,12 +235,17 @@ body{
 	vertical-align: top;
 	display: inline-block;
 }
-.cardList_etc h4 {
+.side_Btn {
 	vertical-align:top;
 	font-size: 14px;
 	font-family: 'Cafe24Ohsquare';
 	margin-block-start: 0em;
     margin-block-end: 0em;
+}
+.side_Btn:hover {
+	color: #0047AB;
+	cursor: pointer;
+	text-decoration:underline;
 }
 .cardList_etc :nth-child(1) {
 	padding-top: 10px;
@@ -287,8 +293,8 @@ body{
 				</ul>
 			</div>
 			<div id="cardList_1_etc" class="cardList_etc">
-				<h4><i class='fa fa-plus'></i>&nbsp;비교함 담기</h4>
-				<h4><i class='fa fa-angle-double-right'></i>&nbsp;상세보기</h4>
+				<h4 class="side_Btn"><i class='fa fa-plus'></i>&nbsp;비교함 담기</h4>
+				<h4 class="side_Btn"><i class='fa fa-angle-double-right'></i>&nbsp;상세보기</h4>
 			</div>
 		</div>		
 		<div id="cardList_2"  class="card_list">
@@ -304,8 +310,8 @@ body{
 				</ul>
 			</div>
 			<div id="cardList_1_etc" class="cardList_etc">
-				<h4><i class='fa fa-plus'></i>&nbsp;비교함 담기</h4>
-				<h4><i class='fa fa-angle-double-right'></i>&nbsp;상세보기</h4>
+				<h4 class="side_Btn"><i class='fa fa-plus'></i>&nbsp;비교함 담기</h4>
+				<h4 class="side_Btn"><i class='fa fa-angle-double-right'></i>&nbsp;상세보기</h4>
 			</div>
 		</div>
 		<div id="cardList_3"  class="card_list">
@@ -321,8 +327,8 @@ body{
 				</ul>
 			</div>
 			<div id="cardList_1_etc" class="cardList_etc">
-				<h4><i class='fa fa-plus'></i>&nbsp;비교함 담기</h4>
-				<h4><i class='fa fa-angle-double-right'></i>&nbsp;상세보기</h4>
+				<h4 class="side_Btn"><i class='fa fa-plus'></i>&nbsp;비교함 담기</h4>
+				<h4 class="side_Btn"><i class='fa fa-angle-double-right'></i>&nbsp;상세보기</h4>
 			</div>
 		</div>
 	</div>
