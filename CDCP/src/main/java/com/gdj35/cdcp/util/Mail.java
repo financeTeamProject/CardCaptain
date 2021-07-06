@@ -10,7 +10,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-
 public class Mail {
 	public static void sendMail() {
 		String host = "smtp.naver.com";
@@ -24,11 +23,12 @@ public class Mail {
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.ssl.enable", "true");
         props.put("mail.smtp.ssl.trust", host);
+        
 		try {
-			Session session = Session.getDefaultInstance(props, new Authenticator() { 
-	            protected PasswordAuthentication getPasswordAuthentication() { 
-	                return new PasswordAuthentication(user, password); 
-	            } 
+			Session session = Session.getDefaultInstance(props, new Authenticator() {
+	            protected PasswordAuthentication getPasswordAuthentication() {
+	                return new PasswordAuthentication(user, password);
+	            }
 	        });
 	        session.setDebug(false); 
 	        
@@ -38,9 +38,8 @@ public class Mail {
 	        mimeMessage.setSubject("메일제목");	//5. 메일 제목
 	        mimeMessage.setText("메일내용");	//6. 메일 내용
 	        Transport.send(mimeMessage);
-			} catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
 }
