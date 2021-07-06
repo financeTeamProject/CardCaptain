@@ -247,7 +247,7 @@ $(document).ready(function() {
 	});
    
 	//블러
-	$("input").blur(function () {
+	$("input").mouseover(function () {
 	      var memId = $.trim($("#mem_id").val());
 	      var memPw = $.trim($("#mem_password").val());
 	      var memRePw = $.trim($("#mem_rePassword").val());
@@ -303,12 +303,9 @@ $(document).ready(function() {
       var memEmailOpt = $("#select_email option:selected").val();
       var chk_num = memPw.search(/[0-9]/g);
       var chk_eng = memPw.search(/[a-z]/ig);
-      
        
       if(memId == "") {
          alert("아이디를 입력하세요.");
-    	 /* alert(document.getElementById("errorMsg").style.visibility); 
-         document.getElementById("errorMsg").style.visibility='visible'; */
          $("#mem_id").focus();
       } else if (memId.length < 6 || memId.length > 16) {
           alert("아이디는 6자리 이상 16자리 이하로 입력해주세요.");
