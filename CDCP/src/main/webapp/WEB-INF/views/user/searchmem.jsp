@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -143,7 +142,7 @@ body {
 	caret-color: #f7e317;
 	color: #0047AB;
 }
-#email {
+#pwEmail,#idEmail {
 	width: 200px;
 	height: 45px;
 	border-style: solid;
@@ -157,7 +156,7 @@ body {
 	font-size: 13px;
 	letter-spacing: 4px;
 }
-#select_email {
+#id_select_email,#pw_select_email {
 	width: 200px;
 	height: 45px;
 	border-style: solid;
@@ -169,6 +168,31 @@ body {
 	color: #0047AB;
 	letter-spacing: 3px;
     font-size: inherit;
+}
+#checkingEmailNum {
+	width: 250px;
+	height: 45px;
+	border-style: solid;
+	border-width: 0 0 1px 0;
+	border-color: #0047AB;
+	padding: 11px 70px 8px 0;
+    outline: 0;
+	caret-color: #f7e317;
+	color: #0047AB;
+}
+#checkingEmailBtn:hover {
+	cursor: pointer;
+}
+#checkingEmailBtn {
+	width: 130px;
+    height: 35px;
+    color: white;
+    border-style: none;
+    background-color: #0047AB;
+    border-radius: 5px;
+    font-size: 15px;
+    font-family: 'GmarketSansMedium';
+    margin-left: 15px;
 }
 #btn_next {
     display: block;
@@ -203,6 +227,28 @@ body {
     font-size: 12px;
 	}
 </style>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#checkingEmailBtn").on("click", function() {
+		$("#checkEmail").val($("#pwEmail").val() + "@" + $("#pw_select_email option:selected").val());
+		var params = $("#checkEmailForm").serialize();
+		
+		$.ajax({
+			url: "checkingEmail",
+			type: "post",
+			dataType: "json",
+			data: params,
+			success: function(res) {					
+					$("#emailTxt").html("이메일 인증코드를 적어주세요");
+			},
+			error: function(request, status, error) {
+				console.log(error);
+			}
+		});
+	});
+});
+</script>
 </head>
 <body>
 <form action="#" id="checkEmailForm">
@@ -227,10 +273,10 @@ body {
 		</div>
 		<div class="title">이메일</div>
 		<div class="title">
-			<input type="text" id="email" placeholder="이메일" />&nbsp;&nbsp;&nbsp;@&nbsp;&nbsp;&nbsp;
-			<select name="+82" id="select_email"> 
+			<input type="text" id="idEmail" placeholder="이메일" />&nbsp;&nbsp;&nbsp;@&nbsp;&nbsp;&nbsp;
+			<select name="+82" id="id_select_email"> 
 				<option value="naver.com">naver.com</option>
-				<option value="google">google</option>
+				<option value="gmail.com">gmail.com</option>
 			</select>
 		</div>
 		<div class="searchId">*비밀번호 찾기</div>
@@ -238,15 +284,19 @@ body {
 		<input type="text" class="text" placeholder="아이디 입력" id="mem_id" />
 		<div class="title">이메일</div>
 		<div class="title">
-			<input type="text" id="email" placeholder="이메일" />&nbsp;&nbsp;&nbsp;@&nbsp;&nbsp;&nbsp;
-			<select name="+82" id="select_email"> 
+			<input type="text" id="pwEmail" placeholder="이메일" />&nbsp;&nbsp;&nbsp;@&nbsp;&nbsp;&nbsp;
+			<select name="+82" id="pw_select_email"> 
 				<option value="naver.com">naver.com</option>
-				<option value="google">google</option>
+				<option value="gmail.com">gmail.com</option>
 			</select>
-			<input type="button" id="checkingEmail" value="이메일인증" />
+			<input type="text" id="checkingEmailNum" placeholder="인증번호" />
+			<input type="button" id="checkingEmailBtn" value="이메일인증" />
 		</div>
 		<br/>
 		<br/>
+		<br/>
+		<br/>
+		<span id="emailTxt"></span>
 		<br/>
 		<br/>
 		<input type="button" value="다음" id="btn_next"></div>

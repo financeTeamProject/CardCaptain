@@ -12,7 +12,6 @@
     font-weight: normal;
     font-style: normal;
 }
-
 body {
 	background-color: #f5f6f7;
 	font-family: 'GmarketSansMedium';
@@ -111,6 +110,9 @@ input {
 	display: inline-block;
 	vertical-align: top;
 	font-size: 11px;
+}
+.re:hover, .new:hover {
+	cursor: pointer;
 }
 .error {
     font-size: 11px;

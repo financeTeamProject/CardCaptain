@@ -221,6 +221,7 @@ h1{
 	padding-bottom: 50px;
 }
 .search_box {
+	background-color: #F2F2F2;
 	height: 40px;
 	width: 550px;
 	border: none;
