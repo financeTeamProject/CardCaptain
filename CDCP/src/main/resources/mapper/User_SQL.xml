@@ -6,4 +6,4 @@
 		FROM MEMBER_INFO 
 		WHERE EMAIL = #{checkEmail}
 	</select>
-</mapper>
+</mapper>fsadf

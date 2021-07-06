@@ -25,7 +25,7 @@ public class Mail {
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.ssl.enable", "true");
         props.put("mail.smtp.ssl.trust", host);
-        
+        sddasfd
 		try {
 			Session session = Session.getDefaultInstance(props, new Authenticator() {
 	            protected PasswordAuthentication getPasswordAuthentication() {

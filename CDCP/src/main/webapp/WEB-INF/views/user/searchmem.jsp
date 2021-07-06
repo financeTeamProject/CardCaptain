@@ -235,7 +235,7 @@ $(document).ready(function() {
 		var ival = $(this).prop("id").split("_");
 		$("#findType").val(ival[0]);
 		$("#checkEmail").val($("." + ival[0] + "Email").val() + "@" + $("." + ival[0] + "_select_email option:selected").val());
-		
+		dfsdf
 		var params = $("#checkEmailForm").serialize();
 		
 		$.ajax({

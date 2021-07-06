@@ -66,7 +66,7 @@ public class UserContoller {
 		}
 		return mapper.writeValueAsString(modelMap);
 	}
-	
+	fasfsdf
 	//blur샘플
 	@RequestMapping(value = "/blurSample")
 	public ModelAndView blurSample(ModelAndView mav) {
