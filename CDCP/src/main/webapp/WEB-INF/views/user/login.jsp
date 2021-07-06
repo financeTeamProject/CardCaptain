@@ -117,8 +117,18 @@ input {
 .error {
     font-size: 11px;
     color: red;
+    visibility: hidden;
 }
 </style>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#searchmem, #join").on("click", function() {
+		var ival = $(this).prop("id");
+		$(location).attr('href',ival);
+	});
+});
+</script>
 </head>
 <body>
 <div class="logo_blue">
@@ -137,12 +147,9 @@ input {
 		<div class="a3">
 			<span class="error" id="masage" aria-live="assertive">아이디 또는 비밀번호가 일치하지 않습니다.</span>
 			<input type="button" class="lbut" value="로그인"/><br/>
-			<div class="re">ID/PW 찾기</div>
-			<div class="new">|&nbsp;&nbsp;회원 가입</div>
+			<div class="re" id="searchmem">ID/PW 찾기</div>
+			<div class="new" id="join">|&nbsp;&nbsp;회원 가입</div>
 		</div>
 	</div>
 </body>
 </html>
-
-
-
