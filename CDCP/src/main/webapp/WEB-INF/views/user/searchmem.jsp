@@ -257,7 +257,7 @@ $(document).ready(function() {
 <body>
 <form action="#" id="checkEmailForm">
 	<input type="hidden" name="checkEmail" id="checkEmail" value="" /><!-- 이메일 주소 -->
-	<input type="hidden" name="" id="findType" value="" /><!--  -->
+	<input type="hidden" name="findType" id="findType" value="" /><!--  -->
 </form>
 <div class="back_main">
 	<div class="back_top">C&nbsp;A&nbsp;R&nbsp;D&nbsp;&nbsp;&nbsp;C&nbsp;A&nbsp;P&nbsp;T&nbsp;A&nbsp;I&nbsp;N</div>

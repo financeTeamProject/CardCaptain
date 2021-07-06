@@ -19,10 +19,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gdj35.cdcp.WEB.user.UserService.UserIService;
 import com.gdj35.cdcp.util.Mail;
 
 @Controller
 public class SearchContoller {
+	@Autowired UserIService useriService;
 	
 	//맞춤카드검색 페이지
 	@RequestMapping(value = "/checkSearch")
@@ -52,6 +54,7 @@ public class SearchContoller {
 		return mav;
 	}
 	
+	//user - searchmem 이메일인증
 	@RequestMapping(value = "/checkingEmail", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
 	@ResponseBody
 	public String checkingEmail(@RequestParam HashMap<String,String> params) throws Throwable {
@@ -59,8 +62,13 @@ public class SearchContoller {
 		HashMap<String, Object> modelMap = new HashMap<String, Object>();
 		
 		try {
-			/* Mail.sendMail(params.get("checkEmail")); */
-			Mail.sendMail();
+			HashMap<String, String> data = useriService.getId(params); 
+			
+			if (params.get("findType") == "id") {
+				Mail.sendMail(params.get("checkEmail"), params.get("findType"), data.get("MEMBER_ID"));
+			} else if (params.get("findType") == "pw") {
+				
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -68,9 +76,9 @@ public class SearchContoller {
 	}
 	
 	//blur샘플
-		@RequestMapping(value = "/blurSample")
-		public ModelAndView blurSample(ModelAndView mav) {
-			mav.setViewName("user/blurSample");
-			return mav;
-		}
+	@RequestMapping(value = "/blurSample")
+	public ModelAndView blurSample(ModelAndView mav) {
+		mav.setViewName("user/blurSample");
+		return mav;
+	}
 }
