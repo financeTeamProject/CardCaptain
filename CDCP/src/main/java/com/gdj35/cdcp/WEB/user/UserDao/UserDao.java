@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 public class UserDao implements UserIDao {
 	@Autowired 
 	public SqlSession sqlSession;
-jaofjsdl;kf
 	@Override
 	public HashMap<String, String> getId(HashMap<String, String> params) throws Throwable {
 		return sqlSession.selectOne("user.getId", params);

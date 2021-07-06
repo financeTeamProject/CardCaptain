@@ -10,8 +10,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.apache.commons.lang.RandomStringUtils;
-
 public class Mail {
 	public static void sendMail(String email, String type, String sendTxt) {
 		String host = "smtp.naver.com";
@@ -25,7 +23,6 @@ public class Mail {
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.ssl.enable", "true");
         props.put("mail.smtp.ssl.trust", host);
-        sddasfd
 		try {
 			Session session = Session.getDefaultInstance(props, new Authenticator() {
 	            protected PasswordAuthentication getPasswordAuthentication() {

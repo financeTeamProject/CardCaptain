@@ -10,7 +10,6 @@ import com.gdj35.cdcp.WEB.user.UserDao.UserIDao;
 @Service
 public class UserService implements UserIService {
 	@Autowired UserIDao useridao;
-fsadf
 	@Override
 	public HashMap<String, String> getId(HashMap<String, String> params) throws Throwable {
 		return useridao.getId(params);
