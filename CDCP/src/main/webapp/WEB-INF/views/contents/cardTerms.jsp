@@ -206,10 +206,14 @@ h1 {
 	min-width: 1045px;
 }
 
+#title_termes > .contentDate, .uploder {
+	padding-left: 30px;
+}
+
 #termes {
 	border: 5px 5px 5px 5px;
 	margin: 0px auto;
-	height: 1350px;
+	height: 1750px;
 	width: 100%;
 	background-color: white;
 	padding: 30px 40px 40px;
@@ -334,6 +338,8 @@ span {
 			<div id="title_termes">
 			<h1><strong>신용카드 기본 개념, 용어</strong></h1>
 			<h2>신용카드가 처음이라면, 종류부터 알고보자</h2>
+			<div class="contentDate">날짜</div>
+			<div class="uploder">등록한 사람</div>
 			</div>
 			<div id="termes">
 				<div id="guideimg"></div>
@@ -396,6 +402,24 @@ span {
 					말그대로 신용카드업을 전업으로 하는 곳이 전업 카드사이며,
 					은행으로 인가를 받은 금융회사에서 신용카드까지 발급하면 겸영은행계 카드사라고 부른다.
 					마지막으로 경영하고 있는 사업 성격상 신용카드업을 겸하는 것이 바람직하다고 인정되어 신용카드업을 하는 유통계 카드사(예: 현대백화점)가 있다.
+					</div>
+					<div> 
+					<span>■</span>연회비</div>
+					<div>
+					회원으로서 가입한 단체나 모임에 회원의 자격을 유지하는 대가로 일 년에 한 번씩 내는 일정액의 돈(출처: 표준국어대사전).
+					즉 '신용카드 연회비'는 그 카드사의 회원으로서, 해당 카드의 서비스를 이용하기 위해 사용자가 지불해야하는 연간 비용이다.
+					</div>
+					<div> 
+					<span>■</span>전월실적</div>
+					<div>
+					카드사에서 인정하는, 전월 1일부터 말일까지 사용한 금액.
+					이는 단순히 '이전 달에 사용한 금액의 총액'이 아니라, 카드 혜택 제공을 위한 최소한의 실적 기준을 의미한다.
+					</div>
+					<div> 
+					<span>■</span>체크카드</div>
+					<div>
+					체크카드(check card)는 은행계좌와 연계되어 은행계좌 잔액내에서 자유롭게 신용카드가맹점에서 사용할 수 있는 직불카드다.
+					직불카드의 일시불결제와 신용카드의 폭넓은 가맹점의 장점을 갖고 있다.
 					</div>
 			</div>	
 	</div>	

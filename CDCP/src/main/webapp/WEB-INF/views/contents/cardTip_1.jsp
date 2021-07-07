@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>카드용어</title>
+<title>카드활용꿀팁</title>
 <style type="text/css">
 
 @font-face {
@@ -47,7 +47,6 @@ html, body {
 
 h2 {
 	
-	padding-top: 30px;
 	font-family: 'Cafe24Ohsquare';
 	padding-top: 30px;
 	padding-left: 30px;
@@ -206,6 +205,10 @@ h1 {
 	min-width: 1045px;
 }
 
+#title_termes > .contentDate, .uploder {
+	padding-left: 30px;
+}
+
 #termes {
 	border: 5px 5px 5px 5px;
 	margin: 0px auto;
@@ -304,14 +307,44 @@ span {
 <div class="rayout">
 	<div id="s_left"></div>
 	<div id="main">
-		<div class="title">카드간단용어</div>
+		<div class="title">카드활용꿀팁</div>
 			<div id="title_termes">
-			<h1><strong>신용카드 기본 개념, 용어</strong></h1>
-			<h2>신용카드가 처음이라면, 종류부터 알고보자</h2>
+			<h1><strong>카드 활용 꿀팁</strong></h1>
+			<h2>올해부터 시행되는 신용점수제! 신용점수 올리기 꿀TIP</h2>
+			<div class="contentDate">날짜</div>
+			<div class="uploder">등록한 사람</div>
 			</div>
 			<div id="termes">
 				<div id="guideimg"></div>
-					
+					<div>
+					2021년 모든 금융소비자들에게 적용되는 가장 중요한 이슈를 뽑으라면 당연히 '신용점수제' 일 것이다.
+					기존의 1~10 신용등급에서 1~1000점의 신용점수제로 변화되면서 그동안 등급의 문턱에 가로막혀서 금융서비스를 받지 못했던 사람들의 불만이 어느정도 해소될 것으로 보인다.
+					>>2021년 변경된 금융정책은 또 뭐가 있지?
+					</div>
+					<div>
+					그렇다면 신용점수제에서 신용카드 발급 및 금융상품 지원 기준은 어떻게 변화했을까?
+					</div>
+					<table class="table" style="width: 100%;">
+						<tbody>
+							<tr>
+								<td colspan="2" style="width: 99.9459%; text-align: center; background-color: rgb(247, 218, 100);">
+									<strong>신용카드 발급 기준</strong>
+								</td>
+							</tr>
+							<tr>
+								<td style="width: 50%; text-align: center;">
+									<strong>나이스신용평가(NICE)</strong>
+								</td>
+								<td style="width: 50%; text-align: center;">680점 이상</td>
+							</tr>
+							<tr>
+								<td style="width: 50%; text-align: center;">
+									<strong>코리아크레딧뷰로(KCB)</strong>
+								</td>
+								<td style="width: 50%; text-align: center;">576점 이상&nbsp;</td>
+							</tr>
+							</tbody>
+						</table>
 			</div>	
 	</div>	
 	<div id="s_right"></div>						

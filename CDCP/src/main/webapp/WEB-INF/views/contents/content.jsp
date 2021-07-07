@@ -425,7 +425,7 @@ h1 {
 			});
 		});	
 		
-</script>
+</script>		
 </head>
 <body>
 <!-- 헤더영역(메뉴바) -->
@@ -472,6 +472,8 @@ h1 {
 						<div id="img_rayout"><div id="img_rayout_1"></div></div>
 						<div id="content_content">
 						<h2>올해부터 시행되는 신용점수제! 신용점수 올리기 꿀TIP</h2>
+						<div>등록일자 데이터</div>
+						<div>등록한 사람</div>
 						<h1>기사내용</h1>
 						</div>
 					</div>				
@@ -496,8 +498,8 @@ h1 {
 				</div>
 				<div class="content">
 					<div id="content_1">
-						<div id="movie"><div id="video_rayout_1" onclick="location.href='https://youtu.be/AgzSzAuQzs0';"></div></div>
-						<div id="movie"><div id="video_rayout_2" onclick="location.href='https://youtu.be/ld8M47X6fF8';"></div></div>
+						<div id="movie"><div id="video_rayout_1" onclick="location.href='https://youtu.be/ld8M47X6fF8';"></div></div>
+						<div id="movie"><div id="video_rayout_2" onclick="location.href='https://youtu.be/AgzSzAuQzs0';"></div></div>
 						<div id="movie"><div id="video_rayout_3" onclick="location.href='https://youtu.be/VrKFLX2rP5M';"></div></div>
 					</div>
 				</div>
