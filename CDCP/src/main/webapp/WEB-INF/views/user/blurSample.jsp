@@ -81,7 +81,17 @@ body {
     font-size: 14px;
     letter-spacing: 2px;
 }
-#errorMsgId div {
+#errorMsgId {
+	width: auto;
+	height: 100%;
+	display: none;
+	vertical-align: top;
+    color: #e65f3e;
+    font-size: 13px;
+    float: right;
+    display: inline;
+}
+.errorMsg {
 	width: auto;
 	height: 100%;
 	display: none;
@@ -90,15 +100,6 @@ body {
     font-size: 13px;
     float: right;
 }
-/* .errorMsg {
-	width: auto;
-	height: 100%;
-	display: none;
-	vertical-align: top;
-    color: #e65f3e;
-    font-size: 13px;
-    float: right;
-} */
 #mem_Birth {
 	width: 200px;
     height: 45px;
@@ -264,9 +265,8 @@ $(document).ready(function() {
       var chk_eng = memPw.search(/[a-z]/ig);
        
       if(memId == "") {
-		  alert("아이디를 입력해주세요.")
           $("#errorMsgId").children(".c1").css("display","inline");
-		  	alert($("#errorMsgId").children(".c1").html());
+		  $(".errorMsg").html("아이디를 입력해주세요.");
 	   	  $("#mem_Id").focus();
       } else if (memId.length < 6 || memId.length > 16) {
           alert("아이디는 6자리 이상 16자리 이하로 입력해주세요.");
@@ -332,7 +332,6 @@ $(document).ready(function() {
          alert("이메일을 입력해 주세요.");
       }
    });
-   
 });
 /* function SetNum(obj) {
       var keyVal = event.keyCode;
@@ -358,12 +357,12 @@ $(document).ready(function() {
 		<div class="middle1">
 		<div class="middle_top">회원가입 정보를 입력해주세요.</div>
 		<div class="title">아이디
-			<div class="errorMsg" id="errorMsgId">
+			<!-- <div class="errorMsg" id="errorMsgId">
 				<div class="c1">아이디를 입력해주세요.</div>
 				<div class="c2">아이디는 6자~16자로 입력해주세요.</div>
 				<div class="c3">특수문자 거절.</div>
 				<div>4</div>
-			</div>
+			</div> -->
       	</div>
       	<input type="text" class="text" placeholder="아이디 입력(6~16자리)" id="mem_Id" />
       	<div class="title">비밀번호
