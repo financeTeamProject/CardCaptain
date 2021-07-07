@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -150,7 +151,7 @@ body{
 }		
 /* SYOU */
 #contentMenu {
-	padding-top: 80px;
+	padding-top: 70px;
 	width: 1200px;
     margin: 0 auto;
 }
@@ -171,7 +172,7 @@ body{
 .keyword {
 	width:1050px;
 	height:50px;
-	margin-bottom: 20px;
+	margin-bottom: 70px;
 }
 .keyword ul {
 	padding-inline-start: 0px;
@@ -254,6 +255,11 @@ body{
 	padding-top: 80px;
 }
 </style>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+});
+</script>
 </head>
 <body>
 <!-- Start Header by KJ -->
@@ -277,11 +283,15 @@ body{
 	<div id="contentMenu">
 	<div id="main" class="main">
  		<div id="keyword" class="keyword">
-			<ul><li>#여자</li><li>#20대</li><li>#체크카드</li><li>#할인</li><li>#마트/편의점</li><li>#외식</li></ul>
+ 			<ul>
+ 				<c:forEach var="i" begin="0" end="${paramCnt}" step="1" varStatus="status">
+					<li><c:out value="$"/><c:out value="{option_"/><c:out value="${status.index}"/><c:out value="}"/></li>
+ 				</c:forEach>
+ 			</ul>
 		</div>
-	<div id="srchCardList"  class="srch_card_list">
-		<div id="cardList_1"  class="card_list">
-			<img src="https://card-search.naver.com/resource/images/card/KB/1692/KB_1692_hor.png">
+	<div id="srchCardList" class="srch_card_list">
+		<div id="cardList_1" class="card_list">
+			<img src="resources/images/ranking/card/check/we/we_joungsuck_card.png">
 			<div id="cardList_1_txt"  class="card_list_txt">
 				<h3>KB국민 청춘대로 톡톡카드</h3>
 				<ul>
@@ -298,7 +308,7 @@ body{
 			</div>
 		</div>		
 		<div id="cardList_2"  class="card_list">
-			<img src="https://card-search.naver.com/resource/images/card/SS/223/SS_223_hor.png">
+			<img src="resources/images/ranking/card/check/hana/hana_1q_daily+_card.png">
 			<div id="cardList_1_txt"  class="card_list_txt">
 				<h3>삼성카드 4</h3>
 				<ul>
@@ -315,7 +325,7 @@ body{
 			</div>
 		</div>
 		<div id="cardList_3"  class="card_list">
-			<img src="https://card-search.naver.com/resource/images/card/SS/1530/SS_1530_hor.png">
+			<img src="resources/images/ranking/card/check/kb/kb_bonus_checkcard.png">
 			<div id="cardList_1_txt"  class="card_list_txt">
 				<h3>삼성카드 taptap O</h3>
 				<ul>

@@ -1,7 +1,12 @@
 package com.gdj35.cdcp.WEB.search.SearchContoller;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -30,7 +35,20 @@ public class SearchContoller {
 	
 	//카드검색 결과 페이지searchingCardList
 	@RequestMapping(value = "/searchingCardList")
-	public ModelAndView searchingCardList(ModelAndView mav) {
+	public ModelAndView searchingCardList(ModelAndView mav, @RequestParam HashMap<String,String> params) {
+		Iterator<Entry<String,String>> it = params.entrySet().iterator();
+		int cnt = 0;
+		
+		while(it.hasNext()) {
+			Entry<String, String> entrySet = (Entry<String, String>) it.next();
+			String key = entrySet.getKey();
+			String val = entrySet.getValue();
+			//System.out.println(entrySet.getKey() + " : " + entrySet.getValue());
+			//System.out.println(key + " : " + val);
+			cnt++;
+			mav.addObject(key, val);
+		}
+		mav.addObject("paramCnt", cnt);
 		mav.setViewName("search/searchingCardList");
 		return mav;
 	}

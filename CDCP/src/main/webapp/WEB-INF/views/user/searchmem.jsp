@@ -41,7 +41,7 @@ body {
 .back_middle {
 	font-family: 'GmarketSansMedium';
 	width: 100%;
-	height: 90%;
+	height: 95%;
 	background-color: white;
 	border: 1px solid #0047ab24;
 	letter-spacing: 3px;
@@ -245,11 +245,16 @@ $(document).ready(function() {
 			type: "post",
 			dataType: "json",
 			data: params,
-			success: function(res) {					
-					$("#" + ival[0] + "_emailTxt").html("*이메일 인증코드를 적어주세요");
+			success: function(res) {
+				if (res = "success") {
+					$("#" + ival[0] + "_emailTxt").html("*이메일 인증코드를 적어주세요");					
+				} else if (res = "failed") {
+					$("#" + ival[0] + "_emailTxt").html("*이메일 전송이 실패했습니다. 다시한 번 확인해 주세요.");					
+				}
 			},
 			error: function(request, status, error) {
-				console.log(error);
+					console.log(error);
+					$("#" + ival[0] + "_emailTxt").html("*이메일 전송이 실패했습니다. 관리자에게 문의해 주세요");
 			}
 		});
 	});
