@@ -340,11 +340,13 @@ $(document).ready(function() {
           $(".errorMsg").css("display","inline");
           $("#errorMsgPw").html("영문,숫자,특수문자 조합으로 만들어 주세요.");
       } else if (memPw != memRePw) {
-    	  $("#mem_password").focus();
+    	  $("#mem_rePassword").focus();
+          $("#mem_rePassword").val('');
           $(".errorMsg").css("display","inline");
           $("#errorMsgPw").html("비밀번호가 일치하지 않습니다.");
-          $("#mem_rePassword").val('');
-      }
+      } else {
+		  $("#errorMsgPw").html("");
+	  }
          /* 닉네임 */
       if (memNick == "") {
          $("#mem_nickname").focus();
@@ -358,7 +360,9 @@ $(document).ready(function() {
     	  $("#mem_nickname").focus();
           $(".errorMsg").css("display","inline");
           $("#errorMsgNick").html("특수문자는 사용할 수 없습니다.");
-      }
+      } else {
+		  $("#errorMsgNick").html("");
+	  }
          /* 전화번호 */
       if (memPhone == "") {
     	  $("#phone_num").focus();
@@ -368,7 +372,9 @@ $(document).ready(function() {
     	  $("#phone_num").focus();
           $(".errorMsg").css("display","inline");
           $("#errorMsgTel").html("-를 제외한 전화번호 11자리를 입력해주세요.");
-      }    
+      } else {
+		  $("#errorMsgTel").html("");
+	  }
          /* 생년월일 */
       if (memRRN == "") {
     	  $("#text_num").focus();
@@ -382,13 +388,17 @@ $(document).ready(function() {
     	  $("#text_num2").focus();
           $(".errorMsg").css("display","inline");
           $("#errorMsgBirth").html("생년월일을 입력해주세요.");
-      }  
+      } else {
+		  $("#errorMsgBirth").html("");
+	  }  
          /* 이메일 */
       if (memEmail == "") {
     	  $("#email").focus();
           $(".errorMsg").css("display","inline");
           $("#errorMsgEmail").html("이메일을 입력해주세요.");
-      }
+      } else {
+		  $("#errorMsgEmail").html("");
+	  }
    });
 });
 </script>
