@@ -63,6 +63,11 @@ h1 {
 	color: black;
 }
 
+h3 {
+	font-family: 'GmarketSansLight';
+	font-size: 30px;
+	padding-top: 30px;
+}
 #header {
 	width: 100%;
 	height: 55px;
@@ -212,7 +217,7 @@ h1 {
 #termes {
 	border: 5px 5px 5px 5px;
 	margin: 0px auto;
-	height: 1350px;
+	height: 2800px;
 	width: 100%;
 	background-color: white;
 	padding: 30px 40px 40px;
@@ -226,28 +231,15 @@ h1 {
  	padding-top: 10px;
 }
 
-#guideimg {
-	width: 950px;
-	height: 200px;
-	background-image: url("/cdcp/resources/images/contentimg/guide.jpg");
-	background-repeat: no-repeat;
-	margin: 0px auto;
-}
-
 #termes > #guide_title {
 	float: left;
 	font-size: 20px;
 	font-weight: bold;
 }
 
-span {
-	background-color: rgb(255, 255, 255);
-	color: rgb(75, 75, 75);
-	font-family: ;
-}
 
 
-#footer{
+#footer{ /* 하단영역 */
 	width: 100%;
 	height: 100px;
 	float:left;
@@ -283,7 +275,70 @@ span {
 	text-align: center;
 	margin-top: 10px;
 }
+
+.table { /* Tip 테이블 스타일 */
+	border-bottom: 1px solid #000;
+	font-weight: bold;
+	height: 30px;
+	width: 100%;
+	padding-top: 50px;
+}
+
+.table td {
+	width: 50%;
+	text-align: center;
+	background-color: white;
+	border: 1px solid;
+}
+
+.tipimg {
+	background-position: center;
+	margin: 0px auto;
+	width: 940px;
+	height: 700px;
+}
+
+#tipimg_1 {
+	background-image: url("/cdcp/resources/images/contentimg/tipBackground/card_tip1.png");
+	background-size: cover;
+	width: 900px;
+	height: 740px;
+	margin: 0px auto;
+}
+
+span {
+	background-color: rgb(255, 255, 255);
+	color: red;
+	font-family: ;
+}
+
 </style>
+<script type="text/javascript"
+			src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		/* 카드순위 페이지 이동 */
+		$("#ranking").on("click", function(){
+			location.href = "card_rank";
+		}); // ranking click end
+		/* 카드검색/비교 페이지 이동 */
+		 $("#search").on("click", function(){
+			location.href = "search";
+		});// search click end
+		/* 컨텐츠 페이지 이동 */
+		$("#contents").on("click", function(){
+			location.href = "content";
+		});// contents click end
+		
+		
+		/* 메인페이지 이동 */
+		$("#headerLogo").on("click", function(){
+			location.href = "/cdcp";
+		}); // headerLogo click end
+		
+		
+	}); // document ready end
+</script>
 </head>
 <body>
 <!-- 헤더영역(메뉴바) -->
@@ -293,9 +348,9 @@ span {
 	<div id="headerWrap">
 	<div id="headerLeft">
 		<div id="headerLogo"></div>
-		<div class="menu1">카드순위</div>
-		<div class="menu1">카드검색/비교</div>
-		<div class="menu1">컨텐츠</div>
+		<div class="menu1" id="ranking">카드순위</div>
+		<div class="menu1" id="search">카드검색/비교</div>
+		<div class="menu1" id="contents">컨텐츠</div>
 	</div>
 	<div id="headerRight">
 		<div id="imgSearch"></div>
@@ -315,7 +370,6 @@ span {
 			<div class="uploder">등록한 사람</div>
 			</div>
 			<div id="termes">
-				<div id="guideimg"></div>
 					<div>
 					2021년 모든 금융소비자들에게 적용되는 가장 중요한 이슈를 뽑으라면 당연히 '신용점수제' 일 것이다.
 					기존의 1~10 신용등급에서 1~1000점의 신용점수제로 변화되면서 그동안 등급의 문턱에 가로막혀서 금융서비스를 받지 못했던 사람들의 불만이 어느정도 해소될 것으로 보인다.
@@ -324,7 +378,7 @@ span {
 					<div>
 					그렇다면 신용점수제에서 신용카드 발급 및 금융상품 지원 기준은 어떻게 변화했을까?
 					</div>
-					<table class="table" style="width: 100%;">
+					<table class="table">
 						<tbody>
 							<tr>
 								<td colspan="2" style="width: 99.9459%; text-align: center; background-color: rgb(247, 218, 100);">
@@ -332,19 +386,129 @@ span {
 								</td>
 							</tr>
 							<tr>
-								<td style="width: 50%; text-align: center;">
+								<td>
 									<strong>나이스신용평가(NICE)</strong>
 								</td>
-								<td style="width: 50%; text-align: center;">680점 이상</td>
+								<td>680점 이상</td>
 							</tr>
 							<tr>
-								<td style="width: 50%; text-align: center;">
+								<td>
 									<strong>코리아크레딧뷰로(KCB)</strong>
 								</td>
-								<td style="width: 50%; text-align: center;">576점 이상&nbsp;</td>
+								<td>576점 이상</td>
 							</tr>
 							</tbody>
 						</table>
+						<table class="table">
+						<tbody>
+							<tr>
+								<td colspan="2" style="width: 99.9459%; text-align: center; background-color: rgb(247, 218, 100);">
+									<strong>금융상품별 신용점수제 기준</strong>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>금융상품</strong>
+								</td>
+								<td>기준점수</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>서민금융상품 지원대상<br>(햇살론)</strong>
+								</td>
+								<td>NICE 744점 이하<br>KCB 700점 이하</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>신용공여 한도 우대 기준<br>(중금리대출)</strong>
+								</td>
+								<td>NICE 859이하<br>KCB 820점 이하</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>구속성 영업행위 해당 기준</strong>
+								</td>
+								<td style="width: 50%; text-align: center;">NICE 724점 이하<br>KCB 655점 이하</td>
+							</tr>
+							</tbody>
+						</table>
+						<div>
+						이번 변화에 따라 신용평점 점수를 관리하는 것이 더욱 중요해졌다고 할 수 있다.
+						그렇다면! 개인신용평가 점수에 반영되는 요소부터 무엇이 있는지 확인해보자.
+						</div>
+						<h3>1. 금융감독원 오피셜! 개인신용평가 요소</h3>
+						<div class="tipimg">
+							<div id="tipimg_1"></div>
+						</div>
+						<div>
+						어떻게 보면 당연한 말이지만 '연체없이 사용한 기간이 길수록 긍정적인 평가를 받는다.'
+						특히나 공공요금 납부 실적은 아직 금융거래이력이 많이 없어 정보가 부족한 사회초년생 및 대학생에게 추천한다. 
+						</div>
+						<div>
+						대출금연체의 경우 5 영업일 이상/ 10만원 이상의 금액이 연체 되었을 시 하락할 수 있다.
+						 게다가 연체기간이 길어질수록 신용평가에 장기간 반영된다. 
+						 여기서 중요한 점은 연체금을 상환한다고 바로 이전의 신용점수를 회복하지 않는다.
+						 즉, 연체가 여러 건일 경우 연체금액이 큰 것부터 상환하기보단 오래된 대출을 먼저 정리하는 것을 추천한다.
+						</div>
+						<h3>2.가점부여 항목</h3>
+						<div>
+						위에서 살펴본 +/- 요소에서 조금 더 세부적으로 살펴봤을 때 별도의 가점이 적용되는 항목에 대해서 짚고 넘어가보겠다.
+						 개인 신용평가 시 가점을 받을 수 있는 항목은 무엇이며 얼마까지 받을 수 있을까?
+						</div>
+						<br>
+						<h4>1) 휴대폰 요금 등 공공요금 성실 납부실적 제출</h4>
+						<div>
+						통신요금, 국민연금, 건강보험료, 도시가스 등 6개월이상 납부실적을 신용조회회사에 제출하게 되면 가점을 받을 수 있다.
+						신용평점 가점 (5~17점)이 부여되며 6개월부터 24개월까지 기간이 길어질수록 가점폭이 확대된다.
+						 대학생이나 사회초년생 등 아직 금융거래실적이 많지 않아 신용정보가 부족한 사람들에게 유익하며 신용정보가 풍부한 사람의 경우 가점폭이 축소될 수 있다고 한다.
+						</div>
+						<br>
+						<span>Check Point</span>
+						<div>
+						신용조회회사 홈페이지 접속->비금융정보 반영 신청 혹은 우편,방문,팩스 등으로 제출가능
+						</div>
+						<br>
+						<h4>2) 햇살론 등 서민금융 대출금 성실상환</h4>
+						<div>
+							햇살론, 미소금융 등 서민금융상품에 대해 연체없이 1년이상 성실히 상환하거나 대출원금의 50%이상 상환하는 경우 신용평점 가점(5~13)이 부여된다.
+							 금융회사로부터 성실상환기록을 통보받기 때문에 별도로 상환실적을 제출할 필요는 없다.
+						</div>
+						<br>
+						<span>Check Point</span>
+						<div>
+						현재 연체중인자/연체경험자/다중채무자(2개 이상 금융회사에서 대출을 받는 자) 등은 가점부여대상 제외 혹은 가점 폭이 제한될 수 있다.
+						</div>
+						<br>
+						<h4>3) 대학/대학원 재학 시 받은 학자금대출 성실상환</h4>
+						<div>
+						한국장학재단 학자금 대출을 1년 이상 성실상환 시 신용평점 가점 5~45점이 부여된다.
+						코리아크레딧뷰로(KCB)의 경우 대출현황 및 상환수준에 따라 가점을 부여하며 일반대출없이 '학자금대출만' 있는 경우 최대 45점까지 가점을 받을 수 있다.
+						이 또한 한국장학재단 등으로부터 성실상환 명단을 통보받기 대문에 별도 상환실적을 제출할 필요는 없다.
+						</div>
+						<br>
+						<span>Check Point</span>
+						<div>
+						현재 연체중인자/다중채무자(3개 이상 금융회사에서 대출을 받는 자) 등은 가점부여대상 제외 혹은 가점 폭이 제한될 수 있다.
+						</div>
+						<br>
+						<h4>4) 체크카드를 꾸준히 사용</h4>
+						<div>
+						체크카드를 연체없이 월 30만원 이상 6개월 사용하거나 6~12개월을 지속적으로 사용했다면 신용평점 가점 4~40점을 받을 수 있다.
+						나이스평가정보(NICE)는 체크카드 월 30만원 이상 6개월 동안 사용 시 최대 40점 가점을 부여한다. 
+						금융회사 등에서 체크카드 사용실적을 신용조회회사에 통보하기 때문에 사용실적을 따로 제출할 필요는 없다.
+						</div>
+						<br>
+						<span>Check Point</span>
+						<div>
+						현재 연체중인자/연체경험자/다중채무자(3개 이상 금융회사에서 대출을 받는 자) 등은 가점부여대상 제외 혹은 가점 폭이 제한될 수 있다.
+						</div>
+						<br>
+						<h4>5) 재기 중소기업인으로 선정</h4>
+						<div>
+						사업실패 이후 중소기업진흥공단 등에서 재창업자금 지원 등을 받은 중소기업인의 경우 신용평점 가점 10~20점을 받을 수 있다. 
+						중소기업진흥공단에서 신용조회회사에 재기기업인으로 통보하는 경우 반영된다. 
+						즉, 따로 증빙자료를 제출할 필요는 없다. 그러나 현재 연체주인 자 등은 가점부여 대상에서 제외되거나 가점폭이 제한될 수 있다.
+						</div>
 			</div>	
 	</div>	
 	<div id="s_right"></div>						

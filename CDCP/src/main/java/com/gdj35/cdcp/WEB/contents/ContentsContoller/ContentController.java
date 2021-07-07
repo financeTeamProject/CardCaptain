@@ -76,5 +76,12 @@ public class ContentController {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value = "/cardTip_2") // 콘텐츠 카드활용꿀팁
+	public ModelAndView cardTip_2(ModelAndView mav) {
+		mav.setViewName("contents/cardTip_2");
+		
+		return mav;
+	}
 }
 
