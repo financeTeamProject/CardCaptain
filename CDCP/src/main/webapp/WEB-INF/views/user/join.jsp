@@ -246,8 +246,8 @@ $(document).ready(function() {
 		}
 	});
    
-	//블러
-	$("input").blur(function () {
+	//마우스 오버
+/* 	$("input").mouseover(function () {
 	      var memId = $.trim($("#mem_id").val());
 	      var memPw = $.trim($("#mem_password").val());
 	      var memRePw = $.trim($("#mem_rePassword").val());
@@ -287,7 +287,7 @@ $(document).ready(function() {
 		} else if(!memRRN == "") {
 			$("#errorMsgBirth").css("display","none");
 		}
-	});
+	}); */
 
    //회원가입 필터링   
    $("#btn_next").on("click",function() {
@@ -303,89 +303,104 @@ $(document).ready(function() {
       var memEmailOpt = $("#select_email option:selected").val();
       var chk_num = memPw.search(/[0-9]/g);
       var chk_eng = memPw.search(/[a-z]/ig);
+      var chk_spe = memPw.search(/[~!@#$%^&*()_+|<>?:{}]/ig);
       
-       
+       /* 아이디 */
       if(memId == "") {
-         alert("아이디를 입력하세요.");
-    	 /* alert(document.getElementById("errorMsg").style.visibility); 
-         document.getElementById("errorMsg").style.visibility='visible'; */
          $("#mem_id").focus();
+         $(".errorMsg").css("display","inline");
+         $("#errorMsgId").html("아이디를 입력해주세요.");
       } else if (memId.length < 6 || memId.length > 16) {
-          alert("아이디는 6자리 이상 16자리 이하로 입력해주세요.");
-          $("#mem_id").val('');
           $("#mem_id").focus();
+          $(".errorMsg").css("display","inline");
+          $("#errorMsgId").html("아이디는 6~16자리로 만들어 주세요.");
       } else if (regex_spe.test(memId)) {
-         alert("특수문자를 사용할 수 없습니다.");
-         $("#mem_id").val('');
-         $("#mem_id").focus();
-      } else if (!regex_kor.test(memId)) {
-         alert("아이디는 영문과 숫자 조합으로 만들 수 있습니다.");
-         $("#mem_id").val('');
-         $("#mem_id").focus();
-      } else if(memPw == "") {
-         alert("비밀번호를 입력하세요.");
-         $("#mem_password").focus();
-      } else if(chk_num < 0 || chk_eng < 0) {
-         alert("비밀번호는 영문과 숫자를 같이 사용해주세요.");
-         $("#mem_password").focus();
-      } else if (memRePw == "") {
-         alert("비밀번호를 확인해 주세요.");
-         $("#mem_rePassword").focus();
+          $("#mem_id").focus();
+          $(".errorMsg").css("display","inline");
+          $("#errorMsgId").html("특수문자는 사용하실 수 없습니다.");
+	  } else if (!regex_kor.test(memId)) {
+    	  $("#mem_id").focus();
+          $(".errorMsg").css("display","inline");
+          $("#errorMsgId").html("한글은 사용하실 수 없습니다.");
+	  } else {
+		  $("#errorMsgId").html("");
+	  }
+	 
+        /*비밀번호 */
+       if(memPw == "") {
+    	  $("#mem_password").focus();
+          $(".errorMsg").css("display","inline");
+          $("#errorMsgPw").html("비밀번호를 입력해주세요.");
       } else if (memPw.length < 10 || memPw.length > 25) {
-         alert("비밀번호는 10 ~ 24자로 작성해주세요.");
-         $("#mem_password").val('');
-         $("#mem_rePassword").val('');
-         $("#mem_password").focus();
+    	  $("#mem_password").focus();
+          $(".errorMsg").css("display","inline");
+          $("#errorMsgPw").html("10~24자리로 만들어 주세요.");
+      } else if(chk_num < 0 || chk_eng < 0 || chk_spe < 0 ) {
+    	  $("#mem_password").focus();
+          $(".errorMsg").css("display","inline");
+          $("#errorMsgPw").html("영문,숫자,특수문자 조합으로 만들어 주세요.");
       } else if (memPw != memRePw) {
-         alert("비밀번호를 다시 확인해 주세요.");
-         $("#mem_rePassword").focus();
-      } else if (memNick == "") {
-         alert("닉네임을 입력해 주세요.");
-         $("#mem_nickname").focus();
-      } else if (memNick.length < 4 || memNick.length > 10) {
-          alert("닉네임은 4자 ~ 10자로 작성해주세요.");
-          $("#mem_nickname").focus();
-      } else if (regex_spe.test(memNick)) {
-         alert("닉네임은 한글,영문,숫자 조합으로 작성해주세요.");
-         $("#mem_nickname").focus();
-         
-      } else if (memPhone == "") {
-         alert("전화번호를 입력해주세요.");
-         $("#phone_num").focus();
-      } else if (memPhone.length < 11) {
-          alert("-를 제외한 11자리를 입력해 주세요.");
-          $("#phone_num").focus();
-         
-      } else if (memRRN == "") {
-         alert("생년월일을 입력해 주세요.");
-         $("#text_num").focus();
-      } else if (memRRN < 8) {
-         alert("생년월일을 8자리를 입력해 주세요.");
-         $("#text_num").focus();
-         
-      } else if (memGender == "") {
-         alert("주민번호 뒤의 첫번째자리를 입력해 주세요.");
-         $("#text_num2").focus();
-         
-      } else if (memEmail == "") {
-         alert("이메일을 입력해 주세요.");
-      }
-   });
-   
-});
-
-/* function SetNum(obj) {
-      var keyVal = event.keyCode;
-      if((keyVal >= 48) && (keyVal <= 57) || (keyVal >= 96) && (keyVal <= 105) || (keyVal >= 8)) {
-         return true;
+    	  $("#mem_rePassword").focus();
+          $("#mem_rePassword").val('');
+          $(".errorMsg").css("display","inline");
+          $("#errorMsgPw").html("비밀번호가 일치하지 않습니다.");
       } else {
-         alert("숫자만 입력가능합니다."); 
-         var member_id = obj.id;
-         var member_val = obj.value;
-         
-         $("#" + member_id).val(member_val.slice(0,-1));
-      }
-}; */
+		  $("#errorMsgPw").html("");
+	  }
+         /* 닉네임 */
+      if (memNick == "") {
+         $("#mem_nickname").focus();
+         $(".errorMsg").css("display","inline");
+         $("#errorMsgNick").html("닉네임을 입력해 주세요.");
+      } else if (memNick.length < 3 || memNick.length > 10) {
+    	  $("#mem_nickname").focus();
+          $(".errorMsg").css("display","inline");
+          $("#errorMsgNick").html("3~10자리로 만들어 주세요.");
+      } else if (regex_spe.test(memNick)) {
+    	  $("#mem_nickname").focus();
+          $(".errorMsg").css("display","inline");
+          $("#errorMsgNick").html("특수문자는 사용할 수 없습니다.");
+      } else {
+		  $("#errorMsgNick").html("");
+	  }
+         /* 전화번호 */
+      if (memPhone == "") {
+    	  $("#phone_num").focus();
+          $(".errorMsg").css("display","inline");
+          $("#errorMsgTel").html("전화번호를 입력해 주세요.");
+      } else if (memPhone.length < 11) {
+    	  $("#phone_num").focus();
+          $(".errorMsg").css("display","inline");
+          $("#errorMsgTel").html("-를 제외한 전화번호 11자리를 입력해주세요.");
+      } else {
+		  $("#errorMsgTel").html("");
+	  }
+         /* 생년월일 */
+      if (memRRN == "") {
+    	  $("#text_num").focus();
+          $(".errorMsg").css("display","inline");
+          $("#errorMsgBirth").html("생년월일을 입력해주세요.");
+      } else if (memRRN.length < 8) {
+    	  $("#text_num").focus();
+          $(".errorMsg").css("display","inline");
+          $("#errorMsgBirth").html("생년월일 8자리를 입력해주세요.");
+      } else if (memGender == "") {
+    	  $("#text_num2").focus();
+          $(".errorMsg").css("display","inline");
+          $("#errorMsgBirth").html("생년월일을 입력해주세요.");
+      } else {
+		  $("#errorMsgBirth").html("");
+	  }  
+         /* 이메일 */
+      if (memEmail == "") {
+    	  $("#email").focus();
+          $(".errorMsg").css("display","inline");
+          $("#errorMsgEmail").html("이메일을 입력해주세요.");
+      } else {
+		  $("#errorMsgEmail").html("");
+	  }
+   });
+});
 </script>
 </head>
 <body>
@@ -398,36 +413,36 @@ $(document).ready(function() {
 		<div class="middle1">
 		<div class="middle_top">회원가입 정보를 입력해주세요.</div>
 		<div class="title">아이디
-			<div class="errorMsg" id="errorMsgId">아이디를 입력해 주세요.</div>
+			<div class="errorMsg" id="errorMsgId"></div>
       	</div>
-      	<input type="text" class="text" placeholder="아이디 입력" id="mem_id" />
+      	<input type="text" class="text" placeholder="한글,특수문자 제외 6~16자리를 입력해주세요." id="mem_id" />
       	<div class="title">비밀번호
-      		<div class="errorMsg" id="errorMsgPw">비밀번호를 입력해 주세요.</div>
+      		<div class="errorMsg" id="errorMsgPw"></div>
       	</div>
-      	<strong><input type="password" class="text" placeholder="비밀번호(10~24자리)" id="mem_password" /></strong>
+      	<strong><input type="password" class="text" placeholder="~!@#$%^&*()_+|<>?:{}]/ 포함 영문,숫자 조합 10~24자리" id="mem_password" /></strong>
       	<input type="password" class="text" placeholder="비밀번호 확인" id="mem_rePassword" />
       	<div class="title">닉네임
-      		<div class="errorMsg" id="errorMsgNick">닉네임을 입력해 주세요.</div>
+      		<div class="errorMsg" id="errorMsgNick"></div>
       	</div>
-      	<input type="text" class="text" placeholder="닉네임(4~10자리)" id="mem_nickname" />
+      	<input type="text" class="text" placeholder="특수문자 제외 3~10자리를 입력해주세요." id="mem_nickname" />
       	<div class="title">전화번호
-      		<div class="errorMsg" id="errorMsgTel">전화번호를 입력해 주세요.</div>
+      		<div class="errorMsg" id="errorMsgTel"></div>
       	</div>
       	<select name="telnum" id="select_tel"> 
 			<option value="+82   대한민국">+82&nbsp;&nbsp;대한민국</option>
          	<option value="+82   대한민국"></option>
       	</select>
-      	<input type="text" id="phone_num" placeholder=" - 없이 입력해주세요." maxlength="11" />
+      	<input type="text" id="phone_num" placeholder="" maxlength="11" />
       	<div class="title">생년월일
-      		<div class="errorMsg" id="errorMsgBirth">생년월일을 입력해 주세요.</div>
+      		<div class="errorMsg" id="errorMsgBirth"></div>
       	</div>
       	<div class="title">
-         	<input type="text" id="text_num" placeholder="예) 19940507" maxlength="8" />&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;
+         	<input type="text" id="text_num" placeholder="예)19940507" maxlength="8" />&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;
          	<input type="text" id="text_num2" maxlength="1" />
          	<span id="txt">*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*</span>
       	</div>
       	<div class="title">이메일
-      		<div class="errorMsg" id="errorMsgEmail">이메일을 입력해 주세요.</div>
+      		<div class="errorMsg" id="errorMsgEmail"></div>
       	</div>
       	<div class="title">
          	<input type="text" id="email" placeholder="이메일" />&nbsp;&nbsp;@&nbsp;
