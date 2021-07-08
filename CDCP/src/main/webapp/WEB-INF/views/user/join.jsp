@@ -225,10 +225,10 @@ body {
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-   var regex_kor = (/[^가-힣]$/);
-   var regex_spe = (/[~!@#$%^&*()_+|<>?:{}]/);
-   var regex_num = (/[^0-9]/g);
-   var regex_eng = (/^[a-zA-Z]*$/);
+	var regex_kor = (/[^가-힣]$/);
+	var regex_spe = (/[~!@#$%^&*()_+|<>?:{}]/);
+	var regex_num = (/[^0-9]/g);
+	var regex_eng = (/^[a-zA-Z]*$/);
    
     //숫자만 입력
     $("#phone_num").keyup(function() {
@@ -290,116 +290,120 @@ $(document).ready(function() {
 	}); */
 
    //회원가입 필터링   
-   $("#btn_next").on("click",function() {
-      var memId = $.trim($("#mem_id").val());
-      var memPw = $.trim($("#mem_password").val());
-      var memRePw = $.trim($("#mem_rePassword").val());
-      var memNick = $.trim($("#mem_nickname").val());
-      var memPhoneOpt = $("select_tel option:selected").val();
-      var memPhone = $.trim($("#phone_num").val());
-      var memRRN = $.trim($("#text_num").val());
-      var memGender = $.trim($("#text_num2").val());
-      var memEmail = $.trim($("#email").val());
-      var memEmailOpt = $("#select_email option:selected").val();
-      var chk_num = memPw.search(/[0-9]/g);
-      var chk_eng = memPw.search(/[a-z]/ig);
-      var chk_spe = memPw.search(/[~!@#$%^&*()_+|<>?:{}]/ig);
-      
-       /* 아이디 */
-      if(memId == "") {
-         $("#mem_id").focus();
-         $(".errorMsg").css("display","inline");
-         $("#errorMsgId").html("아이디를 입력해주세요.");
-      } else if (memId.length < 6 || memId.length > 16) {
-          $("#mem_id").focus();
-          $(".errorMsg").css("display","inline");
-          $("#errorMsgId").html("아이디는 6~16자리로 만들어 주세요.");
-      } else if (regex_spe.test(memId)) {
-          $("#mem_id").focus();
-          $(".errorMsg").css("display","inline");
-          $("#errorMsgId").html("특수문자는 사용하실 수 없습니다.");
-	  } else if (!regex_kor.test(memId)) {
-    	  $("#mem_id").focus();
-          $(".errorMsg").css("display","inline");
-          $("#errorMsgId").html("한글은 사용하실 수 없습니다.");
-	  } else {
-		  $("#errorMsgId").html("");
-	  }
-	 
-        /*비밀번호 */
-       if(memPw == "") {
-    	  $("#mem_password").focus();
-          $(".errorMsg").css("display","inline");
-          $("#errorMsgPw").html("비밀번호를 입력해주세요.");
-      } else if (memPw.length < 10 || memPw.length > 25) {
-    	  $("#mem_password").focus();
-          $(".errorMsg").css("display","inline");
-          $("#errorMsgPw").html("10~24자리로 만들어 주세요.");
-      } else if(chk_num < 0 || chk_eng < 0 || chk_spe < 0 ) {
-    	  $("#mem_password").focus();
-          $(".errorMsg").css("display","inline");
-          $("#errorMsgPw").html("영문,숫자,특수문자 조합으로 만들어 주세요.");
-      } else if (memPw != memRePw) {
-    	  $("#mem_rePassword").focus();
-          $("#mem_rePassword").val('');
-          $(".errorMsg").css("display","inline");
-          $("#errorMsgPw").html("비밀번호가 일치하지 않습니다.");
-      } else {
-		  $("#errorMsgPw").html("");
-	  }
-         /* 닉네임 */
-      if (memNick == "") {
-         $("#mem_nickname").focus();
-         $(".errorMsg").css("display","inline");
-         $("#errorMsgNick").html("닉네임을 입력해 주세요.");
-      } else if (memNick.length < 3 || memNick.length > 10) {
-    	  $("#mem_nickname").focus();
-          $(".errorMsg").css("display","inline");
-          $("#errorMsgNick").html("3~10자리로 만들어 주세요.");
-      } else if (regex_spe.test(memNick)) {
-    	  $("#mem_nickname").focus();
-          $(".errorMsg").css("display","inline");
-          $("#errorMsgNick").html("특수문자는 사용할 수 없습니다.");
-      } else {
-		  $("#errorMsgNick").html("");
-	  }
-         /* 전화번호 */
-      if (memPhone == "") {
-    	  $("#phone_num").focus();
-          $(".errorMsg").css("display","inline");
-          $("#errorMsgTel").html("전화번호를 입력해 주세요.");
-      } else if (memPhone.length < 11) {
-    	  $("#phone_num").focus();
-          $(".errorMsg").css("display","inline");
-          $("#errorMsgTel").html("-를 제외한 전화번호 11자리를 입력해주세요.");
-      } else {
-		  $("#errorMsgTel").html("");
-	  }
-         /* 생년월일 */
-      if (memRRN == "") {
-    	  $("#text_num").focus();
-          $(".errorMsg").css("display","inline");
-          $("#errorMsgBirth").html("생년월일을 입력해주세요.");
-      } else if (memRRN.length < 8) {
-    	  $("#text_num").focus();
-          $(".errorMsg").css("display","inline");
-          $("#errorMsgBirth").html("생년월일 8자리를 입력해주세요.");
-      } else if (memGender == "") {
-    	  $("#text_num2").focus();
-          $(".errorMsg").css("display","inline");
-          $("#errorMsgBirth").html("생년월일을 입력해주세요.");
-      } else {
-		  $("#errorMsgBirth").html("");
-	  }  
-         /* 이메일 */
-      if (memEmail == "") {
-    	  $("#email").focus();
-          $(".errorMsg").css("display","inline");
-          $("#errorMsgEmail").html("이메일을 입력해주세요.");
-      } else {
-		  $("#errorMsgEmail").html("");
-	  }
-   });
+	$("#btn_next").on("click",function() {
+		var memId = $.trim($("#mem_id").val());
+		var memPw = $.trim($("#mem_password").val());
+		var memRePw = $.trim($("#mem_rePassword").val());
+		var memNick = $.trim($("#mem_nickname").val());
+		var memPhoneOpt = $("select_tel option:selected").val();
+		var memPhone = $.trim($("#phone_num").val());
+		var memRRN = $.trim($("#text_num").val());
+		var memGender = $.trim($("#text_num2").val());
+		var memEmail = $.trim($("#email").val());
+		var memEmailOpt = $("#select_email option:selected").val();
+		var chk_num = memPw.search(/[0-9]/g);
+		var chk_eng = memPw.search(/[a-z]/ig);
+		var chk_spe = memPw.search(/[~!@#$%^&*()_+|<>?:{}]/ig);
+	   
+	    /* 아이디 */
+		if(memId == "") {
+			$("#mem_id").focus();
+			$(".errorMsg").css("display","inline");
+			$("#errorMsgId").html("아이디를 입력해주세요.");
+		} else if (memId.length < 6 || memId.length > 16) {
+			$("#mem_id").focus();
+			$(".errorMsg").css("display","inline");
+			$("#errorMsgId").html("아이디는 6~16자리로 만들어 주세요.");
+		} else if (regex_spe.test(memId)) {
+			$("#mem_id").focus();
+			$(".errorMsg").css("display","inline");
+			$("#errorMsgId").html("특수문자는 사용하실 수 없습니다.");
+		} else if (!regex_kor.test(memId)) {
+	 		$("#mem_id").focus();
+			$(".errorMsg").css("display","inline");
+			$("#errorMsgId").html("한글은 사용하실 수 없습니다.");
+		} else {
+	 		$("#errorMsgId").html("");
+		}
+	
+	     /*비밀번호 */
+	    if(memPw == "") {
+ 			$("#mem_password").focus();
+	       	$(".errorMsg").css("display","inline");
+	       	$("#errorMsgPw").html("비밀번호를 입력해주세요.");
+	   	} else if (memPw.length < 10 || memPw.length > 25) {
+	 	  	$("#mem_password").focus();
+	       	$(".errorMsg").css("display","inline");
+	       	$("#errorMsgPw").html("10~24자리로 만들어 주세요.");
+	   	} else if(chk_num < 0 || chk_eng < 0 || chk_spe < 0 ) {
+	 	  	$("#mem_password").focus();
+	       	$(".errorMsg").css("display","inline");
+			$("#errorMsgPw").html("영문,숫자,특수문자 조합으로 만들어 주세요.");
+	   	} else if (memPw != memRePw) {
+	 	  	$("#mem_rePassword").focus();
+	       	$("#mem_rePassword").val('');
+	       	$(".errorMsg").css("display","inline");
+	       	$("#errorMsgPw").html("비밀번호가 일치하지 않습니다.");
+	   	} else {
+	 		$("#errorMsgPw").html("");
+		}
+	      /* 닉네임 */
+	   	if (memNick == "") {
+	      	$("#mem_nickname").focus();
+	      	$(".errorMsg").css("display","inline");
+	      	$("#errorMsgNick").html("닉네임을 입력해 주세요.");
+	   	} else if (memNick.length < 3 || memNick.length > 10) {
+	 	  	$("#mem_nickname").focus();
+	       	$(".errorMsg").css("display","inline");
+	       	$("#errorMsgNick").html("3~10자리로 만들어 주세요.");
+	   	} else if (regex_spe.test(memNick)) {
+	 	  	$("#mem_nickname").focus();
+	       	$(".errorMsg").css("display","inline");
+	       	$("#errorMsgNick").html("특수문자는 사용할 수 없습니다.");
+	   	} else {
+			$("#errorMsgNick").html("");
+		}
+	      /* 전화번호 */
+	   	if (memPhone == "") {
+	 	  	$("#phone_num").focus();
+	       	$(".errorMsg").css("display","inline");
+	       	$("#errorMsgTel").html("전화번호를 입력해 주세요.");
+	   	} else if (memPhone.length < 11) {
+	 	  	$("#phone_num").focus();
+	       	$(".errorMsg").css("display","inline");
+	       	$("#errorMsgTel").html("-를 제외한 전화번호 11자리를 입력해주세요.");
+	   	} else {
+	 		$("#errorMsgTel").html("");
+		}
+	      /* 생년월일 */
+		if (memRRN == "") {
+	 	  	$("#text_num").focus();
+	       	$(".errorMsg").css("display","inline");
+	       	$("#errorMsgBirth").html("생년월일을 입력해주세요.");
+	   	} else if (memRRN.length < 8) {
+ 	  		$("#text_num").focus();
+	      	$(".errorMsg").css("display","inline");
+	       	$("#errorMsgBirth").html("생년월일 8자리를 입력해주세요.");
+	   	} else if (memGender == "") {
+	 	  	$("#text_num2").focus();
+	       	$(".errorMsg").css("display","inline");
+	       	$("#errorMsgBirth").html("생년월일을 입력해주세요.");
+	   	} else {
+	 		$("#errorMsgBirth").html("");
+		}  
+	      /* 이메일 */
+		if (memEmail == "") {
+   			$("#email").focus();
+			$(".errorMsg").css("display","inline");
+			$("#errorMsgEmail").html("이메일을 입력해주세요.");
+		} else {
+				$("#errorMsgEmail").html("");
+		}
+	});
+	
+	$("#btn_next").on("click", function () {
+		location.href = "joincard";
+	});
 });
 </script>
 </head>

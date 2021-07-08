@@ -46,7 +46,7 @@ input {
     margin: auto 20%;
 }
 .login {
-	height: 300px;
+	height: 320px;
 	width: 400px;
 	background-color: white;
 	border-radius: 70px;
@@ -85,21 +85,17 @@ input {
 	background-repeat: no-repeat;
 	background-size: 50px;
 }
-.lbut {
-	text-align: center;
-	position: relative;
+#loginBtn {
 	margin-bottom: 10px;
 	margin-top: 5px;
-	width: 50%;
-	height: 40px;
 	background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
-	background-position: left;
 	background-size: 200%;
 	color: white;
  	font-weight: bold;
 	border: none;
 	cursor: pointer;
 	display: inline;
+	margin: 0 0 15px 100px
 }
 .re {
 	display: inline-block;
@@ -127,6 +123,22 @@ $(document).ready(function() {
 		var ival = $(this).prop("id");
 		$(location).attr('href',ival);
 	});
+	
+	$(".imgLogo").on("click", function(){
+		location.href = "/cdcp";
+	});
+	/* 로그인 */
+	$("#loginBtn").on("click", function () {
+		if($.trim($("#mId").val()) == "") {
+			alert("아이디를 입력해 주세요.");
+			$("#mId").focus();
+		} else if($.trim($("#mPw").val()) == "") {
+			alert("비밀번호를 입력해 주세요.");
+			$("#mPw").focus();
+		} else {
+			$("#loginForm").submit();
+		}
+	});
 });
 </script>
 </head>
@@ -140,13 +152,15 @@ $(document).ready(function() {
 				<div class="imgLogin"></div>
 			</div>
 		</div>
-		<div class="a2">
-			<input type="email" placeholder="ID">
-			<input type="password" placeholder="PW">
-		</div>
-		<div class="a3">
+		<form action="testLogins" id="loginForm" method="post">
+			<div class="a2">
+				<input type="email" placeholder="ID" id="mId">
+				<input type="password" placeholder="PW" id="mPw">
+			</div>
 			<span class="error" id="masage" aria-live="assertive">아이디 또는 비밀번호가 일치하지 않습니다.</span>
-			<input type="button" class="lbut" value="로그인"/><br/>
+			<input type="button" id="loginBtn" value="로그인"/><br/>
+		</form>
+		<div class="a3">
 			<div class="re" id="searchmem">ID/PW 찾기</div>
 			<div class="new" id="join">|&nbsp;&nbsp;회원 가입</div>
 		</div>
