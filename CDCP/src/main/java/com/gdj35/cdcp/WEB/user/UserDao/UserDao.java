@@ -10,8 +10,13 @@ import org.springframework.stereotype.Repository;
 public class UserDao implements UserIDao {
 	@Autowired 
 	public SqlSession sqlSession;
+	
 	@Override
 	public HashMap<String, String> getId(HashMap<String, String> params) throws Throwable {
 		return sqlSession.selectOne("user.getId", params);
+	}
+	@Override
+	public HashMap<String, String> getM(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectOne("user.getM", params);
 	}
 }

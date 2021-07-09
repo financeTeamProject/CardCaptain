@@ -6,4 +6,11 @@
 		FROM MEMBER_INFO 
 		WHERE EMAIL = #{checkEmail}
 	</select>
+	
+	<select id="getM" parameterType="hashmap" resultType="hashmap">
+		SELECT MEMBER_NO, MEMBER_ID, MEMBER_BIRTH, GENDER, NICKNAME
+		FROM MEMBER_INFO
+		WHERE MEMBER_ID = #{mId}
+		AND MEMBER_PW = #{mPw}
+	</select>
 </mapper>
