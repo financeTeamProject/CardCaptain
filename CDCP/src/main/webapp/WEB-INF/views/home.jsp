@@ -22,6 +22,10 @@ body {
 	margin: 0;
 	top: 0;
 }
+.body {
+	width: 100%;
+	heigth: 100%;
+}
 	/* 헤더  ~82번째줄*/
 #header {
 	width: 100%;
@@ -137,14 +141,14 @@ body {
 *{margin:0;padding:0;}
 #content {
 	width: 1600px;
-    height: 980px;
+    height: 1800px;
     margin: 0 auto;
 }
 ul,li{
 	list-style:none;
 }
 .slide{
-	height:70%;
+	height:700px;
 	overflow:hidden;
 	position:relative;
 }
@@ -260,27 +264,145 @@ input#pos1,#pos2,#pos3,#pos4 {
 	#map {display:inline-block;margin-left:420px;}
 	.map_area h1 {font-family:'GmarketSansMedium'}
 /* Map CSS End */
+
+/* 로그인팝업 */
+.popinput {
+	width: 50%;
+    height: 40px;
+    padding: 0px 20px;
+    border: 1px solid lightgray;
+    outline: none;
+    font-size: 13px;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: #0047AB;
+    outline: 0;
+    text-decoration: none;
+    letter-spacing: 2px;
+    margin: 5px 50px 10px 80px;
+}
+.cardcaptain {
+	width: 100%;
+	height: 95px;
+	line-height: 110px;
+	text-align: center;
+	font-size: 25px;
+	color: #0047AB;
+	letter-spacing: 5px;
+	cursor: pointer;
+}
+#popup {
+	height: 320px;
+	width: 400px;
+	background-color: white;
+	border-radius: 70px;
+	display: none;
+	margin: 300px auto;
+	z-index: 50;
+}
+#loginBtn {
+	margin-bottom: 10px;
+	margin-top: 5px;
+	background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+	background-size: 200%;
+	color: white;
+ 	font-weight: bold;
+	border: none;
+	cursor: pointer;
+	display: inline;
+	margin: 0 0 15px 100px
+}
+.re {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 11px;
+    margin: 10px 0 10px 130px;
+}
+.new {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 11px;
+	margin: 10px 0 10px 0;
+}
+.re:hover, .new:hover {
+	cursor: pointer;
+}
+.error {
+    font-size: 11px;
+    color: red;
+    visibility: hidden;
+}
+#errorMsg {
+	width: auto;
+	height: 100%;
+	display:none;
+	vertical-align:top;
+    color: #e65f3e;
+    font-size: 13px;
+    text-align: center;
+} /* 로그인팝업종료 */
 </style>
 <script type="text/javascript" src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
-		/* 카드순위 페이지 이동 */
-		$("#ranking").on("click", function(){
-			location.href = "card_rank";
-		});
-		/* 카드검색/비교 페이지 이동 */
-		 $("#search").on("click", function(){
-			location.href = "search";
-		});
-		/* 컨텐츠 페이지 이동 */
-		$("#contents").on("click", function(){
-			location.href = "content";
-		});
-		/* 로그인팝업 실행 */
-		$("#imgLogin").on("click", function(){
-			location.href = "login";
-		});
-	}); // document ready end
+$(document).ready(function(){
+	/* 카드순위 페이지 이동 */
+	$("#ranking").on("click", function(){
+		location.href = "card_rank";
+	});
+	/* 카드검색/비교 페이지 이동 */
+	 $("#search").on("click", function(){
+		location.href = "search";
+	});
+	/* 컨텐츠 페이지 이동 */
+	$("#contents").on("click", function(){
+		location.href = "content";
+	});
+	
+	/* 로그인팝업 실행 */
+	$("#imgLogin").on("click", function(){
+		$("#popup").css("display","block");
+		$(".body").css("display","none");
+	});
+	
+	$("#searchmem, #join").on("click", function() {
+		var ival = $(this).prop("id");
+		$(location).attr('href',ival);
+	});
+	
+	$(".cardcaptain").on("click", function(){
+		location.href = "/cdcp";
+	});
+	/* 로그인 */
+	$("#loginBtn").on("click", function () {
+		if($.trim($("#mId").val()) == "") {
+			alert("아이디를 입력해 주세요.");
+			$("#mId").focus();
+		} else if($.trim($("#mPw").val()) == "") {
+			alert("비밀번호를 입력해 주세요.");
+			$("#mPw").focus();
+		} else {
+			var params = $("loginForm").serialize();
+			
+			$.ajax({
+				url: "login",
+				type: "post",
+				dataType: "json",
+				data: params,
+				success: function (res) {
+					if(res.resMsg == "success"){
+						location.href = "cdcp";
+					} else {
+						$(".errorMsg").css("display","inline");
+						$("#masage").html("아이디 또는 비밀번호가 일치하지 않습니다.")
+					}
+				},
+				error: function (request, status, error) {
+					console.log(error);
+				}
+			}); //ajax end
+		}
+	}); //loginBtn end
+}); // document ready end
 	
 /* Map */
 	function sendPlace(obj) {
@@ -320,70 +442,85 @@ input#pos1,#pos2,#pos3,#pos4 {
 </script>
 </head>
 <body>
-<div id="header">
-	<div id="headerWrap">
-	<div id="headerLeft">
-		<div id="headerLogo"></div>
-		<div class="menu1" id="ranking">카드순위</div>
-		<div class="menu1" id="search">카드검색/비교</div>
-		<div class="menu1" id="contents">컨텐츠</div>
-	</div>
-	<div id="headerRight">
-		<div id="imgSearch"></div>
-		<div id="imgLogin"></div>
-		</div>
-	</div>
+<!-- 로그인팝업 -->
+<div id="popup">
+	<div class="cardcaptain">Card Captain</div>
+	<form action="testLogins" id="loginForm" method="post">
+			<input type="email" class="popinput" placeholder="ID" id="mId" name="mId">
+			<input type="password" class="popinput" placeholder="PW" id="mPw" name="mPw">
+		<span class="errorMsg" id="masage" aria-live="assertive"></span>
+		<input type="button" class="popinput" id="loginBtn" value="로그인"/><br/>
+	</form>
+	<div class="re" id="searchmem">ID/PW 찾기</div>
+	<div class="new" id="join">|&nbsp;&nbsp;회원 가입</div>
 </div>
-<div id="content">
-	<div class="slide">
-	<input type="radio" name="pos" id="pos1" checked>
-	<input type="radio" name="pos" id="pos2">
-	<input type="radio" name="pos" id="pos3">
-	<input type="radio" name="pos" id="pos4">
-	<ul>
-		<li>
-			<div class="top"></div>
-			<div class="bottom">
-		 		<div class="bottom_Left"></div>
-		 		<div class="bottom_right"></div>
-			</div>
-		</li>
-		<li></li>
-		<li></li>
-		<li></li>
-    </ul>
-    <p class="bullet">
-      <label for="pos1">1</label>
-      <label for="pos2">2</label>
-      <label for="pos3">3</label>
-      <label for="pos4">4</label>
-    </p>
-  </div><br/>
-<!-- Map html Start -->
-	<div class="map_area" style="border:solid;border-radius:50px;border-width:7px;border-color:#CCC;padding:40px;background-color:#F2F2F2;">
-		<h1>시험 끝! <span>OO카드 들고 </span>나 오늘 집에 안갈래~</h1><br/>
-		<input type="button" value="올리브영" onclick="sendPlace(this);">
-		<input type="button" value="스타벅스" onclick="sendPlace(this);">
-		<input type="button" value="GS25" onclick="sendPlace(this);">
-		
-		<div class="map_wrap">
-			<div id="menu_wrap" class="bg_white">
-			<div class="option">
-			<div>
-				<form onsubmit="searchPlaces(); return false;">
-					<input type="text" value="장소 입력" id="keyword" size="40" readonly="readonly" style="border-style:none;border-radius:5px;height:25px;width:350px;"> 
-					<button type="submit" id="serachButton" style="visibility: hidden;">검색하기</button>
-				</form>
-			</div>
-			</div>
-			
-			<ul id="placesList"></ul>
-			<div id="pagination"></div>
-			</div>
-			<div id="map" style="width:70%;height:100%;position:relataive;overflow:hidden;"></div>
+<!-- 로그인팝업 종료 -->
+<div class="body">
+	<div id="header">
+		<div id="headerWrap">
+		<div id="headerLeft">
+			<div id="headerLogo"></div>
+			<div class="menu1" id="ranking">카드순위</div>
+			<div class="menu1" id="search">카드검색/비교</div>
+			<div class="menu1" id="contents">컨텐츠</div>
 		</div>
-	</div><br/>
-<!-- Map html End -->
+		<div id="headerRight">
+			<div id="imgSearch"></div>
+			<div id="imgLogin"></div>
+			</div>
+		</div>
+	</div>
+	<div id="content">
+		<div class="slide">
+		<input type="radio" name="pos" id="pos1" checked>
+		<input type="radio" name="pos" id="pos2">
+		<input type="radio" name="pos" id="pos3">
+		<input type="radio" name="pos" id="pos4">
+		<ul>
+			<li>
+				<div class="top"></div>
+				<div class="bottom">
+			 		<div class="bottom_Left"></div>
+			 		<div class="bottom_right"></div>
+				</div>
+			</li>
+			<li></li>
+			<li></li>
+			<li></li>
+	    </ul>
+	    <p class="bullet">
+	      <label for="pos1">1</label>
+	      <label for="pos2">2</label>
+	      <label for="pos3">3</label>
+	      <label for="pos4">4</label>
+	    </p>
+	  </div><br/>
+	<!-- Map html Start -->
+		<div class="map_area" style="border:solid;border-radius:50px;border-width:7px;border-color:#CCC;padding:40px;background-color:#F2F2F2;">
+			<h1>시험 끝! <span>OO카드 들고 </span>나 오늘 집에 안갈래~</h1><br/>
+			<input type="button" value="올리브영" onclick="sendPlace(this);">
+			<input type="button" value="스타벅스" onclick="sendPlace(this);">
+			<input type="button" value="GS25" onclick="sendPlace(this);">
+			
+			<div class="map_wrap">
+				<div id="menu_wrap" class="bg_white">
+				<div class="option">
+				<div>
+					<form onsubmit="searchPlaces(); return false;">
+						<input type="text" value="장소 입력" id="keyword" size="40" readonly="readonly" style="border-style:none;border-radius:5px;height:25px;width:350px;"> 
+						<button type="submit" id="serachButton" style="visibility: hidden;">검색하기</button>
+					</form>
+				</div>
+				</div>
+				
+				<ul id="placesList"></ul>
+				<div id="pagination"></div>
+				</div>
+				<div id="map" style="width:70%;height:100%;position:relataive;overflow:hidden;"></div>
+			</div>
+		</div><br/>
+	</div>
+	<!-- Map html End -->
 	<div id="footer">
 		<div id="footerMenu">
 			<div id="footerLogo"></div>
@@ -454,7 +591,7 @@ function displayPlaces(places) {
     menuEl = document.getElementById('menu_wrap'),
     fragment = document.createDocumentFragment(), 
     bounds = new kakao.maps.LatLngBounds(), 
-    listStr = '';    
+    listStr = '';
     
     removeAllChildNods(listEl);// 검색 결과 목록에 추가된 항목들을 제거합니다
     removeMarker();// 지도에 표시되고 있는 마커를 제거합니다

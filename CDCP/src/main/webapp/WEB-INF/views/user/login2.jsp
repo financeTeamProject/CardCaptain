@@ -16,10 +16,9 @@ body {
 	background-color: #f5f6f7;
 	font-family: 'GmarketSansMedium';
 }
-input {
+.popinput {
 	width: 50%;
     height: 40px;
-    margin: 1px 15px 1px;
     padding: 0px 20px;
     border: 1px solid lightgray;
     outline: none;
@@ -30,60 +29,25 @@ input {
     outline: 0;
     text-decoration: none;
     letter-spacing: 2px;
+    margin: 5px 50px 10px 80px;
 }
-.logo_blue {
-    width: 400px;
-    height: 100px;
-	margin: 120px auto;
+.cardcaptain {
+	width: 100%;
+	height: 95px;
+	line-height: 110px;
+	text-align: center;
+	font-size: 25px;
+	color: #0047AB;
+	letter-spacing: 5px;
 }
-.imgLogo { 
-	width: 400px;
-    height: 100px;
-	background-image: url("/cdcp/resources/images/user/logo_blue.png");
-    background-repeat: no-repeat;
-    background-size: 230px;
-    cursor: pointer;
-    margin: auto 20%;
-}
-.login {
+#popup {
 	height: 320px;
 	width: 400px;
 	background-color: white;
 	border-radius: 70px;
 	display: block;
-	margin: 20px auto;
-}
-.a1 {
-	width: 100%;
-	height: 100px;
-	display: block;
-	border-radius: 70px;
-}
-.a2 {
-	width: 100%;
-	height: 100px;
-	display: block;
-	text-align: center;
-}
-.a3 {
-	width: 100%;
-	height: 100px;
-	display: block;
-	border-radius: 70px;
-	text-align: center;
-}
-.b1 {
-	width: 400px;
-	height: 43px;
-	padding: 30px;
-	margin: auto 36%;
-}
-.imgLogin {
-	width: 40px;
-	height: 40px;
-	background-image: url("/cdcp/resources/images/user/login1.png");
-	background-repeat: no-repeat;
-	background-size: 50px;
+	margin: 300px auto;
+	z-index: 10;
 }
 #loginBtn {
 	margin-bottom: 10px;
@@ -101,11 +65,13 @@ input {
 	display: inline-block;
 	vertical-align: top;
 	font-size: 11px;
+    margin: 10px 0 10px 130px;
 }
 .new {
 	display: inline-block;
 	vertical-align: top;
 	font-size: 11px;
+	margin: 10px 0 10px 0;
 }
 .re:hover, .new:hover {
 	cursor: pointer;
@@ -170,27 +136,16 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<div class="logo_blue">
-	<div class="imgLogo"></div>
-</div>
-	<div class="login">
-		<div class="a1">
-			<div class="b1">
-				<div class="imgLogin"></div>
-			</div>
-		</div>
+	<div id="popup">
+		<div class="cardcaptain">Card Captain</div>
 		<form action="testLogins" id="loginForm" method="post">
-			<div class="a2">
-				<input type="email" placeholder="ID" id="mId" name="mId">
-				<input type="password" placeholder="PW" id="mPw" name="mPw">
-			</div>
+				<input type="email" class="popinput" placeholder="ID" id="mId" name="mId">
+				<input type="password" class="popinput" placeholder="PW" id="mPw" name="mPw">
 			<span class="errorMsg" id="masage" aria-live="assertive"></span>
 			<input type="button" id="loginBtn" value="로그인"/><br/>
 		</form>
-		<div class="a3">
-			<div class="re" id="searchmem">ID/PW 찾기</div>
-			<div class="new" id="join">|&nbsp;&nbsp;회원 가입</div>
-		</div>
+		<div class="re" id="searchmem">ID/PW 찾기</div>
+		<div class="new" id="join">|&nbsp;&nbsp;회원 가입</div>
 	</div>
 </body>
 </html>

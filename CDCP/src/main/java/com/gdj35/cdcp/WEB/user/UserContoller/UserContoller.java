@@ -1,6 +1,9 @@
 package com.gdj35.cdcp.WEB.user.UserContoller;
 
 import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,44 @@ import com.gdj35.cdcp.util.Mail;
 public class UserContoller {
 	@Autowired UserIService useriService;
 	
+	//로그인메인
+	@RequestMapping(value="/login2")
+	public ModelAndView login2(ModelAndView mav) {
+		
+		mav.setViewName("user/login2");
+		
+		return mav;
+	}
+	@RequestMapping(value="/login")
+	public ModelAndView login(ModelAndView mav) {
+		
+		mav.setViewName("user/login");
+		
+		return mav;
+	}
+	@RequestMapping(value="/login",
+			method = RequestMethod.POST,
+			produces = "text/json;charset=UTF-8")
+		@ResponseBody
+		public String logins(
+				HttpSession session,
+				@RequestParam HashMap<String,String> params) throws Throwable {
+			ObjectMapper mapper = new ObjectMapper();
+			
+			Map<String, Object> modelMap = new HashMap<String, Object>();
+			
+			HashMap<String,String> data = useriService.getM(params);
+			
+			if(data != null) {
+				session.setAttribute("sMNo", data.get("MEMBER_NO"));
+				session.setAttribute("sMNm", data.get("NICKNAME"));
+				
+				modelMap.put("resMsg", "success");
+			} else {
+				modelMap.put("resMsg", "failed");
+			}
+			return mapper.writeValueAsString(modelMap);
+	}
 	//회원가입 페이지
 	@RequestMapping(value = "/join")
 	public ModelAndView join(ModelAndView mav) {
@@ -37,14 +78,6 @@ public class UserContoller {
 		return mav;
 	}
 	
-	//로그인메인
-	@RequestMapping(value="/login")
-	public ModelAndView login(ModelAndView mav) {
-		
-		mav.setViewName("user/login");
-		
-		return mav;
-	}
 
 	//user - searchmem 이메일인증ㅇㅇㅇ
 	@RequestMapping(value = "/checkingEmail", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
