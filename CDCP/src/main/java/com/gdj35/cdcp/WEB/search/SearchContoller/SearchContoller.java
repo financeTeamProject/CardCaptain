@@ -1,5 +1,6 @@
 package com.gdj35.cdcp.WEB.search.SearchContoller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -35,20 +36,9 @@ public class SearchContoller {
 	
 	//카드검색 결과 페이지searchingCardList
 	@RequestMapping(value = "/searchingCardList")
-	public ModelAndView searchingCardList(ModelAndView mav, @RequestParam HashMap<String,String> params) {
-		Iterator<Entry<String,String>> it = params.entrySet().iterator();
-		int cnt = 0;
-		
-		while(it.hasNext()) {
-			Entry<String, String> entrySet = (Entry<String, String>) it.next();
-			String key = entrySet.getKey();
-			String val = entrySet.getValue();
-			//System.out.println(entrySet.getKey() + " : " + entrySet.getValue());
-			//System.out.println(key + " : " + val);
-			cnt++;
-			mav.addObject(key, val);
-		}
-		mav.addObject("paramCnt", cnt);
+	public ModelAndView searchingCardList(ModelAndView mav, @RequestParam HashMap<String,String> params,
+			@RequestParam ArrayList<String> option) {
+		mav.addObject("options", option);
 		mav.setViewName("search/searchingCardList");
 		return mav;
 	}

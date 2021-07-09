@@ -56,16 +56,25 @@ public class UserContoller {
 		try {
 			HashMap<String, String> data = useriService.getId(params);
 			if (params.get("findType").equals("id")) {
-				Mail.sendMail(params.get("checkEmail"), params.get("findType"),data.get("MEMBER_ID"));
+				String result = Mail.sendMail(params.get("checkEmail"), params.get("findType"),data.get("MEMBER_ID"));
+				modelMap.put("result", result);
 			} else if (params.get("findType").equals("pw")) {
 	        	String temp = RandomStringUtils.randomAlphanumeric(6);
-				Mail.sendMail(params.get("checkEmail"), params.get("findType"),temp);
+				String result = Mail.sendMail(params.get("checkEmail"), params.get("findType"),temp);
+				modelMap.put("result", result);
+			} else if (params.get("findType").equals("join")) {
+				String result = Mail.sendMail(params.get("checkEmail"), params.get("findType"),"");
+				modelMap.put("result", result);
+			} else {
+				modelMap.put("result", "failed");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return mapper.writeValueAsString(modelMap);
 	}
+	
 	//blur샘플
 	@RequestMapping(value = "/blurSample")
 	public ModelAndView blurSample(ModelAndView mav) {

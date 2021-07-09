@@ -284,8 +284,8 @@ $(document).ready(function() {
 	<div id="main" class="main">
  		<div id="keyword" class="keyword">
  			<ul>
- 				<c:forEach var="i" begin="0" end="${paramCnt}" step="1" varStatus="status">
-					<li><c:out value="$"/><c:out value="{option_"/><c:out value="${status.index}"/><c:out value="}"/></li>
+ 				<c:forEach var="data" items="${options}">
+					<li>${data}</li>
  				</c:forEach>
  			</ul>
 		</div>

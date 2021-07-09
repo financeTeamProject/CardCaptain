@@ -266,9 +266,8 @@ $(document).ready(function() {
 		var taglength = tags.length;
 		
 		for(var i=0; i<taglength; i++) {
-			actionVal += "<input type=\"hidden\" name=\"option_" + i + "\" value=\"" + tags[i].innerHTML + "\" /><br/>";
+			actionVal += "<input type=\"hidden\" name=\"option\" value=\"" + tags[i].innerHTML + "\" /><br/>";
 		}
-		
 		$("#goForm").html(actionVal);
 		$("#goForm").attr("action","searchingCardList");
 		$("#goForm").submit();
