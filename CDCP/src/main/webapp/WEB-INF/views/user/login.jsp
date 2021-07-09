@@ -154,8 +154,8 @@ $(document).ready(function() {
 		</div>
 		<form action="testLogins" id="loginForm" method="post">
 			<div class="a2">
-				<input type="email" placeholder="ID" id="mId">
-				<input type="password" placeholder="PW" id="mPw">
+				<input type="email" placeholder="ID" id="mId" name="mId">
+				<input type="password" placeholder="PW" id="mPw" name="mPw">
 			</div>
 			<span class="error" id="masage" aria-live="assertive">아이디 또는 비밀번호가 일치하지 않습니다.</span>
 			<input type="button" id="loginBtn" value="로그인"/><br/>
