@@ -261,8 +261,7 @@ input#pos1,#pos2,#pos3,#pos4 {
 	.map_area h1 {font-family:'GmarketSansMedium'}
 /* Map CSS End */
 </style>
-<script type="text/javascript"
-			src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		/* 카드순위 페이지 이동 */
@@ -595,6 +594,5 @@ function removeAllChildNods(el) {
 }
 </script>
 <!-- Map Script End -->
-
 </body>
 </html>
