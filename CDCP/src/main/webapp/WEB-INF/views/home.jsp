@@ -277,7 +277,10 @@ input#pos1,#pos2,#pos3,#pos4 {
 		$("#contents").on("click", function(){
 			location.href = "content";
 		});
-		
+		/* 로그인팝업 실행 */
+		$("#imgLogin").on("click", function(){
+			location.href = "login";
+		});
 	}); // document ready end
 	
 /* Map */
