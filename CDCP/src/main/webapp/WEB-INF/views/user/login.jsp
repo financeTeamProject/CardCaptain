@@ -145,10 +145,11 @@ $(document).ready(function() {
 			alert("비밀번호를 입력해 주세요.");
 			$("#mPw").focus();
 		} else {
-			var params = $("loginForm").serialize();
+			alert("sdf");
+			var params = $("#loginForm").serialize();
 			
 			$.ajax({
-				url: "login",
+				url: "logins",
 				type: "post",
 				dataType: "json",
 				data: params,
@@ -156,6 +157,7 @@ $(document).ready(function() {
 					if(res.resMsg == "success"){
 						location.href = "cdcp";
 					} else {
+						alert("sd");
 						$(".errorMsg").css("display","inline");
 						$("#masage").html("아이디 또는 비밀번호가 일치하지 않습니다.")
 					}
@@ -179,7 +181,7 @@ $(document).ready(function() {
 				<div class="imgLogin"></div>
 			</div>
 		</div>
-		<form action="testLogins" id="loginForm" method="post">
+		<form action="Logins" id="loginForm" method="post">
 			<div class="a2">
 				<input type="email" placeholder="ID" id="mId" name="mId">
 				<input type="password" placeholder="PW" id="mPw" name="mPw">

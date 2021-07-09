@@ -23,13 +23,6 @@ public class UserContoller {
 	@Autowired UserIService useriService;
 	
 	//로그인메인
-	@RequestMapping(value="/login2")
-	public ModelAndView login2(ModelAndView mav) {
-		
-		mav.setViewName("user/login2");
-		
-		return mav;
-	}
 	@RequestMapping(value="/login")
 	public ModelAndView login(ModelAndView mav) {
 		
@@ -37,13 +30,14 @@ public class UserContoller {
 		
 		return mav;
 	}
-	@RequestMapping(value="/login",
+	@RequestMapping(value="/logins",
 			method = RequestMethod.POST,
 			produces = "text/json;charset=UTF-8")
 		@ResponseBody
 		public String logins(
 				HttpSession session,
 				@RequestParam HashMap<String,String> params) throws Throwable {
+		System.out.println(params);
 			ObjectMapper mapper = new ObjectMapper();
 			
 			Map<String, Object> modelMap = new HashMap<String, Object>();
