@@ -140,27 +140,41 @@ body {
 	/*슬라이드 화면부분 ~165번째줄 */
 *{margin:0;padding:0;}
 #content {
-	width: 1600px;
-    height: 1800px;
+	width: 100%;
+    height: 2800px;
     margin: 0 auto;
 }
 ul,li{
 	list-style:none;
 }
-.slide{
+.slide {
+	width: 100%;
 	height:700px;
 	overflow:hidden;
 	position:relative;
+	background-color: #F4F5F6;
+	border-style: solid;
+    border-width: 0 0 2px 0;
+    border-color: #0047AB;
 }
-.slide ul{
+.slide1 {
+	width: 100%;
+	height:700px;
+	overflow:hidden;
+	position:relative;
+	border-style: solid;
+    border-width: 0 0 2px 0;
+    border-color: #0047AB;
+}
+.slide ul {
 	width:calc(100% * 4);
 	display:flex;transition:1s;
 }
-.slide li{
+.slide li {
 	width:calc(100% / 4);
 	height:1000px;
 }
-.slide li:nth-child(1){background:#f5f6f7;}
+.slide li:nth-child(1){background:#F4F5F6;}
 .slide li:nth-child(2){background:#9565ab3b;}
 .slide li:nth-child(3){background:#81ab653b;}
 .slide li:nth-child(4){background:#6589ab3b;}
@@ -193,9 +207,9 @@ input#pos1,#pos2,#pos3,#pos4 {
 	width: 100%;
 }
 .bottom {
-	height: 59%;
-	width: 85%;
-	background-color: lightgray;
+	height: 60%;
+	width: 1600px;
+	background-color: #0047ab;
 	margin: 0 auto;
 	display: flex;
 }
@@ -279,7 +293,7 @@ input#pos1,#pos2,#pos3,#pos4 {
     outline: 0;
     text-decoration: none;
     letter-spacing: 2px;
-    margin: 5px 50px 10px 80px;
+    margin: 5px 50px 10px 70px;
 }
 .cardcaptain {
 	width: 100%;
@@ -310,7 +324,7 @@ input#pos1,#pos2,#pos3,#pos4 {
 	border: none;
 	cursor: pointer;
 	display: inline;
-	margin: 0 0 15px 100px
+	margin: 20px 10px 15px 90px;
 }
 .re {
 	display: inline-block;
@@ -444,7 +458,7 @@ $(document).ready(function(){
 <body>
 <!-- 로그인팝업 -->
 <div id="popup">
-	<div class="cardcaptain">Card Captain</div>
+	<div class="cardcaptain">&nbsp;&nbsp;&nbsp;&nbsp;Card Captain&nbsp;&nbsp;&nbsp;&nbsp;X</div>
 	<form action="testLogins" id="loginForm" method="post">
 			<input type="email" class="popinput" placeholder="ID" id="mId" name="mId">
 			<input type="password" class="popinput" placeholder="PW" id="mPw" name="mPw">
@@ -496,7 +510,8 @@ $(document).ready(function(){
 	    </p>
 	  </div><br/>
 	<!-- Map html Start -->
-		<div class="map_area" style="border:solid;border-radius:50px;border-width:7px;border-color:#CCC;padding:40px;background-color:#F2F2F2;">
+	<div class="slide1">
+		<div class="map_area" style="width:1600px; border-width:7px;padding:40px;margin:0 auto;">
 			<h1>시험 끝! <span>OO카드 들고 </span>나 오늘 집에 안갈래~</h1><br/>
 			<input type="button" value="올리브영" onclick="sendPlace(this);">
 			<input type="button" value="스타벅스" onclick="sendPlace(this);">
@@ -519,8 +534,10 @@ $(document).ready(function(){
 				<div id="map" style="width:70%;height:100%;position:relataive;overflow:hidden;"></div>
 			</div>
 		</div><br/>
-	</div>
+		</div>
 	<!-- Map html End -->
+		<div class="slide"></div>
+	</div>
 	<div id="footer">
 		<div id="footerMenu">
 			<div id="footerLogo"></div>
