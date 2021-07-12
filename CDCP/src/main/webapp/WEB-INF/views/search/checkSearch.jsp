@@ -248,11 +248,40 @@ img {
 .choiceList:hover {
 	color: #0047AB;
     cursor: pointer;
-    text-decoration:underline;
+    text-decoration: underline;
+}
+.choiceListClick {
+	color: #0047AB;
+    text-decoration: underline;
+    font-family: 'GmarketSansLight';
+    font-weight: 700;
 }
 </style>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#subBtn").on("click", function() {
+		var actionVal = "";
+		var tags = document.getElementsByClassName("choiceListClick");
+		var taglength = tags.length;
+		
+		for(var i=0; i<taglength; i++) {
+			actionVal += "<input type=\"hidden\" name=\"option\" value=\"" + tags[i].innerHTML + "\" /><br/>";
+		}
+		$("#goForm").html(actionVal);
+		$("#goForm").attr("action","searchingCardList");
+		$("#goForm").submit();
+	});
+	
+	$(".choiceList").on("click", function() {
+		$(this).attr("class","choiceListClick");
+	});
+});
+</script>
 </head>
 <body>
+<form action="#" id ="goForm" method="post">
+</form>
 <!-- Start Header by KJ -->
 <div id="header">
 	<div id="headerWrap">

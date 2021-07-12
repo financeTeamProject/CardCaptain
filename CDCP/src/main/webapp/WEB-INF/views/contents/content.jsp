@@ -419,9 +419,26 @@ h1 {
 			$(".test_button").on("click", function() { // 테스트 시작하기를 눌렀을 때, 소비심리 첫번째 페이지로 이동
 				location.href = "Ctest1";
 			});
-			
+			/* 카드간단용어 이동 */
 			$(".box").on("click", function() { // 카드간단용어 중 하나의 박스를 클릭할 시에 카드기사내용 페이지로 이동.
 				location.href = "cardTerms";
+			}); 
+			
+			$("#img_rayout_4").on("click", function() { // 카드간단용어 중 하나의 박스를 클릭할 시에 카드기사내용 페이지로 이동.
+				location.href = "cardTerms";
+			}); 
+			
+			/* 카드활용꿀팁 이동 */
+			$("#img_rayout_1").on("click", function() { // 기사 1
+				location.href = "cardTip_1";
+			});
+			
+			$("#img_rayout_2").on("click", function() { // 기사 2
+				location.href = "cardTip_2";
+			});
+		
+			$("#img_rayout_3").on("click", function() { // 기사 3
+				location.href = "cardTip_3";
 			});
 		});	
 		
@@ -472,9 +489,9 @@ h1 {
 						<div id="img_rayout"><div id="img_rayout_1"></div></div>
 						<div id="content_content">
 						<h2>올해부터 시행되는 신용점수제! 신용점수 올리기 꿀TIP</h2>
+						<h1>기사내용</h1>
 						<div>등록일자 데이터</div>
 						<div>등록한 사람</div>
-						<h1>기사내용</h1>
 						</div>
 					</div>				
 				</div>

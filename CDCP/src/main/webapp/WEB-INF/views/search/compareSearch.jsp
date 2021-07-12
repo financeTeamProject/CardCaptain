@@ -142,8 +142,11 @@ body{
     margin: 0 auto;
 }		
 /* SYOU */
-.sub_title {
-	margin-top: 40px;
+.sub_title h1 {
+	font-family: Cafe24Ohsquare;
+	font-size: 35px;
+	margin-top: 70px;
+	margin-bottom: 30px;
 }
 #main {
 	width: 1000px;
@@ -171,9 +174,12 @@ body{
 .card_list_img h4 {
 	font-size:16px;
 	font-family: GmarketSansMedium;
+	margin-top: 20px;
+	text-align: center;
 }
 .btn_list {
 	text-align: center;
+	margin-top: 20px;
 }
 .sub_btn {
 	width: 70px;
@@ -188,6 +194,7 @@ body{
 .sub_btn:hover {
 	background-color: #FFD400;
 	color: #282c37;
+	cursor: pointer;
 }
 #benefit_table {
 	width: 1000px;
@@ -213,34 +220,28 @@ table tr:nth-child(1) {
 table tr:nth-child(even) {
 	background-color: #FFFFFF;
 }
-#detail_btn {
-	text-align:center;
-	display:inline-block;
+#card_list_img_1,#card_list_img_2,#card_list_img_3 {
+	display: inline-block;
+    vertical-align: top;
+    background-image: url("resources/images/search/delete_icon.PNG");
+    background-repeat: no-repeat;
+    background-size: 25px;
+    width: 30px;
+    height: 30px;
+    margin-left: 260px;
 }
-.detail_submit {
-	display:inline-block;
-	margin:0px 100px 0px 100px;
-}
-.detail_submit input {
-	display:inline-block;
-	width:115px;
-	height:30px;
-	border-style:none;
-	background-color:#868e96;
-	border-radius:5px;
-	font-family: GmarketSansMedium;
-}
-.detail_submit input:hover {
-	background-color:#FFD400;
-	color:#282c37;
-}
-.sub_title h1 {
-	font-family: Cafe24Ohsquare;
-	font-size: 35px;
-	margin-top: 70px;
-	margin-bottom: -10px;
+#card_list_img_1:hover,#card_list_img_2:hover,#card_list_img_3:hover {
+	cursor: pointer;
 }
 </style>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	/* $("#subBtn").on("click", function() {
+		location.href = "searchingCardList";
+	}); */
+});
+</script>
 </head>
 <body>
 <!-- Start Header by KJ -->
@@ -267,29 +268,29 @@ table tr:nth-child(even) {
 			<h1>카드 상세 비교</h1>
 		</div>
 		<div class="card_image_list">
-		<div class="card_list_img">
-			<i style='font-size:24px;position:relative;margin-left:260px;margin-bottom:5px;' class='fa'>&#xf2ed;</i>
+		<div class="card_list_img" id="card_list_area_1">
+			<div id="card_list_img_1"></div>
 			<img src="https://card-search.naver.com/resource/images/card/KB/1692/KB_1692_hor.png">
-			<h4>KB국민 청춘대로 톡톡카드</h4>
-			<div class="btn_list">
+			<h4 id="card_list_name_1">KB국민 청춘대로 톡톡카드</h4>
+			<div class="btn_list" id="card_list_btn_1">
 				<input type="button" value="카드변경" class="sub_btn" style="margin-right:5px;" />
 				<input type="button" value="상세보기" class="sub_btn" />
 			</div>
 		</div>
-		<div class="card_list_img">
-			<i style='font-size:24px;position:relative;margin-left:260px;margin-bottom:5px;' class='fa'>&#xf2ed;</i>
+		<div class="card_list_img" id="card_list_area_2">
+			<div id="card_list_img_2"></div>
 			<img src="https://card-search.naver.com/resource/images/card/SS/1530/SS_1530_hor.png">
-			<h4>삼성카드 taptap O</h4>
-			<div class="btn_list">
+			<h4 id="card_list_name_2">삼성카드 taptap O</h4>
+			<div class="btn_list" id="card_list_btn_2">
 				<input type="button" value="카드변경" class="sub_btn" style="margin-right:5px;" />
 				<input type="button" value="상세보기" class="sub_btn" />
 			</div>
 		</div>
-		<div class="card_list_img">
-			<i style='font-size:24px;position:relative;margin-left:260px;margin-bottom:5px;' class='fa'>&#xf2ed;</i>
+		<div class="card_list_img" id="card_list_area_3">
+			<div id="card_list_img_3"></div>
 			<img src="https://card-search.naver.com/resource/images/card/SS/223/SS_223_hor.png">
-			<h4>삼성카드 4</h4>
-			<div class="btn_list">
+			<h4 id="card_list_name_3">삼성카드 4</h4>
+			<div class="btn_list" id="card_list_btn_3">
 				<input type="button" value="카드변경" class="sub_btn" style="margin-right:5px;" />
 				<input type="button" value="상세보기" class="sub_btn" />
 			</div>
@@ -329,28 +330,16 @@ table tr:nth-child(even) {
 				<td>통신사, 쇼핑</td>
 				<td>마일리지, 외식, 카페/베이커리</td>
 			</tr>
-			<tr style="border-bottom:hidden;background-color:#F5F6F7;">
-				<td>
-					<div class="detail_submit">
-						<input type="button" value="상세혜택보기" />
-					</div>
-				</td>
-				<td>
-					<div class="detail_submit">
-						<input type="button" value="상세혜택보기" />
-					</div>
-				</td>
-				<td>
-					<div class="detail_submit">
-						<input type="button" value="상세혜택보기" />
-					</div>
-				</td>
-			</tr>
 		</table>
 	</div>
 </div>
 </div>
 </div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 <!-- Start Footer by KJ -->
 <div id="footer">
 	<div id="footerMenu">
