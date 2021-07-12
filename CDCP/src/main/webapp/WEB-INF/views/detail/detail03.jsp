@@ -94,12 +94,19 @@ $(function(){
 					
 		});
 				
+		
+		
+		
 	});
+		
+	
+	
+	
 				
 		function makePopup(){
 			
 			var html = "<div class = \"Popup\">"
-				+ "<input type = \"button\" id = \"p1\" value = \"상세보기\"  readonly = \"readonly\" >"
+				+ "<input type = \"button\" id = \"p1\" value = \"상세보기\" readonly = \"readonly\" >"
 				+ "<input type = \"button\" id = \"p2\" value = \"취소\"  readonly = \"readonly\" >"
 				+ "</div>"
 								
@@ -107,7 +114,13 @@ $(function(){
 				$("body").prepend(html);
 				$(".Popup").hide().fadeIn();
 						
-			
+				$("#p1").on("click",function(){
+					
+					location.href = "http://localhost:8090/cdcp/compareSearch";
+											
+				});
+							
+				
 			$("#p2").off("click");
 			$("#p2").on("click",function(){
 				
@@ -128,6 +141,10 @@ $(function(){
 		});
 	
 	}
+	
+	
+	
+	
 	
 	
 </script>

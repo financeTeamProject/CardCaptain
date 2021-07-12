@@ -6,12 +6,15 @@
 <meta charset="UTF-8">
 <title>카드상세보기-카드캡틴</title>
 <style type="text/css">
+	
 	@font-face {
+	
 	    font-family: 'GmarketSansMedium';
 	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
 	    font-weight: normal;
 	    font-style: normal;
 	}
+		
 	@font-face {
 	    font-family: 'Cafe24Ohsquare';
 	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
@@ -405,6 +408,7 @@
 	    border-color: #0047AB;
 	    font-family: 'Cafe24Ohsquare';
 		min-width: 1830px;	
+			
 	}
 	#footerMenu {
 		width: 80%;
