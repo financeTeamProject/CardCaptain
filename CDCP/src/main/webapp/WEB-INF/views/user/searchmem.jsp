@@ -84,7 +84,7 @@ body {
     outline: 0;
     border-radius: 0;
     box-sizing: border-box;
-    caret-color: #f7e317;
+    caret-color: red;
     text-decoration: none;
 	color: #0047AB;
 	font-size: 14px;
@@ -98,25 +98,24 @@ body {
 	border-color: #0047AB;
 	padding: 11px 70px 8px 0;
 	outline: 0;
-	caret-color: #f7e317;
+	caret-color: red;
 	color: #0047AB;
 	box-sizing: border-box;
 	font-size: 13px;
 	letter-spacing: 4px;
 }
 #phone_num {
-	width: 390px;
-	height: 45px;
-	border-style: solid;
-	border-width: 0 0 1px 0;
-	border-color: #0047AB;
-	padding: 11px 70px 8px 0;
-	outline: 0;
-	caret-color: #f7e317;
-	color: #0047AB;
-	box-sizing: border-box;
-	font-size: 13px;
-	letter-spacing: 4px;
+	width: 300px;
+    height: 45px;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: #0047AB;
+    outline: 0;
+    caret-color: red;
+    color: #0047AB;
+    box-sizing: border-box;
+    font-size: 13px;
+    letter-spacing: 4px;
 }
 #text_num2 {
 	width: 13px;
@@ -125,7 +124,7 @@ body {
 	border-width: 0 0 1px 0;
 	border-color: #0047AB;
     outline: 0;
-	caret-color: #f7e317;
+	caret-color: red;
 	color: #0047AB;
 	box-sizing: border-box;
 	font-size: 13px;
@@ -141,61 +140,91 @@ body {
 	caret-color: #f7e317;
 	color: #0047AB;
 }
-#pwEmail,#idEmail {
-	width: 200px;
+.EmailTxt {
+	width: 150px;
 	height: 45px;
 	border-style: solid;
 	border-width: 0 0 1px 0;
 	border-color: #0047AB;
-	padding: 11px 70px 8px 0;
 	outline: 0;
-	caret-color: #f7e317;
+	caret-color: red;
 	color: #0047AB;
 	box-sizing: border-box;
 	font-size: 13px;
-	letter-spacing: 4px;
+	letter-spacing: 3px;
 }
 #id_select_email,#pw_select_email {
-	width: 200px;
+	width: 160px;
 	height: 45px;
 	border-style: solid;
 	border-width: 0 0 1px 0;
 	border-color: #0047AB;
-	padding: 11px 70px 8px 0;
     outline: 0;
 	caret-color: #f7e317;
 	color: #0047AB;
 	letter-spacing: 3px;
     font-size: inherit;
 }
+#id_check, #pw_check {
+	display: none;
+}
 .checkingEmailNum {
-	width: 250px;
+	width: 150px;
 	height: 45px;
 	border-style: solid;
 	border-width: 0 0 1px 0;
 	border-color: #0047AB;
-	padding: 11px 70px 8px 0;
     outline: 0;
-	caret-color: #f7e317;
+	caret-color: red;
 	color: #0047AB;
-}
-.checkingEmailBtn:hover {
-	cursor: pointer;
+	margin-left: 192px;
 }
 .checkingEmailBtn {
-	width: 130px;
+	width: 100px;
+    height: 35px;
+    color: white;
+    border-style: none;
+    background-color: #0047AB;
+    font-size: 13px;
+    font-family: 'GmarketSansMedium';
+    margin-left: 15px;
+    cursor: pointer;
+}
+.checkingCodeBtn {
+	width: 100px;
     height: 35px;
     color: white;
     border-style: none;
     background-color: #0047AB;
     border-radius: 5px;
-    font-size: 15px;
+    font-size: 13px;
     font-family: 'GmarketSansMedium';
     margin-left: 15px;
 }
-.emailTxt {
+.guide {
 	color: red;
-	font-size: 14px;
+	font-size: 12px;
+    float: right;
+}
+.errorMsg {
+	width: auto;
+	height: 100%;
+	display:none;
+	vertical-align:top;
+    color: #e65f3e;
+    font-size: 13px;
+    float: right;
+}
+#select_tel {
+    width: 170px;
+    height: 43px;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: #0047AB;
+    outline: 0;
+    caret-color: red;
+    color: #0047AB;
+    letter-spacing: 3px;
 }
 #btn_next {
     display: block;
@@ -233,30 +262,191 @@ body {
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	$(".checkingEmailBtn").on("click", function() {
-		var ival = $(this).prop("id").split("_");
-		$("#findType").val(ival[0]);
-		$("#checkEmail").val($("." + ival[0] + "Email").val() + "@" + $("." + ival[0] + "_select_email option:selected").val());
+	var regex_kor = (/[^가-힣]$/);
+	var regex_spe = (/[~!@#$%^&*()_+|<>?:{}]/);
+	var regex_num = (/[^0-9]/g);
+	var regex_eng = (/^[a-zA-Z]*$/);
+	var regex_kor = (/[^가-힣]$/);
+	var regex_spe = (/[~!@#$%^&*()_+|<>?:{}]/);
+	var regex_num = (/[^0-9]/g);
+	var regex_eng = (/^[a-zA-Z]*$/);
+
+
+    //숫자만 입력
+    $("#phone_num").keyup(function() {
+       if (regex_num.test($(this).val())) {
+     	  $("#phone_num").val('');
+          alert("잘못된 휴대폰 번호입니다. 숫자, - 를 제외한 숫자만 입력하세요.");
+       }
+    });
+   
+	//숫자만 입력
+	$("#text_num").keyup(function() {
+		if (regex_num.test($(this).val())) {
+			$("#text_num").val('');
+			alert("숫자만 입력 가능합니다.");
+		}
+	});
+	
+	/* 아이디찾기 */
+	$("#id_FindBtn").on("click",function() {
+		var memId = $.trim($("#mem_id").val());
+		var memPhoneOpt = $("select_tel option:selected").val();
+		var memPhone = $.trim($("#phone_num").val());
+		var memRRN = $.trim($("#text_num").val());
+		var memGender = $.trim($("#text_num2").val());
+		var memEmail = $.trim($("#idEmail").val());
+		var memEmail2 = $.trim($("#pwEmail").val());
+		var memEmailOpt = $("#select_email option:selected").val();
+		/* 전화번호 */
+		/*
+		if(전화번호,생년월일,이메일 일치시) {
+			$(".checkingCodeBtn").css("display","inline");
+			$(".checkingEmailNum").css("display","inline");
+			$(코드전송)
+		} else if{
+			$("#id_emailTxt").html("정보가 일치하지 않습니다.");
+		}
+		*/
 		
-		var params = $("#checkEmailForm").serialize();
-		
-		$.ajax({
-			url: "checkingEmail",
-			type: "post",
-			dataType: "json",
-			data: params,
-			success: function(res) {
-				if (res = "success") {
-					$("#" + ival[0] + "_emailTxt").html("*이메일 인증코드를 적어주세요");					
-				} else if (res = "failed") {
-					$("#" + ival[0] + "_emailTxt").html("*이메일 전송이 실패했습니다. 다시한 번 확인해 주세요.");					
-				}
-			},
-			error: function(request, status, error) {
-					console.log(error);
-					$("#" + ival[0] + "_emailTxt").html("*이메일 전송이 실패했습니다. 관리자에게 문의해 주세요");
+		/* 회원정보 불일치, 공백 */
+		/* memPhone != mPhone || memRRn != mRRn || memEmail != mEmail ||  */
+		if(memPhone == "" || memRRN == "" || memEmail == ""){
+		   	if (memPhone == "") {
+		 	  	$("#phone_num").focus();
+		       	$(".errorMsg").css("display","inline");
+		       	$("#errorMsgTel").html("전화번호를 입력해 주세요.");
+		   	} else if (memPhone.length < 11) {
+		 	  	$("#phone_num").focus();
+		       	$(".errorMsg").css("display","inline");
+		       	$("#errorMsgTel").html("-를 제외한 전화번호 11자리를 입력해주세요.");
+		   	} else {
+		 		$("#errorMsgTel").html("");
 			}
-		});
+			
+			/* 생년월일 */
+		   	if (memRRN == "") {
+		 	  	$("#text_num").focus();
+		       	$(".errorMsg").css("display","inline");
+		       	$("#errorMsgBirth").html("생년월일을 입력해주세요.");
+		   	} else if (memRRN.length < 8) {
+	 	  		$("#text_num").focus();
+		      	$(".errorMsg").css("display","inline");
+		       	$("#errorMsgBirth").html("생년월일 8자리를 입력해주세요.");
+		   	} else if (memGender == "") {
+		 	  	$("#text_num2").focus();
+		       	$(".errorMsg").css("display","inline");
+		       	$("#errorMsgBirth").html("뒷자리의 첫번째 번호를 입력해주세요.");
+		   	} else {
+		 		$("#errorMsgBirth").html("");
+			}
+			
+			/* 이메일 */
+			if (memEmail == "") {
+	  			$("#email").focus();
+				$(".errorMsg").css("display","inline");
+				$("#errorMsgEmail").html("이메일을 입력해주세요.");
+			} else {
+				$("#errorMsgEmail").html("");
+			}
+			/* 회원정보일치시, 값입력*/
+		} else {
+			$(".checkingEmailBtn").on("click", function() {
+				var ival = $(this).prop("id").split("_");
+				$("#" + ival[0] + "_check").css("display","inline");
+				
+				$("#findType").val(ival[0]);
+				$("#checkEmail").val($("." + ival[0] + "Email").val() + "@" + $("." + ival[0] + "_select_email option:selected").val());
+				
+				var params = $("#checkEmailForm").serialize();
+				
+				$.ajax({
+					url: "checkingEmail",
+					type: "post",
+					dataType: "json",
+					data: params,
+					success: function(res) {
+						if (res = "success") {
+							$("#" + ival[0] + "_emailTxt").html("이메일 인증코드를 적어주세요.");
+						} else if (res = "failed") {
+							$("#" + ival[0] + "_emailTxt").html("이메일 전송이 실패했습니다. 다시 한번 확인해 주세요.");					
+						}
+					},
+					error: function(request, status, error) {
+							console.log(error);
+							$("#" + ival[0] + "_emailTxt").html("이메일 전송이 실패했습니다. 관리자에게 문의해 주세요.");
+					}
+				});
+			});
+		}
+	});
+	
+	/* 비밀번호찾기 */
+	$("#pw_FindBtn").on("click",function() {
+		var memId = $.trim($("#mem_id").val());
+		var memEmail2 = $.trim($("#pwEmail").val());
+		var memEmailOpt = $("#select_email option:selected").val();
+		
+		/* 아이디 */
+		if(memId == "" || memEmail2 == ""){
+			if(memId == "") {
+				$("#mem_id").focus();
+				$(".errorMsg").css("display","inline");
+				$("#errorMsgId").html("아이디를 입력해주세요.");
+			} else if (memId.length < 6 || memId.length > 16) {
+				$("#mem_id").focus();
+				$(".errorMsg").css("display","inline");
+				$("#errorMsgId").html("아이디는 6~16자리로 만들어 주세요.");
+			} else if (regex_spe.test(memId)) {
+				$("#mem_id").focus();
+				$(".errorMsg").css("display","inline");
+				$("#errorMsgId").html("특수문자는 사용하실 수 없습니다.");
+			} else if (!regex_kor.test(memId)) {
+		 		$("#mem_id").focus();
+				$(".errorMsg").css("display","inline");
+				$("#errorMsgId").html("한글은 사용하실 수 없습니다.");
+			} else {
+		 		$("#errorMsgId").html("");
+			}
+			
+			/* 이메일 */
+			if (memEmail2 == "") {
+	   			$("#email2").focus();
+				$(".errorMsg").css("display","inline");
+				$("#errorMsgEmail2").html("이메일을 입력해주세요.");
+			} else {
+				$("#errorMsgEmail2").html("");
+			}
+		} else {
+			$(".checkingEmailBtn").on("click", function() {
+				var ival = $(this).prop("id").split("_");
+				$("#" + ival[0] + "_check").css("display","inline");
+				
+				
+				$("#findType").val(ival[0]);
+				$("#checkEmail").val($("." + ival[0] + "Email").val() + "@" + $("." + ival[0] + "_select_email option:selected").val());
+				
+				var params = $("#checkEmailForm").serialize();
+				
+				$.ajax({
+					url: "checkingEmail",
+					type: "post",
+					dataType: "json",
+					data: params,
+					success: function(res) {
+						if (res = "success") {
+							$("#" + ival[0] + "_emailTxt").html("이메일 인증코드를 입력해 주세요.");					
+						} else if (res = "failed") {
+							$("#" + ival[0] + "_emailTxt").html("이메일 전송이 실패했습니다. 다시 한번 확인해 주세요.");					
+						}
+					},
+					error: function(request, status, error) {
+							console.log(error);
+							$("#" + ival[0] + "_emailTxt").html("이메일 전송이 실패했습니다. 관리자에게 문의해 주세요.");
+					}
+				});
+			});
+		}
 	});
 });
 </script>
@@ -272,54 +462,70 @@ $(document).ready(function() {
 		<div class="middle1">
 		<div class="middle_top">ID/PW를 찾아주세요.</div>
 		<div class="searchId">*아이디 찾기</div>
-		<div class="title">전화번호</div>
-		<select name="+82" id="select_num"> 
-			<option value="+82   대한민국"></option>
-		</select>
-		<input type="text" id="phone_num" placeholder="전화번호" onkeyup="SetNum(this);"/>
-		<div class="title">생일/성별</div>
+		<div class="title">전화번호
+			<div class="errorMsg" id="errorMsgTel"></div>
+		</div>
+      	<select name="telnum" id="select_tel"> 
+			<option value="+82   대한민국">+82&nbsp;&nbsp;대한민국</option>
+         	<option value="+82   대한민국"></option>
+      	</select>
+		<input type="text" id="phone_num" maxlength="11" placeholder="-제외 한 11자리를 입력해주세요."/>
+		<div class="title">생년월일
+			<div class="errorMsg" id="errorMsgBirth"></div>
+		</div>
 		<div class="title">
-         	<input type="text" id="text_num" placeholder="예) 19940507" maxlength="8" onkeyup="SetNum(this);"/>
-			<input type="text" id="text_num2" maxlength="1" onkeyup="SetNum(this);"/>
+         	<input type="text" id="text_num" placeholder="예) 19940507" maxlength="8"/>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;
+			<input type="text" id="text_num2" maxlength="1"/>
 			<span id="txt">*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*</span>
 		</div>
-		<div class="title">이메일</div>
+		<div class="title">이메일
+			<div class="errorMsg" id="errorMsgEmail"></div>
+		</div>
 		<div class="title">
-			<input type="text" id="idEmail" class="idEmail" placeholder="이메일" />&nbsp;&nbsp;&nbsp;@&nbsp;&nbsp;&nbsp;
+			<input type="text" id="idEmail" class="EmailTxt" placeholder="이메일" />&nbsp;@
 			<select name="+82" id="id_select_email" class="id_select_email">
 				<option value="naver.com">naver.com</option>
 				<option value="gmail.com">gmail.com</option>
 			</select>
-			<input type="text" id="idFindEmail" class="checkingEmailNum" placeholder="인증번호" />
-			<input type="button" id="id_FindBtn" class="checkingEmailBtn" value="이메일인증" />
+			<input type="button" id="id_FindBtn" class="checkingEmailBtn" value="코드전송" />
+			<div id="id_check">
+				<input type="text" id="idFindEmail" class="checkingEmailNum" placeholder="인증코드" />
+				<input type="button" id="id_FindBtn" class="checkingCodeBtn" value="코드확인" />
+				<div class="guide" id="id_emailTxt"></div>
+			</div>
 		</div>
 		<br/>
 		<br/>
 		<br/>
-		<br/>
-		<span class="emailTxt" id="id_emailTxt"></span>
-		<br/>
 		<div class="searchId">*비밀번호 찾기</div>
-		<div class="title">아이디</div>
+		<div class="title">아이디
+			<div class="errorMsg" id="errorMsgId"></div>
+		</div>
 		<input type="text" class="text" placeholder="아이디 입력" id="mem_id" />
-		<div class="title">이메일</div>
+		<div class="title">이메일
+			<div class="errorMsg" id="errorMsgEmail2"></div>
+		</div>
 		<div class="title">
-			<input type="text" id="pwEmail" class="pwEmail" placeholder="이메일" />&nbsp;&nbsp;&nbsp;@&nbsp;&nbsp;&nbsp;
+			<input type="text" id="pwEmail" class="EmailTxt" placeholder="이메일" />&nbsp;@
 			<select name="+82" id="pw_select_email" class="pw_select_email"> 
 				<option value="naver.com">naver.com</option>
 				<option value="gmail.com">gmail.com</option>
 			</select>
-			<input type="text" id="pwFindEmail" class="checkingEmailNum" placeholder="인증번호" />
-			<input type="button" id="pw_FindBtn" class="checkingEmailBtn" value="이메일인증" />
+			<input type="button" id="pw_FindBtn" class="checkingEmailBtn" value="코드전송" />
+			<div id="pw_check">
+				<input type="text" id="pwFindEmail" class="checkingEmailNum" placeholder="인증코드" />
+				<input type="button" id="id_FindBtn" class="checkingCodeBtn" value="코드확인" />
+			</div>
 		</div>
 		<br/>
 		<br/>
 		<br/>
+		<div class="guide" id="pw_emailTxt"></div>
 		<br/>
-		<span class="emailTxt" id="pw_emailTxt"></span>
 		<br/>
 		<br/>
-		<input type="button" value="다음" id="btn_next"></div>
+		<br/>
+		<input type="button" value="로그인하러가기" id="btn_next"></div>
 	</div>
 	<br/>
 	<br/>

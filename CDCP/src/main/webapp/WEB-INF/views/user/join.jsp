@@ -245,49 +245,6 @@ $(document).ready(function() {
 			alert("숫자만 입력 가능합니다.");
 		}
 	});
-   
-	//마우스 오버
-/* 	$("input").mouseover(function () {
-	      var memId = $.trim($("#mem_id").val());
-	      var memPw = $.trim($("#mem_password").val());
-	      var memRePw = $.trim($("#mem_rePassword").val());
-	      var memNick = $.trim($("#mem_nickname").val());
-	      var memPhoneOpt = $("select_tel option:selected").val();
-	      var memPhone = $.trim($("#phone_num").val());
-	      var memRRN = $.trim($("#text_num").val());
-	      var memGender = $.trim($("#text_num2").val());
-	      var memEmail = $.trim($("#email").val());
-	      var memEmailOpt = $("#select_email option:selected").val();
-	      var chk_num = memPw.search(/[0-9]/g);
-	      var chk_eng = memPw.search(/[a-z]/ig);
-	      
-	      
-		if(memId == "") {
-			$("#errorMsgId").css("display","inline");
-		} else if(!memId == "") {
-			$("#errorMsgId").css("display","none");
-		}
-		if(memPw == "") {
-			$("#errorMsgPw").css("display","inline");
-		} else if(!memPw == "") {
-			$("#errorMsgPw").css("display","none");
-		}
-		if(memNick == "") {
-			$("#errorMsgNick").css("display","inline");
-		} else if(!memNick == "") {
-			$("#errorMsgNick").css("display","none");
-		}
-		if(memPhone == "") {
-			$("#errorMsgTel").css("display","inline");
-		} else if(!memPhone == "") {
-			$("#errorMsgTel").css("display","none");
-		}
-		if(memRRN == "") {
-			$("#errorMsgBirth").css("display","inline");
-		} else if(!memRRN == "") {
-			$("#errorMsgBirth").css("display","none");
-		}
-	}); */
 
    //회원가입 필터링   
 	$("#btn_next").on("click",function() {
@@ -304,7 +261,6 @@ $(document).ready(function() {
 		var chk_num = memPw.search(/[0-9]/g);
 		var chk_eng = memPw.search(/[a-z]/ig);
 		var chk_spe = memPw.search(/[~!@#$%^&*()_+|<>?:{}]/ig);
-	   
 	    /* 아이디 */
 		if(memId == "") {
 			$("#mem_id").focus();
@@ -400,10 +356,36 @@ $(document).ready(function() {
 				$("#errorMsgEmail").html("");
 		}
 	});
-	
-	$("#btn_next").on("click", function () {
-		location.href = "joincard";
+   
+	$(".checkingEmailBtn").on("click", function() {
+		var ival = $(this).prop("id").split("_");
+		$("#findType").val(ival[0]);
+		$("#checkEmail").val($("." + ival[0] + "Email").val() + "@" + $("." + ival[0] + "_select_email option:selected").val());
+		
+		var params = $("#checkEmailForm").serialize();
+		
+		$.ajax({
+			url: "checkingEmail",
+			type: "post",
+			dataType: "json",
+			data: params,
+			success: function(res) {
+				if (res = "success") {
+					$("#" + ival[0] + "_emailTxt").html("*이메일 인증코드를 적어주세요");					
+				} else if (res = "failed") {
+					$("#" + ival[0] + "_emailTxt").html("*이메일 전송이 실패했습니다. 다시한 번 확인해 주세요.");					
+				}
+			},
+			error: function(request, status, error) {
+					console.log(error);
+					$("#" + ival[0] + "_emailTxt").html("*이메일 전송이 실패했습니다. 관리자에게 문의해 주세요");
+			}
+		});
 	});
+	
+/* 	$("#btn_next").on("click", function () {
+		location.href = "joincard";
+	}); */
 });
 </script>
 </head>
@@ -436,7 +418,7 @@ $(document).ready(function() {
 			<option value="+82   대한민국">+82&nbsp;&nbsp;대한민국</option>
          	<option value="+82   대한민국"></option>
       	</select>
-      	<input type="text" id="phone_num" placeholder="" maxlength="11" />
+      	<input type="text" id="phone_num" placeholder="-제외 한 11자리를 입력해주세요." maxlength="11" />
       	<div class="title">생년월일
       		<div class="errorMsg" id="errorMsgBirth"></div>
       	</div>
