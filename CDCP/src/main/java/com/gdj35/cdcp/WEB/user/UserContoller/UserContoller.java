@@ -42,10 +42,12 @@ public class UserContoller {
 				session.setAttribute("sMNm", data.get("NICKNAME"));
 				
 				modelMap.put("resMsg", "success");
+				// mav.addObject("resMsg", "success");
 			} else {
 				modelMap.put("resMsg", "failed");
+				// mav.addObject("resMsg", "failed");
 			}
-			return mapper.writeValueAsString(modelMap);
+		return mapper.writeValueAsString(modelMap);
 	}
 	
 	//로그아웃
@@ -68,6 +70,32 @@ public class UserContoller {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="/joins",
+			method = RequestMethod.POST,
+			produces = "text/json;charsetUTF-8")
+		@ResponseBody
+		public String joins(
+			@RequestParam HashMap<String, String> params) throws Throwable {
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+			System.out.println(params);
+		try {
+			int cnt = useriService.joinM(params);
+			
+			if(cnt > 0) {
+				modelMap.put("msg", "success");
+			} else {
+				modelMap.put("msg", "failed");
+			}
+			
+		} catch (Throwable e){
+			e.printStackTrace();
+			modelMap.put("msg", "error");
+		}
+		
+		return mapper.writeValueAsString(modelMap);
+		}
 	
 	//ID/PW찾기
 	@RequestMapping(value="/searchmem")

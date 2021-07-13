@@ -21,4 +21,9 @@ public class UserService implements UserIService {
 		return useridao.getM(params);
 	}
 
+	@Override
+	public int joinM(HashMap<String, String> params) throws Throwable {
+		return useridao.joinM(params);
+	}
+
 }
