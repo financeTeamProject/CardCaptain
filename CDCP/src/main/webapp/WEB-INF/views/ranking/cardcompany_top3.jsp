@@ -427,15 +427,15 @@ body{
 		<div id="contentMenu">
 			<div id="menuName">카드사별 TOP3</div>
 			<div class="nav_menubar">
-				<a href="#card_0" class="nav_btn" id="kbCard">국민 카드</a>
-				<a href="#card_1" class="nav_btn" id="samsumgCard">삼성 카드</a>
-				<a href="#card_2" class="nav_btn" id="lotteCard">롯데 카드</a>
-				<a href="#card_3" class="nav_btn" id="shCard">신한 카드</a>
-				<a href="#card_4" class="nav_btn" id="weCard">우리 카드</a>
-				<a href="#card_5" class="nav_btn" id="hdCard">현대 카드</a>
-				<a href="#card_6" class="nav_btn" id="nhCard">NH농협 카드</a>
-				<a href="#card_7" class="nav_btn" id="hanaCard">하나 카드</a>
-				<a href="#card_8" class="nav_btn" id="ibkCard">IBK 카드</a>
+				<a href="#card_1" class="nav_btn" id="kbCard">국민 카드</a>
+				<a href="#card_2" class="nav_btn" id="samsumgCard">삼성 카드</a>
+				<a href="#card_3" class="nav_btn" id="lotteCard">롯데 카드</a>
+				<a href="#card_4" class="nav_btn" id="shCard">신한 카드</a>
+				<a href="#card_5" class="nav_btn" id="weCard">우리 카드</a>
+				<a href="#card_6" class="nav_btn" id="hdCard">현대 카드</a>
+				<a href="#card_7" class="nav_btn" id="nhCard">농협 카드</a>
+				<a href="#card_8" class="nav_btn" id="hanaCard">하나 카드</a>
+				<a href="#card_9" class="nav_btn" id="ibkCard">IBK 카드</a>
 			</div>
 		</div>
 	</div>
@@ -444,7 +444,7 @@ body{
 		<!-- 카드 TOP3 영역 -->
 		<div class=contentBg>
 			<!-- card_0 영역 시작 -->
-			<div class="card_0" id="card_0">
+			<div class="card_1" id="card_0">
 				<!-- 카드 이름 영역 -->
 				<div class="card_title">
 					<div class="title">

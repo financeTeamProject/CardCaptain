@@ -106,6 +106,7 @@ body{
 	#content{
 		width: 100%;
 		height: 100%;
+		min-width: 1830px;
 	}
 		#contentMenu{
 			width: 1600px;
@@ -318,14 +319,17 @@ body{
 			location.href = "/cdcp";
 			/* $(location).attr('href',"/cdcp"); */
 		}); // headerLogo click end
+		
 		/* 신용카드 top10 페이지 이동 */
 		$("#viewBtn").on("click", function(){
 			location.href = "creditTop10";
 		}); // viewBtn click end
+		
 		/* 카드사별 top3 페이지 이동 */
 		$("#midCmp").on("click", function(){
 			location.href = "cardcompany_top3";
 		}); // viewBtn click end
+		
 		/* 체크카드 top10 페이지 이동 */
 		$("#midCheck").on("click", function(){
 			location.href = "checkTop10";
