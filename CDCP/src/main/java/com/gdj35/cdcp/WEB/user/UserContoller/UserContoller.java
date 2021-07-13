@@ -23,18 +23,11 @@ public class UserContoller {
 	@Autowired UserIService useriService;
 	
 	//로그인메인
-	@RequestMapping(value="/login")
-	public ModelAndView login(ModelAndView mav) {
-		
-		mav.setViewName("user/login");
-		
-		return mav;
-	}
 	@RequestMapping(value="/logins",
 			method = RequestMethod.POST,
 			produces = "text/json;charset=UTF-8")
 		@ResponseBody
-		public String logins(
+		public String login(
 				HttpSession session,
 				@RequestParam HashMap<String,String> params) throws Throwable {
 		System.out.println(params);
@@ -54,6 +47,19 @@ public class UserContoller {
 			}
 			return mapper.writeValueAsString(modelMap);
 	}
+	
+	//로그아웃
+	@RequestMapping(value="/testALogout")
+	public ModelAndView testALogout(HttpSession session,
+			ModelAndView mav) {
+		
+		session.invalidate();
+		
+		mav.setViewName("redirect:/");
+		
+		return mav;
+	}
+	
 	//회원가입 페이지
 	@RequestMapping(value = "/join")
 	public ModelAndView join(ModelAndView mav) {
