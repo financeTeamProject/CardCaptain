@@ -184,52 +184,43 @@ body{
 					}
 						/* 간단혜택 영역*/
 						#bnfArea{
+							display: flex;
+							flex-direction: column;
+							align-content: center;
 							width: 100%;
-							height:150px;
-							margin-top: 30px;
+							height: inherit;
+							text-align: center;
 						}
-							.bnf_dsc{
+							.bnf_dsc1{
 								width: 100%;
 								height: 50px;
 								color: white;
+								font-size: 20px;
 								line-height: 50px;
+								font-family: GmarketSansMedium;
 							}
-								.bnf_name{	/* 혜택내용 */
-									display: inline-block;
-									vertical-align: top; 
-									text-align: center;
-									width: 220px;
-									height: inherit;
-									font-size: 25px;
-									font-family: GmarketSansMedium;
-									font-weight: bold;
-								}
-								.bnf_box{	
-									display: inline-block;
-									vertical-align: top;
-									width: 140px;
-									height: inherit;
-									text-align: center;
-								}
-									.bnf_dt{	 /* %표시 */
-										display: inline-block;
-										vertical-align: top;
-										text-align: right;
-										width: 70px;
-										height: inherit;
-										font-size: 25px;
-										font-family: GmarketSansMedium;
-										font-weight: bold;
-									}
-									.bnf_small{	/* 할인 */
-										display: inline-block;
-										vertical-align: top;
-										text-align: left;
-										width: 60px;
-										height: inherit;
-										font-size: 20px;
-										font-family: GmarketSansMedium;
-									}
+							.bnf_dsc2{
+								display: block;
+								width: 100%;
+								height: 100px;
+								color: white;
+								font-size: 30px;
+								font-family: GmarketSansMedium;
+								margin: 30px 0;
+							}
+							.bnf_dsc3{
+								width: 100%;
+								height: 50px;
+								color: white;
+								font-size: 20px;
+								line-height: 50px;
+								font-family: GmarketSansMedium;
+							}
+							.bnf_img{
+								position: relative;
+								top: 6px;
+							}
+							
 					/* 버튼 박스 영역*/	
 					#btnBox{
 						width: 100%;
@@ -442,22 +433,11 @@ body{
 					</div>
 					<div id="rightSct">
 						<div id="bnfArea">
-							<div class="bnf_dsc">
-								<div class="bnf_name">스타벅스</div>
-								<div class="bnf_box">
-									<div class="bnf_dt">50%</div>
-									<div class="bnf_small">할인</div>
-								</div>
-							</div>
-							<div class="bnf_dsc">
-								<div class="bnf_name">온라인 간편결제</div>
-								<div class="bnf_dt">10%</div>
-								<div class="bnf_small">할인</div>
-							</div>
-							<div class="bnf_dsc">
-								<div class="bnf_name">구독</div>
-								<div class="bnf_dt">20%</div>
-								<div class="bnf_small">할인</div>
+							<div class="bnf_dsc1">[TOP 1 카드의 한마디]</div>
+							<div class="bnf_dsc2">${list[0].CARD_SUMMARY}</div>
+							<div class="bnf_dsc3">
+								<img class="bnf_img" src="resources/images/ranking/icon/love_icon_1.png" width="30px" height="30px">
+								${list[0].CLICK_CNT}명이 신청한 카드!!
 							</div>
 						</div>
 					</div>

@@ -44,7 +44,15 @@ public class RankingContoller {
 	}
 //	체크카드 top10  페이지
 	@RequestMapping(value="/checkTop10")
-	public ModelAndView checkTop10(ModelAndView mav) {
+	public ModelAndView checkTop10(
+			@RequestParam HashMap<String, String> params,
+			ModelAndView mav) throws Throwable {
+		
+		
+		List<HashMap<String, String>> list 
+			= RankingiService.getRCheck(params);
+		
+		mav.addObject("list", list);
 		
 		mav.setViewName("ranking/checkTop10");
 		
