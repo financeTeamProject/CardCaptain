@@ -9,4 +9,6 @@
 							 ON T.CARD_NO = B.CARD_NO
 		WHERE B.DETAIL_INFO LIKE '%'|| #{option} || '%'
 	</select>
+	
+	
 </mapper>
