@@ -124,6 +124,7 @@ public class UserContoller {
 				String result = Mail.sendMail(params.get("checkEmail"), params.get("findType"),temp);
 				modelMap.put("result", result);
 			} else if (params.get("findType").equals("join")) {
+				//Mail.sendMail(수신자이메일주소, findType, 메일내용)
 				String result = Mail.sendMail(params.get("checkEmail"), params.get("findType"),"");
 				modelMap.put("result", result);
 			} else {
@@ -136,10 +137,11 @@ public class UserContoller {
 		return mapper.writeValueAsString(modelMap);
 	}
 	
-	//blur샘플
-	@RequestMapping(value = "/blurSample")
-	public ModelAndView blurSample(ModelAndView mav) {
-		mav.setViewName("user/blurSample");
+	@RequestMapping(value = "/joincard")
+	public ModelAndView joincard(ModelAndView mav) {
+		
+		mav.setViewName("user/joincard");
+		
 		return mav;
 	}
 }

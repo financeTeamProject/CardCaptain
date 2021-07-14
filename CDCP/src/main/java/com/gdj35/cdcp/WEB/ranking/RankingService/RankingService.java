@@ -20,4 +20,10 @@ public class RankingService implements RankingIService {
 		return RankingiDao.getRCredit(params);
 	}
 
+	@Override
+	public List<HashMap<String, String>> getRCheck(HashMap<String, String> params) throws Throwable {
+		
+		return RankingiDao.getRCheck(params);
+	}
+
 }

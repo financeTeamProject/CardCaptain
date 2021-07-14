@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -183,59 +184,49 @@ body{
 					}
 						/* 간단혜택 영역*/
 						#bnfArea{
+							display: flex;
+							flex-direction: column;
+							align-content: center;
 							width: 100%;
-							height:150px;
-							margin-top: 30px;
+							height: inherit;
+							text-align: center;
 						}
-							.bnf_dsc{
+							.bnf_dsc1{
 								width: 100%;
 								height: 50px;
 								color: white;
+								font-size: 20px;
 								line-height: 50px;
+								font-family: GmarketSansMedium;
 							}
-								.bnf_name{	/* 혜택내용 */
-									display: inline-block;
-									vertical-align: top; 
-									text-align: center;
-									width: 220px;
-									height: inherit;
-									font-size: 25px;
-									font-family: GmarketSansMedium;
-									font-weight: bold;
-								}
-								.bnf_box{	
-									display: inline-block;
-									vertical-align: top;
-									width: 140px;
-									height: inherit;
-									text-align: center;
-								}
-									.bnf_dt{	 /* %표시 */
-										display: inline-block;
-										vertical-align: top;
-										text-align: right;
-										width: 70px;
-										height: inherit;
-										font-size: 25px;
-										font-family: GmarketSansMedium;
-										font-weight: bold;
-									}
-									.bnf_small{	/* 할인 */
-										display: inline-block;
-										vertical-align: top;
-										text-align: left;
-										width: 60px;
-										height: inherit;
-										font-size: 20px;
-										font-family: GmarketSansMedium;
-									}
+							.bnf_dsc2{
+								display: block;
+								width: 100%;
+								height: 100px;
+								color: white;
+								font-size: 30px;
+								font-family: GmarketSansMedium;
+								margin: 30px 0;
+							}
+							.bnf_dsc3{
+								width: 100%;
+								height: 50px;
+								color: white;
+								font-size: 20px;
+								line-height: 50px;
+								font-family: GmarketSansMedium;
+							}
+							.bnf_img{
+								position: relative;
+								top: 6px;
+							}
 					/* 버튼 박스 영역*/	
 					#btnBox{
 						width: 100%;
 						height: 100px;
 						text-align: center;
 					}
-						#dtBtn{
+						.dtBtn{
 							width: 150px;
 							height: 50px;
 							color: white;
@@ -246,12 +237,12 @@ body{
 						    font-family: 'GmarketSansMedium';
 							margin: 25px 5px;
 						}	
-							#dtBtn:hover{
+							.dtBtn:hover{
 								color: black;
 							    background-color: #F5DF4D;
 							    cursor: pointer;
 							}
-						#compareBtn{
+						.compareBtn{
 							width: 150px;
 							height: 50px;
 							color: white;
@@ -262,7 +253,7 @@ body{
 						    font-family: 'GmarketSansMedium';
 							margin: 25px 5px;
 						}
-							#compareBtn:hover{
+							.compareBtn:hover{
 								color: black;
 							    background-color: #F5DF4D;
 							    cursor: pointer;
@@ -423,169 +414,50 @@ body{
 			<div id="menuName">체크카드 TOP10</div>
 			<div id="contentTop">
 				<div id="nameSct">
-					<div id="cardName">네이버페이 우리카드 체크</div>
-					<div id="cardCmp">우리카드</div>
+					<div id="cardName">${list[0].CARD_NAME}</div>
+					<div id="cardCmp">${list[0].CARD_CMP_NAME}</div>
 				</div>
 				<!-- 1위 카드 내용 영역 -->
 				<div id="midArea">
 					<div id="leftSct">TOP 1</div>
 					<div id="centerSct">
-						<div id="imgSct"></div>
+						<div id="imgSct">
+							<img src="${list[0].CARD_IMG_URL}" width="350px" height= "200px">
+						</div>
 					</div>
 					<div id="rightSct">
 						<div id="bnfArea">
-							<div class="bnf_dsc">
-								<div class="bnf_name">네이버페이</div>
-								<div class="bnf_box">
-									<div class="bnf_dt">1%</div>
-									<div class="bnf_small">적립</div>
-								</div>
-							</div>
-							<div class="bnf_dsc">
-								<div class="bnf_name">공항라운지</div>
-								<div class="bnf_dt">무료</div>
-								<div class="bnf_small">이용</div>
-							</div>
-							<div class="bnf_dsc">
-								<div class="bnf_name">해외수수료</div>
-								<div class="bnf_dt">면제</div>
-								<div class="bnf_small">서비스</div>
+							<div class="bnf_dsc1">[ TOP 1 카드의 수상 소감 한마디 ]</div>
+							<div class="bnf_dsc2">${list[0].CARD_SUMMARY}</div>
+							<div class="bnf_dsc3">
+								<img class="bnf_img" src="resources/images/ranking/icon/love_icon_1.png" width="30px" height="30px">
+								${list[0].CLICK_CNT}명이 신청한 카드!!
 							</div>
 						</div>
 					</div>
 				</div>
 				<div id="btnBox">
-					<input type="button" value="상세보기" id="dtBtn" />
-					<input type="button" value="비교함 담기" id="compareBtn" />
+					<input type="button" value="상세보기" class="dtBtn" id="${list[0].CARD_NO}" />
+					<input type="button" value="비교함 담기" class="compareBtn" id="${list[0].CARD_NO}" />
 				</div>
 			</div>
 			<div id="contentBot">
+			<c:forEach var ="i" begin="1" end ="9">
 				<div class="rank_box">	<!-- 2등 -->
-					<div class="rank_num">2</div>
+					<div class="rank_num">${list[i].RNK}</div>
 					<div class="box_card">
-						<img alt="카드" src="resources/images/ranking/card/check/we/we_joungsuck_card.png" class="card_img"/> 
+						<img alt="카드" src="${list[i].CARD_IMG_URL}" class="card_img"/> 
 					</div>
 					<div class="box_txt">
-						<h2 class="name_card">카드의정석COOKIE CHECK</h2>
-						<h5 class="cmp_card">우리카드</h5>
+						<h2 class="name_card">${list[i].CARD_NAME}</h2>
+						<h5 class="cmp_card">${list[i].CARD_CMP_NAME}</h5>
 					</div>
 					<div class="dsc_view">
-						<div class="view_box" id="viewBox2"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
-						<div class="view_dt" id="viewDt2"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
+						<div class="view_box" id="${list[i].CARD_NO}"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
+						<div class="view_dt" id="${list[i].CARD_NO}"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
 					</div>
 				</div>
-				<div class="rank_box">	<!-- 3등 -->
-					<div class="rank_num">3</div>
-					<div class="box_card">
-						<img alt="카드" src="resources/images/ranking/card/check//nh/nh_haebom_checkcard.png" class="card_img"/> 
-					</div>
-					<div class="box_txt">
-						<h2 class="name_card">NH20해봄체크카드</h2>
-						<h5 class="cmp_card">NH농협카드</h5>
-					</div>
-					<div class="dsc_view">
-						<div class="view_box" id="viewBox3"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
-						<div class="view_dt" id="viewDt3"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
-					</div>
-				</div>
-				<div class="rank_box">	<!-- 4등 -->
-					<div class="rank_num">4</div>
-					<div class="box_card">
-						<img alt="카드" src="resources/images/ranking/card/check/sh/sh_DeepDreamcheck_card.png" class="card_img"/> 
-					</div>
-					<div class="box_txt">
-						<h2 class="name_card">신한카드 Deep Dream체크</h2>
-						<h5 class="cmp_card">신한카드</h5>
-					</div>
-					<div class="dsc_view">
-						<div class="view_box" id="viewBox4"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
-						<div class="view_dt" id="viewDt4"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
-					</div>
-				</div>
-				<div class="rank_box">	<!-- 5등 -->
-					<div class="rank_num">5</div>
-					<div class="box_card">
-						<img alt="카드" src="resources/images/ranking/card/check/kb/kb_noricheck_card.png" class="card_img"/> 
-					</div>
-					<div class="box_txt">
-						<h2 class="name_card">노리체크카드</h2>
-						<h5 class="cmp_card">KB국민카드</h5>
-					</div>
-					<div class="dsc_view">
-						<div class="view_box" id="viewBox5"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
-						<div class="view_dt" id="viewDt5"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
-					</div>
-				</div>
-				<div class="rank_box">	<!-- 6등 -->
-					<div class="rank_num">6</div>
-					<div class="box_card">
-						<img alt="카드" src="resources/images/ranking/card/check/nh/nh_allpoint_checkcard.png" class="card_img"/> 
-					</div>
-					<div class="box_txt">
-						<h2 class="name_card">올바른POINT체크카드</h2>
-						<h5 class="cmp_card">NH농협카드</h5>
-					</div>
-					<div class="dsc_view">
-						<div class="view_box" id="viewBox6"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
-						<div class="view_dt" id="viewDt6"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
-					</div>
-				</div>
-				<div class="rank_box">	<!-- 7등 -->
-					<div class="rank_num">7</div>
-					<div class="box_card">
-						<img alt="카드" src="resources/images/ranking/card/check/sh/sh_heyyoung-check2.png" class="card_img"/> 
-					</div>
-					<div class="box_txt">
-						<h2 class="name_card">신한카드 HeyYoung체크</h2>
-						<h5 class="cmp_card">신한카드</h5>
-					</div>
-					<div class="dsc_view">
-						<div class="view_box" id="viewBox7"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
-						<div class="view_dt" id="viewDt7"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
-					</div>
-				</div>
-				<div class="rank_box">	<!-- 8등 -->
-					<div class="rank_num">8</div>
-					<div class="box_card">
-						<img alt="카드" src="resources/images/ranking/card/check/kb/kb_kakaopay_checkcard2.png" class="card_img"/> 
-					</div>
-					<div class="box_txt">
-						<h2 class="name_card">카카오페이KB국민 체크카드</h2>
-						<h5 class="cmp_card">KB국민카드</h5>
-					</div>
-					<div class="dsc_view">
-						<div class="view_box" id="viewBox8"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
-						<div class="view_dt" id="viewDt8"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
-					</div>
-				</div>
-				<div class="rank_box">	<!-- 9등 -->
-					<div class="rank_num">9</div>
-					<div class="box_card">
-						<img alt="카드" src="resources/images/ranking/card/check/kkb/kkb_kakao_check2.png" class="card_img"/> 
-					</div>
-					<div class="box_txt">
-						<h2 class="name_Card">카카오뱅크 프렌즈 체크카드</h2>
-						<h5 class="cmp_card">카카오뱅크</h5>
-					</div>
-					<div class="dsc_view">
-						<div class="view_box" id="viewBox9"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
-						<div class="view_dt" id="viewDt9"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
-					</div>
-				</div>
-				<div class="rank_box">	<!-- 10등 -->
-					<div class="rank_num">10</div>
-					<div class="box_card">
-						<img alt="카드" src="resources/images/ranking/card/check/kb/kb_bonus_checkcard.png" class="card_img"/> 
-					</div>
-					<div class="box_txt">
-						<h2 class="name_card">직장인보너스체크카드</h2>
-						<h5 class="cmp_card">KB국민카드</h5>
-					</div>
-					<div class="dsc_view">
-						<div class="view_box" id="viewBox10"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
-						<div class="view_dt" id="viewDt10"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
-					</div>
-				</div>
+				</c:forEach>	
 			</div>
 		</div>
 	</div>

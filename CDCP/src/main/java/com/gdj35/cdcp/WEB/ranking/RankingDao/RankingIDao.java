@@ -7,4 +7,6 @@ public interface RankingIDao {
 
 	public List<HashMap<String, String>> getRCredit(HashMap<String, String> params) throws Throwable;
 
+	public List<HashMap<String, String>> getRCheck(HashMap<String, String> params) throws Throwable;
+
 }

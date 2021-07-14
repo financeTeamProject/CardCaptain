@@ -18,5 +18,11 @@ public class RankingDao implements RankingIDao{
 		
 		return sqlSession.selectList("R.getRCredit", params);
 	}
+
+	@Override
+	public List<HashMap<String, String>> getRCheck(HashMap<String, String> params) throws Throwable {
+		
+		return sqlSession.selectList("R.getRCheck", params);
+	}
 	
 }
