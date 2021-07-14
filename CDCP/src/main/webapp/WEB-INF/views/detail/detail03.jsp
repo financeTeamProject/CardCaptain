@@ -36,8 +36,9 @@ $(function(){
 
 });
 		
+	
 
-
+	
 	/*비교함 담기  */	
 		
 		
@@ -105,6 +106,81 @@ $(function(){
 	
 	}
 
+	
+	
+	/* 버튼 클릭 화살표 이미지 변경*/	
+	
+	 $(document).ready(function(){
+         /*웹페이지 열었을 때*/
+         $(".arrow_down1").show();
+         $(".arrow_up1").hide();
+
+         /*img1을 클릭했을 때 img2를 보여줌*/
+         $(".arrow_down1").click(function(){
+             $(".arrow_down1").hide();
+             $(".arrow_up1").show();
+         });
+
+         /*img2를 클릭했을 때 img1을 보여줌*/
+         $(".arrow_up1").click(function(){
+             $(".arrow_down1").show();
+             $(".arrow_up1").hide();
+         });
+     });
+	 
+	 $(document).ready(function(){
+         /*웹페이지 열었을 때*/
+         $(".arrow_down2").show();
+         $(".arrow_up2").hide();
+
+         /*img1을 클릭했을 때 img2를 보여줌*/
+         $(".arrow_down2").click(function(){
+             $(".arrow_down2").hide();
+             $(".arrow_up2").show();
+         });
+
+         /*img2를 클릭했을 때 img1을 보여줌*/
+         $(".arrow_up2").click(function(){
+             $(".arrow_down2").show();
+             $(".arrow_up2").hide();
+         });
+     });
+	 
+	 $(document).ready(function(){
+         /*웹페이지 열었을 때*/
+         $(".arrow_down3").show();
+         $(".arrow_up3").hide();
+
+         /*img1을 클릭했을 때 img2를 보여줌*/
+         $(".arrow_down3").click(function(){
+             $(".arrow_down3").hide();
+             $(".arrow_up3").show();
+         });
+
+         /*img2를 클릭했을 때 img1을 보여줌*/
+         $(".arrow_up3").click(function(){
+             $(".arrow_down3").show();
+             $(".arrow_up3").hide();
+         });
+     });
+	 
+	 $(document).ready(function(){
+         /*웹페이지 열었을 때*/
+         $(".arrow_down4").show();
+         $(".arrow_up4").hide();
+
+         /*img1을 클릭했을 때 img2를 보여줌*/
+         $(".arrow_down4").click(function(){
+             $(".arrow_down4").hide();
+             $(".arrow_up4").show();
+         });
+
+         /*img2를 클릭했을 때 img1을 보여줌*/
+         $(".arrow_up4").click(function(){
+             $(".arrow_down4").show();
+             $(".arrow_up4").hide();
+         });
+     });
 	
 	
 	
@@ -560,11 +636,18 @@ body{
 						height: 80%;
 						cursor: pointer;
 					}
-						.arrow_down{
+						.arrow_down1 , .arrow_down2 , .arrow_down3 , .arrow_down4{
+							width: 70%;
+							height: 100%;
+							padding: 10px;
+						}
+						
+						.arrow_up1,.arrow_up2,.arrow_up3,.arrow_up4{
 							width: 70%;
 							height: 100%;
 							padding: 10px;
 						}				
+										
 				/* 리뷰 영역 */	
 				#review_name{
 					font-family: Cafe24Ohsquare;
@@ -754,7 +837,9 @@ body{
 					</div>
 					
 					<div class="open_view">
-						<img alt="펼쳐보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_down_gray.png" class="arrow_down">
+						<img alt="펼쳐보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_down_gray.png" class="arrow_down1">
+						<img alt="올려보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_up_gray.png" class="arrow_up1">
+						
 					</div>
 					<div class = "cont" style = "display:none";>가나다라마바사아자차카타파하</div>
 				
@@ -785,7 +870,8 @@ body{
 						<h4 class="cmp_card">구독(YouTube premium,넷플릭스,웨이브,티빙)20% 할인</h4>
 					</div>
 					<div class="open_view">
-						<img alt="펼쳐보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_down_gray.png" class="arrow_down">
+						<img alt="펼쳐보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_down_gray.png" class="arrow_down2">
+						<img alt="올려보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_up_gray.png" class="arrow_up2">
 					</div>
 					<div class = "cont" style = "display:none";>가나다라마바사아자차카타파하</div>
 				</div>
@@ -817,7 +903,8 @@ body{
 						<h4 class="cmp_card">온라인 간편결제 10% 할인</h4>
 					</div>
 					<div class="open_view">
-						<img alt="펼쳐보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_down_gray.png" class="arrow_down">
+						<img alt="펼쳐보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_down_gray.png" class="arrow_down3">
+						<img alt="올려보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_up_gray.png" class="arrow_up3">
 					</div>
 					<div class = "cont" style = "display:none";>가나다라마바사아자차카타파하</div>
 				</div>
@@ -849,7 +936,8 @@ body{
 						<h4 class="cmp_card">꼭 확인하세요!</h4>
 					</div>
 					<div class="open_view">
-						<img alt="펼쳐보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_down_gray.png" class="arrow_down">
+						<img alt="펼쳐보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_down_gray.png" class="arrow_down4">
+						<img alt="올려보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_up_gray.png" class="arrow_up4">
 					</div>
 					<div class = "cont" style = "display:none";>가나다라마바사아자차카타파하</div>
 				</div>

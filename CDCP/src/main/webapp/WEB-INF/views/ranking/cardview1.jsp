@@ -68,8 +68,7 @@
     z-index: 200;
     margin: 0 auto;
     border-radius: 20px;
-    border: 1px;
-
+	border: 1px;
 }
 
 .Popup{
@@ -130,8 +129,6 @@
 	opacity: 0.3; /* 0.0(투명) ~ 1.0(불투명)  */
 			
 }
-	
-	
 	
 	
 	/* 헤더  영역*/

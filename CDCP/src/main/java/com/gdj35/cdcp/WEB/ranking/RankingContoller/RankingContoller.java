@@ -86,5 +86,15 @@ public class RankingContoller {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="/cardview1")
+	public ModelAndView cardview1(ModelAndView mav) {
+	
+		mav.setViewName("ranking/cardview1");
+		
+		return mav;
+	}
+	
+	
 
 }

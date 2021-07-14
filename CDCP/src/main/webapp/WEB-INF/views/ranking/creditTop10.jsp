@@ -24,7 +24,116 @@ body{
     font-style: normal;
 }
 
+	/* 팝업 영역  */
+
+#bi1{
+		
+	cursor:pointer;
+	position: relative;
+	top:90%;
+	left:0%;
+	position: fixed;
+	background-color:#0047ab;
+	color : white;
+	width: 150px;
+	height: 110px;
+	text-align:center;
+	line-height:50px;
+	font-weight:bold;
+	font-size:24px;
+	font-family: 'Cafe24Ohsquare';
+	z-index:200;
+	margin:0 auto;
+	
+}
+
+
+#bi2{
+
+	top: 90%;
+    left: 4%;
+    position: fixed;
+    background-color: #ff6e61;
+    color: white;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 37px;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'Cafe24Ohsquare';
+    z-index: 200;
+    margin: 0 auto;
+    border-radius: 20px;
+	border: 1px;
+}
+
+.Popup{
+
+	z-index:150;
+	
+}
+
+
+#p1{
+	
+			
+    font-size: 15px;
+    position: relative;
+    top: 85%;
+    position: fixed;
+    padding: 10px;
+    background-color: #A0CFEC;
+    color: white;
+    font-family: 'Cafe24Ohsquare';
+    border: 0px;
+    cursor: pointer;
+    z-index: 150;
+    width: 91px;
+    height: 40px;
+	
+}
+
+
+#p2{
+
+	font-size: 15px;
+    position: relative;
+    top: 85%;
+    left: 6%;
+    position: fixed;
+    padding: 10px;
+    background-color: #FFE5B4;
+    color: white;
+    font-family: 'Cafe24Ohsquare';
+    border: 0px;
+    cursor: pointer;
+    z-index: 150;
+    width: 60px;
+    height: 40px;	
+}
+
+
+.Popdown{
+		
+	display:inline-block;
+	width:100%;
+	height:100%;
+	position: fixed;
+	top:0;
+	left:0;
+	z-index: 100;
+	opacity: 0.3; /* 0.0(투명) ~ 1.0(불투명)  */
+			
+}
+	
+
+
+
+
 /*	헤더 영역	*/
+	
+	
 	#header {
 		width: 100%;
 		height: 55px;
@@ -229,14 +338,16 @@ body{
 					}
 						.dtBtn{
 							width: 150px;
-							height: 50px;
-							color: white;
-							border-style: none;
+						    height: 50px;
+						    color: white;
+						    border-style: none;
 						    background-color: #0047AB;
 						    border-radius: 5px;
 						    font-size: 18px;
 						    font-family: 'GmarketSansMedium';
-							margin: 25px 5px;
+						    margin: 25px 5px;
+						    position: relative;
+						    right: 6%;
 						}	
 							.dtBtn:hover{
 								color: black;
@@ -245,14 +356,17 @@ body{
 							}
 						.compareBtn{
 							width: 150px;
-							height: 50px;
-							color: white;
-							border-style: none;
+						    height: 50px;
+						    color: white;
+						    border-style: none;
 						    background-color: #808080;
 						    border-radius: 5px;
 						    font-size: 18px;
 						    font-family: 'GmarketSansMedium';
-							margin: 25px 5px;
+						    margin: 25px 5px;
+						    position: relative;
+						    left: 6%;
+						    bottom: 101px;
 						}
 							.compareBtn:hover{
 								color: black;
@@ -371,6 +485,97 @@ body{
 <script type="text/javascript"
 			src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
+
+/*비교함 담기  */	
+
+
+$(document).ready(function(){
+			
+	
+	$("#bi").hide();
+	
+	
+	$(".compareBtn").on("click",function(){
+		
+		$("#bi").hide();
+		$("#bi").fadeIn();
+				
+	
+	});
+	
+	
+	$("#bi").on("click",function(){
+		
+		makePopup();
+				
+	});
+		
+	
+});
+
+
+	$(document).ready(function(){
+		
+		$("#bi").hide();
+		
+		
+		$(".view_box").on("click" , function(){
+			
+			$("#bi").hide();
+			$("#bi").fadeIn();
+			
+		});
+		
+		$("#bi").on("click",function(){
+			
+			makePopup();
+		
+		});
+	
+	});
+	
+
+	function makePopup(){
+		
+		var html = "<div class = \"Popup\">"
+			+ "<input type = \"button\" id = \"p1\" value = \"비교함 이동\" readonly = \"readonly\" >"
+			+ "<input type = \"button\" id = \"p2\" value = \"취소\"  readonly = \"readonly\" >"
+			+ "</div>"
+							
+			
+			$("body").prepend(html);
+			$(".Popup").hide().fadeIn();
+					
+			$("#p1").on("click",function(){
+				
+				location.href = "http://localhost:8090/cdcp/compareSearch";
+					
+				
+			});
+						
+			
+		$("#p2").off("click");
+		$("#p2").on("click",function(){
+			
+			closePopup();
+																
+		});
+		
+	}				
+	
+		
+
+function closePopup(){
+	
+	$(".Popup").fadeOut(function(){
+		
+		$(".Popup").remove();
+		
+	});
+
+}
+
+
 	$(document).ready(function(){
 		
 		/* 카드순위 페이지 이동 */
@@ -452,8 +657,16 @@ body{
 				</form>
 				<div id="btnBox">
 					<input type="button" value="상세보기" class="dtBtn" id="${list[0].CARD_NO}" />
+					<div>
 					<input type="button" value="비교함 담기" class="compareBtn" id="${list[0].CARD_NO}" />
+						<div id = "bi">
+						<input type = "button" value = "비교함 확인" id = "bi1"/>
+						<input type = "button" value = "1" id= "bi2"/>						
+						</div>
+					</div>
+					
 				</div>
+							
 				
 			</div>
 			<div id="contentBot">
