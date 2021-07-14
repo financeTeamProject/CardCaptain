@@ -43,7 +43,13 @@
 				
 				$("body").prepend(html);
 				$(".Popup").hide().fadeIn();
-						
+			
+				$("#p1").on("click",function(){
+					
+					location.href = "http://localhost:8090/cdcp/compareSearch";
+											
+				});
+							
 			
 			$("#p2").off("click");
 			$("#p2").on("click",function(){
@@ -53,7 +59,6 @@
 			});
 			
 		}				
-		
 			
 	
 	function closePopup(){
@@ -61,9 +66,11 @@
 		$(".Popup").fadeOut(function(){
 			
 			$(".Popup").remove();
+	
 			
 		});
 	
+		
 	}
 	
 	
