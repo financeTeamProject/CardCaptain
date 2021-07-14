@@ -118,7 +118,7 @@ input[type="radio"] {
     text-align: center	
 }
 
-#sobiButton input[type='button'] {
+#sobiButton input[type='submit'] {
 	width: 1100px;
     height: 80px;
     color: white;
@@ -131,7 +131,7 @@ input[type="radio"] {
     margin: 0 auto;
 }
 
-#sobiButton input[type='button']:hover {
+#sobiButton input[type='submit']:hover {
 	background-color:#FFD400;
 	color:#282C37;
 	cursor: pointer;
@@ -220,7 +220,7 @@ label  {
 			</div>
 		</div>
 	<div id="sobiButton">
-		<input type="button" value="다음" id="next" />
+		<input type="submit" value="다음" id="next" />
 	</div>	
 	</div>
 	

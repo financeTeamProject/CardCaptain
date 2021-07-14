@@ -1,11 +1,21 @@
 package com.gdj35.cdcp.WEB.contents.ContentsContoller;
 
+import java.util.HashMap;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.gdj35.cdcp.WEB.contents.ContentsService.ContentsIService;
 
 @Controller
 public class ContentController {
+	
+	@Autowired
+	public ContentsIService ContentsiService;
 	
 	
 	@RequestMapping(value = "/content") // 콘텐츠 메인 화면
@@ -22,12 +32,6 @@ public class ContentController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/Ctest1") // 콘텐츠 소비심리테스트 첫번째 화면
-	public ModelAndView Ctest1(ModelAndView mav) {
-		mav.setViewName("contents/Ctest1");
-		
-		return mav;
-	}
 	
 	@RequestMapping(value = "/Ctest2") // 콘텐츠 소비심리테스트 두번째 화면
 	public ModelAndView Ctest2(ModelAndView mav) {
@@ -91,4 +95,19 @@ public class ContentController {
 		return mav;
 	}
 	
+	
+	@RequestMapping(value="/Ctest1") // Ctest1 페이지
+	public ModelAndView Ctest1(
+			@RequestParam HashMap<String, String> params,
+			ModelAndView mav) throws Throwable{
+		
+		List<HashMap<String, String>> list
+			= ContentsiService.getCtest(params);
+		
+		mav.addObject("list", list);
+		System.out.println(list);
+		mav.setViewName("contents/Ctest1");
+		
+		return mav;
+	}
 }
