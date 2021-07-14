@@ -443,21 +443,14 @@ body{
 					<div id="rightSct">
 						<div id="bnfArea">
 							<div class="bnf_dsc">
-								<div class="bnf_name">스타벅스</div>
-								<div class="bnf_box">
-									<div class="bnf_dt">50%</div>
-									<div class="bnf_small">할인</div>
-								</div>
+								
+								
 							</div>
 							<div class="bnf_dsc">
-								<div class="bnf_name">온라인 간편결제</div>
-								<div class="bnf_dt">10%</div>
-								<div class="bnf_small">할인</div>
+								안녕하십네까
 							</div>
 							<div class="bnf_dsc">
-								<div class="bnf_name">구독</div>
-								<div class="bnf_dt">20%</div>
-								<div class="bnf_small">할인</div>
+								
 							</div>
 						</div>
 					</div>
