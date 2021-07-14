@@ -168,7 +168,7 @@ label  {
 			<div class="content_1">
 				<div class= "h2_w"><h2>[16번 문항]</h2></div>
 				<p>3보이상은 걷는 것보다는 택시를 이용하는 편이다.</p>
-				<input type="radio" name="hobby16" id="hobby16_1" value="1"><label for="hobb16_1">상당히 아니다</label>
+				<input type="radio" name="hobby16" id="hobby16_1" value="1" checked><label for="hobb16_1">상당히 아니다</label>
 				<input type="radio" name="hobby16" id="hobby16_2" value="2"><label for="hobb16_2">아니다</label>
 				<input type="radio" name="hobby16" id="hobby16_3" value="3"><label for="hobb16_3">보통이다</label>
 				<input type="radio" name="hobby16" id="hobby16_4" value="4"><label for="hobb16_4">그렇다</label>
@@ -179,7 +179,7 @@ label  {
 			<div class="content_1">
 				<div class= "h2_w"><h2>[17번 문항]</h2></div>
 				<p>티끌이라도 모으는 편이다.</p>
-				<input type="radio" name="hobby17" id="hobby17_1" value="1"><label for="hobb17_1">상당히 아니다</label>
+				<input type="radio" name="hobby17" id="hobby17_1" value="1" checked><label for="hobb17_1">상당히 아니다</label>
 				<input type="radio" name="hobby17" id="hobby17_2" value="2"><label for="hobb17_2">아니다</label>
 				<input type="radio" name="hobby17" id="hobby17_3" value="3"><label for="hobb17_3">보통이다</label>
 				<input type="radio" name="hobby17" id="hobby17_4" value="4"><label for="hobb17_4">그렇다</label>
@@ -190,7 +190,7 @@ label  {
 			<div class="content_1">
 				<div class= "h2_w"><h2>[18번 문항]</h2></div>
 				<p>갖고싶은거는 못 참는 편이다.</p>
-				<input type="radio" name="hobby18" id="hobby18_1" value="1"><label for="hobb18_1">상당히 아니다</label>
+				<input type="radio" name="hobby18" id="hobby18_1" value="1" checked><label for="hobb18_1">상당히 아니다</label>
 				<input type="radio" name="hobby18" id="hobby18_2" value="2"><label for="hobb18_2">아니다</label>
 				<input type="radio" name="hobby18" id="hobby18_3" value="3"><label for="hobb18_3">보통이다</label>
 				<input type="radio" name="hobby18" id="hobby18_4" value="4"><label for="hobb18_4">그렇다</label>
@@ -201,7 +201,7 @@ label  {
 			<div class="content_1">
 				<div class= "h2_w"><h2>[19번 문항]</h2></div>
 				<p>신용카드 대금을 연체한 적이 있다.</p>
-				<input type="radio" name="hobby19" id="hobby19_1" value="1"><label for="hobb19_1">상당히 아니다</label>
+				<input type="radio" name="hobby19" id="hobby19_1" value="1" checked><label for="hobb19_1">상당히 아니다</label>
 				<input type="radio" name="hobby19" id="hobby19_2" value="2"><label for="hobb19_2">아니다</label>
 				<input type="radio" name="hobby19" id="hobby19_3" value="3"><label for="hobb19_3">보통이다</label>
 				<input type="radio" name="hobby19" id="hobby19_4" value="4"><label for="hobb19_4">그렇다</label>
@@ -212,7 +212,7 @@ label  {
 			<div class="content_1">
 				<div class= "h2_w"><h2>[20번 문항]</h2></div>
 				<p>돈보다는 사랑이 좋다.</p>
-				<input type="radio" name="hobby20" id="hobby20_1" value="1"><label for="hobb20_1">상당히 아니다</label>
+				<input type="radio" name="hobby20" id="hobby20_1" value="1" checked><label for="hobb20_1">상당히 아니다</label>
 				<input type="radio" name="hobby20" id="hobby20_2" value="2"><label for="hobb20_2">아니다</label>
 				<input type="radio" name="hobby20" id="hobby20_3" value="3"><label for="hobb20_3">보통이다</label>
 				<input type="radio" name="hobby20" id="hobby20_4" value="4"><label for="hobb20_4">그렇다</label>
