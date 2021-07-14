@@ -168,55 +168,55 @@ label  {
 			<div class="content_1">
 				<div class= "h2_w"><h2>[6번 문항]</h2></div>
 				<p>친구들과 놀러 갈 때 자기 돈은 최대한 쓰지 않으려 한다.</p>
-				<input type="radio" name="hobby6" id="hobby6_1"><label for="hobb6_1">상당히 아니다</label>
-				<input type="radio" name="hobby6" id="hobby6_2"><label for="hobb6_2">아니다</label>
-				<input type="radio" name="hobby6" id="hobby6_3"><label for="hobb6_3">보통이다</label>
-				<input type="radio" name="hobby6" id="hobby6_4"><label for="hobb6_4">그렇다</label>
-				<input type="radio" name="hobby6" id="hobby6_5"><label for="hobb6_5">상당히 그렇다</label>
+				<input type="radio" name="hobby6" id="hobby6_1" value="1"><label for="hobb6_1">상당히 아니다</label>
+				<input type="radio" name="hobby6" id="hobby6_2" value="2"><label for="hobb6_2">아니다</label>
+				<input type="radio" name="hobby6" id="hobby6_3" value="3"><label for="hobb6_3">보통이다</label>
+				<input type="radio" name="hobby6" id="hobby6_4" value="4"><label for="hobb6_4">그렇다</label>
+				<input type="radio" name="hobby6" id="hobby6_5" value="5"><label for="hobb6_5">상당히 그렇다</label>
 			</div>
 		</div>
 		<div class="content">
 			<div class="content_1">
 				<div class= "h2_w"><h2>[7번 문항]</h2></div>
 				<p>친구나 가족에 대한 책임감이 강한 편이다.</p>
-				<input type="radio" name="hobby7" id="hobby7_1"><label for="hobb7_1">상당히 아니다</label>
-				<input type="radio" name="hobby7" id="hobby7_2"><label for="hobb7_2">아니다</label>
-				<input type="radio" name="hobby7" id="hobby7_3"><label for="hobb7_3">보통이다</label>
-				<input type="radio" name="hobby7" id="hobby7_4"><label for="hobb7_4">그렇다</label>
-				<input type="radio" name="hobby7" id="hobby7_5"><label for="hobb7_5">상당히 그렇다</label>
+				<input type="radio" name="hobby7" id="hobby7_1" value="1"><label for="hobb7_1">상당히 아니다</label>
+				<input type="radio" name="hobby7" id="hobby7_2" value="2"><label for="hobb7_2">아니다</label>
+				<input type="radio" name="hobby7" id="hobby7_3" value="3"><label for="hobb7_3">보통이다</label>
+				<input type="radio" name="hobby7" id="hobby7_4" value="4"><label for="hobb7_4">그렇다</label>
+				<input type="radio" name="hobby7" id="hobby7_5" value="5"><label for="hobb7_5">상당히 그렇다</label>
 			</div>
 		</div>
 		<div class="content">
 			<div class="content_1">
 				<div class= "h2_w"><h2>[8번 문항]</h2></div>
 				<p>가끔은 나를 위한 선물을 한다.</p>
-				<input type="radio" name="hobby8" id="hobby8_1"><label for="hobb8_1">상당히 아니다</label>
-				<input type="radio" name="hobby8" id="hobby8_2"><label for="hobb8_2">아니다</label>
-				<input type="radio" name="hobby8" id="hobby8_3"><label for="hobb8_3">보통이다</label>
-				<input type="radio" name="hobby8" id="hobby8_4"><label for="hobb8_4">그렇다</label>
-				<input type="radio" name="hobby8" id="hobby8_5"><label for="hobb8_5">상당히 그렇다</label>
+				<input type="radio" name="hobby8" id="hobby8_1" value="1"><label for="hobb8_1">상당히 아니다</label>
+				<input type="radio" name="hobby8" id="hobby8_2" value="2"><label for="hobb8_2">아니다</label>
+				<input type="radio" name="hobby8" id="hobby8_3" value="3"><label for="hobb8_3">보통이다</label>
+				<input type="radio" name="hobby8" id="hobby8_4" value="4"><label for="hobb8_4">그렇다</label>
+				<input type="radio" name="hobby8" id="hobby8_5" value="5"><label for="hobb8_5">상당히 그렇다</label>
 			</div>
 		</div>
 		<div class="content">
 			<div class="content_1">
 				<div class= "h2_w"><h2>[9번 문항]</h2></div>
 				<p>생일 때 지인들에게 선물을 많이 받는 편이다.</p>
-				<input type="radio" name="hobby9" id="hobby9_1"><label for="hobb9_1">상당히 아니다</label>
-				<input type="radio" name="hobby9" id="hobby9_2"><label for="hobb9_2">아니다</label>
-				<input type="radio" name="hobby9" id="hobby9_3"><label for="hobb9_3">보통이다</label>
-				<input type="radio" name="hobby9" id="hobby9_4"><label for="hobb9_4">그렇다</label>
-				<input type="radio" name="hobby9" id="hobby9_5"><label for="hobb9_5">상당히 그렇다</label>
+				<input type="radio" name="hobby9" id="hobby9_1" value="1"><label for="hobb9_1">상당히 아니다</label>
+				<input type="radio" name="hobby9" id="hobby9_2" value="2"><label for="hobb9_2">아니다</label>
+				<input type="radio" name="hobby9" id="hobby9_3" value="3"><label for="hobb9_3">보통이다</label>
+				<input type="radio" name="hobby9" id="hobby9_4" value="4"><label for="hobb9_4">그렇다</label>
+				<input type="radio" name="hobby9" id="hobby9_5" value="5"><label for="hobb9_5">상당히 그렇다</label>
 			</div>
 		</div>
 		<div class="content">
 			<div class="content_1">
 				<div class= "h2_w"><h2>[10번 문항]</h2></div>
 				<p>지인과의 식사나 술자리를 갖을 때 먼저 계산하는 편이다.</p>
-				<input type="radio" name="hobby10" id="hobby10_1"><label for="hobb10_1">상당히 아니다</label>
-				<input type="radio" name="hobby10" id="hobby10_2"><label for="hobb10_2">아니다</label>
-				<input type="radio" name="hobby10" id="hobby10_3"><label for="hobb10_3">보통이다</label>
-				<input type="radio" name="hobby10" id="hobby10_4"><label for="hobb10_4">그렇다</label>
-				<input type="radio" name="hobby10" id="hobby10_5"><label for="hobb10_5">상당히 그렇다</label>
+				<input type="radio" name="hobby10" id="hobby10_1" value="1"><label for="hobb10_1">상당히 아니다</label>
+				<input type="radio" name="hobby10" id="hobby10_2" value="2"><label for="hobb10_2">아니다</label>
+				<input type="radio" name="hobby10" id="hobby10_3" value="3"><label for="hobb10_3">보통이다</label>
+				<input type="radio" name="hobby10" id="hobby10_4" value="4"><label for="hobb10_4">그렇다</label>
+				<input type="radio" name="hobby10" id="hobby10_5" value="5"><label for="hobb10_5">상당히 그렇다</label>
 			</div>
 		</div>
 	<div id="sobiButton">
