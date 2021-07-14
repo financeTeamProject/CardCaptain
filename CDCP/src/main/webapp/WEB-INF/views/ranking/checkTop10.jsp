@@ -427,7 +427,7 @@ body{
 					</div>
 					<div id="rightSct">
 						<div id="bnfArea">
-							<div class="bnf_dsc1">[TOP 1 카드의 한마디]</div>
+							<div class="bnf_dsc1">[ TOP 1 카드의 수상 소감 한마디 ]</div>
 							<div class="bnf_dsc2">${list[0].CARD_SUMMARY}</div>
 							<div class="bnf_dsc3">
 								<img class="bnf_img" src="resources/images/ranking/icon/love_icon_1.png" width="30px" height="30px">
