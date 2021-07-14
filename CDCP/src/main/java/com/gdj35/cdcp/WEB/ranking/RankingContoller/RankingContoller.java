@@ -68,9 +68,20 @@ public class RankingContoller {
 		return mav;
 	}
 //	카드상세보기 페이지
+	/*
+	 * @RequestMapping(value="/cardview") public ModelAndView cardview(
+	 * 
+	 * @RequestParam HashMap<String, String> params, ModelAndView mav) throws
+	 * Throwable { if(params.get("cardNo") != null) { List<HashMap<String, String>>
+	 * data = RankingiService.getCView(params); }
+	 * mav.setViewName("ranking/cardview");
+	 * 
+	 * return mav; }
+	 */
+	
 	@RequestMapping(value="/cardview")
 	public ModelAndView cardview(ModelAndView mav) {
-		
+	
 		mav.setViewName("ranking/cardview");
 		
 		return mav;

@@ -24,4 +24,9 @@
 		                          AND CARD_TYPE = 1) C 
 		WHERE C.RNK BETWEEN 1 AND 10
 	</select>
+	
+	<!-- 카드상세보기  -->
+	<select id="getCView" parameterType="hashmap" resultType="hashmap">
+		
+	</select>
 </mapper>

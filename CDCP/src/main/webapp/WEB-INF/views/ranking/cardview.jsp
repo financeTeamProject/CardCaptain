@@ -437,6 +437,7 @@
 			src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		
 		/* 카드순위 페이지 이동 */
 		$("#ranking").on("click", function(){
 			location.href = "card_rank";
@@ -492,7 +493,7 @@
 					<div id="imgSct">
 						<!-- 카페 혜택 -->
 						<div class="bnf_sct">
-							<img alt="카페" src="resources/images/ranking/icon/benefit/icon_cafe_blue.png" width="100px" height="100px"/>
+							<img alt="카페" src="resources/images/ranking/icon/benefit/icon_cafe.png" width="100px" height="100px"/>
 							<div class="bnf_dsc">
 								<div class="bnf_name">스타벅스</div>
 								<div class="bnf_box">

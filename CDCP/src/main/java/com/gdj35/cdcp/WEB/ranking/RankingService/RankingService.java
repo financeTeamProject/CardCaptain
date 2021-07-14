@@ -26,4 +26,10 @@ public class RankingService implements RankingIService {
 		return RankingiDao.getRCheck(params);
 	}
 
+	@Override
+	public List<HashMap<String, String>> getCView(HashMap<String, String> params) throws Throwable {
+		
+		return RankingiDao.getCView(params);
+	}
+
 }

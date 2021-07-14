@@ -393,6 +393,11 @@ body{
 			location.href = "/cdcp";
 		}); // headerLogo click end
 		
+		/* TOP1 상세보기 이동 */
+		$(".dtBtn").on("click", function(){
+			location.href = "cardview";
+			$("#goForm").submit();
+		}); // dtBtn click end
 		
 	}); // document ready end
 </script>
@@ -442,10 +447,14 @@ body{
 						</div>
 					</div>
 				</div>
+				<form action="cardview" id="goForm" method="post">
+					<input type="hidden" name="cardNo" value="${list[0].CARD_NO}" />
+				</form>
 				<div id="btnBox">
 					<input type="button" value="상세보기" class="dtBtn" id="${list[0].CARD_NO}" />
 					<input type="button" value="비교함 담기" class="compareBtn" id="${list[0].CARD_NO}" />
 				</div>
+				
 			</div>
 			<div id="contentBot">
 			<c:forEach var ="i" begin="1" end ="9">
