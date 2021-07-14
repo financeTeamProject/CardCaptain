@@ -263,6 +263,7 @@ $(document).ready(function() {
    
     //숫자만 입력
     $("#mPhone").keyup(function() {
+    	
        if (regex_num.test($(this).val())) {
      	  $("#mPhone").val('');
           alert("잘못된 휴대폰 번호입니다. 숫자, - 를 제외한 숫자만 입력하세요.");
@@ -272,7 +273,7 @@ $(document).ready(function() {
 	//숫자만 입력
 	$("#mBirth").keyup(function() {
 		if (regex_num.test($(this).val())) {
-			$("#mBirth").val('');
+			$("#mBirth").val("");
 			alert("숫자만 입력 가능합니다.");
 		}
 	});
@@ -429,7 +430,7 @@ $(document).ready(function() {
 	
    //회원가입 필터링   
 	$("#checkingEmail").on("click",function() {
-			$("#checkEmail").val($(".mEmail").val() + "@" + $(".select_email option:selected").val());
+			$("#checkEmail").val($("#mEmail").val() + "@" + $(".select_email option:selected").val());
 			$("#email_check").css("display","inline");
 			$(".errorMsg").css("display","none");
 
@@ -480,7 +481,7 @@ $(document).ready(function() {
 <body>
 <form action="#" id="checkEmailForm">
 	<input type="hidden" name="checkEmail" id="checkEmail" value="" /><!-- 이메일 주소 -->
-	<input type="hidden" name="findType" id="findType" value="" /><!--  -->
+	<input type="hidden" name="findType" id="findType" value="join" /><!--  -->
 </form>
 <div class="back_main">
    <div class="back_top">CARD CAPTAIN</div>
@@ -495,7 +496,7 @@ $(document).ready(function() {
 	     	<div class="title">비밀번호
 	      		<div class="errorMsg" id="errorMsgPw"></div>
 	      	</div>
-	      	<strong><input type="password" class="text" placeholder="~!@#$%^&*()_+|<>?:{}]/ 포함 영문,숫자 조합 10~24자리" id="mPw" name="mPw"/></strong>
+	      	<strong><input type="password" class="text" placeholder="특수문자 포함 영문,숫자 조합 10~24자리" id="mPw" name="mPw"/></strong>
 	      	<input type="password" class="text" placeholder="비밀번호 확인" id="mRpw" name="mRpw"/>
 	     	<div class="title">닉네임
 	      		<div class="errorMsg" id="errorMsgNick"></div>
