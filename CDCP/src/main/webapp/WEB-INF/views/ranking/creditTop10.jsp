@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -235,7 +236,7 @@ body{
 						height: 100px;
 						text-align: center;
 					}
-						#dtBtn{
+						.dtBtn{
 							width: 150px;
 							height: 50px;
 							color: white;
@@ -246,12 +247,12 @@ body{
 						    font-family: 'GmarketSansMedium';
 							margin: 25px 5px;
 						}	
-							#dtBtn:hover{
+							.dtBtn:hover{
 								color: black;
 							    background-color: #F5DF4D;
 							    cursor: pointer;
 							}
-						#compareBtn{
+						.compareBtn{
 							width: 150px;
 							height: 50px;
 							color: white;
@@ -262,7 +263,7 @@ body{
 						    font-family: 'GmarketSansMedium';
 							margin: 25px 5px;
 						}
-							#compareBtn:hover{
+							.compareBtn:hover{
 								color: black;
 							    background-color: #F5DF4D;
 							    cursor: pointer;
@@ -380,20 +381,22 @@ body{
 			src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		
 		/* 카드순위 페이지 이동 */
 		$("#ranking").on("click", function(){
 			location.href = "card_rank";
 		}); // ranking click end
+		
 		/* 카드검색/비교 페이지 이동 */
 		 $("#search").on("click", function(){
 			location.href = "search";
 		});// search click end
+		
 		/* 컨텐츠 페이지 이동 */
 		$("#contents").on("click", function(){
 			location.href = "content";
 		});// contents click end
-		
-		
+			
 		/* 메인페이지 이동 */
 		$("#headerLogo").on("click", function(){
 			location.href = "/cdcp";
@@ -426,14 +429,16 @@ body{
 			<div id="menuName">신용카드 TOP10</div>
 			<div id="contentTop">
 				<div id="nameSct">
-					<div id="cardName">톡톡 with 카드</div>
-					<div id="cardCmp">KB국민카드</div>
+					<div id="cardName">${list[0].CARD_NAME}</div>
+					<div id="cardCmp">${list[0].CARD_CMP_NAME}</div>
 				</div>
 				<!-- 1위 카드 내용 영역 -->
 				<div id="midArea">
 					<div id="leftSct">TOP 1</div>
 					<div id="centerSct">
-						<div id="imgSct"></div>
+						<div id="imgSct">
+							<img src="${list[0].CARD_IMG_URL}" width="350px" height= "200px">
+						</div>
 					</div>
 					<div id="rightSct">
 						<div id="bnfArea">
@@ -458,137 +463,27 @@ body{
 					</div>
 				</div>
 				<div id="btnBox">
-					<input type="button" value="상세보기" id="dtBtn" />
-					<input type="button" value="비교함 담기" id="compareBtn" />
+					<input type="button" value="상세보기" class="dtBtn" id="${list[0].CARD_NO}" />
+					<input type="button" value="비교함 담기" class="compareBtn" id="${list[0].CARD_NO}" />
 				</div>
 			</div>
 			<div id="contentBot">
+			<c:forEach var ="i" begin="1" end ="9">
 				<div class="rank_box">	<!-- 2등 -->
-					<div class="rank_num">2</div>
+					<div class="rank_num">${list[i].RNK}</div>
 					<div class="box_card">
-						<img alt="카드" src="resources/images/ranking/card/credit/sh/sh_mrlife_card.png" class="card_img"/> 
+						<img alt="카드" src="${list[i].CARD_IMG_URL}" class="card_img"/> 
 					</div>
 					<div class="box_txt">
-						<h2 class="name_card">신한카드 Mr.Life</h2>
-						<h5 class="cmp_card">신한카드</h5>
+						<h2 class="name_card">${list[i].CARD_NAME}</h2>
+						<h5 class="cmp_card">${list[i].CARD_CMP_NAME}</h5>
 					</div>
 					<div class="dsc_view">
-						<div class="view_box" id="viewBox2"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
-						<div class="view_dt" id="viewDt2"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
+						<div class="view_box" id="${list[i].CARD_NO}"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
+						<div class="view_dt" id="${list[i].CARD_NO}"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
 					</div>
 				</div>
-				<div class="rank_box">	<!-- 3등 -->
-					<div class="rank_num">3</div>
-					<div class="box_card">
-						<img alt="카드" src="resources/images/ranking/card/credit/kb/kb_tantandaero.png" class="card_img"/> 
-					</div>
-					<div class="box_txt">
-						<h2 class="name_card">탄탄대로 올쇼핑 티타늄카드</h2>
-						<h5 class="cmp_card">KB국민카드</h5>
-					</div>
-					<div class="dsc_view">
-						<div class="view_box" id="viewBox3"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
-						<div class="view_dt" id="viewDt3"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
-					</div>
-				</div>
-				<div class="rank_box">	<!-- 4등 -->
-					<div class="rank_num">4</div>
-					<div class="box_card">
-						<img alt="카드" src="resources/images/ranking/card/credit/hd/hd_zero_ed2_h.png" class="card_img"/> 
-					</div>
-					<div class="box_txt">
-						<h2 class="name_card">현대카드ZERO Edition2(할인형)</h2>
-						<h5 class="cmp_card">현대카드</h5>
-					</div>
-					<div class="dsc_view">
-						<div class="view_box" id="viewBox4"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
-						<div class="view_dt" id="viewDt4"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
-					</div>
-				</div>
-				<div class="rank_box">	<!-- 5등 -->
-					<div class="rank_num">5</div>
-					<div class="box_card">
-						<img alt="카드" src="resources/images/ranking/card/credit/kb/kb_dadam_card.png" class="card_img"/> 
-					</div>
-					<div class="box_txt">
-						<h2 class="name_card">다담카드</h2>
-						<h5 class="cmp_card">KB국민카드</h5>
-					</div>
-					<div class="dsc_view">
-						<div class="view_box" id="viewBox5"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
-						<div class="view_dt" id="viewDt5"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
-					</div>
-				</div>
-				<div class="rank_box">	<!-- 6등 -->
-					<div class="rank_num">6</div>
-					<div class="box_card">
-						<img alt="카드" src="resources/images/ranking/card/credit/samsung/ss_taptap0_card.png" class="card_img"/> 
-					</div>
-					<div class="box_txt">
-						<h2 class="name_card">삼성카드 taptap O</h2>
-						<h5 class="cmp_card">삼성카드</h5>
-					</div>
-					<div class="dsc_view">
-						<div class="view_box" id="viewBox6"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
-						<div class="view_dt" id="viewDt6"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
-					</div>
-				</div>
-				<div class="rank_box">	<!-- 7등 -->
-					<div class="rank_num">7</div>
-					<div class="box_card">
-						<img alt="카드" src="resources/images/ranking/card/credit/kb/km_cheongchuntocktock_card.png" class="card_img"/> 
-					</div>
-					<div class="box_txt">
-						<h2 class="name_card">청춘대로 톡톡카드</h2>
-						<h5 class="cmp_card">KB국민카드</h5>
-					</div>
-					<div class="dsc_view">
-						<div class="view_box" id="viewBox7"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
-						<div class="view_dt" id="viewDt7"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
-					</div>
-				</div>
-				<div class="rank_box">	<!-- 8등 -->
-					<div class="rank_num">8</div>
-					<div class="box_card">
-						<img alt="카드" src="resources/images/ranking/card/credit/nh/nh_all1_pie_card.png" class="card_img"/> 
-					</div>
-					<div class="box_txt">
-						<h2 class="name_card">NH올원 파이카드</h2>
-						<h5 class="cmp_card">NH농협카드</h5>
-					</div>
-					<div class="dsc_view">
-						<div class="view_box" id="viewBox8"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
-						<div class="view_dt" id="viewDt8"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
-					</div>
-				</div>
-				<div class="rank_box">	<!-- 9등 -->
-					<div class="rank_num">9</div>
-					<div class="box_card">
-						<img alt="카드" src="resources/images/ranking/card/credit/sh/sh_the_more_card2.png" class="card_img"/> 
-					</div>
-					<div class="box_txt">
-						<h2 class="name_Card">신한카드 The More(더모아)</h2>
-						<h5 class="cmp_card">신한카드</h5>
-					</div>
-					<div class="dsc_view">
-						<div class="view_box" id="viewBox9"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
-						<div class="view_dt" id="viewDt9"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
-					</div>
-				</div>
-				<div class="rank_box">	<!-- 10등 -->
-					<div class="rank_num">10</div>
-					<div class="box_card">
-						<img alt="카드" src="resources/images/ranking/card/credit/we/wr_dAcjs_card3.png" class="card_img"/> 
-					</div>
-					<div class="box_txt">
-						<h2 class="name_card">DA@카드의 정석</h2>
-						<h5 class="cmp_card">우리카드</h5>
-					</div>
-					<div class="dsc_view">
-						<div class="view_box" id="viewBox10"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
-						<div class="view_dt" id="viewDt10"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
-					</div>
-				</div>
+				</c:forEach>
 			</div>
 		</div>
 	</div>

@@ -1,14 +1,22 @@
 package com.gdj35.cdcp.WEB.ranking.RankingContoller;
 
+import java.util.HashMap;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+import com.gdj35.cdcp.WEB.ranking.RankingService.RankingIService;
 
 @Controller 
 public class RankingContoller {
 	
+	@Autowired
+	public RankingIService RankingiService;
 
 //	card rank 메인페이지
 	@RequestMapping(value="/card_rank")
@@ -21,8 +29,15 @@ public class RankingContoller {
 	
 //	신용카드 top10 페이지
 	@RequestMapping(value="/creditTop10")
-	public ModelAndView creditTop10(ModelAndView mav) {
+	public ModelAndView creditTop10(
+			@RequestParam HashMap<String, String> params,
+			ModelAndView mav) throws Throwable{
 		
+		List<HashMap<String, String>> list
+			= RankingiService.getRCredit(params);
+		
+		mav.addObject("list", list);
+		System.out.println(list);
 		mav.setViewName("ranking/creditTop10");
 		
 		return mav;

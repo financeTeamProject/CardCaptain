@@ -19,4 +19,8 @@ public class UserDao implements UserIDao {
 	public HashMap<String, String> getM(HashMap<String, String> params) throws Throwable {
 		return sqlSession.selectOne("user.getM", params);
 	}
+	@Override
+	public int joinM(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectOne("user.joinM", params);
+	}
 }

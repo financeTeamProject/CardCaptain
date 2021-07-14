@@ -29,14 +29,15 @@ body {
 	margin: 0 auto;
 }
 .back_top {
-	width: 100%;
-	height: 130px;
-	text-align: center;
-	line-height: 130px;
-	font-size: 30px;
-	color: #0047AB;
-	font-family: 'Cafe24Ohsquare';
-	text-shadow: 2px 3px 4px gray;
+   width: 100%;
+   height: 130px;
+   text-align: center;
+   line-height: 130px;
+   font-size: 30px;
+   color: #0047AB;
+   font-family: 'Cafe24Ohsquare';
+   text-shadow: 2px 3px 4px gray;
+   letter-spacing: 8px;
 }
 .back_middle {
 	font-family: 'GmarketSansMedium';
@@ -169,15 +170,15 @@ body {
 	display: none;
 }
 .checkingEmailNum {
-	width: 150px;
-	height: 45px;
-	border-style: solid;
-	border-width: 0 0 1px 0;
-	border-color: #0047AB;
+	width: 156px;
+    height: 45px;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: #0047AB;
     outline: 0;
-	caret-color: red;
-	color: #0047AB;
-	margin-left: 192px;
+    caret-color: red;
+    color: #0047AB;
+    margin-left: 186px;
 }
 .checkingEmailBtn {
 	width: 100px;
@@ -191,12 +192,11 @@ body {
     cursor: pointer;
 }
 .checkingCodeBtn {
-	width: 100px;
+    width: 100px;
     height: 35px;
     color: white;
     border-style: none;
     background-color: #0047AB;
-    border-radius: 5px;
     font-size: 13px;
     font-family: 'GmarketSansMedium';
     margin-left: 15px;
@@ -351,6 +351,7 @@ $(document).ready(function() {
 			}
 			/* 회원정보일치시, 값입력*/
 		} else {
+			$(".errorMsg").css("display","none");
 			$(".checkingEmailBtn").on("click", function() {
 				var ival = $(this).prop("id").split("_");
 				$("#" + ival[0] + "_check").css("display","inline");
@@ -457,7 +458,7 @@ $(document).ready(function() {
 	<input type="hidden" name="findType" id="findType" value="" /><!--  -->
 </form>
 <div class="back_main">
-	<div class="back_top">C&nbsp;A&nbsp;R&nbsp;D&nbsp;&nbsp;&nbsp;C&nbsp;A&nbsp;P&nbsp;T&nbsp;A&nbsp;I&nbsp;N</div>
+	<div class="back_top">CARD CAPTAIN</div>
 	<div class="back_middle">
 		<div class="middle1">
 		<div class="middle_top">ID/PW를 찾아주세요.</div>
@@ -487,7 +488,7 @@ $(document).ready(function() {
 				<option value="naver.com">naver.com</option>
 				<option value="gmail.com">gmail.com</option>
 			</select>
-			<input type="button" id="id_FindBtn" class="checkingEmailBtn" value="코드전송" />
+			<input type="button" id="id_FindBtn" class="checkingEmailBtn" value="인증하기" />
 			<div id="id_check">
 				<input type="text" id="idFindEmail" class="checkingEmailNum" placeholder="인증코드" />
 				<input type="button" id="id_FindBtn" class="checkingCodeBtn" value="코드확인" />
@@ -511,7 +512,7 @@ $(document).ready(function() {
 				<option value="naver.com">naver.com</option>
 				<option value="gmail.com">gmail.com</option>
 			</select>
-			<input type="button" id="pw_FindBtn" class="checkingEmailBtn" value="코드전송" />
+			<input type="button" id="pw_FindBtn" class="checkingEmailBtn" value="인증하기" />
 			<div id="pw_check">
 				<input type="text" id="pwFindEmail" class="checkingEmailNum" placeholder="인증코드" />
 				<input type="button" id="id_FindBtn" class="checkingCodeBtn" value="코드확인" />

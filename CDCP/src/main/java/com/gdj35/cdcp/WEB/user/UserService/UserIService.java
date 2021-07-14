@@ -10,4 +10,6 @@ public interface UserIService {
 
 	public HashMap<String, String> getM(HashMap<String, String> params) throws Throwable;
 
+	public int joinM(HashMap<String, String> params) throws Throwable;
+
 }

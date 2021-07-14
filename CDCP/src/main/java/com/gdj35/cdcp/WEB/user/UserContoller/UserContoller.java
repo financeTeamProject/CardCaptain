@@ -23,18 +23,11 @@ public class UserContoller {
 	@Autowired UserIService useriService;
 	
 	//로그인메인
-	@RequestMapping(value="/login")
-	public ModelAndView login(ModelAndView mav) {
-		
-		mav.setViewName("user/login");
-		
-		return mav;
-	}
 	@RequestMapping(value="/logins",
 			method = RequestMethod.POST,
 			produces = "text/json;charset=UTF-8")
 		@ResponseBody
-		public String logins(
+		public String login(
 				HttpSession session,
 				@RequestParam HashMap<String,String> params) throws Throwable {
 		System.out.println(params);
@@ -49,11 +42,26 @@ public class UserContoller {
 				session.setAttribute("sMNm", data.get("NICKNAME"));
 				
 				modelMap.put("resMsg", "success");
+				// mav.addObject("resMsg", "success");
 			} else {
 				modelMap.put("resMsg", "failed");
+				// mav.addObject("resMsg", "failed");
 			}
-			return mapper.writeValueAsString(modelMap);
+		return mapper.writeValueAsString(modelMap);
 	}
+	
+	//로그아웃
+	@RequestMapping(value="/testALogout")
+	public ModelAndView testALogout(HttpSession session,
+			ModelAndView mav) {
+		
+		session.invalidate();
+		
+		mav.setViewName("redirect:/");
+		
+		return mav;
+	}
+	
 	//회원가입 페이지
 	@RequestMapping(value = "/join")
 	public ModelAndView join(ModelAndView mav) {
@@ -62,6 +70,32 @@ public class UserContoller {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="/joins",
+			method = RequestMethod.POST,
+			produces = "text/json;charsetUTF-8")
+		@ResponseBody
+		public String joins(
+			@RequestParam HashMap<String, String> params) throws Throwable {
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+			System.out.println(params);
+		try {
+			int cnt = useriService.joinM(params);
+			
+			if(cnt > 0) {
+				modelMap.put("msg", "success");
+			} else {
+				modelMap.put("msg", "failed");
+			}
+			
+		} catch (Throwable e){
+			e.printStackTrace();
+			modelMap.put("msg", "error");
+		}
+		
+		return mapper.writeValueAsString(modelMap);
+		}
 	
 	//ID/PW찾기
 	@RequestMapping(value="/searchmem")

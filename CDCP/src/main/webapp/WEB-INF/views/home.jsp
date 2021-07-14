@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,6 +80,7 @@ body {
 	height: 100%;
     font-size: 18px;
 	vertical-align: top;
+	text-align: right;
 }
 #imgSearch {
  	display: inline-block;
@@ -89,7 +91,8 @@ body {
     height: 25px;
     cursor: pointer;
     text-align: center;
-    margin-left: 85%;
+	margin-top: 15px;
+	margin-right: 20px;
 }
 #imgLogin {
  	display: inline-block;
@@ -99,7 +102,36 @@ body {
     width: 30px;
     height: 25px;
     cursor: pointer;
-    margin-top: 15px;
+    text-align: center;
+	margin-top: 15px;
+	margin-left: 20px;
+}
+#searchTxt {
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: #0047AB;
+    outline: 0;
+    caret-color: red;
+    color: #0047AB;
+    box-sizing: border-box;
+    font-size: 13px;
+    letter-spacing: 3px;
+    display: none;
+}
+#Nickname {
+    width: auto;
+    height: auto;
+    color: #0047AB;
+    box-sizing: border-box;
+    font-size: 13px;
+    letter-spacing: 2px;
+    display: none;
+}
+#logoutBtn {
+	width: 70px;
+	heigth: 40px;
+	margin-left: 20px;
+	/* display: none; */
 }
 	/* header_right 종료 */
 	/* 헤더 종료 */
@@ -346,14 +378,12 @@ input#pos1,#pos2,#pos3,#pos4 {
     color: red;
     visibility: hidden;
 }
-#errorMsg {
-	width: auto;
+.errorMsg {
 	height: 100%;
-	display:none;
-	vertical-align:top;
+    display: none;
     color: #e65f3e;
     font-size: 13px;
-    text-align: center;
+    margin-left: 65px;
 } /* 로그인팝업종료 */
 </style>
 <script type="text/javascript" src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
@@ -377,6 +407,10 @@ $(document).ready(function(){
 		$("#popup").css("display","block");
 		$(".body").css("display","none");
 	});
+	/* 로그인팝업 실행 */
+	$("#imgSearch").on("click", function(){
+		$("#searchTxt").css("display","inline");
+	});
 	
 	$("#searchmem, #join").on("click", function() {
 		var ival = $(this).prop("id");
@@ -386,6 +420,7 @@ $(document).ready(function(){
 	$(".cardcaptain").on("click", function(){
 		location.href = "/cdcp";
 	});
+	
 	/* 로그인 */
 	$("#loginBtn").on("click", function () {
 		if($.trim($("#mId").val()) == "") {
@@ -395,16 +430,21 @@ $(document).ready(function(){
 			alert("비밀번호를 입력해 주세요.");
 			$("#mPw").focus();
 		} else {
-			var params = $("loginForm").serialize();
+			var params = $("#loginForm").serialize();
 			
 			$.ajax({
-				url: "login",
+				url: "logins",
 				type: "post",
 				dataType: "json",
 				data: params,
 				success: function (res) {
 					if(res.resMsg == "success"){
-						location.href = "cdcp";
+						location.href = "/cdcp";
+						${sMNm};
+						$("#nickName").css("display","inline");
+						$("#imgSearch").css("margin-left","70%");
+						$("#imgLogin").css("display","none");
+						$("#logoutBtn").css("display","inline");
 					} else {
 						$(".errorMsg").css("display","inline");
 						$("#masage").html("아이디 또는 비밀번호가 일치하지 않습니다.")
@@ -415,9 +455,20 @@ $(document).ready(function(){
 				}
 			}); //ajax end
 		}
-	}); //loginBtn end
-}); // document ready end
+	}); //로그인 end
 	
+	/* 로그아웃  */
+	$("#logoutBtn").on("click", function () {
+		location.href = "testALogout";
+	}); //로그아웃 end
+	
+	/* 어드민이동 */
+	$(sMNm).on("click", function(){
+		location.href = "/adm";
+	});
+	
+}); // document ready end
+
 /* Map */
 	function sendPlace(obj) {
 	var placeText = obj.value;
@@ -461,7 +512,7 @@ $(document).ready(function(){
 	<div class="cardcaptain">&nbsp;&nbsp;&nbsp;&nbsp;Card Captain&nbsp;&nbsp;&nbsp;&nbsp;X</div>
 	<form action="testLogins" id="loginForm" method="post">
 			<input type="email" class="popinput" placeholder="ID" id="mId" name="mId">
-			<input type="password" class="popinput" placeholder="PW" id="mPw" name="mPw">
+			<input type="password" class="popinput" placeholder="PW" id="mPw" name="mPw"><br/>
 		<span class="errorMsg" id="masage" aria-live="assertive"></span>
 		<input type="button" class="popinput" id="loginBtn" value="로그인"/><br/>
 	</form>
@@ -472,15 +523,23 @@ $(document).ready(function(){
 <div class="body">
 	<div id="header">
 		<div id="headerWrap">
-		<div id="headerLeft">
-			<div id="headerLogo"></div>
-			<div class="menu1" id="ranking">카드순위</div>
-			<div class="menu1" id="search">카드검색/비교</div>
-			<div class="menu1" id="contents">컨텐츠</div>
-		</div>
-		<div id="headerRight">
-			<div id="imgSearch"></div>
-			<div id="imgLogin"></div>
+			<div id="headerLeft">
+				<div id="headerLogo"></div>
+				<div class="menu1" id="ranking">카드순위</div>
+				<div class="menu1" id="search">카드검색/비교</div>
+				<div class="menu1" id="contents">컨텐츠</div>
+			</div>
+			<div id="headerRight">
+				<input type="text" id="searchTxt">
+				<div id="imgSearch"></div>
+				<c:choose>
+					<c:when test="${empty sMNm}">
+						<div id="imgLogin"></div>
+					</c:when>
+					<c:otherwise>
+						${sMNm}  님 <input type="button" value="로그아웃" id="logoutBtn" />
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>

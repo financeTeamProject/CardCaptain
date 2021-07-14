@@ -440,8 +440,9 @@ h1 {
 			$("#img_rayout_3").on("click", function() { // 기사 3
 				location.href = "cardTip_3";
 			});
-		});	
-		
+			
+			
+		});	 // document ready end
 </script>		
 </head>
 <body>

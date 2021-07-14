@@ -8,9 +8,14 @@
 	</select>
 	
 	<select id="getM" parameterType="hashmap" resultType="hashmap">
-		SELECT MEMBER_NO, MEMBER_ID, MEMBER_BIRTH, GENDER, NICKNAME
+		SELECT MEMBER_NO, NICKNAME
 		FROM MEMBER_INFO
 		WHERE MEMBER_ID = #{mId}
 		AND MEMBER_PW = #{mPw}
+	</select>
+	
+	<select id="joinM" parameterType="hashmap" resultType="hashmap">
+		INSERT INTO MEMBER_INFO(MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_BIRTH, GENDER, CONTACT, NICKNAME, EMAIL, LEAVE_CHECK)
+		VALUES(MEMBER_INFO_SEQ.NEXTVAL, #{mId},#{mPw},#{mBirth}, #{mGender},#{mPhone},#{mNick},#{mEmail},'1')
 	</select>
 </mapper>

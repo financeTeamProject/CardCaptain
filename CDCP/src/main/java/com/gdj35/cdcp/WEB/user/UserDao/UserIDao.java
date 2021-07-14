@@ -7,4 +7,6 @@ public interface UserIDao {
 
 	public HashMap<String, String> getM(HashMap<String, String> params) throws Throwable;
 
+	public int joinM(HashMap<String, String> params) throws Throwable;
+
 }
