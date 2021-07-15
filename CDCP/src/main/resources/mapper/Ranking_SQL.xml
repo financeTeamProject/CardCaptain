@@ -27,6 +27,12 @@
 	
 	<!-- 카드상세보기  -->
 	<select id="getCView" parameterType="hashmap" resultType="hashmap">
-		
+		SELECT C.CARD_NO, C.CARD_NAME, C.CARD_IMG_URL, C.CLICK_CNT, CBF.BENEFIT_TOP, CBF.BENEFIT_MID, CBF.DETAIL_INFO,
+            CMP.CARD_CMP_NAME, C.CARD_APPLY_URL, CBF.BENEFIT_IMG_URL
+		FROM CARDS C INNER JOIN CARDBENEFITS CBF
+		                    ON  C.CARD_NO = CBF.CARD_NO
+		             INNER JOIN CARDCOMPANYS CMP
+		                    ON  C.CARD_CMP_NO = CMP.CARD_CMP_NO
+		WHERE C.CARD_NO = #{cardNo}
 	</select>
 </mapper>

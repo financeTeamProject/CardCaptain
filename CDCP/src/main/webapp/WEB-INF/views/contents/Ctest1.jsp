@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -158,67 +159,24 @@ label  {
 </script>
 </head>
 <body>
-
 <!-- 메인영역(소비심리테스트) -->
 <div class="rayout">
 	<div id="s_left"></div>
 	<div id="main">
 	<div class="title">소비심리테스트</div>
+	<c:forEach var = "i" begin = "0" end = "4">
 		<div class="content">
 			<div class="content_1">
-				<div class= "h2_w"><h2>[1번 문항]</h2></div>
-				<p>기억에 남는 여행을 하는것이 명품을 사는 것보다 좋다.</p>
-				<input type="radio" name="hobby1" id="hobby1_1" value="1" checked><label for="hobb1_1">상당히 아니다</label>
-				<input type="radio" name="hobby1" id="hobby1_2" value="2"><label for="hobb1_2">아니다</label>
-				<input type="radio" name="hobby1" id="hobby1_3" value="3"><label for="hobb1_3">보통이다</label>
-				<input type="radio" name="hobby1" id="hobby1_4" value="4"><label for="hobb1_4">그렇다</label>
-				<input type="radio" name="hobby1" id="hobby1_5" value="5"><label for="hobb1_5">상당히 그렇다</label>
+				<div class= "h2_w"><h2>[${list[i].TEST_NO}번 문항]</h2></div>
+				<p>${list[i].CONTENT}</p>
+				<input type="radio" name="hobby1" id="hobby1_1" value="1"><label for="hobby1_1">상당히 아니다</label>
+				<input type="radio" name="hobby1" id="hobby1_2" value="2"><label for="hobby1_2">아니다</label>
+				<input type="radio" name="hobby1" id="hobby1_3" value="3"><label for="hobby1_3">보통이다</label>
+				<input type="radio" name="hobby1" id="hobby1_4" value="4"><label for="hobby1_4">그렇다</label>
+				<input type="radio" name="hobby1" id="hobby1_5" value="5"><label for="hobby1_5">상당히 그렇다</label>
 			</div>
 		</div>
-		<div class="content">
-			<div class="content_1">
-				<div class= "h2_w"><h2>[2번 문항]</h2></div>
-				<p>쇼핑을 하는 것이 무엇보다 더 즐겁다.</p>
-				<input type="radio" name="hobby2" id="hobby2_1" value="1" checked><label for="hobb2_1">상당히 아니다</label>
-				<input type="radio" name="hobby2" id="hobby2_2" value="2"><label for="hobb2_2">아니다</label>
-				<input type="radio" name="hobby2" id="hobby2_3" value="3"><label for="hobb2_3">보통이다</label>
-				<input type="radio" name="hobby2" id="hobby2_4" value="4"><label for="hobb2_4">그렇다</label>
-				<input type="radio" name="hobby2" id="hobby2_5" value="5"><label for="hobb2_5">상당히 그렇다</label>
-			</div>
-		</div>
-		<div class="content">
-			<div class="content_1">
-				<div class= "h2_w"><h2>[3번 문항]</h2></div>
-				<p>소득이 줄어들면 문화생활을 줄일 것이다.</p>
-				<input type="radio" name="hobby3" id="hobby3_1" value="1" checked><label for="hobb3_1">상당히 아니다</label>
-				<input type="radio" name="hobby3" id="hobby3_2" value="2"><label for="hobb3_2">아니다</label>
-				<input type="radio" name="hobby3" id="hobby3_3" value="3"><label for="hobb3_3">보통이다</label>
-				<input type="radio" name="hobby3" id="hobby3_4" value="4"><label for="hobb3_4">그렇다</label>
-				<input type="radio" name="hobby3" id="hobby3_5" value="5"><label for="hobb3_5">상당히 그렇다</label>
-			</div>
-		</div>
-		<div class="content">
-			<div class="content_1">
-				<div class= "h2_w"><h2>[4번 문항]</h2></div>
-				<p>커피의 가격보다는 카페의 분위기가 더 중요하다.</p>
-				<input type="radio" name="hobby4" id="hobby4_1" value="1" checked><label for="hobb4_1">상당히 아니다</label>
-				<input type="radio" name="hobby4" id="hobby4_2" value="2"><label for="hobb4_2">아니다</label>
-				<input type="radio" name="hobby4" id="hobby4_3" value="3"><label for="hobb4_3">보통이다</label>
-				<input type="radio" name="hobby4" id="hobby4_4" value="4"><label for="hobb4_4">그렇다</label>
-				<input type="radio" name="hobby4" id="hobby4_5" value="5"><label for="hobb4_5">상당히 그렇다</label>
-			</div>
-		</div>
-		<div class="content">
-			<div class="content_1">
-				<div class= "h2_w"><h2>[5번 문항]</h2></div>
-				<p>한정판은 비싸더라도 사볼만 하다.</p>
-				<input type="radio" name="hobby5" id="hobby5_1" value="1" checked><label for="hobb5_1">상당히 아니다</label>
-				<input type="radio" name="hobby5" id="hobby5_2" value="2"><label for="hobb5_2">아니다</label>
-				<input type="radio" name="hobby5" id="hobby5_3" value="3"><label for="hobb5_3">보통이다</label>
-				<input type="radio" name="hobby5" id="hobby5_4" value="4"><label for="hobb5_4">그렇다</label>
-				<input type="radio" name="hobby5" id="hobby5_5" value="5"><label for="hobb5_5">상당히 그렇다</label>
-			</div>
-		</div>
+	</c:forEach>
 	<div id="sobiButton">
 		<input type="submit" value="다음" id="next" />
 	</div>	

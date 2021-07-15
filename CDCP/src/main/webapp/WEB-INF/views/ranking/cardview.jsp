@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -240,91 +242,76 @@
 				padding: 20px 0px;
 				margin: 20px 0;
 			}
+			/* 해당카드 이름 영역 */
+			#nameSct{
+				width: 100%;
+				height: 100px;
+				text-align: center;
+			}
+				#cardName{
+					height: 60px;
+					font-size: 35px;
+					line-height: 80px;
+					font-family: Cafe24Ohsquare;
+				}
+				#cardCmp{
+					height: 40px;
+					font-size: 20px;
+					font-family: GmarketSansMedium;
+					}
+			.bef_area{
+				display: block;
+				text-align: center;
+				width: 100%;
+				margin: 20px 0;
+			}
 				/* 왼쪽이미지 영역 */
 				#mainImg{
 					display: inline-block;
-					vertical-align: top;
-					width: 360px;
-					height: 220px;
-					margin-left: 350px;
+					width: 370px;
+					height: inherit;
+					margin-left: 200px;
 				}
 					.big_img{	
-						width: 350px;
-						height: 200px;
+						width: 370px;
+						height: 230px;
 						border-radius: 20px;
 						box-shadow: 0px 5px 10px 1px gray;
 					}
 				/* 오른쪽 혜택안내 영역 */	
 				#cardBnf{
 					display: inline-block;
-					vertical-align: top;
 					width:650px;
-					height: 220px;
 					text-align: center;
+					margin-left: 30px;
 				}
-					/* 해당카드 이름 영역 */
-					#nameSct{
-						width: 100%;
-						height: 100px;
-						text-align: center;
+					
+					/* 혜택 전체 박스 영역 */
+					.bnf_sct{
+						display: flex;
+						height: 70px;
+						margin-bottom: 20px;
+					}	
+						.bnf_dsc{
+							display: flex;
+							flex-direction: column;
+							margin-left: 10px;	
 						}
-							#cardName{
-							height: 60px;
-							font-size: 35px;
-							line-height: 80px;
-							font-family: Cafe24Ohsquare;
+							.bnf_top{
+								height: 35px;
+								text-align: left;
+								line-height: 45px;
+								font-size: 20px;
+								font-weight: bold;
+								font-family: GmarketSansMedium;
 							}
-							#cardCmp{
-							height: 40px;
-							font-size: 20px;
-							font-family: GmarketSansMedium;
-							}
-					/* 혜택 전체 박스 영역 */		
-					#imgSct{
-					width: 100%;
-					height: 200px;
-					margin: 10px 0;
-					}
-						/* 각 혜택 박스 */
-						.bnf_sct{
-							display: inline-block;
-							vertical-align: top;
-							width: 200px;
-							height: inherit;
-						}
-							.bnf_name{	/* 혜택내용 */
-								text-align: center;
-								width: 100%;
-								height: 45px;
+							.bnf_mid{
+								text-align: left;
+								height: 35px;
 								font-size: 20px;
 								font-family: GmarketSansMedium;
-								font-weight: bold;
 							}
-							.bnf_box{	
-								width: 100%;
-								height: 50px;
-								text-align: center;
-							}
-								.bnf_dt{	 /* %표시 */
-									display: inline-block;
-									vertical-align: top;
-									text-align: right;
-									width: 70px;
-									height: inherit;
-									font-size: 20px;
-									font-family: GmarketSansMedium;
-									font-weight: bold;
-								}
-								.bnf_small{	/* 할인 */
-									display: inline-block;
-									vertical-align: top;
-									text-align: left;
-									width: 60px;
-									height: inherit;
-									font-size: 15px;
-									font-family: GmarketSansMedium;
-									line-height: 30px;
-								}
+						
 					/* 버튼 영역 */		
 					#btnSct{ 
 						width: 100%;
@@ -355,7 +342,7 @@
 						
 					/* 카드 신청  */
 									
-						#btnCmp{
+					.bef_btn{
 						width: 300px;
 					    height: 70px;
 					    font-size: 30px;
@@ -369,9 +356,29 @@
 					    left: 3%;
 					    top: 20%;
 					}
-						#btnCmp:hover{
+					
+						.bef_btn:hover{
 							cursor: pointer;
-							opacity: 0.6;
+							color: black;
+							background-color: #F5DF4D;
+							border: none;
+						}
+					.compare_btn{
+							width: 250px;
+							height: 60px;
+							font-size: 25px;
+							color: white;
+							background-color: #808080;
+							padding: 10px;
+							border-radius: 10px;
+							font-family: GmarketSansMedium;
+							font-weight: bold;
+						}
+						.compare_btn:hover{
+							color: black;
+							background-color: #F5DF4D;
+							cursor: pointer;
+							border: none;
 							background-color:aqua;
 							
 						}
@@ -851,54 +858,31 @@ $(function(){
 	</div>
 <!-- 내용 영역 -->	
 	<div id="content">
-		<div class=side_area></div>	
 		<div id="contentMenu">
 			<div id="menuName">카드 혜택 안내</div>
 			<!-- 상위 내용 영역 -->
 			<div id="topArea">
 				<div id="nameSct">
-						<div id="cardName">톡톡 with 카드</div>
-						<div id="cardCmp">KB국민카드</div>
+						<div id="cardName">${data[0].CARD_NAME}</div>
+						<div id="cardCmp">${data[0].CARD_CMP_NAME}</div>
 				</div>
-				<div id="mainImg">
-					<img alt="혜택카드" src="resources/images/ranking/card/credit/kb/kb_toktokwith.png" width="350px" height="200px" class="big_img"/>
-				</div>
-				<!-- 혜택  영역 -->
-				<div id="cardBnf">
-					<div id="imgSct">
-						<!-- 카페 혜택 -->
+				<div class="bef_area">
+					<!-- 카드 이미지 영역 -->
+					<div id="mainImg">
+						<img alt="혜택카드" src="${data[0].CARD_IMG_URL}" class="big_img"/>
+					</div>
+					<!-- 혜택  영역 -->
+					<div id="cardBnf">
+						<!-- 카드 혜택 -->
+						<c:forEach var = "i" begin="0" end="2">
 						<div class="bnf_sct">
-							<img alt="카페" src="resources/images/ranking/icon/benefit/icon_cafe_blue.png" width="100px" height="100px"/>
+							<img alt="카페" src="${data[i].BENEFIT_IMG_URL}" width="70px" height="70px"/>
 							<div class="bnf_dsc">
-								<div class="bnf_name">스타벅스</div>
-								<div class="bnf_box">
-									<div class="bnf_dt">50%</div>
-									<div class="bnf_small">할인</div>
-								</div>
+								<div class="bnf_top">${data[i].BENEFIT_TOP}</div>
+								<div class="bnf_mid">${data[i].BENEFIT_MID}</div>
 							</div>
 						</div>
-						<!-- 간편결제 혜택 -->
-						<div class="bnf_sct">
-							<img alt="간편결제" src="resources/images/ranking/icon/benefit/icon_pay_blue.png" width="100px" height="100px"/>
-							<div class="bnf_dsc">
-								<div class="bnf_name">온라인 간편결제</div>
-								<div class="bnf_box">
-									<div class="bnf_dt">10%</div>
-									<div class="bnf_small">할인</div>
-								</div>
-							</div>
-						</div>
-						<!-- 구독 혜택 -->
-						<div class="bnf_sct">
-							<img alt="구독" src="resources/images/ranking/icon/benefit/icon_subscribe_blue.png" width="100px" height="100px"/>
-							<div class="bnf_dsc">
-								<div class="bnf_name">구독</div>
-								<div class="bnf_box">
-									<div class="bnf_dt">20%</div>
-									<div class="bnf_small">할인</div>
-								</div>
-							</div>
-						</div>
+						</c:forEach>	
 					</div>
 				</div>
 				
@@ -914,14 +898,15 @@ $(function(){
 			<!-- 하위 내용 영역 -->
 			<div id="bnfTxt">주요 혜택</div>
 			<div id="botArea">
-				<!-- 카페 혜택 -->
+				<c:set var="size" value="${fn:length(data)}" />
+				<c:forEach var = "j" begin="0" end="${size - 1}">
 				<div class="group1">
 					<div class="bnf_icon">
 						<img alt="혜택아이콘" src="${pageContext.request.contextPath}/resources/images/detail/icon_cafe_blue.png" class="icon_img"> 
 					</div>
 					<div class="box_txt"> 
-						<h2 class="name_card">카페</h2>
-						<h4 class="cmp_card">스타벅스 50%할인</h4>
+						<h2 class="name_card">${data[j].BENEFIT_TOP}</h2>
+						<h4 class="cmp_card">${data[j].BENEFIT_MID}</h4>
 																																				
 					</div>
 					
@@ -1099,13 +1084,13 @@ $(function(){
 				</div>
 				<!-- 전체 리뷰 수 영역 -->
 				<div class="review_total">
-					<h2>전체 리뷰수</h2>
+					<h2>카드 리뷰수</h2>
 					<div class="review_img"></div>
 					<div class="review_cnt">100건</div>
 				</div>
 				<!-- 전체 조회수 영역 -->
 				<div class="click_total">
-					<h2>카드 조회수</h2>
+					<h2>카드 신청수</h2>
 					<div class="click_img"></div>
 					<div class="click_cnt">5건</div>
 				</div>
@@ -1115,8 +1100,8 @@ $(function(){
 			<div class="review_write_area">
 					
 			</div>
-		</div>
-		<div class=side_area></div>	
+	</div>
+</div>
 <!-- 풋터영역 -->
 	<div id="footer">
 		<div id="footerMenu">
@@ -1125,6 +1110,6 @@ $(function(){
 			<div>Copyright © 2021-2031 CardCaptain All Rights Reserved.</div>
 		</div>
 	</div>
-	</div>
+	
 </body>
 </html>
