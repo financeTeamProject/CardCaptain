@@ -210,7 +210,7 @@
 						height: 80px;
 						text-align: center;
 					}
-						.bef_btn{
+					.bef_btn{
 						width: 250px;
 						height: 60px;
 						font-size: 25px;
@@ -222,15 +222,28 @@
 						font-weight: bold;
 					}
 					
-						#btnCmp:hover{
+						.bef_btn:hover{
 							cursor: pointer;
 							color: black;
 							background-color: #F5DF4D;
 							border: none;
 						}
-						#compareBox:hover{
+					.compare_btn{
+							width: 250px;
+							height: 60px;
+							font-size: 25px;
+							color: white;
+							background-color: #808080;
+							padding: 10px;
+							border-radius: 10px;
+							font-family: GmarketSansMedium;
+							font-weight: bold;
+						}
+						.compare_btn:hover{
+							color: black;
+							background-color: #F5DF4D;
 							cursor: pointer;
-							opacity: 0.6;
+							border: none;
 						}
 			/* 혜택 하위 영역 */
 			#botArea{
@@ -498,8 +511,8 @@
 					</div>
 				</div>
 				<div id="btnSct">
-					<input type="button" value="카드 신청" class="bef_btn" id="btnCmp" onclick='window.open("${data[0].CARD_APPLY_URL}")' />
-					<input type="button" value="보관함 담기" class="bef_btn" id="compareBox" />
+					<input type="button" value="카드 신청" class="bef_btn" id="bef_btn" onclick='window.open("${data[0].CARD_APPLY_URL}")' />
+					<input type="button" value="비교함 담기" class="compare_btn" id="compareBtn" />
 				</div>
 			</div>
 			<!-- 하위 내용 영역 -->
@@ -533,13 +546,13 @@
 				</div>
 				<!-- 전체 리뷰 수 영역 -->
 				<div class="review_total">
-					<h2>전체 리뷰수</h2>
+					<h2>카드 리뷰수</h2>
 					<div class="review_img"></div>
 					<div class="review_cnt">100건</div>
 				</div>
 				<!-- 전체 조회수 영역 -->
 				<div class="click_total">
-					<h2>카드 조회수</h2>
+					<h2>카드 신청수</h2>
 					<div class="click_img"></div>
 					<div class="click_cnt">5건</div>
 				</div>
