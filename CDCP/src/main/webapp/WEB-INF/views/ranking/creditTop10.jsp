@@ -169,9 +169,6 @@ body{
 						text-align: center;
 					}
 						#imgSct{
-							background-image: url("resources/images/ranking/card/check/we/we_naver_check_card.png");
-							background-repeat: round;
-							background-size: 100%;
 							width: 350px;
 							height: 200px;
 							margin: 0 auto;
@@ -227,7 +224,7 @@ body{
 						height: 100px;
 						text-align: center;
 					}
-						.dtBtn{
+						.dt_btn{
 							width: 150px;
 							height: 50px;
 							color: white;
@@ -238,12 +235,12 @@ body{
 						    font-family: 'GmarketSansMedium';
 							margin: 25px 5px;
 						}	
-							.dtBtn:hover{
+							.dt_btn:hover{
 								color: black;
 							    background-color: #F5DF4D;
 							    cursor: pointer;
 							}
-						.compareBtn{
+						.compare_btn{
 							width: 150px;
 							height: 50px;
 							color: white;
@@ -254,7 +251,7 @@ body{
 						    font-family: 'GmarketSansMedium';
 							margin: 25px 5px;
 						}
-							.compareBtn:hover{
+							.compare_btn:hover{
 								color: black;
 							    background-color: #F5DF4D;
 							    cursor: pointer;
@@ -394,10 +391,17 @@ body{
 		}); // headerLogo click end
 		
 		/* TOP1 상세보기 이동 */
-		$(".dtBtn").on("click", function(){
+		$(".dt_btn").on("click", function(){
 			location.href = "cardview";
 			$("#goForm").submit();
 		}); // dtBtn click end
+		
+		/* TOP2 ~ 10 상세보기 이동 */
+		$(".view_dt").on("click", function(){
+			var vdt = $(this).prop('id').split("_");
+			location.href = "cardview";
+			$("#gogoForm_" + vdt[1]).submit();
+		}); // view_dt click end
 		
 	}); // document ready end
 </script>
@@ -451,13 +455,15 @@ body{
 					<input type="hidden" name="cardNo" value="${list[0].CARD_NO}" />
 				</form>
 				<div id="btnBox">
-					<input type="button" value="상세보기" class="dtBtn" id="${list[0].CARD_NO}" />
-					<input type="button" value="비교함 담기" class="compareBtn" id="${list[0].CARD_NO}" />
+					<input type="button" value="상세보기" class="dt_btn" id="dtBtn" />
+					<input type="button" value="비교함 담기" class="compare_btn" id="compareBtn" />
 				</div>
-				
 			</div>
 			<div id="contentBot">
 			<c:forEach var ="i" begin="1" end ="9">
+				<form action="cardview" id="gogoForm_${list[i].CARD_NO}" method="post">
+					<input type="hidden" name="cardNo" value="${list[i].CARD_NO}" />
+				</form>
 				<div class="rank_box">	<!-- 2등 -->
 					<div class="rank_num">${list[i].RNK}</div>
 					<div class="box_card">
@@ -468,8 +474,8 @@ body{
 						<h5 class="cmp_card">${list[i].CARD_CMP_NAME}</h5>
 					</div>
 					<div class="dsc_view">
-						<div class="view_box" id="${list[i].CARD_NO}"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
-						<div class="view_dt" id="${list[i].CARD_NO}"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
+						<div class="view_box" id="viewBox_${list[i].CARD_NO}"><i class='fa fa-plus'></i>&nbsp;&nbsp;비교함 담기</div>
+						<div class="view_dt" id="viewDt_${list[i].CARD_NO}"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
 					</div>
 				</div>
 				</c:forEach>
