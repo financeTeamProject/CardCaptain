@@ -54,7 +54,7 @@
 #bi2{
 
 	top: 90%;
-    left: 4%;
+    left: 3%;
     position: fixed;
     background-color: #ff6e61;
     color: white;
@@ -93,17 +93,17 @@
     cursor: pointer;
     z-index: 150;
     width: 91px;
-    height: 40px;
+    height: 50px;
 	
 }
 
 
-#p2{
-
-	font-size: 15px;
+#p2 {
+		
+    font-size: 15px;
     position: relative;
     top: 85%;
-    left: 6%;
+    left: 90px;
     position: fixed;
     padding: 10px;
     background-color: #FFE5B4;
@@ -113,7 +113,8 @@
     cursor: pointer;
     z-index: 150;
     width: 60px;
-    height: 40px;	
+    height: 50px;	
+    
 }
 
 
@@ -436,7 +437,7 @@
 				    padding: 20px;
 			}
 			
-			#h1,#h2,#h3,#h4{
+			#h1{
 			
 				text-align:center;
 			
@@ -927,7 +928,6 @@ $(function(){
 						<img alt="올려보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_up_gray.png" class="arrow_up1">
 						
 					</div>
-					<div class = "cont" style = "display:none";>가나다라마바사아자차카타파하</div>
 				
 				</div>
 				<div class = "group1-1">
@@ -959,7 +959,6 @@ $(function(){
 						<img alt="펼쳐보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_down_gray.png" class="arrow_down2">
 						<img alt="올려보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_up_gray.png" class="arrow_up2">
 					</div>
-					<div class = "cont" style = "display:none";>가나다라마바사아자차카타파하</div>
 				</div>
 				<div class = "group1-1">
 				
@@ -992,7 +991,6 @@ $(function(){
 						<img alt="펼쳐보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_down_gray.png" class="arrow_down3">
 						<img alt="올려보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_up_gray.png" class="arrow_up3">
 					</div>
-					<div class = "cont" style = "display:none";>가나다라마바사아자차카타파하</div>
 				</div>
 				<div class = "group1-1">
 				
@@ -1025,7 +1023,6 @@ $(function(){
 						<img alt="펼쳐보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_down_gray.png" class="arrow_down4">
 						<img alt="올려보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_up_gray.png" class="arrow_up4">
 					</div>
-					<div class = "cont" style = "display:none";>가나다라마바사아자차카타파하</div>
 				</div>
 				<div class = "group1-1">
 				

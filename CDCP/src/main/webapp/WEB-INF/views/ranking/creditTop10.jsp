@@ -51,7 +51,7 @@ body{
 #bi2{
 
 	top: 90%;
-    left: 4%;
+    left: 3%;
     position: fixed;
     background-color: #ff6e61;
     color: white;
@@ -78,7 +78,7 @@ body{
 #p1{
 	
 			
-    font-size: 15px;
+     font-size: 15px;
     position: relative;
     top: 85%;
     position: fixed;
@@ -90,17 +90,17 @@ body{
     cursor: pointer;
     z-index: 150;
     width: 91px;
-    height: 40px;
+    height: 50px;
 	
 }
 
 
 #p2{
 
-	font-size: 15px;
+	 font-size: 15px;
     position: relative;
     top: 85%;
-    left: 6%;
+    left: 90px;
     position: fixed;
     padding: 10px;
     background-color: #FFE5B4;
@@ -110,7 +110,8 @@ body{
     cursor: pointer;
     z-index: 150;
     width: 60px;
-    height: 40px;	
+    height: 50px;	
+    
 }
 
 
@@ -486,40 +487,95 @@ body{
 			src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 
+
 /*비교함 담기  */	
 
-
 $(document).ready(function(){
+	
+	var cardNo = [];
+	
+	
+	//카드 번호 받아오기
+	
+	
+	/* for(int i=0; i<arr_num.length; i++) {
+            for(int j=0; j<i; j++) {
+               if(arr_num[i] < arr_num[j]) {
+                  a = arr_num[i];
+                  arr_num[i] = arr_num[j];
+                  arr_num[j] = a;
+            }
+         }
+      } */
+	       
+		
+      /* 사이드 비교함 버튼 조건  */
+      
+	$(".view_box").on("click", function() {
+		var temp = "";
+				
+		if(cardNo.length > 2) {
+			alert("비교함이 가득 찼습니다.");
+		} else {
 			
+			
+			cardNo.push($(this).prop('id'));
+			$("#bi2").val(cardNo.length);
+			
+			
+			for(var i=0; i<cardNo.length; i++){
+				for(var j=0; j<i; j++){
+					if(cardNo[i] == cardNo[j]) {
+						alert("동일한 카드가 있습니다.");
+						cardNo.pop();//pop() = 배열의 마지막 요소 제거
+						$("#bi2").val(cardNo.length);
+						return false;
+					} 
+				}
+			}
+		}
+	});
+              
+      /* 메인 비교함 버튼 조건 */
+          
+	$(".compareBtn").on("click", function() {
+		if(cardNo.length > 2) {
+			alert("비교함이 가득 찼습니다.");
+		} else {
+			cardNo.push($(this).prop('id'));
+			$("#bi2").val(cardNo.length);
+		}
+	});
 	
+      
 	$("#bi").hide();
-	
+		
 	
 	$(".compareBtn").on("click",function(){
 		
 		$("#bi").hide();
 		$("#bi").fadeIn();
-				
+		
+	});
 	
+		
+		$("#bi").on("click",function(){
+			
+			makePopup();
+					
+		});
+		
 	});
 	
 	
-	$("#bi").on("click",function(){
-		
-		makePopup();
-				
-	});
-		
 	
-});
-
-
 	$(document).ready(function(){
 		
 		$("#bi").hide();
 		
 		
 		$(".view_box").on("click" , function(){
+						
 			
 			$("#bi").hide();
 			$("#bi").fadeIn();
@@ -661,7 +717,8 @@ function closePopup(){
 					<input type="button" value="비교함 담기" class="compareBtn" id="${list[0].CARD_NO}" />
 						<div id = "bi">
 						<input type = "button" value = "비교함 확인" id = "bi1"/>
-						<input type = "button" value = "1" id= "bi2"/>						
+						<input type = "button" value = "1" id= "bi2"/>
+										
 						</div>
 					</div>
 					

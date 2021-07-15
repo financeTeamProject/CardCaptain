@@ -251,7 +251,6 @@ body{
     z-index: 200;
     margin: 0 auto;
     border-radius: 20px;
-
 }
 
 .Popup{
@@ -637,14 +636,7 @@ body{
 						font-family: GmarketSansMedium;
 					}
 						
-						.cont{
-																				
-							width : 200px;
-							height : 50px;
-							border: 1px solid #000000;
-						
-						}
-								
+														
 						.name_card{
 							margin-bottom: 0;
 							text-align: left;
@@ -867,7 +859,6 @@ body{
 						<img alt="올려보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_up_gray.png" class="arrow_up1">
 						
 					</div>
-					<div class = "cont" style = "display:none";>가나다라마바사아자차카타파하</div>
 				
 				</div>
 				<div class = "group1-1">
@@ -932,7 +923,7 @@ body{
 						<img alt="펼쳐보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_down_gray.png" class="arrow_down3">
 						<img alt="올려보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_up_gray.png" class="arrow_up3">
 					</div>
-					<div class = "cont" style = "display:none";>가나다라마바사아자차카타파하</div>
+					
 				</div>
 				<div class = "group1-1">
 				
@@ -965,7 +956,6 @@ body{
 						<img alt="펼쳐보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_down_gray.png" class="arrow_down4">
 						<img alt="올려보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_up_gray.png" class="arrow_up4">
 					</div>
-					<div class = "cont" style = "display:none";>가나다라마바사아자차카타파하</div>
 				</div>
 				<div class = "group1-1">
 				
