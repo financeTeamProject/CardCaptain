@@ -241,7 +241,7 @@
 						}
 						.compare_btn:hover{
 							color: black;
-							background-color: #F5DF4D;
+							background-color: pink;
 							cursor: pointer;
 							border: none;
 						}
