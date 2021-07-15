@@ -7,4 +7,9 @@
 	SELECT TEST_NO, CONTENT
 	FROM PSYTEST
 </select>
+
+<select id="getMovie" parameterType="hashmap" resultType="hashmap">
+	SELECT TIPVIDEO_NO, MANAGER_NO, VIDEO_NAME, VIDEO_IMG, VIDEO_LINK, ADD_DATE
+	FROM TIPVIDEOS
+</select>
 </mapper>

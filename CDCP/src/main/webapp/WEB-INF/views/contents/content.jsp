@@ -335,7 +335,7 @@ h1 {
 	margin: 0px 16.5px;
 }
 
-.movie > div {
+.movie > div, img {
 	width: 300px;
 	height: 300px;
 	background-repeat: no-repeat;
@@ -352,18 +352,6 @@ h1 {
 	font-family: 'Cafe24Ohsquare';
 	color: black;
 	text-align: center;
-}
-
-#video_rayout_1{
-	background-image: url("/cdcp/resources/images/contentimg/video_1.jpg");
-}
-
-#video_rayout_2{
-	background-image: url("/cdcp/resources/images/contentimg/video_2.jpg");
-}
-
-#video_rayout_3{
-	background-image: url("/cdcp/resources/images/contentimg/video_3.jpg");
 }
 
 #footer{
@@ -527,18 +515,12 @@ h1 {
 				</div>
 				<div class="content">
 					<div id="content_1">
+					<c:forEach var = "i" begin = "0" end = "2">
 						<div class="movie">
-							<div id="video_rayout_1" onclick = "window.open('https://youtu.be/ld8M47X6fF8')"></div>
-						<div class = movie_name><신용카드가 필요한 이유 3가지></div>
+							<img src="${list[i].VIDEO_IMG}" onclick = "window.open('${list[i].VIDEO_LINK}')">
+						<div class = movie_name><${list[i].VIDEO_NAME}></div>
 						</div>
-						<div class="movie">
-							<div id="video_rayout_2" onclick = "window.open('https://youtu.be/AgzSzAuQzs0')"></div>
-						<div class = movie_name><대신 물어봐드립니다!></div>
-						</div>
-						<div class="movie">
-							<div id="video_rayout_3" onclick = "window.open('https://youtu.be/VrKFLX2rP5M')"></div>
-						<div class = movie_name><머니VS게임></div>
-						</div>
+					</c:forEach>
 					</div>
 				</div>
 				<div class="title">카드용어정리</div>

@@ -18,13 +18,6 @@ public class ContentController {
 	public ContentsIService ContentsiService;
 	
 	
-	@RequestMapping(value = "/content") // 콘텐츠 메인 화면
-	public ModelAndView content(ModelAndView mav) {
-		mav.setViewName("contents/content");
-		
-		return mav;
-	}
-	
 	@RequestMapping(value = "/cardTerms") // 콘텐츠 카드간단용어 기사
 	public ModelAndView cardTerms(ModelAndView mav) {
 		mav.setViewName("contents/cardTerms");
@@ -130,6 +123,21 @@ public class ContentController {
 		mav.addObject("list", list);
 		System.out.println(list);
 		mav.setViewName("contents/Ctest4");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/content") // 
+	public ModelAndView content(
+			@RequestParam HashMap<String, String> params,
+			ModelAndView mav) throws Throwable{
+		
+		List<HashMap<String, String>> list
+			= ContentsiService.getMovie(params);
+		
+		mav.addObject("list", list);
+		System.out.println(list);
+		mav.setViewName("contents/content");
 		
 		return mav;
 	}

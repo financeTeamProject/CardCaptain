@@ -18,4 +18,8 @@ public class ContentsDao implements ContentsIDao{
 		
 		return sqlSession.selectList("C.getCtest", params);
 	}
+
+	public List<HashMap<String, String>> getMovie(HashMap<String, String> params) {
+		return sqlSession.selectList("C.getMovie", params);
+	}
 }

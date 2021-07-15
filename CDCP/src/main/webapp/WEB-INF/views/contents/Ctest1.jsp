@@ -159,7 +159,6 @@ label  {
 </script>
 </head>
 <body>
-
 <!-- 메인영역(소비심리테스트) -->
 <div class="rayout">
 	<div id="s_left"></div>
