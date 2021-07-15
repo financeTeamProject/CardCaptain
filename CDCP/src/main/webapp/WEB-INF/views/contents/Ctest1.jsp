@@ -223,7 +223,6 @@ label  {
 		<input type="submit" value="다음" id="next" />
 	</div>	
 	</div>
-	
 	<div id="s_right"></div>						
 </div>
 	

@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="search">
+	<select id="searchKeyword" parameterType="hashmap" resultType="hashmap">
+		SELECT C.CARD_NO,C.CARD_NAME,C.CARD_TYPE,B.BENEFIT_TOP,B.BENEFIT_TYPE_NO,C.CARD_IMG_URL,C.CARD_SUMMARY
+		FROM CARDS C INNER JOIN CARDTYPES T 
+							 ON C.CARD_NO = T.CARD_NO
+					 INNER JOIN CARDBENEFITS B
+							 ON T.CARD_NO = B.CARD_NO
+		WHERE B.DETAIL_INFO LIKE '%'|| #{option} || '%'
+	</select>
+	
+	
 </mapper>

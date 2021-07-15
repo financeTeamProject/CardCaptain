@@ -286,40 +286,51 @@ h3{
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+	//옵션클릭 시 클래스 변경
+	$(".choiceList").on("click", function() {
+		$("#searchType").val("keywordSearch");
+		$(this).attr("class","choiceListClick");
+	});
+	
+	//옵션 선택 - Controller
 	$("#subBtn").on("click", function() {
 		var actionVal = "";
 		var tags = document.getElementsByClassName("choiceListClick");
 		var taglength = tags.length;
 		
-		for(var i=0; i<taglength; i++) {
-			actionVal += "<input type=\"hidden\" name=\"option\" value=\"" + tags[i].innerHTML + "\" /><br/>";
+		if(taglength <= 0) {
+			alert("옵션을 선택해 주세요");
+		} else {
+			for(var i=0; i<taglength; i++) {
+				actionVal += "<input type=\"hidden\" name=\"option\" value=\"" + tags[i].innerHTML + "\" /><br/>";
+			}
+			actionVal += "<input type=\"hidden\" name=\"searchType\" value=\"optionClick\" /><br/>";
+			
+			$("#goForm").html(actionVal);
+			$("#goForm").attr("action","searchingCardList");
+			$("#goForm").submit();
 		}
-		$("#goForm").html(actionVal);
-		$("#goForm").attr("action","searchingCardList");
-		$("#goForm").submit();
 	});
 	
-	$(".searchBtn").on("click",function() {
-		var ival = $(this).prop('id');
-		$(location).attr('href',ival);
-	});
-	
+	//값 초기화
 	$("#deleteSearchValue").on("click",function() {
 		$("#searchBox").val("");
 	});
 	
+	//직접 검색 - Controller
 	$("#searchAreaBtn").on("click",function() {
-		if ( $.trim($("#searchBox").val()) == "" ) {
+		if ($.trim($("#searchBox").val()) == "") {
 			alert("검색어를 입력해 주세요.");
 			$("#searchBox").val("");
 			$("#searchBox").focus();
 		} else {
-			return false;
+			var actionVal = "<input type=\"hidden\" name=\"searchType\" value=\"keyword\" /><br/>";
+			actionVal += "<input type=\"hidden\" name=\"option\" value=\"" + $.trim($("#searchBox").val()) + "\" /><br/>";
+			
+			$("#goForm").html(actionVal);
+			$("#goForm").attr("action","searchingCardList");
+			$("#goForm").submit();
 		}
-	});
-	
-	$(".choiceList").on("click", function() {
-		$(this).attr("class","choiceListClick");
 	});
 });
 </script>
@@ -342,7 +353,8 @@ $(document).ready(function() {
 </div>
 <!-- End Header by KJ -->
 <!-- content영역 -->
-<form action="#" id ="goForm" method="post"></form>
+<form action="#" id ="goForm" method="post">
+</form>
 <div id="content">
 <div id="contentMenu">
 	<div id="main">
@@ -356,17 +368,20 @@ $(document).ready(function() {
 			<input type="button" value="GO" id="searchAreaBtn" class="search_area_btn" />
 		</div>
 		<div id="benefit_list">
-			<span id="benefit_list_1" class="choiceList">#쇼핑</span>
-			<span id="benefit_list_2" class="choiceList">#마트/편의점</span>
-			<span id="benefit_list_3" class="choiceList">#외식</span>
-			<span id="benefit_list_4" class="choiceList">#영화</span><br/>
-			<span id="benefit_list_5" class="choiceList">#대중교통</span>
-			<span id="benefit_list_6" class="choiceList">#통신사</span>
-			<span id="benefit_list_7" class="choiceList">#카페/제과</span>
-			<span id="benefit_list_8" class="choiceList">#캐시백</span><br/>
-			<span id="benefit_list_9" class="choiceList">#주유</span>
-			<span id="benefit_list_10" class="choiceList">#여행</span>
-			<span id="benefit_list_11" class="choiceList">#포인트</span>
+			<span id="benefit_list_1" class="choiceList">교통</span>
+			<span id="benefit_list_2" class="choiceList">네이버페이</span>
+			<span id="benefit_list_3" class="choiceList">배달앱</span>
+			<span id="benefit_list_4" class="choiceList">백화점</span><br/>
+			<span id="benefit_list_5" class="choiceList">소셜커머스</span>
+			<span id="benefit_list_6" class="choiceList">쇼핑</span>
+			<span id="benefit_list_7" class="choiceList">영화</span>
+			<span id="benefit_list_8" class="choiceList">자동차/하이패스</span>
+			<span id="benefit_list_9" class="choiceList">적립</span><br/>
+			<span id="benefit_list_10" class="choiceList">카카오페이</span>
+			<span id="benefit_list_11" class="choiceList">카페</span>
+			<span id="benefit_list_12" class="choiceList">통신</span>
+			<span id="benefit_list_13" class="choiceList">편의점</span>
+			<span id="benefit_list_14" class="choiceList">푸드</span>
 			<div id="btnArea" class="btn_area">
 				<input type="button" value="카드보기" id="subBtn" class="sub_btn" />
 			</div>

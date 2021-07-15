@@ -26,4 +26,10 @@ public class UserService implements UserIService {
 		return useridao.joinM(params);
 	}
 
+	@Override
+	public HashMap<String, String> idCheck(HashMap<String, String> params) throws Throwable {
+		return useridao.idCheck(params);
+	}
+
+
 }

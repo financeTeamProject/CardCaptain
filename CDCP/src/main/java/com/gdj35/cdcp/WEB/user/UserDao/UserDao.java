@@ -21,6 +21,10 @@ public class UserDao implements UserIDao {
 	}
 	@Override
 	public int joinM(HashMap<String, String> params) throws Throwable {
-		return sqlSession.selectOne("user.joinM", params);
+		return sqlSession.insert("user.joinM", params);
+	}
+	@Override
+	public HashMap<String, String> idCheck(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectOne("user.idCheck", params);
 	}
 }

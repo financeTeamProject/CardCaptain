@@ -353,17 +353,20 @@ $(document).ready(function() {
 					<div id="gndage_list" class="sub_check_list">
 						<h3>카드혜택</h3><br />
 						<ul>
+							<li class="choiceList">교통</li>
+							<li class="choiceList">네이버페이</li>
+							<li class="choiceList">배달앱</li>
+							<li class="choiceList">백화점</li>
+							<li class="choiceList">소셜커머스</li>
 							<li class="choiceList">쇼핑</li>
-							<li class="choiceList">마트/편의점</li>
-							<li class="choiceList">외식</li>
-							<li class="choiceList">영화</li>
-							<li class="choiceList">대중교통</li>
-							<li class="choiceList">통신사</li>
-							<li class="choiceList">카페/제과</li>
-							<li class="choiceList">캐시백</li>
-							<li class="choiceList">주유</li>
-							<li class="choiceList">여행</li>
-							<li class="choiceList">포인트</li>
+							<li class="choiceList">영화</li><br/>
+							<li class="choiceList">자동차/하이패스</li>
+							<li class="choiceList">적립</li>
+							<li class="choiceList">카카오페이</li>
+							<li class="choiceList">카페</li>
+							<li class="choiceList">통신</li>
+							<li class="choiceList">편의점</li>
+							<li class="choiceList">푸드</li>
 						</ul>
 					</div>
 				</div>

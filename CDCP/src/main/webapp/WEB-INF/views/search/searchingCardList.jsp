@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -146,7 +147,7 @@ body{
 }
 #content {
 	width: 1600px;
-    height: 800px;/* content에 맞게 줄임 - SYOU */
+    height: 2500px;/* content에 맞게 줄임 - SYOU */
     margin: 0 auto;
 }		
 /* SYOU */
@@ -257,6 +258,7 @@ body{
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
+/* console.log(${searchKeywordResult}); */
 $(document).ready(function() {
 });
 </script>
@@ -289,51 +291,16 @@ $(document).ready(function() {
  				</c:forEach>
  			</ul>
 		</div>
+<c:set var="size" value="${fn:length(searchKeywordResult)}" />
+<c:forEach var ="i" begin="0" end ="${size}">
 	<div id="srchCardList" class="srch_card_list">
 		<div id="cardList_1" class="card_list">
-			<img src="resources/images/ranking/card/check/we/we_joungsuck_card.png">
+			<img src="${searchKeywordResult[i].CARD_IMG_URL}">
 			<div id="cardList_1_txt"  class="card_list_txt">
-				<h3>KB국민 청춘대로 톡톡카드</h3>
+				<h3>${searchKeywordResult[i].CARD_NAME}</h3>
+				<c:set var="benefit_size" value="${fn:length(searchKeywordResult[i].BENEFIT_TOP)}" />
 				<ul>
-					<li class="choiceList">카페/베이커리</li>
-					<li class="choiceList">외식</li>
-					<li class="choiceList">연회비지원</li>
-					<li class="choiceList">통신</li>
-					<li class="choiceList">대중교통</li>
-				</ul>
-			</div>
-			<div id="cardList_1_etc" class="cardList_etc">
-				<h4 class="side_Btn"><i class='fa fa-plus'></i>&nbsp;비교함 담기</h4>
-				<h4 class="side_Btn"><i class='fa fa-angle-double-right'></i>&nbsp;상세보기</h4>
-			</div>
-		</div>		
-		<div id="cardList_2"  class="card_list">
-			<img src="resources/images/ranking/card/check/hana/hana_1q_daily+_card.png">
-			<div id="cardList_1_txt"  class="card_list_txt">
-				<h3>삼성카드 4</h3>
-				<ul>
-					<li class="choiceList">쇼핑</li>
-					<li class="choiceList">영화</li>
-					<li class="choiceList">언제나할인</li>
-					<li class="choiceList">연회비지원</li>
-					<li class="choiceList">카페/베이커리</li>
-				</ul>
-			</div>
-			<div id="cardList_1_etc" class="cardList_etc">
-				<h4 class="side_Btn"><i class='fa fa-plus'></i>&nbsp;비교함 담기</h4>
-				<h4 class="side_Btn"><i class='fa fa-angle-double-right'></i>&nbsp;상세보기</h4>
-			</div>
-		</div>
-		<div id="cardList_3"  class="card_list">
-			<img src="resources/images/ranking/card/check/kb/kb_bonus_checkcard.png">
-			<div id="cardList_1_txt"  class="card_list_txt">
-				<h3>삼성카드 taptap O</h3>
-				<ul>
-					<li class="choiceList">포인트/캐시백</li>
-					<li class="choiceList">통신</li>
-					<li class="choiceList">대중교통</li>
-					<li class="choiceList">카페/베이커리</li>
-					<li class="choiceList">쇼핑</li>
+					<li class="choiceList">${benefit_size}</li>	
 				</ul>
 			</div>
 			<div id="cardList_1_etc" class="cardList_etc">
@@ -342,6 +309,8 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
+</c:forEach>
+	
 	</div>
 	</div>
 </div>
