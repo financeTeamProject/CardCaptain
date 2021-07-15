@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -326,7 +327,7 @@ h1 {
 	font-family: 'Cafe24Ohsquare';
 }
 
-#movie { /* 동영상 */
+.movie { /* 동영상 */
 	width: 300px;
 	height: 300px;
 	background-position: center;
@@ -334,13 +335,23 @@ h1 {
 	margin: 0px 16.5px;
 }
 
-#movie > div {
+.movie > div {
 	width: 300px;
 	height: 300px;
 	background-repeat: no-repeat;
 	background-position: center;
 	margin: 0px auto;
 	cursor: pointer;
+}
+
+.movie > .movie_name {
+	width: 300px;
+	height: 50px;
+	margin: 0px auto;
+	font-size: 17px;
+	font-family: 'Cafe24Ohsquare';
+	color: black;
+	text-align: center;
 }
 
 #video_rayout_1{
@@ -516,9 +527,18 @@ h1 {
 				</div>
 				<div class="content">
 					<div id="content_1">
-						<div id="movie"><div id="video_rayout_1" onclick="location.href='https://youtu.be/ld8M47X6fF8';"></div></div>
-						<div id="movie"><div id="video_rayout_2" onclick="location.href='https://youtu.be/AgzSzAuQzs0';"></div></div>
-						<div id="movie"><div id="video_rayout_3" onclick="location.href='https://youtu.be/VrKFLX2rP5M';"></div></div>
+						<div class="movie">
+							<div id="video_rayout_1" onclick = "window.open('https://youtu.be/ld8M47X6fF8')"></div>
+						<div class = movie_name><신용카드가 필요한 이유 3가지></div>
+						</div>
+						<div class="movie">
+							<div id="video_rayout_2" onclick = "window.open('https://youtu.be/AgzSzAuQzs0')"></div>
+						<div class = movie_name><대신 물어봐드립니다!></div>
+						</div>
+						<div class="movie">
+							<div id="video_rayout_3" onclick = "window.open('https://youtu.be/VrKFLX2rP5M')"></div>
+						<div class = movie_name><머니VS게임></div>
+						</div>
 					</div>
 				</div>
 				<div class="title">카드용어정리</div>

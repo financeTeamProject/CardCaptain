@@ -32,28 +32,6 @@ public class ContentController {
 		return mav;
 	}
 	
-	
-	@RequestMapping(value = "/Ctest2") // 콘텐츠 소비심리테스트 두번째 화면
-	public ModelAndView Ctest2(ModelAndView mav) {
-		mav.setViewName("contents/Ctest2");
-		
-		return mav;
-	}
-	
-	@RequestMapping(value = "/Ctest3") // 콘텐츠 소비심리테스트 세번째 화면
-	public ModelAndView Ctest3(ModelAndView mav) {
-		mav.setViewName("contents/Ctest3");
-		
-		return mav;
-	}
-	
-	@RequestMapping(value = "/Ctest4") // 콘텐츠 소비심리테스트 네번째 화면
-	public ModelAndView Ctest4(ModelAndView mav) {
-		mav.setViewName("contents/Ctest4");
-		
-		return mav;
-	}
-	
 	@RequestMapping(value = "/CtestResult") // 콘텐츠 소비심리테스트 결과화면
 	public ModelAndView CtestResult(ModelAndView mav) {
 		mav.setViewName("contents/CtestResult");
@@ -107,6 +85,51 @@ public class ContentController {
 		mav.addObject("list", list);
 		System.out.println(list);
 		mav.setViewName("contents/Ctest1");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/Ctest2") // Ctest2 페이지
+	public ModelAndView Ctest2(
+			@RequestParam HashMap<String, String> params,
+			ModelAndView mav) throws Throwable{
+		
+		List<HashMap<String, String>> list
+			= ContentsiService.getCtest(params);
+		
+		mav.addObject("list", list);
+		System.out.println(list);
+		mav.setViewName("contents/Ctest2");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/Ctest3") // Ctest3 페이지
+	public ModelAndView Ctest3(
+			@RequestParam HashMap<String, String> params,
+			ModelAndView mav) throws Throwable{
+		
+		List<HashMap<String, String>> list
+			= ContentsiService.getCtest(params);
+		
+		mav.addObject("list", list);
+		System.out.println(list);
+		mav.setViewName("contents/Ctest3");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/Ctest4") // Ctest4 페이지
+	public ModelAndView Ctest4(
+			@RequestParam HashMap<String, String> params,
+			ModelAndView mav) throws Throwable{
+		
+		List<HashMap<String, String>> list
+			= ContentsiService.getCtest(params);
+		
+		mav.addObject("list", list);
+		System.out.println(list);
+		mav.setViewName("contents/Ctest4");
 		
 		return mav;
 	}
