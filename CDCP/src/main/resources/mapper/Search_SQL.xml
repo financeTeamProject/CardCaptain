@@ -30,7 +30,6 @@
 									 ON T.CARD_NO = B.CARD_NO
 				WHERE B.DETAIL_INFO LIKE '%'|| #{option} || '%'
 				ORDER BY C.CARD_NO) A
-		WHERE A.RNUM BETWEEN #{startCnt} AND #{endCnt}
 	</select>
 	
 	<select id="pagingDistinct" parameterType="hashmap" resultType="hashmap">
