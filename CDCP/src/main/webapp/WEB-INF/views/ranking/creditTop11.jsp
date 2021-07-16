@@ -715,7 +715,8 @@ function closePopup(){
 					<input type="hidden" name="cardNo" value="${list[0].CARD_NO}" />
 				</form>
 				<div id="btnBox">
-<<<<<<< HEAD
+
+
 					<input type="button" value="상세보기" class="dtBtn" id="${list[0].CARD_NO}" />
 					<div>
 					<input type="button" value="비교함 담기" class="compareBtn" id="${list[0].CARD_NO}" />
@@ -726,16 +727,14 @@ function closePopup(){
 						</div>
 					</div>
 					
-=======
+
 					<input type="button" value="상세보기" class="dt_btn" id="dtBtn" />
 					<input type="button" value="비교함 담기" class="compare_btn" id="compareBtn" />
->>>>>>> branch 'main' of https://github.com/financeTeamProject/CardCaptain.git
+
 				</div>
-<<<<<<< HEAD
+			
 							
-				
-=======
->>>>>>> branch 'main' of https://github.com/financeTeamProject/CardCaptain.git
+
 			</div>
 			<div id="contentBot">
 			<c:forEach var ="i" begin="1" end ="9">
