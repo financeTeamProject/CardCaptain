@@ -24,117 +24,7 @@ body{
     font-style: normal;
 }
 
-	/* 팝업 영역  */
-
-#bi1{
-		
-	cursor:pointer;
-	position: relative;
-	top:90%;
-	left:0%;
-	position: fixed;
-	background-color:#0047ab;
-	color : white;
-	width: 150px;
-	height: 110px;
-	text-align:center;
-	line-height:50px;
-	font-weight:bold;
-	font-size:24px;
-	font-family: 'Cafe24Ohsquare';
-	z-index:200;
-	margin:0 auto;
-	
-}
-
-
-#bi2{
-
-	top: 90%;
-    left: 3%;
-    position: fixed;
-    background-color: #ff6e61;
-    color: white;
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    line-height: 37px;
-    font-weight: bold;
-    font-size: 15px;
-    font-family: 'Cafe24Ohsquare';
-    z-index: 200;
-    margin: 0 auto;
-    border-radius: 20px;
-	border: 1px;
-}
-
-.Popup{
-
-	z-index:150;
-	
-}
-
-
-#p1{
-	
-			
-     font-size: 15px;
-    position: relative;
-    top: 85%;
-    position: fixed;
-    padding: 10px;
-    background-color: #A0CFEC;
-    color: white;
-    font-family: 'Cafe24Ohsquare';
-    border: 0px;
-    cursor: pointer;
-    z-index: 150;
-    width: 91px;
-    height: 50px;
-	
-}
-
-
-#p2{
-
-	 font-size: 15px;
-    position: relative;
-    top: 85%;
-    left: 90px;
-    position: fixed;
-    padding: 10px;
-    background-color: #FFE5B4;
-    color: white;
-    font-family: 'Cafe24Ohsquare';
-    border: 0px;
-    cursor: pointer;
-    z-index: 150;
-    width: 60px;
-    height: 50px;	
-    
-}
-
-
-.Popdown{
-		
-	display:inline-block;
-	width:100%;
-	height:100%;
-	position: fixed;
-	top:0;
-	left:0;
-	z-index: 100;
-	opacity: 0.3; /* 0.0(투명) ~ 1.0(불투명)  */
-			
-}
-	
-
-
-
-
 /*	헤더 영역	*/
-	
-	
 	#header {
 		width: 100%;
 		height: 55px;
@@ -327,7 +217,6 @@ body{
 								position: relative;
 								top: 6px;
 							}
-							
 					/* 버튼 박스 영역*/	
 					#btnBox{
 						width: 100%;
@@ -336,16 +225,14 @@ body{
 					}
 						.dt_btn{
 							width: 150px;
-						    height: 50px;
-						    color: white;
-						    border-style: none;
+							height: 50px;
+							color: white;
+							border-style: none;
 						    background-color: #0047AB;
 						    border-radius: 5px;
 						    font-size: 18px;
 						    font-family: 'GmarketSansMedium';
-						    margin: 25px 5px;
-						    position: relative;
-						    right: 6%;
+							margin: 25px 5px;
 						}	
 							.dt_btn:hover{
 								color: black;
@@ -354,17 +241,14 @@ body{
 							}
 						.compare_btn{
 							width: 150px;
-						    height: 50px;
-						    color: white;
-						    border-style: none;
+							height: 50px;
+							color: white;
+							border-style: none;
 						    background-color: #808080;
 						    border-radius: 5px;
 						    font-size: 18px;
 						    font-family: 'GmarketSansMedium';
-						    margin: 25px 5px;
-						    position: relative;
-						    left: 6%;
-						    bottom: 101px;
+							margin: 25px 5px;
 						}
 							.compare_btn:hover{
 								color: black;
@@ -483,169 +367,20 @@ body{
 <script type="text/javascript"
 			src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
-
-
-/*비교함 담기  */	
-
-$(document).ready(function(){
-	
-	var cardNo = [];
-	
-	
-	//카드 번호 받아오기
-	
-	
-	/* for(int i=0; i<arr_num.length; i++) {
-            for(int j=0; j<i; j++) {
-               if(arr_num[i] < arr_num[j]) {
-                  a = arr_num[i];
-                  arr_num[i] = arr_num[j];
-                  arr_num[j] = a;
-            }
-         }
-      } */
-	       
-		
-      /* 사이드 비교함 버튼 조건  */
-      
-	$(".view_box").on("click", function() {
-		var temp = "";
-				
-		if(cardNo.length > 2) {
-			alert("비교함이 가득 찼습니다.");
-		} else {
-			
-			
-			cardNo.push($(this).prop('id'));
-			$("#bi2").val(cardNo.length);
-			
-			
-			for(var i=0; i<cardNo.length; i++){
-				for(var j=0; j<i; j++){
-					if(cardNo[i] == cardNo[j]) {
-						alert("동일한 카드가 있습니다.");
-						cardNo.pop();//pop() = 배열의 마지막 요소 제거
-						$("#bi2").val(cardNo.length);
-						return false;
-					} 
-				}
-			}
-		}
-	});
-              
-      /* 메인 비교함 버튼 조건 */
-          
-	$(".compareBtn").on("click", function() {
-		if(cardNo.length > 2) {
-			alert("비교함이 가득 찼습니다.");
-		} else {
-			cardNo.push($(this).prop('id'));
-			$("#bi2").val(cardNo.length);
-		}
-	});
-	
-      
-	$("#bi").hide();
-		
-	
-	$(".compareBtn").on("click",function(){
-		
-		$("#bi").hide();
-		$("#bi").fadeIn();
-		
-	});
-	
-		
-		$("#bi").on("click",function(){
-			
-			makePopup();
-					
-		});
-		
-	});
-	
-	
-	
 	$(document).ready(function(){
-		
-		$("#bi").hide();
-		
-		
-		$(".view_box").on("click" , function(){
-						
-			
-			$("#bi").hide();
-			$("#bi").fadeIn();
-			
-		});
-		
-		$("#bi").on("click",function(){
-			
-			makePopup();
-		
-		});
-	
-	});
-	
-
-	function makePopup(){
-		
-		var html = "<div class = \"Popup\">"
-			+ "<input type = \"button\" id = \"p1\" value = \"비교함 이동\" readonly = \"readonly\" >"
-			+ "<input type = \"button\" id = \"p2\" value = \"취소\"  readonly = \"readonly\" >"
-			+ "</div>"
-							
-			
-			$("body").prepend(html);
-			$(".Popup").hide().fadeIn();
-					
-			$("#p1").on("click",function(){
-				
-				location.href = "http://localhost:8090/cdcp/compareSearch";
-					
-				
-			});
-						
-			
-		$("#p2").off("click");
-		$("#p2").on("click",function(){
-			
-			closePopup();
-																
-		});
-		
-	}				
-	
-		
-
-function closePopup(){
-	
-	$(".Popup").fadeOut(function(){
-		
-		$(".Popup").remove();
-		
-	});
-
-}
-
-
-	$(document).ready(function(){
-		
 		/* 카드순위 페이지 이동 */
 		$("#ranking").on("click", function(){
 			location.href = "card_rank";
 		}); // ranking click end
-		
 		/* 카드검색/비교 페이지 이동 */
 		 $("#search").on("click", function(){
 			location.href = "search";
 		});// search click end
-		
 		/* 컨텐츠 페이지 이동 */
 		$("#contents").on("click", function(){
 			location.href = "content";
 		});// contents click end
-			
+		
 		/* 메인페이지 이동 */
 		$("#headerLogo").on("click", function(){
 			location.href = "/cdcp";
@@ -687,7 +422,7 @@ function closePopup(){
 	<div id="content">
 		<!-- 1위 카드 이름 영역 -->
 		<div id="contentMenu">
-			<div id="menuName">신용카드 TOP10</div>
+			<div id="menuName">체크카드 TOP10</div>
 			<div id="contentTop">
 				<div id="nameSct">
 					<div id="cardName">${list[0].CARD_NAME}</div>
@@ -716,22 +451,13 @@ function closePopup(){
 					<input type="hidden" name="cardNo" value="${list[0].CARD_NO}" />
 				</form>
 				<div id="btnBox">
-					<input type="button" value="상세보기" class="dtBtn" id="${list[0].CARD_NO}" />
-					<div>
-					<input type="button" value="비교함 담기" class="compareBtn" id="${list[0].CARD_NO}" />
-						<div id = "bi">
-						<input type = "button" value = "비교함 확인" id = "bi1"/>
-						<input type = "button" value = "1" id= "bi2"/>
-										
-						</div>
-					</div>
-					
+					<input type="button" value="상세보기" class="dt_btn" id="dtBtn" />
+					<input type="button" value="비교함 담기" class="compare_btn" id="compareBtn" />
 				</div>
-							
 			</div>
 			<div id="contentBot">
 			<c:forEach var ="i" begin="1" end ="9">
-				<form action="cardview" id="gogoForm_${list[i].CARD_NO}" method="post">
+				<form action="cardview" id="gogoForm_${list[i].CARD_NO}">
 					<input type="hidden" name="cardNo" value="${list[i].CARD_NO}" />
 				</form>
 				<div class="rank_box">	<!-- 2등 -->
@@ -748,7 +474,7 @@ function closePopup(){
 						<div class="view_dt" id="viewDt_${list[i].CARD_NO}"><i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;상세보기</div>
 					</div>
 				</div>
-				</c:forEach>
+				</c:forEach>	
 			</div>
 		</div>
 	</div>
