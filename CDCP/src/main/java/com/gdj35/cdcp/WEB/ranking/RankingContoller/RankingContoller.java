@@ -42,6 +42,21 @@ public class RankingContoller {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="/creditTop20")
+	public ModelAndView creditTop20(
+			@RequestParam HashMap<String, String> params,
+			ModelAndView mav) throws Throwable{
+		
+		List<HashMap<String, String>> list
+			= RankingiService.getRCredit(params);
+		
+		mav.addObject("list", list);
+		System.out.println(list);
+		mav.setViewName("ranking/creditTop20");
+		
+		return mav;
+	}
 //	체크카드 top10  페이지
 	@RequestMapping(value="/checkTop10")
 	public ModelAndView checkTop10(
@@ -55,6 +70,22 @@ public class RankingContoller {
 		mav.addObject("list", list);
 		
 		mav.setViewName("ranking/checkTop10");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/checkTop20")
+	public ModelAndView checkTop20(
+			@RequestParam HashMap<String, String> params,
+			ModelAndView mav) throws Throwable {
+		
+		
+		List<HashMap<String, String>> list 
+			= RankingiService.getRCheck(params);
+		
+		mav.addObject("list", list);
+		
+		mav.setViewName("ranking/checkTop20");
 		
 		return mav;
 	}
@@ -90,5 +121,25 @@ public class RankingContoller {
 	  return mav; 
 	  }
 	  
+	  @RequestMapping(value="/cardview2")
+	  public ModelAndView cardview2(
+			  @RequestParam HashMap<String, String> params, 
+			  ModelAndView mav) throws Throwable { 
+		  try {
+			  if(params.get("cardNo") != null) { 
+		  
+				  List<HashMap<String, String>>
+		  			data = RankingiService.getCView(params);
+		  
+				  mav.addObject("data", data);
+				  
+				  mav.setViewName("ranking/cardview2");
+				  System.out.println(data);
+			  }
+		  } catch(Throwable e) {
+		  		e.printStackTrace();
+		  }
+	  return mav; 
+	  }
 }
 
