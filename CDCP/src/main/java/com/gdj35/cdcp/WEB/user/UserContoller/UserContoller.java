@@ -129,7 +129,7 @@ public class UserContoller {
 	}
 	
 	/* pw찾기 - 데이터 가져오기 */
-	@RequestMapping(value="mDatas",
+	@RequestMapping(value="mData2s",
 			method = RequestMethod.POST,
 			produces = "text/json;charset=UTF-8")
 	@ResponseBody

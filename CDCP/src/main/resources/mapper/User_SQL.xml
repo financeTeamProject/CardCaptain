@@ -45,7 +45,7 @@
 		AND E_ADDRESS = #{m_Address}
 	</select>
 	
-	<select id="mCheck" parameterType="hashmap" resultType="hashmap">
+	<select id="mCheck2" parameterType="hashmap" resultType="hashmap">
 		SELECT MEMBER_NO
 		FROM MEMBER_INFO
 		WHERE MEMBER_ID = #{mId}
