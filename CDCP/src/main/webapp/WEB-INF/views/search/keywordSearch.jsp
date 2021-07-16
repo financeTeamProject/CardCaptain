@@ -326,6 +326,7 @@ $(document).ready(function() {
 		} else {
 			var actionVal = "<input type=\"hidden\" name=\"searchType\" value=\"keyword\" /><br/>";
 			actionVal += "<input type=\"hidden\" name=\"option\" value=\"" + $.trim($("#searchBox").val()) + "\" /><br/>";
+			actionVal += "<input type=\"hidden\" id=\"page\" name=\"page\" value=\"1\" />";
 			
 			$("#goForm").html(actionVal);
 			$("#goForm").attr("action","searchingCardList");
@@ -353,8 +354,7 @@ $(document).ready(function() {
 </div>
 <!-- End Header by KJ -->
 <!-- content영역 -->
-<form action="#" id ="goForm" method="post">
-</form>
+<form action="#" id ="goForm" method="post"></form>
 <div id="content">
 <div id="contentMenu">
 	<div id="main">

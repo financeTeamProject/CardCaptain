@@ -255,11 +255,28 @@ body{
 .cardList_etc :nth-child(2) {
 	padding-top: 80px;
 }
+/* paging */
+#pagingWrap {
+	text-align: center;
+}
+#pagingWrap span {
+	font-size: 18px;
+	font-family: 'GmarketSansLight';
+	padding: 4px 10px 3px 10px;
+}
+#pagingWrap span:hover {
+	cursor: pointer;
+	color: #0047AB;
+	font-weight: 1000;
+}
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
-/* console.log(${searchKeywordResult}); */
 $(document).ready(function() {
+	$("#pagingWrap").on("click","span", function () {
+		$("#page").val($(this).attr("name"));
+		$("#pagingForm").submit();
+	});
 });
 </script>
 </head>
@@ -280,7 +297,12 @@ $(document).ready(function() {
 	</div>
 </div>
 <!-- End Header by KJ -->
-<!-- 내용 영역 -->	
+<!-- 내용 영역 -->
+<form action="searchingCardList" id="pagingForm" method="post">
+	<input type="hidden" id="page" name="page" value="${page}">
+	<input type="hidden" id="searchType" name="searchType" value="${searchType}">
+	<input type="hidden" id="option" name="option" value="${option}" />
+</form>
 <div id="content">
 	<div id="contentMenu">
 	<div id="main" class="main">
@@ -291,28 +313,70 @@ $(document).ready(function() {
  				</c:forEach>
  			</ul>
 		</div>
-<c:set var="size" value="${fn:length(searchKeywordResult)}" />
-<c:forEach var ="i" begin="0" end ="${size}">
-	<div id="srchCardList" class="srch_card_list">
-		<div id="cardList_1" class="card_list">
-			<img src="${searchKeywordResult[i].CARD_IMG_URL}">
-			<div id="cardList_1_txt"  class="card_list_txt">
-				<h3>${searchKeywordResult[i].CARD_NAME}</h3>
-				<c:set var="benefit_size" value="${fn:length(searchKeywordResult[i].BENEFIT_TOP)}" />
-				<ul>
-					<li class="choiceList">${benefit_size}</li>	
-				</ul>
-			</div>
-			<div id="cardList_1_etc" class="cardList_etc">
-				<h4 class="side_Btn"><i class='fa fa-plus'></i>&nbsp;비교함 담기</h4>
-				<h4 class="side_Btn"><i class='fa fa-angle-double-right'></i>&nbsp;상세보기</h4>
+<c:set var="size" value="${fn:length(searchCardNo)}" />
+<c:choose>
+<c:when test="${size > 0}">
+	<c:forEach var ="i" begin="0" end ="${size-1}">
+		<div id="srchCardList" class="srch_card_list">
+			<div id="cardList_1" class="card_list">
+				<img src="${searchCardNo[i].CARD_IMG_URL}">
+				<div id="cardList_1_txt"  class="card_list_txt">
+					<h3>${searchCardNo[i].CARD_NAME}</h3>
+					<c:set var="benefit_size" value="${fn:length(searchResult)}" />
+					<ul>
+						<c:forEach var ="j" begin="0" end ="${benefit_size-1}">
+							<c:if test="${searchCardNo[i].CARD_NO eq searchResult[j].CARD_NO}">
+								<li class="choiceList">${searchResult[j].BENEFIT_TOP}</li>
+							</c:if>
+						</c:forEach>
+					</ul>
+				</div>
+				<div id="cardList_1_etc" class="cardList_etc">
+					<h4 class="side_Btn" id="viewBox_${searchCardNo[i].CARD_NO}"><i class='fa fa-plus'></i>&nbsp;비교함 담기</h4>
+					<h4 class="side_Btn" id="viewDt_${searchCardNo[i].CARD_NO}"><i class='fa fa-angle-double-right'></i>&nbsp;상세보기</h4>
+				</div>
 			</div>
 		</div>
+	</c:forEach>
+</c:when>
+<c:otherwise>
+검색결과가 없습니다
+</c:otherwise>
+</c:choose>
 	</div>
+	</div>
+</div>
+<!-- Paging -->
+<div id="pagingWrap">
+<span name="1">&#60;&#60;</span>
+<c:choose>
+	<c:when test="${page eq 1}">
+		<span name="1">&#60;</span>
+	</c:when>
+	<c:otherwise>
+		<span name="${page-1}">&#60;</span>
+	</c:otherwise>
+</c:choose>
+<c:forEach var="i" begin="${pb.startPcount}" end="${pb.endPcount}" step="1">
+	<c:choose>
+		<c:when test="${i eq page}">
+			<span name="${i}"><b>${i}</b></span>
+		</c:when>
+		<c:otherwise>
+			<span name="${i}">${i}</span>
+		</c:otherwise>
+	</c:choose>
 </c:forEach>
-	
-	</div>
-	</div>
+<c:choose>
+	<c:when test="${page eq pb.maxPcount}">
+		<span name="${pb.maxPcount}">&#62;</span>
+	</c:when>
+	<c:otherwise>
+		<span name="${page+1}">&#62;</span>
+	</c:otherwise>
+</c:choose>
+<span name="${pb.maxPcount}">&#62;&#62;</span>
+<br/><br/><br/><br/>
 </div>
 <!-- Start Footer by KJ -->
 <div id="footer">

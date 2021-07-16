@@ -8,5 +8,20 @@
 					 INNER JOIN CARDBENEFITS B
 							 ON T.CARD_NO = B.CARD_NO
 		WHERE B.DETAIL_INFO LIKE '%'|| #{option} || '%'
+		ORDER BY C.CARD_NO
 	</select>
+	
+	<select id="cardNoDistinct" parameterType="hashmap" resultType="hashmap">
+		SELECT DISTINCT(C.CARD_NO), C.CARD_IMG_URL, C.CARD_NAME
+		FROM CARDS C INNER JOIN CARDTYPES T 
+							 ON C.CARD_NO = T.CARD_NO
+					 INNER JOIN CARDBENEFITS B
+							 ON T.CARD_NO = B.CARD_NO
+		WHERE B.DETAIL_INFO LIKE '%'|| #{option} || '%'
+		ORDER BY C.CARD_NO
+	</select>
+	
+	
+	
+	
 </mapper>

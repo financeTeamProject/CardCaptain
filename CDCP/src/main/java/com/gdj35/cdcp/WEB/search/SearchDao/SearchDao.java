@@ -15,4 +15,9 @@ public class SearchDao implements SearchIDao {
 	public List<HashMap<String, String>> searchKeyword(HashMap<String, String> params) throws Throwable {
 		return sql.selectList("search.searchKeyword", params);
 	}
+
+	@Override
+	public List<HashMap<String, String>> cardNoDistinct(HashMap<String, String> params) throws Throwable {
+		return sql.selectList("search.cardNoDistinct", params);
+	}
 }

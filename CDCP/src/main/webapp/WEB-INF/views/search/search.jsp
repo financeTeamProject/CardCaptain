@@ -288,12 +288,18 @@ $(document).ready(function() {
 	});
 	
 	$("#searchAreaBtn").on("click",function() {
-		if ( $.trim($("#searchBox").val()) == "" ) {
+		if ($.trim($("#searchBox").val()) == "") {
 			alert("검색어를 입력해 주세요.");
 			$("#searchBox").val("");
 			$("#searchBox").focus();
 		} else {
-			return false;
+			var actionVal = "<input type=\"hidden\" name=\"searchType\" value=\"keyword\" /><br/>";
+			actionVal += "<input type=\"hidden\" name=\"option\" value=\"" + $.trim($("#searchBox").val()) + "\" /><br/>";
+			actionVal += "<input type=\"hidden\" id=\"page\" name=\"page\" value=\"1\" />";
+			
+			$("#goForm").html(actionVal);
+			$("#goForm").attr("action","searchingCardList");
+			$("#goForm").submit();
 		}
 	});
 });
@@ -317,6 +323,7 @@ $(document).ready(function() {
 </div>
 <!-- End Header by KJ -->
 <!-- 내용 영역 -->	
+<form action="#" id ="goForm" method="post"></form>
 <div id="content">
 <div id="searchArea" class="search_area">
 	<input type="text" id="searchBox" class="search_box" placeholder="Search Card.." />

@@ -16,4 +16,9 @@ public class SearchService implements SearchIService {
 	public List<HashMap<String, String>> searchKeyword(HashMap<String, String> params) throws Throwable {
 		return idao.searchKeyword(params);
 	}
+
+	@Override
+	public List<HashMap<String, String>> cardNoDistinct(HashMap<String, String> params) throws Throwable {
+		return idao.cardNoDistinct(params);
+	}
 }
