@@ -4,11 +4,15 @@ import java.util.HashMap;
 
 public interface UserIDao {
 	public HashMap<String, String> getId(HashMap<String, String> params) throws Throwable;
+	
+	public HashMap<String, String> getPw(HashMap<String, String> params) throws Throwable;
 
 	public HashMap<String, String> getM(HashMap<String, String> params) throws Throwable;
 
 	public int joinM(HashMap<String, String> params) throws Throwable;
 
 	public HashMap<String, String> idCheck(HashMap<String, String> params) throws Throwable;
+
+	public HashMap<String, String> mCheck(HashMap<String, String> params) throws Throwable;
 
 }

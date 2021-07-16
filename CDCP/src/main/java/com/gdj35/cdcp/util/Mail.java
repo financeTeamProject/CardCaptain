@@ -29,10 +29,10 @@ public class Mail {
 	                return new PasswordAuthentication(user, password);
 	            }
 	        });
-	        session.setDebug(false); 
+	        session.setDebug(false);
 	        
-	        Message mimeMessage = new MimeMessage(session); 
-	        mimeMessage.setFrom(new InternetAddress(user + "@naver.com")); 
+	        Message mimeMessage = new MimeMessage(session);
+	        mimeMessage.setFrom(new InternetAddress(user + "@naver.com"));
 	        mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(email));//4. @이후도 포함
 	        
 	        String mailTitle = "";

@@ -15,6 +15,11 @@ public class UserService implements UserIService {
 	public HashMap<String, String> getId(HashMap<String, String> params) throws Throwable {
 		return useridao.getId(params);
 	}
+	
+	@Override
+	public HashMap<String, String> getPw(HashMap<String, String> params) throws Throwable {
+		return useridao.getPw(params);
+	}
 
 	@Override
 	public HashMap<String, String> getM(HashMap<String, String> params) throws Throwable {
@@ -29,6 +34,11 @@ public class UserService implements UserIService {
 	@Override
 	public HashMap<String, String> idCheck(HashMap<String, String> params) throws Throwable {
 		return useridao.idCheck(params);
+	}
+
+	@Override
+	public HashMap<String, String> mCheck(HashMap<String, String> params) throws Throwable {
+		return useridao.mCheck(params);
 	}
 
 

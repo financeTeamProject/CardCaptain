@@ -91,7 +91,7 @@ body {
 	font-size: 14px;
 	letter-spacing: 3px;
 }
-#text_num {
+#mBirth {
 	width: 200px;
 	height: 45px;
 	border-style: solid;
@@ -105,7 +105,7 @@ body {
 	font-size: 13px;
 	letter-spacing: 4px;
 }
-#phone_num {
+#mPhone {
 	width: 300px;
     height: 45px;
     border-style: solid;
@@ -118,7 +118,7 @@ body {
     font-size: 13px;
     letter-spacing: 4px;
 }
-#text_num2 {
+#mGender {
 	width: 13px;
 	height: 40px;
 	border-style: solid;
@@ -130,7 +130,7 @@ body {
 	box-sizing: border-box;
 	font-size: 13px;
 }
-#select_num {
+/* #select_num {
 	width: 80px;
 	height: 45px;
 	border-style: solid;
@@ -140,7 +140,7 @@ body {
     outline: 0;
 	caret-color: #f7e317;
 	color: #0047AB;
-}
+} */
 .EmailTxt {
 	width: 150px;
 	height: 45px;
@@ -180,9 +180,10 @@ body {
     color: #0047AB;
     margin-left: 186px;
 }
-.checkingEmailBtn {
+.checkingBtn {
 	width: 100px;
     height: 35px;
+    line-height: 35px;
     color: white;
     border-style: none;
     background-color: #0047AB;
@@ -190,6 +191,21 @@ body {
     font-family: 'GmarketSansMedium';
     margin-left: 15px;
     cursor: pointer;
+    float: right;
+}
+.checkingEmailBtn {
+	width: 100px;
+    height: 35px;
+    line-height: 35px;
+    color: white;
+    border-style: none;
+    background-color: #0047AB;
+    font-size: 13px;
+    font-family: 'GmarketSansMedium';
+    margin-left: 15px;
+    cursor: pointer;
+    float: right;
+    display: none;
 }
 .checkingCodeBtn {
     width: 100px;
@@ -205,6 +221,9 @@ body {
 	color: red;
 	font-size: 12px;
     float: right;
+}
+#email_check {
+	display: none;
 }
 .errorMsg {
 	width: auto;
@@ -261,198 +280,195 @@ body {
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
+var code = "";
+var email = "";
+var birth = "";
+var Phone = "";
+var id = "";
+
 $(document).ready(function() {
 	var regex_kor = (/[^가-힣]$/);
 	var regex_spe = (/[~!@#$%^&*()_+|<>?:{}]/);
 	var regex_num = (/[^0-9]/g);
 	var regex_eng = (/^[a-zA-Z]*$/);
-	var regex_kor = (/[^가-힣]$/);
-	var regex_spe = (/[~!@#$%^&*()_+|<>?:{}]/);
-	var regex_num = (/[^0-9]/g);
-	var regex_eng = (/^[a-zA-Z]*$/);
-
 
     //숫자만 입력
-    $("#phone_num").keyup(function() {
+    $("#mPhone").keyup(function() {
        if (regex_num.test($(this).val())) {
-     	  $("#phone_num").val('');
+     	  $("#mPhone").val("");
           alert("잘못된 휴대폰 번호입니다. 숫자, - 를 제외한 숫자만 입력하세요.");
        }
     });
    
 	//숫자만 입력
-	$("#text_num").keyup(function() {
+	$("#mBirth").keyup(function() {
 		if (regex_num.test($(this).val())) {
-			$("#text_num").val('');
+			$("#mBirth").val("");
 			alert("숫자만 입력 가능합니다.");
 		}
 	});
 	
-	/* 아이디찾기 */
-	$("#id_FindBtn").on("click",function() {
-		var memId = $.trim($("#mem_id").val());
-		var memPhoneOpt = $("select_tel option:selected").val();
-		var memPhone = $.trim($("#phone_num").val());
-		var memRRN = $.trim($("#text_num").val());
-		var memGender = $.trim($("#text_num2").val());
-		var memEmail = $.trim($("#idEmail").val());
-		var memEmail2 = $.trim($("#pwEmail").val());
-		var memEmailOpt = $("#select_email option:selected").val();
-		/* 전화번호 */
-		/*
-		if(전화번호,생년월일,이메일 일치시) {
-			$(".checkingCodeBtn").css("display","inline");
-			$(".checkingEmailNum").css("display","inline");
-			$(코드전송)
-		} else if{
-			$("#id_emailTxt").html("정보가 일치하지 않습니다.");
-		}
-		*/
+	/* 연락처 */
+	$("#mPhone").blur(function(){
+		var memPhone = $.trim($("#mPhone").val());
 		
-		/* 회원정보 불일치, 공백 */
-		/* memPhone != mPhone || memRRn != mRRn || memEmail != mEmail ||  */
-		if(memPhone == "" || memRRN == "" || memEmail == ""){
-		   	if (memPhone == "") {
-		 	  	$("#phone_num").focus();
-		       	$(".errorMsg").css("display","inline");
-		       	$("#errorMsgTel").html("전화번호를 입력해 주세요.");
-		   	} else if (memPhone.length < 11) {
-		 	  	$("#phone_num").focus();
-		       	$(".errorMsg").css("display","inline");
-		       	$("#errorMsgTel").html("-를 제외한 전화번호 11자리를 입력해주세요.");
-		   	} else {
-		 		$("#errorMsgTel").html("");
-			}
-			
-			/* 생년월일 */
-		   	if (memRRN == "") {
-		 	  	$("#text_num").focus();
-		       	$(".errorMsg").css("display","inline");
-		       	$("#errorMsgBirth").html("생년월일을 입력해주세요.");
-		   	} else if (memRRN.length < 8) {
-	 	  		$("#text_num").focus();
-		      	$(".errorMsg").css("display","inline");
-		       	$("#errorMsgBirth").html("생년월일 8자리를 입력해주세요.");
-		   	} else if (memGender == "") {
-		 	  	$("#text_num2").focus();
-		       	$(".errorMsg").css("display","inline");
-		       	$("#errorMsgBirth").html("뒷자리의 첫번째 번호를 입력해주세요.");
-		   	} else {
-		 		$("#errorMsgBirth").html("");
-			}
-			
-			/* 이메일 */
-			if (memEmail == "") {
-	  			$("#email").focus();
-				$(".errorMsg").css("display","inline");
-				$("#errorMsgEmail").html("이메일을 입력해주세요.");
-			} else {
-				$("#errorMsgEmail").html("");
-			}
-			/* 회원정보일치시, 값입력*/
-		} else {
-			$(".errorMsg").css("display","none");
-			$(".checkingEmailBtn").on("click", function() {
-				var ival = $(this).prop("id").split("_");
-				$("#" + ival[0] + "_check").css("display","inline");
-				
-				$("#findType").val(ival[0]);
-				$("#checkEmail").val($("." + ival[0] + "Email").val() + "@" + $("." + ival[0] + "_select_email option:selected").val());
-				
-				var params = $("#checkEmailForm").serialize();
-				
-				$.ajax({
-					url: "checkingEmail",
-					type: "post",
-					dataType: "json",
-					data: params,
-					success: function(res) {
-						if (res = "success") {
-							$("#" + ival[0] + "_emailTxt").html("이메일 인증코드를 적어주세요.");
-						} else if (res = "failed") {
-							$("#" + ival[0] + "_emailTxt").html("이메일 전송이 실패했습니다. 다시 한번 확인해 주세요.");					
-						}
-					},
-					error: function(request, status, error) {
-							console.log(error);
-							$("#" + ival[0] + "_emailTxt").html("이메일 전송이 실패했습니다. 관리자에게 문의해 주세요.");
-					}
-				});
-			});
+	   	if (memPhone == "") {
+	 	  	$("#mPhone").focus();
+	       	$(".errorMsg").css("display","inline");
+	       	$("#errorMsgTel").html("전화번호를 입력해 주세요.");
+	   	} else if (memPhone.length < 11) {
+	 	  	$("#mPhone").focus();
+	       	$(".errorMsg").css("display","inline");
+	       	$("#errorMsgTel").html("-를 제외한 전화번호 11자리를 입력해주세요.");
+	   	} else {
+	 		$("#errorMsgTel").html("");
+		}
+	});
+
+	/* 생년월일 */
+	$("#mBirth").blur(function(){
+		var memRRN = $.trim($("#mBirth").val());
+		
+		if (memRRN == "") {
+	 	  	$("#mBirth").focus();
+	       	$(".errorMsg").css("display","inline");
+	       	$("#errorMsgBirth").html("생년월일을 입력해주세요.");
+	   	} else if (memRRN.length < 8) {
+ 	  		$("#mBirth").focus();
+	      	$(".errorMsg").css("display","inline");
+	       	$("#errorMsgBirth").html("생년월일 8자리를 입력해주세요.");
+	   	} else {
+	 		$("#errorMsgBirth").html("");
 		}
 	});
 	
-	/* 비밀번호찾기 */
-	$("#pw_FindBtn").on("click",function() {
-		var memId = $.trim($("#mem_id").val());
-		var memEmail2 = $.trim($("#pwEmail").val());
-		var memEmailOpt = $("#select_email option:selected").val();
-		
-		/* 아이디 */
-		if(memId == "" || memEmail2 == ""){
-			if(memId == "") {
-				$("#mem_id").focus();
-				$(".errorMsg").css("display","inline");
-				$("#errorMsgId").html("아이디를 입력해주세요.");
-			} else if (memId.length < 6 || memId.length > 16) {
-				$("#mem_id").focus();
-				$(".errorMsg").css("display","inline");
-				$("#errorMsgId").html("아이디는 6~16자리로 만들어 주세요.");
-			} else if (regex_spe.test(memId)) {
-				$("#mem_id").focus();
-				$(".errorMsg").css("display","inline");
-				$("#errorMsgId").html("특수문자는 사용하실 수 없습니다.");
-			} else if (!regex_kor.test(memId)) {
-		 		$("#mem_id").focus();
-				$(".errorMsg").css("display","inline");
-				$("#errorMsgId").html("한글은 사용하실 수 없습니다.");
-			} else {
-		 		$("#errorMsgId").html("");
-			}
-			
-			/* 이메일 */
-			if (memEmail2 == "") {
-	   			$("#email2").focus();
-				$(".errorMsg").css("display","inline");
-				$("#errorMsgEmail2").html("이메일을 입력해주세요.");
-			} else {
-				$("#errorMsgEmail2").html("");
-			}
-		} else {
-			$(".checkingEmailBtn").on("click", function() {
-				var ival = $(this).prop("id").split("_");
-				$("#" + ival[0] + "_check").css("display","inline");
-				
-				
-				$("#findType").val(ival[0]);
-				$("#checkEmail").val($("." + ival[0] + "Email").val() + "@" + $("." + ival[0] + "_select_email option:selected").val());
-				
-				var params = $("#checkEmailForm").serialize();
-				
-				$.ajax({
-					url: "checkingEmail",
-					type: "post",
-					dataType: "json",
-					data: params,
-					success: function(res) {
-						if (res = "success") {
-							$("#" + ival[0] + "_emailTxt").html("이메일 인증코드를 입력해 주세요.");					
-						} else if (res = "failed") {
-							$("#" + ival[0] + "_emailTxt").html("이메일 전송이 실패했습니다. 다시 한번 확인해 주세요.");					
-						}
-					},
-					error: function(request, status, error) {
-							console.log(error);
-							$("#" + ival[0] + "_emailTxt").html("이메일 전송이 실패했습니다. 관리자에게 문의해 주세요.");
-					}
-				});
-			});
+	/* 주민번호 뒷자리 = 성별 */
+	$("#mGender").blur(function(){
+		var memGender = $.trim($("#mGender").val());
+
+	    if (memGender == "") {
+	 	  	$("#mGender").focus();
+	       	$(".errorMsg").css("display","inline");
+	       	$("#errorMsgBirth").html("뒷자리의 첫번째 자리만 입력해 주세요.");
+	   	} else {
+	 		$("#errorMsgBirth").html("");
 		}
 	});
+	
+	/* 이메일 */
+	$("#idEmail").blur(function(){
+		var memEmail = $.trim($("#idEmail").val());
+
+		if (memEmail == "") {
+   			$("#idEmail").focus();
+			$(".errorMsg").css("display","inline");
+			$("#errorMsgEmail").html("이메일을 입력해주세요.");
+		} else {
+			$("#errorMsgEmail").html("");
+		}
+	});
+	
+	/* 아이디찾기 - 아이디 전송 */
+ 	$("#memCheck").on("click", function () {
+		var memPhone = $.trim($("#mPhone").val());
+		var memRRN = $.trim($("#mBirth").val());
+		var memEmail = $.trim($("#idEmail").val());
+		var memEmailOpt = $("#id_select_email option:selected").val();
+		
+		if(memPhone == "") {
+			alert("전화번호");
+			$("#mPhone").focus();
+		} else if(memRRN == "") {
+			alert("생년월일");
+			$("#mBirth").focus();
+		} else if(memEmail == "") {
+			alert("이메일");
+			$("#idEmail").focus();
+		} else {
+			$("#m_Phone").val($("#mPhone").val());
+			$("#m_Birth").val($("#mBirth").val());
+			$("#m_Email").val($("#idEmail").val());
+			$("#m_Address").val($("#id_select_email option:selected").val());
+			
+ 			var params = $("#mData").serialize();
+
+ 			$.ajax({
+ 				url: "mDatas",
+ 				type: "post",
+ 				dataType: "json",
+ 				data: params,
+ 				success: function (res) {
+ 					console.log(res);
+ 					id = res.mId
+ 					if(res.resMsg == "success") {
+ 						$(".errorMsg").css("display","inline");
+ 						$("#errorMsgEmail").html("회원님의 아이디는  \"" + id + "\"  입니다.");
+ 					} else if(res.resMsg == "failed") {
+ 						alert("입력하신 회원님의 정보가 일치하지 않습니다.");
+ 					}
+				},
+				error: function (request, status, error) {
+ 					console.log(error);
+ 				}
+ 			});
+		}
+	});
+	
+	/* 이메일인증 */
+	$(".checkingEmailBtn").on("click",function() {
+		// $(".checkingEmailBtn").css("display","none");
+		var ival = $(this).prop("id").split("_");
+		$("#findType").val(ival[0]); // id / pw 둘 중 하나
+		$("#checkEmail").val($("." + ival[0] + "Email").val() + $("." + ival[0] + "_select_email option:selected").val()); 
+									 //wnrjswjd@naver.com
+
+		var params = $("#checkEmailForm").serialize();
+		
+		$.ajax({
+			url: "CheckingEmails",
+			type: "post",
+			dataType: "json",
+			data: params,
+			success: function(res) {
+				console.log(res);
+				if (res.result == "success") {
+					$("#" + ival[0] + "_check").css("display","inline");
+					$(".errorMsg").css("display","none");
+					code = res.temp;
+					
+					$("#" + ival[0] + "_codeBtn").on("click", function () {
+						if($("#" + ival[0] + "_codeTxt").val() == "") {
+							alert("코드를 입력해 주세요.");
+						} else if ($("#" + ival[0] + "_codeTxt").val() != code) {
+							alert("인증코드가 일치하지 않습니다.");
+						} else if ($("#" + ival[0] + "_codeTxt").val() == code) {
+							alert("인증코드가 일치합니다.");
+						}
+					});
+					
+					//alert(res.temp);
+					$("#" + ival[0] + "_codeTxt").html("*이메일 인증코드를 적어주세요.");					
+				} else if (res = "failed") {
+					$("#" + ival[0] + "_codeTxt").html("*이메일 전송이 실패했습니다. 다시한 번 확인해 주세요.");					
+				}
+			},
+			error: function(request, status, error) {
+					console.log(error);
+					$("#" + ival[0] + "_codeTxt").html("*이메일 전송이 실패했습니다. 관리자에게 문의해 주세요");
+			}
+		});
+	});
+	
 });
 </script>
 </head>
 <body>
+<form action="#" id="mData" method="post">
+	<input type="hidden" name="m_Phone" id="m_Phone" value=""/>
+	<input type="hidden" name="m_Birth" id="m_Birth" value=""/>
+	<input type="hidden" name="m_Email" id="m_Email" value=""/>
+	<input type="hidden" name="m_Address" id="m_Address" value=""/>
+</form>
 <form action="#" id="checkEmailForm">
 	<input type="hidden" name="checkEmail" id="checkEmail" value="" /><!-- 이메일 주소 -->
 	<input type="hidden" name="findType" id="findType" value="" /><!--  -->
@@ -470,13 +486,13 @@ $(document).ready(function() {
 			<option value="+82   대한민국">+82&nbsp;&nbsp;대한민국</option>
          	<option value="+82   대한민국"></option>
       	</select>
-		<input type="text" id="phone_num" maxlength="11" placeholder="-제외 한 11자리를 입력해주세요."/>
+		<input type="text" id="mPhone" maxlength="11" placeholder="-제외 한 11자리를 입력해주세요."/>
 		<div class="title">생년월일
 			<div class="errorMsg" id="errorMsgBirth"></div>
 		</div>
 		<div class="title">
-         	<input type="text" id="text_num" placeholder="예) 19940507" maxlength="8"/>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;
-			<input type="text" id="text_num2" maxlength="1"/>
+         	<input type="text" id="mBirth" placeholder="예) 19940507" maxlength="8"/>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;
+			<input type="text" id="mGender" maxlength="1"/>
 			<span id="txt">*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*</span>
 		</div>
 		<div class="title">이메일
@@ -485,15 +501,10 @@ $(document).ready(function() {
 		<div class="title">
 			<input type="text" id="idEmail" class="EmailTxt" placeholder="이메일" />&nbsp;@
 			<select name="+82" id="id_select_email" class="id_select_email">
-				<option value="naver.com">naver.com</option>
-				<option value="gmail.com">gmail.com</option>
+				<option value="@naver.com">naver.com</option>
+				<option value="@gmail.com">gmail.com</option>
 			</select>
-			<input type="button" id="id_FindBtn" class="checkingEmailBtn" value="인증하기" />
-			<div id="id_check">
-				<input type="text" id="idFindEmail" class="checkingEmailNum" placeholder="인증코드" />
-				<input type="button" id="id_FindBtn" class="checkingCodeBtn" value="코드확인" />
-				<div class="guide" id="id_emailTxt"></div>
-			</div>
+			<input type="button" id="memCheck" class="checkingBtn" value="확인" />
 		</div>
 		<br/>
 		<br/>
@@ -502,27 +513,28 @@ $(document).ready(function() {
 		<div class="title">아이디
 			<div class="errorMsg" id="errorMsgId"></div>
 		</div>
-		<input type="text" class="text" placeholder="아이디 입력" id="mem_id" />
+		<input type="text" class="text" placeholder="아이디 입력" id="mId" />
 		<div class="title">이메일
 			<div class="errorMsg" id="errorMsgEmail2"></div>
 		</div>
 		<div class="title">
 			<input type="text" id="pwEmail" class="EmailTxt" placeholder="이메일" />&nbsp;@
 			<select name="+82" id="pw_select_email" class="pw_select_email"> 
-				<option value="naver.com">naver.com</option>
-				<option value="gmail.com">gmail.com</option>
+				<option value="@naver.com">naver.com</option>
+				<option value="@gmail.com">gmail.com</option>
 			</select>
+			<input type="button" id="memCheck" class="checkingBtn" value="확인" />
 			<input type="button" id="pw_FindBtn" class="checkingEmailBtn" value="인증하기" />
 			<div id="pw_check">
-				<input type="text" id="pwFindEmail" class="checkingEmailNum" placeholder="인증코드" />
-				<input type="button" id="id_FindBtn" class="checkingCodeBtn" value="코드확인" />
+					<input type="text" id="pw_codeTxt" class="checkingEmailNum" placeholder="인증코드" />
+					<input type="button" id="pw_codeBtn" class="checkingCodeBtn" value="코드확인" />
+				<div class="guide" id="emailTxt"></div>
 			</div>
 		</div>
 		<br/>
 		<br/>
 		<br/>
 		<div class="guide" id="pw_emailTxt"></div>
-		<br/>
 		<br/>
 		<br/>
 		<br/>

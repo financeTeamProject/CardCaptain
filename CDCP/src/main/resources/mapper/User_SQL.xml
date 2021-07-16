@@ -3,8 +3,19 @@
 <mapper namespace="user">
 	<select id="getId" parameterType="hashmap" resultType="hashmap">
 		SELECT MEMBER_ID
-		FROM MEMBER_INFO 
-		WHERE EMAIL = #{checkEmail}
+		FROM MEMBER_INFO
+		WHERE CONTACT = #{m_Phone}
+		AND MEMBER_BIRTH = #{m_Birth}
+		AND E_NAME = #{m_Email}
+		AND E_ADDRESS = #{m_Address}
+	</select>
+	
+	<select id="getPw" parameterType="hashmap" resultType="hashmap">
+		SELECT MEMBER_PW
+		FROM MEMBER_INFO
+		WHERE EMAIL = #{M_ID}
+		AND E_NAME = #{m_Email}
+		AND E_ADDRESS = #{m_Address}
 	</select>
 	
 	<select id="getM" parameterType="hashmap" resultType="hashmap">
@@ -25,4 +36,12 @@
 		WHERE MEMBER_ID = #{mId}
 	</select>
 	
+	<select id="mCheck" parameterType="hashmap" resultType="hashmap">
+		SELECT MEMBER_ID
+		FROM MEMBER_INFO
+		WHERE CONTACT = #{m_Phone}
+		AND MEMBER_BIRTH = #{m_Birth}
+		AND E_NAME = #{m_Email}
+		AND E_ADDRESS = #{m_Address}
+	</select>
 </mapper>

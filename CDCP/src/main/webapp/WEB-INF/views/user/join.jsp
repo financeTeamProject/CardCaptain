@@ -210,7 +210,7 @@ body {
     font-family: GmarketSansMedium;
     font-size: 12px;
    }
-#checkingEmail{
+#checkingEmailBtn{
 	width: 100px;
     height: 35px;
     color: white;
@@ -283,7 +283,8 @@ $(document).ready(function() {
 	var chk_num = memPw.search(/[0-9]/g);
 	var chk_eng = memPw.search(/[a-z]/ig);
 	var chk_spe = memPw.search(/[~!@#$%^&*()_+|<>?:{}]/ig);
-   
+
+	
     //숫자만 입력
     $("#mPhone").keyup(function() {
     	
@@ -450,7 +451,7 @@ $(document).ready(function() {
 	 		$("#errorMsgBirth").html("");
 		}
 	});
-	
+	/* 주민번호 뒷자리 = 성별 */
 	$("#mGender").blur(function(){
 		var memGender = $.trim($("#mGender").val());
 
@@ -479,13 +480,13 @@ $(document).ready(function() {
 
 	
    	/* 이메일 인증   */ 
-	$("#checkingEmail").on("click",function() {
+	$("#checkingEmailBtn").on("click",function() {
 		$("#checkEmail").val($("#mEmail").val() + $(".select_email option:selected").val());
 
 		var params = $("#checkEmailForm").serialize();
 		
 		$.ajax({
-			url: "checkingEmail",
+			url: "checkingEmails",
 			type: "post",
 			dataType: "json",
 			data: params,
@@ -495,8 +496,8 @@ $(document).ready(function() {
 					$("#email_check").css("display","inline");
 					$(".errorMsg").css("display","none");
 					code = res.temp;
+					
 					$("#codeBtn").on("click", function () {
-						
 						if($("#codeTxt").val() == "") {
 							alert("코드를 입력해 주세요.");
 						} else if ($("#codeTxt").val() != code) {
@@ -508,9 +509,9 @@ $(document).ready(function() {
 					});
 					
 					//alert(res.temp);
-					$("#emailTxt").html("*이메일 인증코드를 적어주세요");					
+					$("#emailTxt").html("*이메일 인증코드를 적어주세요.");					
 				} else if (res = "failed") {
-					$("#emailTxt").html("*이메일 전송이 실패했습니다. 다시한 번 확인해 주세요.");					
+					$("#emailTxt").html("*이메일 전송이 실패했습니다. 다시한 번 확인해 주세요.");	
 				}
 			},
 			error: function(request, status, error) {
@@ -519,7 +520,7 @@ $(document).ready(function() {
 			}
 		});
 	});
-   
+   	
    	/* 다음버튼 */
 	$("#btn_next").on("click", function () {
 		var params = $("#addForm").serialize();
@@ -597,12 +598,12 @@ $(document).ready(function() {
 	            	<option value="@naver.com">naver.com</option>
 	            	<option value="@google.com">google.com</option>
 	         	</select>
-	         	<input type="button" id="checkingEmail" value="인증하기" />
+	         	<input type="button" id="checkingEmailBtn" value="인증하기" />
 				<div id="email_check">
 					<input type="text" id="codeTxt" class="checkingEmailNum" placeholder="인증코드" />
 					<input type="button" id="codeBtn" class="checkingCodeBtn" value="코드확인" />
 				<div class="guide" id="emailTxt"></div>
-			</div>
+				</div>
 	      	</div>
       	</form>
       	<br/>

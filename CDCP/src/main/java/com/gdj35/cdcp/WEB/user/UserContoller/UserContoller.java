@@ -105,6 +105,29 @@ public class UserContoller {
 		return mav;
 	}
 	
+	/* id,pw찾기 - 데이터 가져오기 */
+	@RequestMapping(value="mDatas",
+			method = RequestMethod.POST,
+			produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String mDatas(
+			HttpSession session,
+			@RequestParam HashMap<String,String> params) throws Throwable {
+		ObjectMapper mapper = new ObjectMapper();
+		
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		HashMap<String,String> data = useriService.mCheck(params);
+		
+		if(data != null) {
+			modelMap.put("mId", data.get("MEMBER_ID"));
+			modelMap.put("resMsg", "success");
+		} else {
+			modelMap.put("resMsg", "failed");
+		}
+		return mapper.writeValueAsString(modelMap);
+	}
+	
 	/* 아이디 중복체크 */
 	@RequestMapping(value="/idChecks",
 			method = RequestMethod.POST,
@@ -122,7 +145,6 @@ public class UserContoller {
 			
 			if(data != null) {
 				session.setAttribute("sMId", data.get("MEMBER_ID"));
-
 				modelMap.put("resMsg", "success");
 			} else {
 				modelMap.put("resMsg", "failed");
@@ -131,35 +153,35 @@ public class UserContoller {
 	}
 
 	//user - 회원가입 이메일인증
-	@RequestMapping(value = "/checkingEmail",
+	@RequestMapping(value = "/checkingEmails",
 			method = RequestMethod.POST,
 			produces = "text/json;charset=UTF-8")
 	@ResponseBody
-	public String checkingEmail(
+	public String checkingEmails(
 			@RequestParam HashMap<String,String> params) throws Throwable {
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Object> modelMap = new HashMap<String, Object>();
-		//Mail.sendMail(수신자이메일주소, findType, 메일내용)
+		// Mail.sendMail(수신자이메일주소, findType, 메일내용)
 		
 		try {
-			if (params.get("findType").equals("id")) {
-				HashMap<String, String> data = useriService.getId(params);
-				String result = Mail.sendMail(params.get("checkEmail"), params.get("findType"),data.get("MEMBER_ID"));
-				modelMap.put("result", result);
-			} else if (params.get("findType").equals("pw")) {
-				String result = Mail.sendMail(params.get("checkEmail"), params.get("findType"),"");
-				modelMap.put("result", result);
-			} else if (params.get("findType").equals("join")) {
-				String temp = RandomStringUtils.randomAlphanumeric(6);
-				//mail이랑 console에는 나중게 넘어감
-				String result = Mail.sendMail(params.get("checkEmail"), params.get("findType"),temp);
+			if (params.get("findType").equals("id")) { // (아이디찾기) 전화번호,생년월일,이메일 일치 - 아이디 전송.
+				HashMap<String, String> data = useriService.getId(params); // DB의 select값을 data에 담음.
+				String result = Mail.sendMail(params.get("checkEmail"), params.get("findType"),data.get("MEMBER_ID")); // ail.sendMail조건에 맞게 값을 담고 Mail.java로 연계. 보내는 값 = "아이디"
+				System.out.println("============================================");
+				System.out.println(data.get("MEMBER_ID"));
+				modelMap.put("result", result); // 값을 result로 jsp에 보내줌
 				
-				if (result == "success") {
-					//jsp에선 처음에 만든 랜덤 숫자가 넘어가
-					System.out.println(temp);
+			} else if (params.get("findType").equals("pw")) { // (비밀번호찾기) 아이디, 이메일 - 비밀번호 재설정.
+				String temp = RandomStringUtils.randomAlphanumeric(6); // 랜덤값 6자리 생성 후 temp에 담음.
+				String result = Mail.sendMail(params.get("checkEmail"), params.get("findType"),temp);
+				modelMap.put("result", result);
+				modelMap.put("temp", temp);
+				
+			} else if (params.get("findType").equals("join")) { //(회원가입) 조건에 맞는 모든 값 입력 - 인증코드 발송 - 일치시 joincard로 이동.
+				String temp = RandomStringUtils.randomAlphanumeric(6); // 랜덤값 6자리 생성 후 temp에 담음.
+				String result = Mail.sendMail(params.get("checkEmail"), params.get("findType"),temp); // Mail.sendMail조건에 맞게 값을 담고 Mail.java로 연계. 보내는 값 = "랜덤값"
 					modelMap.put("result", result);
 					modelMap.put("temp", temp);
-				}
 			} else {
 				modelMap.put("result", "failed");
 			}
