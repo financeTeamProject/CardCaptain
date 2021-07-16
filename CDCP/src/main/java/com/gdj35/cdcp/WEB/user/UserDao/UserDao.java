@@ -16,6 +16,10 @@ public class UserDao implements UserIDao {
 		return sqlSession.selectOne("user.getId", params);
 	}
 	@Override
+	public HashMap<String, String> getPw(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectOne("user.getPw", params);
+	}
+	@Override
 	public HashMap<String, String> getM(HashMap<String, String> params) throws Throwable {
 		return sqlSession.selectOne("user.getM", params);
 	}
@@ -26,5 +30,9 @@ public class UserDao implements UserIDao {
 	@Override
 	public HashMap<String, String> idCheck(HashMap<String, String> params) throws Throwable {
 		return sqlSession.selectOne("user.idCheck", params);
+	}
+	@Override
+	public HashMap<String, String> mCheck(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectOne("user.mCheck", params);
 	}
 }
