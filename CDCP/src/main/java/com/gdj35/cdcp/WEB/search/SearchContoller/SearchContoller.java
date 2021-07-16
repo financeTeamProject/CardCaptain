@@ -47,29 +47,32 @@ public class SearchContoller {
 			@RequestParam(required = false) ArrayList<String> option) throws Throwable {
 
 		int page = 1;
-		if(params.get("page") != null) {
-			page = Integer.parseInt(params.get("page"));
-		}
 		
 		if(params.get("searchType").equals("keyword")) {//직접검색
-			System.out.println("=================");
-			System.out.println(params);
-			List<HashMap<String, String>> searchKeywordResult = iservice.searchKeyword(params);//키워드 검색 모든 데이터
-			List<HashMap<String, String>> searchKeywordAllCardNo = iservice.cardNoDistinct(params);//카드번호 중복제거
+			if(params.get("page") != null) {				
+				page = Integer.parseInt(params.get("page"));
+			}
+			List<HashMap<String, String>> searchKeyword = iservice.searchKeyword(params);//중복제거 없이 모든 카드정보를 담아옴
+			List<HashMap<String, String>> searchKeywordAllCardNo = iservice.cardNoDistinct(params);//중복제거하여 모든 카드정보를 담아옴
 			
-			int cnt = searchKeywordAllCardNo.size();//총게시글
+			int cnt = searchKeywordAllCardNo.size();
+			
 			PagingBean pb = ipage.getPagingBean(page, cnt);
-			
+		
 			params.put("startCnt", Integer.toString(pb.getStartCount()));
 			params.put("endCnt", Integer.toString(pb.getEndCount()));
 			
+			List<HashMap<String, String>> pagingDistinct = iservice.pagingDistinct(params);//중복제거하여 모든 카드정보를 담아옴
+
 			mav.addObject("option", params.get("option"));
 			mav.addObject("searchType", params.get("searchType"));
 			mav.addObject("options", option + " 관련 카드");
-			mav.addObject("searchResult",searchKeywordResult);//키워드 검색 모든 데이터
-			mav.addObject("searchCardNo",searchKeywordAllCardNo);//카드번호 중복제거
+			mav.addObject("searchKeyword",searchKeyword);//중복제거 없이 모든 카드정보를 담아옴(li 반복을 위하여)
+			mav.addObject("pagingDistinct",pagingDistinct);//화면에 보여줄 10개의 중복제거된 데이터
+			mav.addObject("searchCardNo",searchKeywordAllCardNo);//중복제거하여 모든 카드정보를 담아옴(보여줄 게시물 수)
 			mav.addObject("pb", pb);
 			mav.addObject("cnt",cnt);
+			mav.addObject("page",page);
 		} else if (params.get("searchType").equals("optionClick")) {//옵션선택
 			mav.addObject("options", option);
 		}

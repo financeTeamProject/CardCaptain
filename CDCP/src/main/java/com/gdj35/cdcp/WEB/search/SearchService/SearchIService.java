@@ -9,4 +9,8 @@ public interface SearchIService {
 
 	public List<HashMap<String, String>> cardNoDistinct(HashMap<String, String> params) throws Throwable;
 
+	public List<HashMap<String, String>> paging(HashMap<String, String> params) throws Throwable;
+
+	public List<HashMap<String, String>> pagingDistinct(HashMap<String, String> params) throws Throwable;
+
 }

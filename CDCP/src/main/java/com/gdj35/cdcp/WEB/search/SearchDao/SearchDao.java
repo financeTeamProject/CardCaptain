@@ -20,4 +20,14 @@ public class SearchDao implements SearchIDao {
 	public List<HashMap<String, String>> cardNoDistinct(HashMap<String, String> params) throws Throwable {
 		return sql.selectList("search.cardNoDistinct", params);
 	}
+
+	@Override
+	public List<HashMap<String, String>> paging(HashMap<String, String> params) throws Throwable {
+		return sql.selectList("search.paging", params);
+	}
+
+	@Override
+	public List<HashMap<String, String>> pagingDistinct(HashMap<String, String> params) throws Throwable {
+		return sql.selectList("search.pagingDistinct", params);
+	}
 }

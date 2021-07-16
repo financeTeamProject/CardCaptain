@@ -19,5 +19,31 @@
 							 ON T.CARD_NO = B.CARD_NO
 		WHERE B.DETAIL_INFO LIKE '%'|| #{option} || '%'
 		ORDER BY C.CARD_NO
-	</select>	
+	</select>
+	
+	<select id="paging" parameterType="hashmap" resultType="hashmap">
+		SELECT A.CARD_NO,A.CARD_NAME,A.CARD_TYPE,A.BENEFIT_TOP,A.BENEFIT_TYPE_NO,A.CARD_IMG_URL,A.CARD_SUMMARY 
+		FROM (SELECT C.CARD_NO,C.CARD_NAME,C.CARD_TYPE,B.BENEFIT_TOP,B.BENEFIT_TYPE_NO,C.CARD_IMG_URL,C.CARD_SUMMARY, ROW_NUMBER() OVER(ORDER BY C.CARD_NO) AS RNUM
+				FROM CARDS C INNER JOIN CARDTYPES T 
+									 ON C.CARD_NO = T.CARD_NO
+							 INNER JOIN CARDBENEFITS B
+									 ON T.CARD_NO = B.CARD_NO
+				WHERE B.DETAIL_INFO LIKE '%'|| #{option} || '%'
+				ORDER BY C.CARD_NO) A
+		WHERE A.RNUM BETWEEN #{startCnt} AND #{endCnt}
+	</select>
+	
+	<select id="pagingDistinct" parameterType="hashmap" resultType="hashmap">
+		SELECT B.CARD_NO, B.CARD_NAME, B.CARD_IMG_URL,B.RNUM
+		FROM (SELECT A.CARD_NO, A.CARD_NAME, A.CARD_IMG_URL, ROW_NUMBER() OVER(ORDER BY A.CARD_NO) AS RNUM 
+				FROM (SELECT DISTINCT C.CARD_NO, C.CARD_NAME, C.CARD_IMG_URL
+						FROM CARDS C INNER JOIN CARDTYPES T 
+											 ON C.CARD_NO = T.CARD_NO
+									 INNER JOIN CARDBENEFITS B
+											 ON T.CARD_NO = B.CARD_NO
+						WHERE B.DETAIL_INFO LIKE '%'|| #{option} || '%'
+        		ORDER BY C.CARD_NO) A
+		) B
+		WHERE B.RNUM BETWEEN #{startCnt} AND #{endCnt}
+	</select>
 </mapper>

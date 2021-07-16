@@ -21,4 +21,14 @@ public class SearchService implements SearchIService {
 	public List<HashMap<String, String>> cardNoDistinct(HashMap<String, String> params) throws Throwable {
 		return idao.cardNoDistinct(params);
 	}
+
+	@Override
+	public List<HashMap<String, String>> paging(HashMap<String, String> params) throws Throwable {
+		return idao.paging(params);
+	}
+
+	@Override
+	public List<HashMap<String, String>> pagingDistinct(HashMap<String, String> params) throws Throwable {
+		return idao.pagingDistinct(params);
+	}
 }

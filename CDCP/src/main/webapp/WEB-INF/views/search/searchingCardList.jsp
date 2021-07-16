@@ -148,7 +148,7 @@ body{
 }
 #content {
 	width: 1600px;
-    height: 2500px;/* content에 맞게 줄임 - SYOU */
+    height: 2100px;/* content에 맞게 줄임 - SYOU */
     margin: 0 auto;
 }		
 /* SYOU */
@@ -274,10 +274,36 @@ body{
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+	/* 카드순위 페이지 이동 */
+	$("#ranking").on("click", function(){
+		location.href = "card_rank";
+	}); // ranking click end
+	/* 카드검색/비교 페이지 이동 */
+	 $("#search").on("click", function(){
+		location.href = "search";
+	});// search click end
+	/* 컨텐츠 페이지 이동 */
+	$("#contents").on("click", function(){
+		location.href = "content";
+	});// contents click end
+	
+	/* 메인페이지 이동 */
+	$("#headerLogo").on("click", function(){
+		location.href = "/cdcp";
+	}); // headerLogo click end
+	
+	/* 페이징 */
 	$("#pagingWrap").on("click","span", function () {
 		$("#page").val($(this).attr("name"));
 		$("#pagingForm").submit();
-	});
+	}); // pagingWrap click end
+	
+	/* 상세보기 이동 */
+	$(".side_Btn").on("click", function(){
+		var vdt = $(this).prop('id').split("_");
+		$("#gogoForm #cardNo").val(vdt[1]);
+		$("#gogoForm").submit();
+	}); // side_Btn click end
 });
 </script>
 </head>
@@ -287,9 +313,9 @@ $(document).ready(function() {
 	<div id="headerWrap">
 	<div id="headerLeft">
 		<div id="headerLogo"></div>
-		<div class="menu1">카드순위</div>
-		<div class="menu1">카드검색/비교</div>
-		<div class="menu1">컨텐츠</div>
+		<div class="menu1" id="ranking">카드순위</div>
+		<div class="menu1" id="search">카드검색/비교</div>
+		<div class="menu1" id="contents">컨텐츠</div>
 	</div>
 	<div id="headerRight">
 		<div id="imgSearch"></div>
@@ -299,10 +325,13 @@ $(document).ready(function() {
 </div>
 <!-- End Header by KJ -->
 <!-- 내용 영역 -->
+<form action="cardview" id="gogoForm" method="post">
+	<input type="hidden" id="cardNo" name="cardNo" value="">
+</form>
 <form action="searchingCardList" id="pagingForm" method="post">
-	<input type="hidden" id="page" name="page" value="${page}">
-	<input type="hidden" id="searchType" name="searchType" value="${searchType}">
-	<input type="hidden" id="option" name="option" value="${option}" />
+	<input type="hidden" id="page" name="page" value="${page}"><!-- 페이지 -->
+	<input type="hidden" id="searchType" name="searchType" value="${searchType}"><!-- 검색 타입(keyword, optionCheck) -->
+	<input type="hidden" id="option" name="option" value="${option}" /><!-- 검색 내용(keyword, optionCheck) -->
 </form>
 <div id="content">
 	<div id="contentMenu">
@@ -314,27 +343,27 @@ $(document).ready(function() {
  				</c:forEach>
  			</ul>
 		</div>
-<c:set var="size" value="${fn:length(searchCardNo)}" />
+<c:set var="size" value="${fn:length(pagingDistinct)}" />
 <c:choose>
 <c:when test="${size > 0}">
 	<c:forEach var ="i" begin="0" end ="${size-1}">
 		<div id="srchCardList" class="srch_card_list">
 			<div id="cardList_1" class="card_list">
-				<img src="${searchCardNo[i].CARD_IMG_URL}">
+				<img src="${pagingDistinct[i].CARD_IMG_URL}">
 				<div id="cardList_1_txt"  class="card_list_txt">
-					<h3>${searchCardNo[i].CARD_NAME}</h3>
-					<c:set var="benefit_size" value="${fn:length(searchResult)}" />
+					<h3>${pagingDistinct[i].CARD_NAME}</h3>
+					<c:set var="benefit_size" value="${fn:length(searchKeyword)}" />
 					<ul>
 						<c:forEach var ="j" begin="0" end ="${benefit_size-1}">
-							<c:if test="${searchCardNo[i].CARD_NO eq searchResult[j].CARD_NO}">
-								<li class="choiceList">${searchResult[j].BENEFIT_TOP}</li>
+							<c:if test="${pagingDistinct[i].CARD_NO eq searchKeyword[j].CARD_NO}">
+								<li class="choiceList">${searchKeyword[j].BENEFIT_TOP}</li>
 							</c:if>
 						</c:forEach>
 					</ul>
 				</div>
 				<div id="cardList_1_etc" class="cardList_etc">
-					<h4 class="side_Btn" id="viewBox_${searchCardNo[i].CARD_NO}"><i class='fa fa-plus'></i>&nbsp;비교함 담기</h4>
-					<h4 class="side_Btn" id="viewDt_${searchCardNo[i].CARD_NO}"><i class='fa fa-angle-double-right'></i>&nbsp;상세보기</h4>
+					<h4 class="side_Btn" id="viewBox_${pagingDistinct[i].CARD_NO}"><i class='fa fa-plus'></i>&nbsp;비교함 담기</h4>
+					<h4 class="side_Btn" id="viewDt_${pagingDistinct[i].CARD_NO}"><i class='fa fa-angle-double-right'></i>&nbsp;상세보기</h4>
 				</div>
 			</div>
 		</div>
