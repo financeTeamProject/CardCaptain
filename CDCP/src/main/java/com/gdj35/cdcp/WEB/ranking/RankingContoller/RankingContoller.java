@@ -87,14 +87,6 @@ public class RankingContoller {
 	}
 //	카드상세보기 페이지
 	
-	@RequestMapping(value="/cardview")
-	public ModelAndView cardview(ModelAndView mav) {
-	
-		mav.setViewName("ranking/cardview");
-		
-		return mav;
-	}
-	
 	@RequestMapping(value="/cardview1")
 	public ModelAndView cardview1(ModelAndView mav) {
 	
