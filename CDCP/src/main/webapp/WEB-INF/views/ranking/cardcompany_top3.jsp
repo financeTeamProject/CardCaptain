@@ -189,6 +189,7 @@ body{
 					    font-size: 35px;
 					    font-weight: bold;
 					    text-align: center;
+					    padding-top: 30px;
 					}
 					.selection_criteria{
 					    font-family: 'GmarketSansMedium';

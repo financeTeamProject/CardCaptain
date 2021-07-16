@@ -457,7 +457,7 @@ body{
 			</div>
 			<div id="contentBot">
 			<c:forEach var ="i" begin="1" end ="9">
-				<form action="cardview" id="gogoForm_${list[i].CARD_NO}">
+				<form action="cardview" id="gogoForm_${list[i].CARD_NO}" method="post">
 					<input type="hidden" name="cardNo" value="${list[i].CARD_NO}" />
 				</form>
 				<div class="rank_box">	<!-- 2등 -->
