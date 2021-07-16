@@ -898,8 +898,8 @@ $(function(){
 			<!-- 하위 내용 영역 -->
 			<div id="bnfTxt">주요 혜택</div>
 			<div id="botArea">
+			<%--
 				<c:set var="size" value="${fn:length(data)}" />
-				<c:forEach var = "j" begin="0" end="${size - 1}">
 				<div class="group1">
 					<div class="bnf_icon">
 						<img alt="혜택아이콘" src="${pageContext.request.contextPath}/resources/images/detail/icon_cafe_blue.png" class="icon_img"> 
@@ -932,7 +932,7 @@ $(function(){
 					  * 상품권(선물하기 등) 및 선불카드(선불전자지급수단 포함) 충전 제외
 								
 				</div>
-				
+				 --%>
 				
 				<!-- 구독 혜택 -->
 				<div class="group1">	
