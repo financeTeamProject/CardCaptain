@@ -140,10 +140,13 @@ public class UserContoller {
 		
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		
-		HashMap<String,String> data = useriService.mCheck2(params);
+		HashMap<String,String> data = useriService.getPw(params);
+		System.out.println(data);
 		
 		if(data != null) {
 			modelMap.put("mNo", data.get("MEMBER_NO"));
+			System.out.println("===================================");
+			System.out.println(data.get("MEMBER_NO"));
 			modelMap.put("resMsg", "success");
 		} else {
 			modelMap.put("resMsg", "failed");

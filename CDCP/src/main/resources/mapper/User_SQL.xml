@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user">
+	<!-- 아이디 찾기 -->
 	<select id="getId" parameterType="hashmap" resultType="hashmap">
 		SELECT MEMBER_ID
 		FROM MEMBER_INFO
-		WHERE CONTACT = #{m_Phone}
-		AND MEMBER_BIRTH = #{m_Birth}
-		AND E_NAME = #{m_Email}
-		AND E_ADDRESS = #{m_Address}
+		WHERE CONTACT = #{id_Phone}
+		AND MEMBER_BIRTH = #{id_Birth}
+		AND E_NAME = #{id_Email}
+		AND E_ADDRESS = #{id_Address}
 	</select>
 	
+	<!-- 비밀번호찾기 -->
 	<select id="getPw" parameterType="hashmap" resultType="hashmap">
-		SELECT MEMBER_PW
+		SELECT MEMBER_NO
 		FROM MEMBER_INFO
-		WHERE EMAIL = #{M_ID}
-		AND E_NAME = #{m_Email}
-		AND E_ADDRESS = #{m_Address}
+		WHERE MEMBER_ID = #{pw_ID}
+		AND E_NAME = #{pw_Email}
+		AND E_ADDRESS = #{pw_Address}
 	</select>
 	
 	<select id="getM" parameterType="hashmap" resultType="hashmap">
@@ -41,14 +43,6 @@
 		FROM MEMBER_INFO
 		WHERE CONTACT = #{m_Phone}
 		AND MEMBER_BIRTH = #{m_Birth}
-		AND E_NAME = #{m_Email}
-		AND E_ADDRESS = #{m_Address}
-	</select>
-	
-	<select id="mCheck2" parameterType="hashmap" resultType="hashmap">
-		SELECT MEMBER_NO
-		FROM MEMBER_INFO
-		WHERE MEMBER_ID = #{mId}
 		AND E_NAME = #{m_Email}
 		AND E_ADDRESS = #{m_Address}
 	</select>

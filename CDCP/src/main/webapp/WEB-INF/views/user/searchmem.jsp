@@ -285,6 +285,7 @@ var email = "";
 var birth = "";
 var Phone = "";
 var id = "";
+var no = "";
 
 $(document).ready(function() {
 	var regex_kor = (/[^가-힣]$/);
@@ -392,6 +393,17 @@ $(document).ready(function() {
 			$("#errorMsgEmail").html("");
 		}
 	});
+	$("#pwEmail").blur(function(){
+		var memEmail = $.trim($("#pwEmail").val());
+
+		if (memEmail == "") {
+   			$("#pwEmail").focus();
+			$(".errorMsg").css("display","inline");
+			$("#errorMsgEmail2").html("이메일을 입력해주세요.");
+		} else {
+			$("#errorMsgEmail2").html("");
+		}
+	});
 	
 	/* 아이디찾기 - 아이디 전송 */
  	$("#idCheck").on("click", function () {
@@ -399,21 +411,21 @@ $(document).ready(function() {
 		var memRRN = $.trim($("#mBirth").val());
 		var memEmail = $.trim($("#idEmail").val());
 		var memEmailOpt = $("#id_select_email option:selected").val();
+		var memGender = $.trim($("#mGender").val());
 		
 		if(memPhone == "") {
-			alert("전화번호");
 			$("#mPhone").focus();
 		} else if(memRRN == "") {
-			alert("생년월일");
 			$("#mBirth").focus();
+		} else if(memGender == "") {
+			$("#mGender").focus();
 		} else if(memEmail == "") {
-			alert("이메일");
 			$("#idEmail").focus();
 		} else {
-			$("#m_Phone").val($("#mPhone").val());
-			$("#m_Birth").val($("#mBirth").val());
-			$("#m_Email").val($("#idEmail").val());
-			$("#m_Address").val($("#id_select_email option:selected").val());
+			$("#id_Phone").val($("#mPhone").val());
+			$("#id_Birth").val($("#mBirth").val());
+			$("#id_Email").val($("#idEmail").val());
+			$("#id_Address").val($("#id_select_email option:selected").val());
 			
  			var params = $("#mData").serialize();
 
@@ -441,19 +453,19 @@ $(document).ready(function() {
 	
 	$("#pwCheck").on("click", function () {
 		var memId = $.trim($("#mId").val());
-		var memEmail = $.trim($("#idEmail").val());
+		var memEmail = $.trim($("#pwEmail").val());
 		var memEmailOpt = $("#id_select_email option:selected").val();
 		
-			if(memPhone == "") {
-				alert("전화번호");
+			if(memId == "") {
+				alert("아이디");
 				$("#mPhone").focus();
 			} else if(memEmail == "") {
 				alert("이메일");
-				$("#idEmail").focus();
+				$("#pwEmail").focus();
 			} else {
-				$("#m_Id").val($("#idEmail").val());
-				$("#m_Email").val($("#idEmail").val());
-				$("#m_Address").val($("#id_select_email option:selected").val());
+				$("#pw_Id").val($("#mId").val());
+				$("#pw_Email").val($("#pwEmail").val());
+				$("#pw_Address").val($("#id_select_email option:selected").val());
 				
 				var params = $("#mData2").serialize();
 				
@@ -464,9 +476,11 @@ $(document).ready(function() {
 	 				data: params,
 	 				success: function (res) {
 	 					console.log(res);
-	 					code = res.code;
+	 					no = res.resMsg;
+	 					console.log(no);
+	 					
 	 					if(res.resMsg == "success") {
-	 						$("#pw_Check").css("display", "inline");
+	 						$("#pw_check").css("display", "inline");
 	 					} else if(res.resMsg == "failed") {
 	 						alert("입력하신 회원님의 정보가 일치하지 않습니다.");
 	 					}
@@ -476,7 +490,7 @@ $(document).ready(function() {
 		
 	});
 	
-	/* 이메일인증 */
+/* 	 // 이메일인증 
 	$(".checkingEmailBtn").on("click",function() {
 		// $(".checkingEmailBtn").css("display","none");
 		var ival = $(this).prop("id").split("_");
@@ -520,21 +534,22 @@ $(document).ready(function() {
 			}
 		});
 	});
+*/
 	
 });
 </script>
 </head>
 <body>
 <form action="#" id="mData" method="post">
-	<input type="hidden" name="m_Phone" id="m_Phone" value=""/>
-	<input type="hidden" name="m_Birth" id="m_Birth" value=""/>
-	<input type="hidden" name="m_Email" id="m_Email" value=""/>
-	<input type="hidden" name="m_Address" id="m_Address" value=""/>
+	<input type="hidden" name="id_Phone" id="id_Phone" value=""/>
+	<input type="hidden" name="id_Birth" id="id_Birth" value=""/>
+	<input type="hidden" name="id_Email" id="id_Email" value=""/>
+	<input type="hidden" name="id_Address" id="id_Address" value=""/>
 </form>
 <form action="#" id="mData2" method="post">
-	<input type="hidden" name="m_Id" id="m_Id" value=""/>
-	<input type="hidden" name="m_Email" id="m_Email" value=""/>
-	<input type="hidden" name="m_Address" id="m_Address" value=""/>
+	<input type="hidden" name="pw_Id" id="pw_Id" value=""/>
+	<input type="hidden" name="pw_Email" id="pw_Email" value=""/>
+	<input type="hidden" name="pw_Address" id="pw_Address" value=""/>
 </form>
 <form action="#" id="checkEmailForm">
 	<input type="hidden" name="checkEmail" id="checkEmail" value="" /><!-- 이메일 주소 -->

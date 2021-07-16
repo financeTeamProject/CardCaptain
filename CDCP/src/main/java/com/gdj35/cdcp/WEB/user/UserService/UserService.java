@@ -40,11 +40,5 @@ public class UserService implements UserIService {
 	public HashMap<String, String> mCheck(HashMap<String, String> params) throws Throwable {
 		return useridao.mCheck(params);
 	}
-	
-	@Override
-	public HashMap<String, String> mCheck2(HashMap<String, String> params) throws Throwable {
-		return useridao.mCheck(params);
-	}
-
 
 }
