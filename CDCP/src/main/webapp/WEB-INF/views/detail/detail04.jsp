@@ -70,7 +70,7 @@ $(function(){
 		function makePopup(){
 			
 			var html = "<div class = \"Popup\">"
-				+ "<input type = \"button\" id = \"p1\" value = \"상세보기\" readonly = \"readonly\" >"
+				+ "<input type = \"button\" id = \"p1\" value = \"비교함 이동\" readonly = \"readonly\" >"
 				+ "<input type = \"button\" id = \"p2\" value = \"취소\"  readonly = \"readonly\" >"
 				+ "</div>"
 								
@@ -108,7 +108,8 @@ $(function(){
 
 	
 	
-	/* 버튼 클릭 화살표 이미지 변경*/	
+	
+	/* 버튼 클릭시 화살표 이미지 변경 */
 	
 	 $(document).ready(function(){
          /*웹페이지 열었을 때*/
@@ -181,9 +182,7 @@ $(function(){
              $(".arrow_up4").hide();
          });
      });
-	
-	
-	
+
 	
 </script>
 
@@ -213,7 +212,7 @@ body{
 
 /* 팝업 영역  */
 
-#bi{
+#bi1{
 		
 	cursor:pointer;
 	position: relative;
@@ -223,7 +222,7 @@ body{
 	background-color:#0047ab;
 	color : white;
 	width: 150px;
-	height: 80px;
+	height: 110px;
 	text-align:center;
 	line-height:50px;
 	font-weight:bold;
@@ -235,6 +234,25 @@ body{
 }
 
 
+#bi2{
+
+	top: 90%;
+    left: 4%;
+    position: fixed;
+    background-color: #ff6e61;
+    color: white;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 37px;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'Cafe24Ohsquare';
+    z-index: 200;
+    margin: 0 auto;
+    border-radius: 20px;
+}
+
 .Popup{
 
 	z-index:150;
@@ -244,36 +262,40 @@ body{
 
 #p1{
 	
-	font-size:15px;
-	position:relative;
-	top:85%;
-	position: fixed;
-	padding:10px;
-	background-color:#939597;
-	color:white;
-	font-family: 'Cafe24Ohsquare';
-	border:0px;
-	cursor:pointer;
-	z-index:150;
+		
+    font-size: 15px;
+    position: relative;
+    top: 85%;
+    position: fixed;
+    padding: 10px;
+    background-color: #A0CFEC;
+    color: white;
+    font-family: 'Cafe24Ohsquare';
+    border: 0px;
+    cursor: pointer;
+    z-index: 150;
+    width: 91px;
+    height: 40px;
 	
 }
 
 
 #p2{
 
-	font-size:15px;
-	position:relative;
-	top:85%;
-	left:104px;
-	position: fixed;
-	padding:10px;
-	background-color:#939597;
-	color:white;
-	font-family: 'Cafe24Ohsquare';
-	border:0px;
-	cursor:pointer;
-	z-index:150;
-	
+	font-size: 15px;
+    position: relative;
+    top: 85%;
+    left: 6%;
+    position: fixed;
+    padding: 10px;
+    background-color: #FFE5B4;
+    color: white;
+    font-family: 'Cafe24Ohsquare';
+    border: 0px;
+    cursor: pointer;
+    z-index: 150;
+    width: 60px;
+    height: 40px;	
 }
 
 
@@ -614,14 +636,7 @@ body{
 						font-family: GmarketSansMedium;
 					}
 						
-						.cont{
-																				
-							width : 200px;
-							height : 50px;
-							border: 1px solid #000000;
-						
-						}
-								
+														
 						.name_card{
 							margin-bottom: 0;
 							text-align: left;
@@ -819,7 +834,10 @@ body{
 				<div id="btnSct">
 						<input type="button" value="카드 신청" id="btnCmp">
 						<input type="button" value = "비교함담기+" id="btnbi">
-						<input type = "button" value = "비교함 확인" id= "bi"/>
+						<div id = "bi">
+						<input type = "button" value = "비교함 확인" id = "bi1"/>
+						<input type = "button" value = "1" id= "bi2"/>						
+						</div>
 				</div>
 			</div>
 			<!-- 하위 내용 영역 -->
@@ -841,7 +859,6 @@ body{
 						<img alt="올려보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_up_gray.png" class="arrow_up1">
 						
 					</div>
-					<div class = "cont" style = "display:none";>가나다라마바사아자차카타파하</div>
 				
 				</div>
 				<div class = "group1-1">
@@ -906,7 +923,7 @@ body{
 						<img alt="펼쳐보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_down_gray.png" class="arrow_down3">
 						<img alt="올려보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_up_gray.png" class="arrow_up3">
 					</div>
-					<div class = "cont" style = "display:none";>가나다라마바사아자차카타파하</div>
+					
 				</div>
 				<div class = "group1-1">
 				
@@ -939,7 +956,6 @@ body{
 						<img alt="펼쳐보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_down_gray.png" class="arrow_down4">
 						<img alt="올려보기" src="${pageContext.request.contextPath}/resources/images/detail/arrow_up_gray.png" class="arrow_up4">
 					</div>
-					<div class = "cont" style = "display:none";>가나다라마바사아자차카타파하</div>
 				</div>
 				<div class = "group1-1">
 				

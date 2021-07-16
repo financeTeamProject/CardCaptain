@@ -42,6 +42,24 @@ public class RankingContoller {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="/creditTop11")
+	public ModelAndView creditTop11(
+			@RequestParam HashMap<String, String> params,
+			ModelAndView mav) throws Throwable{
+		
+		List<HashMap<String, String>> list
+			= RankingiService.getRCredit(params);
+		
+		mav.addObject("list", list);
+		System.out.println(list);
+		mav.setViewName("ranking/creditTop11");
+		
+		return mav;
+	}
+	
+	
+	
 //	체크카드 top10  페이지
 	@RequestMapping(value="/checkTop10")
 	public ModelAndView checkTop10(
@@ -69,10 +87,27 @@ public class RankingContoller {
 	}
 //	카드상세보기 페이지
 	
+	@RequestMapping(value="/cardview")
+	public ModelAndView cardview(ModelAndView mav) {
+	
+		mav.setViewName("ranking/cardview");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/cardview1")
+	public ModelAndView cardview1(ModelAndView mav) {
+	
+		mav.setViewName("ranking/cardview1");
+		
+		return mav;
+	}
+	
+	
 	  @RequestMapping(value="/cardview")
 	  public ModelAndView cardview(
 			  @RequestParam HashMap<String, String> params, 
-			  ModelAndView mav) throws Throwable { 
+			  ModelAndView mav) throws Throwable{
 		  try {
 			  if(params.get("cardNo") != null) { 
 		  
@@ -89,6 +124,5 @@ public class RankingContoller {
 		  }
 	  return mav; 
 	  }
-	  
-}
+}	  
 
