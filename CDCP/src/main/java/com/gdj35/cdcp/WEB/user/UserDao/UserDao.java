@@ -35,4 +35,8 @@ public class UserDao implements UserIDao {
 	public HashMap<String, String> mCheck(HashMap<String, String> params) throws Throwable {
 		return sqlSession.selectOne("user.mCheck", params);
 	}
+	@Override
+	public HashMap<String, String> mCheck2(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectOne("user.mCheck2", params);
+	}
 }

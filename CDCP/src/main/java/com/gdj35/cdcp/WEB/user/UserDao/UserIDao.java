@@ -15,4 +15,5 @@ public interface UserIDao {
 
 	public HashMap<String, String> mCheck(HashMap<String, String> params) throws Throwable;
 
+	public HashMap<String, String> mCheck2(HashMap<String, String> params) throws Throwable;
 }

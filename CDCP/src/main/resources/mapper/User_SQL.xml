@@ -44,4 +44,13 @@
 		AND E_NAME = #{m_Email}
 		AND E_ADDRESS = #{m_Address}
 	</select>
+	
+	<select id="mCheck" parameterType="hashmap" resultType="hashmap">
+		SELECT MEMBER_NO
+		FROM MEMBER_INFO
+		WHERE MEMBER_ID = #{mId}
+		AND E_NAME = #{m_Email}
+		AND E_ADDRESS = #{m_Address}
+	</select>
+	
 </mapper>

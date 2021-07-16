@@ -105,7 +105,7 @@ public class UserContoller {
 		return mav;
 	}
 	
-	/* id,pw찾기 - 데이터 가져오기 */
+	/* id찾기 - 데이터 가져오기 */
 	@RequestMapping(value="mDatas",
 			method = RequestMethod.POST,
 			produces = "text/json;charset=UTF-8")
@@ -121,6 +121,29 @@ public class UserContoller {
 		
 		if(data != null) {
 			modelMap.put("mId", data.get("MEMBER_ID"));
+			modelMap.put("resMsg", "success");
+		} else {
+			modelMap.put("resMsg", "failed");
+		}
+		return mapper.writeValueAsString(modelMap);
+	}
+	
+	/* pw찾기 - 데이터 가져오기 */
+	@RequestMapping(value="mDatas",
+			method = RequestMethod.POST,
+			produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String mData2s(
+			HttpSession session,
+			@RequestParam HashMap<String,String> params) throws Throwable {
+		ObjectMapper mapper = new ObjectMapper();
+		
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		HashMap<String,String> data = useriService.mCheck2(params);
+		
+		if(data != null) {
+			modelMap.put("mNo", data.get("MEMBER_NO"));
 			modelMap.put("resMsg", "success");
 		} else {
 			modelMap.put("resMsg", "failed");
@@ -198,5 +221,4 @@ public class UserContoller {
 		
 		return mav;
 	}
-	//최신
 }

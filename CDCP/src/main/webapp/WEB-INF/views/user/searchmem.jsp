@@ -355,6 +355,31 @@ $(document).ready(function() {
 		}
 	});
 	
+	/* 아이디 */
+	$("#mId").blur(function(){
+		var memId = $.trim($("#mId").val());
+		var regex_kor = (/[^가-힣]$/);
+		var regex_spe = (/[~!@#$%^&*()_+|<>?:;{}]/);
+
+		if(memId == "") {
+			$("#mId").focus();
+			$(".errorMsg").css("display","inline");
+			$("#errorMsgId").html("아이디를 입력해주세요.");
+		} else if (!regex_kor.test(memId)) {
+	 		$("#mId").focus();
+			$("#mId").val("");
+			$(".errorMsg").css("display","inline");
+			$("#errorMsgId").html("한글은 사용하실 수 없습니다.");
+		} else if (regex_spe.test(memId)) {
+			$("#mId").focus();
+			$("#mId").val("");
+			$(".errorMsg").css("display","inline");
+			$("#errorMsgId").html("특수문자는 사용하실 수 없습니다.");
+		} else {
+	 		$("#errorMsgId").html("");
+		}
+	});
+	
 	/* 이메일 */
 	$("#idEmail").blur(function(){
 		var memEmail = $.trim($("#idEmail").val());
@@ -369,7 +394,7 @@ $(document).ready(function() {
 	});
 	
 	/* 아이디찾기 - 아이디 전송 */
- 	$("#memCheck").on("click", function () {
+ 	$("#idCheck").on("click", function () {
 		var memPhone = $.trim($("#mPhone").val());
 		var memRRN = $.trim($("#mBirth").val());
 		var memEmail = $.trim($("#idEmail").val());
@@ -412,6 +437,43 @@ $(document).ready(function() {
  				}
  			});
 		}
+	});
+	
+	$("#pwCheck").on("click", function () {
+		var memId = $.trim($("#mId").val());
+		var memEmail = $.trim($("#idEmail").val());
+		var memEmailOpt = $("#id_select_email option:selected").val();
+		
+			if(memPhone == "") {
+				alert("전화번호");
+				$("#mPhone").focus();
+			} else if(memEmail == "") {
+				alert("이메일");
+				$("#idEmail").focus();
+			} else {
+				$("#m_Id").val($("#idEmail").val());
+				$("#m_Email").val($("#idEmail").val());
+				$("#m_Address").val($("#id_select_email option:selected").val());
+				
+				var params = $("#mData2").serialize();
+				
+				$.ajax({
+	 				url: "mData2s",
+	 				type: "post",
+	 				dataType: "json",
+	 				data: params,
+	 				success: function (res) {
+	 					console.log(res);
+	 					code = res.code;
+	 					if(res.resMsg == "success") {
+	 						$("#pw_Check").css("display", "inline");
+	 					} else if(res.resMsg == "failed") {
+	 						alert("입력하신 회원님의 정보가 일치하지 않습니다.");
+	 					}
+					},
+				});
+			}
+		
 	});
 	
 	/* 이메일인증 */
@@ -469,6 +531,11 @@ $(document).ready(function() {
 	<input type="hidden" name="m_Email" id="m_Email" value=""/>
 	<input type="hidden" name="m_Address" id="m_Address" value=""/>
 </form>
+<form action="#" id="mData2" method="post">
+	<input type="hidden" name="m_Id" id="m_Id" value=""/>
+	<input type="hidden" name="m_Email" id="m_Email" value=""/>
+	<input type="hidden" name="m_Address" id="m_Address" value=""/>
+</form>
 <form action="#" id="checkEmailForm">
 	<input type="hidden" name="checkEmail" id="checkEmail" value="" /><!-- 이메일 주소 -->
 	<input type="hidden" name="findType" id="findType" value="" /><!--  -->
@@ -504,7 +571,7 @@ $(document).ready(function() {
 				<option value="@naver.com">naver.com</option>
 				<option value="@gmail.com">gmail.com</option>
 			</select>
-			<input type="button" id="memCheck" class="checkingBtn" value="확인" />
+			<input type="button" id="idCheck" class="checkingBtn" value="확인" />
 		</div>
 		<br/>
 		<br/>
@@ -523,7 +590,7 @@ $(document).ready(function() {
 				<option value="@naver.com">naver.com</option>
 				<option value="@gmail.com">gmail.com</option>
 			</select>
-			<input type="button" id="memCheck" class="checkingBtn" value="확인" />
+			<input type="button" id="pwCheck" class="checkingBtn" value="확인" />
 			<input type="button" id="pw_FindBtn" class="checkingEmailBtn" value="인증하기" />
 			<div id="pw_check">
 					<input type="text" id="pw_codeTxt" class="checkingEmailNum" placeholder="인증코드" />
