@@ -347,7 +347,8 @@ h1 {
 	width: 300px;
 	height: 50px;
 	margin: 0px auto;
-	font-size: 17px;
+	font-size: 20px;
+	line-height: 50px;
 	font-family: 'Cafe24Ohsquare';
 	color: black;
 	text-align: center;
