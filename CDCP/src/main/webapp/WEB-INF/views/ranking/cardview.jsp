@@ -28,6 +28,98 @@
 		margin: 0;
 		top: 0;
 	}
+	
+/* 팝업 영역  */
+
+#bi1{
+		
+	cursor:pointer;
+	position: relative;
+	top:90%;
+	left:0%;
+	position: fixed;
+	background-color:#0047ab;
+	color : white;
+	width: 150px;
+	height: 110px;
+	text-align:center;
+	line-height:50px;
+	font-weight:bold;
+	font-size:24px;
+	font-family: 'Cafe24Ohsquare';
+	z-index:200;
+	margin:0 auto;
+}
+
+#bi2{
+	top: 90%;
+    left: 3%;
+    position: fixed;
+    background-color: #ff6e61;
+    color: white;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 37px;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'Cafe24Ohsquare';
+    z-index: 200;
+    margin: 0 auto;
+    border-radius: 20px;
+	border: 1px;
+}
+
+	.Popup{
+		z-index:150;
+	}
+
+	#p1{
+	    font-size: 15px;
+	    position: relative;
+	    top: 85%;
+	    position: fixed;
+	    padding: 10px;
+	    background-color: #A0CFEC;
+	    color: white;
+	    font-family: 'Cafe24Ohsquare';
+	    border: 0px;
+	    cursor: pointer;
+	    z-index: 150;
+	    width: 91px;
+	    height: 50px;
+		}
+
+	#p2{
+		font-size: 15px;
+	    position: relative;
+	    top: 85%;
+	    left: 90px;
+	    position: fixed;
+	    padding: 10px;
+	    background-color: #FFE5B4;
+	    color: white;
+	    font-family: 'Cafe24Ohsquare';
+	    border: 0px;
+	    cursor: pointer;
+	    z-index: 150;
+	    width: 60px;
+	    height: 50px;	
+	   } 
+
+
+	.Popdown{
+		display:inline-block;
+		width:100%;
+		height:100%;
+		position: fixed;
+		top:0;
+		left:0;
+		z-index: 100;
+		opacity: 0.3; /* 0.0(투명) ~ 1.0(불투명)  */
+	}
+
+	
 	/* 헤더  영역*/
 	#header {
 		width: 100%;
@@ -263,6 +355,21 @@
 					line-height: 60px;
 				}
 				/* 혜택 박스 틀 */
+				
+				
+				
+				
+				.group1-1{
+				    margin: 10px auto;
+				    width: 760px;
+				    height: 100%;
+				    background-color: #F0FFFF;
+				    text-align: left;
+				    font-size: 13px;
+				    font-family: GmarketSansMedium;
+				    padding: 20px;
+				}
+								
 				.bot_box{  
 					margin: 10px auto;
 					width: 800px;
@@ -303,7 +410,7 @@
 						height: inherit;
 						cursor: pointer;
 					}
-						.arrow_down{
+						.arrow_down , .arrow_up{
 							width: 50%;
 							height: 50%;
 							margin: 20px 30px;
@@ -443,7 +550,106 @@
 <script type="text/javascript"
 			src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
+
+
+/* 아코디언 */
+  
+$(function(){
+	$(".group1-1").hide();
+	$(".bot_box").click(function(){
+			
+		if($(this).next().css("display")=="none"){
+			$(this).next().slideDown("fast");
+		}
+		else{
+			$(this).next().slideUp("fast");
+		}
+	});
+});
+
+/* 버튼 클릭시 화살표 이미지 변경 */
+ 
+$(document).ready(function(){
+    /*웹페이지 열었을 때*/
+    $(".arrow_down").show();
+    $(".arrow_up").hide();
+
+    /*img1을 클릭했을 때 img2를 보여줌*/
+    $(".arrow_down").click(function(){
+        $(".arrow_down").hide();
+        $(".arrow_up").show();
+    });
+
+    /*img2를 클릭했을 때 img1을 보여줌*/
+    $(".arrow_up").click(function(){
+        $(".arrow_down").show();
+        $(".arrow_up").hide();
+    });
+});
+
+
+
+/*비교함 담기  */	
+$(document).ready(function(){
+		 var cardNo = [];
+	              
+      /* 메인 비교함 버튼 조건 */
+    $("#compareBtn").on("click", function() {
+    	var temp = "";
+		if(cardNo.length > 2) {
+			alert("비교함이 가득 찼습니다.");
+		} else {
+			cardNo.push($(this).prop('id'));
+			$("#bi2").val(cardNo.length);
+			for(var i=0; i<cardNo.length; i++){
+				for(var j=0; j<i; j++){
+					if(cardNo[i] == cardNo[j]) {
+						alert("동일한 카드가 있습니다.");
+						cardNo.pop();//pop() = 배열의 마지막 요소 제거
+						$("#bi2").val(cardNo.length);
+						return false;
+			 		}
+				}	
+			}
+		}
+	});	
+});
+
+	/* 메인 비교함 팝업  */
 	$(document).ready(function(){
+		$("#bi").hide();
+		$("#compareBtn").on("click",function(){
+			$("#bi").hide();
+			$("#bi").fadeIn();
+		});
+		$("#bi").on("click",function(){
+			makePopup();
+			});
+	   });	
+			
+		function makePopup(){
+			var html = "<div class = \"Popup\">"
+				+ "<input type = \"button\" id = \"p1\" value = \"비교함 이동\" readonly = \"readonly\" >"
+				+ "<input type = \"button\" id = \"p2\" value = \"취소\"  readonly = \"readonly\" >"
+				+ "</div>"
+				$("body").prepend(html);
+				$(".Popup").hide().fadeIn();
+				$("#p1").on("click",function(){
+					location.href = "http://localhost:8090/cdcp/compareSearch";
+				});
+			$("#p2").off("click");
+			$("#p2").on("click",function(){
+					closePopup();
+				});
+			}				
+				
+		function closePopup(){
+			$(".Popup").fadeOut(function(){
+				$(".Popup").remove();
+			});
+		}
+
+$(document).ready(function(){
 		
 		/* 카드순위 페이지 이동 */
 		$("#ranking").on("click", function(){
@@ -513,6 +719,10 @@
 				<div id="btnSct">
 					<input type="button" value="카드 신청" class="bef_btn" id="bef_btn" onclick='window.open("${data[0].CARD_APPLY_URL}")' />
 					<input type="button" value="비교함 담기" class="compare_btn" id="compareBtn" />
+						<div id = "bi">
+						<input type = "button" value = "비교함 확인" id = "bi1"/>
+						<input type = "button" value = "1" id= "bi2"/>						
+						</div>
 				</div>
 			</div>
 			<!-- 하위 내용 영역 -->
@@ -530,10 +740,18 @@
 					</div>
 					<div class="open_view">
 						<img alt="펼쳐보기" src="resources/images/ranking/icon/arrow_down_gray.png" class="arrow_down"/>
+						<img alt="올려보기" src="resources/images/ranking/icon/arrow_up_gray.png" class="arrow_up"/>
+						
 					</div>
 				</div>
+					<div class = "group1-1"	>
+					<h3 id = "h1">미드</h3>
+					내용
+					</div>
+							
 				</c:forEach>
-			</div>
+			</div><!--bot_Area 종료-->
+						
 			<!-- 리뷰 영역 -->
 			<div id="review_name">카드 리뷰</div>
 			<div class="review_area">
