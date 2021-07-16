@@ -282,7 +282,6 @@ h1 {
 }
 
 #img_rayout > div {
-    
 	width: 240px;
 	height: 300px;
 	background-repeat: no-repeat;
