@@ -175,11 +175,6 @@ body{
 				margin: 20px 0; 
 			}
 			/* 카드사 별 TOP3 */
-			.card_bg{
-				position: absolute;
-				background: #000;
-				opacity: 0.65;
-			}
 				#midCmp{
 					display:inline-block;
 					vertical-align: top;
@@ -190,10 +185,7 @@ body{
 					width: 50%;
 					text-align: center;
 					margin-right: 10px;
-				}
-				#midCmp:hover, #cardCmp:hover, #cardTitle:hover {	/* 카드사별 mouse over */
-				cursor: pointer;
-				color: black;
+					position: relative;
 				}
 					#cmpImg{
 						display: inline-block;
@@ -221,6 +213,31 @@ body{
 					    color: white;
 					    font-family: GmarketSansMedium;
 					}
+					.nav_menubar{
+						position: absolute;
+						top: 60px;
+						left: 80px;
+						width: 80%;
+						display: none;
+					}
+					.nav_btn{
+							font-family: GmarketSansMedium;
+							text-decoration: none;
+						    font-size: 20px;
+						    font-weight: 700;
+						    line-height: 20px;
+						    padding: 20px 40px;
+						    margin: 10px;
+						    display: inline-block;
+						    /* transition: all 0.1s; */
+						    overflow: hidden;
+						    color: black;
+						    background: white;
+						    border-radius: 5px;
+					}
+						.nav_btn:hover{
+							background: #F5DF4D;
+						}
 					
 				/* 체크카드 인기순위 */
 				#midCheck{
@@ -325,15 +342,29 @@ body{
 			location.href = "creditTop10";
 		}); // viewBtn click end
 		
-		/* 카드사별 top3 페이지 이동 */
-		$("#midCmp").on("click", function(){
-			location.href = "cardcompany_top3";
-		}); // viewBtn click end
-		
 		/* 체크카드 top10 페이지 이동 */
 		$("#midCheck").on("click", function(){
 			location.href = "checkTop10";
 		}); // viewBtn click end
+		
+		/* 카드사별 top3 페이지 이동 */
+		
+		/* 카드사별 css 효과 */
+		$("#midCmp").hover(function(){
+			$("#cmpImg").css("display", "none");
+			$("#cardCmp").css("display", "none");
+			$("#cardTitle").css("display", "none");
+			
+			$(".nav_menubar").css("display", "block");
+		});
+		
+		$("#midCmp").mouseleave(function(){
+			$(".nav_menubar").css("display", "none");
+			
+			$("#cmpImg").css("display", "inline-block");
+			$("#cardCmp").css("display", "block");
+			$("#cardTitle").css("display", "block");
+		});
 	}); // document ready end
 </script>
 </head>
@@ -365,11 +396,21 @@ body{
 				<a id="viewBtn">VIEW CHART</a>
 			</div>
 			<div id="midRank">
-				<div id="midCmp">
+				<div id="midCmp"> <!-- 사진 들어가있는 영역 -->
 					<div id="cmpImg"></div>
 					<div id="cardCmp">카드사</div>
 					<div id="cardTitle">각 카드사별 TOP3</div>
-				<div class="card_bg"></div>
+					<div class="nav_menubar"> <!-- a 태그 영역 -->
+						<a href="cardcompany_top3" class="nav_btn" id="kbCard">국민 카드</a>
+						<a href="#card_2" class="nav_btn" id="samsumgCard">삼성 카드</a>
+						<a href="#card_3" class="nav_btn" id="lotteCard">롯데 카드</a>
+						<a href="#card_4" class="nav_btn" id="shCard">신한 카드</a>
+						<a href="#card_5" class="nav_btn" id="weCard">우리 카드</a>
+						<a href="#card_6" class="nav_btn" id="hdCard">현대 카드</a>
+						<a href="#card_7" class="nav_btn" id="nhCard">농협 카드</a>
+						<a href="#card_8" class="nav_btn" id="hanaCard">하나 카드</a>
+						<a href="#card_9" class="nav_btn" id="ibkCard">IBK 카드</a>
+					</div>
 				</div>
 				<div id="midCheck">
 					<div id="checkImg"></div>
