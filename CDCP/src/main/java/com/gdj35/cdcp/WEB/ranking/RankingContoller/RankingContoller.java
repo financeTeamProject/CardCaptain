@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+
 import com.gdj35.cdcp.WEB.ranking.RankingService.RankingIService;
 
 @Controller 
@@ -113,6 +113,8 @@ public class RankingContoller {
 				  
 				  mav.setViewName("ranking/cardview");
 				  System.out.println(data);
+			  }else {
+				  mav.setViewName("ranking/test4s");
 			  }
 		  } catch(Throwable e) {
 		  		e.printStackTrace();
@@ -120,25 +122,5 @@ public class RankingContoller {
 	  return mav; 
 	  }
 	  
-	  @RequestMapping(value="/cardview2")
-	  public ModelAndView cardview2(
-			  @RequestParam HashMap<String, String> params, 
-			  ModelAndView mav) throws Throwable { 
-		  try {
-			  if(params.get("cardNo") != null) { 
-		  
-				  List<HashMap<String, String>>
-		  			data = RankingiService.getCView(params);
-		  
-				  mav.addObject("data", data);
-				  
-				  mav.setViewName("ranking/cardview2");
-				  System.out.println(data);
-			  }
-		  } catch(Throwable e) {
-		  		e.printStackTrace();
-		  }
-	  return mav; 
-	  }
 }
 
