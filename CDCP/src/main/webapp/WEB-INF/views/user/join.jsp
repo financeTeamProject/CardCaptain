@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,6 +81,15 @@ body {
     color: #0047AB;
     font-size: 14px;
     letter-spacing: 2px;
+}
+.fakeTxt {
+	width: 1px;
+    height: 1px;
+    border-width: 0;
+    outline: 0;
+    text-decoration: none;
+    caret-color: #ff000000;
+    position: absolute;
 }
 .errorMsg {
 	width: auto;
@@ -178,6 +188,7 @@ body {
     color: white;
     background-color: #0047ab;
     cursor: pointer;
+    pointer-events : none;
 }
 #txt {
     height: 45px;
@@ -229,6 +240,17 @@ body {
     color: #0047AB;
     margin-left: 203px;
 }
+.checkingEmailNum1 {
+    width: 110px;
+    height: 45px;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: #0047AB;
+    outline: 0;
+    caret-color: red;
+    color: #0047AB;
+    margin-left: 203px;
+}
 .checkingCodeBtn {
     width: 100px;
     height: 35px;
@@ -242,6 +264,7 @@ body {
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
+var code = "";
 $(document).ready(function() {
 	var regex_kor = (/[^가-힣]$/);
 	var regex_spe = (/[~!@#$%^&*()_+|<>?:{}]/);
@@ -277,11 +300,12 @@ $(document).ready(function() {
 			alert("숫자만 입력 가능합니다.");
 		}
 	});
+	
 	/* 아이디 */
-	$('#mId').blur(function(){
+	$("#mId").blur(function(){
 		var memId = $.trim($("#mId").val());
 		var regex_kor = (/[^가-힣]$/);
-		var regex_spe = (/[~!@#$%^&*()_+|<>?:{}]/);
+		var regex_spe = (/[~!@#$%^&*()_+|<>?:;{}]/);
 
 		if(memId == "") {
 			$("#mId").focus();
@@ -302,18 +326,40 @@ $(document).ready(function() {
 			$(".errorMsg").css("display","inline");
 			$("#errorMsgId").html("특수문자는 사용하실 수 없습니다.");
 		} else {
-	 		$("#errorMsgId").html('');
-		}
+	 		$("#errorMsgId").html("");
+	 		
+ 			var params = $("#mId").serialize();
+
+ 	 		$.ajax({
+ 				url: "idChecks",
+ 				type: "post",
+ 				dataType: "json",
+ 				data: params,
+ 				success: function (res) {
+ 					if(res.resMsg == "success") {
+ 						$(".errorMsg").css("display","inline");
+ 						$("#errorMsgId").html("이미 사용중인 아이디 입니다.");
+ 						$("#mId").val("");
+ 						$("#mId").focus();
+ 					} else {
+ 						
+ 					}	
+				},
+				error: function (request, status, error) {
+ 					console.log(error);
+ 				}
+ 			});
+ 		}
 	});
+	
 	/* 비밀번호 */
-	$('#mPw').blur(function(){
+	$("#mPw").blur(function(){
 		var memPw = $.trim($("#mPw").val());
 		var chk_num = memPw.search(/[0-9]/g);
 		var chk_eng = memPw.search(/[a-z]/ig);
 		var chk_spe = memPw.search(/[~!@#$%^&*()_+|<>?:{}]/ig);
 		
 		if(memPw == "") {
- 			$("#mPw").focus();
 	       	$(".errorMsg").css("display","inline");
 	       	$("#errorMsgPw").html("비밀번호를 입력해주세요.");
 	   	} else if (memPw.length < 10 || memPw.length > 25) {
@@ -328,8 +374,9 @@ $(document).ready(function() {
 	 		$("#errorMsgPw").html("");
 		}
 	});
+	
 	/* 비밀번호 확인 */
-	$('#mRpw').blur(function(){
+	$("#mRpw").blur(function(){
 		var memPw = $.trim($("#mPw").val());
 		var memRePw = $.trim($("#mRpw").val());
 		
@@ -339,16 +386,16 @@ $(document).ready(function() {
 	       	$("#errorMsgPw").html("비밀번호를 재입력해주세요.");
 	   	} else if (memPw != memRePw) {
 	 	  	$("#mRpw").focus();
-	       	$("#mRpw").val('');
+	       	$("#mRpw").val("");
 	       	$(".errorMsg").css("display","inline");
 	       	$("#errorMsgPw").html("비밀번호가 일치하지 않습니다.");
 		} else {
-	 		$("#errorMsgPw").html('');
-			$('#memo').focus();
+	 		$("#errorMsgPw").html("");
 		}
 	});
+	
 	/* 닉네임 */
-	$('#mNick').blur(function(){
+	$("#mNick").blur(function(){
 		var memNick = $.trim($("#mNick").val());
 		var regex_spe = (/[~!@#$%^&*()_+|<>?:{}]/);
 
@@ -369,8 +416,9 @@ $(document).ready(function() {
 			$("#errorMsgNick").html("");
 		}
 	});
+	
 	/* 연락처 */
-	$('#mPhone').blur(function(){
+	$("#mPhone").blur(function(){
 		var memPhone = $.trim($("#mPhone").val());
 		
 	   	if (memPhone == "") {
@@ -385,8 +433,9 @@ $(document).ready(function() {
 	 		$("#errorMsgTel").html("");
 		}
 	});
+	
 	/* 생년월일 */
-	$('#mBirth').blur(function(){
+	$("#mBirth").blur(function(){
 		var memRRN = $.trim($("#mBirth").val());
 		
 		if (memRRN == "") {
@@ -399,11 +448,10 @@ $(document).ready(function() {
 	       	$("#errorMsgBirth").html("생년월일 8자리를 입력해주세요.");
 	   	} else {
 	 		$("#errorMsgBirth").html("");
-	 		$("")
 		}
 	});
 	
-	$('#mGender').blur(function(){
+	$("#mGender").blur(function(){
 		var memGender = $.trim($("#mGender").val());
 
 	    if (memGender == "") {
@@ -414,10 +462,11 @@ $(document).ready(function() {
 	 		$("#errorMsgBirth").html("");
 		}
 	});
+	
 	/* 이메일 */
-	$('#mEmail').blur(function(){
+	$("#mEmail").blur(function(){
 		var memEmail = $.trim($("#mEmail").val());
-		
+
 		if (memEmail == "") {
    			$("#mEmail").focus();
 			$(".errorMsg").css("display","inline");
@@ -426,37 +475,55 @@ $(document).ready(function() {
 			$("#errorMsgEmail").html("");
 		}
 	});
+	
 
 	
-   //회원가입 필터링   
+   	/* 이메일 인증   */ 
 	$("#checkingEmail").on("click",function() {
-			$("#checkEmail").val($("#mEmail").val() + "@" + $(".select_email option:selected").val());
-			$("#email_check").css("display","inline");
-			$(".errorMsg").css("display","none");
+		$("#checkEmail").val($("#mEmail").val() + $(".select_email option:selected").val());
 
-			var params = $("#checkEmailForm").serialize();
-			
-			$.ajax({
-				url: "checkingEmail",
-				type: "post",
-				dataType: "json",
-				data: params,
-				success: function(res) {
-					if (res = "success") {
-						$("#emailTxt").html("*이메일 인증코드를 적어주세요");					
-					} else if (res = "failed") {
-						$("#emailTxt").html("*이메일 전송이 실패했습니다. 다시한 번 확인해 주세요.");					
-					}
-				},
-				error: function(request, status, error) {
-						console.log(error);
-						$("#emailTxt").html("*이메일 전송이 실패했습니다. 관리자에게 문의해 주세요");
-				}
-			});
-		});
-
-		var params = $("#addForm").serialize();
+		var params = $("#checkEmailForm").serialize();
 		
+		$.ajax({
+			url: "checkingEmail",
+			type: "post",
+			dataType: "json",
+			data: params,
+			success: function(res) {
+				console.log(res);
+				if (res.result == "success") {
+					$("#email_check").css("display","inline");
+					$(".errorMsg").css("display","none");
+					code = res.temp;
+					$("#codeBtn").on("click", function () {
+						
+						if($("#codeTxt").val() == "") {
+							alert("코드를 입력해 주세요.");
+						} else if ($("#codeTxt").val() != code) {
+							alert("인증코드가 일치하지 않습니다.");
+						} else if ($("#codeTxt").val() == code) {
+							alert("인증코드가 일치합니다.");
+							$("#btn_next").css("pointer-events","auto");
+						}
+					});
+					
+					//alert(res.temp);
+					$("#emailTxt").html("*이메일 인증코드를 적어주세요");					
+				} else if (res = "failed") {
+					$("#emailTxt").html("*이메일 전송이 실패했습니다. 다시한 번 확인해 주세요.");					
+				}
+			},
+			error: function(request, status, error) {
+					console.log(error);
+					$("#emailTxt").html("*이메일 전송이 실패했습니다. 관리자에게 문의해 주세요");
+			}
+		});
+	});
+   
+   	/* 다음버튼 */
+	$("#btn_next").on("click", function () {
+		var params = $("#addForm").serialize();
+
  		$.ajax({
 			url: "joins",
 			type: "post",
@@ -468,13 +535,14 @@ $(document).ready(function() {
 				} else if (res.msg == "failed") {
 					alert("회원가입에 실패하였습니다.");
 				} else {
-					alert("회원가입 중 문제가 발생하였습니다.");
+					alert("모두 형식에 맞게 작성해 주세요.");
 				}
 			},
 			error: function (request, status, error) {
 				console.log(error);
 			}
 		});
+	});
 });
 </script>
 </head>
@@ -482,6 +550,7 @@ $(document).ready(function() {
 <form action="#" id="checkEmailForm">
 	<input type="hidden" name="checkEmail" id="checkEmail" value="" /><!-- 이메일 주소 -->
 	<input type="hidden" name="findType" id="findType" value="join" /><!--  -->
+	<input type="hidden" name="randomNum" id="randomNum" value=""; />
 </form>
 <div class="back_main">
    <div class="back_top">CARD CAPTAIN</div>
@@ -496,8 +565,9 @@ $(document).ready(function() {
 	     	<div class="title">비밀번호
 	      		<div class="errorMsg" id="errorMsgPw"></div>
 	      	</div>
+	      	<input type="text" class="fakeTxt"/>
 	      	<strong><input type="password" class="text" placeholder="특수문자 포함 영문,숫자 조합 10~24자리" id="mPw" name="mPw"/></strong>
-	      	<input type="password" class="text" placeholder="비밀번호 확인" id="mRpw" name="mRpw"/>
+	      	<input type="password" class="text" placeholder="비밀번호 확인" id="mRpw" name=""/>
 	     	<div class="title">닉네임
 	      		<div class="errorMsg" id="errorMsgNick"></div>
 	      	</div>
@@ -505,7 +575,7 @@ $(document).ready(function() {
 	     	<div class="title">전화번호
 	      		<div class="errorMsg" id="errorMsgTel"></div>
 	      	</div>
-	      	<select name="telnum" id="select_tel"> 
+	      	<select name="" id="select_tel"> 
 				<option value="+82   대한민국">+82&nbsp;&nbsp;대한민국</option>
 	         	<option value="+82   대한민국"></option>
 	      	</select>
@@ -523,19 +593,18 @@ $(document).ready(function() {
 	      	</div>
 	      	<div class="title">
 	         	<input type="text" placeholder="이메일" class="" id="mEmail" name="mEmail"/>&nbsp;&nbsp;@&nbsp;
-	         	<select name="address" id="select_email" class="select_email"> 
-	            	<option value="naver.com">naver.com</option>
-	            	<option value="google.com">google.com</option>
+	         	<select id="select_email" class="select_email" name="address" > 
+	            	<option value="@naver.com">naver.com</option>
+	            	<option value="@google.com">google.com</option>
 	         	</select>
 	         	<input type="button" id="checkingEmail" value="인증하기" />
 				<div id="email_check">
-					<input type="text" id="" class="checkingEmailNum" placeholder="인증코드" />
-					<input type="button" id="" class="checkingCodeBtn" value="코드확인" />
+					<input type="text" id="codeTxt" class="checkingEmailNum" placeholder="인증코드" />
+					<input type="button" id="codeBtn" class="checkingCodeBtn" value="코드확인" />
 				<div class="guide" id="emailTxt"></div>
 			</div>
 	      	</div>
       	</form>
-      	<br/>
       	<br/>
       	<br/>
       	<br/>

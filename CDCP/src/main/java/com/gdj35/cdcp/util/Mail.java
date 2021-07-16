@@ -15,7 +15,7 @@ public class Mail {
 		String host = "smtp.naver.com";
 		int port=465; //1. 네이버 STMP 포트 번호
 		String user = "blackjuu";	//2. 발신자 네이버 아이디(@이후는 쓰지 말 것)
-		String password = "rjswjd1234!";		//3. 발신자 네이버 비밀번호
+		String password = "zkemzoqxls123!";		//3. 발신자 네이버 비밀번호(비밀번호 :카드캡틴123!)
 		Properties props = System.getProperties();
 		
         props.put("mail.smtp.host", host);
@@ -48,7 +48,7 @@ public class Mail {
 	        	sendTxt = "success";
 	        } else if(type.equals("join")) {
 	        	mailTitle = "[ 카드캡틴 회원가입 ]";
-	        	mailContent = "회원가입을 축하합니다.";
+	        	mailContent = "회원가입을 축하합니다." + sendTxt + "를 입력해 주세요.";
 	        	sendTxt = "success";
 			}else {
 	        	sendTxt = "failed";

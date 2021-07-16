@@ -9,4 +9,6 @@ public interface UserIDao {
 
 	public int joinM(HashMap<String, String> params) throws Throwable;
 
+	public HashMap<String, String> idCheck(HashMap<String, String> params) throws Throwable;
+
 }

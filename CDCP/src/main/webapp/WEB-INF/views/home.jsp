@@ -440,7 +440,6 @@ $(document).ready(function(){
 				success: function (res) {
 					if(res.resMsg == "success"){
 						location.href = "/cdcp";
-						${sMNm};
 						$("#nickName").css("display","inline");
 						$("#imgSearch").css("margin-left","70%");
 						$("#imgLogin").css("display","none");
