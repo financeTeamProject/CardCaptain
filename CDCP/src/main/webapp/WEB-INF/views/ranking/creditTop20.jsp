@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>체크카드 TOP10-카드캡틴</title>
+<title>신용카드 TOP10-카드캡틴</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style type="text/css">
 body{
@@ -23,6 +23,97 @@ body{
     font-weight: normal;
     font-style: normal;
 }
+
+	/* 팝업 영역  */
+
+#bi1{
+		
+	cursor:pointer;
+	position: relative;
+	top:90%;
+	left:0%;
+	position: fixed;
+	background-color:#0047ab;
+	color : white;
+	width: 150px;
+	height: 110px;
+	text-align:center;
+	line-height:50px;
+	font-weight:bold;
+	font-size:24px;
+	font-family: 'Cafe24Ohsquare';
+	z-index:200;
+	margin:0 auto;
+}
+
+#bi2{
+	top: 90%;
+    left: 3%;
+    position: fixed;
+    background-color: #ff6e61;
+    color: white;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 37px;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'Cafe24Ohsquare';
+    z-index: 200;
+    margin: 0 auto;
+    border-radius: 20px;
+	border: 1px;
+}
+
+	.Popup{
+		z-index:150;
+	}
+
+	#p1{
+	    font-size: 15px;
+	    position: relative;
+	    top: 85%;
+	    position: fixed;
+	    padding: 10px;
+	    background-color: #A0CFEC;
+	    color: white;
+	    font-family: 'Cafe24Ohsquare';
+	    border: 0px;
+	    cursor: pointer;
+	    z-index: 150;
+	    width: 91px;
+	    height: 50px;
+		}
+
+	#p2{
+		font-size: 15px;
+	    position: relative;
+	    top: 85%;
+	    left: 90px;
+	    position: fixed;
+	    padding: 10px;
+	    background-color: #FFE5B4;
+	    color: white;
+	    font-family: 'Cafe24Ohsquare';
+	    border: 0px;
+	    cursor: pointer;
+	    z-index: 150;
+	    width: 60px;
+	    height: 50px;	
+	   } 
+
+
+	.Popdown{
+		display:inline-block;
+		width:100%;
+		height:100%;
+		position: fixed;
+		top:0;
+		left:0;
+		z-index: 100;
+		opacity: 0.3; /* 0.0(투명) ~ 1.0(불투명)  */
+	}
+	
 
 /*	헤더 영역	*/
 	#header {
@@ -367,6 +458,98 @@ body{
 <script type="text/javascript"
 			src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
+	
+/*비교함 담기  */	
+$(document).ready(function(){
+		 var cardNo = [];
+	/* 사이드 비교함 버튼 조건  */
+    $(".view_box").on("click", function() {
+		var temp = "";
+		if(cardNo.length > 2) {
+			alert("비교함이 가득 찼습니다.");
+		} else {
+			cardNo.push($(this).prop('id'));
+			$("#bi2").val(cardNo.length);
+		for(var i=0; i<cardNo.length; i++){
+			for(var j=0; j<i; j++){
+				if(cardNo[i] == cardNo[j]) {
+						alert("동일한 카드가 있습니다.");
+						cardNo.pop();//pop() = 배열의 마지막 요소 제거
+						$("#bi2").val(cardNo.length);
+						return false;
+					} 
+				}
+			}
+		}
+	});
+              
+      /* 메인 비교함 버튼 조건 */
+    $("#compareBtn").on("click", function() {
+    	var temp = "";
+		if(cardNo.length > 2) {
+			alert("비교함이 가득 찼습니다.");
+		} else {
+			cardNo.push($(this).prop('id'));
+			$("#bi2").val(cardNo.length);
+			for(var i=0; i<cardNo.length; i++){
+				for(var j=0; j<i; j++){
+					if(cardNo[i] == cardNo[j]) {
+						alert("동일한 카드가 있습니다.");
+						cardNo.pop();//pop() = 배열의 마지막 요소 제거
+						$("#bi2").val(cardNo.length);
+						return false;
+			 		}
+				}	
+			}
+		}
+	});	
+});
+
+	/* 메인 비교함 팝업  */
+	$(document).ready(function(){
+		$("#bi").hide();
+		$("#compareBtn").on("click",function(){
+			$("#bi").hide();
+			$("#bi").fadeIn();
+		});
+		$("#bi").on("click",function(){
+			makePopup();
+			});
+	   });	
+	/* 사이드 비교함 팝업 */	
+	$(document).ready(function(){
+		$("#bi").hide();
+		$(".view_box").on("click" , function(){
+			$("#bi").hide();
+			$("#bi").fadeIn();
+		});
+		$("#bi").on("click",function(){
+			makePopup();
+		});
+	   });
+		
+		function makePopup(){
+			var html = "<div class = \"Popup\">"
+				+ "<input type = \"button\" id = \"p1\" value = \"비교함 이동\" readonly = \"readonly\" >"
+				+ "<input type = \"button\" id = \"p2\" value = \"취소\"  readonly = \"readonly\" >"
+				+ "</div>"
+				$("body").prepend(html);
+				$(".Popup").hide().fadeIn();
+				$("#p1").on("click",function(){
+					location.href = "http://localhost:8090/cdcp/compareSearch";
+				});
+			$("#p2").off("click");
+			$("#p2").on("click",function(){
+					closePopup();
+				});
+			}				
+				
+		function closePopup(){
+			$(".Popup").fadeOut(function(){
+				$(".Popup").remove();
+			});
+		}
+			
 	$(document).ready(function(){
 		/* 카드순위 페이지 이동 */
 		$("#ranking").on("click", function(){
@@ -422,7 +605,7 @@ body{
 	<div id="content">
 		<!-- 1위 카드 이름 영역 -->
 		<div id="contentMenu">
-			<div id="menuName">체크카드 TOP10</div>
+			<div id="menuName">신용카드 TOP10</div>
 			<div id="contentTop">
 				<div id="nameSct">
 					<div id="cardName">${list[0].CARD_NAME}</div>
@@ -453,6 +636,13 @@ body{
 				<div id="btnBox">
 					<input type="button" value="상세보기" class="dt_btn" id="dtBtn" />
 					<input type="button" value="비교함 담기" class="compare_btn" id="compareBtn" />
+						
+						<div id = "bi">
+						<input type = "button" value = "비교함 확인" id = "bi1"/>
+						<input type = "button" value = "1" id= "bi2"/>
+										
+						</div>
+								
 				</div>
 			</div>
 			<div id="contentBot">
