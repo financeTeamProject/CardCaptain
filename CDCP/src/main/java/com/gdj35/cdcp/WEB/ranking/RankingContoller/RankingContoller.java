@@ -42,7 +42,7 @@ public class RankingContoller {
 		
 		return mav;
 	}
-	
+//	신용카드 top20 페이지	
 	@RequestMapping(value="/creditTop20")
 	public ModelAndView creditTop20(
 			@RequestParam HashMap<String, String> params,
@@ -73,7 +73,7 @@ public class RankingContoller {
 		
 		return mav;
 	}
-	
+//	체크카드 top20  페이지	
 	@RequestMapping(value="/checkTop20")
 	public ModelAndView checkTop20(
 			@RequestParam HashMap<String, String> params,

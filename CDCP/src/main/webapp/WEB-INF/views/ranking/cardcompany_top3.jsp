@@ -428,7 +428,7 @@ body{
 		<div id="contentMenu">
 			<div id="menuName">카드사별 TOP3</div>
 			<div class="nav_menubar">
-				<a href="#card_1" class="nav_btn" id="kbCard">국민 카드</a>
+				<a href="#국민카드" class="nav_btn" id="kbCard">국민 카드</a>
 				<a href="#card_2" class="nav_btn" id="samsumgCard">삼성 카드</a>
 				<a href="#card_3" class="nav_btn" id="lotteCard">롯데 카드</a>
 				<a href="#card_4" class="nav_btn" id="shCard">신한 카드</a>
