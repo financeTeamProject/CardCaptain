@@ -99,7 +99,6 @@ public class RankingContoller {
 		return mav;
 	}
 //	카드상세보기 페이지
-	
 	  @RequestMapping(value="/cardview")
 	  public ModelAndView cardview(
 			  @RequestParam HashMap<String, String> params, 
