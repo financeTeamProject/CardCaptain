@@ -19,9 +19,5 @@
 							 ON T.CARD_NO = B.CARD_NO
 		WHERE B.DETAIL_INFO LIKE '%'|| #{option} || '%'
 		ORDER BY C.CARD_NO
-	</select>
-	
-	
-	
-	
+	</select>	
 </mapper>
