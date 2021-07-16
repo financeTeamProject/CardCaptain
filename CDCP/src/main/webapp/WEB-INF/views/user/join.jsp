@@ -551,7 +551,7 @@ $(document).ready(function() {
 <form action="#" id="checkEmailForm">
 	<input type="hidden" name="checkEmail" id="checkEmail" value="" /><!-- 이메일 주소 -->
 	<input type="hidden" name="findType" id="findType" value="join" /><!--  -->
-	<input type="hidden" name="randomNum" id="randomNum" value=""; />
+	<input type="hidden" name="randomNum" id="randomNum" value="" />
 </form>
 <div class="back_main">
    <div class="back_top">CARD CAPTAIN</div>

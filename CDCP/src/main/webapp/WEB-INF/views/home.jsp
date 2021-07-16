@@ -104,7 +104,6 @@ body {
     cursor: pointer;
     text-align: center;
 	margin-top: 15px;
-	margin-left: 20px;
 }
 #searchTxt {
     border-style: solid;
