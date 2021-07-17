@@ -393,6 +393,7 @@ $(document).ready(function() {
 			$("#errorMsgEmail").html("");
 		}
 	});
+	
 	$("#pwEmail").blur(function(){
 		var memEmail = $.trim($("#pwEmail").val());
 
@@ -435,8 +436,8 @@ $(document).ready(function() {
  				dataType: "json",
  				data: params,
  				success: function (res) {
- 					console.log(res);
  					id = res.mId
+ 					
  					if(res.resMsg == "success") {
  						$(".errorMsg").css("display","inline");
  						$("#errorMsgEmail").html("회원님의 아이디는  \"" + id + "\"  입니다.");
@@ -454,40 +455,59 @@ $(document).ready(function() {
 	$("#pwCheck").on("click", function () {
 		var memId = $.trim($("#mId").val());
 		var memEmail = $.trim($("#pwEmail").val());
-		var memEmailOpt = $("#id_select_email option:selected").val();
+		var memEmailOpt = $("#pw_select_email option:selected").val();
 		
-			if(memId == "") {
-				alert("아이디");
-				$("#mPhone").focus();
-			} else if(memEmail == "") {
-				alert("이메일");
-				$("#pwEmail").focus();
-			} else {
-				$("#pw_Id").val($("#mId").val());
-				$("#pw_Email").val($("#pwEmail").val());
-				$("#pw_Address").val($("#id_select_email option:selected").val());
-				
-				var params = $("#mData2").serialize();
-				
-				$.ajax({
-	 				url: "mData2s",
-	 				type: "post",
-	 				dataType: "json",
-	 				data: params,
-	 				success: function (res) {
-	 					console.log(res);
-	 					no = res.resMsg;
-	 					console.log(no);
-	 					
-	 					if(res.resMsg == "success") {
-	 						$("#pw_check").css("display", "inline");
-	 					} else if(res.resMsg == "failed") {
-	 						alert("입력하신 회원님의 정보가 일치하지 않습니다.");
-	 					}
-					},
-				});
-			}
-		
+		if(memId == "") {
+			alert("아이디");
+			$("#mId").focus();
+		} else if(memEmail == "") {
+			alert("이메일");
+			$("#pwEmail").focus();
+		} else {
+			$("#pw_Id").val($("#mId").val());
+			$("#pw_Email").val($("#pwEmail").val());
+			$("#pw_Address").val($("#pw_select_email option:selected").val());
+			$("#findType").val("pw");
+			$("#checkEmail").val($("#pwEmail").val() + 
+										$("#pw_select_email option:selected").val());
+
+			var params = $("#mData2").serialize();
+			
+			$.ajax({
+ 				url: "mData2s",
+ 				type: "post",
+ 				dataType: "json",
+ 				data: params,
+ 				success: function (res) {
+ 					if(res.resMsg == "success") {
+ 						no = res.data;
+ 						code = res.temp;
+						alert(no, code);
+						$("#pw_check").css("display", "inline");
+					
+						$("pw_codeBtn").on("click", function () {
+						
+						if($("#pw_codeTxt").val() == "") {
+							alert("코드를 입력해 주세요.");
+						} else if ($("#pw_codeTxt").val() != code) {
+							alert("인증코드가 일치하지 않습니다.");
+						} else if ($("#pw_codeTxt").val() == code) {
+							alert("인증코드가 일치합니다.");
+						}
+					});
+					
+					$("#emailTxt").html("*이메일 인증코드를 적어주세요.");	
+ 						
+ 					} else if(res.resMsg == "failed") {
+ 						alert("입력하신 회원님의 정보가 일치하지 않습니다.");
+ 						$("#pw_codeTxt").html("*이메일 전송이 실패했습니다. 다시한 번 확인해 주세요.");					
+ 					}
+				},
+				error: function (request, status, error) {
+ 					console.log(error);
+				}
+			});
+		}
 	});
 	
 /* 	 // 이메일인증 
@@ -550,8 +570,7 @@ $(document).ready(function() {
 	<input type="hidden" name="pw_Id" id="pw_Id" value=""/>
 	<input type="hidden" name="pw_Email" id="pw_Email" value=""/>
 	<input type="hidden" name="pw_Address" id="pw_Address" value=""/>
-</form>
-<form action="#" id="checkEmailForm">
+	<input type="hidden" name="findType" id="findType" value="" />
 	<input type="hidden" name="checkEmail" id="checkEmail" value="" /><!-- 이메일 주소 -->
 	<input type="hidden" name="findType" id="findType" value="" /><!--  -->
 </form>
@@ -608,15 +627,14 @@ $(document).ready(function() {
 			<input type="button" id="pwCheck" class="checkingBtn" value="확인" />
 			<input type="button" id="pw_FindBtn" class="checkingEmailBtn" value="인증하기" />
 			<div id="pw_check">
-					<input type="text" id="pw_codeTxt" class="checkingEmailNum" placeholder="인증코드" />
-					<input type="button" id="pw_codeBtn" class="checkingCodeBtn" value="코드확인" />
+				<input type="text" id="pw_codeTxt" class="checkingEmailNum" placeholder="인증코드" />
+				<input type="button" id="pw_codeBtn" class="checkingCodeBtn" value="코드확인" />
 				<div class="guide" id="emailTxt"></div>
 			</div>
 		</div>
 		<br/>
 		<br/>
 		<br/>
-		<div class="guide" id="pw_emailTxt"></div>
 		<br/>
 		<br/>
 		<br/>

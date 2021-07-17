@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+
+	<select id="getCnt" parameterType="hashmap" resultType="Integer">
+		SELECT COUNT(*)
+		FROM CARDS
+		WHERE 1=1
+		<if test="searchTxt != null and searchTxt != ''">
+         	<choose>
+            	<when test="searchGbn == 1">
+            		AND ITEM_NAME LIKE '%' || #{searchTxt} || '%'
+            	</when>
+            		<when test="searchGbn == 2">
+            		AND COUNT LIKE '%' || #{searchTxt} || '%'
+            	</when>
+         	</choose>
+    	</if>
+	</select>
+
+	<select id="getList" parameterType="hashmap" resultType="hashmap">
+		SELECT CARD_NO, CARD_NAME
+        FROM CARDS
+			<if test="searchTxt != null and searchTxt != ''">
+	         	<choose>
+	            	<when test="searchGbn == 1">
+	            		AND ITEM_NAME LIKE '%' || #{searchTxt} || '%'
+	            	</when>
+	           		<when test="searchGbn == 2">
+	           			AND COUNT LIKE '%' || #{searchTxt} || '%'
+	            	</when>
+	         	</choose>
+	    	</if>
+	    	) S
+		WHERE S.SNUM BETWEEN #{startCnt} AND #{endCnt}
+	</select>
+	
+<!-- 	<delete id="deleteS" parameterType="hashmap">
+		DELETE
+		FROM SELL
+		WHERE SELL_NO = #{sNo}
+	</delete> -->
+	
+<!--	<select id = "getS" parameterType = "hashmap" resultType = "hashmap">
+		SELECT SELL_NO , ITEM_NAME , COUNT , TO_CHAR(SELL_DT,'YYYY-MM-DD') AS S_DT
+		FROM SELL
+		WHERE SELL_NO = #{sNo}
+	</select> -->
+</mapper>

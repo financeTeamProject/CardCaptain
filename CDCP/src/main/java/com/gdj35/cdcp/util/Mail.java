@@ -38,13 +38,9 @@ public class Mail {
 	        String mailTitle = "";
 	        String mailContent = "";
 	        
-	        if(type.equals("id")) {
-	        	mailTitle = "[ 카드캡틴 아이디 찾기 ]";
-	        	mailContent = "가입하실 때 입력하신 아이디는 " + sendTxt + "입니다.";
-	        	sendTxt = "success";
-	        } else if (type.equals("pw")) {
+	        if (type.equals("pw")) {
 	        	mailTitle = "[ 카드캡틴 비밀번호 찾기 ]";
-	        	mailContent = "임시번호 입력칸에 " + sendTxt + "를 입력해 주세요.";
+	        	mailContent = "가입하실 때 입력하신 비밀번호는 " + sendTxt + "를 입력해 주세요.";
 	        	sendTxt = "success";
 	        } else if(type.equals("join")) {
 	        	mailTitle = "[ 카드캡틴 회원가입 ]";

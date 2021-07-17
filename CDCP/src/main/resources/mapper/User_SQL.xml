@@ -13,13 +13,14 @@
 	
 	<!-- 비밀번호찾기 -->
 	<select id="getPw" parameterType="hashmap" resultType="hashmap">
-		SELECT MEMBER_NO
+		SELECT MEMBER_PW
 		FROM MEMBER_INFO
-		WHERE MEMBER_ID = #{pw_ID}
+		WHERE MEMBER_ID = #{pw_Id}
 		AND E_NAME = #{pw_Email}
 		AND E_ADDRESS = #{pw_Address}
 	</select>
 	
+	<!-- 로그인 -->
 	<select id="getM" parameterType="hashmap" resultType="hashmap">
 		SELECT MEMBER_NO, NICKNAME
 		FROM MEMBER_INFO
@@ -36,15 +37,6 @@
 		SELECT MEMBER_ID
 		FROM MEMBER_INFO
 		WHERE MEMBER_ID = #{mId}
-	</select>
-	
-	<select id="mCheck" parameterType="hashmap" resultType="hashmap">
-		SELECT MEMBER_ID
-		FROM MEMBER_INFO
-		WHERE CONTACT = #{m_Phone}
-		AND MEMBER_BIRTH = #{m_Birth}
-		AND E_NAME = #{m_Email}
-		AND E_ADDRESS = #{m_Address}
 	</select>
 	
 </mapper>

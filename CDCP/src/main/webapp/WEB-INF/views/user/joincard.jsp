@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,14 +30,15 @@ body {
 	margin: 0 auto;
 }
 .back_top {
-	width: 100%;
-	height: 130px;
-	text-align: center;
-	line-height: 130px;
-	font-size: 30px;
-	color: #0047AB;
-	font-family: 'Cafe24Ohsquare';
-	text-shadow: 2px 3px 4px gray;
+   width: 100%;
+   height: 130px;
+   text-align: center;
+   line-height: 130px;
+   font-size: 30px;
+   color: #0047AB;
+   font-family: 'Cafe24Ohsquare';
+   text-shadow: 2px 3px 4px gray;
+   letter-spacing: 8px;
 }
 .back_middle {
 	font-family: 'GmarketSansMedium';
@@ -168,12 +170,39 @@ body {
     color: #0047AB;
     letter-spacing: 3px;
 }
-
+.paging_wrap div {
+	display: inline-block;
+	padding: 5px;
+	margin: 0 3px;
+	background-color: #DFDFDF;
+	border: 1px solid #444;
+	border-radius: 3px;
+	cursor: pointer;
+	width: 50px;
+	text-align: center;
+}
+.paging_wrap div:active {
+	background-color: #AAAAAA;
+}
+#paging_wrap #on {
+	background-color: skyblue;
+	color: white;
+	font-size: 12px;
+}
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
-	// 검색 
+	if("${param.searchGbn}" != "") {
+		$("${searchGbn}").val("${param.searchGbn}")
+	}
+	// 카드사선택
+	$(".blank").on("click", function () {
+		$("#page").val(1);
+		$("#searchOldTxt").val($("#searchTxt").val());
+		reloadList();
+	});
+	// 검색
 	$("#searchBtn").on("click", function () {
 		$("#page").val(1);
 		$("#searchOldTxt").val($("#searchTxt").val());
@@ -189,10 +218,11 @@ $(document).ready(function () {
 	
 	// 리스트불러오기
 	function reloadList() {
-		var params = $("#actionForm").serialize();
+		
+		var params = $("#joinCard").serialize();
 		
 		$.ajax({
-			url: "joincard",
+			url: "joincards",
 			type: "post",
 			dataType: "json",
 			data: params,
@@ -210,11 +240,9 @@ $(document).ready(function () {
 		var html = "";
 		// 	" +  + " : 만들어놓고 붙여넣어도 됨.
 		for(var d of list) {
-			html += "<tr sno=\"" + d.SELL_NO + "\">";
-			html += "<td>" + d.SELL_NO + "</td>";
-			html += "<td>" + d.ITEM_NAME + "</td>";
-			html += "<td>" + d.COUNT + "</td>";
-			html += "<td>" + d.S_DT + "</td>";
+			html += "<tr sno=\"" + d.CARD_NO + "\">";
+			html += "<td>" + d.CARD_NO + "</td>";
+			html += "<td>" + d.CARD_NAME + "</td>";
 			html += "</tr>";
 		}
 		
@@ -256,9 +284,9 @@ $(document).ready(function () {
 </head>
 <body>
 <div class="back_main">
-	<div class="back_top">C&nbsp;A&nbsp;R&nbsp;D&nbsp;&nbsp;&nbsp;C&nbsp;A&nbsp;P&nbsp;T&nbsp;A&nbsp;I&nbsp;N</div>
+	<div class="back_top">CARD CAPTAIN</div>
 	<div class="back_middle">
-		<div class="contents_top">보유중인 카드를 등록해라</div>
+		<div class="contents_top">보유중인 카드를 등록하고 혜택을 누리세요</div>
 		<div class="contents">
 			<div class="contents_left">
 				<div class="line">
@@ -324,12 +352,12 @@ $(document).ready(function () {
 			</div>
 			<div class="contents_right">
 				<div class="search">
-				<form action="#" id="actionForm" method="post">
+				<form action="#" id="joinCard" method="post">
 					<input type="hidden" id="sNo" name="sNo" />
 					<input type="hidden" id="page" name="page" value="${page}" />
 					<select id="searchGbn" name="searchGbn">
-						<option value="0">카드타입</option>
-						<option value="1">카드명</option>
+						<option value="1">카드타입</option>
+						<option value="2">카드명</option>
 					</select>
 					<input type="hidden" id="searchOldTxt" value="${param.searchOldTxt}" />
 					<input type="text" name="searchTxt" id="searchTxt" value="${param.searchTxt}" />
@@ -338,19 +366,15 @@ $(document).ready(function () {
 					<div class="list_wrap">
 					<table>
 						<colgroup width="3000px">
-							<col width="5%" />
-							<col width="20%" />
-							<col width="40%" />
+							<col width="25%" />
+							<col width="35%" />
 							<col width="15%" />
-							<col width="20%" />
 						</colgroup>
 						<thead>
 							<tr>
-								<th>체크</th>
 								<th>카드타입</th>
 								<th>카드명</th>
-								<th>카드순위</th>
-								<th>혜택종류??</th>
+								<th>선택</th>
 							</tr>
 						</thead>
 						<tbody></tbody>

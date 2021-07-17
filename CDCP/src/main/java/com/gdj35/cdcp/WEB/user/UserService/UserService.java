@@ -1,6 +1,7 @@
 package com.gdj35.cdcp.WEB.user.UserService;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,11 +35,6 @@ public class UserService implements UserIService {
 	@Override
 	public HashMap<String, String> idCheck(HashMap<String, String> params) throws Throwable {
 		return useridao.idCheck(params);
-	}
-
-	@Override
-	public HashMap<String, String> mCheck(HashMap<String, String> params) throws Throwable {
-		return useridao.mCheck(params);
 	}
 
 }

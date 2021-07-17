@@ -496,6 +496,7 @@ $(document).ready(function() {
 					$("#email_check").css("display","inline");
 					$(".errorMsg").css("display","none");
 					code = res.temp;
+					alert(code);
 					
 					$("#codeBtn").on("click", function () {
 						if($("#codeTxt").val() == "") {

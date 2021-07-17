@@ -1,6 +1,7 @@
 package com.gdj35.cdcp.WEB.user.UserContoller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.gd.test.common.bean.PagingBean;
 import com.gdj35.cdcp.WEB.user.UserService.UserIService;
+import com.gdj35.cdcp.common.bean.PagingBean;
 import com.gdj35.cdcp.util.Mail;
 
 @Controller
@@ -117,7 +120,8 @@ public class UserContoller {
 		
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		
-		HashMap<String,String> data = useriService.mCheck(params);
+		
+		HashMap<String,String> data = useriService.getId(params);
 		
 		if(data != null) {
 			modelMap.put("mId", data.get("MEMBER_ID"));
@@ -141,20 +145,23 @@ public class UserContoller {
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		
 		HashMap<String,String> data = useriService.getPw(params);
-		System.out.println(data);
 		
 		if(data != null) {
-			modelMap.put("mNo", data.get("MEMBER_NO"));
-			System.out.println("===================================");
-			System.out.println(data.get("MEMBER_NO"));
-			modelMap.put("resMsg", "success");
-		} else {
 			modelMap.put("resMsg", "failed");
+			
+		} else { //(회원가입) 조건에 맞는 모든 값 입력 - 인증코드 발송 - 일치시 joincard로 이동.
+			String temp = RandomStringUtils.randomAlphanumeric(6); // 랜덤값 6자리 생성 후 temp에 담음.
+			String result = Mail.sendMail(params.get("checkEmail"), params.get("findType"),temp); // Mail.sendMail조건에 맞게 값을 담고 Mail.java로 연계. 보내는 값 = "랜덤값"
+
+			modelMap.put("mNo", data.get("MEMBER_NO"));
+			modelMap.put("resMsg", "success");
+			modelMap.put("result", result);
+			modelMap.put("temp", temp);
 		}
 		return mapper.writeValueAsString(modelMap);
 	}
 	
-	/* 아이디 중복체크 */
+	// 아이디 중복체크
 	@RequestMapping(value="/idChecks",
 			method = RequestMethod.POST,
 			produces = "text/json;charset=UTF-8")
@@ -178,7 +185,7 @@ public class UserContoller {
 		return mapper.writeValueAsString(modelMap);
 	}
 
-	//user - 회원가입 이메일인증
+	// user - 회원가입 이메일인증
 	@RequestMapping(value = "/checkingEmails",
 			method = RequestMethod.POST,
 			produces = "text/json;charset=UTF-8")
@@ -217,11 +224,4 @@ public class UserContoller {
 		return mapper.writeValueAsString(modelMap);
 	}
 	
-	@RequestMapping(value = "/joincard")
-	public ModelAndView joincard(ModelAndView mav) {
-		
-		mav.setViewName("user/joincard");
-		
-		return mav;
-	}
 }
