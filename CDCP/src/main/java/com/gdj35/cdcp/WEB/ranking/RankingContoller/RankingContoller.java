@@ -2,14 +2,17 @@ package com.gdj35.cdcp.WEB.ranking.RankingContoller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gdj35.cdcp.WEB.ranking.RankingService.RankingIService;
 
 @Controller 
@@ -89,14 +92,42 @@ public class RankingContoller {
 		
 		return mav;
 	}
-	
-//	카드사별 top3 페이지
+// 카드사별 Top3 페이지
 	@RequestMapping(value="/cardcompany_top3")
-	public ModelAndView cardcompany_top3(ModelAndView mav) {
+	public ModelAndView cardcompany_top3 (ModelAndView mav) {
 		
 		mav.setViewName("ranking/cardcompany_top3");
 		
 		return mav;
+	}
+//	카드사별 top3 페이지 test
+	@RequestMapping(value="/cardcompany_top3s",
+			method = RequestMethod.POST,
+			produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String cardcompany_top3s(
+			@RequestParam HashMap<String, String> params) throws Throwable {
+		System.out.println(params);
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		List<HashMap<String, String>> top1
+			= RankingiService.cmpTop1(params);
+		List<HashMap<String, String>> top2
+			= RankingiService.cmpTop2(params);
+		List<HashMap<String, String>> top3
+			= RankingiService.cmpTop3(params);
+		
+		if(top1 != null && top2 != null && top3 != null) {
+			modelMap.put("msg", "success");
+			modelMap.put("top1", top1);
+			modelMap.put("top2", top2);
+			modelMap.put("top3", top3);
+			
+		} else {
+			modelMap.put("msg", "failed");
+		}
+		return mapper.writeValueAsString(modelMap);
 	}
 //	카드상세보기 페이지
 	  @RequestMapping(value="/cardview")

@@ -31,5 +31,20 @@ public class RankingDao implements RankingIDao{
 		
 		return sqlSession.selectList("R.getCView", params);
 	}
+	@Override
+	public List<HashMap<String, String>> cmpTop1(HashMap<String, String> params) throws Throwable {
+		
+		return sqlSession.selectList("R.cmpTop1", params);
+	}
+	@Override
+	public List<HashMap<String, String>> cmpTop2(HashMap<String, String> params) throws Throwable {
+		
+		return sqlSession.selectList("R.cmpTop2", params);
+	}
+	@Override
+	public List<HashMap<String, String>> cmpTop3(HashMap<String, String> params) throws Throwable {
+		
+		return sqlSession.selectList("R.cmpTop3", params);
+	}
 	
 }

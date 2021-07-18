@@ -404,10 +404,45 @@ body{
 		$("#headerLogo").on("click", function(){
 			location.href = "/cdcp";
 		}); // headerLogo click end
+		
+		$(".nav_btn").on("click", function(){
+			if($(this).prop('id') == "1" ){
+				alert($(this).prop('id'));
+				var params = $("#goForm").serialize();
+				
+				$.ajax({
+					url: "cardcompanys", // 접속주소 (현재 저상태는 상대 경로이다)
+					type: "post", // 전송방식: get,post
+					dataType: "json", // 받아올 데이터 형식
+					data: params, //보낼 데이터(문자열 형태)
+					success: function(res){ // 성공 시 다음 함수 실행	
+						if(res.msg == "success"){
+							// 데이터를 새로 가져와야 하니깐 history back지우고 form.submit 처리
+							$("#goForm").attr("action");
+							$("#gogoForm").submit();
+						} else if(res.msg == "failed"){
+							alert("불러오기에 실패하였습니다.");
+						} else {
+							alert("불러오기중 문제가 발생하였습니다.");
+						}
+					},
+					error: function(request, status, error){ // 실패 시 다음 함수 실행
+						console.log(error);
+						
+					}
+				});
+			}
+		}); // nav_btn click end
+		
 	}); // document ready end
 </script>
 </head>
 <body>
+	<form action="#" id="goForm" method="post">
+		<input type="hidden" name="top1" value="1" />
+		<input type="hidden" name="top2" value="2" />
+		<input type="hidden" name="top3" value="3" />
+	</form>
 <!-- 헤더영역 -->
 	<div id="header">
 		<div id="headerWrap">
@@ -428,7 +463,7 @@ body{
 		<div id="contentMenu">
 			<div id="menuName">카드사별 TOP3</div>
 			<div class="nav_menubar">
-				<a href="#국민카드" class="nav_btn" id="kbCard">국민 카드</a>
+				<a href="#card_1" class="nav_btn" id="1">국민 카드</a>
 				<a href="#card_2" class="nav_btn" id="samsumgCard">삼성 카드</a>
 				<a href="#card_3" class="nav_btn" id="lotteCard">롯데 카드</a>
 				<a href="#card_4" class="nav_btn" id="shCard">신한 카드</a>
@@ -445,11 +480,13 @@ body{
 		<!-- 카드 TOP3 영역 -->
 		<div class=contentBg>
 			<!-- card_0 영역 시작 -->
+			<form action="#" id="gogoForm" method="post">
+				<input type="hidden" name="cmpTop1" value="${top1[0].CARD_NO}" />
 			<div class="card_1" id="card_0">
 				<!-- 카드 이름 영역 -->
 				<div class="card_title">
 					<div class="title">
-						<div class="card_name_block">#국민카드 인기 TOP3</div>
+						<div class="card_name_block"># ${top1[0].CARD_CMP_NAME} 인기 TOP3</div>
 						<div class="selection_criteria">
 						2021.01.01 ~ 2021.06.30 카드캡틴 신청클릭 기준입니다.
 						</div>
@@ -460,22 +497,22 @@ body{
 					<div class="card_box">
 						<div class="img_top1"></div>
 						<div class="card_title_text" id="card_title_text_2">
-						탄탄대로 올쇼핑티타늄카드
+						${top1[0].CARD_NAME}
 						</div>
 						<div class="card_contents" id="card_contents_1">
-						여기저기 빈틈없이 챙겨받는
+						${top1[0].CARD_SUMMARY}
 						</div>
 						<div class="tag_set">
 							<div class="tag_age" id="tag_age_1">
-							30대 추천
+							${top1[0].BENEFIT_TOP}
 							</div>
 							<div class="tag_event" id="tag_event_1">
-							연회비 캐시백 이벤트
+							${top1[1].BENEFIT_TOP}
 							</div>
 						</div>
 						<div class="card_box_img">
 							<img alt="카드" 
-							src="resources/images/ranking/card/credit/kb/kb_tantandaero.png"
+							src="${top1[0].CARD_IMG_URL}"
 							width="250px" height="150px">
 						</div>
 						<div class="card_btn_area">
@@ -538,6 +575,7 @@ body{
 					</div>
 				</div>
 			</div>
+			</form>
 			<!-- card_1 영역 끝 -->
 		</div>
 		
