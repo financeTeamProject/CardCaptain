@@ -21,6 +21,8 @@ import com.gdj35.cdcp.common.service.IPagingService;
 public class UserListContoller {
 	@Autowired UserIListService useriListService;
 	
+	@Autowired IPagingService iPagingService;
+	
 	// 카드목록
 	@RequestMapping(value="/joincard")
 	public ModelAndView joincards(
@@ -51,7 +53,7 @@ public class UserListContoller {
 		
 		int cnt = useriListService.getCnt(params);
 		
-		PagingBean pb = IPagingService.getPagingBean(page, cnt);
+		PagingBean pb = iPagingService.getPagingBean(page, cnt);
 		
 		params.put("startCnt", Integer.toString(pb.getStartCount()));
 		params.put("endCnt", Integer.toString(pb.getEndCount()));
