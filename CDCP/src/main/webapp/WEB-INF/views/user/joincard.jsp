@@ -235,7 +235,7 @@ $(document).ready(function () {
 			}
 		});
 	}	
-		// 목록 그리기
+	// 목록 그리기
 	function drawList(list) {
 		var html = "";
 		// 	" +  + " : 만들어놓고 붙여넣어도 됨.
@@ -353,7 +353,6 @@ $(document).ready(function () {
 			<div class="contents_right">
 				<div class="search">
 				<form action="#" id="joinCard" method="post">
-					<input type="hidden" id="sNo" name="sNo" />
 					<input type="hidden" id="page" name="page" value="${page}" />
 					<select id="searchGbn" name="searchGbn">
 						<option value="1">카드타입</option>
@@ -380,6 +379,7 @@ $(document).ready(function () {
 						<tbody></tbody>
 					</table>
 					</div>
+					<div id="paging_wrap"></div>
 				</div>
 			</div>
 		</div>

@@ -30,10 +30,11 @@ public class UserListContoller {
 			ModelAndView mav) {
 		int page = 1;
 		
-		/*
-		 * if(params.get("page") != null) { page = Integer.parseInt(params.get("page"));
-		 * } //상세보기 -> 목록 (검색어나 페이지 유지용)
-		 */		
+		
+		if(params.get("page") != null) { 
+			page = Integer.parseInt(params.get("page"));
+		} //상세보기 -> 목록 (검색어나 페이지 유지용)
+		 	
 		mav.addObject("page", page);
 		mav.setViewName("user/joincard");
 		
@@ -53,7 +54,7 @@ public class UserListContoller {
 		
 		int cnt = useriListService.getCnt(params);
 		
-		PagingBean pb = iPagingService.getPagingBean(page, cnt);
+		PagingBean pb = iPagingService.getPagingBean(5, 10);
 		
 		params.put("startCnt", Integer.toString(pb.getStartCount()));
 		params.put("endCnt", Integer.toString(pb.getEndCount()));

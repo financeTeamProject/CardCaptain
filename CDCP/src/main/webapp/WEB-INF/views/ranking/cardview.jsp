@@ -745,8 +745,8 @@ $(document).ready(function(){
 					</div>
 				</div>
 					<div class = "group1-1"	>
-					<h3 id = "h1">미드</h3>
-					내용
+					<h3 id = "h1">${data[j].BENEFIT_MID}</h3>
+					${data[j].DETAIL_INFO}
 					</div>
 							
 				</c:forEach>
