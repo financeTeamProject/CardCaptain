@@ -469,6 +469,7 @@ $(document).ready(function(){
 			alert("비교함이 가득 찼습니다.");
 		} else {
 			cardNo.push($(this).prop('id'));
+			console.log(cardNo);
 			$("#bi2").val(cardNo.length);
 		for(var i=0; i<cardNo.length; i++){
 			for(var j=0; j<i; j++){
@@ -636,13 +637,10 @@ $(document).ready(function(){
 				<div id="btnBox">
 					<input type="button" value="상세보기" class="dt_btn" id="dtBtn" />
 					<input type="button" value="비교함 담기" class="compare_btn" id="compareBtn" />
-						
-						<div id = "bi">
+				<div id = "bi">
 						<input type = "button" value = "비교함 확인" id = "bi1"/>
 						<input type = "button" value = "1" id= "bi2"/>
-										
 						</div>
-								
 				</div>
 			</div>
 			<div id="contentBot">

@@ -355,10 +355,7 @@
 					line-height: 60px;
 				}
 				/* 혜택 박스 틀 */
-				
-				
-				
-				
+											
 				.group1-1{
 				    margin: 10px auto;
 				    width: 760px;
@@ -553,7 +550,7 @@
 
 
 /* 아코디언 */
-  
+
 $(function(){
 	$(".group1-1").hide();
 	$(".bot_box").click(function(){
@@ -567,13 +564,37 @@ $(function(){
 	});
 });
 
+
 /* 버튼 클릭시 화살표 이미지 변경 */
+
+
+	$('.arrow_down').on('click', function() {
+		
+		 	$(".arrow_down").ashow();
+		    $(".arrow_up").hide();
+		
+		  const $answer = $(this).parent().next() 
+		  const $triangle = $(this).find('p') 
+		  if ($answer.is(':visible')) {
+			    $(".arrow_down").hide();
+		        $(".arrow_up").show();
+					  
+		  } else {
+			  $(".arrow_down").show();
+		      $(".arrow_up").hide();
+		  }
+	});
+
+
+
+ 
  
 $(document).ready(function(){
     /*웹페이지 열었을 때*/
     $(".arrow_down").show();
     $(".arrow_up").hide();
 
+    	    
     /*img1을 클릭했을 때 img2를 보여줌*/
     $(".arrow_down").click(function(){
         $(".arrow_down").hide();
@@ -586,6 +607,10 @@ $(document).ready(function(){
         $(".arrow_up").hide();
     });
 });
+
+
+//this parent children 
+
 
 
 
@@ -739,16 +764,16 @@ $(document).ready(function(){
 						<h4 class="cmp_card">${data[j].BENEFIT_MID}</h4>
 					</div>
 					<div class="open_view">
-						<img alt="펼쳐보기" src="resources/images/ranking/icon/arrow_down_gray.png" class="arrow_down"/>
-						<img alt="올려보기" src="resources/images/ranking/icon/arrow_up_gray.png" class="arrow_up"/>
 						
+						<img alt="펼쳐보기" src="resources/images/ranking/icon/arrow_down_gray.png" class="arrow_down"/>
+						<img alt="올려보기" src="resources/images/ranking/icon/arrow_up_gray.png" class="arrow_up"/>	
+											
 					</div>
 				</div>
 					<div class = "group1-1"	>
 					<h3 id = "h1">${data[j].BENEFIT_MID}</h3>
 					${data[j].DETAIL_INFO}
 					</div>
-							
 				</c:forEach>
 			</div><!--bot_Area 종료-->
 						
@@ -778,6 +803,9 @@ $(document).ready(function(){
 			<!-- 리뷰 작성 영역 -->
 			<hr style="border: 2px dashed black"/>
 			<div class="review_write_area">
+					
+					리뷰
+					
 					
 			</div>
 	</div>
