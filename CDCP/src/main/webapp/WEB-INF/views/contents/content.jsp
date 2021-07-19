@@ -517,8 +517,8 @@ h1 {
 					<div id="content_1">
 					<c:forEach var = "i" begin = "0" end = "2">
 						<div class="movie">
-							<img src="${list[i].VIDEO_IMG}" onclick = "window.open('${list[i].VIDEO_LINK}')">
-						<div class = movie_name><${list[i].VIDEO_NAME}></div>
+							<img src="${data[i].VIDEO_IMG}" onclick = "window.open('${data[i].VIDEO_LINK}')">
+						<div class = movie_name><${data[i].VIDEO_NAME}></div>
 						</div>
 					</c:forEach>
 					</div>

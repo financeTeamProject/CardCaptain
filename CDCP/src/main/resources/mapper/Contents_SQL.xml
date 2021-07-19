@@ -13,5 +13,9 @@
 	FROM TIPVIDEOS
 </select>
 
+<select id="getTip" parameterType="hashmap" resultType="hashmap">
+	SELECT TIP_NO, MANAGER_NO, TIP_IMG_URL, TIP_TITLE, TIP_CONTENT, TIP_WRITER, ADD_DATE, DEL_CHECK
+	FROM TIPS
+</select>
 
 </mapper>
