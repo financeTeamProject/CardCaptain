@@ -51,4 +51,9 @@ public class SearchDao implements SearchIDao {
 		return sql.selectList("search.checkpagingDistinct", params);
 	}
 
+	@Override
+	public HashMap<String, String> randomCard() throws Throwable {
+		return sql.selectOne("search.randomCard");
+	}
+
 }

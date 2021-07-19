@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -569,17 +570,19 @@ $(document).ready(function(){
 	<!-- Map html Start -->
 	<div class="slide1">
 		<div class="map_area" style="width:1600px; border-width:7px;padding:40px;margin:0 auto;">
-			<h1>시험 끝! <span>OO카드 들고 </span>나 오늘 집에 안갈래~</h1><br/>
-			<input type="button" value="올리브영" onclick="sendPlace(this);">
-			<input type="button" value="스타벅스" onclick="sendPlace(this);">
-			<input type="button" value="GS25" onclick="sendPlace(this);">
+			<h1><span id="cardName">[${randomCard.CARD_NAME}]</span>&nbsp;<span id="cardSummary">${randomCard.CARD_SUMMARY}</span></h1><br/>
+			<c:set var="size" value="${fn:length(arr)}" />
+			<c:forEach var ="i" begin="0" end ="${size-1}">
+				<input type="button" value="${arr[i]}" onclick="sendPlace(this);" style="width:auto;padding-left:5px;padding-right:5px;" />
+			</c:forEach>
+			<input type="hidden" value="${randomCard.CARD_NO}">
 			
 			<div class="map_wrap">
 				<div id="menu_wrap" class="bg_white">
 				<div class="option">
 				<div>
 					<form onsubmit="searchPlaces(); return false;">
-						<input type="text" value="장소 입력" id="keyword" size="40" readonly="readonly" style="border-style:none;border-radius:5px;height:25px;width:350px;"> 
+						<input type="text" value="버튼을 클릭해 주세요" id="keyword" size="40" readonly="readonly" style="border-style:none;border-radius:5px;height:25px;width:350px;"> 
 						<button type="submit" id="serachButton" style="visibility: hidden;">검색하기</button>
 					</form>
 				</div>
@@ -646,11 +649,11 @@ function placesSearchCB(data, status, pagination) {
 		displayPlaces(data);// 정상적으로 검색이 완료됐으면 검색 목록과 마커를 표출합니다	
 		displayPagination(pagination);// 페이지 번호를 표출합니다
 	} else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-		if (keyword == '장소 입력') {
+		if (keyword == '버튼을 클릭해 주세요') {
 			return false;
 		} else {
 			alert('검색 결과가 존재하지 않습니다.');
-			document.getElementById('keyword').value = '장소 입력';
+			document.getElementById('keyword').value = '버튼을 클릭해 주세요';
 		}
 			return;
 	} else if (status === kakao.maps.services.Status.ERROR) {

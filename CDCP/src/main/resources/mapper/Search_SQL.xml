@@ -79,4 +79,13 @@
 		) B
 		WHERE B.RNUM BETWEEN #{startCnt} AND #{endCnt}
 	</select>
+	
+	<select id="randomCard" parameterType="hashmap" resultType="hashmap">
+		SELECT A.CARD_NO, A.CARD_SUMMARY, A.CARD_NAME, A.SHOP_INFO
+		FROM(SELECT DISTINCT B.CARD_NO, C.CARD_SUMMARY, C.CARD_NAME, B.SHOP_INFO
+					FROM CARDS C INNER JOIN CARDBENEFITS B
+                                 ON C.CARD_NO = B.CARD_NO AND B.SHOP_INFO IS NOT NULL AND C.CARD_SUMMARY IS NOT NULL
+			 ORDER BY DBMS_RANDOM.VALUE) A
+		WHERE ROWNUM = 1
+	</select>
 </mapper>

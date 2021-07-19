@@ -47,4 +47,8 @@ public class SearchService implements SearchIService {
 		return idao.checkpagingDistinct(params);
 	}
 
+	@Override
+	public HashMap<String, String> randomCard() throws Throwable {
+		return idao.randomCard();
+	}
 }

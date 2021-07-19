@@ -21,4 +21,6 @@ public interface SearchIDao {
 
 	public List<HashMap<String, String>> checkpagingDistinct(HashMap<String, String> params) throws Throwable;
 
+	public HashMap<String, String> randomCard() throws Throwable;
+
 }
