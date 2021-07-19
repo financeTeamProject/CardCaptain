@@ -804,9 +804,8 @@ $(document).ready(function(){
 			<hr style="border: 2px dashed black"/>
 			<div class="review_write_area">
 					
-					리뷰
-					
-					
+					안녕하세요
+															
 			</div>
 	</div>
 </div>
