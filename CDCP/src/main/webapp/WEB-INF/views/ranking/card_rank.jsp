@@ -401,7 +401,7 @@ body{
 					<div id="cardCmp">카드사</div>
 					<div id="cardTitle">각 카드사별 TOP3</div>
 					<div class="nav_menubar"> <!-- a 태그 영역 -->
-						<a href="cardcompany_top3" class="nav_btn" id="kbCard">국민 카드</a>
+						<a href="cardcompany_top3#1" class="nav_btn" id="kbCard">국민 카드</a>
 						<a href="#card_2" class="nav_btn" id="samsumgCard">삼성 카드</a>
 						<a href="#card_3" class="nav_btn" id="lotteCard">롯데 카드</a>
 						<a href="#card_4" class="nav_btn" id="shCard">신한 카드</a>

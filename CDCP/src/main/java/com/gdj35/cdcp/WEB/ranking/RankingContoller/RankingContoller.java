@@ -40,7 +40,7 @@ public class RankingContoller {
 			= RankingiService.getRCredit(params);
 		
 		mav.addObject("list", list);
-		System.out.println(list);
+		
 		mav.setViewName("ranking/creditTop10");
 		
 		return mav;
@@ -55,7 +55,7 @@ public class RankingContoller {
 			= RankingiService.getRCredit(params);
 		
 		mav.addObject("list", list);
-		System.out.println(list);
+		
 		mav.setViewName("ranking/creditTop20");
 		
 		return mav;
@@ -140,7 +140,12 @@ public class RankingContoller {
 	  @RequestMapping(value="/cardview")
 	  public ModelAndView cardview(
 			  @RequestParam HashMap<String, String> params, 
-			  ModelAndView mav) throws Throwable { 
+			  ModelAndView mav) throws Throwable {
+		 
+		  
+		  System.out.println("================================");
+		  System.out.println(params);
+		  
 		  try {
 			  if(params.get("cardNo") != null) { 
 		  
@@ -148,6 +153,7 @@ public class RankingContoller {
 		  			data = RankingiService.getCView(params);
 		  
 				  mav.addObject("data", data);
+				
 				  
 				  mav.setViewName("ranking/cardview");
 				  System.out.println(data);

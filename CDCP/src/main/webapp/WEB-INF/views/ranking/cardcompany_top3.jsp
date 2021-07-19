@@ -227,7 +227,7 @@ body{
 				.img_top1{
 				position: absolute;
 			    left: 0%;
-			    top: -4%;
+			    top: -3.5%;
 			    right: 0%;
 			    bottom: auto;
 			    width: 40px;
@@ -241,7 +241,7 @@ body{
 				.img_top2{
 				position: absolute;
 			    left: 0%;
-			    top: -4%;
+			    top: -3.5%;
 			    right: 0%;
 			    bottom: auto;
 			    width: 40px;
@@ -255,7 +255,7 @@ body{
 				.img_top3{
 				position: absolute;
 			    left: 0%;
-			    top: -4%;
+			    top: -3.5%;
 			    right: 0%;
 			    bottom: auto;
 			    width: 40px;
@@ -269,6 +269,7 @@ body{
 				/* 카드 이름 */
 				.card_title_text{
 					display: block;
+					height: 75px;
 					margin-top: 20px;
 				    margin-bottom: 0px;
 				    font-family: 'GmarketSansMedium';
@@ -329,7 +330,7 @@ body{
 				.card_box_img{
 					display: block;
 				    height: 150px;
-				    margin: 40px auto 40px auto;
+				    margin: 40px auto 60px auto;
 				}
 				/* 카드 상세보기 버튼  */
 				.card_btn_area{
@@ -407,9 +408,24 @@ body{
 			location.href = "/cdcp";
 		}); // headerLogo click end
 		
+		// top1 버튼 클릭시 상세보기 페이지 이동
+		$(document).on("click", "#cardBoxBtn1", function(){
+			$("#goForm1").attr("action", "cardview");
+			$("#goForm1").submit();
+		});
+		// top2 버튼 클릭시 상세보기 페이지 이동
+		$(document).on("click", "#cardBoxBtn2", function(){
+			$("#goForm2").attr("action", "cardview");
+			$("#goForm2").submit();
+		});
+		// top3 버튼 클릭시 상세보기 페이지 이동
+		$(document).on("click", "#cardBoxBtn3", function(){
+			$("#goForm3").attr("action", "cardview");
+			$("#goForm3").submit();
+		});
+		
 		$(".nav_btn").on("click", function(){
 				$("#cmpNo").val($(this).prop('id'));//$("#cmpNo").val() : goform에 있는 value 변경.
-				alert($("#cmpNo").val());
 				var params = $("#goForm").serialize();
 				
 				$.ajax({
@@ -419,9 +435,38 @@ body{
 					data: params, //보낼 데이터(문자열 형태)
 					success: function(res){ // 성공 시 다음 함수 실행	
 						if(res.msg == "success"){
-							console.log(res.top1);
-							console.log(res.top2);
-							console.log(res.top3);
+							// 카드사별 top1
+							$(".card_name_block").html("#" + res.top1[0].CARD_CMP_NAME + " 인기 TOP3");
+							$("#cardTitleText1").html(res.top1[0].CARD_NAME);
+							$("#cardContents1").html(res.top1[0].CARD_SUMMARY);
+							$("#benefitTop1_1").html(res.top1[0].BENEFIT_TOP);
+							$("#benefitTop1_2").html(res.top1[1].BENEFIT_TOP);
+							$("#benefitTop1_3").html(res.top1[2].BENEFIT_TOP);
+							// div 태그 값이 아닌 img 태그 안에 src 속성의 값을 변경하기 때문에 html -> attr로 변경.
+							$("#cardCmpImg1").attr("src", res.top1[0].CARD_IMG_URL);
+							// 각 버튼마다 카드 넘버 따서 컨트롤러로 보내기위해 value값 설정!!!
+							$("#cardNo1").val(res.top1[0].CARD_NO);
+							
+							
+							// 카드사별 top2
+							$("#cardTitleText2").html(res.top2[0].CARD_NAME);
+							$("#cardContents2").html(res.top2[0].CARD_SUMMARY);
+							$("#benefitTop2_1").html(res.top2[0].BENEFIT_TOP);
+							$("#benefitTop2_2").html(res.top2[1].BENEFIT_TOP);
+							$("#benefitTop2_3").html(res.top2[2].BENEFIT_TOP);
+							$("#cardCmpImg2").attr("src", res.top2[0].CARD_IMG_URL);
+							$("#cardNo2").val(res.top2[0].CARD_NO);
+							
+							// 카드사별 top3
+							$("#cardTitleText3").html(res.top3[0].CARD_NAME);
+							$("#cardContents3").html(res.top3[0].CARD_SUMMARY);
+							$("#benefitTop3_1").html(res.top3[0].BENEFIT_TOP);
+							$("#benefitTop3_2").html(res.top3[1].BENEFIT_TOP);
+							$("#benefitTop3_3").html(res.top3[2].BENEFIT_TOP);
+							$("#cardCmpImg3").attr("src", res.top3[0].CARD_IMG_URL);
+							$("#cardNo3").val(res.top3[0].CARD_NO);
+							
+							
 						} else if(res.msg == "failed"){
 							alert("불러오기에 실패하였습니다.");
 						} else {
@@ -482,7 +527,7 @@ body{
 				<!-- 카드 이름 영역 -->
 				<div class="card_title">
 					<div class="title">
-						<div class="card_name_block"># ${res.top1[0].CARD_CMP_NAME} 인기 TOP3</div>
+						<div class="card_name_block">#국민카드 인기 TOP3</div>
 						<div class="selection_criteria">
 						2021.01.01 ~ 2021.06.30 카드캡틴 신청클릭 기준입니다.
 						</div>
@@ -492,82 +537,100 @@ body{
 					<!-- 카드 TOP1 영역 -->
 					<div class="card_box">
 						<div class="img_top1"></div>
-						<div class="card_title_text" id="card_title_text_1">
-						${res.top1[0].CARD_NAME}
+						<div class="card_title_text" id="cardTitleText1">
+						노리체크카드
 						</div>
-						<div class="card_contents" id="card_contents_1">
-						${res.top1[0].CARD_SUMMARY}
+						<div class="card_contents" id="cardContents1">
+						가는곳 마다 놀라운 할인혜택!
 						</div>
 						<div class="tag_set">
-							<div class="tag_age" id="tag_age_1">
-							${res.top1[0].BENEFIT_TOP}
+							<div class="tag_age" id="benefitTop1_1">
+							20대 추천
 							</div>
-							<div class="tag_event" id="tag_event_1">
-							${res.top1[1].BENEFIT_TOP}
+							<div class="tag_event" id="benefitTop1_2">
+							연회비 캐시백 이벤트
+							</div>
+							<div class="tag_age" id="benefitTop1_3">
+							20대 추천
 							</div>
 						</div>
 						<div class="card_box_img">
-							<img alt="카드" 
-							src="${res.top1[0].CARD_IMG_URL}"
+							<img alt="카드" id="cardCmpImg1"
+							src=""
 							width="250px" height="150px">
 						</div>
+						<form action="cardview" id="goForm1" method="post">
+						<input type="text" name="cardNo" id="cardNo1">
 						<div class="card_btn_area">
 							<input type="button" value="카드 상세보기  >" class="card_box_btn" id="cardBoxBtn1" />
 						</div>
+						</form>
 					</div>
 					<!-- 카드 TOP2 영역 -->
 					<div class="card_box">
 						<div class="img_top2"></div>
-						<div class="card_title_text" id="card_title_text_2">
+						<div class="card_title_text" id="cardTitleText2">
 						청춘대로 톡톡 WITH 카드
 						</div>
-						<div class="card_contents" id="card_contents_2">
+						<div class="card_contents" id="cardContents2">
 						Simple하게 즐기자! 혜택 톡톡!
 						</div>
 						<div class="tag_set">
-							<div class="tag_age" id="tag_age_2">
+							<div class="tag_age" id="benefitTop2_1">
 							20대 추천
 							</div>
-							<div class="tag_event" id="tag_event_2">
+							<div class="tag_event" id="benefitTop2_2">
 							연회비 캐시백 이벤트
+							</div>
+							<div class="tag_age" id="benefitTop2_3">
+							20대 추천
 							</div>
 						</div>
 						<div class="card_box_img">
-							<img alt="카드" 
-							src="resources/images/ranking/card/credit/kb/kb_toktokwith.png"
+							<img alt="카드" id="cardCmpImg2"
+							src=""
 							width="250px" height="150px">
 						</div>
+						<form action="cardview" id="goForm2" method="post">
+						<input type="text" name="cardNo" id="cardNo2">
 						<div class="card_btn_area">
 							<input type="button" value="카드 상세보기  >" class="card_box_btn" id="cardBoxBtn2" />
 						</div>
+						</form>
 					</div>
 					<!-- 카드 TOP3 영역 -->
 					<div class="card_box">
 						<div class="img_top3"></div>
-						<div class="card_title_text" id="card_title_text_3">
+						<div class="card_title_text" id="cardTitleText3">
 						다담카드
 						</div>
-						<div class="card_contents" id="card_contents_3">
+						<div class="card_contents" id="cardContents3">
 						KB국민 훈민정음 두번째 이야기
 						<br/>
 						모두의 이야기를 담은 카드
 						</div>
 						<div class="tag_set">
-							<div class="tag_ment" id="tag_ment_3">
+							<div class="tag_age" id="benefitTop3_1">
 							할인 집중
 							</div>
-							<div class="tag_event" id="tag_event_3">
+							<div class="tag_event" id="benefitTop3_2">
 							연회비 캐시백 이벤트
+							</div>
+							<div class="tag_age" id="benefitTop3_3">
+							할인 집중
 							</div>
 						</div>
 						<div class="card_box_img">
-							<img alt="카드" 
-							src="resources/images/ranking/card/credit/kb/kb_dadam_card.png"
+							<img alt="카드" id="cardCmpImg3"
+							src=""
 							width="250px" height="150px">
 						</div>
+						<form action="cardview" id="goForm3" method="post">
+						<input type="text" name="cardNo" id="cardNo3">
 						<div class="card_btn_area">
 							<input type="button" value="카드 상세보기  >" class="card_box_btn" id="cardBoxBtn3" />
 						</div>
+						</form>
 					</div>
 				</div>
 			</div>
