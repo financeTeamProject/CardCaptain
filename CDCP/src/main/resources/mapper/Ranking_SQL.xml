@@ -44,7 +44,7 @@
 		            C.CLICK_CNT, ROW_NUMBER() OVER(ORDER BY C.CLICK_CNT DESC) AS RNK
 		     FROM CARDS C INNER JOIN CARDCOMPANYS CMP
 		                     ON C.CARD_CMP_NO = CMP.CARD_CMP_NO
-		     WHERE C.CARD_CMP_NO = #{cmpTop1}) CC INNER JOIN CARDBENEFITS CBF
+		     WHERE C.CARD_CMP_NO = #{cmpNo}) CC INNER JOIN CARDBENEFITS CBF
                                            ON CC.CARD_NO = CBF.CARD_NO
                                            AND RNK = 1
 	</select>
@@ -56,7 +56,7 @@
 		            C.CLICK_CNT, ROW_NUMBER() OVER(ORDER BY C.CLICK_CNT DESC) AS RNK
 		     FROM CARDS C INNER JOIN CARDCOMPANYS CMP
 		                     ON C.CARD_CMP_NO = CMP.CARD_CMP_NO
-		     WHERE C.CARD_CMP_NO = #{cmpTop2}) CC INNER JOIN CARDBENEFITS CBF
+		     WHERE C.CARD_CMP_NO = #{cmpNo}) CC INNER JOIN CARDBENEFITS CBF
                                            ON CC.CARD_NO = CBF.CARD_NO
                                            AND RNK = 2
 	</select>
@@ -68,7 +68,7 @@
 		            C.CLICK_CNT, ROW_NUMBER() OVER(ORDER BY C.CLICK_CNT DESC) AS RNK
 		     FROM CARDS C INNER JOIN CARDCOMPANYS CMP
 		                     ON C.CARD_CMP_NO = CMP.CARD_CMP_NO
-		     WHERE C.CARD_CMP_NO = #{cmpTop3}) CC INNER JOIN CARDBENEFITS CBF
+		     WHERE C.CARD_CMP_NO = #{cmpNo}) CC INNER JOIN CARDBENEFITS CBF
                                            ON CC.CARD_NO = CBF.CARD_NO
                                            AND RNK = 3
 	</select>

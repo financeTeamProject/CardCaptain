@@ -388,6 +388,7 @@ body{
 <script type="text/javascript">
 	$(document).ready(function(){
 		/* 카드순위 페이지 이동 */
+		
 		$("#ranking").on("click", function(){
 			location.href = "card_rank";
 		}); // ranking click end
@@ -406,20 +407,20 @@ body{
 		}); // headerLogo click end
 		
 		$(".nav_btn").on("click", function(){
-			if($(this).prop('id') == "1" ){
-				alert($(this).prop('id'));
+				$("#cmpNo").val($(this).prop('id'));//$("#cmpNo").val() : goform에 있는 value 변경.
+				alert($("#cmpNo").val());
 				var params = $("#goForm").serialize();
 				
 				$.ajax({
-					url: "cardcompanys", // 접속주소 (현재 저상태는 상대 경로이다)
+					url: "cardcompany_top3s", // 접속주소 (현재 저상태는 상대 경로이다)
 					type: "post", // 전송방식: get,post
 					dataType: "json", // 받아올 데이터 형식
 					data: params, //보낼 데이터(문자열 형태)
 					success: function(res){ // 성공 시 다음 함수 실행	
 						if(res.msg == "success"){
-							// 데이터를 새로 가져와야 하니깐 history back지우고 form.submit 처리
-							$("#goForm").attr("action");
-							$("#gogoForm").submit();
+							alert(res.top1[0].CARD_NO);
+							alert(res.top2[0].CARD_NO);
+							alert(res.top3[0].CARD_NO);
 						} else if(res.msg == "failed"){
 							alert("불러오기에 실패하였습니다.");
 						} else {
@@ -431,7 +432,6 @@ body{
 						
 					}
 				});
-			}
 		}); // nav_btn click end
 		
 	}); // document ready end
@@ -439,9 +439,7 @@ body{
 </head>
 <body>
 	<form action="#" id="goForm" method="post">
-		<input type="hidden" name="top1" value="1" />
-		<input type="hidden" name="top2" value="2" />
-		<input type="hidden" name="top3" value="3" />
+		<input type="hidden" name="cmpNo" id="cmpNo" value="1" />
 	</form>
 <!-- 헤더영역 -->
 	<div id="header">
@@ -464,14 +462,14 @@ body{
 			<div id="menuName">카드사별 TOP3</div>
 			<div class="nav_menubar">
 				<a href="#card_1" class="nav_btn" id="1">국민 카드</a>
-				<a href="#card_2" class="nav_btn" id="samsumgCard">삼성 카드</a>
-				<a href="#card_3" class="nav_btn" id="lotteCard">롯데 카드</a>
-				<a href="#card_4" class="nav_btn" id="shCard">신한 카드</a>
-				<a href="#card_5" class="nav_btn" id="weCard">우리 카드</a>
-				<a href="#card_6" class="nav_btn" id="hdCard">현대 카드</a>
-				<a href="#card_7" class="nav_btn" id="nhCard">농협 카드</a>
-				<a href="#card_8" class="nav_btn" id="hanaCard">하나 카드</a>
-				<a href="#card_9" class="nav_btn" id="ibkCard">IBK 카드</a>
+				<a href="#card_2" class="nav_btn" id="2">삼성 카드</a>
+				<a href="#card_3" class="nav_btn" id="3">롯데 카드</a>
+				<a href="#card_4" class="nav_btn" id="4">신한 카드</a>
+				<a href="#card_5" class="nav_btn" id="5">우리 카드</a>
+				<a href="#card_6" class="nav_btn" id="6">현대 카드</a>
+				<a href="#card_7" class="nav_btn" id="7">농협 카드</a>
+				<a href="#card_8" class="nav_btn" id="8">하나 카드</a>
+				<a href="#card_9" class="nav_btn" id="9">IBK 카드</a>
 			</div>
 		</div>
 	</div>
@@ -480,13 +478,11 @@ body{
 		<!-- 카드 TOP3 영역 -->
 		<div class=contentBg>
 			<!-- card_0 영역 시작 -->
-			<form action="#" id="gogoForm" method="post">
-				<input type="hidden" name="cmpTop1" value="${top1[0].CARD_NO}" />
-			<div class="card_1" id="card_0">
+			<div class="card_0" id="card_0">
 				<!-- 카드 이름 영역 -->
 				<div class="card_title">
 					<div class="title">
-						<div class="card_name_block"># ${top1[0].CARD_CMP_NAME} 인기 TOP3</div>
+						<div class="card_name_block"># ${res.top1[0].CARD_CMP_NAME} 인기 TOP3</div>
 						<div class="selection_criteria">
 						2021.01.01 ~ 2021.06.30 카드캡틴 신청클릭 기준입니다.
 						</div>
@@ -496,15 +492,15 @@ body{
 					<!-- 카드 TOP1 영역 -->
 					<div class="card_box">
 						<div class="img_top1"></div>
-						<div class="card_title_text" id="card_title_text_2">
+						<div class="card_title_text" id="card_title_text_1">
 						${top1[0].CARD_NAME}
 						</div>
 						<div class="card_contents" id="card_contents_1">
-						${top1[0].CARD_SUMMARY}
+						${top1.CARD_SUMMARY}
 						</div>
 						<div class="tag_set">
 							<div class="tag_age" id="tag_age_1">
-							${top1[0].BENEFIT_TOP}
+							${top1.BENEFIT_TOP}
 							</div>
 							<div class="tag_event" id="tag_event_1">
 							${top1[1].BENEFIT_TOP}
@@ -575,7 +571,6 @@ body{
 					</div>
 				</div>
 			</div>
-			</form>
 			<!-- card_1 영역 끝 -->
 		</div>
 		
