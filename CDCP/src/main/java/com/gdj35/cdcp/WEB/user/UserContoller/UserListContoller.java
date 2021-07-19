@@ -54,7 +54,7 @@ public class UserListContoller {
 		
 		int cnt = useriListService.getCnt(params);
 		
-		PagingBean pb = iPagingService.getPagingBean(5, 10);
+		PagingBean pb = iPagingService.getPagingBean(page, cnt, 5 , 5);
 		
 		params.put("startCnt", Integer.toString(pb.getStartCount()));
 		params.put("endCnt", Integer.toString(pb.getEndCount()));
@@ -66,4 +66,14 @@ public class UserListContoller {
 		
 		return mapper.writeValueAsString(modelMap);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

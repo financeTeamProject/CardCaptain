@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>카드캡틴계정</title>
+<title>보유카드추가</title>
 <style type="text/css">
 @font-face {
     font-family: 'GmarketSansMedium';
@@ -170,24 +170,38 @@ body {
     color: #0047AB;
     letter-spacing: 3px;
 }
-.paging_wrap div {
+#paging_wrap #on {
+	background-color: skyblue;
+	color: white;
+	font-size: 12px;
+}
+.list_wrap thead tr { 
+ 	border-top: 1px solid #000; 
+ 	border-bottom: 1px solid #000; 
+ 	background-color: #0047AB; 
+ 	hieght: 30px;
+ 	color: white;
+}
+.list_wrap table{
+	border-collapse: collapse;
+}
+.list_wrap tbody tr {
+	border-bottom: 1px solid #000;
+	height: 35px;
+	text-align: center;
+}
+#paging_wrap span {
 	display: inline-block;
 	padding: 5px;
-	margin: 0 3px;
+	margin-left: 3px;
+	margin-right: 3px;
 	background-color: #DFDFDF;
 	border: 1px solid #444;
 	border-radius: 3px;
 	cursor: pointer;
 	width: 50px;
 	text-align: center;
-}
-.paging_wrap div:active {
-	background-color: #AAAAAA;
-}
-#paging_wrap #on {
-	background-color: skyblue;
-	color: white;
-	font-size: 12px;
+	font-size: 10px;
 }
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
@@ -196,16 +210,29 @@ $(document).ready(function () {
 	if("${param.searchGbn}" != "") {
 		$("${searchGbn}").val("${param.searchGbn}")
 	}
+	reloadList();
+	
+	$("#joinCard").on("keypress", "input", function (event) {
+		if(event.keyCode == 13) {
+			return false; 
+		}
+	});
+	
 	// 카드사선택
 	$(".blank").on("click", function () {
-		$("#page").val(1);
 		$("#searchOldTxt").val($("#searchTxt").val());
+		$("#page").val(1);
+		$("#cmpNo").val($(this).prop("id")); //1~9카드사
+		console.log($("#cmpNo").val());
+		
 		reloadList();
 	});
 	// 검색
 	$("#searchBtn").on("click", function () {
 		$("#page").val(1);
 		$("#searchOldTxt").val($("#searchTxt").val());
+		$("#searchOldTxt").val("");
+		
 		reloadList();
 	});
 	
@@ -213,12 +240,12 @@ $(document).ready(function () {
 	$("#paging_wrap").on("click", "span", function () {
 		$("#page").val($(this).attr("page"));
 		$("#searchTxt").val($("#searchOldTxt").val());
+		
 		reloadList();
 	});
 	
 	// 리스트불러오기
 	function reloadList() {
-		
 		var params = $("#joinCard").serialize();
 		
 		$.ajax({
@@ -242,6 +269,7 @@ $(document).ready(function () {
 		for(var d of list) {
 			html += "<tr sno=\"" + d.CARD_NO + "\">";
 			html += "<td>" + d.CARD_NO + "</td>";
+			html += "<td>" + d.CARD_TYPE + "</td>";
 			html += "<td>" + d.CARD_NAME + "</td>";
 			html += "</tr>";
 		}
@@ -291,19 +319,19 @@ $(document).ready(function () {
 			<div class="contents_left">
 				<div class="line">
 					<div class="card_blank">
-						<div class="blank" id="kbcard">
+						<div class="blank" id="1">
 							<div class="card_logo"><img src="resources/images/user/cardLogo/kb_logo.png" height=35px></div>
 							<div class="card_name">국민카드</div>
 						</div>
 					</div>
 					<div class="card_blank">
-						<div class="blank" id="sscard">
+						<div class="blank" id="2">
 							<div class="card_logo"><img src="resources/images/user/cardLogo/samsung_logo.png" height=35px></div>
 							<div class="card_name">삼성카드</div>
 						</div>
 					</div>
 					<div class="card_blank">
-						<div class="blank" id="locard">
+						<div class="blank" id="3">
 							<div class="card_logo"><img src="resources/images/user/cardLogo/loca_logo.png" height=35px></div>
 							<div class="card_name">롯데카드</div>
 						</div>
@@ -311,19 +339,19 @@ $(document).ready(function () {
 				</div>
 				<div class="line">
 					<div class="card_blank">
-						<div class="blank" id="shcard">
+						<div class="blank" id="4">
 							<div class="card_logo"><img src="resources/images/user/cardLogo/shinhan_logo.png" height=35px></div>
 							<div class="card_name">신한카드</div>
 						</div>
 					</div>
 					<div class="card_blank">
-						<div class="blank" id="wrcard">
+						<div class="blank" id="5">
 							<div class="card_logo"><img src="resources/images/user/cardLogo/wr_logo.png" height=35px></div>
 							<div class="card_name">우리카드</div>
 						</div>
 					</div>
 					<div class="card_blank">
-						<div class="blank" id="hdcard">
+						<div class="blank" id="6">
 							<div class="card_logo"><img src="resources/images/user/cardLogo/hyundai_logo.png" height=35px></div>
 							<div class="card_name">현대카드</div>
 						</div>
@@ -331,19 +359,19 @@ $(document).ready(function () {
 				</div>
 				<div class="line">
 					<div class="card_blank">
-						<div class="blank" id="nhcard">
+						<div class="blank" id="7">
 							<div class="card_logo"><img src="resources/images/user/cardLogo/nh_logo.png" height=35px></div>
 							<div class="card_name">농협카드</div>
 						</div>
 					</div>
 					<div class="card_blank">
-						<div class="blank" id="hncard">
+						<div class="blank" id="8">
 							<div class="card_logo"><img src="resources/images/user/cardLogo/hn_logo.png" height=35px></div>
 							<div class="card_name">하나카드</div>
 						</div>
 					</div>
 					<div class="card_blank">
-						<div class="blank" id="ibkcard">
+						<div class="blank" id="9">
 							<div class="card_logo"><img src="resources/images/user/cardLogo/ibk_logo.png" height=35px></div>
 							<div class="card_name">기업카드</div>
 						</div>
@@ -352,25 +380,31 @@ $(document).ready(function () {
 			</div>
 			<div class="contents_right">
 				<div class="search">
-				<form action="#" id="joinCard" method="post">
-					<input type="hidden" id="page" name="page" value="${page}" />
-					<select id="searchGbn" name="searchGbn">
-						<option value="1">카드타입</option>
-						<option value="2">카드명</option>
-					</select>
-					<input type="hidden" id="searchOldTxt" value="${param.searchOldTxt}" />
-					<input type="text" name="searchTxt" id="searchTxt" value="${param.searchTxt}" />
-					<input type="button" value="검색" id="searchBtn" />
-				</form><br/>
+<!-- Form -->
+					<form action="#" id="joinCard" method="post">   
+						<input type="hidden" name="cmpNo" id="cmpNo" value="1" />
+						<input type="hidden" id="page" name="page" value="${page}" />
+						<select id="searchGbn" name="searchGbn">
+							<option value="0">검색</option>
+							<option value="1">카드타입</option>
+							<option value="2">카드명</option>
+						</select>
+						<input type="hidden" id="searchOldTxt" value="${param.searchOldTxt}" />
+						<input type="text" name="searchTxt" id="searchTxt" value="${param.searchTxt}" />
+						<input type="button" value="검색" id="searchBtn" />
+					</form><br/>
+<!-- Form end -->
 					<div class="list_wrap">
 					<table>
 						<colgroup width="3000px">
-							<col width="25%" />
-							<col width="35%" />
+							<col width="5%" />
+							<col width="15%" />
+							<col width="65%" />
 							<col width="15%" />
 						</colgroup>
 						<thead>
 							<tr>
+								<th></th>
 								<th>카드타입</th>
 								<th>카드명</th>
 								<th>선택</th>

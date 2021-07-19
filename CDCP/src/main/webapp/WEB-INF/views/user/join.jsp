@@ -186,7 +186,7 @@ body {
     border-radius: 4px;
     font-size: 15px;
     color: white;
-    background-color: #0047ab;
+    background-color: gray;
     cursor: pointer;
     pointer-events : none;
 }
@@ -506,6 +506,8 @@ $(document).ready(function() {
 						} else if ($("#codeTxt").val() == code) {
 							alert("인증코드가 일치합니다.");
 							$("#btn_next").css("pointer-events","auto");
+							$("#btn_next").css("background-color","#0047ab");
+							
 						}
 					});
 					
