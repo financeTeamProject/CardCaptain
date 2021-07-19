@@ -425,7 +425,8 @@ body{
 		});
 		
 		$(".nav_btn").on("click", function(){
-				$("#cmpNo").val($(this).prop('id'));//$("#cmpNo").val() : goform에 있는 value 변경.
+				//$("#cmpNo").val() : goform에 있는 value 변경.
+				$("#cmpNo").val($(this).prop('id'));
 				var params = $("#goForm").serialize();
 				
 				$.ajax({
