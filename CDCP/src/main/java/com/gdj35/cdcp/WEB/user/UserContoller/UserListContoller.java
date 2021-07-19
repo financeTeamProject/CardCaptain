@@ -54,7 +54,7 @@ public class UserListContoller {
 		
 		int cnt = useriListService.getCnt(params);
 		
-		PagingBean pb = iPagingService.getPagingBean(page, cnt, 5 , 5);
+		PagingBean pb = iPagingService.getPagingBean(page, cnt, 5 , 2);
 		
 		params.put("startCnt", Integer.toString(pb.getStartCount()));
 		params.put("endCnt", Integer.toString(pb.getEndCount()));
@@ -67,13 +67,38 @@ public class UserListContoller {
 		return mapper.writeValueAsString(modelMap);
 	}
 	
+	@RequestMapping(value="/JGJtestSAdd")
+	public ModelAndView testSAdd(ModelAndView mav) {
+		mav.setViewName("tests/JGJtestSAdd");
+		
+		return mav;
+	}
 	
-	
-	
-	
-	
-	
-	
+	@RequestMapping(value="/addcards",
+			method = RequestMethod.POST,
+			produces = "text/json;charsetUTF-8")
+	@ResponseBody
+	public String addcards(
+			@RequestParam HashMap<String, String> params) throws Throwable {
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+			System.out.println(params);
+		try {
+			int cnt = useriListService.addCard(params);
+			
+			if(cnt > 0) {
+				modelMap.put("msg", "success");
+			} else {
+				modelMap.put("msg", "failed");
+			}
+			
+		} catch (Throwable e){
+			e.printStackTrace();
+			modelMap.put("msg", "error");
+		}
+		
+		return mapper.writeValueAsString(modelMap);
+	}
 	
 	
 }

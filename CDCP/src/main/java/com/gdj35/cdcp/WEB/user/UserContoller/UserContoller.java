@@ -178,10 +178,36 @@ public class UserContoller {
 			
 			if(data != null) {
 				session.setAttribute("sMId", data.get("MEMBER_ID"));
+
 				modelMap.put("resMsg", "success");
 			} else {
 				modelMap.put("resMsg", "failed");
 			}
+		return mapper.writeValueAsString(modelMap);
+	}
+	//이메일 중복체크
+	@RequestMapping(value="/emailChecks",
+			method = RequestMethod.POST,
+			produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	
+	public String emailChecks(
+			HttpSession session,
+			@RequestParam HashMap<String,String> params) throws Throwable {
+		System.out.println(params);
+		ObjectMapper mapper = new ObjectMapper();
+		
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		HashMap<String,String> data = useriService.emailCheck(params);
+		
+		if(data != null) {
+			session.setAttribute("sMId", data.get("MEMBER_ID"));
+			
+			modelMap.put("resMsg", "success");
+		} else {
+			modelMap.put("resMsg", "failed");
+		}
 		return mapper.writeValueAsString(modelMap);
 	}
 

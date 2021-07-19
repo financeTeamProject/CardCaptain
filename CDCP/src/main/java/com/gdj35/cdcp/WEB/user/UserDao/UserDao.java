@@ -37,4 +37,9 @@ public class UserDao implements UserIDao {
 		return sqlSession.selectOne("user.idCheck", params);
 	}
 
+	@Override
+	public HashMap<String, String> emailCheck(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectOne("user.emailCheck", params);
+	}
+
 }

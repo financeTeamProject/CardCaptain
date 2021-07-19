@@ -12,4 +12,6 @@ public interface UserIListService {
 
 	public int getCnt(HashMap<String, String> params) throws Throwable;
 
+	public int addCard(HashMap<String, String> params) throws Throwable;
+
 }

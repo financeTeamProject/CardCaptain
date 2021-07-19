@@ -175,17 +175,17 @@ body {
 	color: white;
 	font-size: 12px;
 }
-.list_wrap thead tr { 
+.list_wrap thead tr, .add_wrap thead tr { 
  	border-top: 1px solid #000; 
  	border-bottom: 1px solid #000; 
  	background-color: #0047AB; 
  	hieght: 30px;
  	color: white;
 }
-.list_wrap table{
+.list_wrap table, .add_wrap table{
 	border-collapse: collapse;
 }
-.list_wrap tbody tr {
+.list_wrap tbody tr, .add_wrap tbody tr {
 	border-bottom: 1px solid #000;
 	height: 35px;
 	text-align: center;
@@ -202,6 +202,11 @@ body {
 	width: 50px;
 	text-align: center;
 	font-size: 10px;
+}
+.addbtn {
+	width: 45px;
+	height: 25px;
+	margin-top: 3px;
 }
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
@@ -244,6 +249,29 @@ $(document).ready(function () {
 		reloadList();
 	});
 	
+	// 추가하기
+	$("#addBtn").on("click", function () {
+		$("#searchTxt").val($("#searchOldTxt").val());
+		$("#actionForm").attr("action", "JGJtestSAdd");
+		$("#actionForm").submit();
+	});	
+	
+	function addcard() {
+		var params = $("#addForm").serialize();
+		
+		$.ajax({
+			url: "addcards",
+			type: "post",
+			dataType: "json",
+			data: params,
+			success: function (res) {
+			},
+			error: function (request, status, error) {
+				console.log(error);
+			}
+		});
+	}
+	
 	// 리스트불러오기
 	function reloadList() {
 		var params = $("#joinCard").serialize();
@@ -271,11 +299,11 @@ $(document).ready(function () {
 			html += "<td>" + d.CARD_NO + "</td>";
 			html += "<td>" + d.CARD_TYPE + "</td>";
 			html += "<td>" + d.CARD_NAME + "</td>";
+			html += "<td>" + "<button value=\"추가\" class=addbtn>추가</button>" + "</td>";
 			html += "</tr>";
 		}
 		
 		$(".list_wrap tbody").html(html);
-		
 	}
 		
 	//페이징 그리기
@@ -407,13 +435,34 @@ $(document).ready(function () {
 								<th></th>
 								<th>카드타입</th>
 								<th>카드명</th>
-								<th>선택</th>
+								<th>추가</th>
 							</tr>
 						</thead>
 						<tbody></tbody>
 					</table>
 					</div>
+					<br/>
 					<div id="paging_wrap"></div>
+					<br/>
+					<div class="add_wrap">
+					<table>
+						<colgroup width="3000px">
+							<col width="5%" />
+							<col width="15%" />
+							<col width="65%" />
+							<col width="15%" />
+						</colgroup>
+						<thead>
+							<tr>
+								<th></th>
+								<th>카드타입</th>
+								<th>카드명</th>
+								<th>삭제</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+					</div>
 				</div>
 			</div>
 		</div>

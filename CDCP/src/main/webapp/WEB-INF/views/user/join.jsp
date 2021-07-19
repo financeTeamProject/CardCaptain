@@ -474,6 +474,28 @@ $(document).ready(function() {
 			$("#errorMsgEmail").html("이메일을 입력해주세요.");
 		} else {
 			$("#errorMsgEmail").html("");
+			
+ 			var params = $("#mEmail").serialize();
+
+ 	 		$.ajax({
+ 				url: "emailChecks",
+ 				type: "post",
+ 				dataType: "json",
+ 				data: params,
+ 				success: function (res) {
+ 					if(res.resMsg == "success") {
+ 						$(".errorMsg").css("display","inline");
+ 						$("#errorMsgEmail").html("아이디 \"" + id + "\"로 가입되어있습니다.");
+ 						$("#mEmail").val("");
+ 						$("#mEmail").focus();
+ 					} else {
+ 						
+ 					}	
+				},
+				error: function (request, status, error) {
+ 					console.log(error);
+ 				}
+ 			});
 		}
 	});
 	

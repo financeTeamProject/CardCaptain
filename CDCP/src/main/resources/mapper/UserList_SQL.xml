@@ -20,7 +20,8 @@
 
 	<select id="getList" parameterType="hashmap" resultType="hashmap">
 		SELECT C.*
-		FROM(SELECT RANK() OVER(ORDER BY CARD_NO ASC) AS CARD_NO, CARD_CMP_NO, DECODE(CARD_TYPE, 0, '신용카드','체크카드') AS CARD_TYPE, CARD_NAME
+		FROM(SELECT RANK() OVER(ORDER BY CARD_NO DESC) AS CARD_NO, CARD_CMP_NO, DECODE(CARD_TYPE, 0, '신용카드','체크카드') AS CARD_TYPE, CARD_NAME,
+		RANK() OVER(PARTITION BY CARD_CMP_NO ORDER BY CARD_NO DESC) AS RNK
 	    FROM CARDS
 	    ORDER BY CARD_NO ASC) C
 		WHERE C.CARD_CMP_NO = ${cmpNo}
@@ -37,7 +38,7 @@
 	            	</when>
 	         	</choose>
 	    	</if>
-	    	AND ROWNUM BETWEEN #{startCnt} AND #{endCnt}
+	    	AND C.RNK BETWEEN #{startCnt} AND #{endCnt}
 	</select>
 	
 <!-- 	<delete id="deleteS" parameterType="hashmap">

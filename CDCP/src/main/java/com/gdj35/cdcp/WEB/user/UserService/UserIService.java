@@ -18,4 +18,6 @@ public interface UserIService {
 
 	public HashMap<String, String> idCheck(HashMap<String, String> params) throws Throwable;
 
+	public HashMap<String, String> emailCheck(HashMap<String, String> params) throws Throwable;
+
 }

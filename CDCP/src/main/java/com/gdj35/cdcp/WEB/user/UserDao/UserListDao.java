@@ -20,4 +20,8 @@ public class UserListDao implements UserIListDao {
 	public int getCnt(HashMap<String, String> params) throws Throwable {
 		return sqlSession.selectOne("user.getCnt", params);
 	}
+	@Override
+	public int addCard(HashMap<String, String> params) throws Throwable {
+		return sqlSession.insert("user.addCard", params);
+	}
 }

@@ -37,4 +37,9 @@ public class UserService implements UserIService {
 		return useridao.idCheck(params);
 	}
 
+	@Override
+	public HashMap<String, String> emailCheck(HashMap<String, String> params) throws Throwable {
+		return useridao.emailCheck(params);
+	}
+
 }

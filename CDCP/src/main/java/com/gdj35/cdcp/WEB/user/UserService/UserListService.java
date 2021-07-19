@@ -22,4 +22,9 @@ public class UserListService implements UserIListService {
 		return useriListdao.getCnt(params);
 	}
 
+	@Override
+	public int addCard(HashMap<String, String> params) throws Throwable {
+		return useriListdao.addCard(params);
+	}
+
 }

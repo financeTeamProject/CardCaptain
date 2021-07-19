@@ -39,4 +39,11 @@
 		WHERE MEMBER_ID = #{mId}
 	</select>
 	
+	<select id="emailCheck" parameterType="hashmap" resultType="hashmap">
+		SELECT MEMBER_ID
+		FROM MEMBER_INFO
+		WHERE E_NAME = #{mEmail}
+		AND E_ADDRESS =#{address}
+	</select>
+	
 </mapper>
