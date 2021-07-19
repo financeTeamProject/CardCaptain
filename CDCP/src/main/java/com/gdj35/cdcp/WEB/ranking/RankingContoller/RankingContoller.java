@@ -96,7 +96,7 @@ public class RankingContoller {
 	@RequestMapping(value="/cardcompany_top3")
 	public ModelAndView cardcompany_top3 (ModelAndView mav) {
 		
-		mav.setViewName("ranking/cardcompany_top3");
+		mav.setViewName("ranking/cardcompany_top3s");
 		
 		return mav;
 	}
