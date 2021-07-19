@@ -19,23 +19,25 @@
 	</select>
 
 	<select id="getList" parameterType="hashmap" resultType="hashmap">
-		SELECT S.CARD_NO, S.CARD_NAME,
-		FROM ( SELECT CARD_NO, CARD_NAME,
-	        ROW_NUMBER() OVER(ORDER BY CARD_NO DESC) AS SNUM
-	        FROM CARDS
-			WHERE 1 = 1
+		SELECT C.*
+		FROM(SELECT RANK() OVER(ORDER BY CARD_NO ASC) AS CARD_NO, CARD_CMP_NO, DECODE(CARD_TYPE, 0, '신용카드','체크카드') AS CARD_TYPE, CARD_NAME
+	    FROM CARDS
+	    ORDER BY CARD_NO ASC) C
+		WHERE C.CARD_CMP_NO = ${cmpNo}
 			<if test="searchTxt != null and searchTxt != ''">
 	         	<choose>
-	            	<when test="searchGbn == 1">
-	            		AND CARD_NAME LIKE '%' || #{searchTxt} || '%'
+	            	<when test="searchGbn == 0">
+	            		AND (C.CARD_TYPE LIKE '%' || #{searchTxt} || '%' or C.CARD_NAME LIKE '%' || #{searchTxt} || '%')
 	            	</when>
-	           		<when test="searchGbn == 2">
-	           			AND CARD_NO LIKE '%' || #{searchTxt} || '%'
+	            	<when test="searchGbn == 1"> <!-- 카드타입 -->
+	            		AND C.CARD_TYPE LIKE '%' || #{searchTxt} || '%'
+	            	</when>
+	           		<when test="searchGbn == 2"> <!-- 카드명 -->
+	           			AND C.CARD_NAME LIKE '%' || #{searchTxt} || '%'
 	            	</when>
 	         	</choose>
 	    	</if>
-	    	) S
-		WHERE S.SNUM BETWEEN #{startCnt} AND #{endCnt}
+	    	AND ROWNUM BETWEEN #{startCnt} AND #{endCnt}
 	</select>
 	
 <!-- 	<delete id="deleteS" parameterType="hashmap">
