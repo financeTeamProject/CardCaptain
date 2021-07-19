@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -170,7 +171,7 @@ body{
 				display: block;
 				width: 100%;
 				height: auto;
-				padding-top: 150px;
+				padding-top: 50px;
 			}
 				.card_title{
 				    width: 1600px;
@@ -418,9 +419,9 @@ body{
 					data: params, //보낼 데이터(문자열 형태)
 					success: function(res){ // 성공 시 다음 함수 실행	
 						if(res.msg == "success"){
-							alert(res.top1[0].CARD_NO);
-							alert(res.top2[0].CARD_NO);
-							alert(res.top3[0].CARD_NO);
+							console.log(res.top1);
+							console.log(res.top2);
+							console.log(res.top3);
 						} else if(res.msg == "failed"){
 							alert("불러오기에 실패하였습니다.");
 						} else {
@@ -429,7 +430,6 @@ body{
 					},
 					error: function(request, status, error){ // 실패 시 다음 함수 실행
 						console.log(error);
-						
 					}
 				});
 		}); // nav_btn click end
@@ -493,22 +493,22 @@ body{
 					<div class="card_box">
 						<div class="img_top1"></div>
 						<div class="card_title_text" id="card_title_text_1">
-						${top1[0].CARD_NAME}
+						${res.top1[0].CARD_NAME}
 						</div>
 						<div class="card_contents" id="card_contents_1">
-						${top1.CARD_SUMMARY}
+						${res.top1[0].CARD_SUMMARY}
 						</div>
 						<div class="tag_set">
 							<div class="tag_age" id="tag_age_1">
-							${top1.BENEFIT_TOP}
+							${res.top1[0].BENEFIT_TOP}
 							</div>
 							<div class="tag_event" id="tag_event_1">
-							${top1[1].BENEFIT_TOP}
+							${res.top1[1].BENEFIT_TOP}
 							</div>
 						</div>
 						<div class="card_box_img">
 							<img alt="카드" 
-							src="${top1[0].CARD_IMG_URL}"
+							src="${res.top1[0].CARD_IMG_URL}"
 							width="250px" height="150px">
 						</div>
 						<div class="card_btn_area">
