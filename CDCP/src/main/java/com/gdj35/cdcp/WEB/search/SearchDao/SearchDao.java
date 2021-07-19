@@ -30,4 +30,25 @@ public class SearchDao implements SearchIDao {
 	public List<HashMap<String, String>> pagingDistinct(HashMap<String, String> params) throws Throwable {
 		return sql.selectList("search.pagingDistinct", params);
 	}
+
+	@Override
+	public List<HashMap<String, String>> checkKeyword(String d) throws Throwable {
+		return sql.selectList("search.checkKeyword", d);
+	}
+
+	@Override
+	public List<HashMap<String, String>> checkcardNoDistinct(String d) throws Throwable {
+		return sql.selectList("search.checkcardNoDistinct", d);
+	}
+
+	@Override
+	public List<HashMap<String, String>> checkcardNoDistinct(HashMap<String, String> params) throws Throwable {
+		return sql.selectList("search.checkcardNoDistinct", params);
+	}
+
+	@Override
+	public List<HashMap<String, String>> checkpagingDistinct(HashMap<String, String> params) throws Throwable {
+		return sql.selectList("search.checkpagingDistinct", params);
+	}
+
 }

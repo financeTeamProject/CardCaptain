@@ -13,4 +13,10 @@ public interface SearchIService {
 
 	public List<HashMap<String, String>> pagingDistinct(HashMap<String, String> params) throws Throwable;
 
+	public List<HashMap<String, String>> checkKeyword(String data) throws Throwable;
+
+	public List<HashMap<String, String>> checkcardNoDistinct(String data) throws Throwable;
+
+	public List<HashMap<String, String>> checkpagingDistinct(HashMap<String, String> params) throws Throwable;
+
 }

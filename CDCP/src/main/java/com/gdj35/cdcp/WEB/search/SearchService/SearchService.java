@@ -31,4 +31,20 @@ public class SearchService implements SearchIService {
 	public List<HashMap<String, String>> pagingDistinct(HashMap<String, String> params) throws Throwable {
 		return idao.pagingDistinct(params);
 	}
+
+	@Override
+	public List<HashMap<String, String>> checkKeyword(String data) throws Throwable {
+		return idao.checkKeyword(data);
+	}
+
+	@Override
+	public List<HashMap<String, String>> checkcardNoDistinct(String data) throws Throwable {
+		return idao.checkcardNoDistinct(data);
+	}
+
+	@Override
+	public List<HashMap<String, String>> checkpagingDistinct(HashMap<String, String> params) throws Throwable {
+		return idao.checkpagingDistinct(params);
+	}
+
 }

@@ -45,4 +45,38 @@
 		) B
 		WHERE B.RNUM BETWEEN #{startCnt} AND #{endCnt}
 	</select>
+	
+	<select id="checkKeyword" parameterType="String" resultType="hashmap">
+		SELECT C.CARD_NO,C.CARD_NAME,C.CARD_TYPE,B.BENEFIT_TOP,B.BENEFIT_TYPE_NO,C.CARD_IMG_URL,C.CARD_SUMMARY
+		FROM CARDS C INNER JOIN CARDTYPES T 
+							 ON C.CARD_NO = T.CARD_NO
+					 INNER JOIN CARDBENEFITS B
+							 ON T.CARD_NO = B.CARD_NO
+		WHERE B.BENEFIT_TOP IN (${value})
+		ORDER BY C.CARD_NO
+	</select>
+	
+	<select id="checkcardNoDistinct" parameterType="String" resultType="hashmap">
+		SELECT DISTINCT(C.CARD_NO), C.CARD_IMG_URL, C.CARD_NAME
+		FROM CARDS C INNER JOIN CARDTYPES T 
+							 ON C.CARD_NO = T.CARD_NO
+					 INNER JOIN CARDBENEFITS B
+							 ON T.CARD_NO = B.CARD_NO
+		WHERE B.BENEFIT_TOP IN (${value})
+		ORDER BY C.CARD_NO
+	</select>
+	<!-- 페이징에 문제가 있음 -->
+	<select id="checkpagingDistinct" parameterType="String" resultType="hashmap">
+		SELECT B.CARD_NO, B.CARD_NAME, B.CARD_IMG_URL,B.RNUM
+		FROM (SELECT A.CARD_NO, A.CARD_NAME, A.CARD_IMG_URL, ROW_NUMBER() OVER(ORDER BY A.CARD_NO) AS RNUM 
+				FROM (SELECT DISTINCT C.CARD_NO, C.CARD_NAME, C.CARD_IMG_URL
+						FROM CARDS C INNER JOIN CARDTYPES T 
+											 ON C.CARD_NO = T.CARD_NO
+									 INNER JOIN CARDBENEFITS B
+											 ON T.CARD_NO = B.CARD_NO
+						WHERE B.BENEFIT_TOP IN (#{data})
+        		ORDER BY C.CARD_NO) A
+		) B
+		WHERE B.RNUM BETWEEN #{startCnt} AND #{endCnt}
+	</select>
 </mapper>
