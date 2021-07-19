@@ -118,6 +118,13 @@ public class RankingContoller {
 		List<HashMap<String, String>> top3
 			= RankingiService.cmpTop3(params);
 		
+		System.out.println("============================");
+		System.out.println(top1);
+		System.out.println("============================");
+		System.out.println(top2);
+		System.out.println("============================");
+		System.out.println(top3);
+		
 		if(top1 != null && top2 != null && top3 != null) {
 			modelMap.put("msg", "success");
 			modelMap.put("top1", top1);

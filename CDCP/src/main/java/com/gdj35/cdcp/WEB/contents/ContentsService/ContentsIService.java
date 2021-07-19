@@ -7,6 +7,8 @@ public interface ContentsIService {
 
 	public List<HashMap<String, String>> getCtest(HashMap<String, String> params) throws Throwable;
 
-	public List<HashMap<String, String>> getMovie(HashMap<String, String> params) throws Throwable;;
+	public List<HashMap<String, String>> getMovie(HashMap<String, String> params) throws Throwable;
+
+	public List<HashMap<String, String>> getTip(HashMap<String, String> params) throws Throwable;
 
 }

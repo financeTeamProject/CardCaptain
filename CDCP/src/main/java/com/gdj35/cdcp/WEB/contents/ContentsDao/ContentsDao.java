@@ -22,4 +22,8 @@ public class ContentsDao implements ContentsIDao{
 	public List<HashMap<String, String>> getMovie(HashMap<String, String> params) {
 		return sqlSession.selectList("C.getMovie", params);
 	}
+
+	public List<HashMap<String, String>> getTip(HashMap<String, String> params) {
+		return sqlSession.selectList("C.getTip", params);
+	}
 }

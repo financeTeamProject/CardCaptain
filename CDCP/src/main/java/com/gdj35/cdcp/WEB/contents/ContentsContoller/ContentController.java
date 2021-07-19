@@ -2,13 +2,17 @@ package com.gdj35.cdcp.WEB.contents.ContentsContoller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gdj35.cdcp.WEB.contents.ContentsService.ContentsIService;
 
 @Controller
@@ -132,15 +136,31 @@ public class ContentController {
 			@RequestParam HashMap<String, String> params,
 			ModelAndView mav) throws Throwable{
 		
-		List<HashMap<String, String>> list
-			= ContentsiService.getMovie(params);
+		List<HashMap<String, String>> 
+		list = ContentsiService.getMovie(params);
 		
 		mav.addObject("list", list);
+		
 		System.out.println(list);
 		mav.setViewName("contents/content");
 		
 		return mav;
 	}
-	
-	
+	/*
+	@RequestMapping(value="/content") // 
+	public ModelAndView content3(
+			@RequestParam HashMap<String, String> params,
+			ModelAndView mav) throws Throwable{
+		
+		List<HashMap<String, String>> 
+		list = ContentsiService.getTip(params);
+		
+		mav.addObject("list", list);
+		
+		System.out.println(list);
+		mav.setViewName("contents/content");
+		
+		return mav;
+	}
+	*/
 }
