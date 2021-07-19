@@ -35,4 +35,41 @@
 		                    ON  C.CARD_CMP_NO = CMP.CARD_CMP_NO
 		WHERE C.CARD_NO = #{cardNo}
 	</select>
+	
+	<!-- 카드사별 Top 1  -->
+	<select id="cmpTop1" parameterType="hashmap" resultType="hashmap">
+		SELECT CC.CARD_CMP_NO, CC.CARD_CMP_NAME, CC.CARD_NO, CC.CARD_NAME, CC.CARD_SUMMARY, CBF.BENEFIT_TOP, CC.CARD_IMG_URL,
+            CC.CLICK_CNT, CC.RNK
+		FROM(SELECT CMP.CARD_CMP_NO, CMP.CARD_CMP_NAME, C.CARD_NO, C.CARD_NAME, C.CARD_SUMMARY, C.CARD_IMG_URL,
+		            C.CLICK_CNT, ROW_NUMBER() OVER(ORDER BY C.CLICK_CNT DESC) AS RNK
+		     FROM CARDS C INNER JOIN CARDCOMPANYS CMP
+		                     ON C.CARD_CMP_NO = CMP.CARD_CMP_NO
+		     WHERE C.CARD_CMP_NO = #{cmpTop1}) CC INNER JOIN CARDBENEFITS CBF
+                                           ON CC.CARD_NO = CBF.CARD_NO
+                                           AND RNK = 1
+	</select>
+	<!-- 카드사별 Top 2  -->
+	<select id="cmpTop2" parameterType="hashmap" resultType="hashmap">
+		SELECT CC.CARD_CMP_NO, CC.CARD_CMP_NAME, CC.CARD_NO, CC.CARD_NAME, CC.CARD_SUMMARY, CBF.BENEFIT_TOP, CC.CARD_IMG_URL,
+            CC.CLICK_CNT, CC.RNK
+		FROM(SELECT CMP.CARD_CMP_NO, CMP.CARD_CMP_NAME, C.CARD_NO, C.CARD_NAME, C.CARD_SUMMARY, C.CARD_IMG_URL,
+		            C.CLICK_CNT, ROW_NUMBER() OVER(ORDER BY C.CLICK_CNT DESC) AS RNK
+		     FROM CARDS C INNER JOIN CARDCOMPANYS CMP
+		                     ON C.CARD_CMP_NO = CMP.CARD_CMP_NO
+		     WHERE C.CARD_CMP_NO = #{cmpTop2}) CC INNER JOIN CARDBENEFITS CBF
+                                           ON CC.CARD_NO = CBF.CARD_NO
+                                           AND RNK = 2
+	</select>
+	<!-- 카드사별 Top 3  -->
+	<select id="cmpTop3" parameterType="hashmap" resultType="hashmap">
+		SELECT CC.CARD_CMP_NO, CC.CARD_CMP_NAME, CC.CARD_NO, CC.CARD_NAME, CC.CARD_SUMMARY, CBF.BENEFIT_TOP, CC.CARD_IMG_URL,
+            CC.CLICK_CNT, CC.RNK
+		FROM(SELECT CMP.CARD_CMP_NO, CMP.CARD_CMP_NAME, C.CARD_NO, C.CARD_NAME, C.CARD_SUMMARY, C.CARD_IMG_URL,
+		            C.CLICK_CNT, ROW_NUMBER() OVER(ORDER BY C.CLICK_CNT DESC) AS RNK
+		     FROM CARDS C INNER JOIN CARDCOMPANYS CMP
+		                     ON C.CARD_CMP_NO = CMP.CARD_CMP_NO
+		     WHERE C.CARD_CMP_NO = #{cmpTop3}) CC INNER JOIN CARDBENEFITS CBF
+                                           ON CC.CARD_NO = CBF.CARD_NO
+                                           AND RNK = 3
+	</select>
 </mapper>
