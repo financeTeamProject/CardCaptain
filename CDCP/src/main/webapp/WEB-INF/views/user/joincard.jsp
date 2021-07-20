@@ -42,10 +42,11 @@ body {
 }
 .back_middle {
 	font-family: 'GmarketSansMedium';
-	width: 100%;
-	height: 90%;
-	background-color: white;
-	border: 1px solid #0047ab24;
+	background-color: #F2F2F2;
+    width: 100%;
+    height: 90%;
+    margin: 50px auto;
+    box-shadow: 0px 0px 18px 6px rgb(107 84 84 / 75%);
 	letter-spacing: 3px;
 }
 .contents {
