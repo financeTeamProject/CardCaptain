@@ -67,9 +67,9 @@ public class UserListContoller {
 		return mapper.writeValueAsString(modelMap);
 	}
 	
-	@RequestMapping(value="/JGJtestSAdd")
+	@RequestMapping(value="/addcard")
 	public ModelAndView testSAdd(ModelAndView mav) {
-		mav.setViewName("tests/JGJtestSAdd");
+		mav.setViewName("tests/addcard");
 		
 		return mav;
 	}
