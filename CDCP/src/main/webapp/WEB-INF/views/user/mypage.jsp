@@ -522,6 +522,7 @@ body{
 .joinBtn {
 	width: 65px;
 	height: 25px;
+	margin: 0 auto;
 }
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
@@ -575,10 +576,13 @@ $(document).ready(function() {
 	
 	// 추가하기
 	$("#joinBtn").on("click", function () {
+		var addcard = "";
+ 		addcard = $($(".add_wrap tr").attr("sno")).val();
+ 		alert(addcard);
+ 		console.log(addcard);
 	});
 	
 	//
-	$(".add_wrap tbody")
 	
 	function addcard() {
 		var params = $("#").serialize();
@@ -644,15 +648,11 @@ $(document).ready(function() {
 				add += "</tr>";
 				
 				$(".add_wrap tbody").append(add);
-					var add ="";
-				
-				$("#joinBtn").on("click", function () {
-					
-					console.log(memAdd);
-				});
+				var add ="";
 			}
 		});
 	}
+	
 		
 	//페이징 그리기
 	function drawPaging(pb) {
