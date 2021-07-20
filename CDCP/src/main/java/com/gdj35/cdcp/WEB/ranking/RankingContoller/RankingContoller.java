@@ -14,12 +14,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gdj35.cdcp.WEB.ranking.RankingService.RankingIService;
+import com.gdj35.cdcp.common.service.IPagingService;
 
 @Controller 
 public class RankingContoller {
 	
 	@Autowired
 	public RankingIService RankingiService;
+	
+	@Autowired
+	public IPagingService iPagingService;
 
 //	card rank 메인페이지
 	@RequestMapping(value="/card_rank")
@@ -148,12 +152,11 @@ public class RankingContoller {
 	  public ModelAndView cardview(
 			  @RequestParam HashMap<String, String> params, 
 			  ModelAndView mav) throws Throwable {
-		 	  
+		 // 카드 신청 클릭수 증가	  
 		  if(params.get("cardClick") != null) {
 			  int cnt = RankingiService.updateCnt(params);
-			  System.out.println("이것은 클릭수 ===================");
-			  System.out.println(cnt);
 		  }
+		 // 카드 상세보기 화면 
 		  try {
 			  if(params.get("cardNo") != null) { 
 		  

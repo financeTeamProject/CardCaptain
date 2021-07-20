@@ -421,17 +421,22 @@
 					line-height: 60px;
 				}	
 				.review_area{
-					display: flex;
-					justify-content: space-around;
 					width: 100%;
 					background-color: #f2f2f2;
 					border-radius: 50px;
 					padding: 20px 0px;
+					margin-bottom: 30px;
+				}
+				.review_top{
+					display: flex;
+					justify-content: space-around;
+					width: 100%;
 				}		
 					/* 사용자 평점 영역 */
 					.star_area{
 						display: inline-block;
 						vertical-align: top;
+						margin-left: 50px;
 					}
 						h2 {
 						font-size:20px;
@@ -457,7 +462,6 @@
 					.review_total{
 						display: inline-block;
 						vertical-align: top;
-						
 					}
 						.review_img{
 							display: inline-block;
@@ -482,7 +486,7 @@
 					.click_total{
 						display: inline-block;
 						vertical-align: top;
-						
+						margin-right: 50px;
 					}
 						.click_img{
 							display: inline-block;
@@ -508,6 +512,47 @@
 					.review_write_area{
 						width: 100%;
 						height: 500px; 
+					}
+					.login_btn_area{
+						margin-top: 20px;
+						margin-left: 50px;
+						font-family: GmarketSansMedium;
+					}
+					.list_area{
+						padding: 50px;
+					}
+						.list_area thead tr{
+							border-top: 1px solid #000;
+							border-bottom: 1px solid #000;
+							background-color: #0047AB;
+							height: 30px;
+							color: white;
+							font-family: GmarketSansMedium;
+						}
+						
+					.paging_area{
+						text-align: center;
+					}
+					#pagingWrap{
+						margin-top: 20px;
+					}
+					#pagingWrap span{
+						display: inline-block;
+						padding: 5px;
+						margin-left: 3px;
+						margin-right: 3px;
+						background-color: #DFDFDF;
+						border: 1px solid #444;
+						border-radius: 3px;
+						cursor: pointer;
+						width: 60px;
+						text-align: center;
+					}
+					#pagingWrap span:active {
+					background-color: #AAAAAA;
+					}
+					#pagingWrap .on {
+					background-color: #AAAAAA;
 					}
 
 	/* 풋터 영역 */
@@ -543,6 +588,7 @@
 	    margin-top: 10px;
 	}
 		/* 풋터 종료 */
+		
 </style>
 <script type="text/javascript"
 			src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
@@ -723,8 +769,8 @@ $(document).ready(function(){
 			<!-- 상위 내용 영역 -->
 			<div id="topArea">
 				<div id="nameSct">
-						<div id="cardName">${data[0].CARD_NAME}</div>
-						<div id="cardCmp">${data[0].CARD_CMP_NAME}</div>
+					<div id="cardName">${data[0].CARD_NAME}</div>
+					<div id="cardCmp">${data[0].CARD_CMP_NAME}</div>
 				</div>
 				<div class="bef_area">
 					<!-- 카드 이미지 영역 -->
@@ -784,9 +830,10 @@ $(document).ready(function(){
 				</c:forEach>
 			</div><!--bot_Area 종료-->
 						
-			<!-- 리뷰 영역 -->
-			<div id="review_name">카드 리뷰</div>
-			<div class="review_area">
+		<!-- 리뷰 영역 -->
+		<div id="review_name">카드 리뷰</div>
+		<div class="review_area">
+			<div class="review_top">
 				<!-- 사용자 평점 영역 -->
 				<div class="star_area">
 					<h2>사용자 총 평점</h2>
@@ -794,26 +841,132 @@ $(document).ready(function(){
 						<span style ="width:30%"></span>
 					</div>
 				</div>
-				<!-- 전체 리뷰 수 영역 -->
+		<!-- 전체 리뷰 수 영역 -->
 				<div class="review_total">
 					<h2>카드 리뷰수</h2>
 					<div class="review_img"></div>
 					<div class="review_cnt">100건</div>
 				</div>
-				<!-- 전체 조회수 영역 -->
+		<!-- 전체 조회수 영역 -->
 				<div class="click_total">
 					<h2>카드 신청수</h2>
 					<div class="click_img"></div>
-					<div class="click_cnt">5건</div>
+					<div class="click_cnt">${data[0].CLICK_CNT}건</div>
 				</div>
 			</div>
-			<!-- 리뷰 작성 영역 -->
+		<!-- 리뷰 작성 영역 -->
 			<hr style="border: 2px dashed black"/>
 			<div class="review_write_area">
-					
-					안녕하세요
-															
+				<div class="write_area">
+					<form action="#" id="actionForm" method="post">
+						<!-- 기본값들이 들어오게될거다 : hidden -->
+						<input type="hidden" id="sg" name="searchGbn" value="${param.searchGbn}" /><!-- 검색시 반드시 필요 -->
+						<input type="hidden" id="st" name="searchTxt" value="${param.searchTxt}" /><!-- 검색시 반드시 필요 -->
+						<input type="hidden" id="page" name="page" value="${page}" ><!-- 검색시 반드시 필요 -->
+						<!-- 글작성, 편집영역 -->
+						<c:choose>
+							<c:when test="${empty sMNo}">
+							<div class="login_btn_area">
+								<span>로그인이 필요한 영역입니다.</span>
+								<input type="button" value="로그인하러 가기" id="loginBtn" />
+							</div>
+							</c:when>
+							<c:otherwise>
+								<input type="hidden" name="mNo" value="${sMNo}" />
+								<input type="hidden" name="obNo" id="obNo" />
+									<textarea rows="3" cols="50" name="obCon" id="obCon"></textarea>
+								<input type="button" value="작성" id="writeBtn" />
+								<input type="button" value="수정" id="updateBtn" />
+								<input type="button" value="취소" id="cancelBtn" />
+							</c:otherwise>
+						</c:choose>
+					</form>
+				</div>
+				<div class="list_area">
+					<table>
+						<colgroup>
+							<col width="100px" />
+							<col width="200px" />
+							<col width="200px" />
+							<col width="400px" />
+							<col width="400px" />
+							<col width="300px" />
+						</colgroup>
+						<thead>
+							<tr>
+								<th>리뷰번호</th>
+								<th>닉네임</th>
+								<th>별점</th>
+								<th>내용</th>
+								<th>작성일</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="data" items="${list}">
+							<tr name="${data.OB_NO}">
+								<td>${data.M_NM}</td>
+								<td>${data.M_NM}</td>
+								<td>${data.M_NM}</td>
+								<td>${data.OB_CON}</td>
+								<td>${data.OB_CON}</td>
+								<td>
+								<c:if test="${sMNo eq data.M_NO}">
+									<input type="button" value="수정" id="updateBtn" />
+									<input type="button" value="삭제" id="deleteBtn" />
+								</c:if>
+								</td>
+							</tr>
+							</c:forEach>
+						</tbody>		
+					</table>
+				</div>
+				<div class="paging_area">
+					<!-- 검색 -->
+					<select id="searchGbn">
+						<option value="0">닉네임</option>
+						<option value="1">내용</option>
+					</select>
+					<input type="text" id="searchTxt" value="${param.searchTxt}" />
+					<input type="button" value="검색" id="searchBtn" /><br/>
+					<!-- 페이징 -->
+					<div id="pagingWrap">
+						<span name="1">처음</span>
+						<!-- 이전페이지 -->
+						<c:choose>
+							<c:when test="${page eq 1}">
+							<span name="1">이전</span>
+							</c:when>
+							<c:otherwise>
+							<span name="${page - 1}">이전</span>
+							</c:otherwise>
+						</c:choose>
+						<!-- 페이지들 -->
+						<c:forEach var ="i" begin="${pb.startPcount}" end="${pb.endPcount}" step="1">
+							<c:choose>
+								<c:when test="${i eq page}">
+									<span name="${i}"><b>${i}</b></span>
+								</c:when>
+								<c:otherwise>
+									<span name="${i}">${i}</span>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<!-- 다음페이지 -->
+						<c:choose>
+							<c:when test="${page eq pb.maxPcount}">
+								<span name="${pb.maxPcount}">다음</span>
+							</c:when>
+							<c:otherwise>
+								<span name="${page + 1}">다음</span>
+							</c:otherwise>
+						</c:choose>
+						<!-- 마지막페이지 -->
+						<span name="${pb.maxPcount}">마지막</span>
+					</div>
+				</div>											
 			</div>
+		</div>	
 	</div>
 </div>
 <!-- 풋터영역 -->
