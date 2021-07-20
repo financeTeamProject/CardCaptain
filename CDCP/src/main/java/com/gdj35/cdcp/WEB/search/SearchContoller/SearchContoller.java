@@ -45,7 +45,8 @@ public class SearchContoller {
 	public ModelAndView searchingCardList(ModelAndView mav, 
 			@RequestParam(required = false) HashMap<String,String> params,
 			@RequestParam(required = false) ArrayList<String> option) throws Throwable {
-
+		System.out.println("==================");
+System.out.println(option);
 		int page = 1;
 		
 		if(params.get("searchType").equals("keyword")) {//직접검색
@@ -92,19 +93,20 @@ public class SearchContoller {
 			
 			List<HashMap<String, String>> checkKeyword = iservice.checkKeyword(data);//중복제거 없이 모든 카드정보를 담아옴(li 반복을 위하여)
 			List<HashMap<String, String>> checkcardNoDistinct = iservice.checkcardNoDistinct(data);
+			System.out.println("======================");
+			System.out.println(checkcardNoDistinct.size());
 			int cnt = checkcardNoDistinct.size();
 			
 			PagingBean pb = ipage.getPagingBean(page, cnt);
 			
 			params.put("startCnt", Integer.toString(pb.getStartCount()));
 			params.put("endCnt", Integer.toString(pb.getEndCount()));
-			params.put("data", data.substring(1,data.length()-1));
+			params.put("data", data);//params.put으로 넣어도 안에 값이 String이면 '$'를 써야 함
 			
 			List<HashMap<String, String>> checkpagingDistinct = iservice.checkpagingDistinct(params);//화면에 보여줄 10개의 중복제거된 데이터
-			System.out.println("==============================");
-			System.out.println(checkpagingDistinct);
-			mav.addObject("searchKeyword",checkKeyword);//중복제거 없이 모든 카드정보를 담아옴(li 반복을 위하여)
+			
 			mav.addObject("pagingDistinct",checkpagingDistinct);//화면에 보여줄 10개의 중복제거된 데이터
+			mav.addObject("searchKeyword",checkKeyword);//중복제거 없이 모든 카드정보를 담아옴(li 반복을 위하여)
 			
 			mav.addObject("pb", pb);
 			mav.addObject("cnt",cnt);

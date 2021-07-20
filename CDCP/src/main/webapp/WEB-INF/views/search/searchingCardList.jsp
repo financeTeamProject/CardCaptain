@@ -301,8 +301,11 @@ $(document).ready(function() {
 	/* 상세보기 이동 */
 	$(".side_Btn").on("click", function(){
 		var vdt = $(this).prop('id').split("_");
-		$("#gogoForm #cardNo").val(vdt[1]);
-		$("#gogoForm").submit();
+		
+		if(vdt[0] == 'viewDt') {			
+			$("#gogoForm #cardNo").val(vdt[1]);
+			$("#gogoForm").submit();
+		}
 	}); // side_Btn click end
 });
 </script>
