@@ -94,9 +94,23 @@ public class RankingContoller {
 	}
 // 카드사별 Top3 페이지
 	@RequestMapping(value="/cardcompany_top3")
-	public ModelAndView cardcompany_top3 (ModelAndView mav) {
+	public ModelAndView cardcompany_top3 (
+			@RequestParam HashMap<String, String> params,
+			ModelAndView mav) throws Throwable{
+	System.out.println(params);
+		List<HashMap<String, String>> top1
+			= RankingiService.cmpTop1(params);
+		List<HashMap<String, String>> top2
+			= RankingiService.cmpTop2(params);
+		List<HashMap<String, String>> top3
+			= RankingiService.cmpTop3(params);
 		
-		mav.setViewName("ranking/cardcompany_top3s");
+		mav.addObject("top1", top1);
+		mav.addObject("top2", top2);
+		mav.addObject("top3", top3);
+		
+		
+		mav.setViewName("ranking/cardcompany_top3");
 		
 		return mav;
 	}
@@ -146,6 +160,11 @@ public class RankingContoller {
 		  System.out.println("================================");
 		  System.out.println(params);
 		  
+		  if(params.get("cardClick") != null) {
+			  int cnt = RankingiService.updateCnt(params);
+			  System.out.println("이것은 클릭수 ===================");
+			  System.out.println(cnt);
+		  }
 		  try {
 			  if(params.get("cardNo") != null) { 
 		  
@@ -153,10 +172,8 @@ public class RankingContoller {
 		  			data = RankingiService.getCView(params);
 		  
 				  mav.addObject("data", data);
-				
 				  
 				  mav.setViewName("ranking/cardview");
-				  System.out.println(data);
 			  }else {
 				  mav.setViewName("ranking/test4s");
 			  }
@@ -164,7 +181,7 @@ public class RankingContoller {
 		  		e.printStackTrace();
 		  }
 	  return mav; 
-	  }
-	  
+	 }
+
 }
 

@@ -72,4 +72,10 @@
                                            ON CC.CARD_NO = CBF.CARD_NO
                                            AND RNK = 3
 	</select>
+	<update id="updateCnt" parameterType="hashmap">
+		UPDATE CARDS SET CLICK_CNT = (SELECT NVL(CLICK_CNT,0) + 1
+		                              FROM CARDS
+		                              WHERE CARD_NO = #{cardClick})
+		WHERE CARD_NO = #{cardClick}
+	</update>
 </mapper>

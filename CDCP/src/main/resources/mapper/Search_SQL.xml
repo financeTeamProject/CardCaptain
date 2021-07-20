@@ -65,8 +65,8 @@
 		WHERE B.BENEFIT_TOP IN (${value})
 		ORDER BY C.CARD_NO
 	</select>
-	<!-- 페이징에 문제가 있음 -->
-	<select id="checkpagingDistinct" parameterType="String" resultType="hashmap">
+	<!-- params.put으로 넣어도 안에 값이 String이면 '$'를 써야 함 -->
+	<select id="checkpagingDistinct" parameterType="hashmap" resultType="hashmap">
 		SELECT B.CARD_NO, B.CARD_NAME, B.CARD_IMG_URL,B.RNUM
 		FROM (SELECT A.CARD_NO, A.CARD_NAME, A.CARD_IMG_URL, ROW_NUMBER() OVER(ORDER BY A.CARD_NO) AS RNUM 
 				FROM (SELECT DISTINCT C.CARD_NO, C.CARD_NAME, C.CARD_IMG_URL
@@ -74,7 +74,7 @@
 											 ON C.CARD_NO = T.CARD_NO
 									 INNER JOIN CARDBENEFITS B
 											 ON T.CARD_NO = B.CARD_NO
-						WHERE B.BENEFIT_TOP IN (#{data})
+						WHERE B.BENEFIT_TOP IN (${data})
         		ORDER BY C.CARD_NO) A
 		) B
 		WHERE B.RNUM BETWEEN #{startCnt} AND #{endCnt}

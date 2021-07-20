@@ -155,8 +155,9 @@ body{
 				font-family: 'GmarketSansMedium';
 				font-size: 20px;
 				color: rgba(51, 51, 51, 0.6);
+				cursor: pointer;
 			}
-			a:active{
+			.nav_btn:hover{
 				color: #0047AB;
 			}
 			/* 카드사별 top3 배경 */
@@ -424,6 +425,9 @@ body{
 			$("#goForm3").submit();
 		});
 		
+		$("#cardBoxBtn1").on("click", function(){
+			$("#goForm1").submit();
+		});
 		$(".nav_btn").on("click", function(){
 				//$("#cmpNo").val() : goform에 있는 value 변경.
 				$("#cmpNo").val($(this).prop('id'));
@@ -507,15 +511,15 @@ body{
 		<div id="contentMenu">
 			<div id="menuName">카드사별 TOP3</div>
 			<div class="nav_menubar">
-				<a href="#card_1" class="nav_btn" id="1">국민 카드</a>
-				<a href="#card_2" class="nav_btn" id="2">삼성 카드</a>
-				<a href="#card_3" class="nav_btn" id="3">롯데 카드</a>
-				<a href="#card_4" class="nav_btn" id="4">신한 카드</a>
-				<a href="#card_5" class="nav_btn" id="5">우리 카드</a>
-				<a href="#card_6" class="nav_btn" id="6">현대 카드</a>
-				<a href="#card_7" class="nav_btn" id="7">농협 카드</a>
-				<a href="#card_8" class="nav_btn" id="8">하나 카드</a>
-				<a href="#card_9" class="nav_btn" id="9">IBK 카드</a>
+				<div class="nav_btn" id="1">국민 카드</div>
+				<div class="nav_btn" id="2">삼성 카드</div>
+				<div class="nav_btn" id="3">롯데 카드</div>
+				<div class="nav_btn" id="4">신한 카드</div>
+				<div class="nav_btn" id="5">우리 카드</div>
+				<div class="nav_btn" id="6">현대 카드</div>
+				<div class="nav_btn" id="7">농협 카드</div>
+				<div class="nav_btn" id="8">하나 카드</div>
+				<div class="nav_btn" id="9">IBK 카드</div>
 			</div>
 		</div>
 	</div>
@@ -528,9 +532,9 @@ body{
 				<!-- 카드 이름 영역 -->
 				<div class="card_title">
 					<div class="title">
-						<div class="card_name_block">#국민카드 인기 TOP3</div>
+						<div class="card_name_block">#${top1[0].CARD_CMP_NAME} 인기 TOP3</div>
 						<div class="selection_criteria">
-						2021.01.01 ~ 2021.06.30 카드캡틴 신청클릭 기준입니다.
+						2021.01.01 ~ 2021.06.30 카드신청 클릭 기준입니다.
 						</div>
 					</div>
 				</div>
@@ -539,29 +543,29 @@ body{
 					<div class="card_box">
 						<div class="img_top1"></div>
 						<div class="card_title_text" id="cardTitleText1">
-						노리체크카드
+						${top1[0].CARD_NAME}
 						</div>
 						<div class="card_contents" id="cardContents1">
-						가는곳 마다 놀라운 할인혜택!
+						${top1[0].CARD_SUMMARY}
 						</div>
 						<div class="tag_set">
 							<div class="tag_age" id="benefitTop1_1">
-							20대 추천
+							${top1[0].BENEFIT_TOP}
 							</div>
 							<div class="tag_event" id="benefitTop1_2">
-							연회비 캐시백 이벤트
+							${top1[1].BENEFIT_TOP}
 							</div>
 							<div class="tag_age" id="benefitTop1_3">
-							20대 추천
+							${top1[2].BENEFIT_TOP}
 							</div>
 						</div>
 						<div class="card_box_img">
 							<img alt="카드" id="cardCmpImg1"
-							src=""
+							src="${top1[0].CARD_IMG_URL}"
 							width="250px" height="150px">
 						</div>
 						<form action="cardview" id="goForm1" method="post">
-						<input type="text" name="cardNo" id="cardNo1">
+						<input type="hidden" name="cardNo" value="${top1[0].CARD_NO}" id="cardNo1">
 						<div class="card_btn_area">
 							<input type="button" value="카드 상세보기  >" class="card_box_btn" id="cardBoxBtn1" />
 						</div>
@@ -571,29 +575,29 @@ body{
 					<div class="card_box">
 						<div class="img_top2"></div>
 						<div class="card_title_text" id="cardTitleText2">
-						청춘대로 톡톡 WITH 카드
+						${top2[0].CARD_NAME}
 						</div>
 						<div class="card_contents" id="cardContents2">
-						Simple하게 즐기자! 혜택 톡톡!
+						${top2[0].CARD_NAME}
 						</div>
 						<div class="tag_set">
 							<div class="tag_age" id="benefitTop2_1">
-							20대 추천
+							${top2[0].BENEFIT_TOP}
 							</div>
 							<div class="tag_event" id="benefitTop2_2">
-							연회비 캐시백 이벤트
+							${top2[1].BENEFIT_TOP}
 							</div>
 							<div class="tag_age" id="benefitTop2_3">
-							20대 추천
+							${top2[2].BENEFIT_TOP}
 							</div>
 						</div>
 						<div class="card_box_img">
 							<img alt="카드" id="cardCmpImg2"
-							src=""
+							src="${top2[0].CARD_IMG_URL}"
 							width="250px" height="150px">
 						</div>
 						<form action="cardview" id="goForm2" method="post">
-						<input type="text" name="cardNo" id="cardNo2">
+						<input type="hidden" name="cardNo" value="${top2[0].CARD_NO}" id="cardNo2">
 						<div class="card_btn_area">
 							<input type="button" value="카드 상세보기  >" class="card_box_btn" id="cardBoxBtn2" />
 						</div>
@@ -603,31 +607,29 @@ body{
 					<div class="card_box">
 						<div class="img_top3"></div>
 						<div class="card_title_text" id="cardTitleText3">
-						다담카드
+						${top3[0].CARD_NAME}
 						</div>
 						<div class="card_contents" id="cardContents3">
-						KB국민 훈민정음 두번째 이야기
-						<br/>
-						모두의 이야기를 담은 카드
+						${top3[0].CARD_NAME}
 						</div>
 						<div class="tag_set">
 							<div class="tag_age" id="benefitTop3_1">
-							할인 집중
+							${top3[0].BENEFIT_TOP}
 							</div>
 							<div class="tag_event" id="benefitTop3_2">
-							연회비 캐시백 이벤트
+							${top3[1].BENEFIT_TOP}
 							</div>
 							<div class="tag_age" id="benefitTop3_3">
-							할인 집중
+							${top3[2].BENEFIT_TOP}
 							</div>
 						</div>
 						<div class="card_box_img">
 							<img alt="카드" id="cardCmpImg3"
-							src=""
+							src="${top3[0].CARD_IMG_URL}"
 							width="250px" height="150px">
 						</div>
 						<form action="cardview" id="goForm3" method="post">
-						<input type="text" name="cardNo" id="cardNo3">
+						<input type="hidden" name="cardNo" value="${top3[0].CARD_NO}" id="cardNo3">
 						<div class="card_btn_area">
 							<input type="button" value="카드 상세보기  >" class="card_box_btn" id="cardBoxBtn3" />
 						</div>
