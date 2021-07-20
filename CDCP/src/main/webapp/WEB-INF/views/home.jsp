@@ -127,6 +127,11 @@ body {
     letter-spacing: 2px;
     display: none;
 }
+#logNick {
+	hight: 12px;
+	width: auto;
+	display: inline-block;
+}
 #logoutBtn {
 	width: 70px;
 	heigth: 40px;
@@ -462,8 +467,14 @@ $(document).ready(function(){
 	}); //로그아웃 end
 	
 	/* 어드민이동 */
-	$(sMNm).on("click", function(){
-		location.href = "/adm";
+	$("#logNick").on("click", function(){
+		location.href = "/mypage";
+	});
+	
+	$("#logNick").on("click", function(){
+		alert($("#mNo").val());
+		$("#memNo").attr("action");
+		$("#memNo").submit();
 	});
 	
 }); // document ready end
@@ -528,6 +539,9 @@ $(document).ready(function(){
 				<div class="menu1" id="search">카드검색/비교</div>
 				<div class="menu1" id="contents">컨텐츠</div>
 			</div>
+			<form action="mypage" id="memNo" method="post">
+				<input type="hidden" name="memNo" value="${sMNo}" id="mNo"/>
+			</form>
 			<div id="headerRight">
 				<input type="text" id="searchTxt">
 				<div id="imgSearch"></div>
@@ -536,7 +550,7 @@ $(document).ready(function(){
 						<div id="imgLogin"></div>
 					</c:when>
 					<c:otherwise>
-						${sMNm}  님 <input type="button" value="로그아웃" id="logoutBtn" />
+						<div id="logNick">${sMNm}</div><input type="button" value="로그아웃" id="logoutBtn" />
 					</c:otherwise>
 				</c:choose>
 			</div>

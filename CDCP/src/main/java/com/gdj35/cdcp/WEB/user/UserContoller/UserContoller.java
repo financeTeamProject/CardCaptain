@@ -250,4 +250,12 @@ public class UserContoller {
 		return mapper.writeValueAsString(modelMap);
 	}
 	
+	@RequestMapping(value = "/mypage")
+	public ModelAndView mypage(ModelAndView mav) {
+		
+		mav.setViewName("user/mypage");
+		
+		return mav;
+	}
+	
 }

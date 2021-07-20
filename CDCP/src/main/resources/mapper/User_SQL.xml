@@ -28,17 +28,20 @@
 		AND MEMBER_PW = #{mPw}
 	</select>
 	
+	<!-- 회원가입 -->
 	<insert id="joinM" parameterType="hashmap" >
 		INSERT INTO MEMBER_INFO(MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_BIRTH, GENDER, CONTACT, NICKNAME, LEAVE_CHECK, E_NAME, E_ADDRESS)
 		VALUES(MEMBER_INFO_SEQ.NEXTVAL, #{mId},#{mPw},#{mBirth},#{mGender},#{mPhone},#{mNick},'1',#{mEmail},#{address})
 	</insert>
 	
+	<!-- 아이디 중복체크 -->
 	<select id="idCheck" parameterType="hashmap" resultType="hashmap">
 		SELECT MEMBER_ID
 		FROM MEMBER_INFO
 		WHERE MEMBER_ID = #{mId}
 	</select>
 	
+	<!-- 이메일 중복체크 -->
 	<select id="emailCheck" parameterType="hashmap" resultType="hashmap">
 		SELECT MEMBER_ID
 		FROM MEMBER_INFO

@@ -208,9 +208,14 @@ body {
 	height: 25px;
 	margin-top: 3px;
 }
+.joinBtn {
+	width: 65px;
+	height: 25px;
+}
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
+var memAdd = "";
 $(document).ready(function () {
 	if("${param.searchGbn}" != "") {
 		$("${searchGbn}").val("${param.searchGbn}")
@@ -225,7 +230,6 @@ $(document).ready(function () {
 	
 	// 카드사선택
 	$(".blank").on("click", function () {
-		$("#searchOldTxt").val($("#searchTxt").val());
 		$("#page").val(1);
 		$("#cmpNo").val($(this).prop("id")); //1~9카드사
 		console.log($("#cmpNo").val());
@@ -235,8 +239,6 @@ $(document).ready(function () {
 	// 검색
 	$("#searchBtn").on("click", function () {
 		$("#page").val(1);
-		$("#searchOldTxt").val($("#searchTxt").val());
-		$("#searchOldTxt").val("");
 		
 		reloadList();
 	});
@@ -244,20 +246,19 @@ $(document).ready(function () {
 	// 페이징
 	$("#paging_wrap").on("click", "span", function () {
 		$("#page").val($(this).attr("page"));
-		$("#searchTxt").val($("#searchOldTxt").val());
 		
 		reloadList();
 	});
 	
 	// 추가하기
-	$("#addBtn").on("click", function () {
-		$("#searchTxt").val($("#searchOldTxt").val());
-		$("#actionForm").attr("action", "JGJtestSAdd");
-		$("#actionForm").submit();
-	});	
+	$("#joinBtn").on("click", function () {
+	});
+	
+	//
+	$(".add_wrap tbody")
 	
 	function addcard() {
-		var params = $("#addForm").serialize();
+		var params = $("#").serialize();
 		
 		$.ajax({
 			url: "addcards",
@@ -289,21 +290,45 @@ $(document).ready(function () {
 				console.log(error);
 			}
 		});
-	}	
+	}
 	// 목록 그리기
 	function drawList(list) {
 		var html = "";
 		// 	" +  + " : 만들어놓고 붙여넣어도 됨.
 		for(var d of list) {
 			html += "<tr sno=\"" + d.CARD_NO + "\">";
-			html += "<td>" + d.CARD_NO + "</td>";
-			html += "<td>" + d.CARD_TYPE + "</td>";
-			html += "<td>" + d.CARD_NAME + "</td>";
-			html += "<td>" + "<button value=\"추가\" class=addbtn>추가</button>" + "</td>";
+			html += "<td>" + "" + "</td>";
+			html += "<td class=\"a\">" + d.CARD_TYPE + "</td>";
+			html += "<td class=\"b\">" + d.CARD_NAME + "</td>";
+			html += "<td>" + "<button value=\"추가\" class=\"addbtn\" id=addbtn>추가</button>" + "</td>";
 			html += "</tr>";
 		}
 		
 		$(".list_wrap tbody").html(html);
+			var add ="";
+			var addcnt = 0;
+			
+		$(".list_wrap tr").on("click",function () {
+			addcnt++;
+			if(addcnt > 5) {
+				alert("추가못함.")
+			} else {
+				add += "<tr sno=\"" + $(this).attr("sno") + "\">";
+				add += "<td>" + "" + "</td>";
+				add += "<td>" + $(this).children( '.a' ).html() + "</td>";
+				add += "<td>" + $(this).children( '.b' ).html() + "</td>";
+				add += "<td>" + "<button value=\"추가\" class=\"addbtn\" id=addbtn>삭제</button>" + "</td>";
+				add += "</tr>";
+				
+				$(".add_wrap tbody").append(add);
+					var add ="";
+				
+				$("#joinBtn").on("click", function () {
+					
+					console.log(memAdd);
+				});
+			}
+		});
 	}
 		
 	//페이징 그리기
@@ -412,14 +437,6 @@ $(document).ready(function () {
 					<form action="#" id="joinCard" method="post">   
 						<input type="hidden" name="cmpNo" id="cmpNo" value="1" />
 						<input type="hidden" id="page" name="page" value="${page}" />
-						<select id="searchGbn" name="searchGbn">
-							<option value="0">검색</option>
-							<option value="1">카드타입</option>
-							<option value="2">카드명</option>
-						</select>
-						<input type="hidden" id="searchOldTxt" value="${param.searchOldTxt}" />
-						<input type="text" name="searchTxt" id="searchTxt" value="${param.searchTxt}" />
-						<input type="button" value="검색" id="searchBtn" />
 					</form><br/>
 <!-- Form end -->
 					<div class="list_wrap">
@@ -435,7 +452,7 @@ $(document).ready(function () {
 								<th></th>
 								<th>카드타입</th>
 								<th>카드명</th>
-								<th>추가</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody></tbody>
@@ -457,13 +474,16 @@ $(document).ready(function () {
 								<th></th>
 								<th>카드타입</th>
 								<th>카드명</th>
-								<th>삭제</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody></tbody>
 					</table>
 					</div>
+					<br/>
+					<br/>
 				</div>
+				<input type="button" value="다음" class="joinBtn" id="joinBtn" >
 			</div>
 		</div>
 	</div>

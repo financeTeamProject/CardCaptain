@@ -557,7 +557,11 @@ $(document).ready(function() {
 			data: params,
 			success: function (res) {
 				if(res.msg == "success") {
-					location.href = "joincard";
+					$("#addForm").attr("action");
+					$("#addForm").submit();
+					
+					// 회원번호값 가져가기
+					
 				} else if (res.msg == "failed") {
 					alert("회원가입에 실패하였습니다.");
 				} else {
@@ -583,7 +587,7 @@ $(document).ready(function() {
    <div class="back_middle">
 		<div class="middle1">
 		<div class="middle_top">회원가입 정보를 입력해주세요.</div>
-		<form action="#" id="addForm" method="post">
+		<form action="/cdcp" id="addForm" method="post">
 			<div class="title">아이디
 				<div class="errorMsg" id="errorMsgId"></div>
 	      	</div>
