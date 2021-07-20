@@ -472,7 +472,7 @@ $(document).ready(function(){
 	});
 	
 	$("#logNick").on("click", function(){
-		alert($("#mNo").val());
+		alert($("#sMNm").val());
 		$("#memNo").attr("action");
 		$("#memNo").submit();
 	});
@@ -540,7 +540,15 @@ $(document).ready(function(){
 				<div class="menu1" id="contents">컨텐츠</div>
 			</div>
 			<form action="mypage" id="memNo" method="post">
-				<input type="hidden" name="memNo" value="${sMNo}" id="mNo"/>
+				<input type="hidden" name="memNo" value="${sMNo}" id="sMNo"/>
+				<input type="hidden" name="memId" value="${sMId}" id="sMId"/>
+				<input type="hidden" name="memPW" value="${sMPw}" id="sMPw"/>
+				<input type="hidden" name="memBi" value="${sMBi}" id="sMBi"/>
+				<input type="hidden" name="memGe" value="${sMGe}" id="sMGe"/>
+				<input type="hidden" name="memCo" value="${sMCo}" id="sMCo"/>
+				<input type="hidden" name="memNm" value="${sMNm}" id="sMNm"/>
+				<input type="hidden" name="memNa" value="${sMNa}" id="sMNa"/>
+				<input type="hidden" name="memAd" value="${sMAd}" id="sMAd"/>
 			</form>
 			<div id="headerRight">
 				<input type="text" id="searchTxt">

@@ -29,9 +29,9 @@
     	AND C.RNK BETWEEN #{startCnt} AND #{endCnt}
 	</select>
 	
-<!-- 	<select id="getList" parameterType="hashmap">
+	<select id="addCard" parameterType="hashmap">
 		INSERT INTO HAVERCARDS(CARD_NO,MEMBER_NO,ADD_DATE)
-		VALUES(#{}, #{})
-	</select> -->
-
+		VALUES(#{카드번호}, #{회원번호})
+	</select>
+	
 </mapper>

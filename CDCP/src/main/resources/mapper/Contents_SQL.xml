@@ -22,5 +22,4 @@
 	 	INSERT INTO TIPS(TIP_NO, TIP_IMG_URL, TIP_TITLE, TIP_CONTENT, TIP_WRITER, TO_CHAR(ADD_DATE, 'YYYY.MM.DD') AS ADD_DATE)
 		VALUES(C_SEQ.NEXTVAL, #{cImg}, #{cTitle}, #{cWriter}, #{cDt}, UTL_RAW.CAST_TO_RAW('#{cCon}'))
 </insert>
-
 </mapper>

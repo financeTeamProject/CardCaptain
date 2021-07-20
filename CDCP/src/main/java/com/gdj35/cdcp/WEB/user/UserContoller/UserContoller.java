@@ -42,7 +42,13 @@ public class UserContoller {
 			
 			if(data != null) {
 				session.setAttribute("sMNo", data.get("MEMBER_NO"));
+				session.setAttribute("sMId", data.get("MEMBER_ID"));
+				session.setAttribute("sMPw", data.get("MEMBER_PW"));
+				session.setAttribute("sMBi", data.get("MEMBER_BIRTH"));
+				session.setAttribute("sMCo", data.get("CONTACT"));
 				session.setAttribute("sMNm", data.get("NICKNAME"));
+				session.setAttribute("sMNa", data.get("E_NAME"));
+				session.setAttribute("sMAd", data.get("E_ADDRESS"));
 				
 				modelMap.put("resMsg", "success");
 			} else {

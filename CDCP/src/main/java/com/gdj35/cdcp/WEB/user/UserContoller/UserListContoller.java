@@ -25,9 +25,10 @@ public class UserListContoller {
 	
 	// 카드목록
 	@RequestMapping(value="/joincard")
-	public ModelAndView joincards(
+	public ModelAndView joincard(
 			@RequestParam HashMap<String, String> params,
 			ModelAndView mav) {
+		
 		int page = 1;
 		
 		
@@ -36,7 +37,7 @@ public class UserListContoller {
 		} //상세보기 -> 목록 (검색어나 페이지 유지용)
 		 	
 		mav.addObject("page", page);
-		mav.setViewName("user/joincard");
+		mav.setViewName("user/mypage");
 		
 		return mav;
 	}
@@ -54,12 +55,14 @@ public class UserListContoller {
 		
 		int cnt = useriListService.getCnt(params);
 		
-		PagingBean pb = iPagingService.getPagingBean(page, cnt, 5 , 2);
+		PagingBean pb = iPagingService.getPagingBean(page, cnt, 5 , 3);
 		
 		params.put("startCnt", Integer.toString(pb.getStartCount()));
 		params.put("endCnt", Integer.toString(pb.getEndCount()));
 		
 		List<HashMap<String, String>> list = useriListService.getList(params);
+		System.out.println("====================================");
+		System.out.println(params);
 		
 		modelMap.put("list", list);
 		modelMap.put("pb", pb);
@@ -68,8 +71,8 @@ public class UserListContoller {
 	}
 	
 	@RequestMapping(value="/addcard")
-	public ModelAndView testSAdd(ModelAndView mav) {
-		mav.setViewName("tests/addcard");
+	public ModelAndView addcard(ModelAndView mav) {
+		mav.setViewName("user/addcard");
 		
 		return mav;
 	}
