@@ -131,14 +131,7 @@ public class RankingContoller {
 			= RankingiService.cmpTop2(params);
 		List<HashMap<String, String>> top3
 			= RankingiService.cmpTop3(params);
-		
-		System.out.println("============================");
-		System.out.println(top1);
-		System.out.println("============================");
-		System.out.println(top2);
-		System.out.println("============================");
-		System.out.println(top3);
-		
+				
 		if(top1 != null && top2 != null && top3 != null) {
 			modelMap.put("msg", "success");
 			modelMap.put("top1", top1);
@@ -155,11 +148,7 @@ public class RankingContoller {
 	  public ModelAndView cardview(
 			  @RequestParam HashMap<String, String> params, 
 			  ModelAndView mav) throws Throwable {
-		 
-		  
-		  System.out.println("================================");
-		  System.out.println(params);
-		  
+		 	  
 		  if(params.get("cardClick") != null) {
 			  int cnt = RankingiService.updateCnt(params);
 			  System.out.println("이것은 클릭수 ===================");
@@ -175,7 +164,7 @@ public class RankingContoller {
 				  
 				  mav.setViewName("ranking/cardview");
 			  }else {
-				  mav.setViewName("ranking/test4s");
+				  mav.setViewName("ranking/wrongApproach");
 			  }
 		  } catch(Throwable e) {
 		  		e.printStackTrace();
