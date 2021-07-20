@@ -34,11 +34,11 @@ public class SearchContoller {
 	}
 	
 	//카드비교 페이지
-	@RequestMapping(value = "/compareSearch")
-	public ModelAndView compareSearch(ModelAndView mav) {
-		mav.setViewName("search/compareSearch");
-		return mav;
-	}
+	//@RequestMapping(value = "/compareSearch")
+	//public ModelAndView compareSearch(ModelAndView mav) {
+	//	mav.setViewName("search/compareSearch");
+	//	return mav;
+	//}
 	
 	//카드검색 결과 페이지searchingCardList
 	@RequestMapping(value = "/searchingCardList")
