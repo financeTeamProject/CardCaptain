@@ -234,6 +234,7 @@ body{
 						    color: black;
 						    background: white;
 						    border-radius: 5px;
+						    cursor: pointer;
 					}
 						.nav_btn:hover{
 							background: #F5DF4D;
@@ -365,6 +366,11 @@ body{
 			$("#cardCmp").css("display", "block");
 			$("#cardTitle").css("display", "block");
 		});
+		
+		$(".nav_btn").on("click", function(){
+			$("#cmpNo").val($(this).prop('id'));
+			$("#goForm").submit();
+		}); // nav_btn click end
 	}); // document ready end
 </script>
 </head>
@@ -400,17 +406,20 @@ body{
 					<div id="cmpImg"></div>
 					<div id="cardCmp">카드사</div>
 					<div id="cardTitle">각 카드사별 TOP3</div>
-					<div class="nav_menubar"> <!-- a 태그 영역 -->
-						<a href="cardcompany_top3#1" class="nav_btn" id="kbCard">국민 카드</a>
-						<a href="#card_2" class="nav_btn" id="samsumgCard">삼성 카드</a>
-						<a href="#card_3" class="nav_btn" id="lotteCard">롯데 카드</a>
-						<a href="#card_4" class="nav_btn" id="shCard">신한 카드</a>
-						<a href="#card_5" class="nav_btn" id="weCard">우리 카드</a>
-						<a href="#card_6" class="nav_btn" id="hdCard">현대 카드</a>
-						<a href="#card_7" class="nav_btn" id="nhCard">농협 카드</a>
-						<a href="#card_8" class="nav_btn" id="hanaCard">하나 카드</a>
-						<a href="#card_9" class="nav_btn" id="ibkCard">IBK 카드</a>
+					<form action="cardcompany_top3" id="goForm" method="post">
+					<input type="hidden" name="cmpNo" value="" id="cmpNo"/>
+					<div class="nav_menubar"> 
+						<div class="nav_btn" id="1">국민 카드</div>
+						<div class="nav_btn" id="2">삼성 카드</div>
+						<div class="nav_btn" id="3">롯데 카드</div>
+						<div class="nav_btn" id="4">신한 카드</div>
+						<div class="nav_btn" id="5">우리 카드</div>
+						<div class="nav_btn" id="6">현대 카드</div>
+						<div class="nav_btn" id="7">농협 카드</div>
+						<div class="nav_btn" id="8">하나 카드</div>
+						<div class="nav_btn" id="9">IBK 카드</div>
 					</div>
+					</form>				
 				</div>
 				<div id="midCheck">
 					<div id="checkImg"></div>

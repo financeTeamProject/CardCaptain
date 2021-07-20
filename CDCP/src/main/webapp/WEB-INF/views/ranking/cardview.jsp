@@ -693,6 +693,10 @@ $(document).ready(function(){
 		$("#headerLogo").on("click", function(){
 			location.href = "/cdcp";
 		}); // headerLogo click end
+		
+		$("#bef_btn").on("click", function(){
+			$("#goForm").submit();
+		});
 	}); // document ready end
 </script>
 </head>
@@ -741,6 +745,8 @@ $(document).ready(function(){
 						</c:forEach>	
 					</div>
 				</div>
+				<form action="#" id="goForm" method="post">
+				<input type="hidden" name="cardClick" value="${data[0].CARD_NO}" />
 				<div id="btnSct">
 					<input type="button" value="카드 신청" class="bef_btn" id="bef_btn" onclick='window.open("${data[0].CARD_APPLY_URL}")' />
 					<input type="button" value="비교함 담기" class="compare_btn" id="compareBtn" />
@@ -749,6 +755,7 @@ $(document).ready(function(){
 						<input type = "button" value = "1" id= "bi2"/>						
 						</div>
 				</div>
+				</form>
 			</div>
 			<!-- 하위 내용 영역 -->
 			<div id="bnfTxt">주요 혜택</div>

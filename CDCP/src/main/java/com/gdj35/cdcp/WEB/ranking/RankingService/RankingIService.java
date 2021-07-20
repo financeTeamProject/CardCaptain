@@ -17,4 +17,8 @@ public interface RankingIService {
 
 	public List<HashMap<String, String>> cmpTop3(HashMap<String, String> params) throws Throwable;
 
+	public int updateCnt(HashMap<String, String> params) throws Throwable;
+
+
+
 }

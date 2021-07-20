@@ -50,4 +50,13 @@ public class RankingService implements RankingIService {
 		return RankingiDao.cmpTop3(params);
 	}
 
+	@Override
+	public int updateCnt(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return RankingiDao.updateCnt(params);
+	}
+
+
+
+
 }

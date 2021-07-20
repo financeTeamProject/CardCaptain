@@ -46,5 +46,10 @@ public class RankingDao implements RankingIDao{
 		
 		return sqlSession.selectList("R.cmpTop3", params);
 	}
-	
+	@Override
+	public int updateCnt(HashMap<String, String> params) throws Throwable {
+		
+		return sqlSession.update("R.updateCnt", params);
+	}
+
 }
