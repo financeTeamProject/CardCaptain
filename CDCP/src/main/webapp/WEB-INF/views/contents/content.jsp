@@ -484,7 +484,6 @@ h1 {
 				html += "<td>" + C.ADD_DATE + "</td>";
 				html += "</tr>";
 				}
-
 				$(".list_wrap tbody").html(html);
 			}
 			
