@@ -31,7 +31,10 @@ $(document).ready(function() {
 		
 		$("#updateBtn").on("click", function() {
 			
-			if($.trim($("#cTitle").val()) == "") {
+			if($.trim($("#cImg").val()) == "") {
+			alert("이미지를 넣어주세요.");
+			$("#cImg").focus();	
+			) else if($.trim($("#cTitle").val()) == "") {
 				alert("제목을 입력해주세요.");
 				$("#cTitle").focus();
 			} else if($.trim($("#cWriter").val()) == "") {
@@ -47,13 +50,13 @@ $(document).ready(function() {
 				var params = $("#updateForm").serialize();
 				
 				$.ajax({
-					url: "lhjtestUpdates",
+					url: "cardTipUpdates",
 					type: "post", 
 					dataType: "json",
 					data: params,	
 					success: function(res) {
 						if(res.msg == "success") {
-							$("#goForm").attr("action", "lhjtestD");
+							$("#goForm").attr("action", "cardTipD");
 							$("#goForm").submit();
 						} else if(res.msg == "failed") {
 							alert("작성에 실패하였습니다.");
@@ -71,18 +74,18 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<form action="lhjtestD" id="goForm" method="post">
-      <input type="hidden" name="sNo" value="${data.SELL_NO}" />
+<form action="" id="goForm" method="post">
+      <input type="hidden" name="cNo" value="${data.TIP_NO}" />
       <input type="hidden" name="page" value="${param.page}" />
-      <input type="hidden" name="searchGbn" value="${param.searchGbn}" />
-      <input type="hidden" name="searchTxt" value="${param.searchTxt}" />
+
    </form>
    <form action="#" id="updateForm" method="post">
-      <input type="hidden" name="sNo" value="${data.SELL_NO}" />
-      번호: ${data.SELL_NO}<br/>
+      <input type="hidden" name="cNo" value="${data.TIP_NO}" />
+      번호: ${data.TIP_NO}<br/>
       제목: <input type="text" id="cTitle" name="cTitle" /><br/>
       작성자: <input type="text" id="cWriter" name="cWriter" /><br/>
-      등록일: <input type="date" id="cDt" name="cDt" /><br/>
+      작성일: <input type="date" id="cDt" name="cDt" /><br/>
+      이미지: <input type="file" id="cImg" name="cImg" /><br/>
       내용 <br/>
 		<textarea rows="20" cols="50" id="cCon" name="cCon"></textarea><br/>
    </form>

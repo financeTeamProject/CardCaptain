@@ -247,7 +247,7 @@ h1 {
 	margin: 30px auto;	
 }
 
-#content_1 {
+.content_1 {
 	width: 70%;
 	height: 300px;
 	margin: 0 auto;
@@ -267,13 +267,13 @@ h1 {
     border-radius: 15px 15px 15px 15px;         
 }
 
-#img_rayout, #content_content {
+.img_rayout, #content_content {
    display: inline-block;
    vertical-align: top;
    
 }
 
-#img_rayout {
+.img_rayout {
     background-color: #eee;
     cursor: pointer;
     height: 300px;
@@ -281,7 +281,15 @@ h1 {
     margin: 0px auto;
 }
 
-#img_rayout > div {
+.img_rayout > div, img {
+	width: 240px;
+	height: 300px;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin: 0px auto;
+}
+
+.img_rayout > img {
 	width: 240px;
 	height: 300px;
 	background-repeat: no-repeat;
@@ -306,6 +314,23 @@ h1 {
 }
 
 
+.con {
+	height: 60%;
+	width: 80%;
+	font-size: 13px;
+	font-family: 'Cafe24Ohsquare';
+	color: black;
+	margin: 0px auto;
+}
+
+.writer, .Cdate {
+	height: 10%;
+	width: 90%;
+	font-size: 15px;
+	font-family: 'GmarketSansLight';
+	color: black;
+	float: left;
+}
 
 .box-wrapper{ /* 카드간단용어 전체틀 */
 	width: 650px;
@@ -440,6 +465,28 @@ h1 {
 				location.href = "cardTip_3";
 			});
 			
+			$(".img_rayout img").on("click", "tr", function() {
+				$("#cNo").val($(this).attr("cno"));
+				
+				$("#actionForm").attr("action", "");
+				$("#actionForm").submit();
+			});
+			
+			function drawList(list){
+				var html = "";
+				
+				for(var c of list){
+				html += "<tr cno=\"" + C.TIP_NO + "\">";
+				html += "<td>" + C.TIP_IMG_URL + "</td>";
+				html += "<td>" + C.TIP_TITLE + "</td>";
+				html += "<td>" + C.TIP_CONTENT + "</td>";
+				html += "<td>" + C.TIP_WRITER + "</td>";
+				html += "<td>" + C.ADD_DATE + "</td>";
+				html += "</tr>";
+				}
+
+				$(".list_wrap tbody").html(html);
+			}
 			
 		});	 // document ready end
 </script>		
@@ -483,38 +530,25 @@ h1 {
 	<div class="rayout">
 		<div id="s_left_sub"></div>
 		<div id="main_sub">	
-			<div class="title">카드활용꿀팁</div>			
-				<div class="content">
-					<div id="content_1">
-						<div id="img_rayout"><div id="img_rayout_1"></div></div>
+			<div class="title">카드활용꿀팁</div>
+			<c:forEach var = "i" begin = "0" end = "2">			
+				<div class="content"> <!-- tr -->
+					<div class="content_1">
+						<div class="img_rayout">
+							<img src="${list[i].TIP_IMG_URL}">
+						</div>
 						<div id="content_content">
-						<h2>올해부터 시행되는 신용점수제! 신용점수 올리기 꿀TIP</h2>
-						<h1>기사내용</h1>
-						<div>등록일자 데이터</div>
-						<div>등록한 사람</div>
+						<h2>${list[i].TIP_TITLE}</h2>
+						<div class ="con">
+							<h1>${list[i].TIP_CONTNET}</h1>
+						</div>
+						<div class="Cdate">${list[i].ADD_DATE} BY ${list[i].TIP_WRITER}</div>
 						</div>
 					</div>				
 				</div>
+			</c:forEach>
 				<div class="content">
-					<div id="content_1">
-						<div id="img_rayout"><div id="img_rayout_2"></div></div>
-						<div id="content_content">
-						<h2>새롭게, 또 다시 정리하는 카드론의 모든 것!</h2>
-						<h1>기사내용</h1>
-						</div>
-					</div>				
-				</div>
-				<div class="content">
-					<div id="content_1">
-						<div id="img_rayout"><div id="img_rayout_3"></div></div>
-						<div id="content_content">
-						<h2>올해엔 신용카드를 발급받아야 하는 3가지 이유 (feat. 에디터의 뼈저리는 사건)</h2>
-						<h1>기사내용</h1>
-						</div>
-					</div>				
-				</div>
-				<div class="content">
-					<div id="content_1">
+					<div class="content_1">
 					<c:forEach var = "i" begin = "0" end = "2">
 						<div class="movie">
 							<img src="${data[i].VIDEO_IMG}" onclick = "window.open('${data[i].VIDEO_LINK}')">
@@ -525,8 +559,8 @@ h1 {
 				</div>
 				<div class="title">카드용어정리</div>
 					<div class="content">
-						<div id="content_1">
-							<div id="img_rayout"><div id="img_rayout_4"></div></div>
+						<div class="content_1">
+							<div class="img_rayout"><div id="img_rayout_4"></div></div>
 							<div id="content_content">
 							<h2>신용카드가 처음이라면, 종류부터 알고보자</h2>
 							<div></div>

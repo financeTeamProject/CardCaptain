@@ -137,30 +137,19 @@ public class ContentController {
 			ModelAndView mav) throws Throwable{
 		
 		List<HashMap<String, String>> 
-		list = ContentsiService.getMovie(params);
-		
-		mav.addObject("list", list);
-		
-		System.out.println(list);
-		mav.setViewName("contents/content");
-		
-		return mav;
-	}
-	/*
-	@RequestMapping(value="/content") // 
-	public ModelAndView content3(
-			@RequestParam HashMap<String, String> params,
-			ModelAndView mav) throws Throwable{
+		data = ContentsiService.getMovie(params);
 		
 		List<HashMap<String, String>> 
 		list = ContentsiService.getTip(params);
 		
+		mav.addObject("data", data);
 		mav.addObject("list", list);
 		
+		System.out.println(data);
 		System.out.println(list);
 		mav.setViewName("contents/content");
 		
 		return mav;
 	}
-	*/
+
 }

@@ -214,7 +214,7 @@ h3 {
 	padding-left: 30px;
 }
 
-#termes {
+.termes {
 	border: 5px 5px 5px 5px;
 	margin: 0px auto;
 	height: 2800px;
@@ -225,13 +225,13 @@ h3 {
 	min-width: 960px;
 }
 
-#termes > div {
+.termes > div {
 	font-size: 16px;
  	line-height: 32px;
  	padding-top: 10px;
 }
 
-#termes > #guide_title {
+.termes > #guide_title {
 	float: left;
 	font-size: 20px;
 	font-weight: bold;
@@ -366,10 +366,9 @@ span {
 			<div id="title_termes">
 			<h1><strong>카드 활용 꿀팁</strong></h1>
 			<h2>올해부터 시행되는 신용점수제! 신용점수 올리기 꿀TIP</h2>
-			<div class="contentDate">날짜</div>
-			<div class="uploder">등록한 사람</div>
+			<div class="Cdate">날짜 BY 등록한 사람</div>
 			</div>
-			<div id="termes">
+			<div class="termes">
 					<div>
 					2021년 모든 금융소비자들에게 적용되는 가장 중요한 이슈를 뽑으라면 당연히 '신용점수제' 일 것이다.
 					기존의 1~10 신용등급에서 1~1000점의 신용점수제로 변화되면서 그동안 등급의 문턱에 가로막혀서 금융서비스를 받지 못했던 사람들의 불만이 어느정도 해소될 것으로 보인다.
