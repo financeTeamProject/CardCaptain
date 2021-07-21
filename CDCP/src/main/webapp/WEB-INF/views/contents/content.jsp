@@ -66,7 +66,7 @@ h1 {
 
 
 #headerWrap {
-	width: 1400px;
+	width: 1600px;
 	height: 100%;
 	margin: 0 auto;
 	display: flex;
@@ -283,7 +283,7 @@ h1 {
     margin: 0px auto;
 }
 
-.img_rayout > div, img {
+.img_rayout > div {
 	width: 240px;
 	height: 300px;
 	background-repeat: no-repeat;
@@ -291,7 +291,7 @@ h1 {
 	margin: 0px auto;
 }
 
-.img_rayout > img {
+.img_rayout > a img{
 	width: 240px;
 	height: 300px;
 	background-repeat: no-repeat;
@@ -457,13 +457,9 @@ h1 {
 			}); 
 			
 			/* 카드활용꿀팁 이동 */
-			$(".img_rayout:nth-child(1)").on("click", function() {
+			/* $(".img_rayout").on("click", function() {
 				location.href = "cardTip_1";
-			});
-			
-			$(".img_rayout:nth-child(1)").on("click", function() {
-				location.href = "cardTip_2";
-			});
+			}); */
 			
 			function drawList(list){
 				var html = "";
@@ -530,8 +526,10 @@ h1 {
 	 	<c:forEach var = "i" begin = "0" end = "2">			
 				<div class="content"> <!-- tr -->
 					<div class="content_1">
-						<div class="img_rayout">
-							<img src="${list[i].TIP_IMG_URL}">
+						<div class="img_rayout" id="${list[i].TIP_NO}">
+							<a href="cardTip_${list[i].TIP_NO}">
+								<img src="${list[i].TIP_IMG_URL}">
+							</a>
 						</div>
 						<div id="content_content">
 						<h2>${list[i].TIP_TITLE}</h2>
