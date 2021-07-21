@@ -203,7 +203,6 @@
 	#content{
 	width: 100%;
 	height: 100%;
-	min-width: 1830px;
 	}
 		#contentMenu{
 			width: 1600px;
@@ -886,19 +885,39 @@ $(document).ready(function(){
 				<div class="list_area">
 					<table>
 						<colgroup>
+							<col width="100px" />
+							<col width="200px" />
 							<col width="200px" />
 							<col width="400px" />
-							<col width="200px" />
+							<col width="400px" />
+							<col width="300px" />
 						</colgroup>
-						<tbody>
+						<thead>
 							<tr>
-								<td class="review_uplode_img">
-									<img alt="고객 리뷰 사진" src="resources/images/ranking/logo/Hero.png" width="80px" height="80px">
-								</td>
+								<th>리뷰번호</th>
+								<th>닉네임</th>
+								<th>별점</th>
+								<th>내용</th>
+								<th>작성일</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="data" items="${list}">
+							<tr name="${data.OB_NO}">
+								<td>${data.M_NM}</td>
+								<td>${data.M_NM}</td>
+								<td>${data.M_NM}</td>
+								<td>${data.OB_CON}</td>
+								<td>${data.OB_CON}</td>
 								<td>
-									
+								<c:if test="${sMNo eq data.M_NO}">
+									<input type="button" value="수정" id="updateBtn" />
+									<input type="button" value="삭제" id="deleteBtn" />
+								</c:if>
 								</td>
 							</tr>
+							</c:forEach>
 						</tbody>		
 					</table>
 				</div>
