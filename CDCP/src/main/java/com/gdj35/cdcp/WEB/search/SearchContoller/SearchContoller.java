@@ -32,16 +32,16 @@ public class SearchContoller {
 	
 	//키워드검색 페이지
 	@RequestMapping(value = "/keywordSearch")
-	public ModelAndView keywordSearch(ModelAndView mav,@RequestParam(required = false) HashMap<String,String> params) {
-		System.out.println("============");
-		System.out.println(params);
+	public ModelAndView keywordSearch(ModelAndView mav) {
 		mav.setViewName("search/keywordSearch");
 		return mav;
 	}
 	
 	//카드비교 페이지
 	@RequestMapping(value = "/compareSearch")
-	public ModelAndView compareSearch(ModelAndView mav) {
+	public ModelAndView compareSearch(ModelAndView mav,@RequestParam(required = false) HashMap<String,String> params) {
+		System.out.println("============");
+		System.out.println(params);
 		mav.setViewName("search/compareSearch");
 		return mav;
 	}
