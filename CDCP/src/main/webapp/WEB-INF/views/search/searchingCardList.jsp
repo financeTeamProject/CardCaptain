@@ -34,6 +34,96 @@ body{
     font-weight: normal;
     font-style: normal;
 }
+
+/* 팝업 영역  */
+
+#bi1{
+	cursor:pointer;
+	position: relative;
+	top:90%;
+	left:0%;
+	position: fixed;
+	background-color:#0047ab;
+	color : white;
+	width: 150px;
+	height: 110px;
+	text-align:center;
+	line-height:50px;
+	font-weight:bold;
+	font-size:24px;
+	font-family: 'Cafe24Ohsquare';
+	z-index:200;
+	margin:0 auto;
+}
+
+#bi2{
+	top: 90%;
+    left: 3%;
+    position: fixed;
+    background-color: #ff6e61;
+    color: white;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 37px;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'Cafe24Ohsquare';
+    z-index: 200;
+    margin: 0 auto;
+    border-radius: 20px;
+	border: 1px;
+}
+
+	.Popup{
+		z-index:150;
+	}
+
+	#p1{
+	    font-size: 15px;
+	    position: relative;
+	    top: 85%;
+	    position: fixed;
+	    padding: 10px;
+	    background-color: #A0CFEC;
+	    color: white;
+	    font-family: 'Cafe24Ohsquare';
+	    border: 0px;
+	    cursor: pointer;
+	    z-index: 150;
+	    width: 91px;
+	    height: 50px;
+		}
+
+	#p2{
+		font-size: 15px;
+	    position: relative;
+	    top: 85%;
+	    left: 90px;
+	    position: fixed;
+	    padding: 10px;
+	    background-color: #FFE5B4;
+	    color: white;
+	    font-family: 'Cafe24Ohsquare';
+	    border: 0px;
+	    cursor: pointer;
+	    z-index: 150;
+	    width: 60px;
+	    height: 50px;	
+	   } 
+
+
+	.Popdown{
+		display:inline-block;
+		width:100%;
+		height:100%;
+		position: fixed;
+		top:0;
+		left:0;
+		z-index: 100;
+		opacity: 0.3; /* 0.0(투명) ~ 1.0(불투명)  */
+	}
+
 /* 헤더 시작 by KJ */
 #header {
 	width: 100%;
@@ -238,18 +328,27 @@ body{
 	vertical-align: top;
 	display: inline-block;
 }
-.side_Btn {
+.side_Btn , .side_Btn1{
 	vertical-align:top;
 	font-size: 14px;
 	font-family: 'Cafe24Ohsquare';
 	margin-block-start: 0em;
     margin-block-end: 0em;
 }
+
 .side_Btn:hover {
 	color: #0047AB;
 	cursor: pointer;
 	text-decoration:underline;
 }
+
+.side_Btn1:hover{
+	color: #0047AB;
+	cursor: pointer;
+	text-decoration:underline;
+
+}
+
 .cardList_etc :nth-child(1) {
 	padding-top: 10px;
 }
@@ -273,6 +372,68 @@ body{
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
+
+/*비교함 담기  */	
+$(document).ready(function(){
+		 var cardNo = [];
+	/* 옆에 비교함 버튼 조건  */
+    $(".side_Btn1").on("click", function() {
+    	var temp = "";
+		if(cardNo.length > 2) {
+			alert("비교함이 가득 찼습니다.");
+		} else {
+			cardNo.push($(this).prop('id'));
+			console.log(cardNo);
+			$("#bi2").val(cardNo.length);
+		for(var i=0; i<cardNo.length; i++){
+			for(var j=0; j<i; j++){
+				if(cardNo[i] == cardNo[j]) {
+						alert("동일한 카드가 있습니다.");
+						cardNo.pop();//pop() = 배열의 마지막 요소 제거
+						$("#bi2").val(cardNo.length);
+						return false;
+					} 
+				}
+			}
+		}
+	});
+   
+});
+
+/* 비교함 팝업 */	
+$(document).ready(function(){
+	$("#bi").hide();
+	$(".side_Btn1").on("click" , function(){
+		$("#bi").hide();
+		$("#bi").fadeIn();
+	});
+	$("#bi").on("click",function(){
+		makePopup();
+		});
+   });
+
+function makePopup(){
+	var html = "<div class = \"Popup\">"
+		+ "<input type = \"button\" id = \"p1\" value = \"비교함 이동\" readonly = \"readonly\" >"
+		+ "<input type = \"button\" id = \"p2\" value = \"취소\"  readonly = \"readonly\" >"
+		+ "</div>"
+		$("body").prepend(html);
+		$(".Popup").hide().fadeIn();
+		$("#p1").on("click",function(){
+			location.href = "http://localhost:8090/cdcp/compareSearch";
+		});
+	$("#p2").off("click");
+	$("#p2").on("click",function(){
+			closePopup();
+		});
+	}				
+		
+function closePopup(){
+	$(".Popup").fadeOut(function(){
+		$(".Popup").remove();
+	});
+}
+
 $(document).ready(function() {
 	/* 카드순위 페이지 이동 */
 	$("#ranking").on("click", function(){
@@ -346,6 +507,7 @@ $(document).ready(function() {
 <div id="content">
 	<div id="contentMenu">
 	<div id="main" class="main">
+<<<<<<< HEAD
 		<div id="keyword" class="keyword">
 			<ul>
 			<c:forEach var="data" items="${options}">
@@ -353,6 +515,19 @@ $(document).ready(function() {
 			</c:forEach>
 			</ul>
 		</div>
+=======
+ 		<div id="keyword" class="keyword">
+ 			<ul>
+ 				<c:forEach var="data" items="${options}">
+					<li>${data}</li>
+ 				</c:forEach>
+ 			</ul>
+ 			<div id = "bi">
+						<input type = "button" value = "비교함 확인" id = "bi1"/>
+						<input type = "button" value = "1" id= "bi2"/>
+			</div>	
+ 		</div>
+>>>>>>> branch 'main' of https://github.com/financeTeamProject/CardCaptain.git
 <c:set var="size" value="${fn:length(pagingDistinct)}" />
 <c:choose>
 <c:when test="${size > 0}">
@@ -372,7 +547,7 @@ $(document).ready(function() {
 					</ul>
 				</div>
 				<div id="cardList_1_etc" class="cardList_etc">
-					<h4 class="side_Btn" id="viewBox_${pagingDistinct[i].CARD_NO}"><i class='fa fa-plus'></i>&nbsp;비교함 담기</h4>
+					<h4 class="side_Btn1" id="viewBox_${pagingDistinct[i].CARD_NO}"><i class='fa fa-plus'></i>&nbsp;비교함 담기</h4>
 					<h4 class="side_Btn" id="viewDt_${pagingDistinct[i].CARD_NO}"><i class='fa fa-angle-double-right'></i>&nbsp;상세보기</h4>
 				</div>
 			</div>
