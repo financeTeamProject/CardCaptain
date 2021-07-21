@@ -79,7 +79,7 @@ public class SearchContoller {
 			
 			mav.addObject("option", params.get("option"));
 			mav.addObject("searchType", params.get("searchType"));
-			mav.addObject("options", option + " 관련 카드");
+			mav.addObject("options", option);
 
 			mav.setViewName("search/searchingCardList");
 		} else if (params.get("searchType").equals("optionClick")) {//keyword 옵션선택
@@ -96,7 +96,6 @@ public class SearchContoller {
 			
 			List<HashMap<String, String>> checkKeyword = iservice.checkKeyword(data);//중복제거 없이 모든 카드정보를 담아옴(li 반복을 위하여)
 			List<HashMap<String, String>> checkcardNoDistinct = iservice.checkcardNoDistinct(data);
-			
 			int cnt = checkcardNoDistinct.size();
 			
 			PagingBean pb = ipage.getPagingBean(page, cnt);
@@ -117,7 +116,7 @@ public class SearchContoller {
 			
 			mav.addObject("option", params.get("option"));
 			mav.addObject("searchType", params.get("searchType"));
-			mav.addObject("options", option + " 관련 카드");
+			mav.addObject("options", option);
 			
 			mav.setViewName("search/searchingCardList");
 		} else if (params.get("searchType").equals("check")) {//옵션체크
@@ -140,9 +139,15 @@ public class SearchContoller {
 				}
 			}
 			
-			kind = kind.substring(1,kind.length());				
-			type = type.substring(1,type.length());
-			benefit = benefit.substring(1,benefit.length());
+			if (kind.length() > 0) {
+				kind = kind.substring(1,kind.length());
+			}
+			if (type.length() > 0) {
+				type = type.substring(1,type.length());
+			}
+			if (benefit.length() > 0) {
+				benefit = benefit.substring(1,benefit.length());				
+			}
 			
 			params.put("kind", kind);
 			params.put("type", type);
@@ -153,25 +158,18 @@ public class SearchContoller {
 			if(params.get("page") != null) {
 				page = Integer.parseInt(params.get("page"));
 			}
-			try {
-				List<HashMap<String, String>> searchKeyword = iservice.checklistKeyword(params);//중복제거 없이 모든 카드정보를 담아옴(li 반복을 위하여)
-				mav.addObject("searchKeyword",searchKeyword);//중복제거 없이 모든 카드정보를 담아옴(li 반복을 위하여)
-				System.out.println("===========================");
-				System.out.println(searchKeyword);				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			List<HashMap<String, String>> cardNoDistinct = iservice.cardNoDistinct(params);
+			List<HashMap<String, String>> searchKeyword = iservice.checklistKeyword(params);//중복제거 없이 모든 카드정보를 담아옴(li 반복을 위하여)
+			List<HashMap<String, String>> cardNoDistinct = iservice.checkDistinct(params);
 			
 			int cnt = cardNoDistinct.size();
-			
 			PagingBean pb = ipage.getPagingBean(page, cnt);
 		
 			params.put("startCnt", Integer.toString(pb.getStartCount()));
 			params.put("endCnt", Integer.toString(pb.getEndCount()));
 			
-			List<HashMap<String, String>> pagingDistinct = iservice.pagingDistinct(params);//화면에 보여줄 10개의 중복제거된 데이터
+			List<HashMap<String, String>> pagingDistinct = iservice.listpagingDistinct(params);//화면에 보여줄 10개의 중복제거된 데이터
 
+			mav.addObject("searchKeyword",searchKeyword);//중복제거 없이 모든 카드정보를 담아옴(li 반복을 위하여)
 			mav.addObject("pagingDistinct",pagingDistinct);//화면에 보여줄 10개의 중복제거된 데이터
 			
 			mav.addObject("pb", pb);
@@ -181,7 +179,7 @@ public class SearchContoller {
 			
 			mav.addObject("option", params.get("option"));
 			mav.addObject("searchType", params.get("searchType"));
-			mav.addObject("options", option + " 관련 카드");
+			mav.addObject("options", option);
 			mav.setViewName("search/searchingCardList");
 		} else {
 			mav.setViewName("ranking/test4s");

@@ -98,6 +98,9 @@
 					END AS CARD_TYPE, B.BENEFIT_TOP,C.CARD_IMG_URL
 				FROM CARDS C INNER JOIN CARDBENEFITS B ON C.CARD_NO = B.CARD_NO
 							 INNER JOIN CARDTYPES T ON B.CARD_NO = T.CARD_NO) A
+		 <if test="kind == '' and type == '' and benefit == ''">
+		 	WHERE 1 = 1
+		 </if>
 		 <if test="kind != '' or type != '' or benefit != ''">
 		 	WHERE 1!= 1
 		 </if>
@@ -110,13 +113,65 @@
 		<if test="benefit != ''">
 			OR CARD_KIND IN (${benefit})
 		</if>
+		ORDER BY CARD_NO
 	</select>
 	
 	<select id="cardListGet" parameterType="ArrayList" resultType="hashmap">
-		<!-- SELECT C.CARD_NO,C.CARD_CMP_NO,C.CARD_NAME,C.CARD_IMG_URL,C.CARD_TYPE,B.BENEFIT_MID
-		FROM CARDS C INNER JOIN CARDBENEFITS B
-							 ON C.CARD_NO = B.CARD_NO
-		ORDER BY C.CARD_CMP_NO -->
-		SELECT * FROM CARDS
+		SELECT C.CARD_NO,C.CARD_NAME,C.CARD_SUMMARY, DECODE(C.CARD_TYPE, 0, '신용카드','체크카드') AS CARD_KIND, DECODE(T.CARD_TYPE,0,'할인',1,'적립',2,'마일리지') AS CARD_TYPE,C.CARD_IMG_URL
+		FROM CARDS C INNER JOIN CARDTYPES T
+                    		 ON C.CARD_NO = T.CARD_NO
+	</select>
+	
+	<select id="checkDistinct" parameterType="hashmap" resultType="hashmap">
+		SELECT DISTINCT CARD_NO, CARD_NAME
+		FROM(SELECT C.CARD_NO,C.CARD_NAME,DECODE(C.CARD_TYPE, 0, '신용카드','체크카드') AS CARD_KIND,
+					CASE WHEN T.CARD_TYPE = 0 THEN '할인'
+						 WHEN T.CARD_TYPE = 1 THEN '적립'
+						 ELSE '마일리지'
+					END AS CARD_TYPE, B.BENEFIT_TOP,C.CARD_IMG_URL
+				FROM CARDS C INNER JOIN CARDBENEFITS B ON C.CARD_NO = B.CARD_NO
+							 INNER JOIN CARDTYPES T ON B.CARD_NO = T.CARD_NO) A
+		 <if test="kind == '' and type == '' and benefit == ''">
+		 	WHERE 1 = 1
+		 </if>
+		 <if test="kind != '' or type != '' or benefit != ''">
+		 	WHERE 1!= 1
+		 </if>
+		<if test="kind != ''">
+			OR CARD_KIND IN (${kind})
+		</if>
+		<if test="type != ''">
+			OR CARD_KIND IN (${type})
+		</if>
+		<if test="benefit != ''">
+			OR CARD_KIND IN (${benefit})
+		</if>
+		ORDER BY CARD_NO
+	</select>
+	
+	<select id="listpagingDistinct" parameterType="hashmap" resultType="hashmap">
+		SELECT C.CARD_NO,C.CARD_NAME,C.CARD_IMG_URL,C.RNUM
+		  FROM(SELECT B.CARD_NO,B.CARD_NAME,B.CARD_KIND,B.CARD_TYPE,B.CARD_IMG_URL, ROW_NUMBER() OVER(ORDER BY B.CARD_NO) AS RNUM
+				 FROM(SELECT DISTINCT CARD_NO,CARD_NAME,CARD_KIND,CARD_TYPE,CARD_IMG_URL
+						FROM(SELECT C.CARD_NO, C.CARD_NAME, DECODE(C.CARD_TYPE,0,'신용카드','체크카드') AS CARD_KIND, C.CARD_IMG_URL, DECODE(T.CARD_TYPE,0,'할인',1,'적립',2,'마일리지') AS CARD_TYPE,B.BENEFIT_TOP
+							   FROM CARDS C INNER JOIN CARDBENEFITS B ON C.CARD_NO = B.CARD_NO INNER JOIN CARDTYPES T ON B.CARD_NO = T.CARD_NO) A
+                     <if test="kind == '' and type == '' and benefit == ''">
+					 	WHERE 1 = 1
+					 </if>
+					 <if test="kind != '' or type != '' or benefit != ''">
+					 	WHERE 1!= 1
+					 </if>
+					<if test="kind != ''">
+						OR CARD_KIND IN (${kind})
+					</if>
+					<if test="type != ''">
+						OR CARD_KIND IN (${type})
+					</if>
+					<if test="benefit != ''">
+						OR CARD_KIND IN (${benefit})
+					</if>
+        		)B
+			) C
+			WHERE C.RNUM BETWEEN 1 AND 10
 	</select>
 </mapper>

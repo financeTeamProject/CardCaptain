@@ -24,4 +24,8 @@ public interface SearchIService {
 	public List<HashMap<String, String>> checklistKeyword(HashMap<String, String> params) throws Throwable;
 
 	public List<HashMap<String, String>> cardListGet() throws Throwable;
+
+	public List<HashMap<String, String>> checkDistinct(HashMap<String, String> params) throws Throwable;
+
+	public List<HashMap<String, String>> listpagingDistinct(HashMap<String, String> params) throws Throwable;
 }

@@ -54,13 +54,21 @@ public class SearchService implements SearchIService {
 
 	@Override
 	public List<HashMap<String, String>> checklistKeyword(HashMap<String, String> params) throws Throwable {
-		System.out.println("============service============");
-		System.out.println(params);
 		return idao.checklistKeyword(params);
 	}
 
 	@Override
 	public List<HashMap<String, String>> cardListGet() throws Throwable {
 		return idao.cardListGet();
+	}
+
+	@Override
+	public List<HashMap<String, String>> checkDistinct(HashMap<String, String> params) throws Throwable {
+		return idao.checkDistinct(params);
+	}
+
+	@Override
+	public List<HashMap<String, String>> listpagingDistinct(HashMap<String, String> params) throws Throwable {
+		return idao.listpagingDistinct(params);
 	}
 }
