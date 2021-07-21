@@ -66,6 +66,7 @@ public class RankingContoller {
 	 * 
 	 * return mav; }
 	 */
+	
 //	체크카드 top10  페이지
 	@RequestMapping(value="/checkTop10")
 	public ModelAndView checkTop10(
@@ -167,7 +168,10 @@ public class RankingContoller {
 				  List<HashMap<String, String>>
 		  			data = RankingiService.getCView(params);
 		  
+				  //List<HashMap<String, String>>	review = RankingiService.getRView(params);
+				  
 				  mav.addObject("data", data);
+				  //mav.addObject("review", review);
 				  
 				  mav.setViewName("ranking/cardview");
 			  }else {
