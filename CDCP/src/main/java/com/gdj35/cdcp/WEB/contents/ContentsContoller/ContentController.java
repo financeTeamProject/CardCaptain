@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gdj35.cdcp.WEB.contents.ContentsService.ContentsIService;
-import com.gdj35.cdcp.common.bean.PagingBean;
 
 @Controller
 public class ContentController {
@@ -152,5 +151,5 @@ public class ContentController {
 		
 		return mav;
 	}
-	
+
 }

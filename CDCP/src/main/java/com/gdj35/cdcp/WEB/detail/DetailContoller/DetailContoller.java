@@ -1,25 +1,12 @@
 package com.gdj35.cdcp.WEB.detail.DetailContoller;
 
-import java.util.HashMap;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.gdj35.cdcp.WEB.ranking.RankingService.RankingIService;
 
 @Controller
 
 public class DetailContoller {
-	
-	@Autowired RankingIService RankingiService;
 	
 	@RequestMapping(value="/detail")
 	
@@ -76,50 +63,8 @@ public class DetailContoller {
 		return mav;
 			
 	}
-		
-	
-	/*
-	 * @RequestMapping(value = "/compareSearch") public ModelAndView
-	 * compareSearch(ModelAndView mav) { mav.setViewName("search/compareSearch");
-	 * return mav; }
-	 */
-		
-	
-//	신용카드 top20 페이지	
-	@RequestMapping(value="/creditTop20")
-	public ModelAndView creditTop20(
-			@RequestParam HashMap<String, String> params,
-			ModelAndView mav) throws Throwable{
-		
-		List<HashMap<String, String>> list
-			= RankingiService.getRCredit(params);
-		
-		mav.addObject("list", list);
-		
-		mav.setViewName("ranking/creditTop20");
-		
-		return mav;
-	}
-	
-//	체크카드 top20  페이지	
-	@RequestMapping(value="/checkTop20")
-	public ModelAndView checkTop20(
-			@RequestParam HashMap<String, String> params,
-			ModelAndView mav) throws Throwable {
-		
-		
-		List<HashMap<String, String>> list 
-			= RankingiService.getRCheck(params);
-		
-		mav.addObject("list", list);
-		
-		mav.setViewName("ranking/checkTop20");
-		
-		return mav;
-	}
 	
 	
 	
 	
 }
-

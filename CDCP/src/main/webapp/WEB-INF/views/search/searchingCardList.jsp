@@ -262,19 +262,19 @@ body{
     text-decoration:underline;
 }
 .keyword {
-	width:1050px;
+	width:1200px;
 	height:50px;
-	margin-bottom: 70px;
+	margin-bottom: 50px;
 }
 .keyword ul {
 	padding-inline-start: 0px;
 }
 .keyword ul li{
+	    font-family: 'Cafe24Ohsquare';
 	float:left;
-	margin-left: 40px;
+	margin-left: 20px;
 	font-size: 30px;
 	font-weight: 1000;
-	font-style: italic;
 	list-style: none;
 }
 .keyword ul li:hover{
@@ -495,11 +495,27 @@ $(document).ready(function() {
 <form action="searchingCardList" id="pagingForm" method="post">
 	<input type="hidden" id="page" name="page" value="${page}"><!-- 페이지 -->
 	<input type="hidden" id="searchType" name="searchType" value="${searchType}"><!-- 검색 타입(keyword, optionCheck) -->
-	<input type="hidden" id="option" name="option" value="${option}" /><!-- 검색 내용(keyword, optionCheck) -->
+	<c:if test="${searchType eq keyword}">
+		<input type="hidden" id="option" name="option" value="${option}" />
+	</c:if>
+	<c:if test="${searchType ne keyword}">
+	<c:forEach var="data" items="${options}">
+	<input type="hidden" name="option" value="${data}" />
+		</c:forEach>
+	</c:if>
 </form>
 <div id="content">
 	<div id="contentMenu">
 	<div id="main" class="main">
+<<<<<<< HEAD
+		<div id="keyword" class="keyword">
+			<ul>
+			<c:forEach var="data" items="${options}">
+				<li>#${data}</li>
+			</c:forEach>
+			</ul>
+		</div>
+=======
  		<div id="keyword" class="keyword">
  			<ul>
  				<c:forEach var="data" items="${options}">
@@ -511,6 +527,7 @@ $(document).ready(function() {
 						<input type = "button" value = "1" id= "bi2"/>
 			</div>	
  		</div>
+>>>>>>> branch 'main' of https://github.com/financeTeamProject/CardCaptain.git
 <c:set var="size" value="${fn:length(pagingDistinct)}" />
 <c:choose>
 <c:when test="${size > 0}">
