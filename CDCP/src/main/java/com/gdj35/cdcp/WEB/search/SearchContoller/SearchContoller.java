@@ -42,6 +42,7 @@ public class SearchContoller {
 	public ModelAndView compareSearch(ModelAndView mav,@RequestParam(required = false) HashMap<String,String> params) {
 		System.out.println("============");
 		System.out.println(params);
+		System.out.println("===============");
 		mav.setViewName("search/compareSearch");
 		return mav;
 	}
