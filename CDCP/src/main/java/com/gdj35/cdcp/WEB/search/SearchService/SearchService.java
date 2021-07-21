@@ -51,4 +51,16 @@ public class SearchService implements SearchIService {
 	public HashMap<String, String> randomCard() throws Throwable {
 		return idao.randomCard();
 	}
+
+	@Override
+	public List<HashMap<String, String>> checklistKeyword(HashMap<String, String> params) throws Throwable {
+		System.out.println("============service============");
+		System.out.println(params);
+		return idao.checklistKeyword(params);
+	}
+
+	@Override
+	public List<HashMap<String, String>> cardListGet() throws Throwable {
+		return idao.cardListGet();
+	}
 }

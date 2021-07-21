@@ -21,4 +21,7 @@ public interface SearchIService {
 
 	public HashMap<String, String> randomCard() throws Throwable;
 
+	public List<HashMap<String, String>> checklistKeyword(HashMap<String, String> params) throws Throwable;
+
+	public List<HashMap<String, String>> cardListGet() throws Throwable;
 }

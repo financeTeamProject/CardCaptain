@@ -123,7 +123,7 @@ body{
     text-align: center;
     font-family: GmarketSansMedium;
     font-size: 12px;
-}	
+}
 #footerLogo {
     display: inline-block;
     vertical-align: top;
@@ -169,7 +169,6 @@ h1 {
 }
 h3 {
 	font-size: 18px;
-	margin-left: 10px;
 	font-family: 'Cafe24Ohsquare';
 	display:inline-block;
 }
@@ -205,20 +204,8 @@ img {
 .sub_check_list > * {
 	display: inline-block;
 }
-.sub_check_list ul {
-	padding-inline-start: 0px;
-}
-.sub_check_list ul li{
-	float:left;
-	width:auto;
-	margin-top: 0px;
-	margin-left: 10px;
-	list-style: none;
-	vertical-align: top;
-}
 .sub_check_list h3{
 	font-size: 18px;
-	margin-left: 10px;
 	font-family: 'GmarketSansMedium';
 }
 .btn_area {
@@ -243,7 +230,10 @@ img {
     cursor: pointer;
 }
 .choiceList {
+	font-size: 14px;
 	font-family: 'GmarketSansLight';
+	background-color: inherit;
+	border: none;
 }
 .choiceList:hover {
 	color: #0047AB;
@@ -251,10 +241,16 @@ img {
     text-decoration: underline;
 }
 .choiceListClick {
-	color: #0047AB;
-    text-decoration: underline;
+	font-size: 14px;
     font-family: 'GmarketSansLight';
     font-weight: 700;
+    color: #0047AB;
+    background-color: inherit;
+    border: none;
+}
+.choiceListClick {
+	cursor: pointer;
+    text-decoration: underline;
 }
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
@@ -278,30 +274,36 @@ $(document).ready(function() {
 		location.href = "/cdcp";
 	}); // headerLogo click end
 	
+	/* check된 옵션 Controller로 넘기기 */
 	$("#subBtn").on("click", function() {
-		var actionVal = "";
-		var tags = document.getElementsByClassName("choiceListClick");
-		var taglength = tags.length;
-		
-		for(var i=0; i<taglength; i++) {
-			actionVal += "<input type=\"hidden\" name=\"option\" value=\"" + tags[i].innerHTML + "\" /><br/>";
-		}
-		actionVal += "<input type=\"hidden\" id=\"page\" name=\"page\" value=\"1\" />";
-		
-		$("#goForm").html(actionVal);
 		$("#goForm").attr("action","searchingCardList");
 		$("#goForm").submit();
 	});
 	
-	$(".choiceList").on("click", function() {
-		$(this).attr("class","choiceListClick");
+	/* 버튼 클릭 시 class변경 */
+	$("input[type='button']").on("click", function() {
+		var iclass = $(this).prop('class');
+		
+		if(iclass == 'choiceList') {
+			var a = "<input type=\"hidden\" name=\"option\" value=\"" + $(this).attr("value") + "\" />";
+			$("#goForm").append(a);
+			
+			$(this).attr("class","choiceListClick");
+		} else if (iclass == 'choiceListClick') {
+			var ival = $(this).val();
+			
+			$("#goForm input").each(function() {
+				if ($(this).val() == ival) {
+					$(this).remove();
+				}
+			});
+			$(this).attr("class","choiceList");
+		}
 	});
 });
 </script>
 </head>
 <body>
-<form action="#" id ="goForm" method="post">
-</form>
 <!-- Start Header by KJ -->
 <div id="header">
 	<div id="headerWrap">
@@ -325,20 +327,22 @@ $(document).ready(function() {
 		<div id="subTitle" class="sub_title">
 			<h1>맞춤 카드 검색</h1>
 		</div>
-		<div id="checkList" class="check_list">
+		<form action="#" id ="goForm" method="post">
+			<input type="hidden" id="searchType" name="searchType" value="check" />
+			<input type="hidden" id="page" name="page" value="1" />
+		</form>
+			<div id="checkList" class="check_list">
 				<div id="gndAge_opt" class="check_opt">
 					<div id="gndage_icon" class="opt_icon">
 						<img src="https://cdn4.iconfinder.com/data/icons/essential-app-2/16/user-avatar-human-admin-login-512.png" />
 					</div>
 					<div id="gndage_list" class="sub_check_list">
 						<h3>성별/나이</h3><br />
-						<ul>
-							<li class="choiceList">여자</li>
-							<li class="choiceList">남자</li>
-							<li class="choiceList">20대</li>
-							<li class="choiceList">30대</li>
-							<li class="choiceList">40대이상</li>
-						</ul>
+						<input type="button" value="여자" name="option"  class="choiceList"/>
+						<input type="button" value="남자" name="option"  class="choiceList"/>
+						<input type="button" value="20세" name="option"  class="choiceList"/>
+						<input type="button" value="30세" name="option"  class="choiceList"/>
+						<input type="button" value="40세" name="option"  class="choiceList"/>
 					</div>
 				</div>
 				<div id="gndAge_opt" class="check_opt">
@@ -347,10 +351,8 @@ $(document).ready(function() {
 					</div>
 					<div id="gndage_list" class="sub_check_list">
 						<h3>카드종류</h3><br />
-						<ul>
-							<li class="choiceList">신용카드</li>
-							<li class="choiceList">체크카드</li>
-						</ul>
+						<input type="button" value="신용카드" name="option" class="choiceList"/>
+						<input type="button" value="체크카드" name="option" class="choiceList"/>
 					</div>
 				</div>
 				<div id="gndAge_opt" class="check_opt">
@@ -359,11 +361,9 @@ $(document).ready(function() {
 					</div>
 					<div id="gndage_list" class="sub_check_list">
 						<h3>카드타입</h3><br />
-						<ul>
-							<li class="choiceList">할인</li>
-							<li class="choiceList">적립</li>
-							<li class="choiceList">마일리지</li>
-						</ul>
+						<input type="button" value="할인" name="option" class="choiceList"/>
+						<input type="button" value="적립" name="option" class="choiceList"/>
+						<input type="button" value="마일리지" name="option" class="choiceList"/>
 					</div>
 				</div>
 				<div id="gndAge_opt" class="check_opt">
@@ -372,25 +372,23 @@ $(document).ready(function() {
 					</div>
 					<div id="gndage_list" class="sub_check_list">
 						<h3>카드혜택</h3><br />
-						<ul>
-							<li class="choiceList">교통</li>
-							<li class="choiceList">네이버페이</li>
-							<li class="choiceList">배달앱</li>
-							<li class="choiceList">백화점</li>
-							<li class="choiceList">소셜커머스</li>
-							<li class="choiceList">쇼핑</li>
-							<li class="choiceList">영화</li><br/>
-							<li class="choiceList">자동차/하이패스</li>
-							<li class="choiceList">적립</li>
-							<li class="choiceList">카카오페이</li>
-							<li class="choiceList">카페</li>
-							<li class="choiceList">통신</li>
-							<li class="choiceList">편의점</li>
-							<li class="choiceList">푸드</li>
-						</ul>
+						<input type="button" value="교통" name="option" class="choiceList"/>
+						<input type="button" value="네이버페이" name="option" class="choiceList"/>
+						<input type="button" value="배달앱" name="option" class="choiceList"/>
+						<input type="button" value="백화점" name="option" class="choiceList"/>
+						<input type="button" value="소셜커머스" name="option" class="choiceList"/>
+						<input type="button" value="쇼핑" name="option" class="choiceList"/>
+						<input type="button" value="영화" name="option" class="choiceList"/>
+						<input type="button" value="자동차/하이패스" name="option" class="choiceList"/>
+						<input type="button" value="적립" name="option" class="choiceList"/>
+						<input type="button" value="카카오페이" name="option" class="choiceList"/>
+						<input type="button" value="카페" name="option" class="choiceList"/>
+						<input type="button" value="통신" name="option" class="choiceList"/>
+						<input type="button" value="편의점" name="option" class="choiceList"/>
+						<input type="button" value="푸드" name="option" class="choiceList"/>
 					</div>
 				</div>
-		</div>
+			</div>
 		<div id="btnArea" class="btn_area">
 			<input type="button" value="카드보기" id="subBtn" class="sub_btn" />
 		</div>

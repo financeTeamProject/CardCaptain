@@ -140,87 +140,19 @@ body{
 	width: 1600px;
     height: 900px;/* content에 맞게 줄임 - SYOU */
     margin: 0 auto;
-}		
+}
 /* SYOU */
+.sub_title {
+	margin-top: 40px;
+}
 .sub_title h1 {
-	font-family: Cafe24Ohsquare;
-	font-size: 35px;
-	margin-top: 70px;
-	margin-bottom: 30px;
+	font-size: 38px;
+	margin-left: 100px;
+	font-family: 'Cafe24Ohsquare';
+	display:inline-block;
 }
-#main {
-	width: 1000px;
-	height: auto;
-	margin: 0 auto;
-}
-#div_1 {
-	width: 1200px;
-	margin:0px auto;
-}
-.card_image_list {
-	position: relative;
-}
-.card_list_img img{
-	display: inline-block;
-	width: 300px;
-	height: 170px;
-}
-.card_list_img {
-	display: inline-block;
-	position: relative;
-	width: 30%;
-	margin-left: 20px;
-}
-.card_list_img h4 {
-	font-size:16px;
-	font-family: GmarketSansMedium;
-	margin-top: 20px;
-	text-align: center;
-}
-.btn_list {
-	text-align: center;
-	margin-top: 20px;
-}
-.sub_btn {
-	width: 70px;
-	height: 25px;
-	color: white;
-	border-style: none;
-	background-color: #868e96;
-	border-radius: 5px;
-	font-size: 12px;
-	font-family: GmarketSansMedium;
-}
-.sub_btn:hover {
-	background-color: #FFD400;
-	color: #282c37;
-	cursor: pointer;
-}
-#benefit_table {
-	width: 1000px;
-	height: 700px;
-	margin: 0px auto;
-}
-#benefit_table td {
-	font-family: GmarketSansMedium;
-}
-table {
-	margin-top:50px;
-	border-left: #F5F6F7;
-	border-right: #F5F6F7;
-}
-td {
-	font-size:16px;
-	height: 50px;
-}
-table tr:nth-child(1) {
-	background-color: #CCC;
-	color: black;
-}
-table tr:nth-child(even) {
-	background-color: #FFFFFF;
-}
-#card_list_img_1,#card_list_img_2,#card_list_img_3 {
+
+.cardDelete {
 	display: inline-block;
     vertical-align: top;
     background-image: url("resources/images/search/delete_icon.PNG");
@@ -228,10 +160,132 @@ table tr:nth-child(even) {
     background-size: 25px;
     width: 30px;
     height: 30px;
-    margin-left: 260px;
 }
-#card_list_img_1:hover,#card_list_img_2:hover,#card_list_img_3:hover {
+.cardDelete:hover {
 	cursor: pointer;
+}
+.cardBox {
+	display: inline-block;
+	margin: 0 auto;
+	background-color: #F2F2F2;
+	width: 400px;
+	height: 850px;
+	box-shadow: 0px 0px 18px 6px rgba(107,84,84,0.75);
+	margin-right: 70px;
+	border-radius: 5px;
+	text-align: center;
+}
+.cardImg {
+	background-color: #CCC;
+	margin-left: 25px;
+	width: 350px;
+	height: 200px;
+	border-radius: 20px;
+	text-align: center;
+}
+.cardName {
+	margin-left: 25px;
+	width: 350px;
+	height: 50px;
+	text-align: center;
+	font-family: 'GmarketSansMedium';
+}
+.addCardBtn {
+	vertical-align: top;
+	border: none;
+	background-color: #F5DF4D;
+	font-family: 'GmarketSansMedium';
+	padding: 5px;
+	text-align: center;
+}
+.btn_ok {
+	border: none;
+	background-color: #F5DF4D;
+	font-family: 'GmarketSansMedium';
+	padding: 5px;
+	text-align: center;
+}
+.addCardBtn:hover {
+	cursor: pointer;
+}
+.cardKind, .cardType, .cardBenefit {
+	background-color: #0047AB;
+	width: 400px;
+	height: 50px;
+	text-align: center;
+	color: white;
+    font-family: 'GmarketSansMedium';
+    font-size: 30px;
+}
+.cardKind_info,.cardType_info {
+	background-color: #F8F9FA;
+	width: 400px;
+	height: 70px;
+	text-align: center;
+	font-family: 'GmarketSansMedium';
+}
+.cardBenefit_info {
+	background-color: #F8F9FA;
+	width: 400px;
+	height: 200px;
+	text-align: center;
+	font-family: 'GmarketSansMedium';
+}
+
+/* 팝업 */
+.bg_div {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: #000000;
+	opacity:0.3;
+	z-index: 100;
+}
+.popup_div {
+	display: inline-block;
+	width: 500px;
+	height: 700px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -300px;
+	margin-left: -200px;
+	background-color: #FFFFFF;
+	border: 2px solid #0047AB;
+	z-index: 1000;
+}
+.popup_title {
+	line-height:40px;
+	height: 40px;
+	background-color: #0047AB;
+}
+.popup_title_text {
+	padding-left: 5px;
+	color: #FFFFFF;
+	vertical-align: middle;
+	font-weight: bold;
+	font-family: 'GmarketSansMedium';
+	font-size: 20px;
+}
+.popup_contents {
+	height: 600px;
+}
+.popup_text {
+	height: 600px;
+	text-align: center;
+	white-space: pre-line;
+	overflow-y: auto;
+	padding: 10px 10px 10px 10px;
+	text-align: left;
+	font-family: 'GmarketSansMedium';
+}
+.popup_text div:hover {
+	background-color: #F2F2F2;
+	cursor: pointer;
+}
+.popup_btn {
+	height: 30px;
+	text-align: center;
 }
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
@@ -254,7 +308,81 @@ $(document).ready(function() {
 	$("#headerLogo").on("click", function(){
 		location.href = "/cdcp";
 	}); // headerLogo click end
+	
+	$(".addCardBtn").on("click", function() {
+		$.ajax({
+			url:"cardListGet",
+			type:"post",
+			dataType :"json",
+			success : function (res) {
+				makePopup("카드추가", res.list);
+			},
+			error: function (request, status, error) {
+				console.log(error);
+			}
+		});
+	});	
 });
+
+function makePopup(title, contents) {
+	var html = "";
+	html += "<div class=\"bg_div\"></div>";
+	html += "<div class=\"popup_div\">";
+	html += "<div class=\"popup_title\">";
+	html += "<div class=\"popup_title_text\">" + title + "</div>";
+	html += "</div>";
+	html += "<div class=\"popup_contents\">";
+	html += "<div class=\"popup_text\">"
+	for(var d of contents) {
+		html += "<div>" + d.CARD_NAME + "<input type=\"hidden\" id=" + d.CARD_NO + " value=" + d.CARD_NO + "\>";
+		html += "<input type=\"hidden\" id=" + d.CARD_NAME + " value=" + d.CARD_NAME + "\>";
+		html += "<input type=\"hidden\" id=" + d.CARD_IMG_URL + " value=" + d.CARD_IMG_URL + "\>";
+		html += "<input type=\"hidden\" id=" + d.CARD_SUMMARY + " value=" + d.CARD_SUMMARY + "\>";
+		html += "<input type=\"hidden\" id=" + d.CARD_TYPE + " value=" + d.CARD_TYPE + "\>";
+		html += "</div>";
+	}
+	html += "</div>";
+	html += "<div class=\"popup_btn\">";
+	html += "<input type=\"button\" class=\"btn_ok\" value=\"닫기\"/>";
+	html += "</div>";
+	html += "</div>";
+	html += "</div>";
+	
+	$("body").prepend(html);
+	
+	$(".btn_ok").focus();
+	
+	$(".bg_div").hide();
+	$(".popup_div").hide();
+	
+	$(".bg_div").fadeIn();
+	$(".popup_div").fadeIn();
+	
+	
+	$(".btn_ok").off("click");
+	$(".btn_ok").on("click", function(){
+		closePopup();
+	});
+	
+	$(".bg_div").off("click");
+	$(".bg_div").on("click", function(){
+		closePopup();
+	});
+	
+	$(".popup_text").on("click","div", function() {
+		closePopup();
+	});
+}
+
+function closePopup() {
+	$(".bg_div").fadeOut(function(){
+		$(".bg_div").remove();
+	});
+	
+	$(".popup_div").fadeOut(function(){
+		$(".popup_div").remove();
+	});
+}
 </script>
 </head>
 <body>
@@ -276,76 +404,48 @@ $(document).ready(function() {
 <!-- End Header by KJ -->
 <!-- 내용 영역 -->	
 <div id="content">
-<div id="contentMenu">
-	<div id="main">
-		<div id="subTitle" class="sub_title">
-			<h1>카드 상세 비교</h1>
-		</div>
-		<div class="card_image_list">
-		<div class="card_list_img" id="card_list_area_1">
-			<div id="card_list_img_1"></div>
-			<img src="https://card-search.naver.com/resource/images/card/KB/1692/KB_1692_hor.png">
-			<h4 id="card_list_name_1">KB국민 청춘대로 톡톡카드</h4>
-			<div class="btn_list" id="card_list_btn_1">
-				<input type="button" value="카드변경" class="sub_btn" style="margin-right:5px;" />
-				<input type="button" value="상세보기" class="sub_btn" />
-			</div>
-		</div>
-		<div class="card_list_img" id="card_list_area_2">
-			<div id="card_list_img_2"></div>
-			<img src="https://card-search.naver.com/resource/images/card/SS/1530/SS_1530_hor.png">
-			<h4 id="card_list_name_2">삼성카드 taptap O</h4>
-			<div class="btn_list" id="card_list_btn_2">
-				<input type="button" value="카드변경" class="sub_btn" style="margin-right:5px;" />
-				<input type="button" value="상세보기" class="sub_btn" />
-			</div>
-		</div>
-		<div class="card_list_img" id="card_list_area_3">
-			<div id="card_list_img_3"></div>
-			<img src="https://card-search.naver.com/resource/images/card/SS/223/SS_223_hor.png">
-			<h4 id="card_list_name_3">삼성카드 4</h4>
-			<div class="btn_list" id="card_list_btn_3">
-				<input type="button" value="카드변경" class="sub_btn" style="margin-right:5px;" />
-				<input type="button" value="상세보기" class="sub_btn" />
-			</div>
-		</div>
-		</div>
-	<div id="benefit_table">
-		<table border="1" style="border-style:solid;width:100%;height:500px;border-collapse:collapse;text-align:center;">
-			<colgroup>
-				<col width="30%;"/>
-				<col width="30%;"/>
-				<col width="30%;"/>
-			</colgroup>
-			<tr>
-				<td colspan="3" style="font-size:35px;font-weight:700;height:70px;">상세혜택비교</td>
-			</tr>
-			<tr>
-				<td colspan="3" style="font-size:25px;">카드 종류</td>
-			</tr>
-			<tr>
-				<td>신용카드</td>
-				<td>체크카드</td>
-				<td>체크카드</td>
-			</tr>
-			<tr>
-				<td colspan="3" style="font-size:25px;">카드 타입</td>
-			</tr>
-			<tr>
-				<td>할인전용</td>
-				<td>적립전용</td>
-				<td>할인전용</td>
-			</tr>
-			<tr>
-				<td colspan="3" style="font-size:25px;">카드 혜택</td>
-			</tr>
-			<tr>
-				<td>마트/편의점, 통신사, 쇼핑</td>
-				<td>통신사, 쇼핑</td>
-				<td>마일리지, 외식, 카페/베이커리</td>
-			</tr>
-		</table>
+<div id="contentMenu"><br/>
+<div id="subTitle" class="sub_title">
+	<h1>카드 비교하기</h1>
+</div><br/><br/><br/>
+<div class="cardDelete"></div>
+<div class="cardBox">
+	<div class="cardImg">
+		<input type="button" value="카드추가" class="addCardBtn" />
 	</div>
+	<div class="cardName">카드1</div>
+	<div class="cardKind">카드종류</div>
+	<div class="cardKind_info"></div><br/>
+	<div class="cardType">카드타입</div>
+	<div class="cardType_info"></div><br/>
+	<div class="cardBenefit">카드혜택</div>
+	<div class="cardBenefit_info"></div><br/>
+</div>
+<div class="cardDelete"></div>
+<div class="cardBox">
+	<div class="cardImg">
+		<input type="button" value="카드추가" class="addCardBtn" />
+	</div>
+	<div class="cardName">카드2</div>
+	<div class="cardKind">카드종류</div>
+	<div class="cardKind_info"></div><br/>
+	<div class="cardType">카드타입</div>
+	<div class="cardType_info"></div><br/>
+	<div class="cardBenefit">카드혜택</div>
+	<div class="cardBenefit_info"></div><br/>
+</div>
+<div class="cardDelete"></div>
+<div class="cardBox">
+	<div class="cardImg">
+		<input type="button" value="카드추가" class="addCardBtn" />
+	</div>
+	<div class="cardName">카드3</div>
+	<div class="cardKind">카드종류</div>
+	<div class="cardKind_info"></div><br/>
+	<div class="cardType">카드타입</div>
+	<div class="cardType_info"></div><br/>
+	<div class="cardBenefit">카드혜택</div>
+	<div class="cardBenefit_info"></div><br/>
 </div>
 </div>
 </div>

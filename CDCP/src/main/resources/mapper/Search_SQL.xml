@@ -88,4 +88,35 @@
 			 ORDER BY DBMS_RANDOM.VALUE) A
 		WHERE ROWNUM = 1
 	</select>
+	
+	<select id="checklistKeyword" parameterType="ArrayList" resultType="hashmap">
+		SELECT CARD_NO, CARD_NAME, CARD_KIND, CARD_TYPE, BENEFIT_TOP, CARD_IMG_URL
+		FROM(SELECT C.CARD_NO,C.CARD_NAME,DECODE(C.CARD_TYPE, 0, '신용카드','체크카드') AS CARD_KIND,
+					CASE WHEN T.CARD_TYPE = 0 THEN '할인'
+						 WHEN T.CARD_TYPE = 1 THEN '적립'
+						 ELSE '마일리지'
+					END AS CARD_TYPE, B.BENEFIT_TOP,C.CARD_IMG_URL
+				FROM CARDS C INNER JOIN CARDBENEFITS B ON C.CARD_NO = B.CARD_NO
+							 INNER JOIN CARDTYPES T ON B.CARD_NO = T.CARD_NO) A
+		 <if test="kind != '' or type != '' or benefit != ''">
+		 	WHERE 1!= 1
+		 </if>
+		<if test="kind != ''">
+			OR CARD_KIND IN (${kind})
+		</if>
+		<if test="type != ''">
+			OR CARD_KIND IN (${type})
+		</if>
+		<if test="benefit != ''">
+			OR CARD_KIND IN (${benefit})
+		</if>
+	</select>
+	
+	<select id="cardListGet" parameterType="ArrayList" resultType="hashmap">
+		<!-- SELECT C.CARD_NO,C.CARD_CMP_NO,C.CARD_NAME,C.CARD_IMG_URL,C.CARD_TYPE,B.BENEFIT_MID
+		FROM CARDS C INNER JOIN CARDBENEFITS B
+							 ON C.CARD_NO = B.CARD_NO
+		ORDER BY C.CARD_CMP_NO -->
+		SELECT * FROM CARDS
+	</select>
 </mapper>

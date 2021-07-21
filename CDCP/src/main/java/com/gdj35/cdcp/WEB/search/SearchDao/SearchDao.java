@@ -56,4 +56,13 @@ public class SearchDao implements SearchIDao {
 		return sql.selectOne("search.randomCard");
 	}
 
+	@Override
+	public List<HashMap<String, String>> checklistKeyword(HashMap<String, String> params) throws Throwable {
+		return sql.selectList("search.checklistKeyword", params);
+	}
+
+	@Override
+	public List<HashMap<String, String>> cardListGet() throws Throwable {
+		return sql.selectList("search.cardListGet");
+	}
 }
