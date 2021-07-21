@@ -32,7 +32,9 @@ public class SearchContoller {
 	
 	//키워드검색 페이지
 	@RequestMapping(value = "/keywordSearch")
-	public ModelAndView keywordSearch(ModelAndView mav) {
+	public ModelAndView keywordSearch(ModelAndView mav,@RequestParam(required = false) HashMap<String,String> params) {
+		System.out.println("============");
+		System.out.println(params);
 		mav.setViewName("search/keywordSearch");
 		return mav;
 	}
