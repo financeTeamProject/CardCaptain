@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,7 @@ body {
 	margin: 0;
 	top: 0;
 }
-	/* 헤더  ~82번째줄*/
+	/* 헤더 */
 #header {
 	width: 100%;
 	height: 55px;
@@ -76,6 +77,7 @@ body {
 	height: 100%;
     font-size: 18px;
 	vertical-align: top;
+	text-align: right;
 }
 #imgSearch {
  	display: inline-block;
@@ -86,7 +88,8 @@ body {
     height: 25px;
     cursor: pointer;
     text-align: center;
-    margin-left: 85%;
+	margin-top: 15px;
+	margin-right: 20px;
 }
 #imgLogin {
  	display: inline-block;
@@ -96,8 +99,116 @@ body {
     width: 30px;
     height: 25px;
     cursor: pointer;
-    margin-top: 15px;
+    text-align: center;
+	margin-top: 15px;
 }
+#searchTxt {
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: #0047AB;
+    outline: 0;
+    caret-color: red;
+    color: #0047AB;
+    box-sizing: border-box;
+    font-size: 13px;
+    letter-spacing: 3px;
+    display: none;
+}
+#Nickname {
+    width: auto;
+    height: auto;
+    color: #0047AB;
+    box-sizing: border-box;
+    font-size: 13px;
+    letter-spacing: 2px;
+    display: none;
+}
+#logNick {
+	hight: 12px;
+	width: auto;
+	display: inline-block;
+}
+#logoutBtn {
+	width: 70px;
+	heigth: 40px;
+	margin-left: 20px;
+	/* display: none; */
+}
+/* 로그인팝업 */
+.popinput {
+	width: 50%;
+    height: 40px;
+    padding: 0px 20px;
+    border: 1px solid lightgray;
+    outline: none;
+    font-size: 13px;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: #0047AB;
+    outline: 0;
+    text-decoration: none;
+    letter-spacing: 2px;
+    margin: 5px 50px 10px 70px;
+}
+.cardcaptain {
+	width: 100%;
+	height: 95px;
+	line-height: 110px;
+	text-align: center;
+	font-size: 25px;
+	color: #0047AB;
+	letter-spacing: 5px;
+	cursor: pointer;
+}
+#popup {
+	height: 320px;
+	width: 400px;
+	background-color: white;
+	border-radius: 70px;
+	display: none;
+	margin: 300px auto;
+	z-index: 50;
+}
+#loginBtn {
+	margin-bottom: 10px;
+	margin-top: 5px;
+	background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+	background-size: 200%;
+	color: white;
+ 	font-weight: bold;
+	border: none;
+	cursor: pointer;
+	display: inline;
+	margin: 20px 10px 15px 90px;
+}
+.re {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 11px;
+    margin: 10px 0 10px 130px;
+}
+.new {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 11px;
+	margin: 10px 0 10px 0;
+}
+.re:hover, .new:hover {
+	cursor: pointer;
+}
+.error {
+    font-size: 11px;
+    color: red;
+    visibility: hidden;
+}
+.errorMsg {
+	height: 100%;
+    display: none;
+    color: #e65f3e;
+    font-size: 13px;
+    margin-left: 65px;
+} 
+	/* 로그인팝업종료 */
 	/* header_right 종료 */
 	/* 헤더 종료 */
 	
@@ -222,48 +333,168 @@ input#pos1,#pos2,#pos3,#pos4 {
 #pos4:checked ~ .bullet label:nth-child(4){background:#666;}
 
 </style>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	/* 카드순위 페이지 이동 */
+	$("#ranking").on("click", function(){
+		location.href = "card_rank";
+	});
+	/* 카드검색/비교 페이지 이동 */
+	 $("#search").on("click", function(){
+		location.href = "search";
+	});
+	/* 컨텐츠 페이지 이동 */
+	$("#contents").on("click", function(){
+		location.href = "content";
+	});
+	
+	/* 로그인팝업 실행 */
+	$("#imgLogin").on("click", function(){
+		$("#popup").css("display","block");
+		$(".body").css("display","none");
+	});
+	/* 로그인팝업 실행 */
+	$("#imgSearch").on("click", function(){
+		$("#searchTxt").css("display","inline");
+	});
+	
+	$("#searchmem, #join").on("click", function() {
+		var ival = $(this).prop("id");
+		$(location).attr('href',ival);
+	});
+	
+	$(".cardcaptain").on("click", function(){
+		location.href = "/cdcp";
+	});
+	
+	/* 로그인 */
+	$("#loginBtn").on("click", function () {
+		if($.trim($("#mId").val()) == "") {
+			alert("아이디를 입력해 주세요.");
+			$("#mId").focus();
+		} else if($.trim($("#mPw").val()) == "") {
+			alert("비밀번호를 입력해 주세요.");
+			$("#mPw").focus();
+		} else {
+			var params = $("#loginForm").serialize();
+			
+			$.ajax({
+				url: "logins",
+				type: "post",
+				dataType: "json",
+				data: params,
+				success: function (res) {
+					if(res.resMsg == "success"){
+						location.href = "/cdcp";
+						$("#nickName").css("display","inline");
+						$("#imgSearch").css("margin-left","70%");
+						$("#imgLogin").css("display","none");
+						$("#logoutBtn").css("display","inline");
+					} else {
+						$(".errorMsg").css("display","inline");
+						$("#masage").html("아이디 또는 비밀번호가 일치하지 않습니다.")
+					}
+				},
+				error: function (request, status, error) {
+					console.log(error);
+				}
+			}); //ajax end
+		}
+	}); //로그인 end
+	
+	/* 로그아웃  */
+	$("#logoutBtn").on("click", function () {
+		location.href = "testALogout";
+	}); //로그아웃 end
+	
+	/* 마이페이지이동 */
+	$("#logNick").on("click", function(){
+		location.href = "/mypage";
+	});
+	
+	$("#logNick").on("click", function(){
+		alert($("#sMNm").val());
+		$("#memNo").attr("action");
+		$("#memNo").submit();
+	});
+});
+</script>
 </head>
 <body>
-<div id="header">
-	<div id="headerWrap">
-	<div id="headerLeft">
-		<div id="headerLogo"></div>
-		<div class="menu1">카드순위</div>
-		<div class="menu1">카드검색/비교</div>
-		<div class="menu1">컨텐츠</div>
-	</div>
-	<div id="headerRight">
-		<div id="imgSearch"></div>
-		<div id="imgLogin"></div>
+<!-- 로그인팝업 -->
+<div id="popup">
+	<div class="cardcaptain">&nbsp;&nbsp;&nbsp;&nbsp;Card Captain&nbsp;&nbsp;&nbsp;&nbsp;X</div>
+	<form action="testLogins" id="loginForm" method="post">
+			<input type="email" class="popinput" placeholder="ID" id="mId" name="mId">
+			<input type="password" class="popinput" placeholder="PW" id="mPw" name="mPw"><br/>
+		<span class="errorMsg" id="masage" aria-live="assertive"></span>
+		<input type="button" class="popinput" id="loginBtn" value="로그인"/><br/>
+	</form>
+	<div class="re" id="searchmem">ID/PW 찾기</div>
+	<div class="new" id="join">|&nbsp;&nbsp;회원 가입</div>
+</div>
+<!-- 로그인팝업 종료 -->
+<div class="body">
+	<div id="header">
+		<div id="headerWrap">
+			<div id="headerLeft">
+				<div id="headerLogo"></div>
+				<div class="menu1" id="ranking">카드순위</div>
+				<div class="menu1" id="search">카드검색/비교</div>
+				<div class="menu1" id="contents">컨텐츠</div>
+			</div>
+			<form action="mypage" id="memNo" method="post">
+				<input type="hidden" name="memNo" value="${sMNo}" id="sMNo"/>
+				<input type="hidden" name="memId" value="${sMId}" id="sMId"/>
+				<input type="hidden" name="memPW" value="${sMPw}" id="sMPw"/>
+				<input type="hidden" name="memBi" value="${sMBi}" id="sMBi"/>
+				<input type="hidden" name="memGe" value="${sMGe}" id="sMGe"/>
+				<input type="hidden" name="memCo" value="${sMCo}" id="sMCo"/>
+				<input type="hidden" name="memNm" value="${sMNm}" id="sMNm"/>
+				<input type="hidden" name="memNa" value="${sMNa}" id="sMNa"/>
+				<input type="hidden" name="memAd" value="${sMAd}" id="sMAd"/>
+			</form>
+			<div id="headerRight">
+				<input type="text" id="searchTxt">
+				<div id="imgSearch"></div>
+				<c:choose>
+					<c:when test="${empty sMNm}">
+						<div id="imgLogin"></div>
+					</c:when>
+					<c:otherwise>
+						<div id="logNick">${sMNm}</div><input type="button" value="로그아웃" id="logoutBtn" />
+					</c:otherwise>
+				</c:choose>
+			</div>
 		</div>
 	</div>
-</div>
-<div id="content">
-	<div class="slide">
-	<input type="radio" name="pos" id="pos1" checked>
-	<input type="radio" name="pos" id="pos2">
-	<input type="radio" name="pos" id="pos3">
-	<input type="radio" name="pos" id="pos4">
-	<ul>
-		<li>
-			<div class="top"></div>
-			<div class="bottom">
-		 		<div class="bottom_Left"></div>
-		 		<div class="bottom_right"></div>
-			</div>
-		</li>
-		<li></li>
-		<li></li>
-		<li></li>
-    </ul>
-    <p class="bullet">
-      <label for="pos1">1</label>
-      <label for="pos2">2</label>
-      <label for="pos3">3</label>
-      <label for="pos4">4</label>
-    </p>
-  </div>
-</div>
+		<div id="content">
+		<div class="slide">
+		<input type="radio" name="pos" id="pos1" checked>
+		<input type="radio" name="pos" id="pos2">
+		<input type="radio" name="pos" id="pos3">
+		<input type="radio" name="pos" id="pos4">
+		<ul>
+			<li>
+				<div class="top"></div>
+				<div class="bottom">
+			 		<div class="bottom_Left"></div>
+			 		<div class="bottom_right"></div>
+				</div>
+			</li>
+			<li></li>
+			<li></li>
+			<li></li>
+	    </ul>
+	    <p class="bullet">
+	      <label for="pos1">1</label>
+	      <label for="pos2">2</label>
+	      <label for="pos3">3</label>
+	      <label for="pos4">4</label>
+	    </p>
+	  </div>
+	</div>
 	<div id="footer">
 		<div id="footerMenu">
 			<div id="footerLogo"></div>
@@ -271,5 +502,6 @@ input#pos1,#pos2,#pos3,#pos4 {
 			<div>Copyright © 2021-2031 CardCaptain All Rights Reserved.</div>
 		</div>
 	</div>
+</div>
 </body>
 </html>

@@ -130,12 +130,19 @@ body{
     letter-spacing: 2px;
     display: none;
 }
+#logNick {
+	hight: 12px;
+	width: auto;
+	display: inline-block;
+}
 #logoutBtn {
 	width: 70px;
 	heigth: 40px;
 	margin-left: 20px;
 	/* display: none; */
 }
+
+/* 로그인팝업 */
 .popinput {
 	width: 50%;
     height: 40px;
@@ -209,8 +216,10 @@ body{
     font-size: 13px;
     margin-left: 65px;
 }
+	/* 로그인팝업종료 */
 	/* header_right 종료 */
 	/* 헤더 종료 */
+	
 /*   내용 영역   */   
 #content {
 	width: 100%;
@@ -525,7 +534,7 @@ body{
 	margin: 0 auto;
 }
 </style>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	var memAdd = "";
@@ -538,7 +547,89 @@ $(document).ready(function() {
       $(".address_search_button").css("background-color","#868e96");
       $(".address_search_button").css("color","#FFFFFF");
    }); */
+   
+	/* 카드순위 페이지 이동 */
+	$("#ranking").on("click", function(){
+		location.href = "card_rank";
+	});
+	/* 카드검색/비교 페이지 이동 */
+	 $("#search").on("click", function(){
+		location.href = "search";
+	});
+	/* 컨텐츠 페이지 이동 */
+	$("#contents").on("click", function(){
+		location.href = "content";
+	});
 	
+	/* 로그인팝업 실행 */
+	$("#imgLogin").on("click", function(){
+		$("#popup").css("display","block");
+		$(".body").css("display","none");
+	});
+	/* 로그인팝업 실행 */
+	$("#imgSearch").on("click", function(){
+		$("#searchTxt").css("display","inline");
+	});
+	
+	$("#searchmem, #join").on("click", function() {
+		var ival = $(this).prop("id");
+		$(location).attr('href',ival);
+	});
+	
+	$(".cardcaptain").on("click", function(){
+		location.href = "/cdcp";
+	});
+	
+	/* 로그인 */
+	$("#loginBtn").on("click", function () {
+		if($.trim($("#mId").val()) == "") {
+			alert("아이디를 입력해 주세요.");
+			$("#mId").focus();
+		} else if($.trim($("#mPw").val()) == "") {
+			alert("비밀번호를 입력해 주세요.");
+			$("#mPw").focus();
+		} else {
+			var params = $("#loginForm").serialize();
+			
+			$.ajax({
+				url: "logins",
+				type: "post",
+				dataType: "json",
+				data: params,
+				success: function (res) {
+					if(res.resMsg == "success"){
+						location.href = "/cdcp";
+						$("#nickName").css("display","inline");
+						$("#imgSearch").css("margin-left","70%");
+						$("#imgLogin").css("display","none");
+						$("#logoutBtn").css("display","inline");
+					} else {
+						$(".errorMsg").css("display","inline");
+						$("#masage").html("아이디 또는 비밀번호가 일치하지 않습니다.")
+					}
+				},
+				error: function (request, status, error) {
+					console.log(error);
+				}
+			}); //ajax end
+		}
+	}); //로그인 end
+	
+	/* 로그아웃  */
+	$("#logoutBtn").on("click", function () {
+		location.href = "testALogout";
+	}); //로그아웃 end
+	
+	/* 마이페이지이동 */
+	$("#logNick").on("click", function(){
+		location.href = "/mypage";
+	});
+	
+	$("#logNick").on("click", function(){
+		alert($("#sMNm").val());
+		$("#memNo").attr("action");
+		$("#memNo").submit();
+	});
 
 // 보유카드추가
 	if("${param.searchGbn}" != "") {
@@ -709,6 +800,17 @@ $(document).ready(function() {
 				<div class="menu1" id="search">카드검색/비교</div>
 				<div class="menu1" id="contents">컨텐츠</div>
 			</div>
+			<form action="mypage" id="memNo" method="post">
+				<input type="hidden" name="memNo" value="${sMNo}" id="sMNo"/>
+				<input type="hidden" name="memId" value="${sMId}" id="sMId"/>
+				<input type="hidden" name="memPW" value="${sMPw}" id="sMPw"/>
+				<input type="hidden" name="memBi" value="${sMBi}" id="sMBi"/>
+				<input type="hidden" name="memGe" value="${sMGe}" id="sMGe"/>
+				<input type="hidden" name="memCo" value="${sMCo}" id="sMCo"/>
+				<input type="hidden" name="memNm" value="${sMNm}" id="sMNm"/>
+				<input type="hidden" name="memNa" value="${sMNa}" id="sMNa"/>
+				<input type="hidden" name="memAd" value="${sMAd}" id="sMAd"/>
+			</form>
 			<div id="headerRight">
 				<input type="text" id="searchTxt">
 				<div id="imgSearch"></div>
@@ -717,14 +819,12 @@ $(document).ready(function() {
 						<div id="imgLogin"></div>
 					</c:when>
 					<c:otherwise>
-						${sMNm}  님 <input type="button" value="로그아웃" id="logoutBtn" />
+						<div id="logNick">${sMNm}</div><input type="button" value="로그아웃" id="logoutBtn" />
 					</c:otherwise>
 				</c:choose>
 			</div>
 		</div>
 	</div>
-</div>
-	
 <!-- 내용 영역 -->   
 <div id="content">
       <div id="myPage" class="my_page">

@@ -389,7 +389,8 @@ input#pos1,#pos2,#pos3,#pos4 {
     color: #e65f3e;
     font-size: 13px;
     margin-left: 65px;
-} /* 로그인팝업종료 */
+} 
+/* 로그인팝업종료 */
 </style>
 <script type="text/javascript" src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
@@ -466,7 +467,7 @@ $(document).ready(function(){
 		location.href = "testALogout";
 	}); //로그아웃 end
 	
-	/* 어드민이동 */
+	/* 마이페이지이동 */
 	$("#logNick").on("click", function(){
 		location.href = "/mypage";
 	});
