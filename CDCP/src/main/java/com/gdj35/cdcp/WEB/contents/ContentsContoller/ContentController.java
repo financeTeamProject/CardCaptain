@@ -160,7 +160,6 @@ public class ContentController {
 		return mav;
 	}
 	*/
-	
 	@RequestMapping(value = "/content")
 	public ModelAndView content(
 			@RequestParam HashMap<String, String> params,

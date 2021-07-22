@@ -543,7 +543,7 @@ h1 {
 				<div></div>
 			</div>
 			 <%-- <c:forEach var = "i" begin = "0" end = "2">			
-				<div class="content"> <!-- tr -->
+				<div class="content">
 					<div class="content_1">
 						<div class="img_rayout">
 							<a href="cardTip_${list[i].TIP_NO}">
