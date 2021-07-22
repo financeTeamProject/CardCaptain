@@ -387,7 +387,7 @@ $(document).ready(function() {
 						<input type="button" value="편의점" name="option" class="choiceList"/>
 						<input type="button" value="푸드" name="option" class="choiceList"/>
 					</div>
-				</div>
+				</div><div></div>
 			</div>
 		<div id="btnArea" class="btn_area">
 			<input type="button" value="카드보기" id="subBtn" class="sub_btn" />
