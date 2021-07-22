@@ -520,30 +520,70 @@
 						font-family: GmarketSansMedium;
 					}
 					.list_area{
-						padding: 50px;
-					}
-					
-					
-					.review_tr{
+						display: flex;
+						justify-content: center;
+						height: 100px;
+						width: 70%;
+						margin: 10px auto;
 						background-color: white;
+						box-shadow: 5px 0px 5px -1px rgba(1, 1, 1, 0.6),
+								-5px 0px 5px -1px rgba(1, 1, 1, 0.6);
 					}
-					.review_uplode_img{
+					.review_no{
+						width: 10%;
+						font-family: GmarketSansMedium;
+						font-weight: bold;
+						font-size: 20px;
 						text-align: center;
+						padding-top: 40px; 
 					}
-					.review_content{
-						font-family: GmarketSansMedium;
-					}
-					
-					.review_content p:nth-child(1) {
-						font-size: 20px;
-						font-weight: bold;
-					}
+					/* 리뷰 별점 및 작성자 영역 */
 					.review_info{
-						font-size: 20px;
+						width: 15%;
 						font-weight: bold;
 						font-family: GmarketSansMedium;
+						padding: 15px;
 					}
-					
+					.review_star{
+						color: #0047AB;
+						font-size: 20px;
+					}
+					.review_writer{
+						font-size: 15px;
+					}
+					/* 리뷰 작성 영역 */
+					.review_content{
+						width: 60%;
+						padding: 10px;
+					}
+					.content_title{
+						font-family: Cafe24Ohsquare;
+						line-height: 50px;
+					}
+					.content_con{
+						font-family: GmarketSansMedium;
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+					}
+					/* 리뷰 좋아요 영역 */
+					.review_like{
+						width: 10%;
+						
+					}
+						#likeImg{
+							position: relative;
+							top: 25px;
+						}
+						#likeCnt{
+							display: inline-block;
+							position: relative;
+							top: 10px;
+							font-weight: bold;
+							font-size: 20px;
+							font-family: GmarketSansMedium;
+						}
+						
 					/* 페이지 작성 영역 */
 					.paging_area{
 						text-align: center;
@@ -646,9 +686,6 @@ $(function(){
 		  }
 	});
 
-
-
- 
  
 $(document).ready(function(){
     /*웹페이지 열었을 때*/
@@ -668,11 +705,6 @@ $(document).ready(function(){
         $(".arrow_up").hide();
     });
 });
-
-
-//this parent children 
-
-
 
 
 /*비교함 담기  */	
@@ -758,6 +790,11 @@ $(document).ready(function(){
 		$("#bef_btn").on("click", function(){
 			$("#goForm").submit();
 		});
+		
+		$(".review_content").on("click", function(){
+			
+		});
+		
 	}); // document ready end
 </script>
 </head>
@@ -897,33 +934,44 @@ $(document).ready(function(){
 						</c:choose>
 					</form>
 				</div>
+				<!-- 리뷰 목록 영역 -->
 				<div class="list_area">
-					<table>
-						<colgroup>
-							<col width="200px" />
-							<col width="400px" />
-							<col width="200px" />
-						</colgroup>
-						<tbody>
-							<tr class="review_tr">
-								<td class="review_uplode_img">
-									<img alt="고객 리뷰 사진" src="resources/images/ranking/logo/Hero.png" width="80px" height="80px">
-								</td>
-								<td class="review_content">
-									<p class="content_title">혜택이 많아서 좋다!</p>
-									<p class="content_con">혜택을 사용할수 있는 매장들이 많고, 너무너무너무너무너무너무 너무너무너무너무너무너무 너무너무너무너무너무너무 너무너무너무너무너무너무 너무너무너무너무너무너무 싫다.</p>
-								</td>
-								<td class="review_info">
-									<span>작성자 :</span><span> 김도헌</span><br/>
-									<span>등록일 :</span><span> 2021-07-21</span><br/>
-									<div class="star-rating">
-										<span style ="width:30%" ></span>
-									</div>
-								</td>
-							</tr>
-						</tbody>		
-					</table>
+					<div class="review_no">2</div>
+					<div class="review_info">
+						<div class="review_star">★★★★☆</div>
+						<div class="review_writer">
+							<div>작성자 : 장원혁</div>
+							<div>등록일 : 2021-07-22</div>
+						</div>
+					</div>
+					<div class="review_content">
+						<div class="content_title">혜택이 많아서 너무 싫다!</div>
+						<div class="content_con">혜택을 사용할수 있는 매장들이 없고, 너무 싫다.</div>
+					</div>
+					<div class="review_like">
+						<img id="likeImg" alt="좋아요 " src="resources/images/ranking/icon/like_icon_bule.png" width="50px" height="50px">
+						<div id="likeCnt">20</div>
+						</div>
 				</div>
+				<div class="list_area">
+					<div class="review_no">1</div>
+					<div class="review_info">
+						<div class="review_star">★☆☆☆☆</div>
+						<div class="review_writer">
+							<div>작성자 : 김도헌</div>
+							<div>등록일 : 2021-07-21</div>
+						</div>
+					</div>
+					<div class="review_content">
+						<div class="content_title">혜택이 많아서 좋다!</div>
+						<div class="content_con">혜택을 사용할수 있는 매장들이 많고, 너무너무너무너무너무너무 너무너무너무너무너무너무 너무너무너무너무너무너무 너무너무너무너무너무너무 너무너무너무너무너무너무 싫다.</div>
+					</div>
+					<div class="review_like">
+						<img id="likeImg" alt="좋아요 " src="resources/images/ranking/icon/like_icon_bule.png" width="50px" height="50px">
+						<div id="likeCnt">5</div>
+						</div>
+				</div>
+				<!-- 페이지 영역 -->
 				<div class="paging_area">
 					<!-- 검색 -->
 					<select id="searchGbn">
