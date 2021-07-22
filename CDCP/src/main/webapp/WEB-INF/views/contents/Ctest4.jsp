@@ -157,13 +157,15 @@ label  {
 		    });
 		    
 		    if(found != 0) {
-		        alert(found);
-		    $("#goForm").attr("action","CtestResult");
+		        $("#found").val(found);
+		      $("#goForm").html();
+		        
+		    $("#goForm").attr("action","CtestResultEnd");
 			$("#goForm").submit();
 		    }
 		    else
 		        alert("선택된 것이 없음");
-		}	
+		}
 		
 	
 		
@@ -176,6 +178,9 @@ label  {
 	<div id="s_left"></div>
 	<div id="main">
 	<div class="title">소비심리테스트</div>
+	<form action="#" id ="goForm" method="post">
+					<input type="hidden" name="found" id="found" value="">
+				</form>
 		<c:forEach var = "i" begin = "15" end = "19">
 		<div class="content">
 			<div class="content_1">

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -94,10 +95,16 @@ public class ContentController {
 		List<HashMap<String, String>> list
 			= ContentsiService.getCtest(params);
 		
+		
+		if(params != null) {
+			
 		mav.addObject("list", list);
 		System.out.println(list);
 		mav.setViewName("contents/Ctest2");
-		
+
+	} else {
+		 mav.setViewName("/cdcp");
+	}
 		return mav;
 	}
 	
@@ -108,6 +115,7 @@ public class ContentController {
 		System.out.println(params);
 		List<HashMap<String, String>> list
 			= ContentsiService.getCtest(params);
+		
 		
 		mav.addObject("list", list);
 		System.out.println(list);
@@ -130,7 +138,7 @@ public class ContentController {
 		
 		return mav;
 	}
-	
+	/*
 	@RequestMapping(value="/content") // 
 	public ModelAndView content(
 			@RequestParam HashMap<String, String> params,
@@ -147,6 +155,23 @@ public class ContentController {
 		
 		System.out.println(data);
 		System.out.println(list);
+		mav.setViewName("contents/content");
+		
+		return mav;
+	}
+	*/
+	
+	@RequestMapping(value = "/content")
+	public ModelAndView content(
+			@RequestParam HashMap<String, String> params,
+			ModelAndView mav) {
+		int page = 1;
+		
+		if(params.get("page") != null) {
+			page = Integer.parseInt(params.get("page"));
+		}
+		
+		mav.addObject("page", page);
 		mav.setViewName("contents/content");
 		
 		return mav;

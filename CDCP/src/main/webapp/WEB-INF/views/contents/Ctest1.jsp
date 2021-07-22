@@ -177,7 +177,7 @@ label  {
 	<div id="main">
 	<div class="title">소비심리테스트</div>
 	<form action="#" id ="goForm" method="post">
-					<input type="text" name="found" id="found" value="">
+					<input type="hidden" name="found" id="found" value="">
 				</form>
 	<c:forEach var = "i" begin = "0" end = "4">
 		<div class="content">

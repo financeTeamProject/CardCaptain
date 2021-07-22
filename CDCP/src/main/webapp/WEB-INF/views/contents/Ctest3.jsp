@@ -148,7 +148,6 @@ label  {
 				src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 		<script type="text/javascript">
 		
-	
 		function findChecked() {
 		    var found = 0;
 		    
@@ -157,14 +156,15 @@ label  {
 		    });
 		    
 		    if(found != 0) {
-		        alert(found);
+		        $("#found").val(found);
+		      $("#goForm").html();
+		        
 		    $("#goForm").attr("action","Ctest4");
 			$("#goForm").submit();
 		    }
 		    else
 		        alert("선택된 것이 없음");
 		}	
-		
 	
 		
 </script>
@@ -176,6 +176,9 @@ label  {
 	<div id="s_left"></div>
 	<div id="main">
 	<div class="title">소비심리테스트</div>
+	<form action="#" id ="goForm" method="post">
+					<input type="hidden" name="found" id="found" value="">
+				</form>
 		<c:forEach var = "i" begin = "10" end = "14">
 		<div class="content">
 			<div class="content_1">

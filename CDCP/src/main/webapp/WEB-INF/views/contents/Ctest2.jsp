@@ -157,14 +157,15 @@ label  {
 		    });
 		    
 		    if(found != 0) {
-		        alert(found);
+		        $("#found").val(found);
+		      $("#goForm").html();
+		        
 		    $("#goForm").attr("action","Ctest3");
 			$("#goForm").submit();
 		    }
 		    else
 		        alert("선택된 것이 없음");
 		}	
-		
 </script>
 </head>
 <body>

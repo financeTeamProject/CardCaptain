@@ -256,7 +256,7 @@ h1 {
 	max-width: 1000px;
 }
 
-#content_content {	   
+.content_content {	   
     background-color: white;
     height: 300px;
     width: 75%; 
@@ -268,7 +268,7 @@ h1 {
     border-radius: 15px 15px 15px 15px;         
 }
 
-.img_rayout, #content_content {
+.img_rayout, .content_content {
    display: inline-block;
    vertical-align: top;
    
@@ -454,23 +454,11 @@ h1 {
 				location.href = "cardTerms";
 			}); 
 			
-			/* 카드활용꿀팁 이동 */
-			$("#img_rayout_1").on("click", function() { // 기사 1
-				location.href = "cardTip_1";
-			});
-			
-			$("#img_rayout_2").on("click", function() { // 기사 2
-				location.href = "cardTip_2";
-			});
-		
-			$("#img_rayout_3").on("click", function() { // 기사 3
-				location.href = "cardTip_3";
-			});
 		
 		});	 // document ready end
 		
 		function reloadList() {
-			var params = $("#actionForm").serialize();
+			var params = $("#content").serialize();
 			
 			$.ajax({
 				url: "contents",
@@ -479,7 +467,6 @@ h1 {
 				data: params,	
 				success: function(res) {
 					drawList(res.list);
-					drawPaging(res.pb);
 				},
 				error: function(request, status, error) {
 					console.log(error);
@@ -490,14 +477,19 @@ h1 {
 		function drawList(list){
 			var html = "";
 			
-			for(var C of list){
-			html += "<tr cno=\"" + c.TIP_NO + "\">";
-			html += "<td>" + c.TIP_IMG_URL + "</td>";
-			html += "<td>" + c.TIP_TITLE + "</td>";
-			html += "<td>" + c.TIP_CONTENT + "</td>";
-			html += "<td>" + c.TIP_WRITER + "</td>";
-			html += "<td>" + c.ADD_DATE + "</td>";
-			html += "</tr>";
+			for(var c of list){
+			html += "<div class=\"content\">";
+			html += "<div class=\"content_1\">";
+			html += "<div class=\"img_rayout\">" + c.TIP_IMG_URL + "</div>";
+			html += "<div class=\"content_content\">";
+			html += "<h2>" + c.TIP_TITLE + "</h2>";
+			html += "<div class=\"con\">";
+			html += "<h1>" + c.TIP_CON + "</h1>";
+			html += "</div>";
+			html += "<div class=\"Cdate\">" + c.ADD_DATE + /"BY/" + c.TIP_WRITER "</div>";
+			html += "</div>";
+			html += "</div>";
+			html += "</div>";
 			}
 			$(".list_wrap div").html(html);
 		}
@@ -543,7 +535,14 @@ h1 {
 		<div id="s_left_sub"></div>
 		<div id="main_sub">	
 			<div class="title">카드활용꿀팁</div>
-			<c:forEach var = "i" begin = "0" end = "2">			
+			<form action="#" id="content" method="post">   
+						<input type="hidden" name="cNo" id="cNo" />
+						<input type="hidden" id="page" name="page" value="${page}" />
+					</form><br/>
+			<div class="list_wrap">
+				<div></div>
+			</div>
+			 <%-- <c:forEach var = "i" begin = "0" end = "2">			
 				<div class="content"> <!-- tr -->
 					<div class="content_1">
 						<div class="img_rayout">
@@ -551,7 +550,7 @@ h1 {
 								<img src="${list[i].TIP_IMG_URL}">
 							</a>
 						</div>
-						<div id="content_content">
+						<div class="content_content">
 						<h2>${list[i].TIP_TITLE}</h2>
 						<div class ="con">
 							<h1>${list[i].TIP_CON}...</h1>
@@ -560,7 +559,7 @@ h1 {
 						</div>
 					</div>				
 				</div>
-			</c:forEach>
+			</c:forEach>  --%>
 				<div class="content">
 					<div class="content_1">
 					<c:forEach var = "i" begin = "0" end = "2">
@@ -575,7 +574,7 @@ h1 {
 					<div class="content">
 						<div class="content_1">
 							<div class="img_rayout"><div id="img_rayout_4"></div></div>
-							<div id="content_content">
+							<div class="content_content">
 							<h2>신용카드가 처음이라면, 종류부터 알고보자</h2>
 							<div></div>
 							<h1>신용카드 기본 개념, 용어</h1>
