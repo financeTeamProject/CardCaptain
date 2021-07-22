@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -139,12 +140,12 @@ body{
 #content {
 	width: 1600px;
     height: 900px;/* content에 맞게 줄임 - SYOU */
-    display: flex;
+    margin: 0 auto;
+    text-align: center;
 }
 /* SYOU */
 #contentMenu {
 	display: inline-block;
-    margin: 0 auto;
 }
 .sub_title {
 	margin-top: 40px;
@@ -382,20 +383,19 @@ $(document).ready(function() {
 			$("#cardDetail_" + $("#divNo").val() + " input").attr("id",$(this).children('.cardNo').val());
 			closePopup();
 		});
-		
-		$(".cardDelete").on("click", function() {
-			var ival = $(this).prop('id').split("_");
-			$("#cardName_" + ival[1]).html("");
-			$("#addCardBtn_" + ival[1]).css("visibility","visible");
-			$("#cardImg_" + ival[1]).children('img').remove();
-			$("#cardKind_info_" + ival[1]).html("");
-			$("#cardType_info_" + ival[1]).html("");
-			$("#cardBenefit_info_" + ival[1]).html("");
-			$("#cardDelete_" + ival[1]).css("visibility","hidden");
-			$("#addCardBtn_" + ival[1]).css("visibility","visible");
-			$("#cardDetail_" + ival[1] + " input").css("visibility","hidden");
-		});
 	}
+	$(".cardDelete").on("click", function() {
+		var ival = $(this).prop('id').split("_");
+		$("#cardName_" + ival[1]).html("");
+		$("#addCardBtn_" + ival[1]).css("visibility","visible");
+		$("#cardImg_" + ival[1]).children('img').remove();
+		$("#cardKind_info_" + ival[1]).html("");
+		$("#cardType_info_" + ival[1]).html("");
+		$("#cardBenefit_info_" + ival[1]).html("");
+		$("#cardDelete_" + ival[1]).css("visibility","hidden");
+		$("#addCardBtn_" + ival[1]).css("visibility","visible");
+		$("#cardDetail_" + ival[1] + " input").css("visibility","hidden");
+	});
 	function closePopup() {
 		$(".bg_div").fadeOut(function(){
 			$(".bg_div").remove();
@@ -474,6 +474,31 @@ $(document).ready(function() {
 		<form action="cardview" id="gogoForm" method="post">
 			<input type="hidden" id="cardNo" name="cardNo" value="" />
 		</form>
+		<c:choose>
+		<c:when test="${compareList[0].CARD_NO ne ''}">
+		<div class="cardArea">
+			<div class="afterSelectCard">
+				<div class="cardDelete" id="cardDelete_1" style="visibility: visible;"></div>
+				<div class="cardDetail" id="cardDetail_1">
+					<input type="button" value="상세보기" id="${compareList[0].CARD_NO}" style="visibility: visible;"/>
+				</div>
+			</div>
+			<div class="cardBox" id="cardBox_1">
+				<div class="cardImg" id="cardImg_1">
+					<input type="button" value="카드를 선택해 보세요" class="addCardBtn" id="addCardBtn_1" />
+					<img src="${compareList[0].CARD_IMG_URL}" class="popupImgUrl">
+				</div>
+				<div class="cardName" id="cardName_1"></div>
+				<div class="cardKind" id="cardKind_1">카드종류</div>
+				<div class="cardKind_info" id="cardKind_info_1">${compareList[0].CARD_NAME}</div><br/>
+				<div class="cardType" id="cardType_1">카드타입</div>
+				<div class="cardType_info" id="cardType_info_1">${compareList[0].CARD_TYPE}</div><br/>
+				<div class="cardBenefit" id="cardBenefit_1">간단설명</div>
+				<div class="cardBenefit_info" id="cardBenefit_info_1">${compareList[0].CARD_SUMMARY}</div><br/>
+			</div>
+		</div>
+		</c:when>
+		<c:otherwise>
 		<div class="cardArea">
 			<div class="afterSelectCard">
 				<div class="cardDelete" id="cardDelete_1"></div>
@@ -494,6 +519,33 @@ $(document).ready(function() {
 				<div class="cardBenefit_info" id="cardBenefit_info_1"></div><br/>
 			</div>
 		</div>
+		</c:otherwise>
+		</c:choose>
+		<c:choose>
+		<c:when test="${compareList[0].CARD_NO ne ''}">
+		<div class="cardArea">
+			<div class="afterSelectCard">
+				<div class="cardDelete" id="cardDelete_2" style="visibility: visible;"></div>
+				<div class="cardDetail" id="cardDetail_2">
+					<input type="button" value="상세보기" id="${compareList[1].CARD_NO}" style="visibility: visible;"/>
+				</div>
+			</div>
+			<div class="cardBox" id="cardBox_2">
+				<div class="cardImg" id="cardImg_2">
+					<input type="button" value="카드를 선택해 보세요" class="addCardBtn" id="addCardBtn_2" />
+					<img src="${compareList[1].CARD_IMG_URL}" class="popupImgUrl">
+				</div>
+				<div class="cardName" id="cardName_2"></div>
+				<div class="cardKind" id="cardKind_2">카드종류</div>
+				<div class="cardKind_info" id="cardKind_info_2">${compareList[1].CARD_NAME}</div><br/>
+				<div class="cardType" id="cardType_2">카드타입</div>
+				<div class="cardType_info" id="cardType_info_2">${compareList[1].CARD_TYPE}</div><br/>
+				<div class="cardBenefit" id="cardBenefit_2">간단설명</div>
+				<div class="cardBenefit_info" id="cardBenefit_info_2">${compareList[1].CARD_SUMMARY}</div><br/>
+			</div>
+		</div>
+		</c:when>
+		<c:otherwise>
 		<div class="cardArea">
 			<div class="afterSelectCard">
 				<div class="cardDelete" id="cardDelete_2"></div>
@@ -514,6 +566,33 @@ $(document).ready(function() {
 				<div class="cardBenefit_info" id="cardBenefit_info_2"></div><br/>
 			</div>
 		</div>
+		</c:otherwise>
+		</c:choose>
+		<c:choose>
+		<c:when test="${compareList[0].CARD_NO ne ''}">
+		<div class="cardArea">
+			<div class="afterSelectCard">
+				<div class="cardDelete" id="cardDelete_3" style="visibility: visible;"></div>
+				<div class="cardDetail" id="cardDetail_3">
+					<input type="button" value="상세보기" id="${compareList[2].CARD_NO}" style="visibility: visible;"/>
+				</div>
+			</div>
+			<div class="cardBox" id="cardBox_3">
+				<div class="cardImg" id="cardImg_3">
+					<input type="button" value="카드를 선택해 보세요" class="addCardBtn" id="addCardBtn_3" />
+					<img src="${compareList[2].CARD_IMG_URL}" class="popupImgUrl">
+				</div>
+				<div class="cardName" id="cardName_3"></div>
+				<div class="cardKind" id="cardKind_3">카드종류</div>
+				<div class="cardKind_info" id="cardKind_info_3">${compareList[2].CARD_NAME}</div><br/>
+				<div class="cardType" id="cardType_3">카드타입</div>
+				<div class="cardType_info" id="cardType_info_3">${compareList[2].CARD_TYPE}</div><br/>
+				<div class="cardBenefit" id="cardBenefit_3">간단설명</div>
+				<div class="cardBenefit_info" id="cardBenefit_info_3">${compareList[2].CARD_SUMMARY}</div><br/>
+			</div>
+		</div>
+		</c:when>
+		<c:otherwise>
 		<div class="cardArea">
 			<div class="afterSelectCard">
 				<div class="cardDelete" id="cardDelete_3"></div>
@@ -534,6 +613,8 @@ $(document).ready(function() {
 				<div class="cardBenefit_info" id="cardBenefit_info_3"></div><br/>
 			</div>
 		</div>
+		</c:otherwise>
+		</c:choose>
 	</div>
 </div>
 <br/><br/><br/><br/><br/>

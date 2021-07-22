@@ -75,4 +75,9 @@ public class SearchDao implements SearchIDao {
 	public List<HashMap<String, String>> listpagingDistinct(HashMap<String, String> params) throws Throwable {
 		return sql.selectList("search.listpagingDistinct", params);
 	}
+
+	@Override
+	public List<HashMap<String, String>> compareList(String data) throws Throwable {
+		return sql.selectList("search.compareList", data);
+	}
 }

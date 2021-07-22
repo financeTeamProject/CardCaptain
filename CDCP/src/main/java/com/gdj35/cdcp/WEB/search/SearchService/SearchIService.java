@@ -28,4 +28,6 @@ public interface SearchIService {
 	public List<HashMap<String, String>> checkDistinct(HashMap<String, String> params) throws Throwable;
 
 	public List<HashMap<String, String>> listpagingDistinct(HashMap<String, String> params) throws Throwable;
+
+	public List<HashMap<String, String>> compareList(String data) throws Throwable;
 }
