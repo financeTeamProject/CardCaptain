@@ -1,4 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="detail">
+
+	<!-- 신용카드 TOP 10 -->
+	<select id="getDCredit" parameterType="hashmap" resultType="hashmap">
+		SELECT C.CARD_NO, C.CARD_CMP_NO, C.CARD_CMP_NAME, C.CARD_NAME, C.CARD_SUMMARY, 
+            C.CARD_IMG_URL, C.CLICK_CNT, C.RNK
+		FROM(SELECT C.*, CMP.CARD_CMP_NAME,
+		           ROW_NUMBER() OVER(ORDER BY CLICK_CNT DESC) AS RNK 
+		     FROM CARDS C INNER JOIN CARDCOMPANYS CMP
+		                          ON  C.CARD_CMP_NO = CMP.CARD_CMP_NO
+		                          AND CARD_TYPE = 0) C 
+		WHERE C.RNK BETWEEN 1 AND 10
+	</select>
+		
+	<!-- 체크카드 TOP 10 -->
+	<select id="getDCheck" parameterType="hashmap" resultType="hashmap">
+		SELECT C.CARD_NO, C.CARD_CMP_NO, C.CARD_CMP_NAME, C.CARD_NAME, C.CARD_SUMMARY, 
+            C.CARD_IMG_URL, C.CLICK_CNT, C.RNK
+		FROM(SELECT C.*, CMP.CARD_CMP_NAME,
+		           ROW_NUMBER() OVER(ORDER BY CLICK_CNT DESC) AS RNK 
+		     FROM CARDS C INNER JOIN CARDCOMPANYS CMP
+		                          ON  C.CARD_CMP_NO = CMP.CARD_CMP_NO
+		                          AND CARD_TYPE = 1) C 
+		WHERE C.RNK BETWEEN 1 AND 10
+	</select>
+	
+
 </mapper>
