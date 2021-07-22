@@ -498,11 +498,12 @@ $(document).ready(function(){
 	});    
 		
       /* 메인 비교함 버튼 조건 */
-    $("#compareBtn").on("click", function() {
+    $(".compare_btn").on("click", function() {
     	var temp = "";
 		if(cardNo.length > 2) {
 			alert("비교함이 가득 찼습니다.");
 		} else {
+			
 			var a = $(this).prop('id').split("_");
 			alert(a);
 			cardNo.push(a[1]);
@@ -526,7 +527,7 @@ $(document).ready(function(){
 	/* 메인 비교함 팝업  */
 	$(document).ready(function(){
 		$("#bi").hide();
-		$("#compareBtn").on("click",function(){
+		$(".compare_btn").on("click",function(){
 			$("#bi").hide();
 			$("#bi").fadeIn();
 		});
@@ -556,7 +557,7 @@ $(document).ready(function(){
 				$("#p1").on("click",function(){
 					
 					$("#compared").submit();
-									
+						
 				});
 			$("#p2").off("click");
 			$("#p2").on("click",function(){
@@ -623,9 +624,9 @@ $(document).ready(function(){
 	</div>
 	<form action = "#" id = "compared" method = "post">
 	
-		<input id = "compared1" type = "hidden" name = "comparedd" value = "">
-		<input id = "compared2" type = "hidden" name = "comparedd" value = "">
-		<input Id = "compared3" type = "hidden" name = "comparedd" value = "">
+		<input id = "compared1" type = "hidden" name = "comparedd1" value = "">
+		<input id = "compared2" type = "hidden" name = "comparedd2" value = "">
+		<input Id = "compared3" type = "hidden" name = "comparedd3" value = "">
 		
 	</form>
 	
@@ -663,7 +664,7 @@ $(document).ready(function(){
 				</form>
 				<div id="btnBox">
 					<input type="button" value="상세보기" class="dt_btn" id="dtBtn" />
-					<input type="button" value="비교함 담기" class="compare_btn" id="compareBtn" />
+					<input type="button" value="비교함 담기" class="compare_btn" id="viewBox_${list[i].CARD_NO}" />
 				<div id = "bi">
 						<input type = "button" value = "비교함 확인" id = "bi1"/>
 						<input type = "button" value = "1" id= "bi2"/>
