@@ -467,7 +467,11 @@ $(document).ready(function(){
 		if(cardNo.length > 2) {
 			alert("비교함이 가득 찼습니다.");
 		} else {
-			cardNo.push($(this).prop('id'));
+			/* cardNo.push($(this).prop('id')); */
+			var a = $(this).prop('id').split("_");
+			cardNo.push(a[1]);
+			/* alert(a) */
+			console.log(cardNo);
 			$("#bi2").val(cardNo.length);
 		for(var i=0; i<cardNo.length; i++){
 			for(var j=0; j<i; j++){
@@ -481,14 +485,23 @@ $(document).ready(function(){
 			}
 		}
 	});
-              
+	
+    $("#bi1").on("click",function(){
+		$("#compared1").val(cardNo[0]);
+		$("#compared2").val(cardNo[1]);
+		$("#compared3").val(cardNo[2]);
+		
+		$("#compared").attr("action","compareSearch");
+	});
+	              
       /* 메인 비교함 버튼 조건 */
-    $("#compareBtn").on("click", function() {
+    $(".compare_btn").on("click", function() {
     	var temp = "";
 		if(cardNo.length > 2) {
 			alert("비교함이 가득 찼습니다.");
 		} else {
 			cardNo.push($(this).prop('id'));
+			console.log(cardNo);
 			$("#bi2").val(cardNo.length);
 			for(var i=0; i<cardNo.length; i++){
 				for(var j=0; j<i; j++){
@@ -502,12 +515,12 @@ $(document).ready(function(){
 			}
 		}
 	});	
-});
-
+});	
+	
 	/* 메인 비교함 팝업  */
 	$(document).ready(function(){
 		$("#bi").hide();
-		$("#compareBtn").on("click",function(){
+		$(".compare_btn").on("click",function(){
 			$("#bi").hide();
 			$("#bi").fadeIn();
 		});
@@ -535,14 +548,14 @@ $(document).ready(function(){
 				$("body").prepend(html);
 				$(".Popup").hide().fadeIn();
 				$("#p1").on("click",function(){
-					location.href = "http://localhost:8090/cdcp/compareSearch";
+					$("#compared").submit();
 				});
 			$("#p2").off("click");
 			$("#p2").on("click",function(){
 					closePopup();
 				});
 			}				
-				
+		
 		function closePopup(){
 			$(".Popup").fadeOut(function(){
 				$(".Popup").remove();
@@ -600,6 +613,12 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
+	<!-- 비교함 담기 폼  -->	
+	<form action = "#" id = "compared" method = "post">	
+		<input id = "compared1" type = "hidden" name = "comparedd1" value = "">
+		<input id = "compared2" type = "hidden" name = "comparedd2" value = "">
+		<input id = "compared3" type = "hidden" name = "comparedd3" value = "">	
+	</form>		
 <!-- 내용 영역 -->	
 	<div id="content">
 		<!-- 1위 카드 이름 영역 -->
@@ -634,7 +653,7 @@ $(document).ready(function(){
 				</form>
 				<div id="btnBox">
 					<input type="button" value="상세보기" class="dt_btn" id="dtBtn" />
-					<input type="button" value="비교함 담기" class="compare_btn" id="compareBtn" />
+					<input type="button" value="비교함 담기" class="compare_btn" id="${list[0].CARD_NO}" />
 						<div id = "bi">
 						<input type = "button" value = "비교함 확인" id = "bi1"/>
 						<input type = "button" value = "1" id= "bi2"/>
