@@ -39,9 +39,9 @@ public class SearchContoller {
 	
 	//카드비교 페이지
 	@RequestMapping(value = "/compareSearch")
-	public ModelAndView compareSearch(ModelAndView mav,@RequestParam(required = false) HashMap<String,String> params) {
+	public ModelAndView compareSearch(ModelAndView mav,@RequestParam(required = false) ArrayList<String> option) {
 		System.out.println("============");
-		System.out.println(params);
+		System.out.println(option);
 		System.out.println("===============");
 		mav.setViewName("search/compareSearch");
 		return mav;
