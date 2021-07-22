@@ -174,6 +174,22 @@ body{
 .cardDelete:hover {
 	cursor: pointer;
 }
+.cardDetail {
+	display: inline-block;
+}
+.cardDetail input {
+	border: none;
+	background-color: #EDB9BB;
+	font-family: 'GmarketSansMedium';
+	text-align: center;
+	border-radius: 5px;
+	padding: 3px;
+	margin-bottom: 10px;
+	visibility: hidden;
+}
+.cardDetail input:hover {
+	cursor: pointer;
+}
 .cardBox {
 	display: inline-block;
 	margin: 0 auto;
@@ -362,6 +378,8 @@ $(document).ready(function() {
 			$("#cardBenefit_info_" + $("#divNo").val()).html($(this).children('.cardSummary').val());
 			$("#addCardBtn_" + $("#divNo").val()).css("visibility","hidden");
 			$("#cardDelete_" + $("#divNo").val()).css("visibility","visible");
+			$("#cardDetail_" + $("#divNo").val() + " input").css("visibility","visible");
+			$("#cardDetail_" + $("#divNo").val() + " input").attr("id",$(this).children('.cardNo').val());
 			closePopup();
 		});
 		
@@ -373,8 +391,9 @@ $(document).ready(function() {
 			$("#cardKind_info_" + ival[1]).html("");
 			$("#cardType_info_" + ival[1]).html("");
 			$("#cardBenefit_info_" + ival[1]).html("");
-			$(".cardDelete").css("visibility","hidden");
-			$(".addCardBtn").css("visibility","visible");
+			$("#cardDelete_" + ival[1]).css("visibility","hidden");
+			$("#addCardBtn_" + ival[1]).css("visibility","visible");
+			$("#cardDetail_" + ival[1] + " input").css("visibility","hidden");
 		});
 	}
 	function closePopup() {
@@ -420,6 +439,12 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
+	$(".cardDetail input").on("click", function() {
+		var ival = $(this).prop('id');
+		$("#cardNo").val(ival);
+		$("#gogoForm").submit();
+	});
 });
 </script>
 </head>
@@ -446,8 +471,16 @@ $(document).ready(function() {
 		<div id="subTitle" class="sub_title">
 			<h1>카드 비교하기</h1>
 		</div><br/><br/>
+		<form action="cardview" id="gogoForm" method="post">
+			<input type="hidden" id="cardNo" name="cardNo" value="" />
+		</form>
 		<div class="cardArea">
-			<div class="cardDelete" id="cardDelete_1"></div>
+			<div class="afterSelectCard">
+				<div class="cardDelete" id="cardDelete_1"></div>
+				<div class="cardDetail" id="cardDetail_1">
+					<input type="button" value="상세보기" id=""/>
+				</div>
+			</div>
 			<div class="cardBox" id="cardBox_1">
 				<div class="cardImg" id="cardImg_1">
 					<input type="button" value="카드를 선택해 보세요" class="addCardBtn" id="addCardBtn_1" />
@@ -462,7 +495,12 @@ $(document).ready(function() {
 			</div>
 		</div>
 		<div class="cardArea">
-			<div class="cardDelete" id="cardDelete_2"></div>
+			<div class="afterSelectCard">
+				<div class="cardDelete" id="cardDelete_2"></div>
+				<div class="cardDetail" id="cardDetail_2">
+					<input type="button" value="상세보기" id=""/>
+				</div>
+			</div>
 			<div class="cardBox" id="cardBox_2">
 				<div class="cardImg" id="cardImg_2">
 					<input type="button" value="카드를 선택해 보세요" class="addCardBtn" id="addCardBtn_2" />
@@ -477,7 +515,12 @@ $(document).ready(function() {
 			</div>
 		</div>
 		<div class="cardArea">
-			<div class="cardDelete" id="cardDelete_3"></div>
+			<div class="afterSelectCard">
+				<div class="cardDelete" id="cardDelete_3"></div>
+				<div class="cardDetail" id="cardDetail_3">
+					<input type="button" value="상세보기" id=""/>
+				</div>
+			</div>
 			<div class="cardBox" id="cardBox_3">
 				<div class="cardImg" id="cardImg_3">
 					<input type="button" value="카드를 선택해 보세요" class="addCardBtn" id="addCardBtn_3" />
