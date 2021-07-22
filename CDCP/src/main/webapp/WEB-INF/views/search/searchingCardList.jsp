@@ -507,7 +507,6 @@ $(document).ready(function() {
 <div id="content">
 	<div id="contentMenu">
 	<div id="main" class="main">
-<<<<<<< HEAD
 		<div id="keyword" class="keyword">
 			<ul>
 			<c:forEach var="data" items="${options}">
@@ -515,8 +514,7 @@ $(document).ready(function() {
 			</c:forEach>
 			</ul>
 		</div>
-=======
- 		<div id="keyword" class="keyword">
+ 		<%-- <div id="keyword" class="keyword">
  			<ul>
  				<c:forEach var="data" items="${options}">
 					<li>${data}</li>
@@ -526,8 +524,7 @@ $(document).ready(function() {
 						<input type = "button" value = "비교함 확인" id = "bi1"/>
 						<input type = "button" value = "1" id= "bi2"/>
 			</div>	
- 		</div>
->>>>>>> branch 'main' of https://github.com/financeTeamProject/CardCaptain.git
+ 		</div> --%>
 <c:set var="size" value="${fn:length(pagingDistinct)}" />
 <c:choose>
 <c:when test="${size > 0}">

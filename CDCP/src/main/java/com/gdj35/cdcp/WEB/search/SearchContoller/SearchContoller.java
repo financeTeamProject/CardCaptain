@@ -71,27 +71,32 @@ public class SearchContoller {
 			params.put("endCnt", Integer.toString(pb.getEndCount()));
 			
 			List<HashMap<String, String>> pagingDistinct = iservice.pagingDistinct(params);//화면에 보여줄 10개의 중복제거된 데이터
-
+			//========== 페이징 End
+			
+			//==========JSP로 넘기기 Start
 			mav.addObject("searchKeyword",searchKeyword);//중복제거 없이 모든 카드정보를 담아옴(li 반복을 위하여)
 			mav.addObject("pagingDistinct",pagingDistinct);//화면에 보여줄 10개의 중복제거된 데이터
 			
 			mav.addObject("pb", pb);
 			mav.addObject("cnt",cnt);
 			mav.addObject("page",page);
-			//========== 페이징 End
-			
+
 			mav.addObject("option", params.get("option"));
 			mav.addObject("searchType", params.get("searchType"));
 			mav.addObject("options", option);
-
+			//==========JSP로 넘기기 End
+			
 			mav.setViewName("search/searchingCardList");
 		} else if (params.get("searchType").equals("optionClick")) {//keyword 옵션선택
+			//==========데이터 생성 Start
 			String data = "";
 			
 			for(int i=0; i<option.size(); i++) {
 				data += ",'" + option.get(i) + "'";
 			}
 			data = data.substring(1,data.length());
+			//==========데이터 생성 End
+			
 			//========== 페이징 Start
 			if(params.get("page") != null) {
 				page = Integer.parseInt(params.get("page"));
@@ -108,18 +113,20 @@ public class SearchContoller {
 			params.put("data", data);//params.put으로 넣어도 안에 값이 String이면 '$'를 써야 함
 			
 			List<HashMap<String, String>> checkpagingDistinct = iservice.checkpagingDistinct(params);//화면에 보여줄 10개의 중복제거된 데이터
+			//========== 페이징 End
 			
+			//==========JSP로 넘기기 Start
 			mav.addObject("pagingDistinct",checkpagingDistinct);//화면에 보여줄 10개의 중복제거된 데이터
 			mav.addObject("searchKeyword",checkKeyword);//중복제거 없이 모든 카드정보를 담아옴(li 반복을 위하여)
 			
 			mav.addObject("pb", pb);
 			mav.addObject("cnt",cnt);
 			mav.addObject("page",page);
-			//========== 페이징 End
 			
 			mav.addObject("option", params.get("option"));
 			mav.addObject("searchType", params.get("searchType"));
 			mav.addObject("options", option);
+			//==========JSP로 넘기기 End
 			
 			mav.setViewName("search/searchingCardList");
 		} else if (params.get("searchType").equals("check")) {//옵션체크
@@ -171,18 +178,21 @@ public class SearchContoller {
 			params.put("endCnt", Integer.toString(pb.getEndCount()));
 			
 			List<HashMap<String, String>> pagingDistinct = iservice.listpagingDistinct(params);//화면에 보여줄 10개의 중복제거된 데이터
-
+			//========== 페이징 End
+			
+			//==========JSP로 넘기기 Start			
 			mav.addObject("searchKeyword",searchKeyword);//중복제거 없이 모든 카드정보를 담아옴(li 반복을 위하여)
 			mav.addObject("pagingDistinct",pagingDistinct);//화면에 보여줄 10개의 중복제거된 데이터
-			
+
 			mav.addObject("pb", pb);
 			mav.addObject("cnt",cnt);
 			mav.addObject("page",page);
-			//========== 페이징 End
 			
 			mav.addObject("option", params.get("option"));
 			mav.addObject("searchType", params.get("searchType"));
 			mav.addObject("options", option);
+			//==========JSP로 넘기기 End
+			
 			mav.setViewName("search/searchingCardList");
 		} else {
 			mav.setViewName("ranking/test4s");

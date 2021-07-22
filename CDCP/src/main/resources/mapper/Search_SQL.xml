@@ -172,6 +172,6 @@
 					</if>
         		)B
 			) C
-			WHERE C.RNUM BETWEEN 1 AND 10
+			WHERE C.RNUM BETWEEN #{startCnt} AND #{endCnt}
 	</select>
 </mapper>

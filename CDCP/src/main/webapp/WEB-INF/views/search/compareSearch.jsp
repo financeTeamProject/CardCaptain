@@ -155,7 +155,12 @@ body{
 	font-family: 'Cafe24Ohsquare';
 	display:inline-block;
 }
-
+.cardArea {
+	display: inline-block;
+	width: 400px;
+	height: 700px;
+	margin-right: 70px;
+}
 .cardDelete {
 	display: inline-block;
     vertical-align: top;
@@ -167,6 +172,22 @@ body{
     visibility: hidden;
 }
 .cardDelete:hover {
+	cursor: pointer;
+}
+.cardDetail {
+	display: inline-block;
+}
+.cardDetail input {
+	border: none;
+	background-color: #EDB9BB;
+	font-family: 'GmarketSansMedium';
+	text-align: center;
+	border-radius: 5px;
+	padding: 3px;
+	margin-bottom: 10px;
+	visibility: hidden;
+}
+.cardDetail input:hover {
 	cursor: pointer;
 }
 .cardBox {
@@ -357,6 +378,8 @@ $(document).ready(function() {
 			$("#cardBenefit_info_" + $("#divNo").val()).html($(this).children('.cardSummary').val());
 			$("#addCardBtn_" + $("#divNo").val()).css("visibility","hidden");
 			$("#cardDelete_" + $("#divNo").val()).css("visibility","visible");
+			$("#cardDetail_" + $("#divNo").val() + " input").css("visibility","visible");
+			$("#cardDetail_" + $("#divNo").val() + " input").attr("id",$(this).children('.cardNo').val());
 			closePopup();
 		});
 		
@@ -368,8 +391,9 @@ $(document).ready(function() {
 			$("#cardKind_info_" + ival[1]).html("");
 			$("#cardType_info_" + ival[1]).html("");
 			$("#cardBenefit_info_" + ival[1]).html("");
-			$(".cardDelete").css("visibility","hidden");
-			$(".addCardBtn").css("visibility","visible");
+			$("#cardDelete_" + ival[1]).css("visibility","hidden");
+			$("#addCardBtn_" + ival[1]).css("visibility","visible");
+			$("#cardDetail_" + ival[1] + " input").css("visibility","hidden");
 		});
 	}
 	function closePopup() {
@@ -415,6 +439,12 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
+	$(".cardDetail input").on("click", function() {
+		var ival = $(this).prop('id');
+		$("#cardNo").val(ival);
+		$("#gogoForm").submit();
+	});
 });
 </script>
 </head>
@@ -437,56 +467,76 @@ $(document).ready(function() {
 <!-- End Header by KJ -->
 <!-- 내용 영역 -->	
 <div id="content">
-<div id="contentMenu"><br/>
-<div id="subTitle" class="sub_title">
-	<h1>카드 비교하기</h1>
-</div><br/><br/><br/>
-<div class="cardDelete" id="cardDelete_1"></div><br/>
-<div class="cardBox" id="cardBox_1">
-	<div class="cardImg" id="cardImg_1">
-		<input type="button" value="카드를 선택해 보세요" class="addCardBtn" id="addCardBtn_1" />
+	<div id="contentMenu"><br/>
+		<div id="subTitle" class="sub_title">
+			<h1>카드 비교하기</h1>
+		</div><br/><br/>
+		<form action="cardview" id="gogoForm" method="post">
+			<input type="hidden" id="cardNo" name="cardNo" value="" />
+		</form>
+		<div class="cardArea">
+			<div class="afterSelectCard">
+				<div class="cardDelete" id="cardDelete_1"></div>
+				<div class="cardDetail" id="cardDetail_1">
+					<input type="button" value="상세보기" id=""/>
+				</div>
+			</div>
+			<div class="cardBox" id="cardBox_1">
+				<div class="cardImg" id="cardImg_1">
+					<input type="button" value="카드를 선택해 보세요" class="addCardBtn" id="addCardBtn_1" />
+				</div>
+				<div class="cardName" id="cardName_1"></div>
+				<div class="cardKind" id="cardKind_1">카드종류</div>
+				<div class="cardKind_info" id="cardKind_info_1"></div><br/>
+				<div class="cardType" id="cardType_1">카드타입</div>
+				<div class="cardType_info" id="cardType_info_1"></div><br/>
+				<div class="cardBenefit" id="cardBenefit_1">간단설명</div>
+				<div class="cardBenefit_info" id="cardBenefit_info_1"></div><br/>
+			</div>
+		</div>
+		<div class="cardArea">
+			<div class="afterSelectCard">
+				<div class="cardDelete" id="cardDelete_2"></div>
+				<div class="cardDetail" id="cardDetail_2">
+					<input type="button" value="상세보기" id=""/>
+				</div>
+			</div>
+			<div class="cardBox" id="cardBox_2">
+				<div class="cardImg" id="cardImg_2">
+					<input type="button" value="카드를 선택해 보세요" class="addCardBtn" id="addCardBtn_2" />
+				</div>
+				<div class="cardName" id="cardName_2"></div>
+				<div class="cardKind" id="cardKind_2">카드종류</div>
+				<div class="cardKind_info" id="cardKind_info_2"></div><br/>
+				<div class="cardType" id="cardType_2">카드타입</div>
+				<div class="cardType_info" id="cardType_info_2"></div><br/>
+				<div class="cardBenefit" id="cardBenefit_2">간단설명</div>
+				<div class="cardBenefit_info" id="cardBenefit_info_2"></div><br/>
+			</div>
+		</div>
+		<div class="cardArea">
+			<div class="afterSelectCard">
+				<div class="cardDelete" id="cardDelete_3"></div>
+				<div class="cardDetail" id="cardDetail_3">
+					<input type="button" value="상세보기" id=""/>
+				</div>
+			</div>
+			<div class="cardBox" id="cardBox_3">
+				<div class="cardImg" id="cardImg_3">
+					<input type="button" value="카드를 선택해 보세요" class="addCardBtn" id="addCardBtn_3" />
+				</div>
+				<div class="cardName" id="cardName_3"></div>
+				<div class="cardKind" id="cardKind_3">카드종류</div>
+				<div class="cardKind_info" id="cardKind_info_3"></div><br/>
+				<div class="cardType" id="cardType_1">카드타입</div>
+				<div class="cardType_info" id="cardType_info_3"></div><br/>
+				<div class="cardBenefit" id="cardBenefit_3">간단설명</div>
+				<div class="cardBenefit_info" id="cardBenefit_info_3"></div><br/>
+			</div>
+		</div>
 	</div>
-	<div class="cardName" id="cardName_1"></div>
-	<div class="cardKind" id="cardKind_1">카드종류</div>
-	<div class="cardKind_info" id="cardKind_info_1"></div><br/>
-	<div class="cardType" id="cardType_1">카드타입</div>
-	<div class="cardType_info" id="cardType_info_1"></div><br/>
-	<div class="cardBenefit" id="cardBenefit_1">카드설명</div>
-	<div class="cardBenefit_info" id="cardBenefit_info_1"></div><br/>
 </div>
-<div class="cardDelete" id="cardDelete_2"></div>
-<div class="cardBox" id="cardBox_2">
-	<div class="cardImg" id="cardImg_2">
-		<input type="button" value="카드를 선택해 보세요" class="addCardBtn" id="addCardBtn_2" />
-	</div>
-	<div class="cardName" id="cardName_2"></div>
-	<div class="cardKind" id="cardKind_2">카드종류</div>
-	<div class="cardKind_info" id="cardKind_info_2"></div><br/>
-	<div class="cardType" id="cardType_2">카드타입</div>
-	<div class="cardType_info" id="cardType_info_2"></div><br/>
-	<div class="cardBenefit" id="cardBenefit_2">카드설명</div>
-	<div class="cardBenefit_info" id="cardBenefit_info_2"></div><br/>
-</div>
-<div class="cardDelete" id="cardDelete_3"></div>
-<div class="cardBox" id="cardBox_3">
-	<div class="cardImg" id="cardImg_3">
-		<input type="button" value="카드를 선택해 보세요" class="addCardBtn" id="addCardBtn_3" />
-	</div>
-	<div class="cardName" id="cardName_3"></div>
-	<div class="cardKind" id="cardKind_3">카드종류</div>
-	<div class="cardKind_info" id="cardKind_info_3"></div><br/>
-	<div class="cardType" id="cardType_1">카드타입</div>
-	<div class="cardType_info" id="cardType_info_3"></div><br/>
-	<div class="cardBenefit" id="cardBenefit_3">카드설명</div>
-	<div class="cardBenefit_info" id="cardBenefit_info_3"></div><br/>
-</div>
-</div>
-</div>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+<br/><br/><br/><br/><br/>
 <!-- Start Footer by KJ -->
 <div id="footer">
 	<div id="footerMenu">
