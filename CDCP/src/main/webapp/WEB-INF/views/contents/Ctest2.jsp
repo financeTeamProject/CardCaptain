@@ -147,13 +147,23 @@ label  {
 <script type="text/javascript"
 				src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 		<script type="text/javascript">
-		
-		$(document).ready(function() {
-			
-			$("#sobiButton").on("click", function() {
-				location.href = "Ctest3";
-			});
-		});	
+	
+	
+		function findChecked() {
+		    var found = 0;
+		    
+		    $("#main input[type='radio']:checked").each(function() {
+		    	found += $(this).val() * 1;
+		    });
+		    
+		    if(found != 0) {
+		        alert(found);
+		    $("#goForm").attr("action","Ctest3");
+			$("#goForm").submit();
+		    }
+		    else
+		        alert("선택된 것이 없음");
+		}	
 		
 </script>
 </head>
@@ -164,22 +174,24 @@ label  {
 	<div id="s_left"></div>
 	<div id="main">
 	<div class="title">소비심리테스트</div>
+	<form action="#" id ="goForm" method="post">
+					<input type="hidden" name="found" id="found" value="">
+				</form>
 		<c:forEach var = "i" begin = "5" end = "9">
 		<div class="content">
 			<div class="content_1">
 				<div class= "h2_w"><h2>[${list[i].TEST_NO}번 문항]</h2></div>
 				<p>${list[i].CONTENT}</p>
-				
-				<input type="radio" name="hobby1" id="hobby1_1" value="1"><label for="hobb1_1">상당히 아니다</label>
-				<input type="radio" name="hobby1" id="hobby1_2" value="2"><label for="hobb1_2">아니다</label>
-				<input type="radio" name="hobby1" id="hobby1_3" value="3"><label for="hobb1_3">보통이다</label>
-				<input type="radio" name="hobby1" id="hobby1_4" value="4"><label for="hobb1_4">그렇다</label>
-				<input type="radio" name="hobby1" id="hobby1_5" value="5"><label for="hobby1_5">상당히 그렇다</label>
+				<input type="radio" name="hobby${list[i].TEST_NO}" id="hobby${list[i].TEST_NO}_1" value="1" checked><label for="hobby${list[i].TEST_NO}_1">상당히 아니다</label>
+				<input type="radio" name="hobby${list[i].TEST_NO}" id="hobby${list[i].TEST_NO}_2" value="2"><label for="hobby${list[i].TEST_NO}_2">아니다</label>
+				<input type="radio" name="hobby${list[i].TEST_NO}" id="hobby${list[i].TEST_NO}_3" value="3"><label for="hobby${list[i].TEST_NO}_3">보통이다</label>
+				<input type="radio" name="hobby${list[i].TEST_NO}" id="hobby${list[i].TEST_NO}_4" value="4"><label for="hobby${list[i].TEST_NO}_4">그렇다</label>
+				<input type="radio" name="hobby${list[i].TEST_NO}" id="hobby${list[i].TEST_NO}_5" value="5"><label for="hobby${list[i].TEST_NO}_5">상당히 그렇다</label>
 			</div>
 		</div>
 	</c:forEach>
 	<div id="sobiButton">
-		<input type="submit" value="다음" id="next" />
+		<input type="submit" value="다음" id="next" onclick="findChecked()" />
 	</div>	
 	</div>
 	

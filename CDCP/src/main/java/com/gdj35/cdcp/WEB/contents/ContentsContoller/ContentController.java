@@ -90,7 +90,7 @@ public class ContentController {
 	public ModelAndView Ctest2(
 			@RequestParam HashMap<String, String> params,
 			ModelAndView mav) throws Throwable{
-		
+		System.out.println(params);
 		List<HashMap<String, String>> list
 			= ContentsiService.getCtest(params);
 		
@@ -105,7 +105,7 @@ public class ContentController {
 	public ModelAndView Ctest3(
 			@RequestParam HashMap<String, String> params,
 			ModelAndView mav) throws Throwable{
-		
+		System.out.println(params);
 		List<HashMap<String, String>> list
 			= ContentsiService.getCtest(params);
 		
@@ -120,7 +120,7 @@ public class ContentController {
 	public ModelAndView Ctest4(
 			@RequestParam HashMap<String, String> params,
 			ModelAndView mav) throws Throwable{
-		
+		System.out.println(params);
 		List<HashMap<String, String>> list
 			= ContentsiService.getCtest(params);
 		

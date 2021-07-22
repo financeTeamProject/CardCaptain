@@ -322,6 +322,7 @@ h1 {
 	font-family: 'Cafe24Ohsquare';
 	color: black;
 	margin: 0px auto;
+	
 }
 
 .writer, .Cdate {
@@ -466,22 +467,40 @@ h1 {
 				location.href = "cardTip_3";
 			});
 		
-			function drawList(list){
-				var html = "";
-				
-				for(var C of list){
-				html += "<tr cno=\"" + C.TIP_NO + "\">";
-				html += "<td>" + C.TIP_IMG_URL + "</td>";
-				html += "<td>" + C.TIP_TITLE + "</td>";
-				html += "<td>" + C.TIP_CONTENT + "</td>";
-				html += "<td>" + C.TIP_WRITER + "</td>";
-				html += "<td>" + C.ADD_DATE + "</td>";
-				html += "</tr>";
-				}
-				$(".list_wrap tbody").html(html);
-			}
-			
 		});	 // document ready end
+		
+		function reloadList() {
+			var params = $("#actionForm").serialize();
+			
+			$.ajax({
+				url: "contents",
+				type: "post", 
+				dataType: "json",
+				data: params,	
+				success: function(res) {
+					drawList(res.list);
+					drawPaging(res.pb);
+				},
+				error: function(request, status, error) {
+					console.log(error);
+				}
+			});
+		}
+		
+		function drawList(list){
+			var html = "";
+			
+			for(var C of list){
+			html += "<tr cno=\"" + c.TIP_NO + "\">";
+			html += "<td>" + c.TIP_IMG_URL + "</td>";
+			html += "<td>" + c.TIP_TITLE + "</td>";
+			html += "<td>" + c.TIP_CONTENT + "</td>";
+			html += "<td>" + c.TIP_WRITER + "</td>";
+			html += "<td>" + c.ADD_DATE + "</td>";
+			html += "</tr>";
+			}
+			$(".list_wrap div").html(html);
+		}
 </script>		
 </head>
 <body>

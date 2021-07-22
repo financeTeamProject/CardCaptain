@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -156,13 +156,18 @@ label  {
 			    	found += $(this).val() * 1;
 			    });
 			    
-			    if(found != 0)
-			        alert(found);
+			    if(found != 0) {
+			        $("#found").val(found);
+			      $("#goForm").html();
+			        
+			    $("#goForm").attr("action","Ctest2");
+				$("#goForm").submit();
+			    }
 			    else
 			        alert("선택된 것이 없음");
 			}	
-			
 		
+
 </script>
 </head>
 <body>
@@ -171,6 +176,9 @@ label  {
 	<div id="s_left"></div>
 	<div id="main">
 	<div class="title">소비심리테스트</div>
+	<form action="#" id ="goForm" method="post">
+					<input type="text" name="found" id="found" value="">
+				</form>
 	<c:forEach var = "i" begin = "0" end = "4">
 		<div class="content">
 			<div class="content_1">
@@ -181,6 +189,7 @@ label  {
 				<input type="radio" name="hobby${list[i].TEST_NO}" id="hobby${list[i].TEST_NO}_3" value="3"><label for="hobby${list[i].TEST_NO}_3">보통이다</label>
 				<input type="radio" name="hobby${list[i].TEST_NO}" id="hobby${list[i].TEST_NO}_4" value="4"><label for="hobby${list[i].TEST_NO}_4">그렇다</label>
 				<input type="radio" name="hobby${list[i].TEST_NO}" id="hobby${list[i].TEST_NO}_5" value="5"><label for="hobby${list[i].TEST_NO}_5">상당히 그렇다</label>
+			
 			</div>
 		</div>
 	</c:forEach>
