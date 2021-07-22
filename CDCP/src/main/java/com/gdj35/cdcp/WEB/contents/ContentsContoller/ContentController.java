@@ -43,7 +43,7 @@ public class ContentController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/main") // 콘텐츠 소비심리테스트 카드 추천 화면
+	@RequestMapping(value = "/main") 
 	public ModelAndView main(ModelAndView mav) {
 		mav.setViewName("main_Layout/main");
 		

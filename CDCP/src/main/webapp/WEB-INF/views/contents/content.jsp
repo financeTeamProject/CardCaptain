@@ -45,8 +45,9 @@ h2 {
 
 h1 {
 	
+	padding-top: 30px;
 	font-family: 'GmarketSansLight';
-	font-size: 40px;
+	font-size: 25px;
 	color: black;
 }
 
@@ -289,7 +290,7 @@ h1 {
 	margin: 0px auto;
 }
 
-.img_rayout > img {
+.img_rayout a > img{
 	width: 240px;
 	height: 300px;
 	background-repeat: no-repeat;
@@ -464,18 +465,11 @@ h1 {
 			$("#img_rayout_3").on("click", function() { // 기사 3
 				location.href = "cardTip_3";
 			});
-			
-			$(".img_rayout img").on("click", "tr", function() {
-				$("#cNo").val($(this).attr("cno"));
-				
-				$("#actionForm").attr("action", "");
-				$("#actionForm").submit();
-			});
-			
+		
 			function drawList(list){
 				var html = "";
 				
-				for(var c of list){
+				for(var C of list){
 				html += "<tr cno=\"" + C.TIP_NO + "\">";
 				html += "<td>" + C.TIP_IMG_URL + "</td>";
 				html += "<td>" + C.TIP_TITLE + "</td>";
@@ -534,12 +528,14 @@ h1 {
 				<div class="content"> <!-- tr -->
 					<div class="content_1">
 						<div class="img_rayout">
-							<img src="${list[i].TIP_IMG_URL}">
+							<a href="cardTip_${list[i].TIP_NO}">
+								<img src="${list[i].TIP_IMG_URL}">
+							</a>
 						</div>
 						<div id="content_content">
 						<h2>${list[i].TIP_TITLE}</h2>
 						<div class ="con">
-							<h1>${list[i].TIP_CONTNET}</h1>
+							<h1>${list[i].TIP_CON}...</h1>
 						</div>
 						<div class="Cdate">${list[i].ADD_DATE} BY ${list[i].TIP_WRITER}</div>
 						</div>
