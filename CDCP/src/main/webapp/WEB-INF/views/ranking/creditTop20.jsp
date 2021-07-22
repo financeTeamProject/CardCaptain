@@ -468,7 +468,7 @@ $(document).ready(function(){
 		if(cardNo.length > 2) {
 			alert("비교함이 가득 찼습니다.");
 		} else {
-			alert($(this).prop('id'));
+			/* alert($(this).prop('id')); */
 			var a = $(this).prop('id').split("_");
 			alert(a);
 			cardNo.push(a[1]);
@@ -488,28 +488,25 @@ $(document).ready(function(){
 	});
 		
 	$("#bi1").on("click",function(){
-		
-		
+				
 		$("#compared1").val(cardNo[0]);
 		$("#compared2").val(cardNo[1]);
 		$("#compared3").val(cardNo[2]);
-		
-		$("#compared").submit();
+				
 		$("#compared").attr("action","compareSearch");	
-	
 		
-	});
-	
-	
-    
-	///464번째줄에 변수들 들어가는데 써치 컨트롤러에 compareSearch에 넘겨주면 된다.
-	
+	});    
+		
       /* 메인 비교함 버튼 조건 */
     $("#compareBtn").on("click", function() {
     	var temp = "";
 		if(cardNo.length > 2) {
 			alert("비교함이 가득 찼습니다.");
 		} else {
+			var a = $(this).prop('id').split("_");
+			alert(a);
+			cardNo.push(a[1]);
+			console.log(cardNo);
 			cardNo.push($(this).prop('id'));
 			$("#bi2").val(cardNo.length);
 			for(var i=0; i<cardNo.length; i++){
@@ -525,13 +522,7 @@ $(document).ready(function(){
 		}
 	});	
 });
-	
-	
-	
-	
-	
-	
-	
+		
 	/* 메인 비교함 팝업  */
 	$(document).ready(function(){
 		$("#bi").hide();
@@ -563,7 +554,9 @@ $(document).ready(function(){
 				$("body").prepend(html);
 				$(".Popup").hide().fadeIn();
 				$("#p1").on("click",function(){
-					location.href = "http://localhost:8090/cdcp/compareSearch";
+					
+					$("#compared").submit();
+									
 				});
 			$("#p2").off("click");
 			$("#p2").on("click",function(){
@@ -630,9 +623,9 @@ $(document).ready(function(){
 	</div>
 	<form action = "#" id = "compared" method = "post">
 	
-		<input id = "compared1" type = "text" name = "comparedd" value = "">
-		<input id = "compared2" type = "text" name = "comparedd" value = "">
-		<input Id = "compared3" type = "text" name = "comparedd" value = "">
+		<input id = "compared1" type = "hidden" name = "comparedd" value = "">
+		<input id = "compared2" type = "hidden" name = "comparedd" value = "">
+		<input Id = "compared3" type = "hidden" name = "comparedd" value = "">
 		
 	</form>
 	
