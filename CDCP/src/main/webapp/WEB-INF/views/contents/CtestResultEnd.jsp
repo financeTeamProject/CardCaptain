@@ -193,6 +193,10 @@ input[type="radio"] {
 				location.href = "/cdcp";
 			});
 			
+			$("#resultend").on("click", function() { 
+				location.href = "/cdcp/search";
+			});
+			
 		});	
 		
 		

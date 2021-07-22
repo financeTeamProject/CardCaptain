@@ -44,11 +44,11 @@ h2 {
 }
 
 h1 {
-	padding-top: 10px;
+	
+	padding-top: 30px;
 	font-family: 'GmarketSansLight';
-	font-size: 30px;
+	font-size: 25px;
 	color: black;
-	word-break:break-all;
 }
 
 #header {
@@ -66,7 +66,7 @@ h1 {
 
 
 #headerWrap {
-	width: 1600px;
+	width: 1400px;
 	height: 100%;
 	margin: 0 auto;
 	display: flex;
@@ -265,8 +265,7 @@ h1 {
     color: white;
     font-size: 10px;
     font-family: 'GmarketSansLight';
-    border-radius: 15px 15px 15px 15px;
-             
+    border-radius: 15px 15px 15px 15px;         
 }
 
 .img_rayout, #content_content {
@@ -283,7 +282,7 @@ h1 {
     margin: 0px auto;
 }
 
-.img_rayout > div {
+.img_rayout > div, img {
 	width: 240px;
 	height: 300px;
 	background-repeat: no-repeat;
@@ -291,7 +290,7 @@ h1 {
 	margin: 0px auto;
 }
 
-.img_rayout > a img{
+.img_rayout a > img{
 	width: 240px;
 	height: 300px;
 	background-repeat: no-repeat;
@@ -323,7 +322,6 @@ h1 {
 	font-family: 'Cafe24Ohsquare';
 	color: black;
 	margin: 0px auto;
-	word-break:break-all;
 }
 
 .writer, .Cdate {
@@ -332,8 +330,7 @@ h1 {
 	font-size: 15px;
 	font-family: 'GmarketSansLight';
 	color: black;
-	text-align: left;
-	padding-left: 40px;
+	float: left;
 }
 
 .box-wrapper{ /* 카드간단용어 전체틀 */
@@ -457,26 +454,31 @@ h1 {
 			}); 
 			
 			/* 카드활용꿀팁 이동 */
-			/* $(".img_rayout").on("click", function() {
+			$("#img_rayout_1").on("click", function() { // 기사 1
 				location.href = "cardTip_1";
-			}); */
+			});
 			
+			$("#img_rayout_2").on("click", function() { // 기사 2
+				location.href = "cardTip_2";
+			});
+		
+			$("#img_rayout_3").on("click", function() { // 기사 3
+				location.href = "cardTip_3";
+			});
+		
 			function drawList(list){
 				var html = "";
 				
 				for(var C of list){
-				html += "<div class= \"content\">";
-				html += "<div class= \"content_1\">";
-				html += "<div class= \"img_rayout\">" + C.TIP_IMG_URL + "</div>";
-				html += "<div id= \"content_content\">";
-				html += "<h2>" + C.TIP_TITLE + "</h2>";
-				html += "<h1>" + C.TIP_CONTENT + "</h1>";
-				html += "<div class= \"Cdate\">" + C.TIP_WRITER + C.ADD_DATE + "</div>";
-				html += "</div>";
-				html += "</div>";
-				html += "</div>";
+				html += "<tr cno=\"" + C.TIP_NO + "\">";
+				html += "<td>" + C.TIP_IMG_URL + "</td>";
+				html += "<td>" + C.TIP_TITLE + "</td>";
+				html += "<td>" + C.TIP_CONTENT + "</td>";
+				html += "<td>" + C.TIP_WRITER + "</td>";
+				html += "<td>" + C.ADD_DATE + "</td>";
+				html += "</tr>";
 				}
-				$(".list_wrap").html(html);
+				$(".list_wrap tbody").html(html);
 			}
 			
 		});	 // document ready end
@@ -522,11 +524,10 @@ h1 {
 		<div id="s_left_sub"></div>
 		<div id="main_sub">	
 			<div class="title">카드활용꿀팁</div>
-			
-	 	<c:forEach var = "i" begin = "0" end = "2">			
+			<c:forEach var = "i" begin = "0" end = "2">			
 				<div class="content"> <!-- tr -->
 					<div class="content_1">
-						<div class="img_rayout" id="${list[i].TIP_NO}">
+						<div class="img_rayout">
 							<a href="cardTip_${list[i].TIP_NO}">
 								<img src="${list[i].TIP_IMG_URL}">
 							</a>
@@ -534,13 +535,13 @@ h1 {
 						<div id="content_content">
 						<h2>${list[i].TIP_TITLE}</h2>
 						<div class ="con">
-							<h1>${list[i].TIP}...</h1>
+							<h1>${list[i].TIP_CON}...</h1>
 						</div>
 						<div class="Cdate">${list[i].ADD_DATE} BY ${list[i].TIP_WRITER}</div>
 						</div>
 					</div>				
 				</div>
-			</c:forEach> 
+			</c:forEach>
 				<div class="content">
 					<div class="content_1">
 					<c:forEach var = "i" begin = "0" end = "2">

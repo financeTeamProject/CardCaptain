@@ -674,7 +674,7 @@ $(document).ready(function(){
 				<div id = "bi">
 						<input type = "button" value = "비교함 확인" id = "bi1"/>
 						<input type = "button" value = "1" id= "bi2"/>
-				</div>
+						</div>
 				</div>
 			</div>
 			<div id="contentBot">

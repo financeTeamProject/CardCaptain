@@ -139,9 +139,13 @@ body{
 #content {
 	width: 1600px;
     height: 900px;/* content에 맞게 줄임 - SYOU */
-    margin: 0 auto;
+    display: flex;
 }
 /* SYOU */
+#contentMenu {
+	display: inline-block;
+    margin: 0 auto;
+}
 .sub_title {
 	margin-top: 40px;
 }
@@ -160,6 +164,7 @@ body{
     background-size: 25px;
     width: 30px;
     height: 30px;
+    visibility: hidden;
 }
 .cardDelete:hover {
 	cursor: pointer;
@@ -169,7 +174,7 @@ body{
 	margin: 0 auto;
 	background-color: #F2F2F2;
 	width: 400px;
-	height: 850px;
+	height: 700px;
 	box-shadow: 0px 0px 18px 6px rgba(107,84,84,0.75);
 	margin-right: 70px;
 	border-radius: 5px;
@@ -177,6 +182,7 @@ body{
 }
 .cardImg {
 	background-color: #CCC;
+	margin-top: 25px;
 	margin-left: 25px;
 	width: 350px;
 	height: 200px;
@@ -184,14 +190,16 @@ body{
 	text-align: center;
 }
 .cardName {
+	margin-top: 10px;
 	margin-left: 25px;
 	width: 350px;
-	height: 50px;
+	height: 40px;
 	text-align: center;
 	font-family: 'GmarketSansMedium';
+	font-weight: 1000;
 }
 .addCardBtn {
-	vertical-align: top;
+	margin-top: 80px;
 	border: none;
 	background-color: #F5DF4D;
 	font-family: 'GmarketSansMedium';
@@ -209,27 +217,25 @@ body{
 	cursor: pointer;
 }
 .cardKind, .cardType, .cardBenefit {
+	padding-top: 5px;
+	padding-bottom: 5px;
 	background-color: #0047AB;
 	width: 400px;
-	height: 50px;
 	text-align: center;
 	color: white;
     font-family: 'GmarketSansMedium';
     font-size: 30px;
+    padding-top: 20px;
 }
-.cardKind_info,.cardType_info {
+.cardKind_info,.cardType_info,.cardBenefit_info {
 	background-color: #F8F9FA;
 	width: 400px;
-	height: 70px;
+	height: 25px;
 	text-align: center;
 	font-family: 'GmarketSansMedium';
-}
-.cardBenefit_info {
-	background-color: #F8F9FA;
-	width: 400px;
-	height: 200px;
-	text-align: center;
-	font-family: 'GmarketSansMedium';
+	font-size: 15px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
 
 /* 팝업 */
@@ -287,10 +293,95 @@ body{
 	height: 30px;
 	text-align: center;
 }
+.popupImgUrl {
+	margin-top: -110px;
+	width:350px;
+	height:200px;
+}
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+	function makePopup(title, contents, num) {
+		var html = "";
+		html += "<div class=\"bg_div\"></div>";
+		html += "<div class=\"popup_div\">";
+		html += "<div class=\"popup_title\">";
+		html += "<div class=\"popup_title_text\">" + title + "</div>";
+		html += "</div>";
+		html += "<div class=\"popup_contents\">";
+		html += "<div class=\"popup_text\">"
+		html += "<input type=\"hidden\" id=\"divNo\" value=" + num + "\>";
+		for(var d of contents) {
+			html += "<div>" + d.CARD_NAME + "<br/><input type=\"hidden\" class=\"cardNo\" value='" + d.CARD_NO + "'\>";
+			html += "<input type=\"hidden\" class=\"cardName\" value='" + d.CARD_NAME + "'\>";
+			html += "<input type=\"hidden\" class=\"cardSummary\" value='" + d.CARD_SUMMARY + "'\>";
+			html += "<input type=\"hidden\" class=\"cardKind\" value='" + d.CARD_KIND + "'\>";
+			html += "<input type=\"hidden\" class=\"cardType\" value='" + d.CARD_TYPE + "'\>";
+			html += "<input type=\"hidden\" class=\"cardImg\" value='" + d.CARD_IMG_URL + "'\>";
+			html += "</div>";
+		}
+		html += "</div>";
+		html += "<div class=\"popup_btn\">";
+		html += "<input type=\"button\" class=\"btn_ok\" value=\"닫기\"/>";
+		html += "</div>";
+		html += "</div>";
+		html += "</div>";
+		
+		$("body").prepend(html);
+		
+		$(".btn_ok").focus();
+		
+		$(".bg_div").hide();
+		$(".popup_div").hide();
+		
+		$(".bg_div").fadeIn();
+		$(".popup_div").fadeIn();
+		
+		
+		$(".btn_ok").off("click");
+		$(".btn_ok").on("click", function(){
+			closePopup();
+		});
+		
+		$(".bg_div").off("click");
+		$(".bg_div").on("click", function(){
+			closePopup();
+		});
+		
+		$(".popup_text").on("click","div", function() {
+			$("#cardName_" + $("#divNo").val()).html("[ " + $(this).children('.cardName').val() + " ]");
+			$("#cardImg_" + $("#divNo").val()).append("<img src=\"" + $(this).children('.cardImg').val() + "\" class=\"popupImgUrl\" />");
+			$("#cardKind_info_" + $("#divNo").val()).html($(this).children('.cardKind').val());
+			$("#cardType_info_" + $("#divNo").val()).html($(this).children('.cardType').val());
+			$("#cardBenefit_info_" + $("#divNo").val()).html($(this).children('.cardSummary').val());
+			$("#addCardBtn_" + $("#divNo").val()).css("visibility","hidden");
+			$("#cardDelete_" + $("#divNo").val()).css("visibility","visible");
+			closePopup();
+		});
+		
+		$(".cardDelete").on("click", function() {
+			var ival = $(this).prop('id').split("_");
+			$("#cardName_" + ival[1]).html("");
+			$("#addCardBtn_" + ival[1]).css("visibility","visible");
+			$("#cardImg_" + ival[1]).children('img').remove();
+			$("#cardKind_info_" + ival[1]).html("");
+			$("#cardType_info_" + ival[1]).html("");
+			$("#cardBenefit_info_" + ival[1]).html("");
+			$(".cardDelete").css("visibility","hidden");
+			$(".addCardBtn").css("visibility","visible");
+		});
+	}
+	function closePopup() {
+		$(".bg_div").fadeOut(function(){
+			$(".bg_div").remove();
+		});
+		
+		$(".popup_div").fadeOut(function(){
+			$(".popup_div").remove();
+		});
+	}
+	
 	/* 카드순위 페이지 이동 */
 	$("#ranking").on("click", function(){
 		location.href = "card_rank";
@@ -303,86 +394,28 @@ $(document).ready(function() {
 	$("#contents").on("click", function(){
 		location.href = "content";
 	});// contents click end
-	
 	/* 메인페이지 이동 */
 	$("#headerLogo").on("click", function(){
 		location.href = "/cdcp";
 	}); // headerLogo click end
 	
 	$(".addCardBtn").on("click", function() {
+		var num = $(this).prop('id').split("_");
+		num = num[1];
+		
 		$.ajax({
 			url:"cardListGet",
 			type:"post",
 			dataType :"json",
 			success : function (res) {
-				makePopup("카드추가", res.list);
+				makePopup("카드추가", res.list, num);
 			},
 			error: function (request, status, error) {
 				console.log(error);
 			}
 		});
-	});	
+	});
 });
-
-function makePopup(title, contents) {
-	var html = "";
-	html += "<div class=\"bg_div\"></div>";
-	html += "<div class=\"popup_div\">";
-	html += "<div class=\"popup_title\">";
-	html += "<div class=\"popup_title_text\">" + title + "</div>";
-	html += "</div>";
-	html += "<div class=\"popup_contents\">";
-	html += "<div class=\"popup_text\">"
-	for(var d of contents) {
-		html += "<div>" + d.CARD_NAME + "<input type=\"hidden\" id=" + d.CARD_NO + " value=" + d.CARD_NO + "\>";
-		html += "<input type=\"hidden\" id=" + d.CARD_NAME + " value=" + d.CARD_NAME + "\>";
-		html += "<input type=\"hidden\" id=" + d.CARD_IMG_URL + " value=" + d.CARD_IMG_URL + "\>";
-		html += "<input type=\"hidden\" id=" + d.CARD_SUMMARY + " value=" + d.CARD_SUMMARY + "\>";
-		html += "<input type=\"hidden\" id=" + d.CARD_TYPE + " value=" + d.CARD_TYPE + "\>";
-		html += "</div>";
-	}
-	html += "</div>";
-	html += "<div class=\"popup_btn\">";
-	html += "<input type=\"button\" class=\"btn_ok\" value=\"닫기\"/>";
-	html += "</div>";
-	html += "</div>";
-	html += "</div>";
-	
-	$("body").prepend(html);
-	
-	$(".btn_ok").focus();
-	
-	$(".bg_div").hide();
-	$(".popup_div").hide();
-	
-	$(".bg_div").fadeIn();
-	$(".popup_div").fadeIn();
-	
-	
-	$(".btn_ok").off("click");
-	$(".btn_ok").on("click", function(){
-		closePopup();
-	});
-	
-	$(".bg_div").off("click");
-	$(".bg_div").on("click", function(){
-		closePopup();
-	});
-	
-	$(".popup_text").on("click","div", function() {
-		closePopup();
-	});
-}
-
-function closePopup() {
-	$(".bg_div").fadeOut(function(){
-		$(".bg_div").remove();
-	});
-	
-	$(".popup_div").fadeOut(function(){
-		$(".popup_div").remove();
-	});
-}
 </script>
 </head>
 <body>
@@ -408,44 +441,44 @@ function closePopup() {
 <div id="subTitle" class="sub_title">
 	<h1>카드 비교하기</h1>
 </div><br/><br/><br/>
-<div class="cardDelete"></div>
-<div class="cardBox">
-	<div class="cardImg">
-		<input type="button" value="카드추가" class="addCardBtn" />
+<div class="cardDelete" id="cardDelete_1"></div><br/>
+<div class="cardBox" id="cardBox_1">
+	<div class="cardImg" id="cardImg_1">
+		<input type="button" value="카드를 선택해 보세요" class="addCardBtn" id="addCardBtn_1" />
 	</div>
-	<div class="cardName">카드1</div>
-	<div class="cardKind">카드종류</div>
-	<div class="cardKind_info"></div><br/>
-	<div class="cardType">카드타입</div>
-	<div class="cardType_info"></div><br/>
-	<div class="cardBenefit">카드혜택</div>
-	<div class="cardBenefit_info"></div><br/>
+	<div class="cardName" id="cardName_1"></div>
+	<div class="cardKind" id="cardKind_1">카드종류</div>
+	<div class="cardKind_info" id="cardKind_info_1"></div><br/>
+	<div class="cardType" id="cardType_1">카드타입</div>
+	<div class="cardType_info" id="cardType_info_1"></div><br/>
+	<div class="cardBenefit" id="cardBenefit_1">카드설명</div>
+	<div class="cardBenefit_info" id="cardBenefit_info_1"></div><br/>
 </div>
-<div class="cardDelete"></div>
-<div class="cardBox">
-	<div class="cardImg">
-		<input type="button" value="카드추가" class="addCardBtn" />
+<div class="cardDelete" id="cardDelete_2"></div>
+<div class="cardBox" id="cardBox_2">
+	<div class="cardImg" id="cardImg_2">
+		<input type="button" value="카드를 선택해 보세요" class="addCardBtn" id="addCardBtn_2" />
 	</div>
-	<div class="cardName">카드2</div>
-	<div class="cardKind">카드종류</div>
-	<div class="cardKind_info"></div><br/>
-	<div class="cardType">카드타입</div>
-	<div class="cardType_info"></div><br/>
-	<div class="cardBenefit">카드혜택</div>
-	<div class="cardBenefit_info"></div><br/>
+	<div class="cardName" id="cardName_2"></div>
+	<div class="cardKind" id="cardKind_2">카드종류</div>
+	<div class="cardKind_info" id="cardKind_info_2"></div><br/>
+	<div class="cardType" id="cardType_2">카드타입</div>
+	<div class="cardType_info" id="cardType_info_2"></div><br/>
+	<div class="cardBenefit" id="cardBenefit_2">카드설명</div>
+	<div class="cardBenefit_info" id="cardBenefit_info_2"></div><br/>
 </div>
-<div class="cardDelete"></div>
-<div class="cardBox">
-	<div class="cardImg">
-		<input type="button" value="카드추가" class="addCardBtn" />
+<div class="cardDelete" id="cardDelete_3"></div>
+<div class="cardBox" id="cardBox_3">
+	<div class="cardImg" id="cardImg_3">
+		<input type="button" value="카드를 선택해 보세요" class="addCardBtn" id="addCardBtn_3" />
 	</div>
-	<div class="cardName">카드3</div>
-	<div class="cardKind">카드종류</div>
-	<div class="cardKind_info"></div><br/>
-	<div class="cardType">카드타입</div>
-	<div class="cardType_info"></div><br/>
-	<div class="cardBenefit">카드혜택</div>
-	<div class="cardBenefit_info"></div><br/>
+	<div class="cardName" id="cardName_3"></div>
+	<div class="cardKind" id="cardKind_3">카드종류</div>
+	<div class="cardKind_info" id="cardKind_info_3"></div><br/>
+	<div class="cardType" id="cardType_1">카드타입</div>
+	<div class="cardType_info" id="cardType_info_3"></div><br/>
+	<div class="cardBenefit" id="cardBenefit_3">카드설명</div>
+	<div class="cardBenefit_info" id="cardBenefit_info_3"></div><br/>
 </div>
 </div>
 </div>

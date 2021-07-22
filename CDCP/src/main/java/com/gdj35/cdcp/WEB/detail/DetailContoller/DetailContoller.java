@@ -27,7 +27,8 @@ public class DetailContoller {
 		mav.setViewName("detail/detail");
 		
 		return mav;
-			
+		
+		
 	}
 	
 	@RequestMapping(value="/detail01")
@@ -75,12 +76,6 @@ public class DetailContoller {
 	}
 		
 	
-	/*
-	 * @RequestMapping(value = "/compareSearch") public ModelAndView
-	 * compareSearch(ModelAndView mav) { mav.setViewName("search/compareSearch");
-	 * return mav; }
-	 */
-
 	
 //	신용카드 top20 페이지	
 	@RequestMapping(value="/creditTop20")
@@ -97,8 +92,6 @@ public class DetailContoller {
 		
 		return mav;
 	}
-	
-	
 	
 	  // 체크카드 top20 페이지
 	  
@@ -121,6 +114,3 @@ public class DetailContoller {
 
 
 }
-
-
-

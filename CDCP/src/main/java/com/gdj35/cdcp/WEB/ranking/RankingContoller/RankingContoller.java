@@ -50,6 +50,7 @@ public class RankingContoller {
 		return mav;
 	}
 
+
 	/*
 	 * // 신용카드 top20 페이지
 	 * 
@@ -66,6 +67,8 @@ public class RankingContoller {
 	 * 
 	 * return mav; }
 	 */
+
+
 //	체크카드 top10  페이지
 	@RequestMapping(value="/checkTop10")
 	public ModelAndView checkTop10(
@@ -83,23 +86,6 @@ public class RankingContoller {
 		return mav;
 	}
 
-	/*
-	 * // 체크카드 top20 페이지
-	 * 
-	 * @RequestMapping(value="/checkTop20") public ModelAndView checkTop20(
-	 * 
-	 * @RequestParam HashMap<String, String> params, ModelAndView mav) throws
-	 * Throwable {
-	 * 
-	 * 
-	 * List<HashMap<String, String>> list = RankingiService.getRCheck(params);
-	 * 
-	 * mav.addObject("list", list);
-	 * 
-	 * mav.setViewName("ranking/checkTop20");
-	 * 
-	 * return mav; }
-	 */
 // 카드사별 Top3 페이지
 	@RequestMapping(value="/cardcompany_top3")
 	public ModelAndView cardcompany_top3 (
@@ -167,7 +153,10 @@ public class RankingContoller {
 				  List<HashMap<String, String>>
 		  			data = RankingiService.getCView(params);
 		  
+				  //List<HashMap<String, String>>	review = RankingiService.getRView(params);
+				  
 				  mav.addObject("data", data);
+				  //mav.addObject("review", review);
 				  
 				  mav.setViewName("ranking/cardview");
 			  }else {

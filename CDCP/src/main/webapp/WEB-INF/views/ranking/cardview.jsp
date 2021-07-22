@@ -522,15 +522,29 @@
 					.list_area{
 						padding: 50px;
 					}
-						.list_area thead tr{
-							border-top: 1px solid #000;
-							border-bottom: 1px solid #000;
-							background-color: #0047AB;
-							height: 30px;
-							color: white;
-							font-family: GmarketSansMedium;
-						}
-						
+					
+					
+					.review_tr{
+						background-color: white;
+					}
+					.review_uplode_img{
+						text-align: center;
+					}
+					.review_content{
+						font-family: GmarketSansMedium;
+					}
+					
+					.review_content p:nth-child(1) {
+						font-size: 20px;
+						font-weight: bold;
+					}
+					.review_info{
+						font-size: 20px;
+						font-weight: bold;
+						font-family: GmarketSansMedium;
+					}
+					
+					/* 페이지 작성 영역 */
 					.paging_area{
 						text-align: center;
 					}
@@ -891,12 +905,20 @@ $(document).ready(function(){
 							<col width="200px" />
 						</colgroup>
 						<tbody>
-							<tr>
+							<tr class="review_tr">
 								<td class="review_uplode_img">
 									<img alt="고객 리뷰 사진" src="resources/images/ranking/logo/Hero.png" width="80px" height="80px">
 								</td>
-								<td>
-									
+								<td class="review_content">
+									<p class="content_title">혜택이 많아서 좋다!</p>
+									<p class="content_con">혜택을 사용할수 있는 매장들이 많고, 너무너무너무너무너무너무 너무너무너무너무너무너무 너무너무너무너무너무너무 너무너무너무너무너무너무 너무너무너무너무너무너무 싫다.</p>
+								</td>
+								<td class="review_info">
+									<span>작성자 :</span><span> 김도헌</span><br/>
+									<span>등록일 :</span><span> 2021-07-21</span><br/>
+									<div class="star-rating">
+										<span style ="width:30%" ></span>
+									</div>
 								</td>
 							</tr>
 						</tbody>		
