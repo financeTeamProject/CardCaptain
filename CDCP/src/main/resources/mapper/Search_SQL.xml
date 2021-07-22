@@ -174,4 +174,11 @@
 			) C
 			WHERE C.RNUM BETWEEN #{startCnt} AND #{endCnt}
 	</select>
+	
+	<select id="compareList" parameterType="String" resultType="hashmap">
+		SELECT C.CARD_NO,C.CARD_NAME,C.CARD_SUMMARY, DECODE(C.CARD_TYPE, 0, '신용카드','체크카드') AS CARD_KIND, DECODE(T.CARD_TYPE,0,'할인',1,'적립',2,'마일리지') AS CARD_TYPE,C.CARD_IMG_URL
+		FROM CARDS C INNER JOIN CARDTYPES T
+                    		 ON C.CARD_NO = T.CARD_NO
+		WHERE C.CARD_NO IN (${value})
+	</select>
 </mapper>

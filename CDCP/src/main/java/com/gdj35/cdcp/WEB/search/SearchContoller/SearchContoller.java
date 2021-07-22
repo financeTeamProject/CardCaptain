@@ -39,10 +39,26 @@ public class SearchContoller {
 	
 	//카드비교 페이지
 	@RequestMapping(value = "/compareSearch")
-	public ModelAndView compareSearch(ModelAndView mav,@RequestParam(required = false) HashMap<String,String> params) {
-		System.out.println("============");
-		System.out.println(params);
-		System.out.println("===============");
+	public ModelAndView compareSearch(ModelAndView mav, @RequestParam(required = false) HashMap<String,String> params) throws Throwable {
+		if (params.size() > 0) {
+			//==========데이터 생성 Start
+			String data = "";
+			for(int i=1; i<=params.size(); i++) {
+				data += ",'" + params.get("comparedd" + i) + "'";
+			}
+			data = data.substring(1,data.length());
+			//==========데이터 생성 End
+			
+			//==========쿼리작업 Start
+			List<HashMap<String, String>> compareList = iservice.compareList(data);
+			//==========쿼리작업 End
+			
+			//==========JSP로 넘기기 Start
+			mav.addObject("compareList", compareList);
+			mav.addObject("noData", "Data");
+			//==========JSP로 넘기기 End
+		}
+		
 		mav.setViewName("search/compareSearch");
 		return mav;
 	}
