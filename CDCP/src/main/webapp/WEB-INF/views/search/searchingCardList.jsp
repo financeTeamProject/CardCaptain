@@ -500,9 +500,9 @@ $(document).ready(function() {
 <!-- End Header by KJ -->
 
 <form action = "#" id = "compared" method = "post">
-	<input id = "compared1" type = "text" name = "comparedd1">
-	<input id = "compared2" type = "text" name = "comparedd2">
-	<input id = "compared3" type = "text" name = "comparedd3">
+	<input id = "compared1" type = "hidden" name = "comparedd1">
+	<input id = "compared2" type = "hidden" name = "comparedd2">
+	<input id = "compared3" type = "hidden" name = "comparedd3">
 </form>
 
 
