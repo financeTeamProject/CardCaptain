@@ -1,15 +1,19 @@
 package com.gdj35.cdcp.WEB.detail.DetailContoller;
 
+
 import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import com.gdj35.cdcp.WEB.detail.DetailService.DetailIService;
+
 
 @Controller
 
@@ -17,25 +21,20 @@ public class DetailContoller {
 	
 	@Autowired DetailIService DetailiService;
 	
-	
-	
 	@RequestMapping(value="/detail")
 	
 	public ModelAndView detail(ModelAndView mav) {
-		
-		
+			
 		mav.setViewName("detail/detail");
 		
 		return mav;
-		
-		
+			
 	}
 	
 	@RequestMapping(value="/detail01")
 	
 	public ModelAndView detail01(ModelAndView mav) {
-		
-		
+				
 		mav.setViewName("detail/detail01");
 		
 		return mav;
@@ -68,15 +67,19 @@ public class DetailContoller {
 	
 	public ModelAndView detail04(ModelAndView mav) {
 		
-		
 		mav.setViewName("detail/detail04");
 		
 		return mav;
-			
-	}
 		
+	}
+
 	
-	
+	/*
+	 * @RequestMapping(value = "/compareSearch") public ModelAndView
+	 * compareSearch(ModelAndView mav) { mav.setViewName("search/compareSearch");
+	 * return mav; }
+	 */
+		
 //	신용카드 top20 페이지	
 	@RequestMapping(value="/creditTop20")
 	public ModelAndView creditTop20(
@@ -92,7 +95,7 @@ public class DetailContoller {
 		
 		return mav;
 	}
-	
+		
 	  // 체크카드 top20 페이지
 	  
 	  @RequestMapping(value="/checkTop20") public ModelAndView checkTop20(
@@ -109,8 +112,6 @@ public class DetailContoller {
 	  return mav; 
 	  
 	  }
-	 
-		  
-
-
+	  
 }
+
