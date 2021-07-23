@@ -85,7 +85,6 @@ public class HomeController {
 		 return mav; 
 	 }
 	 
-
 	// 컨텐츠 페이지 이동
 	@RequestMapping(value = "/contents")
 	public ModelAndView contents(ModelAndView mav) {
@@ -95,4 +94,10 @@ public class HomeController {
 		return mav;
 	}
 
+	//===== SYOU
+	@RequestMapping(value = "/admin")
+	public ModelAndView admin(ModelAndView mav) {
+		mav.setViewName("admin/admin");
+		return mav;
+	}
 }
