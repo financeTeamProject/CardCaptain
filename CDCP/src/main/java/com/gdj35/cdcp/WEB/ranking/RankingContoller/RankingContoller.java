@@ -199,12 +199,11 @@ public class RankingContoller {
 				
 			  // 페이징 계산
 			  PagingBean pb = iPagingService.getPagingBean(page, cnt, 4, 5);
-				
+			  System.out.println(pb);
 			  params.put("startCnt", Integer.toString(pb.getStartCount()));
 			  params.put("endCnt", Integer.toString(pb.getEndCount()));
-			  System.out.println("======끝 자리======");
-			  System.out.println(pb.getEndCount());
-			  System.out.println("=============");
+			
+			 System.out.println(page);
 			  modelMap.put("page", page);
 			  modelMap.put("pb", pb);
 			  modelMap.put("cnt", cnt);
