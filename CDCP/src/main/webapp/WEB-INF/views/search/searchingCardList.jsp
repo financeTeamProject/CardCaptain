@@ -587,7 +587,7 @@ $(document).ready(function() {
 			<span name="${i}"><b>${i}</b></span>
 		</c:when>
 		<c:otherwise>
-			<span name="${i}">${i}</span>
+			<span name="${i}">${i}</span>>
 		</c:otherwise>
 	</c:choose>
 </c:forEach>
