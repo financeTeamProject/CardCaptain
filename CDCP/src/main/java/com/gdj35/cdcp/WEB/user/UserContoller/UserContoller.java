@@ -171,24 +171,23 @@ public class UserContoller {
 	@RequestMapping(value="/idChecks",
 			method = RequestMethod.POST,
 			produces = "text/json;charset=UTF-8")
-		@ResponseBody
-		public String idChecks(
-				HttpSession session,
-				@RequestParam HashMap<String,String> params) throws Throwable {
-				System.out.println(params);
-			ObjectMapper mapper = new ObjectMapper();
+	@ResponseBody
+	public String idChecks(
+			HttpSession session,
+			@RequestParam HashMap<String,String> params) throws Throwable {
+		ObjectMapper mapper = new ObjectMapper();
 			
-			Map<String, Object> modelMap = new HashMap<String, Object>();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
 			
-			HashMap<String,String> data = useriService.idCheck(params);
+		HashMap<String,String> data = useriService.idCheck(params);
 			
-			if(data != null) {
-				session.setAttribute("sMId", data.get("MEMBER_ID"));
+		if(data != null) {
+			session.setAttribute("sMId", data.get("MEMBER_ID"));
 
-				modelMap.put("resMsg", "success");
-			} else {
-				modelMap.put("resMsg", "failed");
-			}
+			modelMap.put("resMsg", "success");
+		} else {
+			modelMap.put("resMsg", "failed");
+		}
 		return mapper.writeValueAsString(modelMap);
 	}
 	//이메일 중복체크

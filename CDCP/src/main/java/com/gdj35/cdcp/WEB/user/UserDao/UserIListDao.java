@@ -10,4 +10,6 @@ public interface UserIListDao {
 	public int getCnt(HashMap<String, String> params) throws Throwable;
 
 	public int addCard(HashMap<String, String> params) throws Throwable;
+
+	public List<HashMap<String, String>> getAddList(HashMap<String, String> params) throws Throwable;
 }

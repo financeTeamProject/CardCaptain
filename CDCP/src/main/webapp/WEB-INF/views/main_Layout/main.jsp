@@ -463,7 +463,7 @@ $(document).ready(function(){
 						<div id="imgLogin"></div>
 					</c:when>
 					<c:otherwise>
-						<div id="logNick">${sMNm}</div><input type="button" value="로그아웃" id="logoutBtn" />
+						<div id="logNick">${sMNm}  님</div><input type="button" value="로그아웃" id="logoutBtn" />
 					</c:otherwise>
 				</c:choose>
 			</div>

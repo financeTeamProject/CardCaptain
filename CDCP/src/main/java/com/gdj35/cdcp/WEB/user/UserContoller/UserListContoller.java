@@ -53,6 +53,7 @@ public class UserListContoller {
 		
 		int page = Integer.parseInt(params.get("page"));
 		
+		// 페이징
 		int cnt = useriListService.getCnt(params);
 		
 		PagingBean pb = iPagingService.getPagingBean(page, cnt, 5 , 3);
@@ -60,11 +61,12 @@ public class UserListContoller {
 		params.put("startCnt", Integer.toString(pb.getStartCount()));
 		params.put("endCnt", Integer.toString(pb.getEndCount()));
 		
+		// 리스트
 		List<HashMap<String, String>> list = useriListService.getList(params);
-		System.out.println("====================================");
-		System.out.println(params);
+		List<HashMap<String, String>> addlist = useriListService.getAddList(params);
 		
 		modelMap.put("list", list);
+		modelMap.put("addlist", addlist);
 		modelMap.put("pb", pb);
 		
 		return mapper.writeValueAsString(modelMap);
@@ -72,7 +74,7 @@ public class UserListContoller {
 	
 	@RequestMapping(value="/addcard")
 	public ModelAndView addcard(ModelAndView mav) {
-		mav.setViewName("user/addcard");
+		mav.setViewName("user/mypage");
 		
 		return mav;
 	}
@@ -85,7 +87,7 @@ public class UserListContoller {
 			@RequestParam HashMap<String, String> params) throws Throwable {
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Object> modelMap = new HashMap<String, Object>();
-			System.out.println(params);
+		
 		try {
 			int cnt = useriListService.addCard(params);
 			
@@ -102,6 +104,4 @@ public class UserListContoller {
 		
 		return mapper.writeValueAsString(modelMap);
 	}
-	
-	
 }
