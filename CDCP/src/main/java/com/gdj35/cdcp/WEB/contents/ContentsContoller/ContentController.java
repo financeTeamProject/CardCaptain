@@ -14,10 +14,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.gdj35.cdcp.WEB.contents.ContentsService.ContentsIService;
+import com.gdj35.cdcp.common.bean.PagingBean;
+import com.gdj35.cdcp.common.service.IPagingService;
 
 @Controller
 public class ContentController {
+	
+	@Autowired
+	public IPagingService iPagingService;
 	
 	@Autowired
 	public ContentsIService ContentsiService;
@@ -138,7 +144,7 @@ public class ContentController {
 		
 		return mav;
 	}
-	/*
+	
 	@RequestMapping(value="/content") // 
 	public ModelAndView content(
 			@RequestParam HashMap<String, String> params,
@@ -159,21 +165,46 @@ public class ContentController {
 		
 		return mav;
 	}
-	*/
-	@RequestMapping(value = "/content")
-	public ModelAndView content(
-			@RequestParam HashMap<String, String> params,
-			ModelAndView mav) {
-		int page = 1;
-		
-		if(params.get("page") != null) {
-			page = Integer.parseInt(params.get("page"));
-		}
-		
-		mav.addObject("page", page);
-		mav.setViewName("contents/content");
-		
-		return mav;
-	}
-
+	
+	
+	/*
+	 * @RequestMapping(value = "/content") public ModelAndView content(
+	 * 
+	 * @RequestParam HashMap<String, String> params, ModelAndView mav) { int page =
+	 * 1;
+	 * 
+	 * if(params.get("page") != null) { page = Integer.parseInt(params.get("page"));
+	 * }
+	 * 
+	 * mav.addObject("page", page); mav.setViewName("contents/content");
+	 * 
+	 * return mav; }
+	 * 
+	 * @RequestMapping(value = "/contents", method = RequestMethod.POST, produces =
+	 * "test/json;charset=UTF-8")
+	 * 
+	 * @ResponseBody public String contents(
+	 * 
+	 * @RequestParam HashMap<String, String> params) throws Throwable { ObjectMapper
+	 * mapper = new ObjectMapper(); Map<String, Object> modelMap = new
+	 * HashMap<String, Object>();
+	 * 
+	 * //현재 페이지
+	 * 
+	 * int page = Integer.parseInt(params.get("page"));
+	 * 
+	 * // 총 게시글 수 int cnt = ContentsiService.getTipCnt(params);
+	 * 
+	 * // 페이징 정보 취득 PagingBean pb = iPagingService.getPagingBean(page, cnt);
+	 * 
+	 * // 게시글 시작, 종료번호 할당 params.put("startCnt",
+	 * Integer.toString(pb.getStartCount())); params.put("endCnt",
+	 * Integer.toString(pb.getEndCount()));
+	 * 
+	 * List<HashMap<String, String>> list = ContentsiService.getTip(params);
+	 * 
+	 * modelMap.put("list", list); modelMap.put("pb", pb);
+	 * 
+	 * System.out.println(list); return mapper.writeValueAsString(modelMap); }
+	 */
 }
