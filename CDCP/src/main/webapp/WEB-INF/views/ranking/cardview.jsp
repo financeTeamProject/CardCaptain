@@ -174,6 +174,7 @@
 		height: 100%;
 	    font-size: 18px;
 		vertical-align: top;
+		text-align: right;
 	}
 	#imgSearch {
 	 	display: inline-block;
@@ -184,7 +185,8 @@
 	    height: 25px;
 	    cursor: pointer;
 	    text-align: center;
-	    margin-left: 85%;
+		margin-top: 15px;
+		margin-right: 20px;
 	}
 	#imgLogin {
 	 	display: inline-block;
@@ -194,11 +196,119 @@
 	    width: 30px;
 	    height: 25px;
 	    cursor: pointer;
-	    margin-top: 15px;
+	    text-align: center;
+		margin-top: 15px;
+	}
+	#searchTxt {
+	    border-style: solid;
+	    border-width: 0 0 1px 0;
+	    border-color: #0047AB;
+	    outline: 0;
+	    caret-color: red;
+	    color: #0047AB;
+	    box-sizing: border-box;
+	    font-size: 13px;
+	    letter-spacing: 3px;
+	    display: none;
+	}
+	#Nickname {
+	    width: auto;
+	    height: auto;
+	    color: #0047AB;
+	    box-sizing: border-box;
+	    font-size: 13px;
+	    letter-spacing: 2px;
+	    display: none;
+	}
+	#logNick {
+		hight: 12px;
+		width: auto;
+		display: inline-block;
+	}
+	#logoutBtn {
+		width: 70px;
+		heigth: 40px;
+		margin-left: 20px;
+		/* display: none; */
 	}
 	/* header_right 종료 */
 	/* 헤더 종료 */
-
+	
+	/* 로그인팝업 */
+	.popinput {
+		width: 50%;
+	    height: 40px;
+	    padding: 0px 20px;
+	    border: 1px solid lightgray;
+	    outline: none;
+	    font-size: 13px;
+	    border-style: solid;
+	    border-width: 0 0 1px 0;
+	    border-color: #0047AB;
+	    outline: 0;
+	    text-decoration: none;
+	    letter-spacing: 2px;
+	    margin: 5px 50px 10px 70px;
+	}
+	.cardcaptain {
+		width: 100%;
+		height: 95px;
+		line-height: 110px;
+		text-align: center;
+		font-size: 25px;
+		color: #0047AB;
+		letter-spacing: 5px;
+		cursor: pointer;
+	}
+	#popup {
+		height: 320px;
+		width: 400px;
+		background-color: white;
+		border-radius: 70px;
+		display: none;
+		margin: 300px auto;
+		z-index: 50;
+	}
+	#loginBtn {
+		margin-bottom: 10px;
+		margin-top: 5px;
+		background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+		background-size: 200%;
+		color: white;
+	 	font-weight: bold;
+		border: none;
+		cursor: pointer;
+		display: inline;
+		margin: 20px 10px 15px 90px;
+	}
+	.re {
+		display: inline-block;
+		vertical-align: top;
+		font-size: 11px;
+	    margin: 10px 0 10px 130px;
+	}
+	.new {
+		display: inline-block;
+		vertical-align: top;
+		font-size: 11px;
+		margin: 10px 0 10px 0;
+	}
+	.re:hover, .new:hover {
+		cursor: pointer;
+	}
+	.error {
+	    font-size: 11px;
+	    color: red;
+	    visibility: hidden;
+	}
+	.errorMsg {
+		height: 100%;
+	    display: none;
+	    color: #e65f3e;
+	    font-size: 13px;
+	    margin-left: 65px;
+	} 
+		/* 로그인팝업종료 */
 	/*	내용 영역	*/	
 	#content{
 	width: 100%;
@@ -650,7 +760,6 @@
 <script type="text/javascript">
 
 /* 아코디언 */
-
 $(document).ready(function(){
 	$(".group1-1").hide();
 	$(".bot_box").click(function(){
@@ -662,26 +771,6 @@ $(document).ready(function(){
 			$(this).next().slideUp("fast");
 		}
 	});
-
-/* 
-$(function(){
-	
-		
-	$(".arrow_up").hide();
-			
-	$('.arrow_down').on("click",function(){
-		
-
-		$(this).siblings().removeClass('.arrow_down');
-		$(this).addClass('arrow_up');
-		
-	})
-	
-	
-	
-	
-	}); */
-
 });
 
 
@@ -703,17 +792,11 @@ $(function(){
     });
 });
 
-
-
-
 //클릭을 했을때 클릭한 놈의 부모에서 자식만 바꿔준다. this parent children
-
-
 /*비교함 담기  */	
 $(document).ready(function(){
-		 var cardNo = [];
-	              
-      /* 메인 비교함 버튼 조건 */
+		 var cardNo = [];              
+/* 메인 비교함 버튼 조건 */
     $("#compareBtn").on("click", function() {
     	var temp = "";
 		if(cardNo.length > 2) {
@@ -734,8 +817,7 @@ $(document).ready(function(){
 		}
 	});	
 });
-
-	/* 메인 비교함 팝업  */
+/* 메인 비교함 팝업  */
 	$(document).ready(function(){
 		$("#bi").hide();
 		$("#compareBtn").on("click",function(){
@@ -746,7 +828,7 @@ $(document).ready(function(){
 			makePopup();
 			});
 	   });	
-			
+		
 		function makePopup(){
 			var html = "<div class = \"Popup\">"
 				+ "<input type = \"button\" id = \"p1\" value = \"비교함 이동\" readonly = \"readonly\" >"
@@ -789,6 +871,53 @@ $(document).ready(function(){
 			location.href = "/cdcp";
 		}); // headerLogo click end
 		
+		/* 로그인 */
+		$("#loginBtn").on("click", function () {
+			if($.trim($("#mId").val()) == "") {
+				alert("아이디를 입력해 주세요.");
+				$("#mId").focus();
+			} else if($.trim($("#mPw").val()) == "") {
+				alert("비밀번호를 입력해 주세요.");
+				$("#mPw").focus();
+			} else {
+				var params = $("#loginForm").serialize();
+				
+				$.ajax({
+					url: "logins",
+					type: "post",
+					dataType: "json",
+					data: params,
+					success: function (res) {
+						if(res.resMsg == "success"){
+							location.href = "/cdcp";
+							$("#nickName").css("display","inline");
+							$("#imgSearch").css("margin-left","70%");
+							$("#imgLogin").css("display","none");
+							$("#logoutBtn").css("display","inline");
+						} else {
+							$(".errorMsg").css("display","inline");
+							$("#masage").html("아이디 또는 비밀번호가 일치하지 않습니다.")
+						}
+					},
+					error: function (request, status, error) {
+						console.log(error);
+					}
+				}); //ajax end
+			}
+		}); //로그인 end
+		
+		/* 로그아웃  */
+		$("#logoutBtn").on("click", function () {
+			location.href = "testALogout";
+		}); //로그아웃 end
+		
+		/* 마이페이지이동 */
+		$("#logNick").on("click", function(){
+			alert($("#sMNm").val());
+			$("#memNo").attr("action");
+			$("#memNo").submit();
+		});
+		
 		$("#bef_btn").on("click", function(){
 			$("#goForm").submit();
 		});
@@ -801,6 +930,20 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+<!-- 로그인 팝업 영역 -->
+
+<div id="popup">
+	<div class="cardcaptain">&nbsp;&nbsp;&nbsp;&nbsp;Card Captain&nbsp;&nbsp;&nbsp;&nbsp;X</div>
+	<form action="testLogins" id="loginForm" method="post">
+			<input type="email" class="popinput" placeholder="ID" id="mId" name="mId">
+			<input type="password" class="popinput" placeholder="PW" id="mPw" name="mPw"><br/>
+		<span class="errorMsg" id="masage" aria-live="assertive"></span>
+		<input type="button" class="popinput" id="loginBtn" value="로그인"/><br/>
+	</form>
+	<div class="re" id="searchmem">ID/PW 찾기</div>
+	<div class="new" id="join">|&nbsp;&nbsp;회원 가입</div>
+</div>
+
 <!-- 헤더영역 -->
 	<div id="header">
 		<div id="headerWrap">
@@ -810,9 +953,28 @@ $(document).ready(function(){
 				<div class="menu1" id="search">카드검색/비교</div>
 				<div class="menu1" id="contents">컨텐츠</div>
 			</div>
+			<form action="mypage" id="memNo" method="post">
+				<input type="hidden" name="memNo" value="${sMNo}" id="sMNo"/>
+				<input type="hidden" name="memId" value="${sMId}" id="sMId"/>
+				<input type="hidden" name="memPW" value="${sMPw}" id="sMPw"/>
+				<input type="hidden" name="memBi" value="${sMBi}" id="sMBi"/>
+				<input type="hidden" name="memGe" value="${sMGe}" id="sMGe"/>
+				<input type="hidden" name="memCo" value="${sMCo}" id="sMCo"/>
+				<input type="hidden" name="memNm" value="${sMNm}" id="sMNm"/>
+				<input type="hidden" name="memNa" value="${sMNa}" id="sMNa"/>
+				<input type="hidden" name="memAd" value="${sMAd}" id="sMAd"/>
+			</form>
 			<div id="headerRight">
+				<input type="text" id="searchTxt">
 				<div id="imgSearch"></div>
-				<div id="imgLogin"></div>
+				<c:choose>
+					<c:when test="${empty sMNm}">
+						<div id="imgLogin"></div>
+					</c:when>
+					<c:otherwise>
+						<div id="logNick">${sMNm}</div><input type="button" value="로그아웃" id="logoutBtn" />
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>
