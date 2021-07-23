@@ -161,26 +161,10 @@ public class RankingContoller {
 			  if(params.get("cardNo") != null) { 
 		  
 				  List<HashMap<String, String>>
-		  			data = RankingiService.getCView(params);
+				  data = RankingiService.getCView(params);
 				 
 				  mav.addObject("data", data);
-				  // 현재 페이지
-				  int page = 1;
-					
-				  if(params.get("page") != null) {
-						page = Integer.parseInt(params.get("page"));
-				  }
-				  // 총 게시글 수
-				  int cnt = RankingiService.getReviewCnt(params);
-					
-				  // 페이징 계산
-				  PagingBean pb = iPagingService.getPagingBean(page, cnt);
-					
-				  params.put("startCnt", Integer.toString(pb.getStartCount()));
-				  params.put("endCnt", Integer.toString(pb.getEndCount()));
-				  
-				  
-				  mav.addObject("cnt", cnt);
+				 
 				  mav.setViewName("ranking/cardview");
 			  }else {
 				  mav.setViewName("ranking/wrongApproach");
@@ -193,49 +177,45 @@ public class RankingContoller {
 	  @RequestMapping(value="/cardviews",
 				method = RequestMethod.POST,
 				produces = "text/json;charset=UTF-8")
-	  @ResponseBody
-	  public String cardviews(
-			  @RequestParam HashMap<String, String> params) throws Throwable{
-		  ObjectMapper mapper = new ObjectMapper();
-		  Map<String, Object> modelMap = new HashMap<String, Object>();
-		  
-		  System.out.println("=======================");
-		  System.out.println("=======================");
-		  System.out.println("=======================");
-		  System.out.println(params);
-		  // 현재 페이지
-		  int page = 1;
+		@ResponseBody
+		public String cardviews(
+				@RequestParam HashMap<String, String> params) throws Throwable {
+			System.out.println(params);
+			ObjectMapper mapper = new ObjectMapper();
+			Map<String, Object> modelMap = new HashMap<String, Object>();
 			
-		  if(params.get("page") != null) {
-				page = Integer.parseInt(params.get("page"));
-		  }
-		  // 총 게시글 수
-		  int cnt = RankingiService.getReviewCnt(params);
-			
-		  // 페이징 계산
-		  PagingBean pb = iPagingService.getPagingBean(page, cnt);
-			
-		  params.put("startCnt", Integer.toString(pb.getStartCount()));
-		  params.put("endCnt", Integer.toString(pb.getEndCount()));
+			System.out.println("=============");
+			System.out.println(params);
+			System.out.println("=============");
+			 List<HashMap<String, String>> review 
+			 	= RankingiService.reviewList(params);
+			 System.out.println("=============");
+			 System.out.println(review);
+			 System.out.println("=============");
+			// 현재 페이지
+			  int page = 1;
 				
-		  // 목록 취득
-		  List<HashMap<String, String>>	
-		  review = RankingiService.reviewList(params);
-		  try {
+			  if(params.get("page") != null) {
+					page = Integer.parseInt(params.get("page"));
+			  }
+			  // 총 게시글 수
+			  int cnt = RankingiService.getReviewCnt(params);
+				
+			  // 페이징 계산
+			  PagingBean pb = iPagingService.getPagingBean(page, cnt, 4, 5);
+				
+			  params.put("startCnt", Integer.toString(pb.getStartCount()));
+			  params.put("endCnt", Integer.toString(pb.getEndCount()));
+			  
 			  if(review != null) {
 				  modelMap.put("msg", "success");
-				  modelMap.put("cnt", cnt);
 				  modelMap.put("review", review);
 				  modelMap.put("page", page);
 				  modelMap.put("pb", pb);
-			  } else {
+			  }else {
 				  modelMap.put("msg", "error");
 			  }
-		  } catch(Throwable e) {
-			  e.printStackTrace();
-			  modelMap.put("msg", "error");
-		  }
-		 return mapper.writeValueAsString(modelMap);
-	}
+			  return mapper.writeValueAsString(modelMap);
+	  }
 }
 

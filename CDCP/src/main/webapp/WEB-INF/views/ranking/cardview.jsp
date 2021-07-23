@@ -851,10 +851,10 @@ $(document).ready(function(){
 			});
 		}
 
-$(document).ready(function(){
+	$(document).ready(function(){
 		
-	reloadList();
-	
+		reloadList();
+		
 		/* 카드순위 페이지 이동 */
 		$("#ranking").on("click", function(){
 			location.href = "card_rank";
@@ -917,7 +917,7 @@ $(document).ready(function(){
 							$("#logoutBtn").css("display","inline");
 						} else {
 							$(".errorMsg").css("display","inline");
-							$("#masage").html("아이디 또는 비밀번호가 일치하지 않습니다.")
+							$("#masage").html("아이디 또는 비밀번호가 일치하지 않습니다.");
 						}
 					},
 					error: function (request, status, error) {
@@ -928,7 +928,7 @@ $(document).ready(function(){
 		}); //로그인 end
 		
 		/* 로그아웃  */
-		$("#logoutBtn").on("click", function () {
+		$("#logoutBtn").on("click", function (){
 			location.href = "testALogout";
 		}); //로그아웃 end
 		
@@ -943,14 +943,10 @@ $(document).ready(function(){
 			$("#goForm").submit();
 		});
 		
-		$(".review_content").on("click", function(){
-			
-		});
-		
+});	// document ready end	
 		/* 리뷰 목록  */
 		function reloadList(){
 			var params = $("#goCardNo").serialize();
-			$("#goCardNo").submit();
 			
 			$.ajax({
 				url: "cardviews", // 접속주소 (현재 저상태는 상대 경로이다)
@@ -959,7 +955,6 @@ $(document).ready(function(){
 				data: params, //보낼 데이터(문자열 형태)
 				success: function(res){ // 성공 시 다음 함수 실행	
 					drawList(res.review);
-					alert(res);
 					drawPaging(res.pb);	
 				},
 				error: function(request, status, error){ // 실패 시 다음 함수 실행
@@ -973,7 +968,6 @@ $(document).ready(function(){
 			var html = "";
 			
 			for(var i = 0; i < review.length - 1; i++){
-			html += "<div class=\"list_area\">";
 			html += "<div class=\"review_no\">" + ${review[i].REVIEW_NO} + "</div>";
 			html += "<div class=\"review_info\">";
 			
@@ -1001,42 +995,44 @@ $(document).ready(function(){
 			html += "<img id=\"likeImg\" alt=\"좋아요 \" src=\"resources/images/ranking/icon/like_icon_bule.png\" width=\"50px\" height=\"50px\">";
 			html += "<div id=\"likeCnt\">20</div>";
 			html += "</div>";
-			html += "</div>";
-			
+		}
 			$(".list_area").html(html);
 		}
+		
 		
 		// 페이징 그리기
 		function drawPaging(pb){
 			var html = "";
 			
-			html += "<div page=\"1\">처음</div>";
+			html += "<span name=\"1\">처음</span >";
 			if($("#page").val() == "1"){
-				html += "<div page=\"1\">이전</div>";
+				html += "<span name=\"1\">이전</span >";
 			} else {
-				html += "<div page=\"" + ($("#page").val() - 1) + "\">이전</div>";
+				html += "<span name=\"" + ($("#page").val() - 1) + "\">이전</span >";
 			}
 			
 			for(var i = pb.startPcount; i <= pb.endPcount; i++){
 				if($("#page").val() == i){
-					html += "<div class=\"on\" page=\"" + i + "\">" + i + "</div>";	// 숫자일경우니깐 반복문 사용할것이다.
+					html += "<span name=\"on\" page=\"" + i + "\">" + i + "</span >";	// 숫자일경우니깐 반복문 사용할것이다.
 				} else {
-					html += "<div page=\"" + i + "\">" + i + "</div>";	// 숫자일경우니깐 반복문 사용할것이다.
+					html += "<span name=\"" + i + "\">" + i + "</span >";	// 숫자일경우니깐 반복문 사용할것이다.
 				}
 			}
 			
 			if($("#page").val() == pb.maxPcount){
-				html += "<div page=\"" + pb.maxPcount + "\">다음</div>";
+				html += "<span name=\"" + pb.maxPcount + "\">다음</span >";
 			} else{
 				// 곱하기 안하면 11로 나오기 때문에 숫자로 변환시키는 작업 필요. 마이너스는 자동 형변환이 적용.
-				html += "<div page=\"" + ($("#page").val() * 1 + 1) + "\">다음</div>"; 
+				html += "<span name=\"" + ($("#page").val() * 1 + 1) + "\">다음</span >"; 
 			}
 			
-			html += "<div page=\"" + pb.maxPcount + "\">마지막</div>";
+			html += "<span name=\"" + pb.maxPcount + "\">마지막</span >";
 			
-			$(".paging_wrap").html(html);
+			$(".paging_area").html(html);
 		}
-	}); // document ready end
+		
+		
+
 </script>
 </head>
 <body>
@@ -1075,7 +1071,7 @@ $(document).ready(function(){
 				<input type="hidden" name="memAd" value="${sMAd}" id="sMAd"/>
 			</form>
 			<form action="cardviews" id="goCardNo" method="post">
-				<input type="hidden" name="memNo" value="${data[0].CARD_NO}" id="sMNo"/>
+				<input type="hidden" name="cardNo" value="${data[0].CARD_NO}"/>
 			</form>
 			<div id="headerRight">
 				<input type="text" id="searchTxt">
@@ -1189,8 +1185,6 @@ $(document).ready(function(){
 				<div class="write_area">
 					<form action="#" id="actionForm" method="post">
 						<!-- 기본값들이 들어오게될거다 : hidden -->
-						<input type="hidden" id="sg" name="searchGbn" value="${param.searchGbn}" /><!-- 검색시 반드시 필요 -->
-						<input type="hidden" id="st" name="searchTxt" value="${param.searchTxt}" /><!-- 검색시 반드시 필요 -->
 						<input type="hidden" id="page" name="page" value="${page}" ><!-- 검색시 반드시 필요 -->
 						<!-- 글작성, 편집영역 -->
 						<c:choose>
@@ -1201,94 +1195,52 @@ $(document).ready(function(){
 							</div>
 							</c:when>
 							<c:otherwise>
-								<input type="hidden" name="mNo" value="${sMNo}" />
 								<input type="button" value="리뷰작성" id="writeBtn" />
 							</c:otherwise>
 						</c:choose>
 					</form>
 				</div>
 				<!-- 리뷰 목록 영역 -->
+				<%-- <c:set var="size" value="${fn:length(review)}" />
+				<c:forEach var = "r" begin="0" end="${size - 1}"> --%>
 				<div class="list_area">
-					<!-- <div class="review_no">2</div>
+					<%-- <div class="review_no">${review[r].REVIEW_NO}</div>
 					<div class="review_info">
-						<div class="review_star">★★★★☆</div>
+					<c:choose>
+						<c:when test="${review[r].SCORE == 1}">
+							<div class="review_star">★☆☆☆☆</div>
+						</c:when>
+						<c:when test="${review[r].SCORE == 2}">
+							<div class="review_star">★★☆☆☆</div>
+						</c:when>
+						<c:when test="${review[r].SCORE == 3}">
+							<div class="review_star">★★★☆☆</div>
+						</c:when>
+						<c:when test="${review[r].SCORE == 4}">
+							<div class="review_star">★★★★☆</div>
+						</c:when>
+						<c:when test="${review[r].SCORE == 5}">
+							<div class="review_star">★★★★★</div>
+						</c:when>
+					</c:choose>
 						<div class="review_writer">
-							<div>작성자 : 장원혁</div>
-							<div>등록일 : 2021-07-22</div>
+							<div>작성자 : ${review[r].NICKNAME}</div>
+							<div>등록일 : ${review[r].ADD_DATE}</div>
 						</div>
 					</div>
 					<div class="review_content">
-						<div class="content_title">혜택이 많아서 너무 싫다!</div>
-						<div class="content_con">혜택을 사용할수 있는 매장들이 없고, 너무 싫다.</div>
+						<div class="content_title">${review[r].TITLE}</div>
+						<div class="content_con">${review[r].TEXT}</div>
 					</div>
 					<div class="review_like">
 						<img id="likeImg" alt="좋아요 " src="resources/images/ranking/icon/like_icon_bule.png" width="50px" height="50px">
 						<div id="likeCnt">20</div>
-						</div>
+					</div>
 				</div>
-				<div class="list_area">
-					<div class="review_no">1</div>
-					<div class="review_info">
-						<div class="review_star">★☆☆☆☆</div>
-						<div class="review_writer">
-							<div>작성자 : 김도헌</div>
-							<div>등록일 : 2021-07-21</div>
-						</div>
-					</div>
-					<div class="review_content">
-						<div class="content_title">혜택이 많아서 좋다!</div>
-						<div class="content_con">혜택을 사용할수 있는 매장들이 많고, 너무너무너무너무너무너무 너무너무너무너무너무너무 너무너무너무너무너무너무 너무너무너무너무너무너무 너무너무너무너무너무너무 싫다.</div>
-					</div>
-					<div class="review_like">
-						<img id="likeImg" alt="좋아요 " src="resources/images/ranking/icon/like_icon_bule.png" width="50px" height="50px">
-						<div id="likeCnt">5</div>
-						</div> -->
+				</c:forEach> --%>
 				</div>
 				<!-- 페이지 영역 -->
-				<div class="paging_area">
-					<!-- 검색 -->
-					<select id="searchGbn">
-						<option value="0">닉네임</option>
-						<option value="1">내용</option>
-					</select>
-					<input type="text" id="searchTxt" value="${param.searchTxt}" />
-					<input type="button" value="검색" id="searchBtn" /><br/>
-					<!-- 페이징 -->
-					<div id="pagingWrap">
-						<span name="1">처음</span>
-						<!-- 이전페이지 -->
-						<c:choose>
-							<c:when test="${page eq 1}">
-							<span name="1">이전</span>
-							</c:when>
-							<c:otherwise>
-							<span name="${page - 1}">이전</span>
-							</c:otherwise>
-						</c:choose>
-						<!-- 페이지들 -->
-						<c:forEach var ="i" begin="${pb.startPcount}" end="${pb.endPcount}" step="1">
-							<c:choose>
-								<c:when test="${i eq page}">
-									<span name="${i}"><b>${i}</b></span>
-								</c:when>
-								<c:otherwise>
-									<span name="${i}">${i}</span>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
-						<!-- 다음페이지 -->
-						<c:choose>
-							<c:when test="${page eq pb.maxPcount}">
-								<span name="${pb.maxPcount}">다음</span>
-							</c:when>
-							<c:otherwise>
-								<span name="${page + 1}">다음</span>
-							</c:otherwise>
-						</c:choose>
-						<!-- 마지막페이지 -->
-						<span name="${pb.maxPcount}">마지막</span>
-					</div>
-				</div>											
+				<div class="paging_area"></div>											
 			</div>
 		</div>	
 	</div>
