@@ -1199,7 +1199,7 @@ $(document).ready(function(){
 				<div class="write_area">
 					<form action="#" id="actionForm" method="post">
 						<!-- 기본값들이 들어오게될거다 : hidden -->
-						<input type="hidden" id="page" name="page" value="1" ><!-- 검색시 반드시 필요 -->
+						<input type="hidden" id="page" name="page" value="${page}" ><!-- 검색시 반드시 필요 -->
 						<!-- 글작성, 편집영역 -->
 						<c:choose>
 							<c:when test="${empty sMNo}">
