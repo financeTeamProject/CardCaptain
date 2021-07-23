@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,12 +19,9 @@
     font-weight: normal;
     font-style: normal;
 }
-
-
 body {
         margin: 0;
     }
-
 /*	헤더 영역	*/
 	#header {
 		width: 100%;
@@ -69,7 +67,6 @@ body {
 		cursor: pointer;
 	}	
 	/* header_left 종료 */
-	
 	#headerRight {
 		display: inline-block;
 		width: 50%;
@@ -99,16 +96,10 @@ body {
 	    margin-top: 15px;
 	}
 	/* header_right 종료 */
-
-
-
  	/* 메뉴바영역 */
    * {
         box-sizing: border-box;
     }
-
-
-    
 	/* 네비메뉴바 영역 */
 	nav {
 		width:100%;
@@ -202,19 +193,16 @@ body {
 		height: 500px;
 		margin: 0px auto;
 	}
-
 .left_content {
 	width: 400px;
 	height: inherit;
 	background: yellow;
 }
-
 .right_content {
 	width: 1200px;
 	height: inherit;
 	background: gray;
 }
-
 .content_content {
 	width: 400px;
 	height: 50%;
@@ -222,7 +210,6 @@ body {
 	font-size: 30px;
 	color: black;
 }
-
 /* 풋터영역 */
 #footer{
 	width: 100%;
@@ -238,7 +225,6 @@ body {
     background-color: white;	
 			
 }
-
 #footerMenu{
 
 	height: inherit;
@@ -260,9 +246,48 @@ body {
 	text-align: center;
 	margin-top: 10px;
 }
-
 </style>
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	/* 카드순위 페이지 이동 */
+	$("#ranking").on("click", function(){
+		location.href = "card_rank";
+	}); // ranking click end
+	/* 카드검색/비교 페이지 이동 */
+	 $("#search").on("click", function(){
+		location.href = "search";
+	});// search click end
+	/* 컨텐츠 페이지 이동 */
+	$("#contents").on("click", function(){
+		location.href = "content";
+	});// contents click end
+	/* 메인페이지 이동 */
+	$("#headerLogo").on("click", function(){
+		location.href = "/cdcp";
+	}); // headerLogo click end
+	$("#headerLogo").on("click", function(){
+		location.href = "/cdcp";
+	}); // headerLogo click end
+	
+	$(".addCardBtn").on("click", function() {
+		var num = $(this).prop('id').split("_");
+		num = num[1];
+		
+		$.ajax({
+			url:"cardListGet",
+			type:"post",
+			dataType :"json",
+			success : function (res) {
+				makePopup("카드추가", res.list, num);
+			},
+			error: function (request, status, error) {
+				console.log(error);
+			}
+		});
+	});
+});
+</script>
 </head>
 <body>
 <!-- 헤더영역(메뉴바) -->
@@ -280,7 +305,6 @@ body {
 		</div>
 	</div>
 </div>
-
 <!-- 메뉴바영역 -->
 	<nav>
         <ul>
@@ -290,10 +314,8 @@ body {
             <li class="dropdown">
                 <div class="dropdown-menu">카드</div>
                 <div class="dropdown-content">
-                    <a href="#">카드등록/삭제</a>
-                    <a href="#">카드혜택관리</a>
-                    <a href="#">등록카드사관리</a>
-                    <a href="#">대상업체관리</a>
+                    <a href="#" id="addCard">카드등록</a>
+                    <a href="#" id="deleteCard">카드삭제</a>
                 </div>
             </li>
             <li class="dropdown">
@@ -326,6 +348,7 @@ body {
             <li class="home"><a href="#">Home</a></li>
         </ul>
     </nav>
+    <form action="#" id ="goForm" method="post"></form>
 <!-- 컨텐츠 영역 -->
 <div class="content_area">
 	<div class="contents">
@@ -336,7 +359,6 @@ body {
 		<div class="right_content"></div>
 	</div>
 </div>
-	
 <!-- 풋터영역 (하단 마무리) -->
 <div class="rayout">
 	<div id="footer">
@@ -347,6 +369,5 @@ body {
 		</div>
 	</div>
 </div>
-
 </body>
 </html>
