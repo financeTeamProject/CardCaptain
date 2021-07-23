@@ -99,9 +99,9 @@
 		                                           ON HC.CARD_NO = C.CARD_NO
 		                                   INNER JOIN MEMBER_INFO MI
 		                                           ON HCR.MEMBER_NO = MI.MEMBER_NO
-		         WHERE HCR.CARD_NO = 1005
+		         WHERE HCR.CARD_NO = #{cardNo}
 		         AND HCR.DEL_CHECK = 1) C) CC
-		WHERE CC.RNK BETWEEN 1 AND 5
+		WHERE CC.RNK BETWEEN #{startCnt} AND #{endCnt}
 	</select>
 	<select id="getReGood" parameterType="hashmap" resultType="Integer">
 		SELECT LIKE_CNT

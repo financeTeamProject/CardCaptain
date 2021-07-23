@@ -58,7 +58,11 @@ public class RankingService implements RankingIService {
 
 	@Override
 	public List<HashMap<String, String>> reviewList(HashMap<String, String> params) throws Throwable {
-		
+		System.out.println("======서비스=======");
+		 System.out.println(params);
+		 System.out.println("=============");
+		 
+		 
 		return RankingiDao.reviewList(params);
 	}
 
