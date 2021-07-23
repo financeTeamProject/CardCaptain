@@ -467,6 +467,7 @@ h1 {
 				data: params,	
 				success: function(res) {
 					drawList(res.list);
+					drawPaging(res.pb);
 				},
 				error: function(request, status, error) {
 					console.log(error);
@@ -475,7 +476,7 @@ h1 {
 		}
 		
 		
-		function drawList(list){
+	/* 	function drawList(list){
 			var html = "";
 			
 			for(var c of list){
@@ -487,13 +488,43 @@ h1 {
 			html += "<div class=\"con\">";
 			html += "<h1>" + c.TIP_CON + "</h1>";
 			html += "</div>";
-			html += "<div class=\"Cdate\">" + c.ADD_DATE + /"BY/" + c.TIP_WRITER "</div>";
+			html += "<div class=\"Cdate\">" + c.ADD_DATE + c.TIP_WRITER "</div>";
 			html += "</div>";
 			html += "</div>";
-			html += "</div>";
+			html += "</div>"; 
 			}
-			$(".list_wrap div").html(html);
+			$(".list_wrap").html(html);
 		}
+		
+		// 페이징 그리기
+		function drawPaging(pb) {
+			var html = "";
+			html += "<div page=\"1\">처음</div>";
+			
+			if($("#page").val() == "1") {
+				html += "<div page=\"1\">이전</div>";	
+			} else {
+				html += "<div page=\"" + ($("#page").val() -1) + "\">이전</div>";	
+			}
+			
+			for(var i = pb.startPcount ; i <= pb.endPcount ; i++) {
+				if($("#page").val() == i) {
+					html += "<div class=\"on\" page=\"" + i + "\">" + i + "</div>";
+				} else {
+					html += "<div page=\"" + i + "\">" + i + "</div>";
+				}
+				
+			}
+			if($("#page").val() == pb.maxPcount) {
+				html += "<div page=\"" + pb.maxPcount + "\">다음</div>";
+			} else {
+				html += "<div page=\"" + ($("#page").val() * 1 + 1) + "\">다음</div>";
+			}
+			
+			html += "<div page=\"" + pb.maxPcount + "\">마지막</div>";
+			
+			$(".paging_wrap").html(html);
+		} */
 </script>		
 </head>
 <body>
@@ -536,14 +567,13 @@ h1 {
 		<div id="s_left_sub"></div>
 		<div id="main_sub">	
 			<div class="title">카드활용꿀팁</div>
-			<form action="#" id="content" method="post">   
+			<%-- <form action="#" id="content" method="post">   
 						<input type="hidden" name="cNo" id="cNo" />
 						<input type="hidden" id="page" name="page" value="${page}" />
-					</form><br/>
-			<div class="list_wrap">
-				<div></div>
-			</div>
-			 <%-- <c:forEach var = "i" begin = "0" end = "2">			
+					</form> --%><br/>
+			<div class="list_wrap"></div>
+			<div class="paging_wrap"></div>
+			<c:forEach var = "i" begin = "0" end = "2">			
 				<div class="content">
 					<div class="content_1">
 						<div class="img_rayout">
@@ -560,7 +590,7 @@ h1 {
 						</div>
 					</div>				
 				</div>
-			</c:forEach>  --%>
+			</c:forEach>
 				<div class="content">
 					<div class="content_1">
 					<c:forEach var = "i" begin = "0" end = "2">

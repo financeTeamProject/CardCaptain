@@ -11,4 +11,6 @@ public interface ContentsIService {
 
 	public List<HashMap<String, String>> getTip(HashMap<String, String> params) throws Throwable;
 
+	public int getTipCnt(HashMap<String, String> params)  throws Throwable;
+
 }

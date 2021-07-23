@@ -30,4 +30,9 @@ public class ContentsService implements ContentsIService{
 		return ContentsiDao.getTip(params);
 	}
 
+	@Override
+	public int getTipCnt(HashMap<String, String> params) throws Throwable {
+		return ContentsiDao.getTipCnt(params);
+	}
+
 }

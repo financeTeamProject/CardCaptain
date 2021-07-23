@@ -147,11 +147,16 @@ label  {
 <script type="text/javascript"
 				src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 		<script type="text/javascript">
-	
-	
+		
+		<%-- <%
+		request.setCharacterEncoding("UTF-8");
+		String name = request.getParameter("found");
+		var c1 = request.getParameter("found");
+		%> --%>
+
 		function findChecked() {
+			
 		    var found = 0;
-		    
 		    $("#main input[type='radio']:checked").each(function() {
 		    	found += $(this).val() * 1;
 		    });
@@ -159,7 +164,7 @@ label  {
 		    if(found != 0) {
 		        $("#found").val(found);
 		      $("#goForm").html();
-		        
+		      alert(found);
 		    $("#goForm").attr("action","Ctest3");
 			$("#goForm").submit();
 		    }

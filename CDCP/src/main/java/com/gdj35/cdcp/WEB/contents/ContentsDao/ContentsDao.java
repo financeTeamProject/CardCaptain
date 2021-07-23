@@ -18,12 +18,16 @@ public class ContentsDao implements ContentsIDao{
 		
 		return sqlSession.selectList("C.getCtest", params);
 	}
-
+	@Override
 	public List<HashMap<String, String>> getMovie(HashMap<String, String> params) {
 		return sqlSession.selectList("C.getMovie", params);
 	}
-
+	@Override
 	public List<HashMap<String, String>> getTip(HashMap<String, String> params) {
 		return sqlSession.selectList("C.getTip", params);
+	}
+	@Override
+	public int getTipCnt(HashMap<String, String> params) {
+		return sqlSession.selectOne("C.getTipCnt", params);
 	}
 }

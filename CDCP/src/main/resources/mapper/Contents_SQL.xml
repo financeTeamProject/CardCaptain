@@ -23,4 +23,20 @@
 		VALUES(C_SEQ.NEXTVAL, #{cImg}, #{cTitle}, #{cWriter}, #{cDt}, UTL_RAW.CAST_TO_RAW('#{cCon}'))
 </insert>
 
+<select id="getTipCnt" parameterType="hashmap" resultType="Integer">
+		SELECT COUNT(*) AS CNT
+		FROM TIPS 	               
+		WHERE 1 = 1
+		AND TIP_NO = {cNo}
+		<if test="searchTxt != null and searchTxt != ''">
+		<choose>
+		<when test="searchGbn == 0">
+		AND ITEM_NAME LIKE '%' || #{searchTxt} || '%'
+		</when>
+		<when test="searchGbn == 1">
+		AND COUNT LIKE '%' || #{searchTxt} || '%'
+		</when>
+		</choose>
+		</if>
+	</select>
 </mapper>
