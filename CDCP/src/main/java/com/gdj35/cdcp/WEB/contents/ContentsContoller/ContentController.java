@@ -152,7 +152,7 @@ public class ContentController {
 		
 		return mav;
 	}
-	
+	/*
 	@RequestMapping(value="/content") // 
 	public ModelAndView content(
 			@RequestParam HashMap<String, String> params,
@@ -173,9 +173,8 @@ public class ContentController {
 		
 		return mav;
 	}
+	*/
 	
-	
-	/*
 	  @RequestMapping(value = "/content") public ModelAndView content(
 	  
 	  @RequestParam HashMap<String, String> params, ModelAndView mav) { int page =
@@ -196,22 +195,27 @@ public class ContentController {
 	  @RequestParam HashMap<String, String> params) throws Throwable { ObjectMapper
 	  mapper = new ObjectMapper(); Map<String, Object> modelMap = new
 	  HashMap<String, Object>();
-	  //현재 페이지
-	  
-	  int page = Integer.parseInt(params.get("page"));
-	  
-	  // 총 게시글 수 int cnt = ContentsiService.getTipCnt(params);
-	  
-	  // 페이징 정보 취득 PagingBean pb = iPagingService.getPagingBean(page, cnt);
-	  
-	  // 게시글 시작, 종료번호 할당 params.put("startCnt",
-	  Integer.toString(pb.getStartCount())); params.put("endCnt",
-	  Integer.toString(pb.getEndCount()));
-	  
-	  List<HashMap<String, String>> list = ContentsiService.getTip(params);
-	  
-	  modelMap.put("list", list); modelMap.put("pb", pb);
-	  
-	  System.out.println(list); return mapper.writeValueAsString(modelMap); }
-	 */
+		//현재 페이지
+		
+		int page = Integer.parseInt(params.get("page"));
+		
+		// 총 게시글 수
+		int cnt = ContentsiService.getTipCnt(params);
+		
+		// 페이징 정보 취득
+		PagingBean pb = iPagingService.getPagingBean(page, cnt);
+		
+		// 게시글 시작, 종료번호 할당
+		params.put("startCnt", Integer.toString(pb.getStartCount()));
+		params.put("endCnt", Integer.toString(pb.getEndCount()));
+		
+		List<HashMap<String, String>> list
+				= ContentsiService.getTip(params);
+		
+		modelMap.put("list", list);
+		modelMap.put("pb", pb);
+
+		return mapper.writeValueAsString(modelMap);
+	}
+	 
 }
