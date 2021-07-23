@@ -5,8 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script><!-- script 추가 by SYOU -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!-- link tag 추가 by SYOU -->
 <title>My Page</title>
 <style type="text/css">
 body{
@@ -261,9 +259,6 @@ body{
    margin-left: 7px;
    border-radius: 7px;
 }
-.domain {
-   
-}
 
  /* 카드추가리스트 */
 .back_top {
@@ -438,8 +433,7 @@ body{
 	padding: 5px;
 	margin-left: 3px;
 	margin-right: 3px;
-	background-color: #DFDFDF;
-	border: 1px solid #444;
+	border-width: none;
 	border-radius: 3px;
 	cursor: pointer;
 	width: 50px;
