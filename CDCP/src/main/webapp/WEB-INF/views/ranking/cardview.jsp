@@ -260,7 +260,7 @@
 		letter-spacing: 5px;
 		cursor: pointer;
 	}
-	#popup {
+	#loginpopup {
 		height: 320px;
 		width: 400px;
 		background-color: white;
@@ -871,6 +871,25 @@ $(document).ready(function(){
 			location.href = "/cdcp";
 		}); // headerLogo click end
 		
+		/* 로그인팝업 실행 */
+		$("#imgLogin").on("click", function(){
+			$("#loginpopup").css("display","block");
+			$(".body").css("display","none");
+		});
+		/* 로그인팝업 실행 */
+		$("#imgSearch").on("click", function(){
+			$("#searchTxt").css("display","inline");
+		});
+		
+		$("#searchmem, #join").on("click", function() {
+			var ival = $(this).prop("id");
+			$(location).attr('href',ival);
+		});
+		
+		$(".cardcaptain").on("click", function(){
+			location.href = "/cdcp";
+		});
+		
 		/* 로그인 */
 		$("#loginBtn").on("click", function () {
 			if($.trim($("#mId").val()) == "") {
@@ -932,7 +951,7 @@ $(document).ready(function(){
 <body>
 <!-- 로그인 팝업 영역 -->
 
-<div id="popup">
+<div id="loginpopup">
 	<div class="cardcaptain">&nbsp;&nbsp;&nbsp;&nbsp;Card Captain&nbsp;&nbsp;&nbsp;&nbsp;X</div>
 	<form action="testLogins" id="loginForm" method="post">
 			<input type="email" class="popinput" placeholder="ID" id="mId" name="mId">
