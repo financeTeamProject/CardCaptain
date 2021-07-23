@@ -149,10 +149,10 @@ body{
 }
 .sub_title {
 	margin-top: 40px;
+	text-align: left;
 }
 .sub_title h1 {
 	font-size: 38px;
-	margin-left: 100px;
 	font-family: 'Cafe24Ohsquare';
 	display:inline-block;
 }
@@ -161,6 +161,9 @@ body{
 	width: 400px;
 	height: 700px;
 	margin-right: 70px;
+}
+.afterSelectCard {
+	text-align: right;
 }
 .cardDelete {
 	display: inline-block;
@@ -180,7 +183,7 @@ body{
 }
 .cardDetail input {
 	border: none;
-	background-color: #EDB9BB;
+	background-color: #F5DF4D;
 	font-family: 'GmarketSansMedium';
 	text-align: center;
 	border-radius: 5px;
@@ -475,7 +478,7 @@ $(document).ready(function() {
 			<input type="hidden" id="cardNo" name="cardNo" value="" />
 		</form>
 		<c:choose>
-		<c:when test="${compareList[0].CARD_NO ne ''}">
+		<c:when test="${!empty compareList[0].CARD_NO}">
 		<div class="cardArea">
 			<div class="afterSelectCard">
 				<div class="cardDelete" id="cardDelete_1" style="visibility: visible;"></div>
@@ -522,7 +525,7 @@ $(document).ready(function() {
 		</c:otherwise>
 		</c:choose>
 		<c:choose>
-		<c:when test="${compareList[0].CARD_NO ne ''}">
+		<c:when test="${!empty compareList[1].CARD_NO}">
 		<div class="cardArea">
 			<div class="afterSelectCard">
 				<div class="cardDelete" id="cardDelete_2" style="visibility: visible;"></div>
@@ -569,7 +572,7 @@ $(document).ready(function() {
 		</c:otherwise>
 		</c:choose>
 		<c:choose>
-		<c:when test="${compareList[0].CARD_NO ne ''}">
+		<c:when test="${!empty compareList[2].CARD_NO}">
 		<div class="cardArea">
 			<div class="afterSelectCard">
 				<div class="cardDelete" id="cardDelete_3" style="visibility: visible;"></div>

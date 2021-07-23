@@ -68,7 +68,7 @@ public class SearchContoller {
 	public ModelAndView searchingCardList(ModelAndView mav, 
 			@RequestParam(required = false) HashMap<String,String> params,
 			@RequestParam(required = false) ArrayList<String> option) throws Throwable {
-
+		
 		int page = 1;
 		
 		if(params.get("searchType").equals("keyword")) {//keyword 직접검색

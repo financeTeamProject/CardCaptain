@@ -141,89 +141,12 @@ body{
 	margin-left: 20px;
 	/* display: none; */
 }
-
-/* 로그인팝업 */
-.popinput {
-	width: 50%;
-    height: 40px;
-    padding: 0px 20px;
-    border: 1px solid lightgray;
-    outline: none;
-    font-size: 13px;
-    border-style: solid;
-    border-width: 0 0 1px 0;
-    border-color: #0047AB;
-    outline: 0;
-    text-decoration: none;
-    letter-spacing: 2px;
-    margin: 5px 50px 10px 70px;
-}
-.cardcaptain {
-	width: 100%;
-	height: 95px;
-	line-height: 110px;
-	text-align: center;
-	font-size: 25px;
-	color: #0047AB;
-	letter-spacing: 5px;
-	cursor: pointer;
-}
-#popup {
-	height: 320px;
-	width: 400px;
-	background-color: white;
-	border-radius: 70px;
-	display: none;
-	margin: 300px auto;
-	z-index: 50;
-}
-#loginBtn {
-	margin-bottom: 10px;
-	margin-top: 5px;
-	background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
-	background-size: 200%;
-	color: white;
- 	font-weight: bold;
-	border: none;
-	cursor: pointer;
-	display: inline;
-	margin: 20px 10px 15px 90px;
-}
-.re {
-	display: inline-block;
-	vertical-align: top;
-	font-size: 11px;
-    margin: 10px 0 10px 130px;
-}
-.new {
-	display: inline-block;
-	vertical-align: top;
-	font-size: 11px;
-	margin: 10px 0 10px 0;
-}
-.re:hover, .new:hover {
-	cursor: pointer;
-}
-.error {
-    font-size: 11px;
-    color: red;
-    visibility: hidden;
-}
-.errorMsg {
-	height: 100%;
-    display: none;
-    color: #e65f3e;
-    font-size: 13px;
-    margin-left: 65px;
-}
-	/* 로그인팝업종료 */
 	/* header_right 종료 */
 	/* 헤더 종료 */
 	
 /*   내용 영역   */   
 #content {
 	width: 100%;
-    height: 2800px;
     margin: 0 auto;
 }
 #contentMenu {
@@ -365,7 +288,7 @@ body{
 }
 .back_middle2 {
 	width: 1300px;
-    height: 600px;
+    height: 700px;
     margin: 0 auto;
 }
 .contents {
@@ -526,18 +449,14 @@ body{
 .addbtn {
 	width: 45px;
 	height: 25px;
-	margin-top: 3px;
-}
-.joinBtn {
-	width: 65px;
-	height: 25px;
-	margin: 0 auto;
+	float: right;
 }
 </style>
 <script type="text/javascript" src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	var memAdd = "";
+	
 /*    $("#memberTable input").attr("readonly",true);
    
    $("#update").on("click",function() {
@@ -650,7 +569,7 @@ $(document).ready(function() {
 		console.log($("#cmpNo").val());
 		
 		reloadList();
-	});;
+	});
 	// 검색
 	$("#searchBtn").on("click", function () {
 		$("#page").val(1);
@@ -665,25 +584,35 @@ $(document).ready(function() {
 		reloadList();
 	});
 	
-	// 추가하기
-	$("#joinBtn").on("click", function () {
-		var addcard = "";
- 		addcard = $($(".add_wrap tr").attr("sno")).val();
- 		alert(addcard);
- 		console.log(addcard);
-	});
 	
 	//
 	
 	function addcard() {
-		var params = $("#").serialize();
+		var lists = "";
 		
+		$("#cardlists tbody tr").each(function() {
+			lists += "," + $(this).attr("cno");
+		});
+		
+		console.log(lists);
+		
+		lists = lists.substring(1);
+		
+		$("#addcardlist #lists").val(lists);
+		
+		var params = $("#addcardlist").serialize();
+		console.log(params);
 		$.ajax({
 			url: "addcards",
 			type: "post",
 			dataType: "json",
 			data: params,
 			success: function (res) {
+				if(res.resMsg == "success") {
+					alert("완료");
+				} else {
+					alert("실패");
+				}
 			},
 			error: function (request, status, error) {
 				console.log(error);
@@ -701,8 +630,10 @@ $(document).ready(function() {
 			dataType: "json",
 			data: params,
 			success: function (res) {
-				drawList(res.list);
-				drawPaging(res.pb);
+					drawList(res.list);
+					drawPaging(res.pb);
+					drawAddList(res.addlist);
+								
 			},
 			error: function (request, status, error) {
 				console.log(error);
@@ -714,35 +645,66 @@ $(document).ready(function() {
 		var html = "";
 		// 	" +  + " : 만들어놓고 붙여넣어도 됨.
 		for(var d of list) {
-			html += "<tr sno=\"" + d.CARD_NO + "\">";
+			html += "<tr cNo=\"" + d.CARD_NO + "\">";
 			html += "<td>" + "" + "</td>";
 			html += "<td class=\"a\">" + d.CARD_TYPE + "</td>";
 			html += "<td class=\"b\">" + d.CARD_NAME + "</td>";
 			html += "<td>" + "<button value=\"추가\" class=\"addbtn\" id=addbtn>추가</button>" + "</td>";
 			html += "</tr>";
-		}
-		
-		$(".list_wrap tbody").html(html);
-			var add ="";
-			var addcnt = 0;
 			
-		$(".list_wrap tr").on("click",function () {
+		}
+		$(".list_wrap tbody").html(html);
+	}
+	
+	function drawAddList(addlist) {
+		var add = "";
+		for(var i=0; i<addlist.length; i++){
+			add += "<tr cNo=\"" + addlist[i].CARD_NO + "\">";
+			add += "<td>" + "" + "</td>";
+			add += "<td class=\"a\">" + addlist[i].CARD_TYPE + "</td>";
+			add += "<td class=\"b\">" + addlist[i].CARD_NAME + "</td>";
+			add += "<td>" + "<button value=\"추가\" class=\"addbtn\" id=addbtn>삭제</button>" + "</td>";
+			add += "</tr>";
+		}
+		$(".add_wrap tbody").append(add); // 뒤로 이어 붙어줌..
+	}
+	
+		/* $(".list_wrap tr td button").on("click",function () {
+			var addcnt = 0;
 			addcnt++;
 			if(addcnt > 5) {
 				alert("추가못함.")
 			} else {
-				add += "<tr sno=\"" + $(this).attr("sno") + "\">";
+				add += "<tr cNo=\"" + $(this).attr("cNo") + "\">";
 				add += "<td>" + "" + "</td>";
-				add += "<td>" + $(this).children( '.a' ).html() + "</td>";
-				add += "<td>" + $(this).children( '.b' ).html() + "</td>";
+				add += "<td>" + cardType + "</td>";
+				add += "<td>" + cardName + "</td>";
 				add += "<td>" + "<button value=\"추가\" class=\"addbtn\" id=addbtn>삭제</button>" + "</td>";
 				add += "</tr>";
 				
 				$(".add_wrap tbody").append(add);
 				var add ="";
 			}
-		});
-	}
+		}); */
+
+	
+	// 추가하기
+/* 	$("#joinBtn").on("click", function () {
+		var listcard = $("#cardlists tbody tr").length;
+		var html = "";
+		for(var i = 0; i < listcard; i++) {
+			var lists = $("#cardlists tbody tr:eq(" + i + ")").attr("cNo");
+			html +="<input type=\"hidden\" name=\"cNo\" id=\"cmpNo\" value=\"1\"/>"
+		}
+		$("#addcardlist").append(html);
+		alert(lists);
+		alert("${sMNo}");
+		
+		if(lists != null) {
+			
+			addcard();
+		}
+	}); */
 	
 		
 	//페이징 그리기
@@ -779,91 +741,78 @@ $(document).ready(function() {
 </head>
 <body>
 <!-- 헤더영역 -->
-<div id="popup">
-	<div class="cardcaptain">&nbsp;&nbsp;&nbsp;&nbsp;Card Captain&nbsp;&nbsp;&nbsp;&nbsp;X</div>
-	<form action="testLogins" id="loginForm" method="post">
-			<input type="email" class="popinput" placeholder="ID" id="mId" name="mId">
-			<input type="password" class="popinput" placeholder="PW" id="mPw" name="mPw"><br/>
-		<span class="errorMsg" id="masage" aria-live="assertive"></span>
-		<input type="button" class="popinput" id="loginBtn" value="로그인"/><br/>
-	</form>
-	<div class="re" id="searchmem">ID/PW 찾기</div>
-	<div class="new" id="join">|&nbsp;&nbsp;회원 가입</div>
-</div>
-<!-- 로그인팝업 종료 -->
-<div class="body">
-	<div id="header">
-		<div id="headerWrap">
-			<div id="headerLeft">
-				<div id="headerLogo"></div>
-				<div class="menu1" id="ranking">카드순위</div>
-				<div class="menu1" id="search">카드검색/비교</div>
-				<div class="menu1" id="contents">컨텐츠</div>
-			</div>
-			<form action="mypage" id="memNo" method="post">
-				<input type="hidden" name="memNo" value="${sMNo}" id="sMNo"/>
-				<input type="hidden" name="memId" value="${sMId}" id="sMId"/>
-				<input type="hidden" name="memPW" value="${sMPw}" id="sMPw"/>
-				<input type="hidden" name="memBi" value="${sMBi}" id="sMBi"/>
-				<input type="hidden" name="memGe" value="${sMGe}" id="sMGe"/>
-				<input type="hidden" name="memCo" value="${sMCo}" id="sMCo"/>
-				<input type="hidden" name="memNm" value="${sMNm}" id="sMNm"/>
-				<input type="hidden" name="memNa" value="${sMNa}" id="sMNa"/>
-				<input type="hidden" name="memAd" value="${sMAd}" id="sMAd"/>
-			</form>
-			<div id="headerRight">
-				<input type="text" id="searchTxt">
-				<div id="imgSearch"></div>
-				<c:choose>
-					<c:when test="${empty sMNm}">
-						<div id="imgLogin"></div>
-					</c:when>
-					<c:otherwise>
-						<div id="logNick">${sMNm}</div><input type="button" value="로그아웃" id="logoutBtn" />
-					</c:otherwise>
-				</c:choose>
-			</div>
+<div id="header">
+	<div id="headerWrap">
+		<div id="headerLeft">
+			<div id="headerLogo"></div>
+			<div class="menu1" id="ranking">카드순위</div>
+			<div class="menu1" id="search">카드검색/비교</div>
+			<div class="menu1" id="contents">컨텐츠</div>
+		</div>
+		<form action="mypage" id="memNo" method="post">
+			<input type="hidden" name="memNo" value="${sMNo}" id="sMNo"/>
+			<input type="hidden" name="memId" value="${sMId}" id="sMId"/>
+			<input type="hidden" name="memPW" value="${sMPw}" id="sMPw"/>
+			<input type="hidden" name="memBi" value="${sMBi}" id="sMBi"/>
+			<input type="hidden" name="memGe" value="${sMGe}" id="sMGe"/>
+			<input type="hidden" name="memCo" value="${sMCo}" id="sMCo"/>
+			<input type="hidden" name="memNm" value="${sMNm}" id="sMNm"/>
+			<input type="hidden" name="memNa" value="${sMNa}" id="sMNa"/>
+			<input type="hidden" name="memAd" value="${sMAd}" id="sMAd"/>
+		</form>
+		<div id="headerRight">
+			<input type="text" id="searchTxt">
+			<div id="imgSearch"></div>
+			<c:choose>
+				<c:when test="${empty sMNm}">
+					<div id="imgLogin"></div>
+				</c:when>
+				<c:otherwise>
+					<div id="logNick">${sMNm} 님 </div><input type="button" value="로그아웃" id="logoutBtn" />
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
+</div>
 <!-- 내용 영역 -->   
 <div id="content">
-      <div id="myPage" class="my_page">
-	      <div class="back_middle2">
-         	<div class="member_tablee">
-	         		<h1 id="memberName" class="member_name">${sMNm}&nbsp;님&nbsp;&nbsp;</h1>
+	<div id="myPage" class="my_page">
+		<div class="back_middle2">
+			<div class="member_tablee">
+	         	<h1 id="memberName" class="member_name">${sMNm}&nbsp;님&nbsp;&nbsp;</h1>
          	</div>
-				<div id="memberTable" class="member_table">
-						<div class="table_left">
-							<div class="table1" id="">아이디<br/>
-								${sMId}
-							</div>
-							<div class="table2" id="">비밀번호<br/>
-								<input type="password" id="" value="${sMPw}">	
-							</div>
-							<div class="table3" id="">닉네임<br/>
-								<input type="text" id="" value="${sMNm}">
-							</div>
-						</div>
-						<div class="table_right">
-							<div class="table4" id="">전화번호<br/>
-								<input type="text" id="" value="${sMCo}">
-							</div>
-							<div class="table5" id="">생년월일<br/>
-								<input type="text" id="" value="${sMBi}">
-							</div>
-							<div class="table6" id="">이메일<br/>
-								${sMNa}${sMAd}
-							</div>
-						</div>
+			<div id="memberTable" class="member_table">
+				<div class="table_left">
+					<div class="table1" id="">아이디<br/>
+						${sMId}
+					</div>
+					<div class="table2" id="">비밀번호<br/>
+						<input type="password" id="" value="${sMPw}">	
+					</div>
+					<div class="table3" id="">닉네임<br/>
+						<input type="text" id="" value="${sMNm}">
+					</div>
 				</div>
-		      <div id="memberButton" class="member_button">
-		         <input type="button" value="정보수정" id="update" class="update"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="회원탈퇴" id="delete" class="delete"/>
-		      </div>
-	      </div>
-      </div>
+					<div class="table_right">
+						<div class="table4" id="">전화번호<br/>
+							<input type="text" id="" value="${sMCo}">
+						</div>
+						<div class="table5" id="">생년월일<br/>
+							<input type="text" id="" value="${sMBi}">
+						</div>
+						<div class="table6" id="">이메일<br/>
+							${sMNa}${sMAd}
+						</div>
+					</div>
+				</div>
+		      	<div id="memberButton" class="member_button">
+		        	<input type="button" value="정보수정" id="update" class="update"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="회원탈퇴" id="delete" class="delete"/>
+		      	</div>
+	      	</div>
+		</div>
       	<div class="back_middle">
 	      	<div class="back_middle2">
-			<div class="contents_top">보유중인 카드를 등록하고 혜택을 누리세요</div>
+				<div class="contents_top">보유중인 카드를 등록하세요.</div>
 			<div class="contents">
 				<div class="contents_left">
 					<div class="line">
@@ -931,8 +880,9 @@ $(document).ready(function() {
 					<div class="search">
 	<!-- Form -->
 						<form action="#" id="joinCard" method="post">   
+							<input type="hidden" name="memNo" value="${sMNo}" id="sMNo"/>
 							<input type="hidden" name="cmpNo" id="cmpNo" value="1" />
-							<input type="hidden" id="page" name="page" value="${page}" />
+							<input type="hidden" id="page" name="page" value="1" />
 						</form><br/>
 	<!-- Form end -->
 						<div class="list_wrap">
@@ -958,7 +908,13 @@ $(document).ready(function() {
 						<div id="paging_wrap"></div>
 						<br/>
 						<div class="add_wrap">
-						<table>
+	<!-- Form -->
+							<form action="#" id="addcardlist" method="post">
+								<input type="hidden" id="lists" name="lists" />
+								<input type="hidden" id="mNo" name="mNo" value="${sMNo}"/>
+							</form><br/>
+	<!-- Form end -->
+						<table id="cardlists">
 							<colgroup width="3000px">
 								<col width="5%" />
 								<col width="15%" />
@@ -979,7 +935,6 @@ $(document).ready(function() {
 						<br/>
 						<br/>
 					</div>
-					<input type="button" value="다음" class="joinBtn" id="joinBtn">
 				</div>
 			</div>
 		</div>

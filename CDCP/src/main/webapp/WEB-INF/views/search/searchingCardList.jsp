@@ -358,6 +358,7 @@ body{
 /* paging */
 #pagingWrap {
 	text-align: center;
+	padding-top: 20px;
 }
 #pagingWrap span {
 	font-size: 18px;
@@ -531,18 +532,11 @@ $(document).ready(function() {
 				<li>#${data}</li>
 			</c:forEach>
 			</ul>
-		</div>
- 		<<div id="keyword" class="keyword">
- 			<ul>
- 				<c:forEach var="data" items="${options}">
-					<li>${data}</li>
- 				</c:forEach>
- 			</ul>
- 			<div id = "bi">
-						<input type = "button" value = "비교함 확인" id = "bi1"/>
-						<input type = "button" value = "1" id= "bi2"/>
+			<div id = "bi">
+				<input type = "button" value = "비교함 확인" id = "bi1"/>
+				<input type = "button" value = "1" id= "bi2"/>
 			</div>	
- 		</div>
+		</div>
 <c:set var="size" value="${fn:length(pagingDistinct)}" />
 <c:choose>
 <c:when test="${size > 0}">
@@ -593,7 +587,7 @@ $(document).ready(function() {
 			<span name="${i}"><b>${i}</b></span>
 		</c:when>
 		<c:otherwise>
-			<span name="${i}">${i}</span>
+			<span name="${i}">${i}</span>>
 		</c:otherwise>
 	</c:choose>
 </c:forEach>
