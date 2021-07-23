@@ -21,7 +21,7 @@
 
 	<select id="getList" parameterType="hashmap" resultType="hashmap">
 		SELECT C.*
-		FROM(SELECT RANK() OVER(ORDER BY CARD_NO DESC) AS CARD_NO, CARD_CMP_NO, DECODE(CARD_TYPE, 0, '신용카드','체크카드') AS CARD_TYPE, CARD_NAME,
+		FROM(SELECT CARD_NO, CARD_CMP_NO, DECODE(CARD_TYPE, 0, '신용카드','체크카드') AS CARD_TYPE, CARD_NAME,
 		RANK() OVER(PARTITION BY CARD_CMP_NO ORDER BY CARD_NO DESC) AS RNK
 	    FROM CARDS
 	    ORDER BY CARD_NO ASC) C
@@ -30,8 +30,14 @@
 	</select>
 	
 	<select id="addCard" parameterType="hashmap">
-		INSERT INTO HAVERCARDS(CARD_NO,MEMBER_NO,ADD_DATE)
-		VALUES(#{카드번호}, #{회원번호})
+		INSERT INTO HAVECARDS(CARD_NO,MEMBER_NO)
+		VALUES(#{lists}, #{mNo})
 	</select>
 	
+	<select id="getAddList" parameterType="hashmap" resultType="hashmap">
+		SELECT H.CARD_NO, H.MEMBER_NO, C.CARD_NAME, DECODE(CARD_TYPE, 0, '신용카드','체크카드') AS CARD_TYPE
+		FROM HAVECARDS H INNER JOIN CARDS C
+		                         ON H.CARD_NO = C.CARD_NO
+		WHERE H.MEMBER_NO = #{memNo}
+	</select>
 </mapper>

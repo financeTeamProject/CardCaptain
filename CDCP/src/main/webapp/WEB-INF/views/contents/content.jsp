@@ -457,7 +457,7 @@ h1 {
 		
 		});	 // document ready end
 		
-		function reloadList() {
+		/* function reloadList() {
 			var params = $("#content").serialize();
 			
 			$.ajax({
@@ -467,7 +467,7 @@ h1 {
 				data: params,	
 				success: function(res) {
 					drawList(res.list);
-					drawPaging(res.pb);
+					
 				},
 				error: function(request, status, error) {
 					console.log(error);
@@ -476,7 +476,7 @@ h1 {
 		}
 		
 		
-	/* 	function drawList(list){
+		function drawList(list){
 			var html = "";
 			
 			for(var c of list){
@@ -570,8 +570,9 @@ h1 {
 			<%-- <form action="#" id="content" method="post">   
 						<input type="hidden" name="cNo" id="cNo" />
 						<input type="hidden" id="page" name="page" value="${page}" />
-					</form> --%><br/>
+					</form><br/> 
 			<div class="list_wrap"></div>
+			--%>
 			<div class="paging_wrap"></div>
 			<c:forEach var = "i" begin = "0" end = "2">			
 				<div class="content">
