@@ -450,6 +450,12 @@ body{
 #paging_wrap {
 	text-align: center;
 }
+#abc {
+	color: red;
+	font-size: 20px;
+	text-align: center;
+	margin-top: 60px;
+}
 </style>
 <script type="text/javascript" src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
@@ -563,6 +569,7 @@ $(document).ready(function() {
 	
 	// 카드사선택
 	$(".blank").on("click", function () {
+		$("#abc").css("display","none");
 		$("#page").val(1);
 		$("#cmpNo").val($(this).prop("id")); //1~9카드사
 		console.log($("#cmpNo").val());
@@ -897,7 +904,7 @@ $(document).ready(function() {
 						<form action="#" id="joinCard" method="post">   
 							<input type="hidden" name="memNo" value="${sMNo}" id="sMNo"/>
 							<input type="hidden" name="cmpNo" id="cmpNo" value="1" />
-							<input type="hidden" id="page" name="page" value="1" />
+							<input type="hidden" id="page" name="page" value=${page} />
 						</form><br/>
 	<!-- Form end -->
 						<div class="list_wrap">
@@ -919,6 +926,7 @@ $(document).ready(function() {
 							<tbody></tbody>
 						</table>
 						</div>
+						<div id="abc">왼쪽의 카드사를 눌러 추가해 주세요.</div>
 						<br/>
 						<div id="paging_wrap"></div>
 						<br/>
