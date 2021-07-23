@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gdj35.cdcp.WEB.ranking.RankingService.RankingIService;
+import com.gdj35.cdcp.WEB.user.UserContoller.UserContoller;
+import com.gdj35.cdcp.WEB.user.UserService.UserIService;
 import com.gdj35.cdcp.common.service.IPagingService;
 
 @Controller 
@@ -25,6 +27,12 @@ public class RankingContoller {
 	@Autowired
 	public IPagingService iPagingService;
 
+	@Autowired
+	public UserContoller userContoller;
+	
+	@Autowired 
+	public UserIService useriService;
+	
 //	card rank 메인페이지
 	@RequestMapping(value="/card_rank")
 	public ModelAndView card_rank(ModelAndView mav) {
