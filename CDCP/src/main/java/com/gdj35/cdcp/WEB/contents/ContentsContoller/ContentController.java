@@ -196,7 +196,6 @@ public class ContentController {
 	  @RequestParam HashMap<String, String> params) throws Throwable { ObjectMapper
 	  mapper = new ObjectMapper(); Map<String, Object> modelMap = new
 	  HashMap<String, Object>();
-	  
 	  //현재 페이지
 	  
 	  int page = Integer.parseInt(params.get("page"));
