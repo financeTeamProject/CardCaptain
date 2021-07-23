@@ -649,10 +649,9 @@
 			src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 
-
 /* 아코디언 */
 
-$(function(){
+$(document).ready(function(){
 	$(".group1-1").hide();
 	$(".bot_box").click(function(){
 			
@@ -663,48 +662,51 @@ $(function(){
 			$(this).next().slideUp("fast");
 		}
 	});
+
+/* 
+$(function(){
+	
+		
+	$(".arrow_up").hide();
+			
+	$('.arrow_down').on("click",function(){
+		
+
+		$(this).siblings().removeClass('.arrow_down');
+		$(this).addClass('arrow_up');
+		
+	})
+	
+	
+	
+	
+	}); */
+
 });
 
 
 /* 버튼 클릭시 화살표 이미지 변경 */
-
-
-	$('.arrow_down').on('click', function() {
-		
-		 	$(".arrow_down").ashow();
-		    $(".arrow_up").hide();
-		
-		  const $answer = $(this).parent().next() 
-		  const $triangle = $(this).find('p') 
-		  if ($answer.is(':visible')) {
-			    $(".arrow_down").hide();
-		        $(".arrow_up").show();
-					  
-		  } else {
-			  $(".arrow_down").show();
-		      $(".arrow_up").hide();
-		  }
-	});
-
  
-$(document).ready(function(){
-    /*웹페이지 열었을 때*/
+   $(document).ready(function(){
+  
     $(".arrow_down").show();
     $(".arrow_up").hide();
-
-    	    
-    /*img1을 클릭했을 때 img2를 보여줌*/
+        
     $(".arrow_down").click(function(){
         $(".arrow_down").hide();
         $(".arrow_up").show();
     });
-
-    /*img2를 클릭했을 때 img1을 보여줌*/
+ 
     $(".arrow_up").click(function(){
         $(".arrow_down").show();
         $(".arrow_up").hide();
     });
 });
+
+
+
+
+//클릭을 했을때 클릭한 놈의 부모에서 자식만 바꿔준다. this parent children
 
 
 /*비교함 담기  */	
