@@ -180,6 +180,7 @@ body {
 	width: 100%;
     height: 2800px;
     margin: 0 auto;
+    min-width:1830px;
 }
 ul,li{
 	list-style:none;
@@ -240,8 +241,8 @@ input#pos1,#pos2,#pos3,#pos4 {
 }
 /* 메인 1페이지 부분 */
 .top {
-	height:5%;
-	width: 100%;
+	height:5%;width: 100%;
+	
 }
 .bottom {
 	height: 60%;

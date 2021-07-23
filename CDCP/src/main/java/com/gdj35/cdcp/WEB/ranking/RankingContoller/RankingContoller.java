@@ -187,11 +187,7 @@ public class RankingContoller {
 			System.out.println("=============");
 			System.out.println(params);
 			System.out.println("=============");
-			 List<HashMap<String, String>> review 
-			 	= RankingiService.reviewList(params);
-			 System.out.println("=============");
-			 System.out.println(review);
-			 System.out.println("=============");
+			
 			// 현재 페이지
 			  int page = 1;
 				
@@ -206,16 +202,31 @@ public class RankingContoller {
 				
 			  params.put("startCnt", Integer.toString(pb.getStartCount()));
 			  params.put("endCnt", Integer.toString(pb.getEndCount()));
+			  System.out.println("======끝 자리======");
+			  System.out.println(pb.getEndCount());
+			  System.out.println("=============");
+			  modelMap.put("page", page);
+			  modelMap.put("pb", pb);
+			  modelMap.put("cnt", cnt);
+			  
+			try {
+			 List<HashMap<String, String>> review 
+			 	= RankingiService.reviewList(params);
+			 System.out.println("=============");
+			 System.out.println(review);
+			 System.out.println("=============");
 			  
 			  if(review != null) {
 				  modelMap.put("msg", "success");
 				  modelMap.put("review", review);
-				  modelMap.put("page", page);
-				  modelMap.put("pb", pb);
+				  
 			  }else {
 				  modelMap.put("msg", "error");
 			  }
-			  return mapper.writeValueAsString(modelMap);
+		 } catch(Throwable e) {
+			  		e.printStackTrace();
+		 }
+			return mapper.writeValueAsString(modelMap);
 	  }
 }
 

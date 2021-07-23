@@ -622,12 +622,14 @@
 					/* 리뷰 작성 영역 */
 					.review_write_area{
 						width: 100%;
-						height: 500px; 
 					}
 					.login_btn_area{
 						margin-top: 20px;
 						margin-left: 50px;
 						font-family: GmarketSansMedium;
+					}
+					.review_list_wrap{
+						width: 100%;
 					}
 					.list_area{
 						display: flex;
@@ -698,25 +700,27 @@
 					.paging_area{
 						text-align: center;
 					}
-					#pagingWrap{
+					.paging_area{
 						margin-top: 20px;
 					}
-					#pagingWrap span{
+					.paging_area span{
 						display: inline-block;
 						padding: 5px;
 						margin-left: 3px;
 						margin-right: 3px;
-						background-color: #DFDFDF;
-						border: 1px solid #444;
+						border-width: none;
 						border-radius: 3px;
 						cursor: pointer;
-						width: 60px;
+						width: 50px;
 						text-align: center;
+						font-size: 12px;
+						height: 20px;
+						line-height: 20px;
 					}
-					#pagingWrap span:active {
+					.paging_area span:active {
 					background-color: #AAAAAA;
 					}
-					#pagingWrap .on {
+					.paging_area #on {
 					background-color: #AAAAAA;
 					}
 
@@ -943,6 +947,13 @@ $(document).ready(function(){
 			$("#goForm").submit();
 		});
 		
+		$(".paging_area").on("click", "span", function () {
+			$("#page").val($(this).attr("page"));
+			
+			reloadList();
+		});
+
+		
 });	// document ready end	
 		/* 리뷰 목록  */
 		function reloadList(){
@@ -955,7 +966,8 @@ $(document).ready(function(){
 				data: params, //보낼 데이터(문자열 형태)
 				success: function(res){ // 성공 시 다음 함수 실행	
 					drawList(res.review);
-					drawPaging(res.pb);	
+					drawPaging(res.pb);
+					$(".review_cnt").html(res.cnt);
 				},
 				error: function(request, status, error){ // 실패 시 다음 함수 실행
 					console.log(error);
@@ -967,8 +979,9 @@ $(document).ready(function(){
 		function drawList(review){
 			var html = "";
 			
-			for(var i = 0; i < review.length - 1; i++){
-			html += "<div class=\"review_no\">" + ${review[i].REVIEW_NO} + "</div>";
+			for(var i = 0; i < review.length; i++){
+			html +=	"<div class=\"list_area\">";
+			html += "<div class=\"review_no\">" + review[i].REVIEW_NO + "</div>";
 			html += "<div class=\"review_info\">";
 			
 			if(review[i].SCORE == 1){
@@ -983,53 +996,54 @@ $(document).ready(function(){
 			html += "<div class=\"review_star\">★★★★★</div>";
 			}
 			html += "<div class=\"review_writer\">";
-			html += "<div>작성자 : " + ${review[i].NICKNAME} + "</div>";
-			html += "<div>등록일 : " + ${review[i].ADD_DATE} + "</div>";
+			html += "<div>작성자 : " + review[i].NICKNAME + "</div>";
+			html += "<div>등록일 : " + review[i].ADD_DATE + "</div>";
 			html += "</div>";
 			html += "</div>";
 			html += "<div class=\"review_content\">";
-			html += "<div class=\"content_title\">" + ${review[i].TITLE} + "</div>";
-			html += "<div class=\"content_con\">" + ${review[i].TEXT} + "</div>";
+			html += "<div class=\"content_title\">" + review[i].TITLE + "</div>";
+			html += "<div class=\"content_con\">" + review[i].TEXT + "</div>";
 			html += "</div>";
 			html += "<div class=\"review_like\">";
 			html += "<img id=\"likeImg\" alt=\"좋아요 \" src=\"resources/images/ranking/icon/like_icon_bule.png\" width=\"50px\" height=\"50px\">";
 			html += "<div id=\"likeCnt\">20</div>";
 			html += "</div>";
+			html += "</div>";
 		}
-			$(".list_area").html(html);
+			$(".review_list_wrap").html(html);
 		}
 		
 		
 		// 페이징 그리기
-		function drawPaging(pb){
-			var html = "";
-			
-			html += "<span name=\"1\">처음</span >";
-			if($("#page").val() == "1"){
-				html += "<span name=\"1\">이전</span >";
-			} else {
-				html += "<span name=\"" + ($("#page").val() - 1) + "\">이전</span >";
-			}
-			
-			for(var i = pb.startPcount; i <= pb.endPcount; i++){
-				if($("#page").val() == i){
-					html += "<span name=\"on\" page=\"" + i + "\">" + i + "</span >";	// 숫자일경우니깐 반복문 사용할것이다.
-				} else {
-					html += "<span name=\"" + i + "\">" + i + "</span >";	// 숫자일경우니깐 반복문 사용할것이다.
-				}
-			}
-			
-			if($("#page").val() == pb.maxPcount){
-				html += "<span name=\"" + pb.maxPcount + "\">다음</span >";
-			} else{
-				// 곱하기 안하면 11로 나오기 때문에 숫자로 변환시키는 작업 필요. 마이너스는 자동 형변환이 적용.
-				html += "<span name=\"" + ($("#page").val() * 1 + 1) + "\">다음</span >"; 
-			}
-			
-			html += "<span name=\"" + pb.maxPcount + "\">마지막</span >";
-			
-			$(".paging_area").html(html);
+		function drawPaging(pb) {
+		var html = "";
+		
+		html += "<span page=\"1\">|&lt;</span>";
+		
+		if($("#page").val() == "1") {
+			html += "<span page=\"1\">&lt;</span>";
+		} else {
+			html += "<span page=\"" + ($("#page").val() - 1) + "\">&lt;</span>";
 		}
+		
+		for(var i = pb.startPcount ; i <= pb.endPcount ; i++) {
+			if($("#page").val() == i) {
+				html += "<span id=\"on\" page=\"" + i + "\">" + i + "</span>";
+			} else {
+				html += "<span page=\"" + i + "\">" + i + "</span>";
+			}
+		}
+		
+		if($("#page").val() == pb.maxPcount) {
+			html += "<span page=\"" + pb.maxPcount + "\">&gt;</span>";
+		} else {
+			html += "<span page=\"" + ($("#page").val() * 1 + 1) + "\">&gt;</span>";
+		}
+			html += "<span page=\"" + pb.maxPcount + "\">&gt;|</span>";
+		
+		$(".paging_area").html(html);
+	}
+
 		
 		
 
@@ -1170,7 +1184,7 @@ $(document).ready(function(){
 				<div class="review_total">
 					<h2>카드 리뷰수</h2>
 					<div class="review_img"></div>
-					<div class="review_cnt">${cnt} 건</div>
+					<div class="review_cnt"> 건</div>
 				</div>
 		<!-- 전체 조회수 영역 -->
 				<div class="click_total">
@@ -1185,7 +1199,7 @@ $(document).ready(function(){
 				<div class="write_area">
 					<form action="#" id="actionForm" method="post">
 						<!-- 기본값들이 들어오게될거다 : hidden -->
-						<input type="hidden" id="page" name="page" value="${page}" ><!-- 검색시 반드시 필요 -->
+						<input type="hidden" id="page" name="page" value="1" ><!-- 검색시 반드시 필요 -->
 						<!-- 글작성, 편집영역 -->
 						<c:choose>
 							<c:when test="${empty sMNo}">
@@ -1203,42 +1217,7 @@ $(document).ready(function(){
 				<!-- 리뷰 목록 영역 -->
 				<%-- <c:set var="size" value="${fn:length(review)}" />
 				<c:forEach var = "r" begin="0" end="${size - 1}"> --%>
-				<div class="list_area">
-					<%-- <div class="review_no">${review[r].REVIEW_NO}</div>
-					<div class="review_info">
-					<c:choose>
-						<c:when test="${review[r].SCORE == 1}">
-							<div class="review_star">★☆☆☆☆</div>
-						</c:when>
-						<c:when test="${review[r].SCORE == 2}">
-							<div class="review_star">★★☆☆☆</div>
-						</c:when>
-						<c:when test="${review[r].SCORE == 3}">
-							<div class="review_star">★★★☆☆</div>
-						</c:when>
-						<c:when test="${review[r].SCORE == 4}">
-							<div class="review_star">★★★★☆</div>
-						</c:when>
-						<c:when test="${review[r].SCORE == 5}">
-							<div class="review_star">★★★★★</div>
-						</c:when>
-					</c:choose>
-						<div class="review_writer">
-							<div>작성자 : ${review[r].NICKNAME}</div>
-							<div>등록일 : ${review[r].ADD_DATE}</div>
-						</div>
-					</div>
-					<div class="review_content">
-						<div class="content_title">${review[r].TITLE}</div>
-						<div class="content_con">${review[r].TEXT}</div>
-					</div>
-					<div class="review_like">
-						<img id="likeImg" alt="좋아요 " src="resources/images/ranking/icon/like_icon_bule.png" width="50px" height="50px">
-						<div id="likeCnt">20</div>
-					</div>
-				</div>
-				</c:forEach> --%>
-				</div>
+				<div class="review_list_wrap"></div>
 				<!-- 페이지 영역 -->
 				<div class="paging_area"></div>											
 			</div>
