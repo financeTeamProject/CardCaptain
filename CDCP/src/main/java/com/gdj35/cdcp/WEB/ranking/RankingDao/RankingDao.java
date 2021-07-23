@@ -51,5 +51,15 @@ public class RankingDao implements RankingIDao{
 		
 		return sqlSession.update("R.updateCnt", params);
 	}
+	@Override
+	public List<HashMap<String, String>> reviewList(HashMap<String, String> params) throws Throwable {
+		
+		return sqlSession.selectList("R.reviewList", params);
+	}
+	@Override
+	public int getReviewCnt(HashMap<String, String> params) throws Throwable {
+
+		return sqlSession.selectOne("R.getReviewCnt", params);
+	}
 
 }

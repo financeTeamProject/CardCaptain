@@ -78,4 +78,30 @@
 		                              WHERE CARD_NO = #{cardClick})
 		WHERE CARD_NO = #{cardClick}
 	</update>
+	<!-- 페이지 수  -->
+	<select id="getReviewCnt" parameterType="hashmap" resultType="Integer">
+		SELECT COUNT(*) AS CNT
+		FROM HAVECARDREVIEWS
+		WHERE CARD_NO = #{cardNo}
+		AND DEL_CHECK = 1
+	</select>
+	<!-- 카드별 리뷰 목록  -->
+	<select id="reviewList" parameterType="hashmap" resultType="hashmap">
+		SELECT DISTINCT HCR.REVIEW_NO, HCR.MEMBER_NO, MI.NICKNAME, HCR.CARD_NO, C.CARD_NAME, HCR.TITLE, HCR.TEXT, HCR.SCORE, HCR.ADD_DATE
+		FROM HAVECARDREVIEWS HCR INNER JOIN HAVECARDS HC
+		                                 ON HCR.CARD_NO = HC.CARD_NO
+		                         INNER JOIN CARDS C
+		                                 ON HC.CARD_NO = C.CARD_NO
+		                         INNER JOIN MEMBER_INFO MI
+		                                 ON HCR.MEMBER_NO = MI.MEMBER_NO
+		WHERE HCR.CARD_NO = ${cardNo}
+		AND HCR.DEL_CHECK = 1
+		ORDER BY HCR.REVIEW_NO DESC
+	</select>
+	
+	<!-- 리뷰 작성  -->
+	<insert id="addReview">
+		INSERT INTO HAVECARDREVIEWS(REVIEW_NO, MEMBER_NO, CARD_NO, SCORE, TITLE, TEXT )
+		VALUES(HAVECARDREVIEWS_SEQ.NEXTVAL, '72', '1005', '5','이 카드는 꿀', '혜택을 사용할수 있는 매장들이 너무 많다')
+	</insert>
 </mapper>

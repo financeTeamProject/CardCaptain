@@ -56,6 +56,18 @@ public class RankingService implements RankingIService {
 		return RankingiDao.updateCnt(params);
 	}
 
+	@Override
+	public List<HashMap<String, String>> reviewList(HashMap<String, String> params) throws Throwable {
+		
+		return RankingiDao.reviewList(params);
+	}
+
+	@Override
+	public int getReviewCnt(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return RankingiDao.getReviewCnt(params);
+	}
+
 
 
 

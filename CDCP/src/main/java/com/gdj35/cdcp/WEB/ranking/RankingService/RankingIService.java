@@ -19,6 +19,10 @@ public interface RankingIService {
 
 	public int updateCnt(HashMap<String, String> params) throws Throwable;
 
+	public List<HashMap<String, String>> reviewList(HashMap<String, String> params) throws Throwable;
+
+	public int getReviewCnt(HashMap<String, String> params) throws Throwable;
+
 
 
 }
