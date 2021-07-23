@@ -27,4 +27,9 @@ public class UserListService implements UserIListService {
 		return useriListdao.addCard(params);
 	}
 
+	@Override
+	public List<HashMap<String, String>> getAddList(HashMap<String, String> params) throws Throwable {
+		return useriListdao.getAddList(params);
+	}
+
 }

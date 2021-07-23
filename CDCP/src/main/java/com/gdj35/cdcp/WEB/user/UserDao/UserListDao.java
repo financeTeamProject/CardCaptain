@@ -24,4 +24,8 @@ public class UserListDao implements UserIListDao {
 	public int addCard(HashMap<String, String> params) throws Throwable {
 		return sqlSession.insert("user.addCard", params);
 	}
+	@Override
+	public List<HashMap<String, String>> getAddList(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectList("user.getAddList", params);
+	}
 }
