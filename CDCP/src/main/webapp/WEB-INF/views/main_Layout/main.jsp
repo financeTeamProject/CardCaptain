@@ -410,10 +410,6 @@ $(document).ready(function(){
 	
 	/* 마이페이지이동 */
 	$("#logNick").on("click", function(){
-		location.href = "/mypage";
-	});
-	
-	$("#logNick").on("click", function(){
 		alert($("#sMNm").val());
 		$("#memNo").attr("action");
 		$("#memNo").submit();

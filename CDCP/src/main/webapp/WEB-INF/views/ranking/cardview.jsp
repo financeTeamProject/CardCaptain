@@ -853,6 +853,8 @@ $(document).ready(function(){
 
 $(document).ready(function(){
 		
+	reloadList();
+	
 		/* 카드순위 페이지 이동 */
 		$("#ranking").on("click", function(){
 			location.href = "card_rank";
@@ -945,6 +947,95 @@ $(document).ready(function(){
 			
 		});
 		
+		/* 리뷰 목록  */
+		function reloadList(){
+			var params = $("#goCardNo").serialize();
+			$("#goCardNo").submit();
+			
+			$.ajax({
+				url: "cardviews", // 접속주소 (현재 저상태는 상대 경로이다)
+				type: "post", // 전송방식: get,post
+				dataType: "json", // 받아올 데이터 형식
+				data: params, //보낼 데이터(문자열 형태)
+				success: function(res){ // 성공 시 다음 함수 실행	
+					drawList(res.review);
+					alert(res);
+					drawPaging(res.pb);	
+				},
+				error: function(request, status, error){ // 실패 시 다음 함수 실행
+					console.log(error);
+				}
+			});
+		}
+		
+		// 목록 그리기
+		function drawList(review){
+			var html = "";
+			
+			for(var i = 0; i < review.length - 1; i++){
+			html += "<div class=\"list_area\">";
+			html += "<div class=\"review_no\">" + ${review[i].REVIEW_NO} + "</div>";
+			html += "<div class=\"review_info\">";
+			
+			if(review[i].SCORE == 1){
+			html += "<div class=\"review_star\">★☆☆☆☆</div>";
+			} else if(review[i].SCORE == 2){
+			html += "<div class=\"review_star\">★★☆☆☆</div>";
+			} else if(review[i].SCORE == 3){
+			html += "<div class=\"review_star\">★★★☆☆</div>";
+			} else if(review[i].SCORE == 4){
+			html += "<div class=\"review_star\">★★★★☆</div>";
+			} else{
+			html += "<div class=\"review_star\">★★★★★</div>";
+			}
+			html += "<div class=\"review_writer\">";
+			html += "<div>작성자 : " + ${review[i].NICKNAME} + "</div>";
+			html += "<div>등록일 : " + ${review[i].ADD_DATE} + "</div>";
+			html += "</div>";
+			html += "</div>";
+			html += "<div class=\"review_content\">";
+			html += "<div class=\"content_title\">" + ${review[i].TITLE} + "</div>";
+			html += "<div class=\"content_con\">" + ${review[i].TEXT} + "</div>";
+			html += "</div>";
+			html += "<div class=\"review_like\">";
+			html += "<img id=\"likeImg\" alt=\"좋아요 \" src=\"resources/images/ranking/icon/like_icon_bule.png\" width=\"50px\" height=\"50px\">";
+			html += "<div id=\"likeCnt\">20</div>";
+			html += "</div>";
+			html += "</div>";
+			
+			$(".list_area").html(html);
+		}
+		
+		// 페이징 그리기
+		function drawPaging(pb){
+			var html = "";
+			
+			html += "<div page=\"1\">처음</div>";
+			if($("#page").val() == "1"){
+				html += "<div page=\"1\">이전</div>";
+			} else {
+				html += "<div page=\"" + ($("#page").val() - 1) + "\">이전</div>";
+			}
+			
+			for(var i = pb.startPcount; i <= pb.endPcount; i++){
+				if($("#page").val() == i){
+					html += "<div class=\"on\" page=\"" + i + "\">" + i + "</div>";	// 숫자일경우니깐 반복문 사용할것이다.
+				} else {
+					html += "<div page=\"" + i + "\">" + i + "</div>";	// 숫자일경우니깐 반복문 사용할것이다.
+				}
+			}
+			
+			if($("#page").val() == pb.maxPcount){
+				html += "<div page=\"" + pb.maxPcount + "\">다음</div>";
+			} else{
+				// 곱하기 안하면 11로 나오기 때문에 숫자로 변환시키는 작업 필요. 마이너스는 자동 형변환이 적용.
+				html += "<div page=\"" + ($("#page").val() * 1 + 1) + "\">다음</div>"; 
+			}
+			
+			html += "<div page=\"" + pb.maxPcount + "\">마지막</div>";
+			
+			$(".paging_wrap").html(html);
+		}
 	}); // document ready end
 </script>
 </head>
@@ -982,6 +1073,9 @@ $(document).ready(function(){
 				<input type="hidden" name="memNm" value="${sMNm}" id="sMNm"/>
 				<input type="hidden" name="memNa" value="${sMNa}" id="sMNa"/>
 				<input type="hidden" name="memAd" value="${sMAd}" id="sMAd"/>
+			</form>
+			<form action="cardviews" id="goCardNo" method="post">
+				<input type="hidden" name="memNo" value="${data[0].CARD_NO}" id="sMNo"/>
 			</form>
 			<div id="headerRight">
 				<input type="text" id="searchTxt">
@@ -1080,7 +1174,7 @@ $(document).ready(function(){
 				<div class="review_total">
 					<h2>카드 리뷰수</h2>
 					<div class="review_img"></div>
-					<div class="review_cnt">100건</div>
+					<div class="review_cnt">${cnt} 건</div>
 				</div>
 		<!-- 전체 조회수 영역 -->
 				<div class="click_total">
@@ -1103,23 +1197,19 @@ $(document).ready(function(){
 							<c:when test="${empty sMNo}">
 							<div class="login_btn_area">
 								<span>로그인이 필요한 영역입니다.</span>
-								<input type="button" value="로그인하러 가기" id="loginBtn" />
+								<input type="button" value="로그인하러 가기" id="reviewLoginBtn" />
 							</div>
 							</c:when>
 							<c:otherwise>
 								<input type="hidden" name="mNo" value="${sMNo}" />
-								<input type="hidden" name="obNo" id="obNo" />
-									<textarea rows="3" cols="50" name="obCon" id="obCon"></textarea>
-								<input type="button" value="작성" id="writeBtn" />
-								<input type="button" value="수정" id="updateBtn" />
-								<input type="button" value="취소" id="cancelBtn" />
+								<input type="button" value="리뷰작성" id="writeBtn" />
 							</c:otherwise>
 						</c:choose>
 					</form>
 				</div>
 				<!-- 리뷰 목록 영역 -->
 				<div class="list_area">
-					<div class="review_no">2</div>
+					<!-- <div class="review_no">2</div>
 					<div class="review_info">
 						<div class="review_star">★★★★☆</div>
 						<div class="review_writer">
@@ -1152,7 +1242,7 @@ $(document).ready(function(){
 					<div class="review_like">
 						<img id="likeImg" alt="좋아요 " src="resources/images/ranking/icon/like_icon_bule.png" width="50px" height="50px">
 						<div id="likeCnt">5</div>
-						</div>
+						</div> -->
 				</div>
 				<!-- 페이지 영역 -->
 				<div class="paging_area">

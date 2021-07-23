@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gdj35.cdcp.WEB.ranking.RankingService.RankingIService;
 import com.gdj35.cdcp.WEB.user.UserContoller.UserContoller;
 import com.gdj35.cdcp.WEB.user.UserService.UserIService;
+import com.gdj35.cdcp.common.bean.PagingBean;
 import com.gdj35.cdcp.common.service.IPagingService;
 
 @Controller 
@@ -154,18 +155,32 @@ public class RankingContoller {
 		  if(params.get("cardClick") != null) {
 			  int cnt = RankingiService.updateCnt(params);
 		  }
+			
 		 // 카드 상세보기 화면 
 		  try {
 			  if(params.get("cardNo") != null) { 
 		  
 				  List<HashMap<String, String>>
 		  			data = RankingiService.getCView(params);
-		  
-				  //List<HashMap<String, String>>	review = RankingiService.getRView(params);
-				  
+				 
 				  mav.addObject("data", data);
-				  //mav.addObject("review", review);
+				  // 현재 페이지
+				  int page = 1;
+					
+				  if(params.get("page") != null) {
+						page = Integer.parseInt(params.get("page"));
+				  }
+				  // 총 게시글 수
+				  int cnt = RankingiService.getReviewCnt(params);
+					
+				  // 페이징 계산
+				  PagingBean pb = iPagingService.getPagingBean(page, cnt);
+					
+				  params.put("startCnt", Integer.toString(pb.getStartCount()));
+				  params.put("endCnt", Integer.toString(pb.getEndCount()));
 				  
+				  
+				  mav.addObject("cnt", cnt);
 				  mav.setViewName("ranking/cardview");
 			  }else {
 				  mav.setViewName("ranking/wrongApproach");
@@ -175,6 +190,52 @@ public class RankingContoller {
 		  }
 	  return mav; 
 	 }
-
+	  @RequestMapping(value="/cardviews",
+				method = RequestMethod.POST,
+				produces = "text/json;charset=UTF-8")
+	  @ResponseBody
+	  public String cardviews(
+			  @RequestParam HashMap<String, String> params) throws Throwable{
+		  ObjectMapper mapper = new ObjectMapper();
+		  Map<String, Object> modelMap = new HashMap<String, Object>();
+		  
+		  System.out.println("=======================");
+		  System.out.println("=======================");
+		  System.out.println("=======================");
+		  System.out.println(params);
+		  // 현재 페이지
+		  int page = 1;
+			
+		  if(params.get("page") != null) {
+				page = Integer.parseInt(params.get("page"));
+		  }
+		  // 총 게시글 수
+		  int cnt = RankingiService.getReviewCnt(params);
+			
+		  // 페이징 계산
+		  PagingBean pb = iPagingService.getPagingBean(page, cnt);
+			
+		  params.put("startCnt", Integer.toString(pb.getStartCount()));
+		  params.put("endCnt", Integer.toString(pb.getEndCount()));
+				
+		  // 목록 취득
+		  List<HashMap<String, String>>	
+		  review = RankingiService.reviewList(params);
+		  try {
+			  if(review != null) {
+				  modelMap.put("msg", "success");
+				  modelMap.put("cnt", cnt);
+				  modelMap.put("review", review);
+				  modelMap.put("page", page);
+				  modelMap.put("pb", pb);
+			  } else {
+				  modelMap.put("msg", "error");
+			  }
+		  } catch(Throwable e) {
+			  e.printStackTrace();
+			  modelMap.put("msg", "error");
+		  }
+		 return mapper.writeValueAsString(modelMap);
+	}
 }
 
