@@ -72,6 +72,7 @@
                                            ON CC.CARD_NO = CBF.CARD_NO
                                            AND RNK = 3
 	</select>
+	<!-- 조회수 업데이트  -->
 	<update id="updateCnt" parameterType="hashmap">
 		UPDATE CARDS SET CLICK_CNT = (SELECT NVL(CLICK_CNT,0) + 1
 		                              FROM CARDS
@@ -87,20 +88,28 @@
 	</select>
 	<!-- 카드별 리뷰 목록  -->
 	<select id="reviewList" parameterType="hashmap" resultType="hashmap">
-		SELECT DISTINCT HCR.REVIEW_NO, HCR.MEMBER_NO, MI.NICKNAME, HCR.CARD_NO, C.CARD_NAME, HCR.TITLE, HCR.TEXT, HCR.SCORE, HCR.ADD_DATE
-		FROM HAVECARDREVIEWS HCR INNER JOIN HAVECARDS HC
-		                                 ON HCR.CARD_NO = HC.CARD_NO
-		                         INNER JOIN CARDS C
-		                                 ON HC.CARD_NO = C.CARD_NO
-		                         INNER JOIN MEMBER_INFO MI
-		                                 ON HCR.MEMBER_NO = MI.MEMBER_NO
-		WHERE HCR.CARD_NO = ${cardNo}
-		AND HCR.DEL_CHECK = 1
-		ORDER BY HCR.REVIEW_NO DESC
+		SELECT CC.REVIEW_NO, CC.MEMBER_NO, CC.NICKNAME, CC.CARD_NO, CC.CARD_NAME, CC.TITLE, CC.TEXT, CC.SCORE, CC.ADD_DATE
+		FROM(SELECT C.REVIEW_NO, C.MEMBER_NO, C.NICKNAME, C.CARD_NO, C.CARD_NAME, C.TITLE, C.TEXT, C.SCORE,
+				             C.ADD_DATE, ROW_NUMBER() OVER(ORDER BY C.REVIEW_NO DESC) AS RNK
+		     FROM(SELECT DISTINCT HCR.REVIEW_NO, HCR.MEMBER_NO, MI.NICKNAME, HCR.CARD_NO, C.CARD_NAME, HCR.TITLE, HCR.TEXT, HCR.SCORE,
+				                 TO_CHAR(HCR.ADD_DATE, 'YYYY-MM-DD') AS ADD_DATE
+		          FROM HAVECARDREVIEWS HCR INNER JOIN HAVECARDS HC
+		                                           ON HCR.CARD_NO = HC.CARD_NO
+		                                   INNER JOIN CARDS C
+		                                           ON HC.CARD_NO = C.CARD_NO
+		                                   INNER JOIN MEMBER_INFO MI
+		                                           ON HCR.MEMBER_NO = MI.MEMBER_NO
+		         WHERE HCR.CARD_NO = 1005
+		         AND HCR.DEL_CHECK = 1) C) CC
+		WHERE CC.RNK BETWEEN 1 AND 5
 	</select>
-	
+	<select id="getReGood" parameterType="hashmap" resultType="Integer">
+		SELECT LIKE_CNT
+		FROM REVIEWGOOD
+		WHERE REVIEW_NO = 8
+	</select>
 	<!-- 리뷰 작성  -->
-	<insert id="addReview">
+	<insert id="addReview" parameterType="hashmap">
 		INSERT INTO HAVECARDREVIEWS(REVIEW_NO, MEMBER_NO, CARD_NO, SCORE, TITLE, TEXT )
 		VALUES(HAVECARDREVIEWS_SEQ.NEXTVAL, '72', '1005', '5','이 카드는 꿀', '혜택을 사용할수 있는 매장들이 너무 많다')
 	</insert>
