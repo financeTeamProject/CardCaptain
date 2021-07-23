@@ -382,8 +382,10 @@ $(document).ready(function(){
 		if(cardNo.length > 2) {
 			alert("비교함이 가득 찼습니다.");
 		} else {
-			cardNo.push($(this).prop('id'));
-			console.log(cardNo);
+			var a = $(this).prop('id').split("_");
+			/* alert(a); */
+			cardNo.push(a[1]);
+			/* console.log(cardNo); */
 			$("#bi2").val(cardNo.length);
 		for(var i=0; i<cardNo.length; i++){
 			for(var j=0; j<i; j++){
@@ -397,7 +399,15 @@ $(document).ready(function(){
 			}
 		}
 	});
-   
+   	
+    $("#bi1").on("click",function(){
+    	
+    	$("#compared1").val(cardNo[0]);
+    	$("#compared2").val(cardNo[1]);
+    	$("#compared3").val(cardNo[2]);
+    	
+    	$("#compared").attr("action","compareSearch");
+    });
 });
 
 /* 비교함 팝업 */	
@@ -420,7 +430,7 @@ function makePopup(){
 		$("body").prepend(html);
 		$(".Popup").hide().fadeIn();
 		$("#p1").on("click",function(){
-			location.href = "http://localhost:8090/cdcp/compareSearch";
+			$("#compared").submit();
 		});
 	$("#p2").off("click");
 	$("#p2").on("click",function(){
@@ -488,6 +498,14 @@ $(document).ready(function() {
 	</div>
 </div>
 <!-- End Header by KJ -->
+
+<form action = "#" id = "compared" method = "post">
+	<input id = "compared1" type = "text" name = "comparedd1">
+	<input id = "compared2" type = "text" name = "comparedd2">
+	<input id = "compared3" type = "text" name = "comparedd3">
+</form>
+
+
 <!-- 내용 영역 -->
 <form action="cardview" id="gogoForm" method="post">
 	<input type="hidden" id="cardNo" name="cardNo" value="">
@@ -514,7 +532,7 @@ $(document).ready(function() {
 			</c:forEach>
 			</ul>
 		</div>
- 		<%-- <div id="keyword" class="keyword">
+ 		<<div id="keyword" class="keyword">
  			<ul>
  				<c:forEach var="data" items="${options}">
 					<li>${data}</li>
@@ -524,7 +542,7 @@ $(document).ready(function() {
 						<input type = "button" value = "비교함 확인" id = "bi1"/>
 						<input type = "button" value = "1" id= "bi2"/>
 			</div>	
- 		</div> --%>
+ 		</div>
 <c:set var="size" value="${fn:length(pagingDistinct)}" />
 <c:choose>
 <c:when test="${size > 0}">
