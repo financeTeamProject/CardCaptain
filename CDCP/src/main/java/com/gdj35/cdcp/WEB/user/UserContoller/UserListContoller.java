@@ -41,7 +41,7 @@ public class UserListContoller {
 		
 		return mav;
 	}
-	
+	// 카드리스트
 	@RequestMapping(value="/joincards",
 			method = RequestMethod.POST,
 			produces = "text/json;charset=UTF-8")
@@ -63,11 +63,27 @@ public class UserListContoller {
 		
 		// 리스트
 		List<HashMap<String, String>> list = useriListService.getList(params);
-		List<HashMap<String, String>> addlist = useriListService.getAddList(params);
 		
 		modelMap.put("list", list);
-		modelMap.put("addlist", addlist);
 		modelMap.put("pb", pb);
+		
+		return mapper.writeValueAsString(modelMap);
+	}
+	
+	//보유카드리스트
+	@RequestMapping(value="/addLists",
+			method = RequestMethod.POST,
+			produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String addLists(
+			@RequestParam HashMap<String, String> params) throws Throwable{
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		// 리스트
+		List<HashMap<String, String>> addlist = useriListService.getAddList(params);
+		
+		modelMap.put("addlist", addlist);
 		
 		return mapper.writeValueAsString(modelMap);
 	}

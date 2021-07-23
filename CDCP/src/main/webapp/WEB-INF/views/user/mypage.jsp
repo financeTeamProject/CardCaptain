@@ -444,12 +444,17 @@ body{
 	cursor: pointer;
 	width: 50px;
 	text-align: center;
-	font-size: 10px;
+	font-size: 12px;
+	height: 20px;
+	line-height: 20px;
 }
 .addbtn {
 	width: 45px;
 	height: 25px;
 	float: right;
+}
+#paging_wrap {
+	text-align: center;
 }
 </style>
 <script type="text/javascript" src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
@@ -570,12 +575,6 @@ $(document).ready(function() {
 		
 		reloadList();
 	});
-	// 검색
-	$("#searchBtn").on("click", function () {
-		$("#page").val(1);
-		
-		reloadList();
-	});
 	
 	// 페이징
 	$("#paging_wrap").on("click", "span", function () {
@@ -585,12 +584,10 @@ $(document).ready(function() {
 	});
 	
 	
-	//
-	
 	function addcard() {
 		var lists = "";
 		
-		$("#cardlists tbody tr").each(function() {
+		$(".list_wrap tr td button").each(function() {
 			lists += "," + $(this).attr("cno");
 		});
 		
@@ -620,7 +617,7 @@ $(document).ready(function() {
 		});
 	}
 	
-	// 리스트불러오기
+	// 카드리스트
 	function reloadList() {
 		var params = $("#joinCard").serialize();
 		
@@ -630,16 +627,15 @@ $(document).ready(function() {
 			dataType: "json",
 			data: params,
 			success: function (res) {
-					drawList(res.list);
-					drawPaging(res.pb);
-					drawAddList(res.addlist);
-								
+				drawList(res.list);
+				drawPaging(res.pb);
 			},
 			error: function (request, status, error) {
 				console.log(error);
 			}
 		});
 	}
+	
 	// 목록 그리기
 	function drawList(list) {
 		var html = "";
@@ -656,17 +652,42 @@ $(document).ready(function() {
 		$(".list_wrap tbody").html(html);
 	}
 	
+	// 보유카드리스트
+	function addLists() {
+		var params = $("#joinCard").serialize();
+		
+		$.ajax({
+			url: "addLists",
+			type: "post",
+			dataType: "json",
+			data: params,
+			success: function (res) {
+				drawAddList(res.addlist);
+				alert("addlist");
+			},
+			error: function (request, status, error) {
+				console.log(error);
+			}
+		});
+	}
+	
+	addLists();
+	
+	
 	function drawAddList(addlist) {
 		var add = "";
-		for(var i=0; i<addlist.length; i++){
+		console.log(addlist);
+		alert(addlist);
+		for(var i = 0; i < addlist.length; i++){
 			add += "<tr cNo=\"" + addlist[i].CARD_NO + "\">";
 			add += "<td>" + "" + "</td>";
 			add += "<td class=\"a\">" + addlist[i].CARD_TYPE + "</td>";
 			add += "<td class=\"b\">" + addlist[i].CARD_NAME + "</td>";
 			add += "<td>" + "<button value=\"추가\" class=\"addbtn\" id=addbtn>삭제</button>" + "</td>";
 			add += "</tr>";
+			
 		}
-		$(".add_wrap tbody").append(add); // 뒤로 이어 붙어줌..
+			$(".add_wrap tbody").append(add); // 뒤로 이어 붙어줌 
 	}
 	
 		/* $(".list_wrap tr td button").on("click",function () {
@@ -711,12 +732,12 @@ $(document).ready(function() {
 	function drawPaging(pb) {
 		var html = "";
 		
-		html += "<span page=\"1\">처음</span>";
+		html += "<span page=\"1\">|&lt;</span>";
 		
 		if($("#page").val() == "1") {
-			html += "<span page=\"1\">이전</span>";
+			html += "<span page=\"1\">&lt;</span>";
 		} else {
-			html += "<span page=\"" + ($("#page").val() - 1) + "\">이전</span>";
+			html += "<span page=\"" + ($("#page").val() - 1) + "\">&lt;</span>";
 		}
 		
 		for(var i = pb.startPcount ; i <= pb.endPcount ; i++) {
@@ -728,14 +749,14 @@ $(document).ready(function() {
 		}
 		
 		if($("#page").val() == pb.maxPcount) {
-			html += "<span page=\"" + pb.maxPcount + "\">다음</span>";
+			html += "<span page=\"" + pb.maxPcount + "\">&gt;</span>";
 		} else {
-			html += "<span page=\"" + ($("#page").val() * 1 + 1) + "\">다음</span>";
+			html += "<span page=\"" + ($("#page").val() * 1 + 1) + "\">&gt;</span>";
 		}
-			html += "<span page=\"" + pb.maxPcount + "\">마지막</span>";
+			html += "<span page=\"" + pb.maxPcount + "\">&gt;|</span>";
 		
 		$("#paging_wrap").html(html);
-	}	
+	}
 });
 </script>
 </head>
@@ -890,8 +911,8 @@ $(document).ready(function() {
 							<colgroup width="3000px">
 								<col width="5%" />
 								<col width="15%" />
-								<col width="65%" />
-								<col width="15%" />
+								<col width="70%" />
+								<col width="10%" />
 							</colgroup>
 							<thead>
 								<tr>
@@ -918,8 +939,8 @@ $(document).ready(function() {
 							<colgroup width="3000px">
 								<col width="5%" />
 								<col width="15%" />
-								<col width="65%" />
-								<col width="15%" />
+								<col width="70%" />
+								<col width="10%" />
 							</colgroup>
 							<thead>
 								<tr>
