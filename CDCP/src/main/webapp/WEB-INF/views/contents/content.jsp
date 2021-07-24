@@ -494,7 +494,6 @@ h1 {
 			}
 			$(".list_wrap").html(html);
 		}
-		
 		// 페이징 그리기
 		function drawPaging(pb) {
 			var html = "";

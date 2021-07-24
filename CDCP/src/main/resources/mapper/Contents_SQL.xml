@@ -39,5 +39,4 @@
 		</choose>
 		</if>
 	</select>
-	
 </mapper>
