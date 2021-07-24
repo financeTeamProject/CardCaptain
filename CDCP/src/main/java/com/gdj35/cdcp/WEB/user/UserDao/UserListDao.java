@@ -28,4 +28,8 @@ public class UserListDao implements UserIListDao {
 	public List<HashMap<String, String>> getAddList(HashMap<String, String> params) throws Throwable {
 		return sqlSession.selectList("user.getAddList", params);
 	}
+	@Override
+	public int deleteList(HashMap<String, String> params) throws Throwable {
+		return sqlSession.update("user.deleteList", params);
+	}
 }

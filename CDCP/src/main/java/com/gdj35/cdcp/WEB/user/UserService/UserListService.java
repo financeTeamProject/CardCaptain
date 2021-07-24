@@ -32,4 +32,8 @@ public class UserListService implements UserIListService {
 		return useriListdao.getAddList(params);
 	}
 
+	@Override
+	public int deleteList(HashMap<String, String> params) throws Throwable {
+		return useriListdao.deleteList(params);
+	}
 }

@@ -56,7 +56,7 @@ public class UserListContoller {
 		// 페이징
 		int cnt = useriListService.getCnt(params);
 		
-		PagingBean pb = iPagingService.getPagingBean(page, cnt, 7 , 3);
+		PagingBean pb = iPagingService.getPagingBean(page, cnt, 6 , 3);
 		
 		params.put("startCnt", Integer.toString(pb.getStartCount()));
 		params.put("endCnt", Integer.toString(pb.getEndCount()));
@@ -116,6 +116,33 @@ public class UserListContoller {
 		} catch (Throwable e){
 			e.printStackTrace();
 			modelMap.put("msg", "error");
+		}
+		
+		return mapper.writeValueAsString(modelMap);
+	}
+	
+	@RequestMapping(value="/CardDeletes",
+			method = RequestMethod.POST,
+			produces = "text/json;charsetUTF-8")
+	
+	@ResponseBody
+	public String CardDeletes(
+			@RequestParam HashMap<String, String> params) throws Throwable {
+		System.out.println(params);
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		try {
+		int cnt = useriListService.deleteList(params);
+			if(cnt > 0) {
+				modelMap.put("msg","success");
+			} else {
+				modelMap.put("msg","failed");
+			}
+			
+		} catch (Throwable e){
+			e.printStackTrace();
+			modelMap.put("msg","error");
 		}
 		
 		return mapper.writeValueAsString(modelMap);

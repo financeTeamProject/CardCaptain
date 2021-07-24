@@ -40,4 +40,12 @@
 		                         ON H.CARD_NO = C.CARD_NO
 		WHERE H.MEMBER_NO = #{memNo}
 	</select>
+	
+	<delete id="deleteList" parameterType="hashmap">
+		DELETE
+		FROM HAVECARDS
+		WHERE CARD_NO = #{sNo}
+		AND MEMBER = #{}
+	</delete>
+	
 </mapper>

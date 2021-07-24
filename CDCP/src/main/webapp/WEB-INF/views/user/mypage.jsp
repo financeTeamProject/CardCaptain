@@ -332,15 +332,16 @@ body{
 	background-color: #F5F6F7;
 	padding: 10px 10px;
 	cursor: pointer;
+	text-align: center;
 }
-/* .card_logo {
-	width: 30%;
-	height: 20%;
-} */
+img  {
+	margin-top: 15px;
+}
 .card_name {
 	width: 50%;
     height: 20%;
-    font-size: 18px;
+    font-size: 12px;
+    margin: 0 auto;
 }
 .title {
 	width: 100%;
@@ -476,10 +477,12 @@ $(document).ready(function() {
 	$("#ranking").on("click", function(){
 		location.href = "card_rank";
 	});
+   
 	/* 카드검색/비교 페이지 이동 */
 	 $("#search").on("click", function(){
 		location.href = "search";
 	});
+	
 	/* 컨텐츠 페이지 이동 */
 	$("#contents").on("click", function(){
 		location.href = "content";
@@ -490,6 +493,7 @@ $(document).ready(function() {
 		$("#popup").css("display","block");
 		$(".body").css("display","none");
 	});
+	
 	/* 로그인팝업 실행 */
 	$("#imgSearch").on("click", function(){
 		$("#searchTxt").css("display","inline");
@@ -539,12 +543,12 @@ $(document).ready(function() {
 		}
 	}); //로그인 end
 	
-	/* 로그아웃  */
+	// 로그아웃
 	$("#logoutBtn").on("click", function () {
 		location.href = "testALogout";
 	}); //로그아웃 end
 	
-	/* 마이페이지이동 */
+	// 마이페이지이동
 	$("#logNick").on("click", function(){
 		location.href = "/mypage";
 	});
@@ -555,7 +559,7 @@ $(document).ready(function() {
 		$("#memNo").submit();
 	});
 
-// 보유카드추가
+	// 보유카드추가
 	if("${param.searchGbn}" != "") {
 		$("${searchGbn}").val("${param.searchGbn}")
 	}
@@ -840,19 +844,19 @@ $(document).ready(function() {
 					<div class="line">
 						<div class="card_blank">
 							<div class="blank" id="1">
-								<div class="card_logo"><img src="resources/images/user/cardLogo/kb_logo.png" height=35px></div>
+								<div class="card_logo"><img src="resources/images/user/cardLogo/kb_logo.png" height=65px></div>
 								<div class="card_name">국민카드</div>
 							</div>
 						</div>
 						<div class="card_blank">
 							<div class="blank" id="2">
-								<div class="card_logo"><img src="resources/images/user/cardLogo/samsung_logo.png" height=35px></div>
+								<div class="card_logo"><img src="resources/images/user/cardLogo/samsung_logo.png" height=65px></div>
 								<div class="card_name">삼성카드</div>
 							</div>
 						</div>
 						<div class="card_blank">
 							<div class="blank" id="3">
-								<div class="card_logo"><img src="resources/images/user/cardLogo/loca_logo.png" height=35px></div>
+								<div class="card_logo"><img src="resources/images/user/cardLogo/loca_logo.png" height=65px></div>
 								<div class="card_name">롯데카드</div>
 							</div>
 						</div>
@@ -860,19 +864,19 @@ $(document).ready(function() {
 					<div class="line">
 						<div class="card_blank">
 							<div class="blank" id="4">
-								<div class="card_logo"><img src="resources/images/user/cardLogo/shinhan_logo.png" height=35px></div>
+								<div class="card_logo"><img src="resources/images/user/cardLogo/shinhan_logo.png" height=65px></div>
 								<div class="card_name">신한카드</div>
 							</div>
 						</div>
 						<div class="card_blank">
 							<div class="blank" id="5">
-								<div class="card_logo"><img src="resources/images/user/cardLogo/wr_logo.png" height=35px></div>
+								<div class="card_logo"><img src="resources/images/user/cardLogo/wr_logo.png" height=65px></div>
 								<div class="card_name">우리카드</div>
 							</div>
 						</div>
 						<div class="card_blank">
 							<div class="blank" id="6">
-								<div class="card_logo"><img src="resources/images/user/cardLogo/hyundai_logo.png" height=35px></div>
+								<div class="card_logo"><img src="resources/images/user/cardLogo/hyundai_logo.png" height=65px></div>
 								<div class="card_name">현대카드</div>
 							</div>
 						</div>
@@ -880,19 +884,19 @@ $(document).ready(function() {
 					<div class="line">
 						<div class="card_blank">
 							<div class="blank" id="7">
-								<div class="card_logo"><img src="resources/images/user/cardLogo/nh_logo.png" height=35px></div>
+								<div class="card_logo"><img src="resources/images/user/cardLogo/nh_logo.png" height=65px></div>
 								<div class="card_name">농협카드</div>
 							</div>
 						</div>
 						<div class="card_blank">
 							<div class="blank" id="8">
-								<div class="card_logo"><img src="resources/images/user/cardLogo/hn_logo.png" height=35px></div>
+								<div class="card_logo"><img src="resources/images/user/cardLogo/hn_logo.png" height=65px></div>
 								<div class="card_name">하나카드</div>
 							</div>
 						</div>
 						<div class="card_blank">
 							<div class="blank" id="9">
-								<div class="card_logo"><img src="resources/images/user/cardLogo/ibk_logo.png" height=35px></div>
+								<div class="card_logo"><img src="resources/images/user/cardLogo/ibk_logo.png" height=65px></div>
 								<div class="card_name">기업카드</div>
 							</div>
 						</div>
