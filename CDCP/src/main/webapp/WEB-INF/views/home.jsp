@@ -210,12 +210,39 @@ ul,li{
 }
 .slide li {
 	width:calc(100% / 4);
-	height:1000px;
+	height:700px;
 }
-.slide li:nth-child(1){background:#F4F5F6;}
-.slide li:nth-child(2){background:#9565ab3b;}
-.slide li:nth-child(3){background:#81ab653b;}
-.slide li:nth-child(4){background:#6589ab3b;}
+.slide li:nth-child(1){	
+	background-image: url("resources/images/detail/Main19.jpg");
+	background-position: center;
+	background-repeat:no-repeat;
+	background-size:100%;
+	/* background-attachment: fixed; */
+ 
+}
+.slide li:nth-child(2){
+	background-image: url("resources/images/detail/Main8.jpg");
+	background-position: center;
+	background-repeat:no-repeat;
+	background-size:100%;
+	/* background-attachment: fixed; */
+
+}
+.slide li:nth-child(3){
+	background-image: url("resources/images/detail/Main10.jpg");
+	background-position: center;
+	background-repeat:no-repeat;
+	background-size:100%;
+	/* background-attachment: fixed; */
+
+}
+.slide li:nth-child(4){
+	background-image: url("resources/images/detail/Main23.jpg");
+	background-position: center;
+	background-repeat:no-repeat;
+	background-size:100%;
+	/* background-attachment: fixed; */
+}
 input#pos1,#pos2,#pos3,#pos4 {
 	display: none;
 }
@@ -239,15 +266,120 @@ input#pos1,#pos2,#pos3,#pos4 {
 	transition:0.5s;
 	cursor:pointer;
 }
+
+/* 슬라이드 글씨 CSS */
+
+#li1{
+
+	font-size: 40px;
+	font-family: 'GmarketSansMedium';
+	font-weight: bold;
+	color : white;
+	position: relative;
+    left: 40%;
+    top: 30%;
+    line-height: 2;
+    margin:0 auto;
+    
+}
+
+#li1-1,#li1-2,#li1-3{
+	
+	display:none;
+	
+}
+
+#li1-4{
+	
+	display:none;
+	width: 180px;
+    height: 180px;
+    position: relative;
+    left: 6%;
+    margin:0 auto;
+}
+
+#scroll1{
+	
+	display: none;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    position: relative;
+    left: 43%;
+}
+
+
+
+#li2{
+
+	font-size: 40px;
+    font-family: 'GmarketSansMedium';
+    font-weight: bold;
+    color: white;
+    position: relative;
+    left: 70%;
+    top: 35%;
+    line-height: 2;
+    margin:0 auto;
+    
+}
+
+#li2-1,#li2-2,#li2-3{
+	display:none;
+}
+
+#li3{
+
+	font-size: 40px;
+	font-family: 'GmarketSansMedium';
+	font-weight: bold;
+	color:white;
+    position: relative;
+    left: 40%;
+    top: 40%;
+    line-height: 2;
+    margin:0 auto;
+	
+}
+
+#li3-1,#li3-2{
+
+	display:none;
+}
+
+#li4{
+	
+	font-size: 40px;
+    font-family: 'GmarketSansMedium';
+    font-weight: bold;
+    color: white;
+    /* color: white; */
+    /* height: 180px; */
+    position: relative;
+    left: 10%;
+    top: 60%;
+    margin: 0 auto;
+	
+}
+
+
+#li4-1 , #li4-2{
+
+	display:none;
+
+}
+
+
 /* 메인 1페이지 부분 */
-.top {
+/* .top {
 	height:5%;width: 100%;
 	
 }
 .bottom {
-	height: 60%;
+	height: 750px;
 	width: 1600px;
-	background-color: #0047ab;
+	background-color: none;
 	margin: 0 auto;
 	display: flex;
 }
@@ -263,7 +395,7 @@ input#pos1,#pos2,#pos3,#pos4 {
 	height: 100%;
 	width: 50%
 }
-
+ */
 /* 슬라이드 조작 */
 #pos1:checked ~ ul{margin-left:0;}
 #pos2:checked ~ ul{margin-left:-100%;}
@@ -395,6 +527,54 @@ input#pos1,#pos2,#pos3,#pos4 {
 </style>
 <script type="text/javascript" src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
+
+/* 메인 효과 */
+ 
+ $(document).ready(function(){
+	 	 			 	
+		$("#li1-1").fadeIn(2000 , function(){
+				
+			$("#li1-2").fadeIn(2000,function(){
+				
+				$("#li1-3").fadeIn(2000,function(){
+					
+					$("#li1-4").fadeIn(3000,function(){
+						$("#scroll1").fadeIn(1000);
+					});
+					
+				});
+			});
+		});	 	
+	
+		$("#pos2").on("click",function(){
+			$("#li2-1").fadeIn(1000,function(){
+				$("#li2-2").fadeIn(1000,function(){
+					$("#li2-3").fadeIn(1000)
+				});
+			});
+		});
+		
+		$("#pos3").on("click",function(){
+			$("#li3-1").fadeIn(1000,function(){
+				$("#li3-2").fadeIn(1000,function(){
+			});
+		  });
+		});
+			
+		$("#pos4").on("click",function(){
+			$("#li4-1").fadeIn(1000,function(){
+				$("#li4-2").fadeIn(1000);
+				});
+		     });    
+		
+		$("#scroll1").on("click",function(){
+					
+				location.href
+			
+			});
+			
+		});	/* 메인 효과end  */
+ 
 $(document).ready(function(){
 	/* 카드순위 페이지 이동 */
 	$("#ranking").on("click", function(){
@@ -568,28 +748,53 @@ $(document).ready(function(){
 	</div>
 	<div id="content">
 		<div class="slide">
-		<input type="radio" name="pos" id="pos1" checked>
+		<input type="radio" name="pos" id="pos1"  checked>
 		<input type="radio" name="pos" id="pos2">
 		<input type="radio" name="pos" id="pos3">
 		<input type="radio" name="pos" id="pos4">
-		<ul>
+				
+		<ul>	
 			<li>
-				<div class="top"></div>
-				<div class="bottom">
-			 		<div class="bottom_Left"></div>
-			 		<div class="bottom_right"></div>
-				</div>
+			<div id = "li1">
+			<div id = "li1-1">&nbsp;모든 카드를 구원해줄 <br/></div>
+			<div id = "li1-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp문이 열립니다.<br/></div>
+		    <div id = "li1-3">&nbsp;우리가 바로 카드캡틴</div>
+		    <img id = "li1-4" src=  "resources/images/detail/Main_logo.png" >
+		    <a href = "#li2"><img id = "scroll1" src=  "resources/images/detail/scroll2.png" ></a>
+			</div>			     
 			</li>
-			<li></li>
-			<li></li>
-			<li></li>
+		
+			<li>
+			<div id = "li2">
+			<div id = "li2-1">한눈에 쉽고 빠르게 <br/></div>
+			<div id = "li2-2">카드 순위를 <br/></div>
+			<div id = "li2-3">확인해 볼까요?</div>
+			</div>
+		    </li>
+		    
+			<li>
+			<div id = "li3">
+			<div id = "li3-1">&nbsp;&nbsp;&nbsp;&nbsp;스마트한 <br/></div>
+			<div id = "li3-2">카드 검색 비교!</div>
+			</div>
+			</li>
+			
+			<li>
+			<div id = "li4">
+			<div id = "li4-1">재밌는 컨텐츠의 <br/></div>
+			<div id = "li4-2">여행을 즐겨보아요!</div>
+			</div>
+			</li>
 	    </ul>
-	    <p class="bullet">
-	      <label for="pos1">1</label>
-	      <label for="pos2">2</label>
-	      <label for="pos3">3</label>
-	      <label for="pos4">4</label>
-	    </p>
+	    
+	    <p1 class="bullet">
+	     	     
+	   	  <label for="pos1" id = "m1">1</label>
+	      <label for="pos2" id = "m2">2</label>
+	      <label for="pos3" id = "m3">3</label>
+	      <label for="pos4" id = "m4">4</label>
+	    
+	    </p1>
 	  </div><br/>
 	<!-- Map html Start -->
 	<div class="slide1">
