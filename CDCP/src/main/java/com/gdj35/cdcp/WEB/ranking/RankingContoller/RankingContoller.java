@@ -218,5 +218,23 @@ public class RankingContoller {
 		
 			return mapper.writeValueAsString(modelMap);
 	  }
+	  // 리뷰작성 팝업
+	  @RequestMapping(value = "/reviewWrite", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+		@ResponseBody
+		public String reviewWrite(
+				@RequestParam HashMap<String, String> params) throws Throwable { 
+			ObjectMapper mapper = new ObjectMapper();
+			Map<String, Object> modelMap = new HashMap<String, Object>();
+
+			List<HashMap<String, String>> review 
+		 	= RankingiService.reviewList(params);
+			
+			List<HashMap<String, String>>
+			  data = RankingiService.getCView(params);
+			 
+			modelMap.put("data", data);
+			modelMap.put("review", review);
+			return mapper.writeValueAsString(modelMap);
+		}
 }
 
