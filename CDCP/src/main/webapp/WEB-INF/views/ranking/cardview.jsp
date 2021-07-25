@@ -957,7 +957,7 @@ $(document).ready(function(){
 });	// document ready end	
 		/* 리뷰 목록  */
 		function reloadList(){
-			var params = $("#goCardNo").serialize();
+			var params = $("#actionForm").serialize();
 			
 			$.ajax({
 				url: "cardviews", // 접속주소 (현재 저상태는 상대 경로이다)
@@ -1028,7 +1028,8 @@ $(document).ready(function(){
 		
 		for(var i = pb.startPcount ; i <= pb.endPcount ; i++) {
 			if($("#page").val() == i) {
-				html += "<span id=\"on\" page=\"" + i + "\">" + i + "</span>";
+				alert(i);
+				html += "<span id=\"on\" page=\"" + i + "\"><b>" + i + "</b></span>";
 			} else {
 				html += "<span page=\"" + i + "\">" + i + "</span>";
 			}
@@ -1200,6 +1201,7 @@ $(document).ready(function(){
 					<form action="#" id="actionForm" method="post">
 						<!-- 기본값들이 들어오게될거다 : hidden -->
 						<input type="hidden" id="page" name="page" value="${page}" ><!-- 검색시 반드시 필요 -->
+						<input type="hidden" name="cardNo" value="${data[0].CARD_NO}"/>
 						<!-- 글작성, 편집영역 -->
 						<c:choose>
 							<c:when test="${empty sMNo}">
@@ -1215,8 +1217,6 @@ $(document).ready(function(){
 					</form>
 				</div>
 				<!-- 리뷰 목록 영역 -->
-				<%-- <c:set var="size" value="${fn:length(review)}" />
-				<c:forEach var = "r" begin="0" end="${size - 1}"> --%>
 				<div class="review_list_wrap"></div>
 				<!-- 페이지 영역 -->
 				<div class="paging_area"></div>											
