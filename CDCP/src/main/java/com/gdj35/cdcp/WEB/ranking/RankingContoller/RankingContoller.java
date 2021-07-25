@@ -225,15 +225,19 @@ public class RankingContoller {
 				@RequestParam HashMap<String, String> params) throws Throwable { 
 			ObjectMapper mapper = new ObjectMapper();
 			Map<String, Object> modelMap = new HashMap<String, Object>();
-
-			List<HashMap<String, String>> review 
-		 	= RankingiService.reviewList(params);
+			System.out.println(params);
+			
 			
 			List<HashMap<String, String>>
 			  data = RankingiService.getCView(params);
-			 
-			modelMap.put("data", data);
-			modelMap.put("review", review);
+			System.out.println(data);
+			if(data != null) {
+			
+				modelMap.put("msg", "success");
+				modelMap.put("data", data);
+			}else {
+				  modelMap.put("msg", "error");
+			  }
 			return mapper.writeValueAsString(modelMap);
 		}
 }

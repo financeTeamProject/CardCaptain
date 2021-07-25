@@ -778,7 +778,7 @@
 		.pop_bg{
 			display: inline-block;
 			width: 100%;
-			height: 100%;
+			height: 2400px;
 			position: absolute;
 			top: 0px;
 			left: 0px;
@@ -786,15 +786,15 @@
 			z-index: 200;
 			opacity: 0.6;
 		}
-		.popup{
+		.review_popup{
 			display: inline-block;
 			width: 900px;
 			height: 600px;
 			background-color: #ffffff;
 			box-shadow: 0px 0px 1px 1px #444444;
 			position: absolute;
-			top: calc(50% - 300px);
-			left: calc(50% - 350px);
+			top: calc(1600px - 300px);
+			left: calc(50% - 450px);
 			z-index: 300;
 			font-size: 16px;
 			border: 3px solid #0047AB;
@@ -1063,20 +1063,25 @@ $(document).ready(function(){
 		});
 
 		$("#reviewLoginBtn").on("click", function(){
-			var params = $("#actionForm").serialize();
+			
+			makeWritePopup();
+			/* var params = $("#actionForm").serialize();
+			alert(params);
 			
 			$.ajax({
 				url:"reviewWrite",
 				type:"post",
 				dataType :"json",
 				success : function (res) {
-					makeWritePopup(res.data, res.list);
+					makeWritePopup(res.data);
 				},
 				error: function (request, status, error) {
 					console.log(error);
 				}
-			})
+			}) */
 		});
+		// 리뷰 상세보기
+		
 });	// document ready end	
 		/* 리뷰 목록  */
 		function reloadList(){
@@ -1132,8 +1137,73 @@ $(document).ready(function(){
 			html += "<div id=\"likeCnt\">20</div>";
 			html += "</div>";
 			html += "</div>";
+			
 		}
 			$(".review_list_wrap").html(html);
+			
+			$(".review_content").on("click", function(){
+				makeDetailPopup();
+			});
+			
+			// 리뷰상세보기 팝업 그리기
+			function makeDetailPopup(){
+				var html = "";
+				
+				html += "<div class=\"pop_bg\"></div>";                                                                                                                
+				html += "<div class=\"review_popup\">";                                                                                                                 
+				html += "	<div class=\"pop_header\">카드리뷰</div>";                                                                                                  
+				html += "	<div class=\"pop_card\" id=\"popCardName\">[ 카드이름 ]</div>";                                                                         
+				html += "	<div class=\"block_form\">";                                                                                                               
+				html += "		<label class=\"info_rabel\">작성자(닉네임) :</label>";                                                                                  
+				html += "		<div class=\"write_div\"> 닉네임 </div>";                                                                                               
+				html += "	</div>";                                                                                                                                  
+				html += "	<div class=\"block_form\">";                                                                                                                
+				html += "		<label class=\"info_rabel\" id=\"infoTitle\">제목 :</label>";                                                                             
+				html += "		<div class=\"write_div\">";                                                                                                             
+				html += "			<input type=\"text\" class=\"title_text\" id=\"title_text\" size=\"53\" />";                                                              
+				html += "		</div>";                                                                                                                              
+				html += "	</div>";                                                                                                                                  
+				html += "	<div class=\"block_form\">";                                                                                                                
+				html += "		<label class=\"info_rabel\" id=\"infoContent\">내용 :</label>";                                                                           
+				html += "		<div class=\"write_div\">";                                                                                                             
+				html += "			<textarea rows=\"5\" cols=\"56\" class=\"title_text\" id=\"title_text\"></textarea>";                                                     
+				html += "		</div>";                                                                                                                              
+				html += "	</div>";                                                                                                                                  
+				html += "	<div class=\"block_form\">";                                                                                                                
+				html += "		<label class=\"info_rabel\">별점 주기</label>";                                                                                         
+				html += "		<div class=\"radio\">";                                                                                                                 
+				html += "			<label class=\"radio-inline\"> <input type=\"radio\" name=\"review_star\" id=\"review_star1\" value=\"1\" >★☆☆☆☆</label>";             
+				html += "			<label class=\"radio-inline\"> <input type=\"radio\" name=\"review_star\" id=\"review_star2\" value=\"2\">★★☆☆☆</label>";              
+				html += "			<label class=\"radio-inline\"> <input type=\"radio\" name=\"review_star\" id=\"review_star3\" value=\"3\">★★★☆☆</label>";              
+				html += "			<label class=\"radio-inline\"> <input type=\"radio\" name=\"review_star\" id=\"review_star4\" value=\"4\">★★★★☆</label>";              
+				html += "			<label class=\"radio-inline\"> <input type=\"radio\" name=\"review_star\" id=\"review_star5\" value=\"5\" checked=\"checked\">★★★★★</label>";    
+				html += "		</div>";                                                                                                                              
+				html += "	</div>";                                                                                                                                  
+				html += "	<div class=\"block_form\">";                                                                                                               
+				html += "		<div class=\"butten_area\">";                                                                                                           
+				html += "			<input type=\"button\" value=\"수정\" class=\"popAreaBtn\" id=\"reportBtn\">";                                                            
+				html += "			<input type=\"button\" value=\"닫기\" class=\"popAreaBtn\" id=\"closeBtn\">";                                                             
+				html += "		</div>";                                                                                                                              
+				html += "	</div>";                                                                                                                                  
+				html += "</div>";                                                                                                                                     
+				                                                                                                                                                    
+				$("body").prepend(html);
+				
+				$("#closeBtn").on("click", function(){                                                                                                              
+					closePopup();
+				});
+				
+				// 팝업창 닫기 함수
+				function closePopup() {
+					$(".pop_bg").fadeOut(function(){
+						$(".pop_bg").remove();
+					});
+					
+					$(".review_popup").fadeOut(function(){
+						$(".review_popup").remove();
+					});
+				}
+			}
 		}
 		
 		// 페이징 그리기
@@ -1166,15 +1236,16 @@ $(document).ready(function(){
 		$(".paging_area").html(html);
 	}
 		// 리뷰작성 팝업 그리기
-		function makeWritePopup(data, list){
+		function makeWritePopup(){
 			var html = "";
+			
 			html += "<div class=\"pop_bg\"></div>";                                                                                                                
 			html += "<div class=\"review_popup\">";                                                                                                                 
 			html += "	<div class=\"pop_header\">카드리뷰</div>";                                                                                                  
-			html += "	<div class=\"pop_card\" id=\"popCardName\">" +[ data[0].CARD_NAME ] + "</div>";                                                                         
+			html += "	<div class=\"pop_card\" id=\"popCardName\">[ 카드이름 ]</div>";                                                                         
 			html += "	<div class=\"block_form\">";                                                                                                               
 			html += "		<label class=\"info_rabel\">작성자(닉네임) :</label>";                                                                                  
-			html += "		<div class=\"write_div\">" + ${sMNm} + "</div>";                                                                                               
+			html += "		<div class=\"write_div\"> 닉네임 </div>";                                                                                               
 			html += "	</div>";                                                                                                                                  
 			html += "	<div class=\"block_form\">";                                                                                                                
 			html += "		<label class=\"info_rabel\" id=\"infoTitle\">제목 :</label>";                                                                             
@@ -1195,7 +1266,7 @@ $(document).ready(function(){
 			html += "			<label class=\"radio-inline\"> <input type=\"radio\" name=\"review_star\" id=\"review_star2\" value=\"2\">★★☆☆☆</label>";              
 			html += "			<label class=\"radio-inline\"> <input type=\"radio\" name=\"review_star\" id=\"review_star3\" value=\"3\">★★★☆☆</label>";              
 			html += "			<label class=\"radio-inline\"> <input type=\"radio\" name=\"review_star\" id=\"review_star4\" value=\"4\">★★★★☆</label>";              
-			html += "			<label class=\"radio-inline\"> <input type=\"radio\" name=\"review_star\" id=\"review_star5\" value=\"5\" checked="checked">★★★★★</label>";    
+			html += "			<label class=\"radio-inline\"> <input type=\"radio\" name=\"review_star\" id=\"review_star5\" value=\"5\" checked=\"checked\">★★★★★</label>";    
 			html += "		</div>";                                                                                                                              
 			html += "	</div>";                                                                                                                                  
 			html += "	<div class=\"block_form\">";                                                                                                               
@@ -1206,10 +1277,12 @@ $(document).ready(function(){
 			html += "	</div>";                                                                                                                                  
 			html += "</div>";                                                                                                                                     
 			                                                                                                                                                    
-			                                                                                                                                                    
-			$(".closeBtn").on("click", function(){                                                                                                              
+			$("body").prepend(html);
+			
+			$("#closeBtn").on("click", function(){                                                                                                              
 				closePopup();
 			});
+			
 			
 			// 팝업창 닫기 함수
 			function closePopup() {
