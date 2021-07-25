@@ -284,32 +284,54 @@ input#pos1,#pos2,#pos3,#pos4 {
 }
 
 #li1-1,#li1-2,#li1-3{
-	
 	display:none;
-	
 }
 
 #li1-4{
-	
 	display:none;
 	width: 180px;
-    height: 180px;
+    height: 190px;
     position: relative;
     left: 6%;
     margin:0 auto;
 }
 
 #scroll1{
-	
 	display: none;
     width: 80px;
     height: 80px;
     cursor: pointer;
-    position: relative;
-    left: 43%;
+    position: absolute;
+    left: 54%;
+    top: 78%;
 }
-
-
+#scroll2{
+	display: none;
+	width: 80px;
+    height: 80px;
+    cursor: pointer;
+    position: absolute;
+    left: 24%;
+    top: 136%;
+}
+#scroll3{
+	display: none;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    position: absolute;
+    left: 58%;
+    top: 160%;
+}
+#scroll4{
+	display: none;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    position: absolute;
+    left: 84%;
+    top: 130%;
+}
 
 #li2{
 
@@ -319,28 +341,49 @@ input#pos1,#pos2,#pos3,#pos4 {
     color: white;
     position: relative;
     left: 70%;
-    top: 35%;
+    top: 20%;
     line-height: 2;
-    margin:0 auto;
-    
+    margin: 0 auto;
+
 }
 
 #li2-1,#li2-2,#li2-3{
 	display:none;
 }
 
-#li3{
-
-	font-size: 40px;
-	font-family: 'GmarketSansMedium';
-	font-weight: bold;
-	color:white;
-    position: relative;
-    left: 40%;
-    top: 40%;
-    line-height: 2;
-    margin:0 auto;
+#li2-4{
 	
+	display:none;	
+	border: 1px solid #fff;
+    border-radius: 5rem;
+    color: #ffffff;
+    font-size: 30px;
+    font-family: 'Cafe24Ohsquare';
+    width: 180px;
+    height: 80px;
+    text-align: center;
+    line-height: 3;
+    cursor:pointer;
+}
+
+#li2-4:hover{
+	
+	color:black;
+	background-color: white;
+	
+}
+
+#li3{
+	
+	font-size: 40px;
+    font-family: 'GmarketSansMedium';
+    font-weight: bold;
+    color: white;
+    position: relative;
+    left: 36%;
+    top: 45%;
+    line-height: 2;
+    margin: 0 auto;
 }
 
 #li3-1,#li3-2{
@@ -348,14 +391,37 @@ input#pos1,#pos2,#pos3,#pos4 {
 	display:none;
 }
 
+#li3-3{
+	
+	display: none;
+    border: 1px solid #fff;
+    border-radius: 5rem;
+    color: #ffffff;
+    font-size: 30px;
+    font-family: 'Cafe24Ohsquare';
+    width: 180px;
+    height: 80px;
+    text-align: center;
+    line-height: 3;
+    cursor: pointer;
+    position: absolute;
+    left: 2%;
+}
+
+#li3-3:hover{
+	
+	color:black;
+	background-color: white;
+	
+}
+
+
 #li4{
 	
 	font-size: 40px;
     font-family: 'GmarketSansMedium';
     font-weight: bold;
     color: white;
-    /* color: white; */
-    /* height: 180px; */
     position: relative;
     left: 10%;
     top: 60%;
@@ -370,6 +436,29 @@ input#pos1,#pos2,#pos3,#pos4 {
 
 }
 
+#li4-3{
+	
+	display: none;
+    border: 1px solid #fff;
+    border-radius: 5rem;
+    color: #ffffff;
+    font-size: 30px;
+    font-family: 'Cafe24Ohsquare';
+    width: 180px;
+    height: 80px;
+    text-align: center;
+    line-height: 3;
+    cursor: pointer;
+    position: absolute;
+    left: 3%;
+}
+
+#li4-3:hover{
+	
+	color:black;
+	background-color: white;
+	
+}
 
 /* 메인 1페이지 부분 */
 /* .top {
@@ -549,7 +638,10 @@ input#pos1,#pos2,#pos3,#pos4 {
 		$("#pos2").on("click",function(){
 			$("#li2-1").fadeIn(1000,function(){
 				$("#li2-2").fadeIn(1000,function(){
-					$("#li2-3").fadeIn(1000)
+					$("#li2-3").fadeIn(1000,function(){
+						$("#li2-4").fadeIn(1000);
+						$("#scroll2").fadeIn(1000);
+					})
 				});
 			});
 		});
@@ -557,25 +649,41 @@ input#pos1,#pos2,#pos3,#pos4 {
 		$("#pos3").on("click",function(){
 			$("#li3-1").fadeIn(1000,function(){
 				$("#li3-2").fadeIn(1000,function(){
+					$("#li3-3").fadeIn(1000);
+					$("#scroll3").fadeIn(1000);
 			});
 		  });
 		});
 			
 		$("#pos4").on("click",function(){
 			$("#li4-1").fadeIn(1000,function(){
-				$("#li4-2").fadeIn(1000);
+				$("#li4-2").fadeIn(1000,function(){
+					$("#li4-3").fadeIn(1000);
+					$("#scroll4").fadeIn(1000);
+					});
 				});
 		     });    
 		
-		$("#scroll1").on("click",function(){
-					
-				location.href
-			
+		$("#li2-4").on("click",function(){
+			location.href = "card_rank";
 			});
-			
+		
+		$("#li3-3").on("click",function(){
+			location.href = "search";
+			});
+		
+		$("#li4-3").on("click",function(){
+			location.href = "content";
+			});
+										
 		});	/* 메인 효과end  */
  
 $(document).ready(function(){
+	
+	/* 카드캡틴 로고 클릭시 메인 페이지로 이동 */
+	$("#headerLogo").on("click",function(){
+		location.href = "/cdcp";
+	});
 	/* 카드순위 페이지 이동 */
 	$("#ranking").on("click", function(){
 		location.href = "card_rank";
@@ -760,7 +868,7 @@ $(document).ready(function(){
 			<div id = "li1-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp문이 열립니다.<br/></div>
 		    <div id = "li1-3">&nbsp;우리가 바로 카드캡틴</div>
 		    <img id = "li1-4" src=  "resources/images/detail/Main_logo.png" >
-		    <a href = "#li2"><img id = "scroll1" src=  "resources/images/detail/scroll2.png" ></a>
+		    <img id = "scroll1" src=  "resources/images/detail/scroll2.png" >
 			</div>			     
 			</li>
 		
@@ -769,6 +877,8 @@ $(document).ready(function(){
 			<div id = "li2-1">한눈에 쉽고 빠르게 <br/></div>
 			<div id = "li2-2">카드 순위를 <br/></div>
 			<div id = "li2-3">확인해 볼까요?</div>
+			<div id = "li2-4" >버튼 클릭</div>
+			<img id = "scroll2" src=  "resources/images/detail/scroll2.png" >
 			</div>
 		    </li>
 		    
@@ -776,6 +886,8 @@ $(document).ready(function(){
 			<div id = "li3">
 			<div id = "li3-1">&nbsp;&nbsp;&nbsp;&nbsp;스마트한 <br/></div>
 			<div id = "li3-2">카드 검색 비교!</div>
+			<div id = "li3-3" >버튼 클릭</div>
+			<img id = "scroll3" src=  "resources/images/detail/scroll2.png" >
 			</div>
 			</li>
 			
@@ -783,6 +895,8 @@ $(document).ready(function(){
 			<div id = "li4">
 			<div id = "li4-1">재밌는 컨텐츠의 <br/></div>
 			<div id = "li4-2">여행을 즐겨보아요!</div>
+			<div id = "li4-3" >버튼 클릭</div>
+			 <img id = "scroll4" src=  "resources/images/detail/scroll2.png" >
 			</div>
 			</li>
 	    </ul>
