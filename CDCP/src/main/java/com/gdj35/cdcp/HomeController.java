@@ -97,6 +97,7 @@ public class HomeController {
 	//===== SYOU
 	@RequestMapping(value = "/admin")
 	public ModelAndView admin(ModelAndView mav) {
+		//abc
 		mav.setViewName("admin/admin");
 		return mav;
 	}
