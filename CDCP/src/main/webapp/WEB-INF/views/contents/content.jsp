@@ -456,7 +456,7 @@ h1 {
 			
 		
 		});	 // document ready end
-		
+	/* 	
 		 function reloadList() {
 			var params = $("#content").serialize();
 			
@@ -522,7 +522,7 @@ h1 {
 			html += "<div page=\"" + pb.maxPcount + "\">마지막</div>";
 			
 			$(".paging_wrap").html(html);
-		} 
+		}  */
 </script>		
 </head>
 <body>
@@ -570,7 +570,7 @@ h1 {
 						<input type="hidden" id="page" name="page" value="${page}" />
 					</form><br/> 
 			--%>
-			<div class="paging_wrap"></div>
+			<!-- <div class="paging_wrap"></div> -->
 			<c:forEach var = "i" begin = "0" end = "2">			
 				<div class="content">
 					<div class="content_1">
