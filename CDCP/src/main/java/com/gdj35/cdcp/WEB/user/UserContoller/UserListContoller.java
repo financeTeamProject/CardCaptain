@@ -23,24 +23,6 @@ public class UserListContoller {
 	
 	@Autowired IPagingService iPagingService;
 	
-	// 카드목록
-	@RequestMapping(value="/joincard")
-	public ModelAndView joincard(
-			@RequestParam HashMap<String, String> params,
-			ModelAndView mav) {
-		
-		int page = 1;
-		
-		
-		if(params.get("page") != null) { 
-			page = Integer.parseInt(params.get("page"));
-		} //상세보기 -> 목록 (검색어나 페이지 유지용)
-		 	
-		mav.addObject("page", page);
-		mav.setViewName("user/mypage");
-		
-		return mav;
-	}
 	// 카드리스트
 	@RequestMapping(value="/joincards",
 			method = RequestMethod.POST,
@@ -95,6 +77,7 @@ public class UserListContoller {
 		return mav;
 	}
 	
+	// 카드 추가하기
 	@RequestMapping(value="/addcards",
 			method = RequestMethod.POST,
 			produces = "text/json;charsetUTF-8")
@@ -121,12 +104,13 @@ public class UserListContoller {
 		return mapper.writeValueAsString(modelMap);
 	}
 	
-	@RequestMapping(value="/CardDeletes",
+	// 카드 삭제하기
+	@RequestMapping(value="/cardDeletes",
 			method = RequestMethod.POST,
 			produces = "text/json;charsetUTF-8")
 	
 	@ResponseBody
-	public String CardDeletes(
+	public String cardDeletes(
 			@RequestParam HashMap<String, String> params) throws Throwable {
 		System.out.println(params);
 		ObjectMapper mapper = new ObjectMapper();

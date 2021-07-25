@@ -42,10 +42,9 @@
 	</select>
 	
 	<delete id="deleteList" parameterType="hashmap">
-		DELETE
-		FROM HAVECARDS
-		WHERE CARD_NO = #{sNo}
-		<!-- AND MEMBER = #{} -->
+		DELETE FROM HAVECARDS
+		WHERE CARD_NO = #{lists}
+		AND MEMBER_NO = #{mNo}
 	</delete>
 	
 </mapper>

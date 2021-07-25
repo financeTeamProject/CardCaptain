@@ -545,7 +545,7 @@ $(document).ready(function() {
 	
 	// 로그아웃
 	$("#logoutBtn").on("click", function () {
-		location.href = "testALogout";
+		location.href = "/cdcp";
 	}); //로그아웃 end
 	
 	// 마이페이지이동
@@ -573,10 +573,9 @@ $(document).ready(function() {
 	
 	// 카드사선택
 	$(".blank").on("click", function () {
-		$("#abc").css("display","none");
+		$("#abc").hide();
 		$("#page").val(1);
 		$("#cmpNo").val($(this).prop("id")); //1~9카드사
-		console.log($("#cmpNo").val());
 		
 		reloadList();
 	});
@@ -587,6 +586,12 @@ $(document).ready(function() {
 		
 		reloadList();
 	});
+	// 20210725
+/* 	$(".add_wrap tr td button").on("click", function () {
+		alert("daf");
+		
+		deletelist();
+	}); */
 	
 	
 	function addcard() {
@@ -596,14 +601,12 @@ $(document).ready(function() {
 			lists += "," + $(this).attr("cno");
 		});
 		
-		console.log(lists);
-		
 		lists = lists.substring(1);
 		
 		$("#addcardlist #lists").val(lists);
 		
 		var params = $("#addcardlist").serialize();
-		console.log(params);
+		
 		$.ajax({
 			url: "addcards",
 			type: "post",
@@ -668,12 +671,32 @@ $(document).ready(function() {
 			data: params,
 			success: function (res) {
 				drawAddList(res.addlist);
-				alert("addlist");
 			},
 			error: function (request, status, error) {
 				console.log(error);
 			}
 		});
+	}
+	
+	// 리스트 삭제
+	function deletelist() {
+		
+		 
+		var params = $("#cardDelete").serialize();
+		 $.ajax({
+			url: "cardDeletes",
+			type: "post",
+			dataType: "json",
+			data: params,
+			success: function (msg) {
+				if(msg=="success"){
+					alert("성골띠");
+				}
+			},
+			error: function (request, status, error) {
+				console.log(error);
+			}
+		}); 
 	}
 	
 	addLists();
@@ -682,17 +705,22 @@ $(document).ready(function() {
 	function drawAddList(addlist) {
 		var add = "";
 		console.log(addlist);
-		alert(addlist);
 		for(var i = 0; i < addlist.length; i++){
 			add += "<tr cNo=\"" + addlist[i].CARD_NO + "\">";
 			add += "<td>" + "" + "</td>";
 			add += "<td class=\"a\">" + addlist[i].CARD_TYPE + "</td>";
 			add += "<td class=\"b\">" + addlist[i].CARD_NAME + "</td>";
-			add += "<td>" + "<button value=\"추가\" class=\"addbtn\" id=addbtn>삭제</button>" + "</td>";
+			add += "<td>" + "<button value=\"추가\" class=\"deletebtn\" id=\"deletebtn\">삭제</button>" + "</td>";
 			add += "</tr>";
 			
 		}
 			$(".add_wrap tbody").append(add); // 뒤로 이어 붙어줌 
+			// 20210725
+			$(".add_wrap tr td button").on("click", function () {
+				var lists = $(this).parents().parents().attr("cno");
+				$("#cardDelete #lists").val(lists);
+				deletelist();
+			});
 	}
 	
 		/* $(".list_wrap tr td button").on("click",function () {
@@ -908,7 +936,7 @@ $(document).ready(function() {
 						<form action="#" id="joinCard" method="post">   
 							<input type="hidden" name="memNo" value="${sMNo}" id="sMNo"/>
 							<input type="hidden" name="cmpNo" id="cmpNo" value="1" />
-							<input type="hidden" id="page" name="page" value=${page} />
+							<input type="hidden" id="page" name="page" value="${page}" />
 						</form><br/>
 	<!-- Form end -->
 						<div class="list_wrap">
@@ -930,13 +958,19 @@ $(document).ready(function() {
 							<tbody></tbody>
 						</table>
 						</div>
-						<div id="abc">왼쪽의 카드사를 눌러 추가해 주세요.</div>
+						<div id="abc">왼쪽의 카드사를 눌러 추가해 주세요.<br/>최대 5개까지 등록 가능합니다.</div>
 						<br/>
 						<div id="paging_wrap"></div>
 						<br/>
 						<div class="add_wrap">
 	<!-- Form -->
 							<form action="#" id="addcardlist" method="post">
+								<input type="hidden" id="lists" name="lists" />
+								<input type="hidden" id="mNo" name="mNo" value="${sMNo}"/>
+							</form><br/>
+	<!-- Form end -->
+	<!-- Form -->
+							<form action="#" id="cardDelete" method="post">
 								<input type="hidden" id="lists" name="lists" />
 								<input type="hidden" id="mNo" name="mNo" value="${sMNo}"/>
 							</form><br/>
