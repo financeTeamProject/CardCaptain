@@ -45,7 +45,7 @@
 		DELETE
 		FROM HAVECARDS
 		WHERE CARD_NO = #{sNo}
-		AND MEMBER = #{}
+		<!-- AND MEMBER = #{} -->
 	</delete>
 	
 </mapper>
