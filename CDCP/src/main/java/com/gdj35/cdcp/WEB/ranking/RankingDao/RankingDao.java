@@ -74,5 +74,10 @@ public class RankingDao implements RankingIDao{
 		
 		return sqlSession.selectOne("R.gethaveCard", params);
 	}
+	@Override
+	public HashMap<String, String> detailList(HashMap<String, String> params) throws Throwable {
+		
+		return sqlSession.selectOne("R.detailList", params);
+	}
 
 }

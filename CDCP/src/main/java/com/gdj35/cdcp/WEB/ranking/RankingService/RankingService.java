@@ -79,6 +79,12 @@ public class RankingService implements RankingIService {
 		
 		return RankingiDao.gethaveCard(params);
 	}
+	// 상세보기 목록
+	@Override
+	public HashMap<String, String> detailList(HashMap<String, String> params) throws Throwable {
+		
+		return RankingiDao.detailList(params);
+	}
 
 
 

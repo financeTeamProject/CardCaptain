@@ -27,6 +27,8 @@ public interface RankingIDao {
 
 	public int gethaveCard(HashMap<String, String> params) throws Throwable;
 
+	public HashMap<String, String> detailList(HashMap<String, String> params) throws Throwable;
+
 
 
 }

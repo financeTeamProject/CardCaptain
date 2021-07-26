@@ -120,4 +120,14 @@
 		WHERE MEMBER_NO = #{memberNo}
 		AND CARD_NO = #{cardNo}
 	</select>
+	<!-- 상세보기  -->
+	<select id="detailList" parameterType="hashmap" resultType="hashmap">
+		SELECT HCR.REVIEW_NO, HCR.TITLE, HCR.TEXT, HCR.SCORE, C.CARD_NAME, MI.NICKNAME
+		FROM HAVECARDREVIEWS HCR INNER JOIN CARDS C
+		                                ON HCR.CARD_NO = C.CARD_NO
+		                         INNER JOIN MEMBER_INFO MI
+		                                ON HCR.MEMBER_NO = MI.MEMBER_NO
+		WHERE REVIEW_NO = #{detailRNo}
+	</select>
+	
 </mapper>
