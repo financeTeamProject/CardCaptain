@@ -91,14 +91,14 @@ public class UserListContoller {
 			int cnt = useriListService.addCard(params);
 			
 			if(cnt > 0) {
-				modelMap.put("msg", "success");
+				modelMap.put("res", "success");
 			} else {
-				modelMap.put("msg", "failed");
+				modelMap.put("res", "failed");
 			}
 			
 		} catch (Throwable e){
 			e.printStackTrace();
-			modelMap.put("msg", "error");
+			modelMap.put("res", "error");
 		}
 		
 		return mapper.writeValueAsString(modelMap);
@@ -119,14 +119,14 @@ public class UserListContoller {
 		try {
 		int cnt = useriListService.deleteList(params);
 			if(cnt > 0) {
-				modelMap.put("msg","success");
+				modelMap.put("res","success");
 			} else {
-				modelMap.put("msg","failed");
+				modelMap.put("res","failed");
 			}
 			
 		} catch (Throwable e){
 			e.printStackTrace();
-			modelMap.put("msg","error");
+			modelMap.put("res","error");
 		}
 		
 		return mapper.writeValueAsString(modelMap);

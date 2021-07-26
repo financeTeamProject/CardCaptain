@@ -525,14 +525,14 @@ $(document).ready(function() {
 				dataType: "json",
 				data: params,
 				success: function (res) {
-					if(res.resMsg == "success"){
+					if(res.resres == "success"){
 						location.href = "/cdcp";
 						$("#nickName").css("display","inline");
 						$("#imgSearch").css("margin-left","70%");
 						$("#imgLogin").css("display","none");
 						$("#logoutBtn").css("display","inline");
 					} else {
-						$(".errorMsg").css("display","inline");
+						$(".errorres").css("display","inline");
 						$("#masage").html("아이디 또는 비밀번호가 일치하지 않습니다.")
 					}
 				},
@@ -586,25 +586,9 @@ $(document).ready(function() {
 		
 		reloadList();
 	});
-	// 20210725
-/* 	$(".add_wrap tr td button").on("click", function () {
-		alert("daf");
-		
-		deletelist();
-	}); */
 	
 	
 	function addcard() {
-		var lists = "";
-		
-		$(".list_wrap tr td button").each(function() {
-			lists += "," + $(this).attr("cno");
-		});
-		
-		lists = lists.substring(1);
-		
-		$("#addcardlist #lists").val(lists);
-		
 		var params = $("#addcardlist").serialize();
 		
 		$.ajax({
@@ -613,11 +597,7 @@ $(document).ready(function() {
 			dataType: "json",
 			data: params,
 			success: function (res) {
-				if(res.resMsg == "success") {
-					alert("완료");
-				} else {
-					alert("실패");
-				}
+				addLists();
 			},
 			error: function (request, status, error) {
 				console.log(error);
@@ -658,6 +638,16 @@ $(document).ready(function() {
 			
 		}
 		$(".list_wrap tbody").html(html);
+		
+		var lists = "";
+		
+		$(".list_wrap tr td button").on("click", function() {
+			lists = $(this).parents().parents().attr("cno");
+			console.log(lists);
+			$("#addcardlist #lists").val(lists);
+			
+			addcard();
+		});
 	}
 	
 	// 보유카드리스트
@@ -680,18 +670,14 @@ $(document).ready(function() {
 	
 	// 리스트 삭제
 	function deletelist() {
-		
-		 
 		var params = $("#cardDelete").serialize();
 		 $.ajax({
 			url: "cardDeletes",
 			type: "post",
 			dataType: "json",
 			data: params,
-			success: function (msg) {
-				if(msg=="success"){
-					alert("성골띠");
-				}
+			success: function (res) {
+				addLists();
 			},
 			error: function (request, status, error) {
 				console.log(error);
@@ -701,7 +687,7 @@ $(document).ready(function() {
 	
 	addLists();
 	
-	
+	// 보유카드 리스트
 	function drawAddList(addlist) {
 		var add = "";
 		console.log(addlist);
@@ -713,54 +699,23 @@ $(document).ready(function() {
 			add += "<td>" + "<button value=\"추가\" class=\"deletebtn\" id=\"deletebtn\">삭제</button>" + "</td>";
 			add += "</tr>";
 			
+			
 		}
-			$(".add_wrap tbody").append(add); // 뒤로 이어 붙어줌 
-			// 20210725
-			$(".add_wrap tr td button").on("click", function () {
-				var lists = $(this).parents().parents().attr("cno");
-				$("#cardDelete #lists").val(lists);
-				deletelist();
-			});
+		
+		$(".add_wrap tbody").html(add);
+		
+		// 20210725
+		$(".add_wrap tr td button").on("click", function () {
+			var html = "";
+			var lists = $(this).parents().parents().attr("cno");
+			$("#cardDelete #lists").val(lists);
+			
+			deletelist();
+			
+			//addLists();
+		});
 	}
 	
-		/* $(".list_wrap tr td button").on("click",function () {
-			var addcnt = 0;
-			addcnt++;
-			if(addcnt > 5) {
-				alert("추가못함.")
-			} else {
-				add += "<tr cNo=\"" + $(this).attr("cNo") + "\">";
-				add += "<td>" + "" + "</td>";
-				add += "<td>" + cardType + "</td>";
-				add += "<td>" + cardName + "</td>";
-				add += "<td>" + "<button value=\"추가\" class=\"addbtn\" id=addbtn>삭제</button>" + "</td>";
-				add += "</tr>";
-				
-				$(".add_wrap tbody").append(add);
-				var add ="";
-			}
-		}); */
-
-	
-	// 추가하기
-/* 	$("#joinBtn").on("click", function () {
-		var listcard = $("#cardlists tbody tr").length;
-		var html = "";
-		for(var i = 0; i < listcard; i++) {
-			var lists = $("#cardlists tbody tr:eq(" + i + ")").attr("cNo");
-			html +="<input type=\"hidden\" name=\"cNo\" id=\"cmpNo\" value=\"1\"/>"
-		}
-		$("#addcardlist").append(html);
-		alert(lists);
-		alert("${sMNo}");
-		
-		if(lists != null) {
-			
-			addcard();
-		}
-	}); */
-	
-		
 	//페이징 그리기
 	function drawPaging(pb) {
 		var html = "";
