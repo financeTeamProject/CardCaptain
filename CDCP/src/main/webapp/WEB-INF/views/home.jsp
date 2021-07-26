@@ -270,7 +270,6 @@ input#pos1,#pos2,#pos3,#pos4 {
 /* 슬라이드 글씨 CSS */
 
 #li1{
-
 	font-size: 40px;
 	font-family: 'GmarketSansMedium';
 	font-weight: bold;
@@ -280,21 +279,20 @@ input#pos1,#pos2,#pos3,#pos4 {
     top: 30%;
     line-height: 2;
     margin:0 auto;
-    
 }
 
 #li1-1,#li1-2,#li1-3{
 	display:none;
 }
 
-#li1-4{
+/* #li1-4{
 	display:none;
 	width: 180px;
     height: 190px;
     position: relative;
     left: 6%;
     margin:0 auto;
-}
+} */
 
 #scroll1{
 	display: none;
@@ -303,7 +301,7 @@ input#pos1,#pos2,#pos3,#pos4 {
     cursor: pointer;
     position: absolute;
     left: 54%;
-    top: 78%;
+    top: 155%;
 }
 #scroll2{
 	display: none;
@@ -334,7 +332,6 @@ input#pos1,#pos2,#pos3,#pos4 {
 }
 
 #li2{
-
 	font-size: 40px;
     font-family: 'GmarketSansMedium';
     font-weight: bold;
@@ -344,7 +341,6 @@ input#pos1,#pos2,#pos3,#pos4 {
     top: 20%;
     line-height: 2;
     margin: 0 auto;
-
 }
 
 #li2-1,#li2-2,#li2-3{
@@ -429,15 +425,9 @@ input#pos1,#pos2,#pos3,#pos4 {
 	
 }
 
-
-#li4-1 , #li4-2{
-
-	display:none;
-
-}
+#li4-1 , #li4-2{display:none;}
 
 #li4-3{
-	
 	display: none;
     border: 1px solid #fff;
     border-radius: 5rem;
@@ -623,10 +613,11 @@ input#pos1,#pos2,#pos3,#pos4 {
  $(document).ready(function(){		 	
 		$("#li1-1").fadeIn(2000 , function(){				
 			$("#li1-2").fadeIn(2000,function(){				
-				$("#li1-3").fadeIn(2000,function(){					
-					$("#li1-4").fadeIn(3000,function(){
+				$("#li1-3").fadeIn(2000,function(){		
+					$("#scroll1").fadeIn(1000);
+					/* $("#li1-4").fadeIn(3000,function(){
 						$("#scroll1").fadeIn(1000);
-					});					
+					});			 */		
 				});
 			});
 		});	 		
@@ -871,10 +862,10 @@ $(document).ready(function(){
 			<li>
 			<div id = "li1">
 			<div id = "li1-1">&nbsp;모든 카드를 구원해줄 <br/></div>
-			<div id = "li1-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp문이 열립니다.<br/></div>
+			<div id = "li1-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;문이 열립니다.<br/></div>
 		    <div id = "li1-3">&nbsp;우리가 바로 카드캡틴</div>
-		    <img id = "li1-4" src=  "resources/images/detail/Main_logo.png" >
-		    <img id = "scroll1" src=  "resources/images/detail/white_mouse.png" >
+		    <!-- <img id = "li1-4" src=  "resources/images/detail/Main_logo.png" > -->
+		    <img id = "scroll1" src=  "resources/images/detail/white_mouse1.png" >
 			</div>			     
 			</li>
 		
@@ -883,17 +874,17 @@ $(document).ready(function(){
 			<div id = "li2-1">한눈에 쉽고 빠르게 <br/></div>
 			<div id = "li2-2">카드 순위를 <br/></div>
 			<div id = "li2-3">확인해 볼까요?</div>
-			<div id = "li2-4" >버튼 클릭</div>
-			<img id = "scroll2" src=  "resources/images/detail/white_mouse.png" >
+			<div id = "li2-4" >보러 가기</div>
+			<img id = "scroll2" src=  "resources/images/detail/white_mouse1.png" >
 			</div>
 		    </li>
-		    		    
+		    		    		    		    
 			<li>
 			<div id = "li3">
 			<div id = "li3-1">&nbsp;&nbsp;&nbsp;&nbsp;스마트한 <br/></div>
 			<div id = "li3-2">카드 검색 비교!</div>
-			<div id = "li3-3" >버튼 클릭</div>
-			<img id = "scroll3" src=  "resources/images/detail/white_mouse.png" >
+			<div id = "li3-3" >보러 가기</div>
+			<img id = "scroll3" src=  "resources/images/detail/white_mouse1.png" >
 			</div>
 			</li>
 			
@@ -901,8 +892,8 @@ $(document).ready(function(){
 			<div id = "li4">
 			<div id = "li4-1">재밌는 컨텐츠의 <br/></div>
 			<div id = "li4-2">여행을 즐겨보아요!</div>
-			<div id = "li4-3" >버튼 클릭</div>
-			 <img id = "scroll4" src=  "resources/images/detail/white_mouse.png" >
+			<div id = "li4-3" >보러 가기</div>
+			 <img id = "scroll4" src=  "resources/images/detail/white_mouse1.png" >
 			</div>
 			</li>
 	    </ul>
