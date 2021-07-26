@@ -178,7 +178,7 @@ body {
 *{margin:0;padding:0;}
 #content {
 	width: 100%;
-    height: 2800px;
+    height: 1423px;;
     margin: 0 auto;
     min-width:1830px;
 }
@@ -298,8 +298,8 @@ input#pos1,#pos2,#pos3,#pos4 {
 
 #scroll1{
 	display: none;
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 100px;
     cursor: pointer;
     position: absolute;
     left: 54%;
@@ -307,8 +307,8 @@ input#pos1,#pos2,#pos3,#pos4 {
 }
 #scroll2{
 	display: none;
-	width: 80px;
-    height: 80px;
+	 width: 120px;
+    height: 100px;
     cursor: pointer;
     position: absolute;
     left: 24%;
@@ -316,8 +316,8 @@ input#pos1,#pos2,#pos3,#pos4 {
 }
 #scroll3{
 	display: none;
-    width: 80px;
-    height: 80px;
+     width: 120px;
+    height: 100px;
     cursor: pointer;
     position: absolute;
     left: 58%;
@@ -325,8 +325,8 @@ input#pos1,#pos2,#pos3,#pos4 {
 }
 #scroll4{
 	display: none;
-    width: 80px;
-    height: 80px;
+     width: 120px;
+    height: 100px;
     cursor: pointer;
     position: absolute;
     left: 84%;
@@ -676,7 +676,8 @@ input#pos1,#pos2,#pos3,#pos4 {
 			});		
 		$("#li3-3").on("click",function(){
 			location.href = "search";
-			});		
+			});
+		
 		$("#li4-3").on("click",function(){
 			location.href = "content";
 			});		
@@ -873,27 +874,26 @@ $(document).ready(function(){
 			<div id = "li1-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp문이 열립니다.<br/></div>
 		    <div id = "li1-3">&nbsp;우리가 바로 카드캡틴</div>
 		    <img id = "li1-4" src=  "resources/images/detail/Main_logo.png" >
-		    <img id = "scroll1" src=  "resources/images/detail/scroll2.png" >
+		    <img id = "scroll1" src=  "resources/images/detail/white_mouse.png" >
 			</div>			     
 			</li>
 		
-			<li id = "aa">
+			<li>
 			<div id = "li2">
 			<div id = "li2-1">한눈에 쉽고 빠르게 <br/></div>
 			<div id = "li2-2">카드 순위를 <br/></div>
 			<div id = "li2-3">확인해 볼까요?</div>
 			<div id = "li2-4" >버튼 클릭</div>
-			<img id = "scroll2" src=  "resources/images/detail/scroll2.png" >
+			<img id = "scroll2" src=  "resources/images/detail/white_mouse.png" >
 			</div>
 		    </li>
-		     
-		    
+		    		    
 			<li>
 			<div id = "li3">
 			<div id = "li3-1">&nbsp;&nbsp;&nbsp;&nbsp;스마트한 <br/></div>
 			<div id = "li3-2">카드 검색 비교!</div>
 			<div id = "li3-3" >버튼 클릭</div>
-			<img id = "scroll3" src=  "resources/images/detail/scroll2.png" >
+			<img id = "scroll3" src=  "resources/images/detail/white_mouse.png" >
 			</div>
 			</li>
 			
@@ -902,7 +902,7 @@ $(document).ready(function(){
 			<div id = "li4-1">재밌는 컨텐츠의 <br/></div>
 			<div id = "li4-2">여행을 즐겨보아요!</div>
 			<div id = "li4-3" >버튼 클릭</div>
-			 <img id = "scroll4" src=  "resources/images/detail/scroll2.png" >
+			 <img id = "scroll4" src=  "resources/images/detail/white_mouse.png" >
 			</div>
 			</li>
 	    </ul>
@@ -943,7 +943,6 @@ $(document).ready(function(){
 		</div><br/>
 		</div>
 	<!-- Map html End -->
-		<div class="slide"></div>
 	</div>
 	<div id="footer">
 		<div id="footerMenu">
