@@ -387,7 +387,7 @@ $(document).ready(function() {
 				dataType :"json",
 				success : function (res) {
 					html +="";
-					
+					html +="";
 					html +="<form action=\"#\" id =\"UpdateCardForm\" method=\"post\">";
 					html +="<div>";
 					html +="<table border=\"1\">";
