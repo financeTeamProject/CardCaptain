@@ -529,7 +529,6 @@ $(document).ready(function() {
 							alert("인증코드가 일치합니다.");
 							$("#btn_next").css("pointer-events","auto");
 							$("#btn_next").css("background-color","#0047ab");
-							
 						}
 					});
 					

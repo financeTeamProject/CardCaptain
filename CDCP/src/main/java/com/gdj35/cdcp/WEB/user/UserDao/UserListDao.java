@@ -32,4 +32,9 @@ public class UserListDao implements UserIListDao {
 	public int deleteList(HashMap<String, String> params) throws Throwable {
 		return sqlSession.update("user.deleteList", params);
 	}
+	@Override
+	public int memUpdate(HashMap<String, String> params) throws Throwable {
+		return sqlSession.update("user.memUpdate", params);
+
+	}
 }

@@ -15,4 +15,6 @@ public interface UserIListDao {
 
 	public int deleteList(HashMap<String, String> params) throws Throwable;
 
+	public int memUpdate(HashMap<String, String> params) throws Throwable;
+
 }

@@ -131,4 +131,26 @@ public class UserListContoller {
 		
 		return mapper.writeValueAsString(modelMap);
 	}
+	
+	@RequestMapping(value="/memUpdates")
+	public ModelAndView memUpdates(
+			@RequestParam HashMap<String, String> params,
+			ModelAndView mav
+			) throws Throwable {
+		try {
+			int cnt = useriListService.memUpdate(params);
+			mav.addObject("cnt",cnt);
+		} catch (Throwable e){
+			e.printStackTrace();
+		}
+		mav.setViewName("user/mypage");
+		
+		return mav;
+	}
 }
+
+
+
+
+
+

@@ -297,8 +297,7 @@ body{
 	height: 50px;
 	line-height: 50px;
 	text-align: center;
-	font-size: 25px;
-	color: #ff6e61;
+	font-size: 30px;
 }
 .contents_left {
 	width: 50%;
@@ -452,10 +451,25 @@ img  {
 	text-align: center;
 }
 #abc {
-	color: red;
+	color: #ff6e61;
 	font-size: 20px;
 	text-align: center;
 	margin-top: 60px;
+}
+.have_card {
+    color: #ff6e61;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 10px;
+}
+.errorMsg {
+	width: auto;
+	height: 100%;
+	display:none;
+	vertical-align:top;
+    color: #e65f3e;
+    font-size: 13px;
+    float: right;
 }
 </style>
 <script type="text/javascript" src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
@@ -548,23 +562,101 @@ $(document).ready(function() {
 		location.href = "/cdcp";
 	}); //로그아웃 end
 	
-	// 마이페이지이동
 	$("#logNick").on("click", function(){
 		location.href = "/mypage";
-	});
-	
-	$("#logNick").on("click", function(){
-		alert($("#sMNm").val());
 		$("#memNo").attr("action");
 		$("#memNo").submit();
 	});
+});
 
-	// 보유카드추가
-	if("${param.searchGbn}" != "") {
-		$("${searchGbn}").val("${param.searchGbn}")
-	}
-	reloadList();
+//회원정보수정
+$(document).ready(function() {
+
+	/* 비밀번호 */
+	$("#mPw").blur(function(){
+		var mPw = $.trim($("#mPw").val());
+		var chk_num = mPw.search(/[0-9]/g);
+		var chk_eng = mPw.search(/[a-z]/ig);
+		var chk_spe = mPw.search(/[~!@#$%^&*()_+|<>?:{}]/ig);
+		
+		if(mPw == "") {
+			$("#mPw").val() = "${sMPw}";
+	   	} else if (mPw.length < 10 || mPw.length > 25) {
+	 	  	$("#mPw").focus();
+	       	$(".errorMsg").css("display","inline");
+	       	$("#errorMsgPw").html("10~24자리로 만들어 주세요.");
+	   	} else if(chk_num < 0 || chk_eng < 0 || chk_spe <  0) {
+	 	  	$("#mPw").focus();
+	       	$(".errorMsg").css("display","inline");
+			$("#errorMsgPw").html("영문,숫자,특수문자 조합으로 만들어 주세요.");
+	   	} else {
+	 		$("#errorMsgPw").html("");
+		}
+		alert(mPw);
+	});
 	
+	/* 비밀번호 확인 */
+	$("#mRPw").blur(function(){
+		var mPw = $.trim($("#mPw").val());
+		var mRPw = $.trim($("#mRPw").val());
+		
+		if (mPw != mRPw) {
+	 	  	$("#mRPw").focus();
+	       	$(".errorMsg").css("display","inline");
+	       	$("#errorMsgPw").html("비밀번호가 일치하지 않습니다.");
+		} else {
+	 		$("#errorMsgPw").html("");
+		}
+	});
+	
+	/* 닉네임 */
+	$("#mNn").blur(function(){
+		var mNn = $.trim($("#mNn").val());
+		var regex_spe = (/[~!@#$%^&*()_+|<>?:{}]/);
+
+	   	if (mNn == "") {
+	      	$(".errorMsg").css("display","inline");
+	      	$("#errorMsgNick").html("닉네임을 입력해 주세요.");
+	   	} else if (mNn.length < 3 || mNn.length > 10) {
+	 	  	$("#mNn").focus();
+	       	$(".errorMsg").css("display","inline");
+	       	$("#errorMsgNick").html("3~10자리로 만들어 주세요.");
+	   	} else if (regex_spe.test(mNn)) {
+	 	  	$("#mNn").focus();
+	 	  	$("#mNn").val("");
+	       	$(".errorMsg").css("display","inline");
+	       	$("#errorMsgNick").html("특수문자는 사용할 수 없습니다.");
+	   	} else {
+			$("#errorMsgNick").html("");
+		}
+	});
+	
+	$("#update").on("click", function () {
+		
+		update();
+	})
+
+
+	function update() {
+		var params = $("#updateForm").serialize();
+		
+		$.ajax({
+			url: "memUpdates",
+			type: "post",
+			dataType: "json",
+			data: params,
+			success: function (res) {
+			},
+			error: function (request, status, error) {
+				console.log(error);
+			}
+		});
+	}
+
+});
+
+//보유카드 추가,삭제
+$(document).ready(function() {	
 	$("#joinCard").on("keypress", "input", function (event) {
 		if(event.keyCode == 13) {
 			return false; 
@@ -790,38 +882,49 @@ $(document).ready(function() {
 			<div class="member_tablee">
 	         	<h1 id="memberName" class="member_name">${sMNm}&nbsp;님&nbsp;&nbsp;</h1>
          	</div>
+			<form action="" id="updateForm" method="post">
+				<input type="hidden" name="memNo" value="${sMNo}" id="sMNo"/>
 			<div id="memberTable" class="member_table">
 				<div class="table_left">
 					<div class="table1" id="">아이디<br/>
 						${sMId}
 					</div>
 					<div class="table2" id="">비밀번호<br/>
-						<input type="password" id="" value="${sMPw}">	
+						<input type="password" id="mPw" value="">
+						<div class="errorMsg" id="errorMsgPw"></div>
+						<div class="" id="">비밀번호 확인<br/>
+						<input type="password" id="mRPw" value="" name="mPw">
+						<div class="errorMsg" id="errorMsgRPw"></div>
+					</div>
 					</div>
 					<div class="table3" id="">닉네임<br/>
-						<input type="text" id="" value="${sMNm}">
+					         현재 : ${sMNm}<br/>
+						변경 : <input type="text" id="mNn" value="" name="mNn">
+						<div class="errorMsg" id="errorMsgNick"></div>
 					</div>
 				</div>
-					<div class="table_right">
-						<div class="table4" id="">전화번호<br/>
-							<input type="text" id="" value="${sMCo}">
-						</div>
-						<div class="table5" id="">생년월일<br/>
-							<input type="text" id="" value="${sMBi}">
-						</div>
-						<div class="table6" id="">이메일<br/>
-							${sMNa}${sMAd}
-						</div>
+				<div class="table_right">
+					<div class="table4" id="">전화번호<br/>
+						${sMCo}
+					</div>
+					<div class="table5" id="">생년월일<br/>
+						${sMBi}
+					</div>
+					<div class="table6" id="">이메일<br/>
+						${sMNa}${sMAd}
 					</div>
 				</div>
+			</div>
+			</form>
 		      	<div id="memberButton" class="member_button">
 		        	<input type="button" value="정보수정" id="update" class="update"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="회원탈퇴" id="delete" class="delete"/>
 		      	</div>
+			</div>
 	      	</div>
 		</div>
       	<div class="back_middle">
 	      	<div class="back_middle2">
-				<div class="contents_top">보유중인 카드를 등록하세요.</div>
+				<br/><div class="contents_top">보유중인 카드를 등록하세요.</div>
 			<div class="contents">
 				<div class="contents_left">
 					<div class="line">
@@ -913,23 +1016,23 @@ $(document).ready(function() {
 							<tbody></tbody>
 						</table>
 						</div>
-						<div id="abc">왼쪽의 카드사를 눌러 추가해 주세요.<br/>최대 5개까지 등록 가능합니다.</div>
+						<div id="abc">왼쪽의 카드사를 눌러 추가해 주세요.</div>
 						<br/>
 						<div id="paging_wrap"></div>
-						<br/>
 						<div class="add_wrap">
 	<!-- Form -->
 							<form action="#" id="addcardlist" method="post">
 								<input type="hidden" id="lists" name="lists" />
 								<input type="hidden" id="mNo" name="mNo" value="${sMNo}"/>
-							</form><br/>
+							</form>
 	<!-- Form end -->
 	<!-- Form -->
 							<form action="#" id="cardDelete" method="post">
 								<input type="hidden" id="lists" name="lists" />
 								<input type="hidden" id="mNo" name="mNo" value="${sMNo}"/>
-							</form><br/>
+							</form>
 	<!-- Form end -->
+						<div class="have_card">보유중인 카드 목록(최대 5개)</div>
 						<table id="cardlists">
 							<colgroup width="3000px">
 								<col width="5%" />
