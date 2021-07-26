@@ -417,12 +417,45 @@ h1 {
 	text-align: center;
 	margin-top: 10px;
 }
+
+/* 페이징 */
+
+.paging_wrap {
+	margin-top: 10px;
+}
+
+
+.paging_wrap div {
+	display: inline-block;
+	padding: 5px;
+	margin-left: 3px;
+	margin-right: 3px;
+	background-color: #DFDFDF;
+	border: 1px solid #444;
+	border-radius: 3px;
+	cursor: pointer;
+	width: 60px;
+	text-align: center;
+}
+
+.paging_wrap div:active{
+ background-color: #AAAAAA; 
+}
+
+.paging_wrap .on {
+	background-color: #AAAAAA; 
+}
+
+
 </style>
 <script type="text/javascript"
 				src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 		<script type="text/javascript">
 		
 		$(document).ready(function() {
+			
+			reloadList();
+			
 			/* 카드순위 페이지 이동 */
 			$("#ranking").on("click", function(){
 				location.href = "card_rank";
@@ -456,44 +489,58 @@ h1 {
 			
 		
 		});	 // document ready end
-	/* 	
+
+		/* 목록  */
 		 function reloadList() {
-			var params = $("#content").serialize();
-			
+			var params = $("#actionForm").serialize();
+			console.log(params);
 			$.ajax({
-				url: "contents",
+				url: "contentAjax",
 				type: "post", 
 				dataType: "json",
 				data: params,	
-				success: function(res) {
-					drawList(res.list);
-					
+				success: function(res){
+					console.log(res);
+					drawList(res.tipcon);
+					drawPaging(res.pb);
 				},
 				error: function(request, status, error) {
+					console.log(request);
+					console.log(status);
 					console.log(error);
 				}
 			});
 		}
 		
-		function drawList(list){
+		// 목록 그리기
+		function drawList(tipcon){
 			var html = "";
 			
-			for(var c of list){
+			for(var i = 0; i < tipcon.length; i++){
 			html += "<div class=\"content\">";
 			html += "<div class=\"content_1\">";
-			html += "<div class=\"img_rayout\">" + c.TIP_IMG_URL + "</div>";
+			html += "<div class=\"img_rayout\">" + tipcon[i].TIP_IMG_URL + "</div>";
 			html += "<div class=\"content_content\">";
-			html += "<h2>" + c.TIP_TITLE + "</h2>";
+			html += "<h2>" + tipcon[i].TIP_TITLE + "</h2>";
 			html += "<div class=\"con\">";
-			html += "<h1>" + c.TIP_CON + "</h1>";
+			html += "<h1>" + tipcon[i].TIP_CON + "...</h1>";
 			html += "</div>";
-			html += "<div class=\"Cdate\">" + c.ADD_DATE + c.TIP_WRITER "</div>";
+			html += "<div class=\"Cdate\">" + tipcon[i].ADD_DATE + "</div>";
 			html += "</div>";
 			html += "</div>";
-			html += "</div>"; 
+			html += "</div>";  
+			
 			}
-			$(".list_wrap").html(html);
+			
+			$(".tipcon_list_wrap").html(html);
+			
+			$(".img_rayout").on("click", function(){
+				location.href = "cardTip_1";
+			});
+			
 		}
+		
+		
 		// 페이징 그리기
 		function drawPaging(pb) {
 			var html = "";
@@ -522,7 +569,8 @@ h1 {
 			html += "<div page=\"" + pb.maxPcount + "\">마지막</div>";
 			
 			$(".paging_wrap").html(html);
-		}  */
+		}
+		
 </script>		
 </head>
 <body>
@@ -565,13 +613,18 @@ h1 {
 		<div id="s_left_sub"></div>
 		<div id="main_sub">	
 			<div class="title">카드활용꿀팁</div>
-			<%-- <form action="#" id="content" method="post">   
-						<input type="hidden" name="cNo" id="cNo" />
+<!-- Form -->
+					<form action="#" id="actionForm" method="post">   
+						<input type="hidden" name="tipNo" id="tipNo" value="3" />
 						<input type="hidden" id="page" name="page" value="${page}" />
-					</form><br/> 
-			--%>
-			<!-- <div class="paging_wrap"></div> -->
-			<c:forEach var = "i" begin = "0" end = "2">			
+					</form><br/>
+<!-- Form end --> 
+
+			<div class="tipcon_list_wrap"></div>
+			<div class="paging_wrap"></div>
+			
+			
+			<%-- <c:forEach var = "i" begin = "0" end = "2">			
 				<div class="content">
 					<div class="content_1">
 						<div class="img_rayout">
@@ -588,7 +641,9 @@ h1 {
 						</div>
 					</div>				
 				</div>
-			</c:forEach>
+			</c:forEach> --%>
+			
+			
 				<div class="content">
 					<div class="content_1">
 					<c:forEach var = "i" begin = "0" end = "2">

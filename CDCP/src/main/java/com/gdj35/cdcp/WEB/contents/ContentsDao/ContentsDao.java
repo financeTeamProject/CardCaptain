@@ -30,4 +30,8 @@ public class ContentsDao implements ContentsIDao{
 	public int getTipCnt(HashMap<String, String> params) {
 		return sqlSession.selectOne("C.getTipCnt", params);
 	}
+	@Override
+	public List<HashMap<String, String>> getTipList(HashMap<String, String> params) {
+		return sqlSession.selectList("C.getTipList", params);
+	}
 }

@@ -25,18 +25,20 @@
 
 <select id="getTipCnt" parameterType="hashmap" resultType="Integer">
 		SELECT COUNT(*) AS CNT
-		FROM TIPS 	               
-		WHERE 1 = 1
-		AND TIP_NO = {cNo}
-		<if test="searchTxt != null and searchTxt != ''">
-		<choose>
-		<when test="searchGbn == 0">
-		AND ITEM_NAME LIKE '%' || #{searchTxt} || '%'
-		</when>
-		<when test="searchGbn == 1">
-		AND COUNT LIKE '%' || #{searchTxt} || '%'
-		</when>
-		</choose>
-		</if>
-	</select>
+		FROM TIPS
+		WHERE TIP_NO = #{tipNo}
+		AND DEL_CHECK = 1
+</select>
+	
+<select id="getTipList" parameterType="hashmap" resultType="hashmap">
+		SELECT C.*
+        FROM(SELECT TIP_NO, MANAGER_NO, TIP_IMG_URL, TIP_TITLE, SUBSTR(UTL_RAW.CAST_TO_VARCHAR2(TIP_CONTENT), 1, 80) AS TIP_CON,
+        TIP_WRITER, TO_CHAR(ADD_DATE, 'YYYY.MM.DD') AS ADD_DATE, DEL_CHECK,
+        RANK() OVER(PARTITION BY TIP_NO ORDER BY TIP_NO DESC) AS RNK
+        FROM TIPS
+        ORDER BY TIP_NO ASC) C
+        WHERE C.TIP_NO = #{tipNo}
+        AND C.RNK BETWEEN #{startCnt} AND #{endCnt}
+</select>
+
 </mapper>

@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import com.gdj35.cdcp.WEB.contents.ContentsService.ContentsIService;
 import com.gdj35.cdcp.WEB.user.UserContoller.UserContoller;
 import com.gdj35.cdcp.WEB.user.UserService.UserIService;
@@ -153,6 +151,7 @@ public class ContentController {
 		return mav;
 	}
 
+	/*
 	@RequestMapping(value="/content") // 
 	public ModelAndView content(
 			@RequestParam HashMap<String, String> params,
@@ -173,48 +172,68 @@ public class ContentController {
 		
 		return mav;
 	}
-	/*
-	  @RequestMapping(value = "/content") public ModelAndView content(
-	  
-	  @RequestParam HashMap<String, String> params, ModelAndView mav) { int page =
-	  1;
-	  
-	  if(params.get("page") != null) { page = Integer.parseInt(params.get("page"));
+	*/
+	@RequestMapping(value="/content")
+	  public ModelAndView content(
+			  @RequestParam HashMap<String, String> params, 
+			  ModelAndView mav) throws Throwable {
+		
+			int page = 1;
+		
+			if(params.get("page") != null) {
+			page = Integer.parseInt(params.get("page"));
+			}	
+		
+			List<HashMap<String, String>> 
+			data = ContentsiService.getMovie(params);
+			
+			
+			mav.addObject("data", data);
+			mav.addObject("page", page);
+			
+			mav.setViewName("contents/content");
+			
+			return mav;
+		}
+	
+	 @RequestMapping(value="/contentAjax",
+				method = RequestMethod.POST,
+				produces = "text/json; charset=UTF-8")
+		@ResponseBody
+		public String contents(
+				@RequestParam HashMap<String, String> params) throws Throwable {
+			ObjectMapper mapper = new ObjectMapper();
+			Map<String, Object> modelMap = new HashMap<String, Object>();
+			
+			try {
+			// 현재 페이지
+			int page = Integer.parseInt(params.get("page"));
+			
+			// 총 게시글 수
+			int cnt = ContentsiService.getTipCnt(params);
+			
+			// 페이징 계산
+			PagingBean pb = iPagingService.getPagingBean(page, cnt, 3, 5);
+			
+			params.put("startCnt", Integer.toString(pb.getStartCount()));
+			params.put("endCnt", Integer.toString(pb.getEndCount()));
+			List<HashMap<String, String>> tipcon 
+			= ContentsiService.getTipList(params);
+			System.out.println(tipcon);
+			
+			
+			  if(tipcon != null) {
+				  
+				  modelMap.put("msg", "success");
+				  modelMap.put("tipcon", tipcon);
+				  modelMap.put("pb", pb);
+				  
+			  }else {
+				  modelMap.put("msg", "error");
+			  }
+			}catch(Throwable e){
+				e.printStackTrace();
+			}
+			return mapper.writeValueAsString(modelMap);
 	  }
-	  
-	  mav.addObject("page", page); mav.setViewName("contents/content");
-	  
-	  return mav; }
-	  
-	  @RequestMapping(value = "/contents", method = RequestMethod.POST, produces =
-	  "test/json;charset=UTF-8")
-	  
-	  @ResponseBody public String contents(
-	  
-	  @RequestParam HashMap<String, String> params) throws Throwable { ObjectMapper
-	  mapper = new ObjectMapper(); Map<String, Object> modelMap = new
-	  HashMap<String, Object>();
-		//현재 페이지
-		
-		int page = Integer.parseInt(params.get("page"));
-		
-		// 총 게시글 수
-		int cnt = ContentsiService.getTipCnt(params);
-		
-		// 페이징 정보 취득
-		PagingBean pb = iPagingService.getPagingBean(page, cnt);
-		
-		// 게시글 시작, 종료번호 할당
-		params.put("startCnt", Integer.toString(pb.getStartCount()));
-		params.put("endCnt", Integer.toString(pb.getEndCount()));
-		
-		List<HashMap<String, String>> list
-				= ContentsiService.getTip(params);
-		
-		modelMap.put("list", list);
-		modelMap.put("pb", pb);
-
-		return mapper.writeValueAsString(modelMap);
-	}
-	 */
 }
