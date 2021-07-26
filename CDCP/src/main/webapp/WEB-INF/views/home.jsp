@@ -618,23 +618,18 @@ input#pos1,#pos2,#pos3,#pos4 {
 <script type="text/javascript">
 
 /* 메인 효과 */
- 
- $(document).ready(function(){
-	 	 			 	
-		$("#li1-1").fadeIn(2000 , function(){
-				
-			$("#li1-2").fadeIn(2000,function(){
-				
-				$("#li1-3").fadeIn(2000,function(){
-					
+ 	
+ /* 텍스트 효과 */	
+ $(document).ready(function(){		 	
+		$("#li1-1").fadeIn(2000 , function(){				
+			$("#li1-2").fadeIn(2000,function(){				
+				$("#li1-3").fadeIn(2000,function(){					
 					$("#li1-4").fadeIn(3000,function(){
 						$("#scroll1").fadeIn(1000);
-					});
-					
+					});					
 				});
 			});
-		});	 	
-	
+		});	 		
 		$("#pos2").on("click",function(){
 			$("#li2-1").fadeIn(1000,function(){
 				$("#li2-2").fadeIn(1000,function(){
@@ -644,8 +639,7 @@ input#pos1,#pos2,#pos3,#pos4 {
 					})
 				});
 			});
-		});
-		
+		});		
 		$("#pos3").on("click",function(){
 			$("#li3-1").fadeIn(1000,function(){
 				$("#li3-2").fadeIn(1000,function(){
@@ -653,8 +647,7 @@ input#pos1,#pos2,#pos3,#pos4 {
 					$("#scroll3").fadeIn(1000);
 			});
 		  });
-		});
-			
+		});			
 		$("#pos4").on("click",function(){
 			$("#li4-1").fadeIn(1000,function(){
 				$("#li4-2").fadeIn(1000,function(){
@@ -662,21 +655,33 @@ input#pos1,#pos2,#pos3,#pos4 {
 					$("#scroll4").fadeIn(1000);
 					});
 				});
-		     });    
-		
+		     });    				
+		 /* 스크롤 이벤트 */
+		$("#scroll1").on("click",function(){
+			$("#pos2").click();
+		});
+		$("#scroll2").on("click",function(){
+			$("#pos3").click();
+		});
+		$("#scroll3").on("click",function(){
+			$("#pos4").click();
+		});
+		$("#scroll4").on("click",function(){
+			$("#pos1").click();
+		});
+							
+		/*버튼 클릭 이벤트  */
 		$("#li2-4").on("click",function(){
 			location.href = "card_rank";
-			});
-		
+			});		
 		$("#li3-3").on("click",function(){
 			location.href = "search";
-			});
-		
+			});		
 		$("#li4-3").on("click",function(){
 			location.href = "content";
-			});
-										
-		});	/* 메인 효과end  */
+			});		
+		});	
+		/* 메인 효과end  */
  
 $(document).ready(function(){
 	
@@ -872,7 +877,7 @@ $(document).ready(function(){
 			</div>			     
 			</li>
 		
-			<li>
+			<li id = "aa">
 			<div id = "li2">
 			<div id = "li2-1">한눈에 쉽고 빠르게 <br/></div>
 			<div id = "li2-2">카드 순위를 <br/></div>
@@ -881,6 +886,7 @@ $(document).ready(function(){
 			<img id = "scroll2" src=  "resources/images/detail/scroll2.png" >
 			</div>
 		    </li>
+		     
 		    
 			<li>
 			<div id = "li3">
@@ -902,12 +908,10 @@ $(document).ready(function(){
 	    </ul>
 	    
 	    <p1 class="bullet">
-	     	     
-	   	  <label for="pos1" id = "m1">1</label>
-	      <label for="pos2" id = "m2">2</label>
-	      <label for="pos3" id = "m3">3</label>
-	      <label for="pos4" id = "m4">4</label>
-	    
+	   	  <label for="pos1" >1</label>
+	      <label for="pos2" id = "m2" >2</label>
+	      <label for="pos3" >3</label>
+	      <label for="pos4" >4</label>
 	    </p1>
 	  </div><br/>
 	<!-- Map html Start -->
