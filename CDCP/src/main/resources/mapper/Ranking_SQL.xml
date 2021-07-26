@@ -109,8 +109,15 @@
 		WHERE REVIEW_NO = 8
 	</select>
 	<!-- 리뷰 작성  -->
-	<insert id="addReview" parameterType="hashmap">
+	<insert id="reviewAdd" parameterType="hashmap">
 		INSERT INTO HAVECARDREVIEWS(REVIEW_NO, MEMBER_NO, CARD_NO, SCORE, TITLE, TEXT )
-		VALUES(HAVECARDREVIEWS_SEQ.NEXTVAL, '72', '1005', '5','이 카드는 꿀', '혜택을 사용할수 있는 매장들이 너무 많다')
+		VALUES(HAVECARDREVIEWS_SEQ.NEXTVAL, #{memNo}, #{cardNo}, #{review_star}, #{reviewTitle}, #{reviewText})
 	</insert>
+	<!-- 카드 보유 여부  -->
+	<select id="gethaveCard" parameterType="hashmap" resultType="Integer">
+		SELECT COUNT(*)
+		FROM HAVECARDS
+		WHERE MEMBER_NO = #{memberNo}
+		AND CARD_NO = #{cardNo}
+	</select>
 </mapper>

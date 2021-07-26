@@ -525,14 +525,14 @@ $(document).ready(function() {
 				dataType: "json",
 				data: params,
 				success: function (res) {
-					if(res.resMsg == "success"){
+					if(res.resres == "success"){
 						location.href = "/cdcp";
 						$("#nickName").css("display","inline");
 						$("#imgSearch").css("margin-left","70%");
 						$("#imgLogin").css("display","none");
 						$("#logoutBtn").css("display","inline");
 					} else {
-						$(".errorMsg").css("display","inline");
+						$(".errorres").css("display","inline");
 						$("#masage").html("아이디 또는 비밀번호가 일치하지 않습니다.")
 					}
 				},
@@ -545,7 +545,7 @@ $(document).ready(function() {
 	
 	// 로그아웃
 	$("#logoutBtn").on("click", function () {
-		location.href = "testALogout";
+		location.href = "/cdcp";
 	}); //로그아웃 end
 	
 	// 마이페이지이동
@@ -573,10 +573,9 @@ $(document).ready(function() {
 	
 	// 카드사선택
 	$(".blank").on("click", function () {
-		$("#abc").css("display","none");
+		$("#abc").hide();
 		$("#page").val(1);
 		$("#cmpNo").val($(this).prop("id")); //1~9카드사
-		console.log($("#cmpNo").val());
 		
 		reloadList();
 	});
@@ -590,31 +589,15 @@ $(document).ready(function() {
 	
 	
 	function addcard() {
-		var lists = "";
-		
-		$(".list_wrap tr td button").each(function() {
-			lists += "," + $(this).attr("cno");
-		});
-		
-		console.log(lists);
-		
-		lists = lists.substring(1);
-		
-		$("#addcardlist #lists").val(lists);
-		
 		var params = $("#addcardlist").serialize();
-		console.log(params);
+		
 		$.ajax({
 			url: "addcards",
 			type: "post",
 			dataType: "json",
 			data: params,
 			success: function (res) {
-				if(res.resMsg == "success") {
-					alert("완료");
-				} else {
-					alert("실패");
-				}
+				addLists();
 			},
 			error: function (request, status, error) {
 				console.log(error);
@@ -655,6 +638,16 @@ $(document).ready(function() {
 			
 		}
 		$(".list_wrap tbody").html(html);
+		
+		var lists = "";
+		
+		$(".list_wrap tr td button").on("click", function() {
+			lists = $(this).parents().parents().attr("cno");
+			console.log(lists);
+			$("#addcardlist #lists").val(lists);
+			
+			addcard();
+		});
 	}
 	
 	// 보유카드리스트
@@ -668,7 +661,6 @@ $(document).ready(function() {
 			data: params,
 			success: function (res) {
 				drawAddList(res.addlist);
-				alert("addlist");
 			},
 			error: function (request, status, error) {
 				console.log(error);
@@ -676,63 +668,54 @@ $(document).ready(function() {
 		});
 	}
 	
+	// 리스트 삭제
+	function deletelist() {
+		var params = $("#cardDelete").serialize();
+		 $.ajax({
+			url: "cardDeletes",
+			type: "post",
+			dataType: "json",
+			data: params,
+			success: function (res) {
+				addLists();
+			},
+			error: function (request, status, error) {
+				console.log(error);
+			}
+		}); 
+	}
+	
 	addLists();
 	
-	
+	// 보유카드 리스트
 	function drawAddList(addlist) {
 		var add = "";
 		console.log(addlist);
-		alert(addlist);
 		for(var i = 0; i < addlist.length; i++){
 			add += "<tr cNo=\"" + addlist[i].CARD_NO + "\">";
 			add += "<td>" + "" + "</td>";
 			add += "<td class=\"a\">" + addlist[i].CARD_TYPE + "</td>";
 			add += "<td class=\"b\">" + addlist[i].CARD_NAME + "</td>";
-			add += "<td>" + "<button value=\"추가\" class=\"addbtn\" id=addbtn>삭제</button>" + "</td>";
+			add += "<td>" + "<button value=\"추가\" class=\"deletebtn\" id=\"deletebtn\">삭제</button>" + "</td>";
 			add += "</tr>";
 			
+			
 		}
-			$(".add_wrap tbody").append(add); // 뒤로 이어 붙어줌 
+		
+		$(".add_wrap tbody").html(add);
+		
+		// 20210725
+		$(".add_wrap tr td button").on("click", function () {
+			var html = "";
+			var lists = $(this).parents().parents().attr("cno");
+			$("#cardDelete #lists").val(lists);
+			
+			deletelist();
+			
+			//addLists();
+		});
 	}
 	
-		/* $(".list_wrap tr td button").on("click",function () {
-			var addcnt = 0;
-			addcnt++;
-			if(addcnt > 5) {
-				alert("추가못함.")
-			} else {
-				add += "<tr cNo=\"" + $(this).attr("cNo") + "\">";
-				add += "<td>" + "" + "</td>";
-				add += "<td>" + cardType + "</td>";
-				add += "<td>" + cardName + "</td>";
-				add += "<td>" + "<button value=\"추가\" class=\"addbtn\" id=addbtn>삭제</button>" + "</td>";
-				add += "</tr>";
-				
-				$(".add_wrap tbody").append(add);
-				var add ="";
-			}
-		}); */
-
-	
-	// 추가하기
-/* 	$("#joinBtn").on("click", function () {
-		var listcard = $("#cardlists tbody tr").length;
-		var html = "";
-		for(var i = 0; i < listcard; i++) {
-			var lists = $("#cardlists tbody tr:eq(" + i + ")").attr("cNo");
-			html +="<input type=\"hidden\" name=\"cNo\" id=\"cmpNo\" value=\"1\"/>"
-		}
-		$("#addcardlist").append(html);
-		alert(lists);
-		alert("${sMNo}");
-		
-		if(lists != null) {
-			
-			addcard();
-		}
-	}); */
-	
-		
 	//페이징 그리기
 	function drawPaging(pb) {
 		var html = "";
@@ -908,7 +891,7 @@ $(document).ready(function() {
 						<form action="#" id="joinCard" method="post">   
 							<input type="hidden" name="memNo" value="${sMNo}" id="sMNo"/>
 							<input type="hidden" name="cmpNo" id="cmpNo" value="1" />
-							<input type="hidden" id="page" name="page" value=${page} />
+							<input type="hidden" id="page" name="page" value="${page}" />
 						</form><br/>
 	<!-- Form end -->
 						<div class="list_wrap">
@@ -930,13 +913,19 @@ $(document).ready(function() {
 							<tbody></tbody>
 						</table>
 						</div>
-						<div id="abc">왼쪽의 카드사를 눌러 추가해 주세요.</div>
+						<div id="abc">왼쪽의 카드사를 눌러 추가해 주세요.<br/>최대 5개까지 등록 가능합니다.</div>
 						<br/>
 						<div id="paging_wrap"></div>
 						<br/>
 						<div class="add_wrap">
 	<!-- Form -->
 							<form action="#" id="addcardlist" method="post">
+								<input type="hidden" id="lists" name="lists" />
+								<input type="hidden" id="mNo" name="mNo" value="${sMNo}"/>
+							</form><br/>
+	<!-- Form end -->
+	<!-- Form -->
+							<form action="#" id="cardDelete" method="post">
 								<input type="hidden" id="lists" name="lists" />
 								<input type="hidden" id="mNo" name="mNo" value="${sMNo}"/>
 							</form><br/>

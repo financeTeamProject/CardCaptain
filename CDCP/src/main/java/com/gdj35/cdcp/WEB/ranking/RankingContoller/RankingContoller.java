@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -155,16 +157,23 @@ public class RankingContoller {
 		  if(params.get("cardClick") != null) {
 			  int cnt = RankingiService.updateCnt(params);
 		  }
-			
+		
 		 // 카드 상세보기 화면 
-		  try {
+		  try { 
 			  if(params.get("cardNo") != null) { 
 		  
+				// 현재 페이지
+				int page = 1;
+										
+				if(params.get("page") != null) {
+					page = Integer.parseInt(params.get("page"));
+				}	
 				  List<HashMap<String, String>>
 				  data = RankingiService.getCView(params);
 				 
 				  mav.addObject("data", data);
-				 
+				  mav.addObject("page", page);
+				  
 				  mav.setViewName("ranking/cardview");
 			  }else {
 				  mav.setViewName("ranking/wrongApproach");
@@ -184,48 +193,90 @@ public class RankingContoller {
 			ObjectMapper mapper = new ObjectMapper();
 			Map<String, Object> modelMap = new HashMap<String, Object>();
 			
-			System.out.println("=============");
-			System.out.println(params);
-			System.out.println("=============");
-			
 			// 현재 페이지
-			  int page = 1;
-				
-			  if(params.get("page") != null) {
-					page = Integer.parseInt(params.get("page"));
-			  }
+			int page = Integer.parseInt(params.get("page"));
+			
 			  // 총 게시글 수
-			  int cnt = RankingiService.getReviewCnt(params);
+			int cnt = RankingiService.getReviewCnt(params);
 				
 			  // 페이징 계산
-			  PagingBean pb = iPagingService.getPagingBean(page, cnt, 4, 5);
-			  System.out.println(pb);
-			  params.put("startCnt", Integer.toString(pb.getStartCount()));
-			  params.put("endCnt", Integer.toString(pb.getEndCount()));
-			
-			 System.out.println(page);
-			  modelMap.put("page", page);
-			  modelMap.put("pb", pb);
-			  modelMap.put("cnt", cnt);
-			  
-			try {
+			 PagingBean pb = iPagingService.getPagingBean(page, cnt, 4, 5);
+
+			 params.put("startCnt", Integer.toString(pb.getStartCount()));
+			 params.put("endCnt", Integer.toString(pb.getEndCount()));
+
 			 List<HashMap<String, String>> review 
 			 	= RankingiService.reviewList(params);
-			 System.out.println("=============");
-			 System.out.println(review);
-			 System.out.println("=============");
 			  
 			  if(review != null) {
 				  modelMap.put("msg", "success");
 				  modelMap.put("review", review);
+				  modelMap.put("pb", pb);
+				  modelMap.put("cnt", cnt);
 				  
 			  }else {
 				  modelMap.put("msg", "error");
 			  }
-		 } catch(Throwable e) {
-			  		e.printStackTrace();
-		 }
+		
 			return mapper.writeValueAsString(modelMap);
 	  }
+	  // 리뷰작성 팝업
+	  @RequestMapping(value = "/reviewWrite", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+		@ResponseBody
+		public String reviewWrite(
+				@RequestParam HashMap<String, String> params) throws Throwable { 
+			ObjectMapper mapper = new ObjectMapper();
+			Map<String, Object> modelMap = new HashMap<String, Object>();
+			
+			System.out.println("=====리뷰작성 팝업=====");
+			System.out.println(params);
+			System.out.println("=====리뷰작성 팝업=====");
+			
+			int checkCnt = RankingiService.gethaveCard(params);
+			
+			List<HashMap<String, String>>
+			  data = RankingiService.getCView(params);
+			System.out.println(data);
+			
+			
+			if(data != null) {
+			
+				modelMap.put("msg", "success");
+				modelMap.put("data", data);
+				modelMap.put("checkCnt", checkCnt);
+			}else {
+				  modelMap.put("msg", "error");
+			  }
+			return mapper.writeValueAsString(modelMap);
+		}
+	  // 등록
+	  @RequestMapping(value="/reviewAdds", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+		
+		@ResponseBody
+		public String reviewAdds(
+				@RequestParam HashMap<String, String> params) throws Throwable{
+			
+			ObjectMapper mapper = new ObjectMapper();
+			Map<String, Object> modelMap = new HashMap<String, Object>();
+			
+			System.out.println("=====작성 뭐들고 나오냐=====");
+			System.out.println(params);
+			System.out.println("=====작성 뭐들고 나오냐=====");
+			
+			try {
+				int cnt = RankingiService.reviewAdd(params);
+				System.out.println(cnt);
+				if(cnt > 0) {
+					modelMap.put("msg", "success");
+				} else {
+					modelMap.put("msg", "failed");
+				}
+			} catch (Throwable e) {
+				e.printStackTrace();
+				modelMap.put("msg", "error");
+			}
+			
+			return mapper.writeValueAsString(modelMap);
+		}
 }
 

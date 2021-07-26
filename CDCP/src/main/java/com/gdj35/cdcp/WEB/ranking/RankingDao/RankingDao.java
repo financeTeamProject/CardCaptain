@@ -54,9 +54,6 @@ public class RankingDao implements RankingIDao{
 	@Override
 	public List<HashMap<String, String>> reviewList(HashMap<String, String> params) throws Throwable {
 		
-		System.out.println("======DAO=======");
-		System.out.println(params);
-		System.out.println("=============");
 		 
 		return sqlSession.selectList("R.reviewList", params);
 	}
@@ -64,6 +61,18 @@ public class RankingDao implements RankingIDao{
 	public int getReviewCnt(HashMap<String, String> params) throws Throwable {
 
 		return sqlSession.selectOne("R.getReviewCnt", params);
+	}
+	// 리뷰 작성
+	@Override
+	public int reviewAdd(HashMap<String, String> params) throws Throwable {
+		
+		return sqlSession.insert("R.reviewAdd", params);
+	}
+	// 보유카드 여부 확인
+	@Override
+	public int gethaveCard(HashMap<String, String> params) throws Throwable {
+		
+		return sqlSession.selectOne("R.gethaveCard", params);
 	}
 
 }

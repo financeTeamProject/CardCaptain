@@ -152,7 +152,7 @@ public class ContentController {
 		
 		return mav;
 	}
-	/*
+
 	@RequestMapping(value="/content") // 
 	public ModelAndView content(
 			@RequestParam HashMap<String, String> params,
@@ -173,7 +173,7 @@ public class ContentController {
 		
 		return mav;
 	}
-	*/
+	/*
 	  @RequestMapping(value = "/content") public ModelAndView content(
 	  
 	  @RequestParam HashMap<String, String> params, ModelAndView mav) { int page =
@@ -216,5 +216,5 @@ public class ContentController {
 
 		return mapper.writeValueAsString(modelMap);
 	}
-	 
+	 */
 }
