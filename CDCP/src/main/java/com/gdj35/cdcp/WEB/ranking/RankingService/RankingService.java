@@ -52,24 +52,32 @@ public class RankingService implements RankingIService {
 
 	@Override
 	public int updateCnt(HashMap<String, String> params) throws Throwable {
-		// TODO Auto-generated method stub
+		
 		return RankingiDao.updateCnt(params);
 	}
 
 	@Override
 	public List<HashMap<String, String>> reviewList(HashMap<String, String> params) throws Throwable {
-		System.out.println("======서비스=======");
-		 System.out.println(params);
-		 System.out.println("=============");
-		 
 		 
 		return RankingiDao.reviewList(params);
 	}
 
 	@Override
 	public int getReviewCnt(HashMap<String, String> params) throws Throwable {
-		// TODO Auto-generated method stub
+		
 		return RankingiDao.getReviewCnt(params);
+	}
+	// 리뷰 작성
+	@Override
+	public int reviewAdd(HashMap<String, String> params) throws Throwable {
+		
+		return RankingiDao.reviewAdd(params);
+	}
+	// 보유카드 여부 확인
+	@Override
+	public int gethaveCard(HashMap<String, String> params) throws Throwable {
+		
+		return RankingiDao.gethaveCard(params);
 	}
 
 

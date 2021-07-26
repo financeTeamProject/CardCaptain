@@ -1061,24 +1061,30 @@ $(document).ready(function(){
 			
 			reloadList();
 		});
-
+		// 리뷰 작성 버튼 클릭
 		$("#reviewLoginBtn").on("click", function(){
 			
-			makeWritePopup();
-			/* var params = $("#actionForm").serialize();
+			var params = $("#actionForm").serialize();
 			alert(params);
 			
 			$.ajax({
 				url:"reviewWrite",
 				type:"post",
 				dataType :"json",
+				data: params,
 				success : function (res) {
+					if(res.checkCnt == 1){
 					makeWritePopup(res.data);
+					} else {
+						alert("카드를 보유하고 있지 않습니다.");
+						reloadList();
+					}
 				},
 				error: function (request, status, error) {
 					console.log(error);
+					
 				}
-			}) */
+			})
 		});
 		// 리뷰 상세보기
 		
@@ -1236,27 +1242,31 @@ $(document).ready(function(){
 		$(".paging_area").html(html);
 	}
 		// 리뷰작성 팝업 그리기
-		function makeWritePopup(){
+		function makeWritePopup(data){
 			var html = "";
+			
 			
 			html += "<div class=\"pop_bg\"></div>";                                                                                                                
 			html += "<div class=\"review_popup\">";                                                                                                                 
 			html += "	<div class=\"pop_header\">카드리뷰</div>";                                                                                                  
-			html += "	<div class=\"pop_card\" id=\"popCardName\">[ 카드이름 ]</div>";                                                                         
-			html += "	<div class=\"block_form\">";                                                                                                               
+			html += "	<div class=\"pop_card\" id=\"popCardName\"> " + [ data[0].CARD_NAME ] + "</div>"; 
+			html += "	<form action=\"#\" id=\"addForm\" method=\"post\">";
+			html += "	<input type=\"hidden\" name=\"cardNo\" value=\"${data[0].CARD_NO}\"/>";
+			html += "	<div class=\"block_form\">";
+			html += "		<input type=\"hidden\" id=\"memberNo\" name=\"memNo\" value=\"${sMNo}\" >";
 			html += "		<label class=\"info_rabel\">작성자(닉네임) :</label>";                                                                                  
-			html += "		<div class=\"write_div\"> 닉네임 </div>";                                                                                               
+			html += "		<div class=\"write_div\"> ${sMNm} </div>";                                                                                               
 			html += "	</div>";                                                                                                                                  
 			html += "	<div class=\"block_form\">";                                                                                                                
 			html += "		<label class=\"info_rabel\" id=\"infoTitle\">제목 :</label>";                                                                             
 			html += "		<div class=\"write_div\">";                                                                                                             
-			html += "			<input type=\"text\" class=\"title_text\" id=\"title_text\" size=\"53\" />";                                                              
+			html += "			<input type=\"text\" class=\"title_text\" id=\"reviewTitleArea\" name=\"reviewTitle\" size=\"53\" />";                                                              
 			html += "		</div>";                                                                                                                              
 			html += "	</div>";                                                                                                                                  
 			html += "	<div class=\"block_form\">";                                                                                                                
 			html += "		<label class=\"info_rabel\" id=\"infoContent\">내용 :</label>";                                                                           
 			html += "		<div class=\"write_div\">";                                                                                                             
-			html += "			<textarea rows=\"5\" cols=\"56\" class=\"title_text\" id=\"title_text\"></textarea>";                                                     
+			html += "			<textarea rows=\"5\" cols=\"56\" class=\"title_text\" id=\"reviewTextArea\" name=\"reviewText\"></textarea>";                                                     
 			html += "		</div>";                                                                                                                              
 			html += "	</div>";                                                                                                                                  
 			html += "	<div class=\"block_form\">";                                                                                                                
@@ -1268,7 +1278,8 @@ $(document).ready(function(){
 			html += "			<label class=\"radio-inline\"> <input type=\"radio\" name=\"review_star\" id=\"review_star4\" value=\"4\">★★★★☆</label>";              
 			html += "			<label class=\"radio-inline\"> <input type=\"radio\" name=\"review_star\" id=\"review_star5\" value=\"5\" checked=\"checked\">★★★★★</label>";    
 			html += "		</div>";                                                                                                                              
-			html += "	</div>";                                                                                                                                  
+			html += "	</div>"; 
+			html += "	</form>";
 			html += "	<div class=\"block_form\">";                                                                                                               
 			html += "		<div class=\"butten_area\">";                                                                                                           
 			html += "			<input type=\"button\" value=\"작성\" class=\"popAreaBtn\" id=\"reportBtn\">";                                                            
@@ -1279,22 +1290,54 @@ $(document).ready(function(){
 			                                                                                                                                                    
 			$("body").prepend(html);
 			
-			$("#closeBtn").on("click", function(){                                                                                                              
-				closePopup();
+			// 작성 버튼 클릭
+			$("#reportBtn").on("click", function(){
+				
+				if($.trim($("#reviewTitleArea").val()) == ""){
+					alert("제목을 입력해 주세요.");
+					$("#reviewTitleArea").focus();
+				} else if($.trim($("#reviewTextArea").val()) == ""){
+					alert("비밀번호를 입력해 주세요.");
+					$("#reviewTextArea").focus();
+				}else {
+					var params = $("#addForm").serialize();
+					
+					$.ajax({
+						url: "reviewAdds", // 접속주소 (현재 저상태는 상대 경로이다)
+						type: "post", // 전송방식: get,post
+						dataType: "json", // 받아올 데이터 형식
+						data: params, //보낼 데이터(문자열 형태)
+						success: function(res){ // 성공 시 다음 함수 실행	
+							if(res.msg == "success"){
+								closePopup();
+								reloadList();
+							} else if(res.msg == "failed"){
+								alert("작성에 실패하였습니다.");
+							} else {
+								alert("작성중 문제가 발생하였습니다.");
+							}
+						},
+						error: function(request, status, error){ // 실패 시 다음 함수 실행
+							console.log(error);
+						}
+					}); // ajax end
+			}
+		}); // reportBtn click end
+		$("#closeBtn").on("click", function(){                                                                                                              
+			closePopup();
+		}); // closeBtn click end 
+		
+		// 팝업창 닫기 함수
+		function closePopup() {
+			$(".pop_bg").fadeOut(function(){
+				$(".pop_bg").remove();
 			});
 			
-			
-			// 팝업창 닫기 함수
-			function closePopup() {
-				$(".pop_bg").fadeOut(function(){
-					$(".pop_bg").remove();
-				});
-				
-				$(".review_popup").fadeOut(function(){
-					$(".review_popup").remove();
-				});
-			}
+			$(".review_popup").fadeOut(function(){
+				$(".review_popup").remove();
+			});
 		}
+	}
 		
 </script>
 </head>
@@ -1312,7 +1355,7 @@ $(document).ready(function(){
 	<div class="re" id="searchmem">ID/PW 찾기</div>
 	<div class="new" id="join">|&nbsp;&nbsp;회원 가입</div>
 </div>
-
+<div class="body">
 <!-- 헤더영역 -->
 	<div id="header">
 		<div id="headerWrap">
@@ -1448,6 +1491,7 @@ $(document).ready(function(){
 					<form action="#" id="actionForm" method="post">
 						<!-- 기본값들이 들어오게될거다 : hidden -->
 						<input type="hidden" id="page" name="page" value="${page}" ><!-- 검색시 반드시 필요 -->
+						<input type="hidden" id="memberNoCheck" name="memberNo" value="${sMNo}" >
 						<input type="hidden" name="cardNo" value="${data[0].CARD_NO}"/>
 					</form>
 					<c:choose>
@@ -1474,5 +1518,6 @@ $(document).ready(function(){
 			<div>Copyright © 2021-2031 CardCaptain All Rights Reserved.</div>
 		</div>
 	</div>
+</div>
 </body>
 </html>

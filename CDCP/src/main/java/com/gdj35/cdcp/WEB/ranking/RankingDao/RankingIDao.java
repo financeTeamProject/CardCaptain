@@ -23,6 +23,10 @@ public interface RankingIDao {
 
 	public int getReviewCnt(HashMap<String, String> params) throws Throwable;
 
+	public int reviewAdd(HashMap<String, String> params) throws Throwable;
+
+	public int gethaveCard(HashMap<String, String> params) throws Throwable;
+
 
 
 }

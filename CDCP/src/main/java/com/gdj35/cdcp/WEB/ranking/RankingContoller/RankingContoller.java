@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -225,19 +227,55 @@ public class RankingContoller {
 				@RequestParam HashMap<String, String> params) throws Throwable { 
 			ObjectMapper mapper = new ObjectMapper();
 			Map<String, Object> modelMap = new HashMap<String, Object>();
-			System.out.println(params);
 			
+			System.out.println("=====리뷰작성 팝업=====");
+			System.out.println(params);
+			System.out.println("=====리뷰작성 팝업=====");
+			
+			int checkCnt = RankingiService.gethaveCard(params);
 			
 			List<HashMap<String, String>>
 			  data = RankingiService.getCView(params);
 			System.out.println(data);
+			
+			
 			if(data != null) {
 			
 				modelMap.put("msg", "success");
 				modelMap.put("data", data);
+				modelMap.put("checkCnt", checkCnt);
 			}else {
 				  modelMap.put("msg", "error");
 			  }
+			return mapper.writeValueAsString(modelMap);
+		}
+	  // 등록
+	  @RequestMapping(value="/reviewAdds", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+		
+		@ResponseBody
+		public String reviewAdds(
+				@RequestParam HashMap<String, String> params) throws Throwable{
+			
+			ObjectMapper mapper = new ObjectMapper();
+			Map<String, Object> modelMap = new HashMap<String, Object>();
+			
+			System.out.println("=====작성 뭐들고 나오냐=====");
+			System.out.println(params);
+			System.out.println("=====작성 뭐들고 나오냐=====");
+			
+			try {
+				int cnt = RankingiService.reviewAdd(params);
+				System.out.println(cnt);
+				if(cnt > 0) {
+					modelMap.put("msg", "success");
+				} else {
+					modelMap.put("msg", "failed");
+				}
+			} catch (Throwable e) {
+				e.printStackTrace();
+				modelMap.put("msg", "error");
+			}
+			
 			return mapper.writeValueAsString(modelMap);
 		}
 }
