@@ -74,6 +74,12 @@ body {
 	line-height: 50px;
 	font-size: 16px;
 }
+.title1{
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	font-size: 16px;
+}
 .text {
 	width: 100%;
     height: 55px;
@@ -215,7 +221,9 @@ body {
     background-color: #0047AB;
     font-size: 13px;
     font-family: 'GmarketSansMedium';
-    margin-left: 15px;
+    float: right;
+    margin-top: 10px;
+}
 }
 .guide {
 	color: red;
@@ -414,7 +422,7 @@ $(document).ready(function() {
 		var memEmailOpt = $("#id_select_email option:selected").val();
 		var memGender = $.trim($("#mGender").val());
 		
-		if(memPhone == "") {
+ 		if(memPhone == "") {
 			$("#mPhone").focus();
 		} else if(memRRN == "") {
 			$("#mBirth").focus();
@@ -451,17 +459,18 @@ $(document).ready(function() {
  			});
 		}
 	});
-	
+});
+
+$(document).ready(function() {
+	// 비밀번호 찾기
 	$("#pwCheck").on("click", function () {
 		var memId = $.trim($("#mId").val());
 		var memEmail = $.trim($("#pwEmail").val());
 		var memEmailOpt = $("#pw_select_email option:selected").val();
 		
 		if(memId == "") {
-			alert("아이디");
 			$("#mId").focus();
 		} else if(memEmail == "") {
-			alert("이메일");
 			$("#pwEmail").focus();
 		} else {
 			$("#pw_Id").val($("#mId").val());
@@ -480,23 +489,23 @@ $(document).ready(function() {
  				data: params,
  				success: function (res) {
  					if(res.resMsg == "success") {
- 						no = res.data;
+ 						pw = res.mPw
  						code = res.temp;
-						alert(no, code);
+ 						
+						alert(code);
 						$("#pw_check").css("display", "inline");
-					
-						$("pw_codeBtn").on("click", function () {
 						
-						if($("#pw_codeTxt").val() == "") {
-							alert("코드를 입력해 주세요.");
-						} else if ($("#pw_codeTxt").val() != code) {
-							alert("인증코드가 일치하지 않습니다.");
-						} else if ($("#pw_codeTxt").val() == code) {
-							alert("인증코드가 일치합니다.");
-						}
+						$("#pw_codeBtn").on("click", function () {
+							if($("#pw_codeTxt").val() == "") {
+								alert("코드를 입력해 주세요.");
+							} else if ($("#pw_codeTxt").val() != code) {
+								alert("인증코드가 일치하지 않습니다.");
+							} else if ($("#pw_codeTxt").val() == code) {
+								$("#errorMsgEmail2").html("회원님의 비밀번호는  \"" + pw + "\"  입니다.");	
+								alert("인증코드가 일치합니다.");
+							}
 					});
 					
-					$("#emailTxt").html("*이메일 인증코드를 적어주세요.");	
  						
  					} else if(res.resMsg == "failed") {
  						alert("입력하신 회원님의 정보가 일치하지 않습니다.");
@@ -570,16 +579,15 @@ $(document).ready(function() {
 	<input type="hidden" name="pw_Id" id="pw_Id" value=""/>
 	<input type="hidden" name="pw_Email" id="pw_Email" value=""/>
 	<input type="hidden" name="pw_Address" id="pw_Address" value=""/>
-	<input type="hidden" name="findType" id="findType" value="" />
+	<input type="hidden" name="findType" id="findType" value="pw" />
 	<input type="hidden" name="checkEmail" id="checkEmail" value="" /><!-- 이메일 주소 -->
-	<input type="hidden" name="findType" id="findType" value="" /><!--  -->
 </form>
 <div class="back_main">
 	<div class="back_top">CARD CAPTAIN</div>
 	<div class="back_middle">
 		<div class="middle1">
 		<div class="middle_top">ID/PW를 찾아주세요.</div>
-		<div class="searchId">*아이디 찾기</div>
+		<div class="searchId">■&nbsp;&nbsp;아이디 찾기&nbsp;&nbsp;□</div>
 		<div class="title">전화번호
 			<div class="errorMsg" id="errorMsgTel"></div>
 		</div>
@@ -610,12 +618,12 @@ $(document).ready(function() {
 		<br/>
 		<br/>
 		<br/>
-		<div class="searchId">*비밀번호 찾기</div>
+		<div class="searchId">□&nbsp;&nbsp;비밀번호 찾기&nbsp;&nbsp;■</div>
 		<div class="title">아이디
 			<div class="errorMsg" id="errorMsgId"></div>
 		</div>
 		<input type="text" class="text" placeholder="아이디 입력" id="mId" />
-		<div class="title">이메일
+		<div class="title1">이메일
 			<div class="errorMsg" id="errorMsgEmail2"></div>
 		</div>
 		<div class="title">

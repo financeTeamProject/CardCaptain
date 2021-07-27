@@ -467,42 +467,51 @@ $(document).ready(function() {
 	/* 이메일 */
 	$("#mEmail").blur(function(){
 		var memEmail = $.trim($("#mEmail").val());
-
+		var memEmailOpt = $("#select_email option:selected").val();
+		
 		if (memEmail == "") {
    			$("#mEmail").focus();
 			$(".errorMsg").css("display","inline");
 			$("#errorMsgEmail").html("이메일을 입력해주세요.");
 		} else {
 			$("#errorMsgEmail").html("");
-			
- 			var params = $("#mEmail").serialize();
-
- 	 		$.ajax({
- 				url: "emailChecks",
- 				type: "post",
- 				dataType: "json",
- 				data: params,
- 				success: function (res) {
- 					if(res.resMsg == "success") {
- 						$(".errorMsg").css("display","inline");
- 						$("#errorMsgEmail").html("아이디 \"" + id + "\"로 가입되어있습니다.");
- 						$("#mEmail").val("");
- 						$("#mEmail").focus();
- 					} else {
- 						
- 					}	
-				},
-				error: function (request, status, error) {
- 					console.log(error);
- 				}
- 			});
 		}
+	});
+	
+	
+	$("#checkingEmailBtn").on("click",function() {
+		$("#memEmail").val($("#mEmail").val());
+		$("#memEmailOpt").val($("#select_email option:selected").val());
+		
+		var params = $("#checkEmails").serialize();
+
+ 		$.ajax({
+			url: "emailChecks",
+			type: "post",
+			dataType: "json",
+			data: params,
+			success: function (res) {
+				if(res.resMsg == "success") {
+					id = res.mId
+					
+					$(".errorMsg").css("display","inline");
+					$("#errorMsgEmail").html("아이디 \"" + id + "\"로 가입되어있습니다.");
+					$("#mEmail").val("");
+					$("#mEmail").focus();
+				} else {
+					emailCode();
+				}	
+		},
+		error: function (request, status, error) {
+				console.log(error);
+			}
+		});
 	});
 	
 
 	
    	/* 이메일 인증   */ 
-	$("#checkingEmailBtn").on("click",function() {
+	function emailCode() {
 		$("#checkEmail").val($("#mEmail").val() + $(".select_email option:selected").val());
 
 		var params = $("#checkEmailForm").serialize();
@@ -518,7 +527,6 @@ $(document).ready(function() {
 					$("#email_check").css("display","inline");
 					$(".errorMsg").css("display","none");
 					code = res.temp;
-					alert(code);
 					
 					$("#codeBtn").on("click", function () {
 						if($("#codeTxt").val() == "") {
@@ -532,7 +540,6 @@ $(document).ready(function() {
 						}
 					});
 					
-					//alert(res.temp);
 					$("#emailTxt").html("*이메일 인증코드를 적어주세요.");					
 				} else if (res = "failed") {
 					$("#emailTxt").html("*이메일 전송이 실패했습니다. 다시한 번 확인해 주세요.");	
@@ -543,7 +550,7 @@ $(document).ready(function() {
 					$("#emailTxt").html("*이메일 전송이 실패했습니다. 관리자에게 문의해 주세요");
 			}
 		});
-	});
+	}
    	
    	/* 다음버튼 */
 	$("#btn_next").on("click", function () {
@@ -580,6 +587,10 @@ $(document).ready(function() {
 	<input type="hidden" name="checkEmail" id="checkEmail" value="" /><!-- 이메일 주소 -->
 	<input type="hidden" name="findType" id="findType" value="join" /><!--  -->
 	<input type="hidden" name="randomNum" id="randomNum" value="" />
+</form>
+<form action="#" id="checkEmails">
+	<input type="hidden" name="mEmail" id="memEmail" value="" />
+	<input type="hidden" name="address" id="memEmailOpt" value="" />
 </form>
 <div class="back_main">
    <div class="back_top">CARD CAPTAIN</div>
@@ -626,7 +637,7 @@ $(document).ready(function() {
 	            	<option value="@naver.com">naver.com</option>
 	            	<option value="@google.com">google.com</option>
 	         	</select>
-	         	<input type="button" id="checkingEmailBtn" value="인증하기" />
+	         	<input type="button" id="checkingEmailBtn" value="확인" />
 				<div id="email_check">
 					<input type="text" id="codeTxt" class="checkingEmailNum" placeholder="인증코드" />
 					<input type="button" id="codeBtn" class="checkingCodeBtn" value="코드확인" />

@@ -7,16 +7,6 @@
 		FROM CARDS
 		WHERE 1=1
 		AND CARD_CMP_NO = ${cmpNo}
-		<if test="searchTxt != null and searchTxt != ''">
-         	<choose>
-            	<when test="searchGbn == 1">
-            		AND CARD_NAME LIKE '%' || #{searchTxt} || '%'
-            	</when>
-            		<when test="searchGbn == 2">
-            		AND CARD_NO LIKE '%' || #{searchTxt} || '%'
-            	</when>
-         	</choose>
-    	</if>
 	</select>
 
 	<select id="getList" parameterType="hashmap" resultType="hashmap">
