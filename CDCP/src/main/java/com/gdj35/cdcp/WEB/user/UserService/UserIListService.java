@@ -20,4 +20,8 @@ public interface UserIListService {
 
 	public int memUpdate(HashMap<String, String> params) throws Throwable;
 
+	public int mCnt(HashMap<String, String> params) throws Throwable;
+
+	public List<HashMap<String, String>> mList(HashMap<String, String> params) throws Throwable;
+
 }

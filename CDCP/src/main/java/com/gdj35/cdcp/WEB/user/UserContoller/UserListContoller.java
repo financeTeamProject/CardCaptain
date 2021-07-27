@@ -155,6 +155,35 @@ public class UserListContoller {
 		
 	return mav;
 	}
+	
+	// 회원 목록 리스트
+		@RequestMapping(value="/mLists",
+				method = RequestMethod.POST,
+				produces = "text/json;charset=UTF-8")
+		@ResponseBody
+		public String mLists(
+				@RequestParam HashMap<String, String> params) throws Throwable{
+			ObjectMapper mapper = new ObjectMapper();
+			Map<String, Object> modelMap = new HashMap<String, Object>();
+			
+			int page = Integer.parseInt(params.get("page"));
+			
+			// 페이징
+			int cnt = useriListService.mCnt(params);
+			
+			PagingBean pb = iPagingService.getPagingBean(page, cnt, 15 , 5);
+			
+			params.put("startCnt", Integer.toString(pb.getStartCount()));
+			params.put("endCnt", Integer.toString(pb.getEndCount()));
+			
+			// 리스트
+			List<HashMap<String, String>> list = useriListService.mList(params);
+			
+			modelMap.put("list", list);
+			modelMap.put("pb", pb);
+			
+			return mapper.writeValueAsString(modelMap);
+		}
 }
 
 
