@@ -80,4 +80,19 @@ public class SearchDao implements SearchIDao {
 	public List<HashMap<String, String>> compareList(String data) throws Throwable {
 		return sql.selectList("search.compareList", data);
 	}
+
+	@Override
+	public int cardDelete(HashMap<String, String> params) throws Throwable {
+		return sql.update("search.cardDelete", params);
+	}
+
+	@Override
+	public int cardBenefitDelete(HashMap<String, String> params) throws Throwable {
+		return sql.update("search.cardBenefitDelete", params);
+	}
+
+	@Override
+	public List<HashMap<String, String>> cardUpdatePop(HashMap<String, String> params) throws Throwable {
+		return sql.selectList("search.cardUpdatePop", params);
+	}
 }

@@ -30,4 +30,10 @@ public interface SearchIService {
 	public List<HashMap<String, String>> listpagingDistinct(HashMap<String, String> params) throws Throwable;
 
 	public List<HashMap<String, String>> compareList(String data) throws Throwable;
+
+	public int cardDelete(HashMap<String, String> params) throws Throwable;
+
+	public int cardBenefitDelete(HashMap<String, String> params) throws Throwable;
+
+	public List<HashMap<String, String>> cardUpdatePop(HashMap<String, String> params) throws Throwable;
 }

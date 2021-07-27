@@ -185,4 +185,23 @@
                     		 AND C.DEL_CHECK=1
 		WHERE C.CARD_NO IN (${value})
 	</select>
+	
+	<update id="cardDelete" parameterType="hashmap">
+		UPDATE CARDS SET DEL_CHECK = 2
+		WHERE CARD_NO = #{delNo}
+	</update>
+	
+	<update id="cardBenefitDelete" parameterType="hashmap">
+		UPDATE CARDBENEFITS SET DEL_CHECK = 2
+		WHERE CARD_NO = #{delNo}
+	</update>
+	
+	<select id="cardUpdatePop" parameterType="hashmap" resultType="hashmap">
+		SELECT C.CARD_NO,C.CARD_CMP_NO,C.CARD_NAME,C.CARD_APPLY_URL,C.CARD_IMG_URL,C.CARD_SUMMARY,C.CARD_TYPE AS C_TYPE,T.CARD_TYPE AS T_TYPE,T.CARD_TYPE_NO,B.BENEFIT_NO,B.BENEFIT_TOP,B.BENEFIT_MID,B.DETAIL_INFO,B.SHOP_INFO
+		FROM CARDS C INNER JOIN CARDTYPES T
+	                    	 ON C.CARD_NO = T.CARD_NO AND C.DEL_CHECK=1
+					 INNER JOIN CARDBENEFITS B
+	                    	 ON T.CARD_NO = B.CARD_NO AND B.DEL_CHECK=1
+		WHERE C.CARD_NO = #{cardUpNo}
+	</select>
 </mapper>
