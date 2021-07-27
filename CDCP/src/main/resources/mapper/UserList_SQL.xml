@@ -47,4 +47,10 @@
 		AND MEMBER_NO = #{mNo}
 	</delete>
 	
+	<delete id="memUpdate" parameterType="hashmap">
+		UPDATE MEMBER_INFO 
+		SET MEMBER_PW = #{mPw}, NICKNAME = #{mNn}
+		WHERE MEMBER_NO = #{memNo}
+	</delete>
+	
 </mapper>

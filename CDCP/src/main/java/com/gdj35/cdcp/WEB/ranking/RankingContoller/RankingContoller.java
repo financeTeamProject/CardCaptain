@@ -61,31 +61,11 @@ public class RankingContoller {
 		return mav;
 	}
 
-
-	/*
-	 * // 신용카드 top20 페이지
-	 * 
-	 * @RequestMapping(value="/creditTop20") public ModelAndView creditTop20(
-	 * 
-	 * @RequestParam HashMap<String, String> params, ModelAndView mav) throws
-	 * Throwable{
-	 * 
-	 * List<HashMap<String, String>> list = RankingiService.getRCredit(params);
-	 * 
-	 * mav.addObject("list", list);
-	 * 
-	 * mav.setViewName("ranking/creditTop20");
-	 * 
-	 * return mav; }
-	 */
-
-
 //	체크카드 top10  페이지
 	@RequestMapping(value="/checkTop10")
 	public ModelAndView checkTop10(
 			@RequestParam HashMap<String, String> params,
 			ModelAndView mav) throws Throwable {
-		
 		
 		List<HashMap<String, String>> list 
 			= RankingiService.getRCheck(params);
@@ -102,7 +82,7 @@ public class RankingContoller {
 	public ModelAndView cardcompany_top3 (
 			@RequestParam HashMap<String, String> params,
 			ModelAndView mav) throws Throwable{
-	System.out.println(params);
+		
 		List<HashMap<String, String>> top1
 			= RankingiService.cmpTop1(params);
 		List<HashMap<String, String>> top2
@@ -126,7 +106,6 @@ public class RankingContoller {
 	@ResponseBody
 	public String cardcompany_top3s(
 			@RequestParam HashMap<String, String> params) throws Throwable {
-		System.out.println(params);
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		
@@ -183,13 +162,13 @@ public class RankingContoller {
 		  }
 	  return mav; 
 	 }
+	  // 리뷰 목록 영역 
 	  @RequestMapping(value="/cardviews",
 				method = RequestMethod.POST,
 				produces = "text/json;charset=UTF-8")
 		@ResponseBody
 		public String cardviews(
 				@RequestParam HashMap<String, String> params) throws Throwable {
-			System.out.println(params);
 			ObjectMapper mapper = new ObjectMapper();
 			Map<String, Object> modelMap = new HashMap<String, Object>();
 			
@@ -228,16 +207,10 @@ public class RankingContoller {
 			ObjectMapper mapper = new ObjectMapper();
 			Map<String, Object> modelMap = new HashMap<String, Object>();
 			
-			System.out.println("=====리뷰작성 팝업=====");
-			System.out.println(params);
-			System.out.println("=====리뷰작성 팝업=====");
-			
 			int checkCnt = RankingiService.gethaveCard(params);
 			
 			List<HashMap<String, String>>
 			  data = RankingiService.getCView(params);
-			System.out.println(data);
-			
 			
 			if(data != null) {
 			
@@ -259,10 +232,6 @@ public class RankingContoller {
 			ObjectMapper mapper = new ObjectMapper();
 			Map<String, Object> modelMap = new HashMap<String, Object>();
 			
-			System.out.println("=====작성 뭐들고 나오냐=====");
-			System.out.println(params);
-			System.out.println("=====작성 뭐들고 나오냐=====");
-			
 			try {
 				int cnt = RankingiService.reviewAdd(params);
 				System.out.println(cnt);
@@ -278,5 +247,37 @@ public class RankingContoller {
 			
 			return mapper.writeValueAsString(modelMap);
 		}
+	// 상세보기
+		  @RequestMapping(value="/reviewDetail", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+			
+			@ResponseBody
+			public String reviewDetail(
+					@RequestParam HashMap<String, String> params) throws Throwable{
+				
+				ObjectMapper mapper = new ObjectMapper();
+				Map<String, Object> modelMap = new HashMap<String, Object>();
+				
+				System.out.println("=====상세 뭐들고 나오냐=====");
+				System.out.println(params);
+				System.out.println("=====상세 뭐들고 나오냐=====");
+				
+				try {
+					if(params != null){
+					
+					HashMap<String, String> detail 
+						= RankingiService.detailList(params);
+					
+					modelMap.put("msg", "success");
+					modelMap.put("detail", detail);
+				}else {
+						modelMap.put("msg", "failed");
+					}
+				} catch (Throwable e) {
+					e.printStackTrace();
+					modelMap.put("msg", "error");
+				}
+				
+				return mapper.writeValueAsString(modelMap);
+			}
 }
 
