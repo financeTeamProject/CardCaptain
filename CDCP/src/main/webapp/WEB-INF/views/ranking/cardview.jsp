@@ -712,9 +712,10 @@
 					.review_like{
 						width: 10%;
 					}
-						#likeImg{
+						.like_good_Img{
 							position: relative;
 							top: 25px;
+							cursor: pointer;
 						}
 						#likeCnt{
 							display: inline-block;
@@ -1087,7 +1088,7 @@ $(document).ready(function(){
 			$("#memNo").attr("action");
 			$("#memNo").submit();
 		});
-		
+// 카드 신청 수 증가		
 		$("#bef_btn").on("click", function(){
 			$("#goForm").submit();
 		});
@@ -1178,13 +1179,32 @@ $(document).ready(function(){
 			html += "<div class=\"content_con\">" + review[i].TEXT + "</div>";
 			html += "</div>";
 			html += "<div class=\"review_like\">";
-			html += "<img id=\"likeImg\" alt=\"좋아요 \" src=\"resources/images/ranking/icon/like_icon_bule.png\" width=\"50px\" height=\"50px\">";
-			html += "<div id=\"likeCnt\">20</div>";
+			html += "<img class=\"like_good_Img\" id=" + review[i].REVIEW_NO + " alt=\"좋아요 \" src=\"resources/images/ranking/icon/like_icon_bule.png\" width=\"50px\" height=\"50px\">";
+			html += "<div id=\"likeCnt\">" + review[i].LIKE_CNT +"</div>";
 			html += "</div>";
 			html += "</div>";
-			
 		}
+				
 			$(".review_list_wrap").html(html);
+			
+// 리뷰 좋아요 클릭
+			$(".like_good_Img").on("click", function(){
+				var params = "reviewNo=" + $(this).attr("id");
+				
+				$.ajax({
+					url:"cardviews",
+					type:"post",
+					dataType :"json",
+					data: params,
+					success : function () {
+						reloadlist();
+					},
+					error: function (request, status, error) {
+						console.log(error);
+						
+					}
+				})
+			});
 			
 // 상세보기 클릭
 			$(".review_content").on("click", function(){
@@ -1311,6 +1331,8 @@ $(document).ready(function(){
 				}); // updateBtn click end
 				
 			} // 리뷰상세보기 팝업 그리기 끝
+			
+// 리뷰상세보기 팝업 그리기			
 /* ====================================================================================== */			
 			
 //리뷰 수정 페이지
@@ -1414,6 +1436,9 @@ $(document).ready(function(){
 					
 				} // 리뷰 수정 페이지 끝
 		}
+//리뷰 수정 페이지 끝
+
+// 리뷰 목록 그리기 끝
 /* ====================================================================================== */		
 		
 // 페이징 그리기
@@ -1445,7 +1470,9 @@ $(document).ready(function(){
 		
 		$(".paging_area").html(html);
 	}
+// 페이징 그리기 끝
 /* ====================================================================================== */	
+
 // 리뷰작성 팝업 그리기
 		function makeWritePopup(data){
 			var html = "";
@@ -1544,6 +1571,7 @@ $(document).ready(function(){
 			});
 		}
 	}
+// 리뷰작성 팝업 그리기 끝
 /* ====================================================================================== */	
 
 </script>
@@ -1673,7 +1701,7 @@ $(document).ready(function(){
 			<div class="review_top">
 				<!-- 사용자 평점 영역 -->
 				<div class="star_area">
-					<h2>사용자 총 평점</h2>
+					<h2>사용자 총 평점&nbsp;&nbsp;${getStar}/5 </h2>
 					<div class="star-rating">
 						<span style ="width:${starCnt}%"></span>
 					</div>

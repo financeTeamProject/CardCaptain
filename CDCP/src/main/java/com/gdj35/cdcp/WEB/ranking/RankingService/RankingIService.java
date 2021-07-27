@@ -35,6 +35,8 @@ public interface RankingIService {
 
 	public float starTotal(HashMap<String, String> params) throws Throwable;
 
+	public int updatelikeCnt(HashMap<String, String> params) throws Throwable;
+
 
 
 }

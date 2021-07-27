@@ -98,5 +98,11 @@ public class RankingDao implements RankingIDao{
 		
 		return sqlSession.selectOne("R.starTotal", params);
 	}
+	// 좋아요 수 올리기
+	@Override
+	public int updatelikeCnt(HashMap<String, String> params) throws Throwable {
+		
+		return sqlSession.update("R.updatelikeCnt", params);
+	}
 
 }

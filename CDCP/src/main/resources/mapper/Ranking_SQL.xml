@@ -91,17 +91,19 @@
 	
 <!-- 카드별 리뷰 목록  -->
 	<select id="reviewList" parameterType="hashmap" resultType="hashmap">
-		SELECT CC.REVIEW_NO, CC.MEMBER_NO, CC.NICKNAME, CC.CARD_NO, CC.CARD_NAME, CC.TITLE, CC.TEXT, CC.SCORE, CC.ADD_DATE
-		FROM(SELECT C.REVIEW_NO, C.MEMBER_NO, C.NICKNAME, C.CARD_NO, C.CARD_NAME, C.TITLE, C.TEXT, C.SCORE,
+		SELECT CC.REVIEW_NO, CC.MEMBER_NO, CC.NICKNAME, CC.CARD_NO, CC.CARD_NAME, CC.TITLE, CC.TEXT, CC.SCORE, CC.ADD_DATE, CC.LIKE_CNT
+		FROM(SELECT C.REVIEW_NO, C.MEMBER_NO, C.NICKNAME, C.CARD_NO, C.CARD_NAME, C.TITLE, C.TEXT, C.SCORE, C.LIKE_CNT,
 				             C.ADD_DATE, ROW_NUMBER() OVER(ORDER BY C.REVIEW_NO DESC) AS RNK
 		     FROM(SELECT DISTINCT HCR.REVIEW_NO, HCR.MEMBER_NO, MI.NICKNAME, HCR.CARD_NO, C.CARD_NAME, HCR.TITLE, HCR.TEXT, HCR.SCORE,
-				                 TO_CHAR(HCR.ADD_DATE, 'YYYY-MM-DD') AS ADD_DATE
+				      NVL(RG.LIKE_CNT,0) AS LIKE_CNT, TO_CHAR(HCR.ADD_DATE, 'YYYY-MM-DD') AS ADD_DATE
 		          FROM HAVECARDREVIEWS HCR INNER JOIN HAVECARDS HC
 		                                           ON HCR.CARD_NO = HC.CARD_NO
 		                                   INNER JOIN CARDS C
 		                                           ON HC.CARD_NO = C.CARD_NO
 		                                   INNER JOIN MEMBER_INFO MI
 		                                           ON HCR.MEMBER_NO = MI.MEMBER_NO
+		                                   LEFT OUTER JOIN REVIEWGOOD RG
+                                          		   ON HCR.REVIEW_NO = RG.REVIEW_NO
 		         WHERE HCR.CARD_NO = #{cardNo}
 		         AND HCR.DEL_CHECK = 1) C) CC
 		WHERE CC.RNK BETWEEN #{startCnt} AND #{endCnt}
@@ -113,6 +115,14 @@
 		FROM REVIEWGOOD
 		WHERE REVIEW_NO = 8
 	</select>
+	
+<!-- 좋아요 수 업데이트  -->
+	<update id="updatelikeCnt" parameterType="hashmap">
+		UPDATE REVIEWGOOD SET LIKE_CNT = (SELECT NVL(LIKE_CNT,0) + 1
+                                  FROM REVIEWGOOD
+                                  WHERE REVIEW_NO = #{reviewNo})                    
+		WHERE REVIEW_NO = #{reviewNo}
+	</update>
 	
 <!-- 리뷰 작성  -->
 	<insert id="reviewAdd" parameterType="hashmap">
