@@ -109,7 +109,9 @@ public class ContentController {
 		
 		
 		if(params != null) {
-			
+			System.out.println("=====================");
+			System.out.println(params);
+			System.out.println("=====================");
 		mav.addObject("list", list);
 		System.out.println(list);
 		mav.setViewName("contents/Ctest2");
