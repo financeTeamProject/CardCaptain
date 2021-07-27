@@ -40,11 +40,11 @@ public class Mail {
 	        
 	        if (type.equals("pw")) {
 	        	mailTitle = "[ 카드캡틴 비밀번호 찾기 ]";
-	        	mailContent = "가입하실 때 입력하신 비밀번호는 " + sendTxt + "를 입력해 주세요.";
+	        	mailContent = "비밀번호 찾기를 완료하시려면 인증코드 : " + sendTxt + "를 입력해 주세요.";
 	        	sendTxt = "success";
 	        } else if(type.equals("join")) {
 	        	mailTitle = "[ 카드캡틴 회원가입 ]";
-	        	mailContent = "회원가입을 축하합니다." + sendTxt + "를 입력해 주세요.";
+	        	mailContent = "회원가입을 축하합니다. 인증코드 : " + sendTxt + "를 입력해 주세요.";
 	        	sendTxt = "success";
 			}else {
 	        	sendTxt = "failed";

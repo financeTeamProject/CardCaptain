@@ -145,7 +145,7 @@ body{
   position:absolute;
   top:0;
   right:0;
-  height:2px;
+  height:1px;
   width:0;
   background: #1AAB8A;
   transition:400ms ease all;
@@ -914,7 +914,6 @@ $(document).ready(function() {
 			add += "<td class=\"b\">" + addlist[i].CARD_NAME + "</td>";
 			add += "<td>" + "<button value=\"추가\" class=\"deletebtn\" id=\"deletebtn\">삭제</button>" + "</td>";
 			add += "</tr>";
-			
 			
 		}
 		

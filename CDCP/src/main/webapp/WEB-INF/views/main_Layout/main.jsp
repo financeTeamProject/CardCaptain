@@ -279,93 +279,7 @@ body {
 }
 
 	/* 풋터 종료 */
-/*
-	//슬라이드 화면부분 ~165번째줄
-*{margin:0;padding:0;}
-#content {
-	width: 1600px;
-    height: 980px;
-    margin: 0 auto;
-}
-ul,li{
-	list-style:none;
-}
-.slide{
-	height:70%;
-	overflow:hidden;
-	position:relative;
-}
-.slide ul{
-	width:calc(100% * 4);
-	display:flex;transition:1s;
-}
-.slide li{
-	width:calc(100% / 4);
-	height:1000px;
-}
-.slide li:nth-child(1){background:#f5f6f7;}
-.slide li:nth-child(2){background:#9565ab3b;}
-.slide li:nth-child(3){background:#81ab653b;}
-.slide li:nth-child(4){background:#6589ab3b;}
-input#pos1,#pos2,#pos3,#pos4 {
-	display: none;
-}
-	// 라벨 부분 ~184번째줄
-.slide .bullet{
-	position:absolute;
-	bottom:20px;
-	left:0;
-	right:0;
-	text-align:center;
-	z-index:10;
-}
-.slide .bullet label{
-	width:10px;
-	height:10px;
-	border-radius:10px;
-	border:2px solid #666;
-	display:inline-block;
-	background:#fff;
-	font-size:0;
-	transition:0.5s;
-	cursor:pointer;
-}
-	// 메인 1페이지 부분
-.top {
-	height:5%;
-	width: 100%;
-}
-.bottom {
-	height: 59%;
-	width: 85%;
-	background-color: lightgray;
-	margin: 0 auto;
-	display: flex;
-}
-.bottom_Left {
-	display:inline-block;
-	vertical-align: top;
-	height: 100%;
-	width: 50%;
-}
-.bottom_right {
-	display:inline-block;
-	vertical-align: top;
-	height: 100%;
-	width: 50%
-}
 
-	// 슬라이드 조작
-#pos1:checked ~ ul{margin-left:0;}
-#pos2:checked ~ ul{margin-left:-100%;}
-#pos3:checked ~ ul{margin-left:-200%;}
-#pos4:checked ~ ul{margin-left:-300%;}
-	// bullet 조작
-#pos1:checked ~ .bullet label:nth-child(1),
-#pos2:checked ~ .bullet label:nth-child(2),
-#pos3:checked ~ .bullet label:nth-child(3),
-#pos4:checked ~ .bullet label:nth-child(4){background:#666;}
- */
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
@@ -502,32 +416,6 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
-<!-- 		<div id="content">
-		<div class="slide">
-		<input type="radio" name="pos" id="pos1" checked>
-		<input type="radio" name="pos" id="pos2">
-		<input type="radio" name="pos" id="pos3">
-		<input type="radio" name="pos" id="pos4">
-		<ul>
-			<li>
-				<div class="top"></div>
-				<div class="bottom">
-			 		<div class="bottom_Left"></div>
-			 		<div class="bottom_right"></div>
-				</div>
-			</li>
-			<li></li>
-			<li></li>
-			<li></li>
-	    </ul>
-	    <p class="bullet">
-	      <label for="pos1">1</label>
-	      <label for="pos2">2</label>
-	      <label for="pos3">3</label>
-	      <label for="pos4">4</label>
-	    </p>
-	  </div>
-	</div> -->
 	<div id="footer">
 		<div id="footerMenu">
 			<div id="footerLogo"></div>

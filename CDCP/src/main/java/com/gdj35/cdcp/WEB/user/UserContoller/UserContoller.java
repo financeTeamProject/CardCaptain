@@ -84,6 +84,7 @@ public class UserContoller {
 			@RequestParam HashMap<String, String> params) throws Throwable {
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Object> modelMap = new HashMap<String, Object>();
+		System.out.println(params);
 		
 		try {
 			int cnt = useriService.joinM(params);
@@ -137,6 +138,7 @@ public class UserContoller {
 	}
 	
 	/* pw찾기 - 데이터 가져오기 */
+	@SuppressWarnings("null")
 	@RequestMapping(value="mData2s",
 			method = RequestMethod.POST,
 			produces = "text/json;charset=UTF-8")
@@ -150,10 +152,14 @@ public class UserContoller {
 		
 		HashMap<String,String> data = useriService.getPw(params);
 		
-		if(data != null) {
+		System.out.println(data);
+		System.out.println(params);
+		
+		if(data == null) {
 			modelMap.put("resMsg", "failed");
+			System.out.println("123");
 			
-		} else { //(회원가입) 조건에 맞는 모든 값 입력 - 인증코드 발송 - 일치시 joincard로 이동.
+		} else if(params.get("findType").equals("pw")) { //(회원가입) 조건에 맞는 모든 값 입력 - 인증코드 발송 - 일치시 joincard로 이동.
 			String temp = RandomStringUtils.randomAlphanumeric(6); // 랜덤값 6자리 생성 후 temp에 담음.
 			String result = Mail.sendMail(params.get("checkEmail"), params.get("findType"),temp); // Mail.sendMail조건에 맞게 값을 담고 Mail.java로 연계. 보내는 값 = "랜덤값"
 			
@@ -197,17 +203,15 @@ public class UserContoller {
 	public String emailChecks(
 			HttpSession session,
 			@RequestParam HashMap<String,String> params) throws Throwable {
-		System.out.println(params);
 		ObjectMapper mapper = new ObjectMapper();
-		
 		Map<String, Object> modelMap = new HashMap<String, Object>();
-		
 		HashMap<String,String> data = useriService.emailCheck(params);
 		
 		if(data != null) {
 			session.setAttribute("sMId", data.get("MEMBER_ID"));
 			
 			modelMap.put("resMsg", "success");
+			modelMap.put("mId", data.get("MEMBER_ID"));
 		} else {
 			modelMap.put("resMsg", "failed");
 		}
@@ -242,8 +246,9 @@ public class UserContoller {
 			} else if (params.get("findType").equals("join")) { //(회원가입) 조건에 맞는 모든 값 입력 - 인증코드 발송 - 일치시 joincard로 이동.
 				String temp = RandomStringUtils.randomAlphanumeric(6); // 랜덤값 6자리 생성 후 temp에 담음.
 				String result = Mail.sendMail(params.get("checkEmail"), params.get("findType"),temp); // Mail.sendMail조건에 맞게 값을 담고 Mail.java로 연계. 보내는 값 = "랜덤값"
-					modelMap.put("result", result);
-					modelMap.put("temp", temp);
+				modelMap.put("result", result);
+				modelMap.put("temp", temp);
+				
 			} else {
 				modelMap.put("result", "failed");
 			}
