@@ -74,10 +74,22 @@ public class RankingDao implements RankingIDao{
 		
 		return sqlSession.selectOne("R.gethaveCard", params);
 	}
+	// 상세보기
 	@Override
 	public HashMap<String, String> detailList(HashMap<String, String> params) throws Throwable {
 		
 		return sqlSession.selectOne("R.detailList", params);
+	}
+	// 리뷰 삭제
+	@Override
+	public int deleteReview(HashMap<String, String> params) throws Throwable {
+		
+		return sqlSession.delete("R.deleteReview", params);
+	}
+	@Override
+	public int updateReview(HashMap<String, String> params) throws Throwable {
+		
+		return sqlSession.update("R.updateReview", params);
 	}
 
 }

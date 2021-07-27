@@ -164,8 +164,8 @@ public class RankingContoller {
 	 }
 	  // 리뷰 목록 영역 
 	  @RequestMapping(value="/cardviews",
-				method = RequestMethod.POST,
-				produces = "text/json;charset=UTF-8")
+					 method = RequestMethod.POST,
+					 produces = "text/json;charset=UTF-8")
 		@ResponseBody
 		public String cardviews(
 				@RequestParam HashMap<String, String> params) throws Throwable {
@@ -200,7 +200,9 @@ public class RankingContoller {
 			return mapper.writeValueAsString(modelMap);
 	  }
 	  // 리뷰작성 팝업
-	  @RequestMapping(value = "/reviewWrite", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+	  @RequestMapping(value = "/reviewWrite", 
+					  method = RequestMethod.POST, 
+					  produces = "text/json;charset=UTF-8")
 		@ResponseBody
 		public String reviewWrite(
 				@RequestParam HashMap<String, String> params) throws Throwable { 
@@ -223,8 +225,10 @@ public class RankingContoller {
 			return mapper.writeValueAsString(modelMap);
 		}
 	  // 등록
-	  @RequestMapping(value="/reviewAdds", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
-		
+	  @RequestMapping(value="/reviewAdds",
+					  method = RequestMethod.POST,
+					  produces = "text/json;charset=UTF-8")
+				
 		@ResponseBody
 		public String reviewAdds(
 				@RequestParam HashMap<String, String> params) throws Throwable{
@@ -257,9 +261,6 @@ public class RankingContoller {
 				ObjectMapper mapper = new ObjectMapper();
 				Map<String, Object> modelMap = new HashMap<String, Object>();
 				
-				System.out.println("=====상세 뭐들고 나오냐=====");
-				System.out.println(params);
-				System.out.println("=====상세 뭐들고 나오냐=====");
 				
 				try {
 					if(params != null){
@@ -271,6 +272,89 @@ public class RankingContoller {
 					modelMap.put("detail", detail);
 				}else {
 						modelMap.put("msg", "failed");
+					}
+				} catch (Throwable e) {
+					e.printStackTrace();
+					modelMap.put("msg", "error");
+				}
+				
+				return mapper.writeValueAsString(modelMap);
+			}
+		// 상세보기 -> 수정페이지
+		  @RequestMapping(value="/reviewUpdate", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+			
+			@ResponseBody
+			public String reviewUpdate(
+					@RequestParam HashMap<String, String> params) throws Throwable{
+				
+				ObjectMapper mapper = new ObjectMapper();
+				Map<String, Object> modelMap = new HashMap<String, Object>();
+				
+				try {
+					if(params.get("reviewNo") != null) {
+					
+					HashMap<String, String> detail 
+						= RankingiService.detailList(params);
+					
+					modelMap.put("msg", "success");
+					modelMap.put("detail", detail);
+					} else {
+						modelMap.put("msg", "failed");
+					}
+				} catch (Throwable e) {
+					e.printStackTrace();
+					modelMap.put("msg", "error");
+				}
+				
+				return mapper.writeValueAsString(modelMap);
+			}
+		// 수정페이지 -> 수정 
+			@RequestMapping(value="/reviewUpdates",
+							method = RequestMethod.POST,
+							produces = "text/json;charset=UTF-8")
+			
+			@ResponseBody
+			public String reviewUpdates(
+					@RequestParam HashMap<String, String> params) throws Throwable{
+				
+				ObjectMapper mapper = new ObjectMapper();
+				Map<String, Object> modelMap = new HashMap<String, Object>();
+				
+				try {
+					if(params.get("reviewNo") != null) {
+					
+						int cnt = RankingiService.updateReview(params);
+						
+						if(cnt > 0) {
+							modelMap.put("msg", "success");
+						} else {
+							modelMap.put("msg", "error");
+						}
+					}
+				} catch (Throwable e) {
+					e.printStackTrace();
+					modelMap.put("msg", "error");
+				}
+				
+				return mapper.writeValueAsString(modelMap);
+			}
+		  // 리뷰 삭제
+		  @RequestMapping(value="/reviewDelete", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+			
+			@ResponseBody
+			public String reviewDelete(
+					@RequestParam HashMap<String, String> params) throws Throwable{
+				
+				ObjectMapper mapper = new ObjectMapper();
+				Map<String, Object> modelMap = new HashMap<String, Object>();
+				
+				try {
+					int cnt = RankingiService.deleteReview(params);
+					
+					if(cnt > 0) {
+						modelMap.put("msg", "success");
+					} else {
+						modelMap.put("msg", "error");
 					}
 				} catch (Throwable e) {
 					e.printStackTrace();

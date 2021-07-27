@@ -122,12 +122,21 @@
 	</select>
 	<!-- 상세보기  -->
 	<select id="detailList" parameterType="hashmap" resultType="hashmap">
-		SELECT HCR.REVIEW_NO, HCR.TITLE, HCR.TEXT, HCR.SCORE, C.CARD_NAME, MI.NICKNAME
+		SELECT HCR.REVIEW_NO, HCR.MEMBER_NO, HCR.TITLE, HCR.TEXT, HCR.SCORE, C.CARD_NAME, MI.NICKNAME
 		FROM HAVECARDREVIEWS HCR INNER JOIN CARDS C
 		                                ON HCR.CARD_NO = C.CARD_NO
 		                         INNER JOIN MEMBER_INFO MI
 		                                ON HCR.MEMBER_NO = MI.MEMBER_NO
-		WHERE REVIEW_NO = #{detailRNo}
+		WHERE REVIEW_NO = #{reviewNo}
 	</select>
-	
+	<!-- 수정  -->
+	<update id="updateReview" parameterType="hashmap">
+		UPDATE HAVECARDREVIEWS SET TITLE = #{reviewTitle}, TEXT = #{reviewText}, SCORE = #{review_star}
+		WHERE REVIEW_NO = #{reviewNo}
+	</update>
+	<!-- 리뷰삭제  -->
+	<delete id="deleteReview" parameterType="hashmap">
+		DELETE FROM HAVECARDREVIEWS
+		WHERE REVIEW_NO = #{reviewNo}
+	</delete>
 </mapper>
