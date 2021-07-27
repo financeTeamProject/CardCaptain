@@ -149,15 +149,11 @@ public class RankingContoller {
 				}	
 				  List<HashMap<String, String>>
 				  data = RankingiService.getCView(params);
-				 
+				  // 총 별점 가져오기
 				  float getStar = RankingiService.starTotal(params);
 				  
 				  if(getStar == 0) {
 					  float starCnt = 0;
-					  
-					  System.out.println("=====총별점 가져오니?=====");
-					  System.out.println(starCnt);
-					  System.out.println("=====총별점 가져오니?=====");
 					  
 					  mav.addObject("starCnt", starCnt);
 				  } else {
