@@ -107,7 +107,6 @@ public class ContentController {
 		List<HashMap<String, String>> list
 			= ContentsiService.getCtest(params);
 		
-		
 		if(params != null) {
 			System.out.println("=====================");
 			System.out.println(params);

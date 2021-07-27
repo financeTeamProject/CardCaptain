@@ -155,8 +155,8 @@ label  {
 		%> --%>
 
 		function findChecked() {
-			
-		    var found = 0;
+		    
+			var found = 0;
 		    $("#main input[type='radio']:checked").each(function() {
 		    	found += $(this).val() * 1;
 		    });

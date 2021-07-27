@@ -840,7 +840,6 @@ h1 {
 			<div class="tipcon_list_wrap"></div>
 			<div class="paging_wrap"></div>
 			
-			
 			<%-- <c:forEach var = "i" begin = "0" end = "2">			
 				<div class="content">
 					<div class="content_1">
@@ -859,7 +858,6 @@ h1 {
 					</div>				
 				</div>
 			</c:forEach> --%>
-			
 			
 				<div class="content">
 					<div class="content_1">

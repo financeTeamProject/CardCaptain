@@ -148,7 +148,6 @@ label  {
 				src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 		<script type="text/javascript">
 		
-	
 			function findChecked() {
 			    var found = 0;
 			    
