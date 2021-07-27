@@ -59,7 +59,7 @@ body {
     text-align: center;
     margin-top: 10px;
 }
-#headerLeft .menu1 { 
+.menu1 { 
 	display: inline-block;
 	width: 130px;
 	height: 100%;
@@ -69,7 +69,29 @@ body {
 	letter-spacing: 2px;
 	vertical-align: top;
 	cursor: pointer;
-}	/* header_left 종료 */
+}	
+.menu1:before, .menu1:after{
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: #1AAB8A;
+  transition: 400ms ease all;
+}
+.menu1:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.menu1:hover:before, .menu1:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+	/* header_left 종료 */
 
 #headerRight {
 	display: inline-block;
@@ -78,18 +100,6 @@ body {
     font-size: 18px;
 	vertical-align: top;
 	text-align: right;
-}
-#imgSearch {
- 	display: inline-block;
-    background-image: url("/cdcp/resources/images/main/search.png");
-    background-repeat: no-repeat;
-    background-size: 30px;
-    width: 30px;
-    height: 25px;
-    cursor: pointer;
-    text-align: center;
-	margin-top: 15px;
-	margin-right: 20px;
 }
 #imgLogin {
  	display: inline-block;
@@ -102,18 +112,6 @@ body {
     text-align: center;
 	margin-top: 15px;
 }
-#searchTxt {
-    border-style: solid;
-    border-width: 0 0 1px 0;
-    border-color: #0047AB;
-    outline: 0;
-    caret-color: red;
-    color: #0047AB;
-    box-sizing: border-box;
-    font-size: 13px;
-    letter-spacing: 3px;
-    display: none;
-}
 #Nickname {
     width: auto;
     height: auto;
@@ -123,16 +121,52 @@ body {
     letter-spacing: 2px;
     display: none;
 }
+#logNick:hover{
+	color: #1AAB8A;
+}
 #logNick {
-	hight: 12px;
-	width: auto;
 	display: inline-block;
+	color:#0047AB;
+	border:none;
+	position:relative;
+	width: auto;
+	cursor:pointer;
+	transition:800ms ease all;
+	outline:none;
+	margin-top: 18px;
+	letter-spacing: 2px;
+}
+#logNick:before, #logNick:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+#logNick:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+#logNick:hover:before, #logNick:hover:after{
+  width:100%;
+  transition:800ms ease all;
 }
 #logoutBtn {
+	background:#fff;
+	color:#1AAB8A;
+	border:none;
+	position:relative;
+	height:30px;
 	width: 70px;
-	heigth: 40px;
+	cursor:pointer;
+	transition:800ms ease all;
+	outline:none;
 	margin-left: 20px;
-	/* display: none; */
 }
 /* 로그인팝업 */
 .popinput {
@@ -245,8 +279,8 @@ body {
 }
 
 	/* 풋터 종료 */
-
-	/*슬라이드 화면부분 ~165번째줄 */
+/*
+	//슬라이드 화면부분 ~165번째줄
 *{margin:0;padding:0;}
 #content {
 	width: 1600px;
@@ -276,7 +310,7 @@ ul,li{
 input#pos1,#pos2,#pos3,#pos4 {
 	display: none;
 }
-	/* 라벨 부분 ~184번째줄 */
+	// 라벨 부분 ~184번째줄
 .slide .bullet{
 	position:absolute;
 	bottom:20px;
@@ -296,7 +330,7 @@ input#pos1,#pos2,#pos3,#pos4 {
 	transition:0.5s;
 	cursor:pointer;
 }
-/* 메인 1페이지 부분 */
+	// 메인 1페이지 부분
 .top {
 	height:5%;
 	width: 100%;
@@ -321,21 +355,26 @@ input#pos1,#pos2,#pos3,#pos4 {
 	width: 50%
 }
 
-/* 슬라이드 조작 */
+	// 슬라이드 조작
 #pos1:checked ~ ul{margin-left:0;}
 #pos2:checked ~ ul{margin-left:-100%;}
 #pos3:checked ~ ul{margin-left:-200%;}
 #pos4:checked ~ ul{margin-left:-300%;}
-/* bullet 조작 */
+	// bullet 조작
 #pos1:checked ~ .bullet label:nth-child(1),
 #pos2:checked ~ .bullet label:nth-child(2),
 #pos3:checked ~ .bullet label:nth-child(3),
 #pos4:checked ~ .bullet label:nth-child(4){background:#666;}
-
+ */
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	/* 카드순위 페이지 이동 */
+	$("#headerLogo").on("click", function(){
+		location.href = "/cdcp";
+	});
+	
 	/* 카드순위 페이지 이동 */
 	$("#ranking").on("click", function(){
 		location.href = "card_rank";
@@ -452,20 +491,18 @@ $(document).ready(function(){
 				<input type="hidden" name="memAd" value="${sMAd}" id="sMAd"/>
 			</form>
 			<div id="headerRight">
-				<input type="text" id="searchTxt">
-				<div id="imgSearch"></div>
 				<c:choose>
 					<c:when test="${empty sMNm}">
 						<div id="imgLogin"></div>
 					</c:when>
 					<c:otherwise>
-						<div id="logNick">${sMNm}  님</div><input type="button" value="로그아웃" id="logoutBtn" />
+						<div id="logNick">${sMNm}&nbsp;&nbsp;님</div><input type="button" value="로그아웃" id="logoutBtn" />
 					</c:otherwise>
 				</c:choose>
 			</div>
 		</div>
 	</div>
-		<div id="content">
+<!-- 		<div id="content">
 		<div class="slide">
 		<input type="radio" name="pos" id="pos1" checked>
 		<input type="radio" name="pos" id="pos2">
@@ -490,7 +527,7 @@ $(document).ready(function(){
 	      <label for="pos4">4</label>
 	    </p>
 	  </div>
-	</div>
+	</div> -->
 	<div id="footer">
 		<div id="footerMenu">
 			<div id="footerLogo"></div>

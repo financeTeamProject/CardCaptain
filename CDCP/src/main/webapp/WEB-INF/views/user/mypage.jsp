@@ -28,8 +28,7 @@ body{
    max-width: 1500px;
    margin: 0 auto;
 }
-/*   헤더 영역   */
-	/* 헤더  ~82번째줄*/
+	/* 헤더 */
 #header {
 	width: 100%;
 	height: 55px;
@@ -64,7 +63,7 @@ body{
     text-align: center;
     margin-top: 10px;
 }
-#headerLeft .menu1 { 
+.menu1 { 
 	display: inline-block;
 	width: 130px;
 	height: 100%;
@@ -74,7 +73,29 @@ body{
 	letter-spacing: 2px;
 	vertical-align: top;
 	cursor: pointer;
-}	/* header_left 종료 */
+}	
+.menu1:before, .menu1:after{
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: #1AAB8A;
+  transition: 400ms ease all;
+}
+.menu1:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.menu1:hover:before, .menu1:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+	/* header_left 종료 */
 
 #headerRight {
 	display: inline-block;
@@ -83,18 +104,6 @@ body{
     font-size: 18px;
 	vertical-align: top;
 	text-align: right;
-}
-#imgSearch {
- 	display: inline-block;
-    background-image: url("/cdcp/resources/images/main/search.png");
-    background-repeat: no-repeat;
-    background-size: 30px;
-    width: 30px;
-    height: 25px;
-    cursor: pointer;
-    text-align: center;
-	margin-top: 15px;
-	margin-right: 20px;
 }
 #imgLogin {
  	display: inline-block;
@@ -107,18 +116,6 @@ body{
     text-align: center;
 	margin-top: 15px;
 }
-#searchTxt {
-    border-style: solid;
-    border-width: 0 0 1px 0;
-    border-color: #0047AB;
-    outline: 0;
-    caret-color: red;
-    color: #0047AB;
-    box-sizing: border-box;
-    font-size: 13px;
-    letter-spacing: 3px;
-    display: none;
-}
 #Nickname {
     width: auto;
     height: auto;
@@ -128,17 +125,128 @@ body{
     letter-spacing: 2px;
     display: none;
 }
+#logNick:hover{
+	color: #1AAB8A;
+}
 #logNick {
-	hight: 12px;
-	width: auto;
 	display: inline-block;
+	color:#0047AB;
+	border:none;
+	position:relative;
+	width: auto;
+	cursor:pointer;
+	transition:800ms ease all;
+	outline:none;
+	margin-top: 18px;
+	letter-spacing: 2px;
+}
+#logNick:before, #logNick:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+#logNick:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+#logNick:hover:before, #logNick:hover:after{
+  width:100%;
+  transition:800ms ease all;
 }
 #logoutBtn {
+	background:#fff;
+	color:#1AAB8A;
+	border:none;
+	position:relative;
+	height:30px;
 	width: 70px;
-	heigth: 40px;
+	cursor:pointer;
+	transition:800ms ease all;
+	outline:none;
 	margin-left: 20px;
-	/* display: none; */
 }
+/* 로그인팝업 */
+.popinput {
+	width: 50%;
+    height: 40px;
+    padding: 0px 20px;
+    border: 1px solid lightgray;
+    outline: none;
+    font-size: 13px;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: #0047AB;
+    outline: 0;
+    text-decoration: none;
+    letter-spacing: 2px;
+    margin: 5px 50px 10px 70px;
+}
+.cardcaptain {
+	width: 100%;
+	height: 95px;
+	line-height: 110px;
+	text-align: center;
+	font-size: 25px;
+	color: #0047AB;
+	letter-spacing: 5px;
+	cursor: pointer;
+}
+#popup {
+	height: 320px;
+	width: 400px;
+	background-color: white;
+	border-radius: 70px;
+	display: none;
+	margin: 300px auto;
+	z-index: 50;
+}
+#loginBtn {
+	margin-bottom: 10px;
+	margin-top: 5px;
+	background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+	background-size: 200%;
+	color: white;
+ 	font-weight: bold;
+	border: none;
+	cursor: pointer;
+	display: inline;
+	margin: 20px 10px 15px 90px;
+}
+.re {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 11px;
+    margin: 10px 0 10px 130px;
+}
+.new {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 11px;
+	margin: 10px 0 10px 0;
+}
+.re:hover, .new:hover {
+	cursor: pointer;
+}
+.error {
+    font-size: 11px;
+    color: red;
+    visibility: hidden;
+}
+.errorMsg {
+	height: 100%;
+    display: none;
+    color: #e65f3e;
+    font-size: 13px;
+    margin-left: 65px;
+} 
+	/* 로그인팝업종료 */
 	/* header_right 종료 */
 	/* 헤더 종료 */
 	
@@ -200,14 +308,15 @@ body{
     text-align: center; 
 }
 .member_button input[type='button'] {
-   width: 120px;
-    height: 40px;
+width: 150px;
+    height: 50px;
+    line-height: 40px;
     color: white;
     border-style: none;
     background-color: #868e96;
     border-radius: 8px;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 20px;
     font-family: GmarketSansMedium;
     margin: 0 auto;
 }
@@ -228,23 +337,52 @@ body{
 	width: 100%;
 	height: 350px;
 	margin: bottom;
-	background-color: #0000001f;
 	display: flex;
+	letter-spacing: 2px;
 }
 .member_tablee {
 	width: 100%;
 	height: 100px;
 }
-.table_left, .table_right {
+.table_left {
 	display:inline-block;
 	vertical-align:top;
 	width: 50%;
 	height: 100%;
+	margin-left: 80px;
+} 
+.table_right {
+	display:inline-block;
+	vertical-align:top;
+	width: 50%;
+	height: 100%;
+	margin-left: 350px;
 }
-.table1, .table2, .table3, .table4, .table5, .table6 {
+.table {
 	width: 100%;
 	height: 33%;
 	display: block;
+	font-size: 25px;
+	font-family: 'GmarketSansMedium';
+}
+.table_name{
+	color: #0047ab;
+	font-size: 30px;
+    height: 55px;
+    line-height: 55px;
+}
+#mPw, #mRPw, #mNn {
+	height: 30px;
+	width: 160px;
+	border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: #0047AB;
+    outline: 0;
+    caret-color: red;
+    color: #0047AB;
+    box-sizing: border-box;
+    background-color: #F2F2F2;
+	font-size: 30px;
 }
 .member_sub_title {
    font-size: 45px;
@@ -254,10 +392,6 @@ body{
 }
 .member_phone {
    margin-left: 7px;
-}
-.address_search_button {
-   margin-left: 7px;
-   border-radius: 7px;
 }
 
  /* 카드추가리스트 */
@@ -468,35 +602,26 @@ img  {
 	display:none;
 	vertical-align:top;
     color: #e65f3e;
-    font-size: 13px;
+    font-size: 20px;
     float: right;
 }
 </style>
 <script type="text/javascript" src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	var memAdd = "";
+	/* 카드순위 페이지 이동 */
+	$("#headerLogo").on("click", function(){
+		location.href = "/cdcp";
+	});
 	
-/*    $("#memberTable input").attr("readonly",true);
-   
-   $("#update").on("click",function() {
-      $("#memberTable input").attr("readonly",false);
-      $("#memberTable input").css("background-color","#FFFFFF");
-      $("#memberID").attr("readonly",true);
-      $(".address_search_button").css("background-color","#868e96");
-      $(".address_search_button").css("color","#FFFFFF");
-   }); */
-   
 	/* 카드순위 페이지 이동 */
 	$("#ranking").on("click", function(){
 		location.href = "card_rank";
 	});
-   
 	/* 카드검색/비교 페이지 이동 */
 	 $("#search").on("click", function(){
 		location.href = "search";
 	});
-	
 	/* 컨텐츠 페이지 이동 */
 	$("#contents").on("click", function(){
 		location.href = "content";
@@ -507,7 +632,6 @@ $(document).ready(function() {
 		$("#popup").css("display","block");
 		$(".body").css("display","none");
 	});
-	
 	/* 로그인팝업 실행 */
 	$("#imgSearch").on("click", function(){
 		$("#searchTxt").css("display","inline");
@@ -539,14 +663,14 @@ $(document).ready(function() {
 				dataType: "json",
 				data: params,
 				success: function (res) {
-					if(res.resres == "success"){
+					if(res.resMsg == "success"){
 						location.href = "/cdcp";
 						$("#nickName").css("display","inline");
 						$("#imgSearch").css("margin-left","70%");
 						$("#imgLogin").css("display","none");
 						$("#logoutBtn").css("display","inline");
 					} else {
-						$(".errorres").css("display","inline");
+						$(".errorMsg").css("display","inline");
 						$("#masage").html("아이디 또는 비밀번호가 일치하지 않습니다.")
 					}
 				},
@@ -557,13 +681,14 @@ $(document).ready(function() {
 		}
 	}); //로그인 end
 	
-	// 로그아웃
+	/* 로그아웃  */
 	$("#logoutBtn").on("click", function () {
-		location.href = "/cdcp";
+		location.href = "testALogout";
 	}); //로그아웃 end
 	
+	/* 마이페이지이동 */
 	$("#logNick").on("click", function(){
-		location.href = "/mypage";
+		alert($("#sMNm").val());
 		$("#memNo").attr("action");
 		$("#memNo").submit();
 	});
@@ -592,7 +717,6 @@ $(document).ready(function() {
 	   	} else {
 	 		$("#errorMsgPw").html("");
 		}
-		alert(mPw);
 	});
 	
 	/* 비밀번호 확인 */
@@ -862,8 +986,6 @@ $(document).ready(function() {
 			<input type="hidden" name="memAd" value="${sMAd}" id="sMAd"/>
 		</form>
 		<div id="headerRight">
-			<input type="text" id="searchTxt">
-			<div id="imgSearch"></div>
 			<c:choose>
 				<c:when test="${empty sMNm}">
 					<div id="imgLogin"></div>
@@ -886,32 +1008,32 @@ $(document).ready(function() {
 				<input type="hidden" name="memNo" value="${sMNo}" id="sMNo"/>
 			<div id="memberTable" class="member_table">
 				<div class="table_left">
-					<div class="table1" id="">아이디<br/>
-						${sMId}
+					<div class="table" id="">⇒&nbsp;&nbsp;아이디<br/>
+						<div class="table_name">${sMId}</div>
 					</div>
-					<div class="table2" id="">비밀번호<br/>
+					<div class="table" id="">비밀번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
 						<input type="password" id="mPw" value="">
 						<div class="errorMsg" id="errorMsgPw"></div>
-						<div class="" id="">비밀번호 확인<br/>
+						<div class="" id="">비밀번호 확인&nbsp;&nbsp; &nbsp;: 
 						<input type="password" id="mRPw" value="" name="mPw">
 						<div class="errorMsg" id="errorMsgRPw"></div>
 					</div>
 					</div>
-					<div class="table3" id="">닉네임<br/>
-					         현재 : ${sMNm}<br/>
-						변경 : <input type="text" id="mNn" value="" name="mNn">
+					<div class="table" id="nick">⇒&nbsp;&nbsp;닉네임<br/>
+					        <div class="table_name"> 현재 : ${sMNm}<br/>
+						변경 : <input type="text" id="mNn" value="" name="mNn"></div>
 						<div class="errorMsg" id="errorMsgNick"></div>
 					</div>
 				</div>
 				<div class="table_right">
-					<div class="table4" id="">전화번호<br/>
-						${sMCo}
+					<div class="table" id="">⇒&nbsp;&nbsp;전화번호<br/>
+						<div class="table_name">${sMCo}</div>
 					</div>
-					<div class="table5" id="">생년월일<br/>
-						${sMBi}
+					<div class="table" id="">⇒&nbsp;&nbsp;생년월일<br/>
+						<div class="table_name">${sMBi}</div>
 					</div>
-					<div class="table6" id="">이메일<br/>
-						${sMNa}${sMAd}
+					<div class="table" id="">⇒&nbsp;&nbsp;이메일<br/>
+						<div class="table_name">${sMNa}${sMAd}</div>
 					</div>
 				</div>
 			</div>
@@ -1018,7 +1140,7 @@ $(document).ready(function() {
 						</div>
 						<div id="abc">왼쪽의 카드사를 눌러 추가해 주세요.</div>
 						<br/>
-						<div id="paging_wrap"></div>
+						<div id="paging_wrap"></div><br/>
 						<div class="add_wrap">
 	<!-- Form -->
 							<form action="#" id="addcardlist" method="post">
