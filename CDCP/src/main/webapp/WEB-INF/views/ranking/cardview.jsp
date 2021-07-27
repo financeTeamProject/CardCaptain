@@ -29,8 +29,8 @@
 		top: 0;
 	}
 	
-/* 팝업 영역  */
-
+/* ============================================================================ */		
+/* 아코디언팝업 영역  */
 #bi1{
 		
 	cursor:pointer;
@@ -118,9 +118,10 @@
 		z-index: 100;
 		opacity: 0.3; /* 0.0(투명) ~ 1.0(불투명)  */
 	}
+/* 아코디언팝업 종료 */
 
-	
-	/* 헤더  영역*/
+/* ============================================================================ */		
+/* 헤더  영역*/
 	#header {
 		width: 100%;
 		height: 55px;
@@ -166,8 +167,10 @@
 		vertical-align: top;
 		cursor: pointer;
 	}	
-	/* header_left 종료 */
-	
+/* header_left 종료 */
+
+/* ============================================================================ */		
+/* header_right 시작 */	
 	#headerRight {
 		display: inline-block;
 		width: 50%;
@@ -231,10 +234,11 @@
 		margin-left: 20px;
 		/* display: none; */
 	}
-	/* header_right 종료 */
-	/* 헤더 종료 */
+/* header_right 종료 */
+/* 헤더 종료 */
 	
-	/* 로그인팝업 */
+/* ============================================================================ */	
+/* 로그인팝업 */
 	.popinput {
 		width: 50%;
 	    height: 40px;
@@ -309,7 +313,9 @@
 	    margin-left: 65px;
 	} 
 		/* 로그인팝업종료 */
-	/*	내용 영역	*/	
+	
+/* ============================================================================ */	
+/*	내용 영역	*/	
 	#content{
 	width: 100%;
 	height: 100%;
@@ -329,7 +335,8 @@
 				font-size: 30px;
 				line-height: 60px;			
 			}
-			/* 혜택 상위 영역 */
+/* ============================================================================ */			
+/* 혜택 상위 영역 */
 			#topArea{
 				width: 100%;
 				background-color: #f2f2f2;
@@ -337,7 +344,7 @@
 				padding: 20px 0px;
 				margin: 20px 0;
 			}
-			/* 해당카드 이름 영역 */
+/* 해당카드 이름 영역 */
 			#nameSct{
 				width: 100%;
 				height: 100px;
@@ -360,7 +367,7 @@
 				width: 100%;
 				margin: 20px 0;
 			}
-				/* 왼쪽이미지 영역 */
+/* 왼쪽이미지 영역 */
 				#mainImg{
 					display: inline-block;
 					width: 370px;
@@ -373,7 +380,7 @@
 						border-radius: 20px;
 						box-shadow: 0px 5px 10px 1px gray;
 					}
-				/* 오른쪽 혜택안내 영역 */	
+/* 오른쪽 혜택안내 영역 */	
 				#cardBnf{
 					display: inline-block;
 					width:650px;
@@ -381,7 +388,7 @@
 					margin-left: 30px;
 				}
 					
-					/* 혜택 전체 박스 영역 */
+/* 혜택 전체 박스 영역 */
 					.bnf_sct{
 						display: flex;
 						height: 70px;
@@ -407,7 +414,7 @@
 								font-family: GmarketSansMedium;
 							}
 						
-					/* 버튼 영역 */		
+/* 버튼 영역 */		
 					#btnSct{ 
 						width: 100%;
 						height: 80px;
@@ -448,7 +455,8 @@
 							cursor: pointer;
 							border: none;
 						}
-			/* 혜택 하위 영역 */
+/* ============================================================================ */						
+/* 혜택 하위 영역 */
 			#botArea{
 				width: 100%;
 				background-color: #f2f2f2;
@@ -456,7 +464,7 @@
 				padding: 20px 0px;
 				margin: 20px 0;
 			}	
-				/* 주요 혜택 글씨 영역 */
+/* 주요 혜택 글씨 영역 */
 				#bnfTxt{
 					height: 50px;
 					margin: 10px auto;
@@ -465,8 +473,7 @@
 					font-size: 30px;
 					line-height: 60px;
 				}
-				/* 혜택 박스 틀 */
-											
+/* 혜택 박스 틀 */
 				.group1-1{
 				    margin: 10px auto;
 				    width: 760px;
@@ -522,8 +529,9 @@
 							width: 50%;
 							height: 50%;
 							margin: 20px 30px;
-						}				
-				/* 리뷰 영역 */	
+						}			
+/* ============================================================================ */							
+/* 리뷰 영역 */	
 				#review_name{
 					height: 50px;
 					margin: 10px auto;
@@ -548,8 +556,9 @@
 					display: flex;
 					justify-content: space-around;
 					width: 100%;
-				}		
-					/* 사용자 평점 영역 */
+				}
+/* ============================================================================ */						
+/* 사용자 평점 영역 */
 					.star_area{
 						display: inline-block;
 						vertical-align: top;
@@ -575,7 +584,8 @@
 						line-height:0; 
 						vertical-align:top; 
 						}
-					/* 전체 리뷰 수 영역 */	
+/* ============================================================================ */						
+/* 전체 리뷰 수 영역 */	
 					.review_total{
 						display: inline-block;
 						vertical-align: top;
@@ -625,7 +635,8 @@
 							text-align: center;
 							margin: 0 10px;
 						}
-					/* 리뷰 작성 영역 */
+/* ============================================================================ */						
+/* 리뷰 작성 영역 */
 					.review_write_area{
 						width: 100%;
 					}
@@ -655,7 +666,7 @@
 						text-align: center;
 						padding-top: 40px; 
 					}
-					/* 리뷰 별점 및 작성자 영역 */
+/* 리뷰 별점 및 작성자 영역 */
 					.review_info{
 						width: 15%;
 						font-weight: bold;
@@ -669,7 +680,7 @@
 					.review_writer{
 						font-size: 15px;
 					}
-					/* 리뷰 작성 버튼 */
+/* 리뷰 작성 버튼 */
 					#reviewLoginBtn{
 						width: 150px;
 						height: 50px;
@@ -681,7 +692,8 @@
 						font-size: 20px;
 						border-radius: 5px;
 					}
-					/* 리뷰 작성 영역 */
+/* ============================================================================ */					
+/* 리뷰 작성 영역 */
 					.review_content{
 						width: 60%;
 						padding: 10px;
@@ -696,7 +708,7 @@
 						overflow: hidden;
 						text-overflow: ellipsis;
 					}
-					/* 리뷰 좋아요 영역 */
+/* 리뷰 좋아요 영역 */
 					.review_like{
 						width: 10%;
 					}
@@ -712,8 +724,9 @@
 							font-size: 20px;
 							font-family: GmarketSansMedium;
 						}
-						
-					/* 페이지 작성 영역 */
+
+/* ============================================================================ */						
+/* 페이지 작성 영역 */
 					.paging_area{
 						text-align: center;
 					}
@@ -741,7 +754,8 @@
 					background-color: #AAAAAA;
 					}
 
-	/* 풋터 영역 */
+/* ============================================================================ */
+/* 풋터 영역 */
 	#footer {
 	    width: 100%;
 	  	height: 100px;
@@ -773,8 +787,10 @@
 	    text-align: center;
 	    margin-top: 10px;
 	}
-		/* 풋터 종료 */
-	/*	팝업 영역	*/	
+/* 풋터 종료 */
+
+/* ============================================================================ */
+/*	리뷰팝업 영역	*/	
 		.pop_bg{
 			display: inline-block;
 			width: 100%;
@@ -861,7 +877,7 @@
 			#closeBtn{
 			
 			}
-		/* 상세보기 팝업 제목 내용 박스 */
+/* 상세보기 팝업 제목 내용 박스 */
 		#dtTitleDiv{
 			margin: 10px 0;
 			width: 100%;
@@ -870,7 +886,7 @@
 			overflow: auto;
 			font-size: 20px;
 		}
-		/* 내용 박스 */
+/* 내용 박스 */
 		#dtTextDiv{
 			margin: 10px 0;
 			width: 100%;
@@ -886,7 +902,7 @@
 		#deleteBtn{
 			background-color: red;
 		}
-		/*	팝업 영역 끝	*/	
+/*	리뷰 팝업 영역 끝	*/	
 		
 </style>
 <script type="text/javascript"
@@ -907,9 +923,7 @@ $(document).ready(function(){
 	});
 });
 
-
 /* 버튼 클릭시 화살표 이미지 변경 */
- 
    $(document).ready(function(){
   
     $(".arrow_down").show();
@@ -984,35 +998,36 @@ $(document).ready(function(){
 				$(".Popup").remove();
 			});
 		}
-
+/* ====================================================================================== */		
+/* 도헌 카드리뷰 페이지 */
 	$(document).ready(function(){
 		
 		reloadList();
 		
-		/* 카드순위 페이지 이동 */
+/* 카드순위 페이지 이동 */
 		$("#ranking").on("click", function(){
 			location.href = "card_rank";
 		}); // ranking click end
-		/* 카드검색/비교 페이지 이동 */
+/* 카드검색/비교 페이지 이동 */
 		 $("#search").on("click", function(){
 			location.href = "search";
 		});// search click end
-		/* 컨텐츠 페이지 이동 */
+/* 컨텐츠 페이지 이동 */
 		$("#contents").on("click", function(){
 			location.href = "content";
 		});// contents click end
 		
-		/* 메인페이지 이동 */
+/* 메인페이지 이동 */
 		$("#headerLogo").on("click", function(){
 			location.href = "/cdcp";
 		}); // headerLogo click end
-		
-		/* 로그인팝업 실행 */
+	
+/* 로그인팝업 실행 */
 		$("#imgLogin").on("click", function(){
 			$("#loginpopup").css("display","block");
 			$(".body").css("display","none");
 		});
-		/* 로그인팝업 실행 */
+/* 로그인팝업 실행 */
 		$("#imgSearch").on("click", function(){
 			$("#searchTxt").css("display","inline");
 		});
@@ -1026,7 +1041,7 @@ $(document).ready(function(){
 			location.href = "/cdcp";
 		});
 		
-		/* 로그인 */
+/* 로그인 */
 		$("#loginBtn").on("click", function () {
 			if($.trim($("#mId").val()) == "") {
 				alert("아이디를 입력해 주세요.");
@@ -1061,12 +1076,12 @@ $(document).ready(function(){
 			}
 		}); //로그인 end
 		
-		/* 로그아웃  */
+/* 로그아웃  */
 		$("#logoutBtn").on("click", function (){
 			location.href = "testALogout";
 		}); //로그아웃 end
 		
-		/* 마이페이지 이동 */
+/* 마이페이지 이동 */
 		$("#logNick").on("click", function(){
 			alert($("#sMNm").val());
 			$("#memNo").attr("action");
@@ -1082,7 +1097,7 @@ $(document).ready(function(){
 			
 			reloadList();
 		});
-		// 리뷰 작성 버튼 클릭
+// 리뷰 작성 버튼 클릭
 		$("#reviewLoginBtn").on("click", function(){
 			
 			var params = $("#actionForm").serialize();
@@ -1110,7 +1125,8 @@ $(document).ready(function(){
 		
 		
 });	// document ready end	
-		/* 리뷰 목록  */
+/* ====================================================================================== */
+/* 리뷰 목록  */
 		function reloadList(){
 			var params = $("#actionForm").serialize();
 			
@@ -1129,8 +1145,9 @@ $(document).ready(function(){
 				}
 			});
 		}
-		
-		// 목록 그리기
+
+/* ====================================================================================== */
+// 목록 그리기
 		function drawList(review){
 			var html = "";
 			
@@ -1169,7 +1186,7 @@ $(document).ready(function(){
 		}
 			$(".review_list_wrap").html(html);
 			
-			// 상세보기 클릭
+// 상세보기 클릭
 			$(".review_content").on("click", function(){
 				var params = "reviewNo=" + $(this).attr("id");
 				
@@ -1187,8 +1204,8 @@ $(document).ready(function(){
 					}
 				})
 			});
-			
-			// 리뷰상세보기 팝업 그리기
+/* ====================================================================================== */			
+// 리뷰상세보기 팝업 그리기
 			function makeDetailPopup(detail){
 				var html = "";
 				html +=	"<form action=\"#\" id=\"deleteForm\" method=\"post\">";
@@ -1229,7 +1246,7 @@ $(document).ready(function(){
 				                                                                                                                                                    
 				$("body").prepend(html);
 				
-				// 상세보기 삭제 버튼
+// 상세보기 삭제 버튼
 				$("#deleteBtn").on("click", function(){                                                                                                              
 					if(confirm("삭제하시겠습니까?")){
 						var params = $("#deleteForm").serialize();
@@ -1294,9 +1311,9 @@ $(document).ready(function(){
 				}); // updateBtn click end
 				
 			} // 리뷰상세보기 팝업 그리기 끝
+/* ====================================================================================== */			
 			
-			
-				//리뷰 수정 페이지
+//리뷰 수정 페이지
 				function reviewUpPopup(detail){
 					var html = "";
 					
@@ -1396,10 +1413,10 @@ $(document).ready(function(){
 					} // function closePopup end
 					
 				} // 리뷰 수정 페이지 끝
-				
 		}
+/* ====================================================================================== */		
 		
-		// 페이징 그리기
+// 페이징 그리기
 		function drawPaging(pb) {
 		var html = "";
 		
@@ -1428,7 +1445,8 @@ $(document).ready(function(){
 		
 		$(".paging_area").html(html);
 	}
-		// 리뷰작성 팝업 그리기
+/* ====================================================================================== */	
+// 리뷰작성 팝업 그리기
 		function makeWritePopup(data){
 			var html = "";
 			
@@ -1476,8 +1494,7 @@ $(document).ready(function(){
 			                                                                                                                                                    
 			$("body").prepend(html);
 			
-			
-			// 작성 버튼 클릭
+// 작성 버튼 클릭
 			$("#reportBtn").on("click", function(){
 				
 				if($.trim($("#reviewTitleArea").val()) == ""){
@@ -1510,11 +1527,13 @@ $(document).ready(function(){
 					}); // ajax end
 			}
 		}); // reportBtn click end
+		
+// 리뷰작성페이지 닫기 버튼 클릭		
 		$("#closeBtn").on("click", function(){                                                                                                              
 			closePopup();
 		}); // closeBtn click end 
 		
-		// 팝업창 닫기 함수
+// 팝업창 닫기 함수
 		function closePopup() {
 			$(".pop_bg").fadeOut(function(){
 				$(".pop_bg").remove();
@@ -1525,7 +1544,8 @@ $(document).ready(function(){
 			});
 		}
 	}
-		
+/* ====================================================================================== */	
+
 </script>
 </head>
 <body>
@@ -1618,7 +1638,7 @@ $(document).ready(function(){
 				</div>
 				</form>
 			</div>
-			<!-- 하위 내용 영역 -->
+<!-- 하위 내용 영역 -->
 			<div id="bnfTxt">주요 혜택</div>
 			<div id="botArea">
 				<c:set var="size" value="${fn:length(data)}" />
@@ -1645,7 +1665,7 @@ $(document).ready(function(){
 				</c:forEach>
 			</div><!--bot_Area 종료-->
 						
-		<!-- 리뷰 영역 -->
+<!-- 리뷰 영역 -->
 		<div id="review_name">카드 리뷰
 		<span id="reviewExplanation">※해당카드를 보유한 회원분들만 작성 가능합니다.</span>
 		</div>
@@ -1655,23 +1675,23 @@ $(document).ready(function(){
 				<div class="star_area">
 					<h2>사용자 총 평점</h2>
 					<div class="star-rating">
-						<span style ="width:30%"></span>
+						<span style ="width:${starCnt}%"></span>
 					</div>
 				</div>
-		<!-- 전체 리뷰 수 영역 -->
+<!-- 전체 리뷰 수 영역 -->
 				<div class="review_total">
 					<h2>카드 리뷰수</h2>
 					<div class="review_img"></div>
 					<div class="review_cnt"> 건</div>
 				</div>
-		<!-- 전체 조회수 영역 -->
+<!-- 전체 조회수 영역 -->
 				<div class="click_total">
 					<h2>카드 신청수</h2>
 					<div class="click_img"></div>
 					<div class="click_cnt">${data[0].CLICK_CNT}건</div>
 				</div>
 			</div>
-		<!-- 리뷰 작성 영역 -->
+<!-- 리뷰 작성 영역 -->
 			<hr style="border: 2px dashed black"/>
 			<div class="review_write_area">
 				<div class="write_area">

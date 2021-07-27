@@ -33,6 +33,8 @@ public interface RankingIDao {
 
 	public int updateReview(HashMap<String, String> params) throws Throwable;
 
+	public float starTotal(HashMap<String, String> params) throws Throwable;
+
 
 
 }

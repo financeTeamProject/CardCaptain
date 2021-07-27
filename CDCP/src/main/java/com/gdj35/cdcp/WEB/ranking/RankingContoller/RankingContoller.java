@@ -150,6 +150,23 @@ public class RankingContoller {
 				  List<HashMap<String, String>>
 				  data = RankingiService.getCView(params);
 				 
+				  float getStar = RankingiService.starTotal(params);
+				  
+				  if(getStar == 0) {
+					  float starCnt = 0;
+					  
+					  System.out.println("=====총별점 가져오니?=====");
+					  System.out.println(starCnt);
+					  System.out.println("=====총별점 가져오니?=====");
+					  
+					  mav.addObject("starCnt", starCnt);
+				  } else {
+					  
+					  float starCnt = Math.round(((getStar-1)/(5-1))*100);
+					  
+					  mav.addObject("starCnt", starCnt);
+				  }
+				  
 				  mav.addObject("data", data);
 				  mav.addObject("page", page);
 				  
