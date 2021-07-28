@@ -29,8 +29,8 @@
 		top: 0;
 	}
 	
-/* 팝업 영역  */
-
+/* ============================================================================ */		
+/* 아코디언팝업 영역  */
 #bi1{
 		
 	cursor:pointer;
@@ -118,9 +118,10 @@
 		z-index: 100;
 		opacity: 0.3; /* 0.0(투명) ~ 1.0(불투명)  */
 	}
+/* 아코디언팝업 종료 */
 
-	
-	/* 헤더  영역*/
+/* ============================================================================ */		
+/* 헤더  영역*/
 	#header {
 		width: 100%;
 		height: 55px;
@@ -166,8 +167,10 @@
 		vertical-align: top;
 		cursor: pointer;
 	}	
-	/* header_left 종료 */
-	
+/* header_left 종료 */
+
+/* ============================================================================ */		
+/* header_right 시작 */	
 	#headerRight {
 		display: inline-block;
 		width: 50%;
@@ -231,10 +234,11 @@
 		margin-left: 20px;
 		/* display: none; */
 	}
-	/* header_right 종료 */
-	/* 헤더 종료 */
+/* header_right 종료 */
+/* 헤더 종료 */
 	
-	/* 로그인팝업 */
+/* ============================================================================ */	
+/* 로그인팝업 */
 	.popinput {
 		width: 50%;
 	    height: 40px;
@@ -309,7 +313,9 @@
 	    margin-left: 65px;
 	} 
 		/* 로그인팝업종료 */
-	/*	내용 영역	*/	
+	
+/* ============================================================================ */	
+/*	내용 영역	*/	
 	#content{
 	width: 100%;
 	height: 100%;
@@ -329,7 +335,8 @@
 				font-size: 30px;
 				line-height: 60px;			
 			}
-			/* 혜택 상위 영역 */
+/* ============================================================================ */			
+/* 혜택 상위 영역 */
 			#topArea{
 				width: 100%;
 				background-color: #f2f2f2;
@@ -337,7 +344,7 @@
 				padding: 20px 0px;
 				margin: 20px 0;
 			}
-			/* 해당카드 이름 영역 */
+/* 해당카드 이름 영역 */
 			#nameSct{
 				width: 100%;
 				height: 100px;
@@ -360,7 +367,7 @@
 				width: 100%;
 				margin: 20px 0;
 			}
-				/* 왼쪽이미지 영역 */
+/* 왼쪽이미지 영역 */
 				#mainImg{
 					display: inline-block;
 					width: 370px;
@@ -373,7 +380,7 @@
 						border-radius: 20px;
 						box-shadow: 0px 5px 10px 1px gray;
 					}
-				/* 오른쪽 혜택안내 영역 */	
+/* 오른쪽 혜택안내 영역 */	
 				#cardBnf{
 					display: inline-block;
 					width:650px;
@@ -381,7 +388,7 @@
 					margin-left: 30px;
 				}
 					
-					/* 혜택 전체 박스 영역 */
+/* 혜택 전체 박스 영역 */
 					.bnf_sct{
 						display: flex;
 						height: 70px;
@@ -407,7 +414,7 @@
 								font-family: GmarketSansMedium;
 							}
 						
-					/* 버튼 영역 */		
+/* 버튼 영역 */		
 					#btnSct{ 
 						width: 100%;
 						height: 80px;
@@ -448,7 +455,8 @@
 							cursor: pointer;
 							border: none;
 						}
-			/* 혜택 하위 영역 */
+/* ============================================================================ */						
+/* 혜택 하위 영역 */
 			#botArea{
 				width: 100%;
 				background-color: #f2f2f2;
@@ -456,7 +464,7 @@
 				padding: 20px 0px;
 				margin: 20px 0;
 			}	
-				/* 주요 혜택 글씨 영역 */
+/* 주요 혜택 글씨 영역 */
 				#bnfTxt{
 					height: 50px;
 					margin: 10px auto;
@@ -465,8 +473,7 @@
 					font-size: 30px;
 					line-height: 60px;
 				}
-				/* 혜택 박스 틀 */
-											
+/* 혜택 박스 틀 */
 				.group1-1{
 				    margin: 10px auto;
 				    width: 760px;
@@ -522,8 +529,9 @@
 							width: 50%;
 							height: 50%;
 							margin: 20px 30px;
-						}				
-				/* 리뷰 영역 */	
+						}			
+/* ============================================================================ */							
+/* 리뷰 영역 */	
 				#review_name{
 					height: 50px;
 					margin: 10px auto;
@@ -548,8 +556,9 @@
 					display: flex;
 					justify-content: space-around;
 					width: 100%;
-				}		
-					/* 사용자 평점 영역 */
+				}
+/* ============================================================================ */						
+/* 사용자 평점 영역 */
 					.star_area{
 						display: inline-block;
 						vertical-align: top;
@@ -575,7 +584,8 @@
 						line-height:0; 
 						vertical-align:top; 
 						}
-					/* 전체 리뷰 수 영역 */	
+/* ============================================================================ */						
+/* 전체 리뷰 수 영역 */	
 					.review_total{
 						display: inline-block;
 						vertical-align: top;
@@ -625,7 +635,8 @@
 							text-align: center;
 							margin: 0 10px;
 						}
-					/* 리뷰 작성 영역 */
+/* ============================================================================ */						
+/* 리뷰 작성 영역 */
 					.review_write_area{
 						width: 100%;
 					}
@@ -655,7 +666,7 @@
 						text-align: center;
 						padding-top: 40px; 
 					}
-					/* 리뷰 별점 및 작성자 영역 */
+/* 리뷰 별점 및 작성자 영역 */
 					.review_info{
 						width: 15%;
 						font-weight: bold;
@@ -669,7 +680,7 @@
 					.review_writer{
 						font-size: 15px;
 					}
-					/* 리뷰 작성 버튼 */
+/* 리뷰 작성 버튼 */
 					#reviewLoginBtn{
 						width: 150px;
 						height: 50px;
@@ -681,7 +692,8 @@
 						font-size: 20px;
 						border-radius: 5px;
 					}
-					/* 리뷰 작성 영역 */
+/* ============================================================================ */					
+/* 리뷰 작성 영역 */
 					.review_content{
 						width: 60%;
 						padding: 10px;
@@ -696,13 +708,14 @@
 						overflow: hidden;
 						text-overflow: ellipsis;
 					}
-					/* 리뷰 좋아요 영역 */
+/* 리뷰 좋아요 영역 */
 					.review_like{
 						width: 10%;
 					}
-						#likeImg{
+						.like_good_Img{
 							position: relative;
 							top: 25px;
+							cursor: pointer;
 						}
 						#likeCnt{
 							display: inline-block;
@@ -712,8 +725,9 @@
 							font-size: 20px;
 							font-family: GmarketSansMedium;
 						}
-						
-					/* 페이지 작성 영역 */
+
+/* ============================================================================ */						
+/* 페이지 작성 영역 */
 					.paging_area{
 						text-align: center;
 					}
@@ -741,7 +755,8 @@
 					background-color: #AAAAAA;
 					}
 
-	/* 풋터 영역 */
+/* ============================================================================ */
+/* 풋터 영역 */
 	#footer {
 	    width: 100%;
 	  	height: 100px;
@@ -773,8 +788,10 @@
 	    text-align: center;
 	    margin-top: 10px;
 	}
-		/* 풋터 종료 */
-	/*	팝업 영역	*/	
+/* 풋터 종료 */
+
+/* ============================================================================ */
+/*	리뷰팝업 영역	*/	
 		.pop_bg{
 			display: inline-block;
 			width: 100%;
@@ -824,16 +841,6 @@
 			width: 120px;
 			font-family: GmarketSansMedium;
 		}
-			#infoTitle{
-				position: relative;
-    			left: 72px;
-    			bottom: 3px;
-			}
-			#infoContent{
-				position: relative;
-				bottom: 100px;
-    			left: 72px;
-			}
 		.write_div{
 			display: inline-block;
 			font-family: GmarketSansMedium;
@@ -841,6 +848,12 @@
 		.title_text{
 			font-size: 20px;
 		}
+			#reviewTitleArea{
+				width: 100%;
+			}
+			#reviewTextArea{
+				width: 100%;
+			}
 		.radio{
 			margin: 10px 0;
 			text-align: center;
@@ -865,27 +878,32 @@
 			#closeBtn{
 			
 			}
-		/* 제목 내용 박스 */
+/* 상세보기 팝업 제목 내용 박스 */
 		#dtTitleDiv{
 			margin: 10px 0;
 			width: 100%;
 			height: 50px;
 			border: 1px solid gray;
 			overflow: auto;
+			font-size: 20px;
 		}
-		/* 내용 박스 */
+/* 내용 박스 */
 		#dtTextDiv{
 			margin: 10px 0;
 			width: 100%;
 			height: 100px;
 			border: 1px solid gray;
 			overflow: auto;
+			font-size: 20px;
 		}
 		.dt_title_div{
 			display: inline-block;
 			font-family: GmarketSansMedium;
 		}
-		/*	팝업 영역 끝	*/	
+		#deleteBtn{
+			background-color: red;
+		}
+/*	리뷰 팝업 영역 끝	*/	
 		
 </style>
 <script type="text/javascript"
@@ -906,9 +924,7 @@ $(document).ready(function(){
 	});
 });
 
-
 /* 버튼 클릭시 화살표 이미지 변경 */
- 
    $(document).ready(function(){
   
     $(".arrow_down").show();
@@ -983,35 +999,36 @@ $(document).ready(function(){
 				$(".Popup").remove();
 			});
 		}
-
+/* ====================================================================================== */		
+/* 도헌 카드리뷰 페이지 */
 	$(document).ready(function(){
 		
 		reloadList();
 		
-		/* 카드순위 페이지 이동 */
+/* 카드순위 페이지 이동 */
 		$("#ranking").on("click", function(){
 			location.href = "card_rank";
 		}); // ranking click end
-		/* 카드검색/비교 페이지 이동 */
+/* 카드검색/비교 페이지 이동 */
 		 $("#search").on("click", function(){
 			location.href = "search";
 		});// search click end
-		/* 컨텐츠 페이지 이동 */
+/* 컨텐츠 페이지 이동 */
 		$("#contents").on("click", function(){
 			location.href = "content";
 		});// contents click end
 		
-		/* 메인페이지 이동 */
+/* 메인페이지 이동 */
 		$("#headerLogo").on("click", function(){
 			location.href = "/cdcp";
 		}); // headerLogo click end
-		
-		/* 로그인팝업 실행 */
+	
+/* 로그인팝업 실행 */
 		$("#imgLogin").on("click", function(){
 			$("#loginpopup").css("display","block");
 			$(".body").css("display","none");
 		});
-		/* 로그인팝업 실행 */
+/* 로그인팝업 실행 */
 		$("#imgSearch").on("click", function(){
 			$("#searchTxt").css("display","inline");
 		});
@@ -1025,7 +1042,7 @@ $(document).ready(function(){
 			location.href = "/cdcp";
 		});
 		
-		/* 로그인 */
+/* 로그인 */
 		$("#loginBtn").on("click", function () {
 			if($.trim($("#mId").val()) == "") {
 				alert("아이디를 입력해 주세요.");
@@ -1060,18 +1077,18 @@ $(document).ready(function(){
 			}
 		}); //로그인 end
 		
-		/* 로그아웃  */
+/* 로그아웃  */
 		$("#logoutBtn").on("click", function (){
 			location.href = "testALogout";
 		}); //로그아웃 end
 		
-		/* 마이페이지이동 */
+/* 마이페이지 이동 */
 		$("#logNick").on("click", function(){
 			alert($("#sMNm").val());
 			$("#memNo").attr("action");
 			$("#memNo").submit();
 		});
-		
+// 카드 신청 수 증가		
 		$("#bef_btn").on("click", function(){
 			$("#goForm").submit();
 		});
@@ -1081,7 +1098,7 @@ $(document).ready(function(){
 			
 			reloadList();
 		});
-		// 리뷰 작성 버튼 클릭
+// 리뷰 작성 버튼 클릭
 		$("#reviewLoginBtn").on("click", function(){
 			
 			var params = $("#actionForm").serialize();
@@ -1109,7 +1126,8 @@ $(document).ready(function(){
 		
 		
 });	// document ready end	
-		/* 리뷰 목록  */
+/* ====================================================================================== */
+/* 리뷰 목록  */
 		function reloadList(){
 			var params = $("#actionForm").serialize();
 			
@@ -1128,17 +1146,14 @@ $(document).ready(function(){
 				}
 			});
 		}
-		
-		// 목록 그리기
+
+/* ====================================================================================== */
+// 목록 그리기
 		function drawList(review){
 			var html = "";
 			
-			console.log(review);
 			for(var i = 0; i < review.length; i++){
-			
-			html +=	"<form action=\"#\" id=\"dtForm\" method=\"post\">";
-			html +=	"<input type=\"hidden\" name=\"detailRNo\" value=\"" + review[i].REVIEW_NO + "\">";
-			html +=	"</form>";
+			html +=	"<input type=\"hidden\" value=\""+ review[i].MEMBER_NO + "\" />";
 			html +=	"<div class=\"list_area\">";
 			html += "<div class=\"review_no\" id=\"reviewNo\">" + review[i].REVIEW_NO + "</div>";
 			html += "<div class=\"review_info\">";
@@ -1159,22 +1174,41 @@ $(document).ready(function(){
 			html += "<div>등록일 : " + review[i].ADD_DATE + "</div>";
 			html += "</div>";
 			html += "</div>";
-			html += "<div class=\"review_content\">";
+			html += "<div class=\"review_content\" id=" + review[i].REVIEW_NO + ">";
 			html += "<div class=\"content_title\">" + review[i].TITLE + "</div>";
 			html += "<div class=\"content_con\">" + review[i].TEXT + "</div>";
 			html += "</div>";
 			html += "<div class=\"review_like\">";
-			html += "<img id=\"likeImg\" alt=\"좋아요 \" src=\"resources/images/ranking/icon/like_icon_bule.png\" width=\"50px\" height=\"50px\">";
-			html += "<div id=\"likeCnt\">20</div>";
+			html += "<img class=\"like_good_Img\" id=" + review[i].REVIEW_NO + " alt=\"좋아요 \" src=\"resources/images/ranking/icon/like_icon_bule.png\" width=\"50px\" height=\"50px\">";
+			html += "<div id=\"likeCnt\">" + review[i].LIKE_CNT +"</div>";
 			html += "</div>";
 			html += "</div>";
-			
 		}
+				
 			$(".review_list_wrap").html(html);
-			// 상세보기 클릭
+			
+// 리뷰 좋아요 클릭
+			$(".like_good_Img").on("click", function(){
+				var params = "reviewNo=" + $(this).attr("id");
+				
+				$.ajax({
+					url:"cardviews",
+					type:"post",
+					dataType :"json",
+					data: params,
+					success : function () {
+						reloadlist();
+					},
+					error: function (request, status, error) {
+						console.log(error);
+						
+					}
+				})
+			});
+			
+// 상세보기 클릭
 			$(".review_content").on("click", function(){
-				var params = $("#dtForm").serialize();
-				alert(params);
+				var params = "reviewNo=" + $(this).attr("id");
 				
 				$.ajax({
 					url:"reviewDetail",
@@ -1190,11 +1224,14 @@ $(document).ready(function(){
 					}
 				})
 			});
-			
-			// 리뷰상세보기 팝업 그리기
+/* ====================================================================================== */			
+// 리뷰상세보기 팝업 그리기
 			function makeDetailPopup(detail){
 				var html = "";
-				
+				html +=	"<form action=\"#\" id=\"deleteForm\" method=\"post\">";
+				html +=	"<input type=\"hidden\" name=\"revieMNo\" value=\""+ detail.MEMBER_NO + "\" />";
+				html +=	"<input type=\"hidden\" name=\"reviewNo\" value=\""+ detail.REVIEW_NO + "\" />";
+				html +=	"</form>";
 				html += "<div class=\"pop_bg\"></div>";                                                                                                                
 				html += "<div class=\"review_popup\">";                                                                                                                 
 				html += "	<div class=\"pop_header\">카드리뷰</div>";                                                                                                  
@@ -1212,21 +1249,58 @@ $(document).ready(function(){
 				html += "		<div class=\"dt_write_div\" id=\"dtTextDiv\">" + detail.TEXT + "</div>";                                                                                                              
 				html += "	</div>";                                                                                                                                  
 				html += "	<div class=\"block_form\">";                                                                                                               
-				html += "		<div class=\"butten_area\">";                                                                                                           
-				html += "			<input type=\"button\" value=\"수정\" class=\"popAreaBtn\" id=\"reportBtn\">";                                                            
+				html += "		<div class=\"butten_area\">";
+				if("${sMNo}" == detail.MEMBER_NO){
+				html += "			<input type=\"button\" value=\"수정\" class=\"popAreaBtn\" id=\"updateBtn\">";                                                            
+				html += "			<input type=\"button\" value=\"삭제\" class=\"popAreaBtn\" id=\"deleteBtn\">";                                                            
 				html += "			<input type=\"button\" value=\"닫기\" class=\"popAreaBtn\" id=\"closeBtn\">";                                                             
+				} else if("${sMNm}" == "") {
+				html += "			<input type=\"button\" value=\"닫기\" class=\"popAreaBtn\" id=\"closeBtn\">";                                                             
+				} else {
+				html += "			<input type=\"button\" value=\"신고\" class=\"popAreaBtn\" id=\"reportBtn\">";
+				html += "			<input type=\"button\" value=\"닫기\" class=\"popAreaBtn\" id=\"closeBtn\">";                                                             
+				}
 				html += "		</div>";                                                                                                                              
 				html += "	</div>";                                                                                                                                  
 				html += "</div>";                                                                                                                                     
 				                                                                                                                                                    
 				$("body").prepend(html);
 				
+// 상세보기 삭제 버튼
+				$("#deleteBtn").on("click", function(){                                                                                                              
+					if(confirm("삭제하시겠습니까?")){
+						var params = $("#deleteForm").serialize();
+						
+						$.ajax({
+							url: "reviewDelete", // 접속주소 (현재 저상태는 상대 경로이다)
+							type: "post", // 전송방식: get,post
+							dataType: "json", // 받아올 데이터 형식
+							data: params, //보낼 데이터(문자열 형태)
+							success: function(res){ // 성공 시 다음 함수 실행	
+								if(res.msg == "success"){
+									closePopup();
+									reloadList();
+								} else if(res.msg == "failed"){
+									alert("삭제에 실패하였습니다.");
+								} else {
+									alert("삭제중 문제가 발생하였습니다.");
+								}
+							},
+							error: function(request, status, error){ // 실패 시 다음 함수 실행
+								console.log(error);
+							}
+						});
+					}
+				}); // deleteBtn click end
+				
+				// 상세보기 닫기 버튼
 				$("#closeBtn").on("click", function(){                                                                                                              
 					closePopup();
 				});
 				
 				// 팝업창 닫기 함수
 				function closePopup() {
+					
 					$(".pop_bg").fadeOut(function(){
 						$(".pop_bg").remove();
 					});
@@ -1234,11 +1308,140 @@ $(document).ready(function(){
 					$(".review_popup").fadeOut(function(){
 						$(".review_popup").remove();
 					});
-				}
-			}
+				} // function closePopup end
+			
+				// 상세보기 수정 버튼
+				$("#updateBtn").on("click", function(){
+					var params = $("#deleteForm").serialize();
+					$(".review_popup").hide();
+					
+					$.ajax({
+						url:"reviewUpdate",
+						type:"post",
+						dataType :"json",
+						data: params,
+						success : function (res) {
+							reviewUpPopup(res.detail);
+						},
+						error: function (request, status, error) {
+							console.log(error);
+							
+						}
+					});
+				}); // updateBtn click end
+				
+			} // 리뷰상세보기 팝업 그리기 끝
+			
+// 리뷰상세보기 팝업 그리기			
+/* ====================================================================================== */			
+			
+//리뷰 수정 페이지
+				function reviewUpPopup(detail){
+					var html = "";
+					
+					html += "<div class=\"review_popup\">";                                                                                                                 
+					html += "	<div class=\"pop_header\">카드리뷰</div>";                                                                                                  
+					html += "	<div class=\"pop_card\" id=\"popCardName\">[" + detail.CARD_NAME + "]</div>"; 
+					html += "	<div class=\"block_form\">";
+					html += "		<label class=\"info_rabel\">작성자(닉네임) :</label>";                                                                                  
+					html += "		<div class=\"write_div\"> ${sMNm} </div>";                                                                                               
+					html += "	</div>";                                                                                                                                  
+					html += "	<form action=\"#\" id=\"updateForm\" method=\"post\">";
+					html += "		<input type=\"hidden\" name=\"cardNo\" value=\"${data[0].CARD_NO}\"/>";
+					html += "		<input type=\"hidden\" id=\"memberNo\" name=\"memNo\" value=\"${sMNo}\" >";
+					html +=	"		<input type=\"hidden\" name=\"reviewNo\" value=\""+ detail.REVIEW_NO + "\" />";
+					html += "	<div class=\"block_form\">";                                                                                                                
+					html += "		<label class=\"info_rabel\" id=\"infoTitle\">제목 :</label>";                                                                           
+					html += "		<div class=\"write_div\">";                                                                                                             
+					html += "			<input type=\"text\" class=\"title_text\" id=\"reviewTitleArea\" name=\"reviewTitle\" value=\""+ detail.TITLE +"\" size=\"70\" />";                                                              
+					html += "		</div>";                                                                                                                              
+					html += "	</div>";                                                                                                                                  
+					html += "	<div class=\"block_form\">";                                                                                                                
+					html += "		<label class=\"info_rabel\" id=\"infoContent\">내용 :</label>";                                                                           
+					html += "		<div class=\"write_div\">";                                                                                                             
+					html += "			<textarea rows=\"5\" cols=\"70\" class=\"title_text\" id=\"reviewTextArea\" name=\"reviewText\">"+ detail.TEXT +"</textarea>";                                                     
+					html += "		</div>";                                                                                                                              
+					html += "	</div>";                                                                                                                                  
+					html += "	<div class=\"block_form\">";                                                                                                                
+					html += "		<label class=\"info_rabel\">별점 주기</label>";                                                                                         
+					html += "		<div class=\"radio\">";                                                                                                                 
+					html += "			<label class=\"radio-inline\"> <input type=\"radio\" name=\"review_star\" id=\"review_star1\" value=\"1\" >★☆☆☆☆</label>";             
+					html += "			<label class=\"radio-inline\"> <input type=\"radio\" name=\"review_star\" id=\"review_star2\" value=\"2\">★★☆☆☆</label>";              
+					html += "			<label class=\"radio-inline\"> <input type=\"radio\" name=\"review_star\" id=\"review_star3\" value=\"3\">★★★☆☆</label>";              
+					html += "			<label class=\"radio-inline\"> <input type=\"radio\" name=\"review_star\" id=\"review_star4\" value=\"4\">★★★★☆</label>";              
+					html += "			<label class=\"radio-inline\"> <input type=\"radio\" name=\"review_star\" id=\"review_star5\" value=\"5\" checked=\"checked\">★★★★★</label>";    
+					html += "		</div>";                                                                                                                              
+					html += "	</div>"; 
+					html += "	</form>";
+					html += "	<div class=\"block_form\">";                                                                                                               
+					html += "		<div class=\"butten_area\">";                                                                                                           
+					html += "			<input type=\"button\" value=\"수정\" class=\"popAreaBtn\" id=\"uupdateBtn\">";                                                            
+					html += "			<input type=\"button\" value=\"닫기\" class=\"popAreaBtn\" id=\"closeBtn\">";                                                             
+					html += "		</div>";                                                                                                                              
+					html += "	</div>";                                                                                                                                  
+					html += "</div>";
+				
+					$("body").prepend(html);
+					
+					// 수정페이지 수정 버튼
+					$("#uupdateBtn").on("click", function(){
+						if($.trim($("#reviewTitleArea").val()) == ""){
+							alert("제목을 입력해 주세요.");
+							$("#reviewTitleArea").focus();
+						} else if($("#reviewTitleArea").val() == detail.TITLE){
+							alert("제목을 변경해야 수정 가능합니다.");
+							$("#reviewTitleArea").focus();
+						} else if($("#reviewTextArea").val() == detail.TEXT){
+							alert("내용을 변경해야 수정 가능합니다.");
+							$("#reviewTextArea").focus();
+						} else if($.trim($("#reviewTextArea").val()) == ""){
+							alert("내용을 입력해 주세요.");
+							$("#reviewTextArea").focus();
+						} else {
+							var params = $("#updateForm").serialize();
+							
+								$.ajax({
+									url:"reviewUpdates",
+									type:"post",
+									dataType :"json",
+									data: params,
+									success : function (res) {
+										$("#updateForm").attr("action", "cardview");
+										$("#updateForm").submit();
+										
+									},
+									error: function (request, status, error) {
+										console.log(error);
+										
+									}
+								});
+							}
+						}); // 수정페이지 updateBtn click end
+					
+					$("#closeBtn").on("click", function(){                                                                                                              
+						$(".review_popup").show();
+					});
+					
+					// 팝업창 닫기 함수
+					function closePopup() {
+						
+						$(".pop_bg").fadeOut(function(){
+							$(".pop_bg").remove();
+						});
+						
+						$(".review_popup").fadeOut(function(){
+							$(".review_popup").remove();
+						});
+					} // function closePopup end
+					
+				} // 리뷰 수정 페이지 끝
 		}
+//리뷰 수정 페이지 끝
+
+// 리뷰 목록 그리기 끝
+/* ====================================================================================== */		
 		
-		// 페이징 그리기
+// 페이징 그리기
 		function drawPaging(pb) {
 		var html = "";
 		
@@ -1267,10 +1470,12 @@ $(document).ready(function(){
 		
 		$(".paging_area").html(html);
 	}
-		// 리뷰작성 팝업 그리기
+// 페이징 그리기 끝
+/* ====================================================================================== */	
+
+// 리뷰작성 팝업 그리기
 		function makeWritePopup(data){
 			var html = "";
-			
 			
 			html += "<div class=\"pop_bg\"></div>";                                                                                                                
 			html += "<div class=\"review_popup\">";                                                                                                                 
@@ -1286,13 +1491,13 @@ $(document).ready(function(){
 			html += "	<div class=\"block_form\">";                                                                                                                
 			html += "		<label class=\"info_rabel\" id=\"infoTitle\">제목 :</label>";                                                                             
 			html += "		<div class=\"write_div\">";                                                                                                             
-			html += "			<input type=\"text\" class=\"title_text\" id=\"reviewTitleArea\" name=\"reviewTitle\" size=\"53\" />";                                                              
+			html += "			<input type=\"text\" class=\"title_text\" id=\"reviewTitleArea\" name=\"reviewTitle\" size=\"70\" />";                                                              
 			html += "		</div>";                                                                                                                              
 			html += "	</div>";                                                                                                                                  
 			html += "	<div class=\"block_form\">";                                                                                                                
 			html += "		<label class=\"info_rabel\" id=\"infoContent\">내용 :</label>";                                                                           
 			html += "		<div class=\"write_div\">";                                                                                                             
-			html += "			<textarea rows=\"5\" cols=\"56\" class=\"title_text\" id=\"reviewTextArea\" name=\"reviewText\"></textarea>";                                                     
+			html += "			<textarea rows=\"5\" cols=\"70\" class=\"title_text\" id=\"reviewTextArea\" name=\"reviewText\"></textarea>";                                                     
 			html += "		</div>";                                                                                                                              
 			html += "	</div>";                                                                                                                                  
 			html += "	<div class=\"block_form\">";                                                                                                                
@@ -1316,7 +1521,7 @@ $(document).ready(function(){
 			                                                                                                                                                    
 			$("body").prepend(html);
 			
-			// 작성 버튼 클릭
+// 작성 버튼 클릭
 			$("#reportBtn").on("click", function(){
 				
 				if($.trim($("#reviewTitleArea").val()) == ""){
@@ -1349,11 +1554,13 @@ $(document).ready(function(){
 					}); // ajax end
 			}
 		}); // reportBtn click end
+		
+// 리뷰작성페이지 닫기 버튼 클릭		
 		$("#closeBtn").on("click", function(){                                                                                                              
 			closePopup();
 		}); // closeBtn click end 
 		
-		// 팝업창 닫기 함수
+// 팝업창 닫기 함수
 		function closePopup() {
 			$(".pop_bg").fadeOut(function(){
 				$(".pop_bg").remove();
@@ -1364,7 +1571,9 @@ $(document).ready(function(){
 			});
 		}
 	}
-		
+// 리뷰작성 팝업 그리기 끝
+/* ====================================================================================== */	
+
 </script>
 </head>
 <body>
@@ -1457,7 +1666,7 @@ $(document).ready(function(){
 				</div>
 				</form>
 			</div>
-			<!-- 하위 내용 영역 -->
+<!-- 하위 내용 영역 -->
 			<div id="bnfTxt">주요 혜택</div>
 			<div id="botArea">
 				<c:set var="size" value="${fn:length(data)}" />
@@ -1484,7 +1693,7 @@ $(document).ready(function(){
 				</c:forEach>
 			</div><!--bot_Area 종료-->
 						
-		<!-- 리뷰 영역 -->
+<!-- 리뷰 영역 -->
 		<div id="review_name">카드 리뷰
 		<span id="reviewExplanation">※해당카드를 보유한 회원분들만 작성 가능합니다.</span>
 		</div>
@@ -1492,25 +1701,25 @@ $(document).ready(function(){
 			<div class="review_top">
 				<!-- 사용자 평점 영역 -->
 				<div class="star_area">
-					<h2>사용자 총 평점</h2>
+					<h2>사용자 총 평점&nbsp;&nbsp;${getStar}/5 </h2>
 					<div class="star-rating">
-						<span style ="width:30%"></span>
+						<span style ="width:${starCnt}%"></span>
 					</div>
 				</div>
-		<!-- 전체 리뷰 수 영역 -->
+<!-- 전체 리뷰 수 영역 -->
 				<div class="review_total">
 					<h2>카드 리뷰수</h2>
 					<div class="review_img"></div>
 					<div class="review_cnt"> 건</div>
 				</div>
-		<!-- 전체 조회수 영역 -->
+<!-- 전체 조회수 영역 -->
 				<div class="click_total">
 					<h2>카드 신청수</h2>
 					<div class="click_img"></div>
 					<div class="click_cnt">${data[0].CLICK_CNT}건</div>
 				</div>
 			</div>
-		<!-- 리뷰 작성 영역 -->
+<!-- 리뷰 작성 영역 -->
 			<hr style="border: 2px dashed black"/>
 			<div class="review_write_area">
 				<div class="write_area">

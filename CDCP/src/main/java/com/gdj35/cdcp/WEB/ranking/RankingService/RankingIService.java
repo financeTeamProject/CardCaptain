@@ -29,6 +29,14 @@ public interface RankingIService {
 
 	public HashMap<String, String> detailList(HashMap<String, String> params) throws Throwable;
 
+	public int deleteReview(HashMap<String, String> params) throws Throwable;
+
+	public int updateReview(HashMap<String, String> params) throws Throwable;
+
+	public float starTotal(HashMap<String, String> params) throws Throwable;
+
+	public int updatelikeCnt(HashMap<String, String> params) throws Throwable;
+
 
 
 }

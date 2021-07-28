@@ -37,4 +37,12 @@ public class UserListDao implements UserIListDao {
 		return sqlSession.update("user.memUpdate", params);
 
 	}
+	@Override
+	public int mCnt(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectOne("user.mCnt", params);
+	}
+	@Override
+	public List<HashMap<String, String>> mList(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectList("user.mList", params);
+	}
 }

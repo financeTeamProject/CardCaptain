@@ -85,6 +85,30 @@ public class RankingService implements RankingIService {
 		
 		return RankingiDao.detailList(params);
 	}
+	// 리뷰 삭제
+	@Override
+	public int deleteReview(HashMap<String, String> params) throws Throwable {
+		
+		return RankingiDao.deleteReview(params);
+	}
+	// 리뷰 수정
+	@Override
+	public int updateReview(HashMap<String, String> params) throws Throwable {
+		
+		return RankingiDao.updateReview(params);
+	}
+	// 총 별점 가져오기
+	@Override
+	public float starTotal(HashMap<String, String> params) throws Throwable {
+		
+		return RankingiDao.starTotal(params);
+	}
+	// 좋아요 수 올리기
+	@Override
+	public int updatelikeCnt(HashMap<String, String> params) throws Throwable {
+		
+		return RankingiDao.updatelikeCnt(params);
+	}
 
 
 

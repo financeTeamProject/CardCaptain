@@ -43,4 +43,20 @@
 		WHERE MEMBER_NO = #{memNo}
 	</delete>
 	
+	<select id="mCnt" parameterType="hashmap" resultType="Integer">
+		SELECT COUNT(*)
+		FROM MEMBER_INFO
+		WHERE 1=1
+	</select>
+	
+	<select id="mList" parameterType="hashmap" resultType="hashmap">
+		SELECT C.*
+		FROM(SELECT CARD_NO, CARD_CMP_NO, DECODE(CARD_TYPE, 0, '신용카드','체크카드') AS CARD_TYPE, CARD_NAME,
+		RANK() OVER(PARTITION BY CARD_CMP_NO ORDER BY CARD_NO DESC) AS RNK
+	    FROM CARDS
+	    ORDER BY CARD_NO ASC) C
+		WHERE C.CARD_CMP_NO = ${cmpNo}
+    	AND C.RNK BETWEEN #{startCnt} AND #{endCnt}
+	</select>
+	
 </mapper>

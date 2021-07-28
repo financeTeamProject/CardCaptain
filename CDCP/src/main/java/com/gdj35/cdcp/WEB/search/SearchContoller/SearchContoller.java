@@ -218,14 +218,49 @@ public class SearchContoller {
 	
 	@RequestMapping(value = "/cardListGet", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
 	@ResponseBody
-	public String ajaxBoardInsertResult(ModelAndView modelAndView) throws Throwable {
+	public String cardListGet(ModelAndView modelAndView) throws Throwable {
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Object> modelMap = new HashMap<String, Object>();
-
 		List<HashMap<String, String>> list = iservice.cardListGet();
-		System.out.println("===================");
-		System.out.println(list);
+		
 		modelMap.put("list", list);
+		return mapper.writeValueAsString(modelMap);
+	}
+	
+	@RequestMapping(value = "/cardDelete", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String cardDelete(ModelAndView modelAndView,@RequestParam HashMap<String,String> params) throws Throwable {
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		int cardDelChk = iservice.cardDelete(params);
+		int cardBeneDelChk = iservice.cardBenefitDelete(params);
+		
+		if(cardDelChk > 0 && cardBeneDelChk > 0) {
+			modelMap.put("message", "success");
+		} else {
+			modelMap.put("message", "failed");
+		}
+		
+		return mapper.writeValueAsString(modelMap);
+	}
+	
+	@RequestMapping(value = "/cardUpdatePop", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String cardUpdatePop(ModelAndView modelAndView,@RequestParam HashMap<String,String> params) throws Throwable {
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		List<HashMap<String, String>> popup = iservice.cardUpdatePop(params);
+		
+		modelMap.put("popup", popup);
+		return mapper.writeValueAsString(modelMap);
+	}
+	
+	@RequestMapping(value = "/cardUpdate", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String cardUpdate(ModelAndView modelAndView,@RequestParam ArrayList<String> option) throws Throwable {
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
 		return mapper.writeValueAsString(modelMap);
 	}
 }
