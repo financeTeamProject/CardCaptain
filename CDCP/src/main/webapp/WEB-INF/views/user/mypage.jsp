@@ -784,7 +784,6 @@ $(document).ready(function() {
 			}
 		});
 	}
-
 });
 
 //보유카드 추가,삭제
