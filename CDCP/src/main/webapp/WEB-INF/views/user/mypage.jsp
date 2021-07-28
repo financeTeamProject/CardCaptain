@@ -933,7 +933,6 @@ $(document).ready(function() {
 			$("#cardDelete #lists").val(lists);
 			
 			deletelist();
-			
 			//addLists();
 		});
 	}
