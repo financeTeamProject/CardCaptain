@@ -244,7 +244,7 @@ $(document).ready(function() {
 		$(".right_content").html("");
 	});
 	
-	// 카드리스트
+	// 회원리스트
 	function reloadList() {
 		var params = $("#mList").serialize();
 		
@@ -254,8 +254,9 @@ $(document).ready(function() {
 			dataType: "json",
 			data: params,
 			success: function (res) {
-				drawList(res.list);
+				drawList(res.Mlist);
 				drawPaging(res.pb);
+				console.log(res.Mlist);
 			},
 			error: function (request, status, error) {
 				console.log(error);
@@ -269,8 +270,8 @@ $(document).ready(function() {
 		// 	" +  + " : 만들어놓고 붙여넣어도 됨.
 		for(var m of list) {
 			html += "<tr cNo=\"" + m.MEMBER_NO + "\">";
+			html += "<td class=\"a\">" + m.MEMBER_NO + "</td>";
 			html += "<td class=\"a\">" + m.MEMBER_ID + "</td>";
-			html += "<td class=\"b\">" + m.MEMBER_PW + "</td>";
 			html += "<td class=\"b\">" + m.MEMBER_PW + "</td>";
 			html += "<td class=\"b\">" + m.GENDER + "</td>";
 			html += "<td class=\"b\">" + m.CONTACT + "</td>";
