@@ -83,7 +83,6 @@ public class ContentController {
 		return mav;
 	}
 	
-	
 	@RequestMapping(value="/Ctest1") // Ctest1 페이지
 	public ModelAndView Ctest1(
 			@RequestParam HashMap<String, String> params,

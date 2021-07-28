@@ -725,7 +725,6 @@ h1 {
 			
 		}
 		
-		
 		// 페이징 그리기
 		function drawPaging(pb) {
 			var html = "";
