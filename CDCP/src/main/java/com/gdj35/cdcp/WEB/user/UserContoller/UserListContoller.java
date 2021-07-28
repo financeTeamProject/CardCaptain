@@ -149,9 +149,9 @@ public class UserListContoller {
 	}
 	
 	//======================어드민========================
-	@RequestMapping(value="/adminMList")
-	public ModelAndView adminMList(ModelAndView mav) {
-		mav.setViewName("user/adminMList");
+	@RequestMapping(value="/GJMList")
+	public ModelAndView GJMList(ModelAndView mav) {
+		mav.setViewName("user/GJMList");
 		
 	return mav;
 	}
