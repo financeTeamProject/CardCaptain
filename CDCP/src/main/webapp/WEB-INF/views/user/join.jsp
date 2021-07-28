@@ -648,7 +648,7 @@ $(document).ready(function() {
       	<br/>
       	<br/>
       	<br/>
-      	<input type="button" value="다음" id="btn_next"></div>
+      	<input type="button" value="가입완료" id="btn_next"></div>
 	</div>
 	<br/>
 	<br/>
