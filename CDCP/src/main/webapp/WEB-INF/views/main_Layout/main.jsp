@@ -218,13 +218,13 @@ body {
 .re {
 	display: inline-block;
 	vertical-align: top;
-	font-size: 11px;
+	font-size: 12px;
     margin: 10px 0 10px 130px;
 }
 .new {
 	display: inline-block;
 	vertical-align: top;
-	font-size: 11px;
+	font-size: 12px;
 	margin: 10px 0 10px 0;
 }
 .re:hover, .new:hover {
