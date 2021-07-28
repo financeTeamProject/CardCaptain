@@ -1092,7 +1092,7 @@ $(document).ready(function(){
 		$("#bef_btn").on("click", function(){
 			$("#goForm").submit();
 		});
-		
+// 페이지 이동	
 		$(".paging_area").on("click", "span", function () {
 			$("#page").val($(this).attr("page"));
 			
@@ -1102,7 +1102,6 @@ $(document).ready(function(){
 		$("#reviewLoginBtn").on("click", function(){
 			
 			var params = $("#actionForm").serialize();
-			alert(params);
 			
 			$.ajax({
 				url:"reviewWrite",
@@ -1541,7 +1540,8 @@ $(document).ready(function(){
 						success: function(res){ // 성공 시 다음 함수 실행	
 							if(res.msg == "success"){
 								closePopup();
-								reloadList();
+								/* reloadList(); */
+								location.reload();
 							} else if(res.msg == "failed"){
 								alert("작성에 실패하였습니다.");
 							} else {

@@ -187,9 +187,6 @@ public class RankingContoller {
 			ObjectMapper mapper = new ObjectMapper();
 			Map<String, Object> modelMap = new HashMap<String, Object>();
 			
-			System.out.println("=====리뷰 목록 그릴때======");
-			System.out.println(params);
-			System.out.println("=====리뷰 목록 그릴때======");
 			// 좋아요 클릭수 증가	  
 			  if(params.get("reviewNo") != null) {
 				  int likeCnt = RankingiService.updatelikeCnt(params);
@@ -393,5 +390,155 @@ public class RankingContoller {
 				
 				return mapper.writeValueAsString(modelMap);
 			}
+		  
+		  // 관리자 페이지
+		  @RequestMapping(value = "/adminDh")
+			  public ModelAndView adminDh(
+						@RequestParam HashMap<String, String> params,
+						ModelAndView mav) throws Throwable{
+				// 현재 페이지
+					int page = 1;
+					
+					if(params.get("page") != null) {
+						page = Integer.parseInt(params.get("page"));
+					}
+					// 총 게시글 수
+					int cnt = RankingiService.getRCnt(params);
+					
+					// 페이징 정보 취득
+					PagingBean pb = iPagingService.getPagingBean(page, cnt);
+					
+					// 게시글 시작, 종료번호 할당
+					params.put("startCnt", Integer.toString(pb.getStartCount()));
+					params.put("endCnt", Integer.toString(pb.getEndCount()));
+				
+					List<HashMap<String, String>> reviewList
+						= RankingiService.getReviewList(params);
+					
+					mav.addObject("reviewList", reviewList);
+					mav.addObject("page", page);
+					mav.addObject("pb", pb);
+					
+					mav.setViewName("ranking/adminDh");
+					
+					return mav;
+				}
+		  // 관리자 페이지
+		  @RequestMapping(value = "/adminDh2")
+			  public ModelAndView adminDh2(
+						@RequestParam HashMap<String, String> params,
+						ModelAndView mav) throws Throwable{
+				// 현재 페이지
+					int page = 1;
+					
+					if(params.get("page") != null) {
+						page = Integer.parseInt(params.get("page"));
+					}
+					
+					mav.addObject("page", page);
+					mav.setViewName("ranking/adminDh2");
+					
+					return mav;
+				}
+		  
+		  // 관리자 페이지 비동기페이지
+		  @RequestMapping(value="/adminDhs",
+					method = RequestMethod.POST,
+					produces = "text/json;charset=UTF-8")
+			@ResponseBody
+			public String adminDhs(
+					@RequestParam HashMap<String, String> params) throws Throwable{
+				ObjectMapper mapper = new ObjectMapper();
+				Map<String, Object> modelMap = new HashMap<String, Object>();
+				// 현재 페이지
+			  	   
+			  try {	    
+				  	int page = Integer.parseInt(params.get("page"));
+				  	
+					// 총 게시글 수
+					int cnt = RankingiService.getRCnt(params);
+					
+					// 페이징 정보 취득
+					PagingBean pb = iPagingService.getPagingBean(page, cnt);
+					
+					// 게시글 시작, 종료번호 할당
+					params.put("startCnt", Integer.toString(pb.getStartCount()));
+					params.put("endCnt", Integer.toString(pb.getEndCount()));
+				
+					List<HashMap<String, String>> reviewList
+						= RankingiService.getReviewList(params);
+					if(reviewList != null) {
+						
+					modelMap.put("msg", "success");
+					modelMap.put("reviewList", reviewList);
+					modelMap.put("page", page);
+					modelMap.put("pb", pb);
+			  		} else {
+			  			modelMap.put("msg", "failed");
+			  		}
+			  }catch (Throwable e) {
+					e.printStackTrace();
+					modelMap.put("msg", "error");
+			  }
+			return mapper.writeValueAsString(modelMap);
+			}
+		  
+		// 관리자 페이지 상세보기
+		  @RequestMapping(value="/adminDetail", 
+						  method = RequestMethod.POST, 
+						  produces = "text/json;charset=UTF-8")
+			@ResponseBody
+			public String adminDetail(
+					@RequestParam HashMap<String, String> params) throws Throwable{
+				
+				ObjectMapper mapper = new ObjectMapper();
+				Map<String, Object> modelMap = new HashMap<String, Object>();
+				
+				try {
+					if(params != null){
+					
+					HashMap<String, String> adminDetail 
+						= RankingiService.adminDetail(params);
+					
+					modelMap.put("msg", "success");
+					modelMap.put("adminDetail", adminDetail);
+				}else {
+						modelMap.put("msg", "failed");
+					}
+				} catch (Throwable e) {
+					e.printStackTrace();
+					modelMap.put("msg", "error");
+				}
+				
+				return mapper.writeValueAsString(modelMap);
+			}
+		// 관리자페이지 리뷰 삭제
+		  @RequestMapping(value="/adminDelete", 
+						  method = RequestMethod.POST, 
+						  produces = "text/json;charset=UTF-8")
+			
+			@ResponseBody
+			public String adminDelete(
+					@RequestParam HashMap<String, String> params) throws Throwable{
+				
+				ObjectMapper mapper = new ObjectMapper();
+				Map<String, Object> modelMap = new HashMap<String, Object>();
+				
+				try {
+					int cnt = RankingiService.deleteReview(params);
+					
+					if(cnt > 0) {
+						modelMap.put("msg", "success");
+					} else {
+						modelMap.put("msg", "error");
+					}
+				} catch (Throwable e) {
+					e.printStackTrace();
+					modelMap.put("msg", "error");
+				}
+				
+				return mapper.writeValueAsString(modelMap);
+			}
+		  
 }
 

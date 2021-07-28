@@ -37,6 +37,12 @@ public interface RankingIDao {
 
 	public int updatelikeCnt(HashMap<String, String> params) throws Throwable;
 
+	public List<HashMap<String, String>> getReviewList(HashMap<String, String> params) throws Throwable;
+
+	public int getRCnt(HashMap<String, String> params) throws Throwable;
+
+	public HashMap<String, String> adminDetail(HashMap<String, String> params) throws Throwable;
+
 
 
 }

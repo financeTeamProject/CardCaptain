@@ -145,7 +145,7 @@
 		                                ON HCR.CARD_NO = C.CARD_NO
 		                         INNER JOIN MEMBER_INFO MI
 		                                ON HCR.MEMBER_NO = MI.MEMBER_NO
-		WHERE REVIEW_NO = #{reviewNo}
+		WHERE HCR.REVIEW_NO = #{reviewNo}
 	</select>
 	
 <!-- 수정  -->
@@ -164,6 +164,50 @@
 		SELECT NVL(ABS(ROUND(AVG(SCORE), 1)),0) AS AVG
 		FROM HAVECARDREVIEWS
 		WHERE CARD_NO = #{cardNo}
+	</select>
+<!-- 관리자페이지 리뷰 목록 가져오기  -->
+	<select id="getReviewList" parameterType="hashmap" resultType="hashmap">
+		SELECT R.*
+		FROM(SELECT HCR.REVIEW_NO, HCR.MEMBER_NO, MI.NICKNAME, HCR.SCORE, NVL(RP.STATUS_NO,0) AS STATUS_NO , C.CARD_NO, C.CARD_NAME, HCR.TITLE, HCR.TEXT, 
+		            TO_CHAR(HCR.ADD_DATE, 'YYYY-MM-DD') AS ADD_DATE, HCR.DEL_CHECK, ROW_NUMBER() OVER(ORDER BY HCR.REVIEW_NO ASC) AS RNK
+		     FROM HAVECARDREVIEWS HCR INNER JOIN CARDS C
+		                                      ON HCR.CARD_NO = C.CARD_NO
+		                              INNER JOIN MEMBER_INFO MI
+		                                      ON HCR.MEMBER_NO = MI.MEMBER_NO
+		                              LEFT OUTER JOIN REVIEWREPORT RP
+		                                      ON HCR.REVIEW_NO = RP.REVIEW_NO
+		     WHERE 1 = 1
+			 <if test="searchTxt != null and searchTxt !=''">
+				<choose>
+		            <when test="searchGbn == 0">
+		               AND MI.NICKNAME LIKE '%' || #{searchTxt} || '%'
+		            </when>
+		            <when test="searchGbn == 1">
+		               AND STATUS_NO LIKE '%' || #{searchTxt} || '%'
+		            </when>
+		            <when test="searchGbn == 2">
+		               AND C.CARD_NAME LIKE '%' || #{searchTxt} || '%'
+		            </when>
+	        	</choose>
+			</if>
+		) R
+		WHERE R.RNK BETWEEN #{startCnt} AND #{endCnt}
+	</select>
+<!-- 관리자 리뷰페이지 수 가져오기  -->
+	<select id="getRCnt" parameterType="hashmap" resultType="Integer">
+		SELECT COUNT(*) AS CNT
+		FROM HAVECARDREVIEWS
+	</select>
+<!-- 리뷰페이지 수 가져오기  -->
+	<select id="adminDetail" parameterType="hashmap" resultType="hashmap">
+		SELECT HCR.REVIEW_NO, HCR.MEMBER_NO, HCR.TITLE, HCR.TEXT, HCR.SCORE, C.CARD_NAME, MI.NICKNAME, RP.REPORT_TEXT, RP.STATUS_NO
+		FROM HAVECARDREVIEWS HCR INNER JOIN CARDS C
+		                                ON HCR.CARD_NO = C.CARD_NO
+		                        INNER JOIN MEMBER_INFO MI
+		                                ON HCR.MEMBER_NO = MI.MEMBER_NO
+		                        LEFT OUTER JOIN REVIEWREPORT RP
+		                                ON HCR.REVIEW_NO = RP.REVIEW_NO
+		WHERE HCR.REVIEW_NO = #{reviewNo}
 	</select>
 </mapper>
 
