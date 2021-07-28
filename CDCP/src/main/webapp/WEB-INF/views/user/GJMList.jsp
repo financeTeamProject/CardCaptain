@@ -172,11 +172,16 @@ display: block;
 }
 /* 내용 영역 */          
 
-.contents {
+.content_area {
 	width: 1600px;
-	height: 500px;
+	height: 700px;
 	margin: 0px auto;
+}
+.contents {
+	width: 100%;
+	height: 80%;
 	background-color: #f5f6f7;
+	margin: 100px auto;
 }
 	/* 풋터  ~127번째줄*/
 #footer {

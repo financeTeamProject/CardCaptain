@@ -28,7 +28,7 @@ body {
 	width: 100%;
 	heigth: 100%;
 }
-	/* 헤더  ~82번째줄*/
+	/* 헤더 */
 #header {
 	width: 100%;
 	height: 55px;
@@ -63,7 +63,7 @@ body {
     text-align: center;
     margin-top: 10px;
 }
-#headerLeft .menu1 { 
+.menu1 { 
 	display: inline-block;
 	width: 130px;
 	height: 100%;
@@ -73,7 +73,29 @@ body {
 	letter-spacing: 2px;
 	vertical-align: top;
 	cursor: pointer;
-}	/* header_left 종료 */
+}	
+.menu1:before, .menu1:after{
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: #1AAB8A;
+  transition: 400ms ease all;
+}
+.menu1:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.menu1:hover:before, .menu1:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+	/* header_left 종료 */
 
 #headerRight {
 	display: inline-block;
@@ -82,18 +104,6 @@ body {
     font-size: 18px;
 	vertical-align: top;
 	text-align: right;
-}
-#imgSearch {
- 	display: inline-block;
-    background-image: url("/cdcp/resources/images/main/search.png");
-    background-repeat: no-repeat;
-    background-size: 30px;
-    width: 30px;
-    height: 25px;
-    cursor: pointer;
-    text-align: center;
-	margin-top: 15px;
-	margin-right: 20px;
 }
 #imgLogin {
  	display: inline-block;
@@ -106,18 +116,6 @@ body {
     text-align: center;
 	margin-top: 15px;
 }
-#searchTxt {
-    border-style: solid;
-    border-width: 0 0 1px 0;
-    border-color: #0047AB;
-    outline: 0;
-    caret-color: red;
-    color: #0047AB;
-    box-sizing: border-box;
-    font-size: 13px;
-    letter-spacing: 3px;
-    display: none;
-}
 #Nickname {
     width: auto;
     height: auto;
@@ -127,17 +125,128 @@ body {
     letter-spacing: 2px;
     display: none;
 }
+#logNick:hover{
+	color: #1AAB8A;
+}
 #logNick {
-	hight: 12px;
-	width: auto;
 	display: inline-block;
+	color:#0047AB;
+	border:none;
+	position:relative;
+	width: auto;
+	cursor:pointer;
+	transition:800ms ease all;
+	outline:none;
+	margin-top: 18px;
+	letter-spacing: 2px;
+}
+#logNick:before, #logNick:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:1px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+#logNick:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+#logNick:hover:before, #logNick:hover:after{
+  width:100%;
+  transition:800ms ease all;
 }
 #logoutBtn {
+	background:#fff;
+	color:#1AAB8A;
+	border:none;
+	position:relative;
+	height:30px;
 	width: 70px;
-	heigth: 40px;
+	cursor:pointer;
+	transition:800ms ease all;
+	outline:none;
 	margin-left: 20px;
-	/* display: none; */
 }
+/* 로그인팝업 */
+.popinput {
+	width: 50%;
+    height: 40px;
+    padding: 0px 20px;
+    border: 1px solid lightgray;
+    outline: none;
+    font-size: 13px;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: #0047AB;
+    outline: 0;
+    text-decoration: none;
+    letter-spacing: 2px;
+    margin: 5px 50px 10px 70px;
+}
+.cardcaptain {
+	width: 100%;
+	height: 95px;
+	line-height: 110px;
+	text-align: center;
+	font-size: 25px;
+	color: #0047AB;
+	letter-spacing: 5px;
+	cursor: pointer;
+}
+#popup {
+	height: 320px;
+	width: 400px;
+	background-color: white;
+	border-radius: 70px;
+	display: none;
+	margin: 300px auto;
+	z-index: 50;
+}
+#loginBtn {
+	margin-bottom: 10px;
+	margin-top: 5px;
+	background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+	background-size: 200%;
+	color: white;
+ 	font-weight: bold;
+	border: none;
+	cursor: pointer;
+	display: inline;
+	margin: 20px 10px 15px 90px;
+}
+.re {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 12px;
+    margin: 10px 0 10px 130px;
+}
+.new {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 12px;
+	margin: 10px 0 10px 0;
+}
+.re:hover, .new:hover {
+	cursor: pointer;
+}
+.error {
+    font-size: 11px;
+    color: red;
+    visibility: hidden;
+}
+.errorMsg {
+	height: 100%;
+    display: none;
+    color: #e65f3e;
+    font-size: 13px;
+    margin-left: 65px;
+} 
+	/* 로그인팝업종료 */
 	/* header_right 종료 */
 	/* 헤더 종료 */
 	
@@ -759,7 +868,7 @@ $(document).ready(function(){
 	});
 	
 	$("#logNick").on("click", function(){
-		alert($("#sMNm").val());
+		//alert($("#sMNm").val());
 		$("#memNo").attr("action");
 		$("#memNo").submit();
 	});
@@ -838,14 +947,12 @@ $(document).ready(function(){
 				<input type="hidden" name="memAd" value="${sMAd}" id="sMAd"/>
 			</form>
 			<div id="headerRight">
-				<input type="text" id="searchTxt">
-				<div id="imgSearch"></div>
 				<c:choose>
 					<c:when test="${empty sMNm}">
 						<div id="imgLogin"></div>
 					</c:when>
 					<c:otherwise>
-						<div id="logNick">${sMNm}  님</div><input type="button" value="로그아웃" id="logoutBtn" />
+						<div id="logNick">${sMNm}&nbsp;&nbsp;님</div><input type="button" value="로그아웃" id="logoutBtn" />
 					</c:otherwise>
 				</c:choose>
 			</div>

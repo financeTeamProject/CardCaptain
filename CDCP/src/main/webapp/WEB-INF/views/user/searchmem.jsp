@@ -300,7 +300,10 @@ $(document).ready(function() {
 	var regex_spe = (/[~!@#$%^&*()_+|<>?:{}]/);
 	var regex_num = (/[^0-9]/g);
 	var regex_eng = (/^[a-zA-Z]*$/);
-
+	$("#btn_next").on("click", function(){
+		location.href = "/cdcp";
+	});
+	
     //숫자만 입력
     $("#mPhone").keyup(function() {
        if (regex_num.test($(this).val())) {
