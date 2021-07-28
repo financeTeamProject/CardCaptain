@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="R">
-	<!-- 신용카드 TOP 10 -->
+<!-- 신용카드 TOP 10 -->
 	<select id="getRCredit" parameterType="hashmap" resultType="hashmap">
 		SELECT C.CARD_NO, C.CARD_CMP_NO, C.CARD_CMP_NAME, C.CARD_NAME, C.CARD_SUMMARY, 
             C.CARD_IMG_URL, C.CLICK_CNT, C.RNK
@@ -12,8 +12,8 @@
 		                          AND CARD_TYPE = 0) C 
 		WHERE C.RNK BETWEEN 1 AND 10
 	</select>
-
-	<!-- 신용카드 TOP 10 -->
+	
+<!-- 체크카드 TOP 10 -->
 	<select id="getRCheck" parameterType="hashmap" resultType="hashmap">
 		SELECT C.CARD_NO, C.CARD_CMP_NO, C.CARD_CMP_NAME, C.CARD_NAME, C.CARD_SUMMARY, 
             C.CARD_IMG_URL, C.CLICK_CNT, C.RNK
@@ -25,7 +25,7 @@
 		WHERE C.RNK BETWEEN 1 AND 10
 	</select>
 	
-	<!-- 카드상세보기  -->
+<!-- 카드상세보기  -->
 	<select id="getCView" parameterType="hashmap" resultType="hashmap">
 		SELECT C.CARD_NO, C.CARD_NAME, C.CARD_IMG_URL, C.CLICK_CNT, CBF.BENEFIT_TOP, CBF.BENEFIT_MID, CBF.DETAIL_INFO,
             CMP.CARD_CMP_NAME, C.CARD_APPLY_URL, CBF.BENEFIT_IMG_URL
@@ -36,7 +36,7 @@
 		WHERE C.CARD_NO = #{cardNo}
 	</select>
 	
-	<!-- 카드사별 Top 1  -->
+<!-- 카드사별 Top 1  -->
 	<select id="cmpTop1" parameterType="hashmap" resultType="hashmap">
 		SELECT CC.CARD_CMP_NO, CC.CARD_CMP_NAME, CC.CARD_NO, CC.CARD_NAME, CC.CARD_SUMMARY, CBF.BENEFIT_TOP, CC.CARD_IMG_URL,
             CC.CLICK_CNT, CC.RNK
@@ -48,7 +48,7 @@
                                            ON CC.CARD_NO = CBF.CARD_NO
                                            AND RNK = 1
 	</select>
-	<!-- 카드사별 Top 2  -->
+<!-- 카드사별 Top 2  -->
 	<select id="cmpTop2" parameterType="hashmap" resultType="hashmap">
 		SELECT CC.CARD_CMP_NO, CC.CARD_CMP_NAME, CC.CARD_NO, CC.CARD_NAME, CC.CARD_SUMMARY, CBF.BENEFIT_TOP, CC.CARD_IMG_URL,
             CC.CLICK_CNT, CC.RNK
@@ -60,7 +60,7 @@
                                            ON CC.CARD_NO = CBF.CARD_NO
                                            AND RNK = 2
 	</select>
-	<!-- 카드사별 Top 3  -->
+<!-- 카드사별 Top 3  -->
 	<select id="cmpTop3" parameterType="hashmap" resultType="hashmap">
 		SELECT CC.CARD_CMP_NO, CC.CARD_CMP_NAME, CC.CARD_NO, CC.CARD_NAME, CC.CARD_SUMMARY, CBF.BENEFIT_TOP, CC.CARD_IMG_URL,
             CC.CLICK_CNT, CC.RNK
@@ -72,55 +72,73 @@
                                            ON CC.CARD_NO = CBF.CARD_NO
                                            AND RNK = 3
 	</select>
-	<!-- 조회수 업데이트  -->
+	
+<!-- 조회수 업데이트  -->
 	<update id="updateCnt" parameterType="hashmap">
 		UPDATE CARDS SET CLICK_CNT = (SELECT NVL(CLICK_CNT,0) + 1
 		                              FROM CARDS
 		                              WHERE CARD_NO = #{cardClick})
 		WHERE CARD_NO = #{cardClick}
 	</update>
-	<!-- 페이지 수  -->
+	
+<!-- 페이지 수  -->
 	<select id="getReviewCnt" parameterType="hashmap" resultType="Integer">
 		SELECT COUNT(*) AS CNT
 		FROM HAVECARDREVIEWS
 		WHERE CARD_NO = #{cardNo}
 		AND DEL_CHECK = 1
 	</select>
-	<!-- 카드별 리뷰 목록  -->
+	
+<!-- 카드별 리뷰 목록  -->
 	<select id="reviewList" parameterType="hashmap" resultType="hashmap">
-		SELECT CC.REVIEW_NO, CC.MEMBER_NO, CC.NICKNAME, CC.CARD_NO, CC.CARD_NAME, CC.TITLE, CC.TEXT, CC.SCORE, CC.ADD_DATE
-		FROM(SELECT C.REVIEW_NO, C.MEMBER_NO, C.NICKNAME, C.CARD_NO, C.CARD_NAME, C.TITLE, C.TEXT, C.SCORE,
+		SELECT CC.REVIEW_NO, CC.MEMBER_NO, CC.NICKNAME, CC.CARD_NO, CC.CARD_NAME, CC.TITLE, CC.TEXT, CC.SCORE, CC.ADD_DATE, CC.LIKE_CNT
+		FROM(SELECT C.REVIEW_NO, C.MEMBER_NO, C.NICKNAME, C.CARD_NO, C.CARD_NAME, C.TITLE, C.TEXT, C.SCORE, C.LIKE_CNT,
 				             C.ADD_DATE, ROW_NUMBER() OVER(ORDER BY C.REVIEW_NO DESC) AS RNK
 		     FROM(SELECT DISTINCT HCR.REVIEW_NO, HCR.MEMBER_NO, MI.NICKNAME, HCR.CARD_NO, C.CARD_NAME, HCR.TITLE, HCR.TEXT, HCR.SCORE,
-				                 TO_CHAR(HCR.ADD_DATE, 'YYYY-MM-DD') AS ADD_DATE
+				      NVL(RG.LIKE_CNT,0) AS LIKE_CNT, TO_CHAR(HCR.ADD_DATE, 'YYYY-MM-DD') AS ADD_DATE
 		          FROM HAVECARDREVIEWS HCR INNER JOIN HAVECARDS HC
 		                                           ON HCR.CARD_NO = HC.CARD_NO
 		                                   INNER JOIN CARDS C
 		                                           ON HC.CARD_NO = C.CARD_NO
 		                                   INNER JOIN MEMBER_INFO MI
 		                                           ON HCR.MEMBER_NO = MI.MEMBER_NO
+		                                   LEFT OUTER JOIN REVIEWGOOD RG
+                                          		   ON HCR.REVIEW_NO = RG.REVIEW_NO
 		         WHERE HCR.CARD_NO = #{cardNo}
 		         AND HCR.DEL_CHECK = 1) C) CC
 		WHERE CC.RNK BETWEEN #{startCnt} AND #{endCnt}
 	</select>
+	
+<!-- 좋아요 수 가져오기  -->	
 	<select id="getReGood" parameterType="hashmap" resultType="Integer">
 		SELECT LIKE_CNT
 		FROM REVIEWGOOD
 		WHERE REVIEW_NO = 8
 	</select>
-	<!-- 리뷰 작성  -->
+	
+<!-- 좋아요 수 업데이트  -->
+	<update id="updatelikeCnt" parameterType="hashmap">
+		UPDATE REVIEWGOOD SET LIKE_CNT = (SELECT NVL(LIKE_CNT,0) + 1
+                                  FROM REVIEWGOOD
+                                  WHERE REVIEW_NO = #{reviewNo})                    
+		WHERE REVIEW_NO = #{reviewNo}
+	</update>
+	
+<!-- 리뷰 작성  -->
 	<insert id="reviewAdd" parameterType="hashmap">
 		INSERT INTO HAVECARDREVIEWS(REVIEW_NO, MEMBER_NO, CARD_NO, SCORE, TITLE, TEXT )
 		VALUES(HAVECARDREVIEWS_SEQ.NEXTVAL, #{memNo}, #{cardNo}, #{review_star}, #{reviewTitle}, #{reviewText})
 	</insert>
-	<!-- 카드 보유 여부  -->
+	
+<!-- 카드 보유 여부  -->
 	<select id="gethaveCard" parameterType="hashmap" resultType="Integer">
 		SELECT COUNT(*)
 		FROM HAVECARDS
 		WHERE MEMBER_NO = #{memberNo}
 		AND CARD_NO = #{cardNo}
 	</select>
-	<!-- 상세보기  -->
+	
+<!-- 상세보기  -->
 	<select id="detailList" parameterType="hashmap" resultType="hashmap">
 		SELECT HCR.REVIEW_NO, HCR.MEMBER_NO, HCR.TITLE, HCR.TEXT, HCR.SCORE, C.CARD_NAME, MI.NICKNAME
 		FROM HAVECARDREVIEWS HCR INNER JOIN CARDS C
@@ -129,14 +147,23 @@
 		                                ON HCR.MEMBER_NO = MI.MEMBER_NO
 		WHERE REVIEW_NO = #{reviewNo}
 	</select>
-	<!-- 수정  -->
+	
+<!-- 수정  -->
 	<update id="updateReview" parameterType="hashmap">
 		UPDATE HAVECARDREVIEWS SET TITLE = #{reviewTitle}, TEXT = #{reviewText}, SCORE = #{review_star}
 		WHERE REVIEW_NO = #{reviewNo}
 	</update>
-	<!-- 리뷰삭제  -->
+	
+<!-- 리뷰삭제  -->
 	<delete id="deleteReview" parameterType="hashmap">
 		DELETE FROM HAVECARDREVIEWS
 		WHERE REVIEW_NO = #{reviewNo}
 	</delete>
+<!-- 총 별점  -->	
+	<select id="starTotal" parameterType="hashmap" resultType="Float">
+		SELECT NVL(ABS(ROUND(AVG(SCORE), 1)),0) AS AVG
+		FROM HAVECARDREVIEWS
+		WHERE CARD_NO = #{cardNo}
+	</select>
 </mapper>
+

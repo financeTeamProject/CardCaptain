@@ -86,10 +86,23 @@ public class RankingDao implements RankingIDao{
 		
 		return sqlSession.delete("R.deleteReview", params);
 	}
+	// 리뷰 수정
 	@Override
 	public int updateReview(HashMap<String, String> params) throws Throwable {
 		
 		return sqlSession.update("R.updateReview", params);
+	}
+	// 총 별점 가져오기
+	@Override
+	public float starTotal(HashMap<String, String> params) throws Throwable {
+		
+		return sqlSession.selectOne("R.starTotal", params);
+	}
+	// 좋아요 수 올리기
+	@Override
+	public int updatelikeCnt(HashMap<String, String> params) throws Throwable {
+		
+		return sqlSession.update("R.updatelikeCnt", params);
 	}
 
 }

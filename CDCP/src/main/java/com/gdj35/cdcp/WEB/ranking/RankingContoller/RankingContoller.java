@@ -136,6 +136,7 @@ public class RankingContoller {
 		  if(params.get("cardClick") != null) {
 			  int cnt = RankingiService.updateCnt(params);
 		  }
+
 		
 		 // 카드 상세보기 화면 
 		  try { 
@@ -149,8 +150,22 @@ public class RankingContoller {
 				}	
 				  List<HashMap<String, String>>
 				  data = RankingiService.getCView(params);
-				 
+				  // 총 별점 가져오기
+				  float getStar = RankingiService.starTotal(params);
+				  
+				  if(getStar == 0) {
+					  float starCnt = 0;
+					  
+					  mav.addObject("starCnt", starCnt);
+				  } else {
+					  
+					  float starCnt = Math.round(((getStar-1)/(5-1))*100);
+					  
+					  mav.addObject("starCnt", starCnt);
+				  }
+				  
 				  mav.addObject("data", data);
+				  mav.addObject("getStar", getStar);
 				  mav.addObject("page", page);
 				  
 				  mav.setViewName("ranking/cardview");
@@ -172,6 +187,21 @@ public class RankingContoller {
 			ObjectMapper mapper = new ObjectMapper();
 			Map<String, Object> modelMap = new HashMap<String, Object>();
 			
+			System.out.println("=====리뷰 목록 그릴때======");
+			System.out.println(params);
+			System.out.println("=====리뷰 목록 그릴때======");
+			// 좋아요 클릭수 증가	  
+			  if(params.get("reviewNo") != null) {
+				  int likeCnt = RankingiService.updatelikeCnt(params);
+				  
+				  if(likeCnt > 0) {
+						modelMap.put("msg", "success");
+					} else {
+						modelMap.put("msg", "error");
+					}
+			  }
+			
+			
 			// 현재 페이지
 			int page = Integer.parseInt(params.get("page"));
 			
@@ -186,7 +216,7 @@ public class RankingContoller {
 
 			 List<HashMap<String, String>> review 
 			 	= RankingiService.reviewList(params);
-			  
+			 
 			  if(review != null) {
 				  modelMap.put("msg", "success");
 				  modelMap.put("review", review);
@@ -238,7 +268,7 @@ public class RankingContoller {
 			
 			try {
 				int cnt = RankingiService.reviewAdd(params);
-				System.out.println(cnt);
+				
 				if(cnt > 0) {
 					modelMap.put("msg", "success");
 				} else {
