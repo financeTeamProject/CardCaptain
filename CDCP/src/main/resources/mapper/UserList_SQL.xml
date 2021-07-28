@@ -43,6 +43,13 @@
 		WHERE MEMBER_NO = #{memNo}
 	</delete>
 	
+	<delete id="memLeave" parameterType="hashmap">
+		UPDATE MEMBER_INFO 
+		SET LEAVE_CHECK = '0', MEMBER_PW = '1234'
+		WHERE MEMBER_NO = #{memNo}
+		AND MEMBER_PW = #{mPw}
+	</delete>
+	
 	<select id="mCnt" parameterType="hashmap" resultType="Integer">
 		SELECT COUNT(*)
 		FROM MEMBER_INFO

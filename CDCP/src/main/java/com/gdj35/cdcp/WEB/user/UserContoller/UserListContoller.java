@@ -22,7 +22,7 @@ public class UserListContoller {
 	@Autowired UserIListService useriListService;
 	
 	@Autowired IPagingService iPagingService;
-	
+
 	// 카드리스트
 	@RequestMapping(value="/joincards",
 			method = RequestMethod.POST,
@@ -131,21 +131,54 @@ public class UserListContoller {
 		
 		return mapper.writeValueAsString(modelMap);
 	}
-	
-	@RequestMapping(value="/memUpdates")
-	public ModelAndView memUpdates(
-			@RequestParam HashMap<String, String> params,
-			ModelAndView mav
-			) throws Throwable {
+
+	@RequestMapping(value="/memUpdates",
+	method = RequestMethod.POST,
+	produces = "text/json;charsetUTF-8")
+
+	@ResponseBody
+	public String memUpdates(
+		@RequestParam HashMap<String, String> params) throws Throwable {
+	System.out.println(params);
+	ObjectMapper mapper = new ObjectMapper();
+	Map<String, Object> modelMap = new HashMap<String, Object>();
+		
 		try {
 			int cnt = useriListService.memUpdate(params);
-			mav.addObject("cnt",cnt);
+			if(cnt > 0) {
+				modelMap.put("resMsg","success");
+			} else {
+				modelMap.put("resMsg","failed");
+			}
 		} catch (Throwable e){
 			e.printStackTrace();
 		}
-		mav.setViewName("user/mypage");
 		
-		return mav;
+		return mapper.writeValueAsString(modelMap);
+	}
+
+	@RequestMapping(value="/memLeave",
+	method = RequestMethod.POST,
+	produces = "text/json;charsetUTF-8")
+
+	@ResponseBody
+	public String memLeave(
+		@RequestParam HashMap<String, String> params) throws Throwable {
+	ObjectMapper mapper = new ObjectMapper();
+	Map<String, Object> modelMap = new HashMap<String, Object>();
+
+		try {
+			int cnt = useriListService.memLeave(params);
+			if(cnt > 0) {
+				modelMap.put("resMsg","success");
+			} else {
+				modelMap.put("resMsg","failed");
+			}
+		} catch (Throwable e){
+			e.printStackTrace();
+		}
+		
+		return mapper.writeValueAsString(modelMap);
 	}
 	
 	//======================어드민========================
