@@ -271,15 +271,15 @@ $(document).ready(function() {
 		for(var m of list) {
 			html += "<tr cNo=\"" + m.MEMBER_NO + "\">";
 			html += "<td class=\"a\">" + m.MEMBER_NO + "</td>";
-			html += "<td class=\"a\">" + m.MEMBER_ID + "</td>";
-			html += "<td class=\"b\">" + m.MEMBER_PW + "</td>";
-			html += "<td class=\"b\">" + m.GENDER + "</td>";
-			html += "<td class=\"b\">" + m.CONTACT + "</td>";
-			html += "<td class=\"b\">" + m.NICKNAME + "</td>";
-			html += "<td class=\"b\">" + m.JOIN_DATE + "</td>";
-			html += "<td class=\"b\">" + m.LEAVE_DATE + "</td>";
-			html += "<td class=\"b\">" + m.LEAVE_CHECK + "</td>";
-			html += "<td class=\"b\">" + m.EMAIL + "</td>";
+			html += "<td class=\"b\">" + m.MEMBER_ID + "</td>";
+			html += "<td class=\"c\">" + m.MEMBER_PW + "</td>";
+			html += "<td class=\"d\">" + m.GENDER + "</td>";
+			html += "<td class=\"e\">" + m.CONTACT + "</td>";
+			html += "<td class=\"f\">" + m.NICKNAME + "</td>";
+			html += "<td class=\"g\">" + m.JOIN_DATE + "</td>";
+			html += "<td class=\"h\">" + m.LEAVE_DATE + "</td>";
+			html += "<td class=\"i\">" + m.LEAVE_CHECK + "</td>";
+			html += "<td class=\"j\">" + m.EMAIL + "</td>";
 			html += "<td>" + "<button value=\"추가\" class=\"addbtn\" id=addbtn>추가</button>" + "</td>";
 			html += "</tr>";
 		}
