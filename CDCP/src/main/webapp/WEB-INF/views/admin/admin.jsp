@@ -221,6 +221,7 @@ display: block;
 	width: 1200px;
 	height: inherit;
 	background-color: #F2F2F2;
+	overflow: scroll;
 }
 .content_content {
 	padding-top: 10px;
@@ -387,6 +388,26 @@ display: block;
 	color: white;
 	cursor: pointer;
 }
+table {
+	text-align: center;
+	width: 1100px;
+	font-family: 'GmarketSansMedium';
+}
+th, td {
+	border-bottom: 1px solid #444444;
+	padding-top: 5px;
+}
+h1 {
+	margin-top: 0px;
+	margin-bottom: 5px;
+	font-family: 'GmarketSansMedium';
+}
+.cardAddBtnDiv {
+	text-align: center;
+}
+#cardBenefitTop {
+	margin-right: 5px;
+}
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
@@ -449,7 +470,7 @@ function updateCardRead() {
 			
 			html +="<form action=\"#\" id =\"UpdateCardForm\" method=\"post\">";
 			html +="<div>";
-			html +="<table border=\"1\">";
+			html +="<table><h1>카드목록</h1>";
 			html +="<colgroup>";
 			html +="<col width=\"110px\"/>";
 			html +="<col width=\"390px\"/>";
@@ -508,7 +529,7 @@ function getCardRead() {
 	
 	html += "<form action=\"#\" id =\"addCardForm\" method=\"post\">";
 	html += "<input type=\"hidden\" id=\"data\" name =\"cardCompany\" value=\"\"><br/>";
-	html += "<table border=\"1\">";
+	html += "<table><h1>카드추가</h1>";
 	html += "<colgroup>";
 	html += "<col width=\"1100px\"/>";
 	html += "<col width=\"1100px\"/>";
@@ -527,9 +548,9 @@ function getCardRead() {
 	html += "</td>";
 	html += "</tr>";
 	html += "<tr>";
-	html += "<td><input type=\"text\" id=\"cardName\" name=\"cardName\" placeholder=\"카드이름\"/></td>";
-	html += "<td><input type=\"text\" id=\"cardUrl\" name=\"cardUrl\" placeholder=\"가입Url\"/></td>";
-	html += "<td><input type=\"text\" id=\"cardSummary\" name=\"cardSummary\" placeholder=\"간단혜택\"/></td>";
+	html += "<td style=\"width:15%;\"><input type=\"text\" id=\"cardName\" name=\"cardName\" placeholder=\"카드이름\"/></td>";
+	html += "<td style=\"width:15%;\"><input type=\"text\" id=\"cardUrl\" name=\"cardUrl\" placeholder=\"가입Url\"/></td>";
+	html += "<td style=\"width:70%;\"><input type=\"text\" id=\"cardSummary\" name=\"cardSummary\" placeholder=\"간단혜택\" style=\"width:90%;\" /></td>";
 	html += "</tr>";
 	html += "<tr>";
 	html += "<td>카드종류<br/>";
@@ -547,8 +568,8 @@ function getCardRead() {
 	html += '<td id=\"cardBenefitTop\"><label><input type="checkbox" name="benefitOption" value="선택형">선택형</label><label><input type="checkbox" name="benefitOption" value="통신">통신</label><label><input type="checkbox" name="benefitOption" value="주유">주유</label><label><input type="checkbox" name="benefitOption" value="테마파크">테마파크</label><label><input type="checkbox" name="benefitOption" value="백화점">백화점</label><label><input type="checkbox" name="benefitOption" value="기타">기타</label><label><input type="checkbox" name="benefitOption" value="교육/육아">교육/육아</label><label><input type="checkbox" name="benefitOption" value="공연/전시">공연/전시</label><label><input type="checkbox" name="benefitOption" value="모든" 가맹정="">모든 가맹정</label><label><input type="checkbox" name="benefitOption" value="리빙">리빙</label><label><input type="checkbox" name="benefitOption" value="공항라운지/PP">공항라운지/PP</label><label><input type="checkbox" name="benefitOption" value="공항">공항</label><label><input type="checkbox" name="benefitOption" value="소셜커머스">소셜커머스</label><label><input type="checkbox" name="benefitOption" value="해피포인트">해피포인트</label><label><input type="checkbox" name="benefitOption" value="공과금">공과금</label><label><input type="checkbox" name="benefitOption" value="대형" 마트="">대형 마트</label><label><input type="checkbox" name="benefitOption" value="SKT">SKT</label><label><input type="checkbox" name="benefitOption" value="화장품">화장품</label><label><input type="checkbox" name="benefitOption" value="OK캐쉬백">OK캐쉬백</label><label><input type="checkbox" name="benefitOption" value="모든" 가맹점="">모든 가맹점</label><label><input type="checkbox" name="benefitOption" value="병원/약국">병원/약국</label><label><input type="checkbox" name="benefitOption" value="면세점">면세점</label><label><input type="checkbox" name="benefitOption" value="자동차">자동차</label><label><input type="checkbox" name="benefitOption" value="도서">도서</label><label><input type="checkbox" name="benefitOption" value="주유소">주유소</label><label><input type="checkbox" name="benefitOption" value="교통">교통</label><label><input type="checkbox" name="benefitOption" value="베이커리">베이커리</label><label><input type="checkbox" name="benefitOption" value="카페/디저트">카페/디저트</label><label><input type="checkbox" name="benefitOption" value="적립">적립</label><label><input type="checkbox" name="benefitOption" value="할인">할인</label><label><input type="checkbox" name="benefitOption" value="병원">병원</label><label><input type="checkbox" name="benefitOption" value="뷰티/피트니스">뷰티/피트니스</label><label><input type="checkbox" name="benefitOption" value="무이자할부">무이자할부</label><label><input type="checkbox" name="benefitOption" value="바우처">바우처</label><label><input type="checkbox" name="benefitOption" value="점심">점심</label><label><input type="checkbox" name="benefitOption" value="호텔">호텔</label><label><input type="checkbox" name="benefitOption" value="경기관람">경기관람</label><label><input type="checkbox" name="benefitOption" value="CJ" one="">CJ ONE</label><label><input type="checkbox" name="benefitOption" value="편의점">편의점</label><label><input type="checkbox" name="benefitOption" value="푸드">푸드</label><label><input type="checkbox" name="benefitOption" value="패밀리레스토랑">패밀리레스토랑</label><label><input type="checkbox" name="benefitOption" value="프리미엄">프리미엄</label><label><input type="checkbox" name="benefitOption" value="카페">카페</label><label><input type="checkbox" name="benefitOption" value="APP">APP</label><label><input type="checkbox" name="benefitOption" value="마트">마트</label><label><input type="checkbox" name="benefitOption" value="학원">학원</label><label><input type="checkbox" name="benefitOption" value="멤버십포인트">멤버십포인트</label><label><input type="checkbox" name="benefitOption" value="네이버페이">네이버페이</label><label><input type="checkbox" name="benefitOption" value="하이브리드">하이브리드</label><label><input type="checkbox" name="benefitOption" value="일반음식점">일반음식점</label><label><input type="checkbox" name="benefitOption" value="PAYCO">PAYCO</label><label><input type="checkbox" name="benefitOption" value="정비">정비</label><label><input type="checkbox" name="benefitOption" value="패스트푸드">패스트푸드</label><label><input type="checkbox" name="benefitOption" value="카카오페이">카카오페이</label><label><input type="checkbox" name="benefitOption" value="카페/제과">카페/제과</label><label><input type="checkbox" name="benefitOption" value="공항라운지">공항라운지</label><label><input type="checkbox" name="benefitOption" value="온라인" 쇼핑="">온라인 쇼핑</label><label><input type="checkbox" name="benefitOption" value="카드사">카드사</label><label><input type="checkbox" name="benefitOption" value="캐시백">캐시백</label><label><input type="checkbox" name="benefitOption" value="아시아나항공">아시아나항공</label><label><input type="checkbox" name="benefitOption" value="제주항공">제주항공</label><label><input type="checkbox" name="benefitOption" value="국민행복">국민행복 </label><label><input type="checkbox" name="benefitOption" value="어린이집">어린이집</label><label><input type="checkbox" name="benefitOption" value="전월" 실적="" 조건="" 없이="" 사용="" 횟수별="" 최대="" 2만원="" 적립="">전월 실적 조건 없이 사용 횟수별 최대 2만원 적립</label><label><input type="checkbox" name="benefitOption" value="생활">생활</label><label><input type="checkbox" name="benefitOption" value="대형마트">대형마트</label><label><input type="checkbox" name="benefitOption" value="렌터카">렌터카</label><label><input type="checkbox" name="benefitOption" value="디지털구독">디지털구독</label><label><input type="checkbox" name="benefitOption" value="간편결제">간편결제</label><label><input type="checkbox" name="benefitOption" value="프리미엄" 서비스="">프리미엄 서비스</label><label><input type="checkbox" name="benefitOption" value="은행사">은행사</label><label><input type="checkbox" name="benefitOption" value="해외이용">해외이용</label><label><input type="checkbox" name="benefitOption" value="SSM">SSM</label><label><input type="checkbox" name="benefitOption" value="택시">택시</label><label><input type="checkbox" name="benefitOption" value="기차">기차</label><label><input type="checkbox" name="benefitOption" value="수수료우대">수수료우대</label><label><input type="checkbox" name="benefitOption" value="무실적">무실적</label><label><input type="checkbox" name="benefitOption" value="연회비지원">연회비지원</label><label><input type="checkbox" name="benefitOption" value="공과금/렌탈">공과금/렌탈</label><label><input type="checkbox" name="benefitOption" value="해외">해외</label><label><input type="checkbox" name="benefitOption" value="모든가맹점">모든가맹점</label><label><input type="checkbox" name="benefitOption" value="드럭스토어">드럭스토어</label><label><input type="checkbox" name="benefitOption" value="배달앱">배달앱</label><label><input type="checkbox" name="benefitOption" value="디지털" 구독="">디지털 구독</label><label><input type="checkbox" name="benefitOption" value="온라인쇼핑">온라인쇼핑</label><label><input type="checkbox" name="benefitOption" value="아울렛">아울렛</label><label><input type="checkbox" name="benefitOption" value="항공권">항공권</label><label><input type="checkbox" name="benefitOption" value="영화/문화">영화/문화</label><label><input type="checkbox" name="benefitOption" value="마트/편의점">마트/편의점</label><label><input type="checkbox" name="benefitOption" value="홈쇼핑">홈쇼핑</label><label><input type="checkbox" name="benefitOption" value="국민행복">국민행복</label><label><input type="checkbox" name="benefitOption" value="아이행복">아이행복</label><label><input type="checkbox" name="benefitOption" value="음원사이트">음원사이트</label><label><input type="checkbox" name="benefitOption" value="CJ" one="">CJ ONE</label><label><input type="checkbox" name="benefitOption" value="쇼핑">쇼핑</label><label><input type="checkbox" name="benefitOption" value="대중교통">대중교통</label><label><input type="checkbox" name="benefitOption" value="영화">영화</label><label><input type="checkbox" name="benefitOption" value="금융">금융</label><label><input type="checkbox" name="benefitOption" value="여행/숙박">여행/숙박</label><label><input type="checkbox" name="benefitOption" value="멤버십" 포인트="">멤버십 포인트</label><label><input type="checkbox" name="benefitOption" value="대한항공">대한항공</label><label><input type="checkbox" name="benefitOption" value="교육,육아">교육,육아</label><label><input type="checkbox" name="benefitOption" value="자동차">자동차</label><label><input type="checkbox" name="benefitOption" value="자동차/하이패스">자동차/하이패스</label></td>';
 	html += "</tr>";
 	html += "<tr>";
-	html += "<td>서브설명<br/><input type=\"text\" id=\"cardUrlBenefitMid\" name=\"cardBenefitMid\" /></td>";
-	html += "<td colspan=\"2\"><textarea id=\"cardBenefitDetail\" name=\"cardBenefitDetail\" placeholder=\"상세혜택\"></textarea></td>";
+	html += "<td><input type=\"text\" id=\"cardUrlBenefitMid\" name=\"cardBenefitMid\" placeholder=\"서브설명\"/></td>";
+	html += "<td colspan=\"2\"><input type=\"text\" style=\"width:90%;\" id=\"cardBenefitDetail\" name=\"cardBenefitDetail\" placeholder=\"상세혜택\"/>";
 	html += "</tr>";
 	html += "<tr>";
 	html += "<td colspan=\"3\"><input type=\"text\" id=\"cardShop\" name=\"cardShop\" placeholder=\"혜택매장\"/></td>";
@@ -556,12 +577,28 @@ function getCardRead() {
 	html += "</table>";
 	html += "</form>";
 	html += "<br/>";
-	html += "<div>";
+	html += "<div class=\"cardAddBtnDiv\">";
 	html += "<input type=\"button\" value=\"등록하기\" id=\"cardAddBtn\"/>";
 	html += "</div>";
 	
 	$(".right_content").html(html);
 	
+	$("#cardAddBtn").on("click", function() {
+		var params = $("#addCardForm").serialize();
+		
+		$.ajax({
+			url:"addCard",
+			type:"post",
+			dataType :"json",
+			data: params,
+			success : function (res) {
+				
+			},
+			error: function (request, status, error) {
+				console.log(error);
+			}
+		});
+	});
 	// 이미지 업로드
     $('#cardImg').on('change', function() {
 	    ext = $(this).val().split('.').pop().toLowerCase(); //확장자
@@ -589,6 +626,7 @@ function makeUpdatePopUp(no) {
 		dataType :"json",
 		data: params,
 		success : function (res) {
+			console.log(res.popup[0])
 			var html = "";
 			html += "<div class=\"bg_div\"></div>";
 			html += "<div class=\"popup_div\">";
@@ -598,20 +636,20 @@ function makeUpdatePopUp(no) {
 			html += "<div class=\"popup_contents\">";
 			html += "<div class=\"popup_text\">"
 			html += "<form action=\"#\" id =\"updateCardPopForm\" method=\"post\">";
-			html += "<input type=\"hidden\" id=\"updateCardPopNo\" name=\"option\" value='" + res.popup[0].CARD_NO + "'\><br/>";
-			html += "카드이름 [ <input type=\"text\" id=\"updateCardPopName\" name=\"option\" value='" + res.popup[0].CARD_NAME + "'\> ]<br/>";
-			html += "가입경로 [ <input type=\"text\" id=\"updateCardPopApply\" name=\"option\" value='" + res.popup[0].CARD_APPLY_URL + "'\> ]<br/>";
-			html += "카드사진 [ <input type=\"text\" id=\"updateCardPopImg\" name=\"option\" value='" + res.popup[0].CARD_IMG_URL + "'\> ]<br/>";
-			html += "혜택요약 [ <input type=\"text\" id=\"updateCardPopSummary\" name=\"option\" value='" + res.popup[0].CARD_SUMMARY + "'\> ]<br/>";
+			html += "<input type=\"hidden\" id=\"updateCardPopNo\" name=\"cardNo\" value='" + res.popup[0].CARD_NO + "'\><br/>";
+			html += "카드이름 [ <input type=\"text\" id=\"updateCardPopName\" name=\"cardName\" value='" + res.popup[0].CARD_NAME + "'\> ]<br/>";
+			html += "가입경로 [ <input type=\"text\" id=\"updateCardPopApply\" name=\"cardApplyUrl\" value='" + res.popup[0].CARD_APPLY_URL + "'\> ]<br/>";
+			html += "카드사진 [ <input type=\"text\" id=\"updateCardPopImg\" name=\"cardImg\" value='" + res.popup[0].CARD_IMG_URL + "'\> ]<br/>";
+			html += "혜택요약 [ <input type=\"text\" id=\"updateCardPopSummary\" name=\"cardSummary\" value='" + res.popup[0].CARD_SUMMARY + "'\> ]<br/>";
 			
 			html += "카드종류";
 			if(res.popup[0].C_TYPE == 0) {
-				html += " [ <select id=\"updateCardPopKind\" name=\"option\">";
+				html += " [ <select id=\"updateCardPopKind\" name=\"cardKind\">";
 				html += "<option value=\"0\" selected>신용카드";
 				html += "<option value=\"1\">체크카드";
 				html += "</select> ]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 			} else if(res.popup[0].C_TYPE == 1) {
-				html += " [ <select name=\"option\">";
+				html += " [ <select name=\"cardKind\">";
 				html += "<option value=\"0\">신용카드";
 				html += "<option value=\"1\" selected>체크카드";
 				html += "</select> ]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";	
@@ -619,58 +657,65 @@ function makeUpdatePopUp(no) {
 			
 			html += "카드타입";
 			if(res.popup[0].T_TYPE == 0) {
-				html += " [ <select id=\"updateCardPopType\" name=\"option\">";
+				html += " [ <select id=\"updateCardPopType\" name=\"cardType\">";
 				html += "<option value=\"0\" selected>할인";
 				html += "<option value=\"1\">적립";
 				html += "<option value=\"2\">마일리지";
 				html += "</select> ]";
 			} else if(res.popup[0].T_TYPE == 1) {
-				html += " [ <select id=\"updateCardPopType\" name=\"option\">";
+				html += " [ <select id=\"updateCardPopType\" name=\"cardType\">";
 				html += "<option value=\"0\">할인";
 				html += "<option value=\"1\" selected>적립";
 				html += "<option value=\"2\">마일리지";
 				html += "</select> ]";
 			} else if(res.popup[0].T_TYPE == 2) {
-				html += " [ <select id=\"updateCardPopType\" name=\"option\">";
+				html += " [ <select id=\"updateCardPopType\" name=\"cardType\">";
 				html += "<option value=\"0\">할인";
 				html += "<option value=\"1\">적립";
 				html += "<option value=\"2\" selected>마일리지";
 				html += "</select> ]";	
 			}
-			
-			html += "<hr/>[메인혜택]<input type=\"button\" class=\"PopBtn\" value=\"추가\"/><br/>";
+			/* <input type=\"button\" class=\"PopBtn\" value=\"추가\"/> */
+			html += "<div id=\"main_div_main\"><hr/>[메인혜택]<br/>";
 			for(var i=0; i<res.popup.length; i++) {
 				if(res.popup[i].BENEFIT_TOP != undefined && res.popup[i].BENEFIT_NO != undefined) {
-					html += "<input type=\"hidden\" id=\"updateCardPopBeneNo_" + (i*1)+1 + "\" name=\"option\" value='" + res.popup[i].BENEFIT_NO + "'\>";
-					html += "<input type=\"text\" id=\"updateCardPopBeneTop_" + (i*1)+1 + "\" name=\"option\" value='" + res.popup[i].BENEFIT_TOP + "'\>";
-				} else {
-					html += "<input type=\"hidden\" id=\"updateCardPopBeneNo_" + (i*1)+1 + "\" name=\"option\" value='" + res.popup[i].BENEFIT_NO + "'\>";
-					html += "<input type=\"text\" id=\"updateCardPopBeneTop_" + (i*1)+1 + "\" name=\"option\" value='null'\>";
+					html += "<input type=\"hidden\" id=\"updateCardPopBeneNo_" + i + "\" name=\"updateCardPopBeneNo_" + i + "\" value='" + res.popup[i].BENEFIT_NO + "'\>";
+					html += "<input type=\"text\" id=\"updateCardPopBeneTop_" + i + "\" name=\"updateCardPopBeneTop_" + i + "\" value='" + res.popup[i].BENEFIT_TOP + "'\>";
+				} else {					
+					html += "<input type=\"hidden\" id=\"updateCardPopBeneNo_" + i + "\" name=\"updateCardPopBeneNo_" + i + "\" value='" + res.popup[i].BENEFIT_NO + "'\>";
+					html += "<input type=\"text\" id=\"updateCardPopBeneTop_" + i + "\" name=\"updateCardPopBeneTop_\" value='null'\>";
 				}
 			}
-			html += "<hr/>[서브혜택]<input type=\"button\" class=\"PopBtn\" value=\"추가\"/><br/>";
+			html += "</div>";/* <input type=\"button\" class=\"PopBtn\" value=\"추가\"/> */
+			html += "<hr/><div id=\"main_div_sub\">[서브혜택]<br/>";
 			for(var i=0; i<res.popup.length; i++) {
 				if(res.popup[i].BENEFIT_MID != undefined) {
-					html += "<input type=\"text\" id=\"updateCardPopBene_mid_" + (i*1)+1 + "\" name=\"option\" value='" + res.popup[i].BENEFIT_MID + "'\><br/>";
+					html += "<input type=\"hidden\" id=\"updateCardPopBeneNoSub_" + i + "\" name=\"updateCardPopBeneNoSub_" + i + "\" value='" + res.popup[i].BENEFIT_NO + "'\>";
+					html += "<input type=\"text\" id=\"updateCardPopBene_mid_" + i + "\" name=\"updateCardPopBene_mid_" + i + "\" value='" + res.popup[i].BENEFIT_MID + "'\><br/>";
 				} else {
-					html += "<input type=\"text\" id=\"updateCardPopBene_mid_" + (i*1)+1 + "\" name=\"option\" value='null'\><br/>";
+					html += "<input type=\"hidden\" id=\"updateCardPopBeneNoSub_" + i + "\" name=\"updateCardPopBeneNoSub_" + i + "\" value='" + res.popup[i].BENEFIT_NO + "'\>";
+					html += "<input type=\"text\" id=\"updateCardPopBene_mid_" + i + "\" name=\"updateCardPopBene_mid_" + i + "\" value='null'\><br/>";
 				}
 			}
-			html += "<hr/>[상세혜택]<input type=\"button\" class=\"PopBtn\" value=\"추가\"/><br/>";
+			html += "</div>";/* <input type=\"button\" class=\"PopBtn\" value=\"추가\"/> */
+			html += "<hr/><div id=\"main_div_detail\">[상세혜택]";
 			for(var i=0; i<res.popup.length; i++) {
 				if(res.popup[i].DETAIL_INFO != undefined) {
-					html += "<textarea id=\"updateCardPopDetail_" + (i*1)+1 + "\" name=\"option\">";
+					html += "<br/><input type=\"hidden\" id=\"updateCardPopDetail_" + i + "\" name=\"updateCardPopDetail_" + i + "\">";
+					html += "<br/><textarea id=\"updateCardPopDetail_" + i + "\" name=\"updateCardPopDetail_" + i + "\">";
 					html += res.popup[i].DETAIL_INFO;
-					html += "</textarea><br/><br/>";
+					html += "</textarea>";
 				}
 			}
-			html += "<hr/>[혜택매장]<input type=\"button\" class=\"PopBtn\" value=\"추가\"/><br/>";
+			html += "</div>";/* <input type=\"button\" class=\"PopBtn\" value=\"추가\"/> */
+			html += "<hr/><div id=\"main_div_shop\">[혜택매장]<br/>";
 			for(var i=0; i<res.popup.length; i++) {
 				if(res.popup[i].SHOP_INFO != undefined) {
-					html += "<input type=\"text\" id=\"updateCardPopShop_" + (i*1)+1 + "\" name=\"option\" value='" + res.popup[i].SHOP_INFO + "'\><br/>";
+					html += "<input type=\"hidden\" id=\"updateCardPopShopNo_" + i + "\" name=\"updateCardPopShopNo_" + i + "\" value='" + res.popup[i].SHOP_INFO + "'\><br/>";
+					html += "<input type=\"text\" id=\"updateCardPopShop_" + i + "\" name=\"updateCardPopShop_" + i + "\" value='" + res.popup[i].SHOP_INFO + "'\><br/>";
 				}
 			}
-			html += "<br/><br/></form>";
+			html += "</div><br/><br/></form>";
 			html += "</div>";
 			html += "<div class=\"popup_btn\">";
 			html += "<input type=\"button\" class=\"btn_ok\" value=\"닫기\"/>";
@@ -700,6 +745,40 @@ function makeUpdatePopUp(no) {
 				closePopup();
 			});
 			
+			$(".PopBtn").on("click", function() {
+				var ival = $(this).parent().prop('id').split("_");
+
+				if(ival[2] == 'main') {
+					if ($(this).siblings('input').last().length > 0) {
+						var ival = $(this).siblings('input').last().attr('id').split("_");
+						$(this).parent().append("<input type=\"text\" placeholder=\"내용을 입력하세요\" id=\"putCardPopBeneTop_" + ival[1]+1 + "\" name=\"putCardPopBeneTop_" + ival[1]+1 + "\" />");
+					} else {
+						$(this).parent().append("<input type=\"text\" placeholder=\"내용을 입력하세요\" id=\"putCardPopBeneTop_1\" name=\"putCardPopBeneTop_1\" />");
+					}
+				} else if(ival[2] == 'sub') {
+					if ($(this).siblings('input').last().length > 0) {
+						var ival = $(this).siblings('input').last().attr('id').split("_");
+						$(this).parent().append("<input type=\"text\" placeholder=\"내용을 입력하세요\" id=\"putCardPopBene_mid_" + ival[2]+1 + "\" name=\"putCardPopBene_mid_" + ival[2]+1 + "\" />");
+					} else {
+						$(this).parent().append("<input type=\"text\" placeholder=\"내용을 입력하세요\" id=\"putCardPopBene_mid_\" name=\"putCardPopBene_mid_1\" />");
+					}
+				} else if(ival[2] == 'detail') {
+					if ($(this).siblings('textarea').last().length > 0) {
+						var ival = $(this).siblings('textarea').last().attr('id').split("_");
+						$(this).parent().append("<br/><textarea style=\"width:900px;height:100px;\" placeholder=\"내용을 입력하세요\" id=\"putCardPopDetail_" + ival[1]+1 + "\" name=\"putCardPopDetail_" + ival[1]+1 + "\" ></textarea>");
+					} else {
+						$(this).parent().append("<br/><textarea style=\"width:900px;height:100px;\" placeholder=\"내용을 입력하세요\" id=\"putCardPopDetail_1\" name=\"putCardPopDetail_1\" ></textarea>");
+					}
+				} else if(ival[2] == 'shop') {
+					if ($(this).siblings('input').last().length > 0) {
+						var ival = $(this).siblings('input').last().attr('id').split("_");
+						$(this).parent().append("<input type=\"text\" placeholder=\"내용을 입력하세요\" id=\"putCardPopShop_" + parseInt(ival[1])+1 + "\" name=\"putCardPopShop_" + ival[1]+1 + "\" />");
+					} else {
+						$(this).parent().append("<input type=\"text\" placeholder=\"내용을 입력하세요\" id=\"putCardPopShop_1\" name=\"putCardPopShop_1\" />");
+					}
+				}
+			});
+			
 			function closePopup() {
 				$(".bg_div").fadeOut(function(){
 					$(".bg_div").remove();
@@ -719,7 +798,11 @@ function makeUpdatePopUp(no) {
 					dataType :"json",
 					data: params,
 					success : function (res) {
-						updateCardRead();
+						if (res.message == 'success') {
+							alert("수정이 완료되었습니다");
+							closePopup()
+							updateCardRead();							
+						}
 					},
 					error: function (request, status, error) {
 						console.log(error);
@@ -798,7 +881,7 @@ function makeUpdatePopUp(no) {
 <form action="#" id ="goForm" method="post"></form>
 <div class="content_area">
 	<div class="contents">
-		<div class="sub_menuBar">
+		<div class="sub_menuBar" style="visibility:hidden;">
 			<div class="content_content" id="cardNo_1">국민카드</div>
 			<div class="content_content" id="cardNo_2">삼성카드</div>
 			<div class="content_content" id="cardNo_3">롯데카드</div>
