@@ -201,7 +201,22 @@
 		FROM CARDS C INNER JOIN CARDTYPES T
 	                    	 ON C.CARD_NO = T.CARD_NO AND C.DEL_CHECK=1
 					 INNER JOIN CARDBENEFITS B
-	                    	 ON T.CARD_NO = B.CARD_NO AND B.DEL_CHECK=1
+	                    	 ON T.CARD_NO = B.CARD_NO
 		WHERE C.CARD_NO = #{cardUpNo}
 	</select>
+	
+	<update id="cardDBUpdate" parameterType="hashmap">
+		UPDATE CARDS SET 
+					 CARD_NAME=#{cardName},
+					 CARD_APPLY_URL=#{cardApplyUrl},
+					 CARD_IMG_URL = #{cardImg},
+					 CARD_SUMMARY = #{cardSummary},
+					 CARD_TYPE = #{cardKind}
+					 WHERE CARD_NO=#{cardNo}
+	</update>
+	<update id="cardTypeDBUpdate" parameterType="hashmap">
+		UPDATE CARDTYPES SET 
+					 CARD_TYPE=#{cardType}
+					 WHERE CARD_NO=#{cardNo}
+	</update>
 </mapper>

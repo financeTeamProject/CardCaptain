@@ -51,4 +51,9 @@ public class UserListService implements UserIListService {
 	public List<HashMap<String, String>> mList(HashMap<String, String> params) throws Throwable {
 		return useriListdao.mList(params);
 	}
+
+	@Override
+	public int memLeave(HashMap<String, String> params) throws Throwable {
+		return useriListdao.memLeave(params);
+	}
 }

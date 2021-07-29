@@ -39,4 +39,8 @@ public interface SearchIDao {
 
 	public List<HashMap<String, String>> cardUpdatePop(HashMap<String, String> params) throws Throwable;
 
+	public int cardDBUpdate(HashMap<String, String> params) throws Throwable;
+
+	public int cardTypeDBUpdate(HashMap<String, String> params) throws Throwable;
+
 }

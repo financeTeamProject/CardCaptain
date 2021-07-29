@@ -74,26 +74,6 @@ body {
 	vertical-align: top;
 	cursor: pointer;
 }	
-.menu1:before, .menu1:after{
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 2px;
-  width: 0;
-  background: #1AAB8A;
-  transition: 400ms ease all;
-}
-.menu1:after{
-  right:inherit;
-  top:inherit;
-  left:0;
-  bottom:0;
-}
-.menu1:hover:before, .menu1:hover:after{
-  width:100%;
-  transition:800ms ease all;
-}
 
 	/* header_left 종료 */
 

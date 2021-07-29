@@ -91,4 +91,14 @@ public class SearchService implements SearchIService {
 	public List<HashMap<String, String>> cardUpdatePop(HashMap<String, String> params) throws Throwable {
 		return idao.cardUpdatePop(params);
 	}
+
+	@Override
+	public int cardDBUpdate(HashMap<String, String> params) throws Throwable {
+		return idao.cardDBUpdate(params);
+	}
+
+	@Override
+	public int cardTypeDBUpdate(HashMap<String, String> params) throws Throwable {
+		return idao.cardTypeDBUpdate(params);
+	}
 }

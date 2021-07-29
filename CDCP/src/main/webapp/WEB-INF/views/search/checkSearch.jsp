@@ -276,8 +276,17 @@ $(document).ready(function() {
 	
 	/* check된 옵션 Controller로 넘기기 */
 	$("#subBtn").on("click", function() {
-		$("#goForm").attr("action","searchingCardList");
-		$("#goForm").submit();
+		var cnt = 0;
+		$(".choiceListClick").each(function() {
+			cnt++;
+		});
+		
+		if (cnt > 0) {
+			$("#goForm").attr("action","searchingCardList");
+			$("#goForm").submit();
+		} else {
+			alert("옵션을 선택해 주세요");
+		}
 	});
 	
 	/* 버튼 클릭 시 class변경 */

@@ -244,7 +244,7 @@ $(document).ready(function() {
 		$(".right_content").html("");
 	});
 	
-	// 카드리스트
+	// 회원리스트
 	function reloadList() {
 		var params = $("#mList").serialize();
 		
@@ -254,8 +254,9 @@ $(document).ready(function() {
 			dataType: "json",
 			data: params,
 			success: function (res) {
-				drawList(res.list);
+				drawList(res.Mlist);
 				drawPaging(res.pb);
+				console.log(res.Mlist);
 			},
 			error: function (request, status, error) {
 				console.log(error);
@@ -267,14 +268,20 @@ $(document).ready(function() {
 	function drawList(list) {
 		var html = "";
 		// 	" +  + " : 만들어놓고 붙여넣어도 됨.
-		for(var d of list) {
-			html += "<tr cNo=\"" + d.CARD_NO + "\">";
-			html += "<td>" + "" + "</td>";
-			html += "<td class=\"a\">" + d.CARD_TYPE + "</td>";
-			html += "<td class=\"b\">" + d.CARD_NAME + "</td>";
+		for(var m of list) {
+			html += "<tr cNo=\"" + m.MEMBER_NO + "\">";
+			html += "<td class=\"a\">" + m.MEMBER_NO + "</td>";
+			html += "<td class=\"b\">" + m.MEMBER_ID + "</td>";
+			html += "<td class=\"c\">" + m.MEMBER_PW + "</td>";
+			html += "<td class=\"d\">" + m.GENDER + "</td>";
+			html += "<td class=\"e\">" + m.CONTACT + "</td>";
+			html += "<td class=\"f\">" + m.NICKNAME + "</td>";
+			html += "<td class=\"g\">" + m.JOIN_DATE + "</td>";
+			html += "<td class=\"h\">" + m.LEAVE_DATE + "</td>";
+			html += "<td class=\"i\">" + m.LEAVE_CHECK + "</td>";
+			html += "<td class=\"j\">" + m.EMAIL + "</td>";
 			html += "<td>" + "<button value=\"추가\" class=\"addbtn\" id=addbtn>추가</button>" + "</td>";
 			html += "</tr>";
-			
 		}
 		$(".list_wrap tbody").html(html);
 /* 		
@@ -285,8 +292,8 @@ $(document).ready(function() {
 			console.log(lists);
 			$("#addcardlist #lists").val(lists);
 			
-			addcard(); */
-		});
+			addcard();	
+		}*/
 	}
 	
 	//페이징 그리기
@@ -385,10 +392,39 @@ $(document).ready(function() {
 <div class="content_area">
 	<div class="contents">
 		<form action="#" id="mList" method="post">   
-			<input type="hidden" name="memNo" value="${sMNo}" id="sMNo"/>
-			<input type="hidden" name="cmpNo" id="cmpNo" value="1" />
 			<input type="hidden" id="page" name="page" value="${page}" />
 		</form>
+		<div class="list_wrap">
+		<table>
+			<colgroup width="3000px">
+				<col width="10%" />
+				<col width="10%" />
+				<col width="10%" />
+				<col width="10%" />
+				<col width="10%" />
+				<col width="10%" />
+				<col width="10%" />
+				<col width="10%" />
+				<col width="10%" />
+				<col width="10%" />
+			</colgroup>
+			<thead>
+				<tr>
+					<th>회원번호</th>
+					<th>아이디</th>
+					<th>비밀번호</th>
+					<th>생년월일</th>
+					<th>연락처</th>
+					<th>닉네임</th>
+					<th>가입일</th>
+					<th>탈퇴일</th>
+					<th>탈퇴여부</th>
+					<th>이메일</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+		</div>
 	</div>
 </div>
 <!-- 풋터영역 (하단 마무리) -->

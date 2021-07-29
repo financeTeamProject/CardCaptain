@@ -35,7 +35,6 @@ public class UserListDao implements UserIListDao {
 	@Override
 	public int memUpdate(HashMap<String, String> params) throws Throwable {
 		return sqlSession.update("user.memUpdate", params);
-
 	}
 	@Override
 	public int mCnt(HashMap<String, String> params) throws Throwable {
@@ -44,5 +43,9 @@ public class UserListDao implements UserIListDao {
 	@Override
 	public List<HashMap<String, String>> mList(HashMap<String, String> params) throws Throwable {
 		return sqlSession.selectList("user.mList", params);
+	}
+	@Override
+	public int memLeave(HashMap<String, String> params) throws Throwable {
+		return sqlSession.update("user.memLeave", params);
 	}
 }
