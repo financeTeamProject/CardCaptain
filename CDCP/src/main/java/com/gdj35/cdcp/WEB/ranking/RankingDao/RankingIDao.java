@@ -43,6 +43,8 @@ public interface RankingIDao {
 
 	public HashMap<String, String> adminDetail(HashMap<String, String> params) throws Throwable;
 
+	public int reportAdd(HashMap<String, String> params) throws Throwable;
+
 
 
 }

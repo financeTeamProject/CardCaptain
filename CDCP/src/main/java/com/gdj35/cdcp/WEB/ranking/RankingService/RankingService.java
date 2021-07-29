@@ -127,6 +127,12 @@ public class RankingService implements RankingIService {
 		
 		return RankingiDao.adminDetail(params);
 	}
+	// 리뷰 신고
+	@Override
+	public int reportAdd(HashMap<String, String> params) throws Throwable {
+		
+		return RankingiDao.reportAdd(params);
+	}
 
 
 

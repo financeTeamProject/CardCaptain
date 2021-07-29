@@ -140,11 +140,13 @@
 	
 <!-- 상세보기  -->
 	<select id="detailList" parameterType="hashmap" resultType="hashmap">
-		SELECT HCR.REVIEW_NO, HCR.MEMBER_NO, HCR.TITLE, HCR.TEXT, HCR.SCORE, C.CARD_NAME, MI.NICKNAME
+		SELECT HCR.REVIEW_NO, HCR.MEMBER_NO, HCR.TITLE, HCR.TEXT, HCR.SCORE, C.CARD_NAME, MI.NICKNAME, RP.REPORT_TEXT, RP.STATUS_NO
 		FROM HAVECARDREVIEWS HCR INNER JOIN CARDS C
 		                                ON HCR.CARD_NO = C.CARD_NO
-		                         INNER JOIN MEMBER_INFO MI
+		                        INNER JOIN MEMBER_INFO MI
 		                                ON HCR.MEMBER_NO = MI.MEMBER_NO
+		                        LEFT OUTER JOIN REVIEWREPORT RP
+		                                ON HCR.REVIEW_NO = RP.REVIEW_NO
 		WHERE HCR.REVIEW_NO = #{reviewNo}
 	</select>
 	
@@ -209,5 +211,10 @@
 		                                ON HCR.REVIEW_NO = RP.REVIEW_NO
 		WHERE HCR.REVIEW_NO = #{reviewNo}
 	</select>
+<!-- 리뷰신고  -->	
+	<insert id="reportAdd" parameterType="hashmap">
+		INSERT INTO REVIEWREPORT(REVIEW_NO, MEMBER_NO, REPORT_TEXT)
+		VALUES(#{reviewNo}, #{revieMNo}, #{review_report})
+	</insert>
 </mapper>
 

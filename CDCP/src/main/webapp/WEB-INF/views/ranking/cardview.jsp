@@ -903,7 +903,44 @@
 		#deleteBtn{
 			background-color: red;
 		}
+		
+/*	신고 팝업 영역 	*/			
+.pop_small_title{
+			margin: 20px;
+			text-align: center;
+			font-size: 20px;
+			font-family: GmarketSansMedium;
+		}	
+		.report_left{
+			display: inline-block;
+			vertical-align: top;
+			width: 20%;
+		    height: 260px;
+		    line-height: 260px;
+		    border: 1px solid;
+		    padding: 10px;
+		    text-align: center;
+		    font-family: GmarketSansMedium;
+		}
+		.report_right{
+			display: inline-block;
+			width: 80%;
+			height: 50px;
+			padding: 10px;
+		}
+		#reTextArea{
+			display: flex;
+			border: 1px solid;
+			margin: 50px auto;
+		}	
+		#reportButtonArea{
+			float: right;
+    		margin-top: 10px;
+		}
+		
 /*	리뷰 팝업 영역 끝	*/	
+
+
 		
 </style>
 <script type="text/javascript"
@@ -1230,6 +1267,7 @@ $(document).ready(function(){
 				html +=	"<form action=\"#\" id=\"deleteForm\" method=\"post\">";
 				html +=	"<input type=\"hidden\" name=\"revieMNo\" value=\""+ detail.MEMBER_NO + "\" />";
 				html +=	"<input type=\"hidden\" name=\"reviewNo\" value=\""+ detail.REVIEW_NO + "\" />";
+				html +=	"<input type=\"hidden\" id=\"reportSNo\" name=\"revieSNo\" value=\""+ detail.STATUS_NO + "\" />";
 				html +=	"</form>";
 				html += "<div class=\"pop_bg\"></div>";                                                                                                                
 				html += "<div class=\"review_popup\">";                                                                                                                 
@@ -1312,6 +1350,7 @@ $(document).ready(function(){
 				// 상세보기 수정 버튼
 				$("#updateBtn").on("click", function(){
 					var params = $("#deleteForm").serialize();
+					/* $(".pop_bg").remove(); */
 					$(".review_popup").hide();
 					
 					$.ajax({
@@ -1329,11 +1368,131 @@ $(document).ready(function(){
 					});
 				}); // updateBtn click end
 				
-			} // 리뷰상세보기 팝업 그리기 끝
+				// 상세보기 신고 버튼
+				$("#reportBtn").on("click", function(){
+					if($("#reportSNo").val() == 1){
+						alert("신고 처리중인 리뷰입니다.");
+					} else{
+						
+					
+					var params = $("#deleteForm").serialize();
+					$(".review_popup").hide();
+					
+					$.ajax({
+						url:"reviewReport",
+						type:"post",
+						dataType :"json",
+						data: params,
+						success : function (res) {
+							reviewreportPopup(res.detail);
+						},
+						error: function (request, status, error) {
+							console.log(error);
+							
+						}
+					});
+					}
+				}); // updateBtn click end
+				
+			} // 리뷰상세보기 팝업 그리기 끝	
 			
 // 리뷰상세보기 팝업 그리기			
 /* ====================================================================================== */			
+
+// 리뷰신고  팝업 그리기	
+			function reviewreportPopup(detail){
+			var html = "";
 			
+			html += "<div class=\"review_popup\">";
+			html += "<div class=\"pop_header\">리뷰신고</div>";
+			html += "<div class=\"pop_small_title\">*허위신고일 경우, 신고자의 서비스 활동이 제한될수 있으니 신중하게 신고해주세요</div>";
+			html += "<div class=\"block_form\" id=\"reTextArea\">";
+			html += "<div class=\"report_left\">신고사유</div>";
+			html += "<form action=\"#\" id=\"reportForm\" method=\"post\">";
+			html +=	"<input type=\"hidden\" name=\"revieMNo\" value=\""+ detail.MEMBER_NO + "\" />";
+			html +=	"<input type=\"hidden\" name=\"reviewNo\" value=\""+ detail.REVIEW_NO + "\" />";
+			html += "<div class=\"report_right\">";
+			html += "<div>";
+			html += "<label class=\"radio-inline\"> <input type=\"radio\" name=\"review_report\" id=\"reviewReport1\" value=\"광고성 게시물\" >광고성 게시물</label>";
+			html += "</div>";
+			html += "<div>";
+			html += "<label class=\"radio-inline\"> <input type=\"radio\" name=\"review_report\" id=\"reviewReport2\" value=\"욕설/부적절한 언어\" >욕설/부적절한 언어</label>";
+			html += "</div>";
+			html += "<div>";
+			html += "<label class=\"radio-inline\"> <input type=\"radio\" name=\"review_report\" id=\"reviewReport3\" value=\"지나친 정치/종교 논쟁\" >지나친 정치/종교 논쟁</label>";
+			html += "</div>";
+			html += "<div>";
+			html += "<label class=\"radio-inline\"> <input type=\"radio\" name=\"review_report\" id=\"reviewReport4\" value=\"도배성 게시물\" >도배성 게시물</label>";
+			html += "</div>";
+			html += "<div>";
+			html += "<label class=\"radio-inline\"> <input type=\"radio\" name=\"review_report\" id=\"reviewReport5\" value=\"회원 비방\" >회원 비방</label>";
+			html += "</div>";
+			html += "<div>";
+			html += "<label class=\"radio-inline\"> <input type=\"radio\" id=\"reviewReport6\" >기타</label>";
+			html += "<div class=\"write_div\" id=\"reviewTextArea\">";
+			html += "<textarea rows=\"5\" cols=\"50\" class=\"title_text\" id=\"title_text\" name=\"review_report\"></textarea>";
+			html += "</div>";
+			html += "</div>";
+			html += "</div>";
+			html += "</form>";
+			html += "</div>";
+			html += "<div class=\"block_form\">";
+			html += "<div class=\"butten_area\" id=\"reportButtonArea\">";
+			html += "<input type=\"button\" value=\"신고\" class=\"popAreaBtn\" id=\"reportBtn\">";
+			html += "<input type=\"button\" value=\"닫기\" class=\"popAreaBtn\" id=\"closeBtn\">";
+			html += "</div>";
+			html += "</div>";
+			html += "</div>";                                                                                                                           
+			                                                                                                                                                    
+			$("body").prepend(html);
+			
+// 신고 버튼 클릭
+			$("#reportBtn").on("click", function(){
+				
+					var params = $("#reportForm").serialize();
+					
+					$.ajax({
+						url: "reviewReport2", // 접속주소 (현재 저상태는 상대 경로이다)
+						type: "post", // 전송방식: get,post
+						dataType: "json", // 받아올 데이터 형식
+						data: params, //보낼 데이터(문자열 형태)
+						success: function(res){ // 성공 시 다음 함수 실행	
+							if(res.msg == "success"){
+								closePopup();
+								reloadList();
+							} else if(res.msg == "failed"){
+								alert("신고중 문제발생 입니다.");
+							} else {
+								alert("신고중 문제가 발생되었습니다.");
+							}
+						},
+						error: function(request, status, error){ // 실패 시 다음 함수 실행
+							console.log(error);
+						}
+					}); // ajax end
+				
+		}); // reportBtn click end
+			
+			
+			$("#closeBtn").on("click", function(){                                                                                                              
+				$(".review_popup").show();
+			});
+			
+			// 팝업창 닫기 함수
+			function closePopup() {
+				
+				$(".pop_bg").fadeOut(function(){
+					$(".pop_bg").remove();
+				});
+				
+				$(".review_popup").fadeOut(function(){
+					$(".review_popup").remove();
+				});
+			} // function closePopup end
+		}
+				
+
+/* ====================================================================================== */
 //리뷰 수정 페이지
 				function reviewUpPopup(detail){
 					var html = "";
@@ -1540,8 +1699,7 @@ $(document).ready(function(){
 						success: function(res){ // 성공 시 다음 함수 실행	
 							if(res.msg == "success"){
 								closePopup();
-								/* reloadList(); */
-								location.reload();
+								reloadList();
 							} else if(res.msg == "failed"){
 								alert("작성에 실패하였습니다.");
 							} else {

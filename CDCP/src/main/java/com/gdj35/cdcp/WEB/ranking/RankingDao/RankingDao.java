@@ -122,5 +122,10 @@ public class RankingDao implements RankingIDao{
 		
 		return sqlSession.selectOne("R.adminDetail", params);
 	}
+	@Override
+	public int reportAdd(HashMap<String, String> params) throws Throwable {
+		
+		return sqlSession.insert("R.reportAdd", params);
+	}
 
 }
