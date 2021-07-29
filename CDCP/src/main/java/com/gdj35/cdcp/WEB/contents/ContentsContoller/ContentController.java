@@ -300,4 +300,45 @@ public class ContentController {
 			}
 			return mapper.writeValueAsString(modelMap);
 	  }
+	 
+	 @RequestMapping(value="/adm_hjAjax2",
+				method = RequestMethod.POST,
+				produces = "text/json; charset=UTF-8")
+		@ResponseBody
+		public String adm_hj2(
+				@RequestParam HashMap<String, String> params) throws Throwable {
+			ObjectMapper mapper = new ObjectMapper();
+			Map<String, Object> modelMap = new HashMap<String, Object>();
+			
+			try {
+			// 현재 페이지
+			int page = Integer.parseInt(params.get("page"));
+			
+			// 총 게시글 수
+			int cnt = ContentsiService.getMovieCnt(params);
+			
+			// 페이징 계산
+			PagingBean pb = iPagingService.getPagingBean(page, cnt, 3, 5);
+			
+			params.put("startCnt", Integer.toString(pb.getStartCount()));
+			params.put("endCnt", Integer.toString(pb.getEndCount()));
+			List<HashMap<String, String>> movie
+			= ContentsiService.getMovieList(params);
+			System.out.println(movie);
+			
+			
+			  if(movie != null) {
+				  
+				  modelMap.put("msg", "success");
+				  modelMap.put("movie", movie);
+				  modelMap.put("pb", pb);
+				  
+			  }else {
+				  modelMap.put("msg", "error");
+			  }
+			}catch(Throwable e){
+				e.printStackTrace();
+			}
+			return mapper.writeValueAsString(modelMap);
+	  }
 }

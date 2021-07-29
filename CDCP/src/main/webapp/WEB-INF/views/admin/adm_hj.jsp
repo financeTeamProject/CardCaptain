@@ -247,39 +247,58 @@ body {
 	margin-top: 10px;
 }
 
-.list_wrap table {
+.search_area {
+	margin-top: 10px;
+	margin: 0px auto;
+	text-align: right;
+	width: 1000px;
+	
+}
+
+.list_wrap, .list_movie {
+	
+	width: 1000px;
+	height: 170px;
+	margin: 0px auto;
+}
+
+.list_wrap table, .list_movie table {
 	border-collapse: collapse;
 }
 
-.list_wrap thead tr {
+.list_wrap thead tr, .list_movie thead tr {
 	border-top: 1px solid #000;
 	border-bottom: 1px solid #000;
 	background-color: orange;
 	height: 30px; 
 }
 
-.list_wrap tbody tr {
+.list_wrap tbody tr, .list_movie tbody tr {
 	border-bottom: 1px solid #000;
 	text-align: center;
 	height: 25px; 
 	cursor: pointer;
 }
 
-.list_wrap tbody tr td:nth-child(2) {
+.list_wrap tbody tr td:nth-child(2), .list_movie tbody tr td:nth-child(2) {
 	text-align: left;
 }
 
-.list_wrap tbody tr:nth-child(2n) {
+.list_wrap tbody tr:nth-child(2n), .list_movie tbody tr:nth-child(2n) {
 	background-color: #ffffcc; 
 }
 
-.list_wrap tbody tr:hover, .list_wrap tbody tr:nth-child(2):hover {
+.list_wrap tbody tr:hover, .list_wrap tbody tr:nth-child(2):hover, .list_movie tbody tr:hover, .list_movie tbody tr:nth-child(2):hover {
 	background-color: #eee;
 	color: white;
 }
 
+/* 페이징 */
+
 .paging_wrap {
 	margin-top: 10px;
+	margin: 0px auto;
+	text-align: center;
 }
 
 
@@ -294,6 +313,7 @@ body {
 	cursor: pointer;
 	width: 60px;
 	text-align: center;
+	font-size: 5px;
 }
 
 .paging_wrap div:active{
@@ -303,7 +323,6 @@ body {
 .paging_wrap .on {
 	background-color: #AAAAAA; 
 }
-
 </style>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
@@ -335,6 +354,7 @@ $(document).ready(function() {
 $(document).ready(function() {
 	
 	reloadList();
+	reloadList2();
 	
 	$("#writeBtn").on("click", function() {
 		$("#searchTxt").val($("#searchOldTxt").val());
@@ -363,13 +383,30 @@ function reloadList() {
 		success: function(res) {
 			drawList(res.tipcon);
 			drawPaging(res.pb);
+			drawList(res.movie);
 		},
 		error: function(request, status, error) {
 			console.log(error);
 		}
 	});
 }
+function reloadList2() {
+	var params = $("#actionForm").serialize();
 
+	$.ajax({
+		url: "adm_hjAjax2",
+		type: "post", 
+		dataType: "json",
+		data: params,	
+		success: function(res) {
+			drawList2(res.movie);
+			drawPaging(res.pb);
+		},
+		error: function(request, status, error) {
+			console.log(error);
+		}
+	});
+}
 //목록그리기
 function drawList(tipcon) {
 	var html = "";
@@ -385,15 +422,32 @@ function drawList(tipcon) {
 	
 	$(".list_wrap tbody").html(html);
 }
-// 페이징 그리기
+
+//목록그리기
+function drawList2(movie) {
+	var html = "";
+
+	for(var v of movie) {
+	html += "<tr cno=\"" + v.TIPVIDEO_NO + "\">";
+	html += "<td>" + v.TIPVIDEO_NO + "</td>";
+	html += "<td>" + v.VIDEO_NAME + "</td>";
+	html += "<td>" + v.VIDEO_LINK + "</td>";
+	html += "<td>" + v.ADD_DATE2 + "</td>";
+	html += "</tr>";
+	}
+	
+	$(".list_movie tbody").html(html);
+}
+
+//페이징 그리기
 function drawPaging(pb) {
 	var html = "";
-	html += "<div page=\"1\">처음</div>";
+	html += "<div page=\"1\">|<</div>";
 	
 	if($("#page").val() == "1") {
-		html += "<div page=\"1\">이전</div>";	
+		html += "<div page=\"1\"><</div>";	
 	} else {
-		html += "<div page=\"" + ($("#page").val() -1) + "\">이전</div>";	
+		html += "<div page=\"" + ($("#page").val() -1) + "\"><</div>";	
 	}
 	
 	for(var i = pb.startPcount ; i <= pb.endPcount ; i++) {
@@ -405,15 +459,16 @@ function drawPaging(pb) {
 		
 	}
 	if($("#page").val() == pb.maxPcount) {
-		html += "<div page=\"" + pb.maxPcount + "\">다음</div>";
+		html += "<div page=\"" + pb.maxPcount + "\">></div>";
 	} else {
-		html += "<div page=\"" + ($("#page").val() * 1 + 1) + "\">다음</div>";
+		html += "<div page=\"" + ($("#page").val() * 1 + 1) + "\">></div>";
 	}
 	
-	html += "<div page=\"" + pb.maxPcount + "\">마지막</div>";
+	html += "<div page=\"" + pb.maxPcount + "\">>|</div>";
 	
 	$(".paging_wrap").html(html);
 }
+
 
 </script>
 </head>
@@ -482,6 +537,7 @@ function drawPaging(pb) {
 	<div class="search_area">
 	<form action="#" id="actionForm" method="post">
 		<input type="hidden" name="tipNo" id="tipNo"/>
+		<input type="hidden" name="movieNo" id="movieNo"/>
 		<input type="hidden" id="page" name="page" value="${page}" />
 		<select id="searchGbn" name="searchGbn">
 			<option value="0">제목</option>
@@ -493,7 +549,8 @@ function drawPaging(pb) {
 		<input type="button" value="등록" id="writeBtn" />
 	</form>
 </div>
-<div class="list_wrap">
+<br/><br/>
+<div class="list_wrap"> 카드활용꿀팁
 	<table>
 		<colgroup>
 			<col width="100px" />
@@ -512,7 +569,31 @@ function drawPaging(pb) {
 		<tbody></tbody>	
 	</table>
 </div>
-<div class="paging_wrap"></div>
+<div class="paging_p">
+	<div class="paging_wrap"></div>
+</div>
+<div class="list_movie"> 카드꿀팁영상
+	<table>
+		<colgroup>
+			<col width="100px" />
+			<col width="500px" />
+			<col width="200px" />
+			<col width="400px" />
+		</colgroup>
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>링크</th>
+				<th>작성일자</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+</div>
+<div class="paging_p">
+	<div class="paging_wrap"></div>
+</div>
 </div>
 <!-- 풋터영역 (하단 마무리) -->
 <div class="rayout">

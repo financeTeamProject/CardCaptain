@@ -40,4 +40,14 @@ public class ContentsService implements ContentsIService{
 		return ContentsiDao.getTipList(params);
 	}
 
+	@Override
+	public int getMovieCnt(HashMap<String, String> params) throws Throwable {
+		return ContentsiDao.getMovieCnt(params);
+	}
+
+	@Override
+	public List<HashMap<String, String>> getMovieList(HashMap<String, String> params) throws Throwable {
+		return ContentsiDao.getMovieList(params);
+	}
+
 }

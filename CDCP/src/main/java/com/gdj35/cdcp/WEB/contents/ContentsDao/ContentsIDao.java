@@ -14,5 +14,8 @@ public interface ContentsIDao {
 	public List<HashMap<String, String>> getMovie(HashMap<String, String> params) throws Throwable;
 
 	public List<HashMap<String, String>> getTipList(HashMap<String, String> params) throws Throwable;
-
+	
+	public int getMovieCnt(HashMap<String, String> params) throws Throwable;
+	
+	public List<HashMap<String, String>> getMovieList(HashMap<String, String> params) throws Throwable;
 }

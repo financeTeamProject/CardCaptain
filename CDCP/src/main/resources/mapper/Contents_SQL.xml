@@ -39,6 +39,22 @@
 		</choose>
 		</if>
 </select>
+
+<select id="getMovieCnt" parameterType="hashmap" resultType="Integer">
+		SELECT COUNT(*) AS CNT
+		FROM TIPVIDEOS         
+		WHERE 1 = 1
+		<if test="searchTxt != null and searchTxt != ''">
+		<choose>
+		<when test="searchGbn == 0">
+		AND TIP_TITLE LIKE '%' || #{searchTxt} || '%'
+		</when>
+		<when test="searchGbn == 1">
+		AND TIP_WRITER LIKE '%' || #{searchTxt} || '%'
+		</when>
+		</choose>
+		</if>
+</select>
 	
 <select id="getTipList" parameterType="hashmap" resultType="hashmap">
 		SELECT C.*
@@ -47,6 +63,14 @@
         ROW_NUMBER() OVER(ORDER BY TIP_NO DESC) AS RNUM
         FROM TIPS
         WHERE 1 = 1) C
+</select>
+
+<select id="getMovieList" parameterType="hashmap" resultType="hashmap">
+	SELECT C.*
+	FROM(SELECT TIPVIDEO_NO, MANAGER_NO, VIDEO_NAME, VIDEO_IMG, VIDEO_LINK, TO_CHAR(ADD_DATE, 'YYYY.MM.DD') AS ADD_DATE2, DEL_CHECK,
+	ROW_NUMBER() OVER(ORDER BY TIPVIDEO_NO DESC) AS RNUM
+	FROM TIPVIDEOS
+	WHERE 1 = 1) C
 </select>
 
 </mapper>
