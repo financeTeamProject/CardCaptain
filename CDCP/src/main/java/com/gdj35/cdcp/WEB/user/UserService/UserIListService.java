@@ -24,4 +24,6 @@ public interface UserIListService {
 
 	public List<HashMap<String, String>> mList(HashMap<String, String> params) throws Throwable;
 
+	public int memLeave(HashMap<String, String> params) throws Throwable;
+
 }

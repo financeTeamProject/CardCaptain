@@ -201,7 +201,38 @@
 		FROM CARDS C INNER JOIN CARDTYPES T
 	                    	 ON C.CARD_NO = T.CARD_NO AND C.DEL_CHECK=1
 					 INNER JOIN CARDBENEFITS B
-	                    	 ON T.CARD_NO = B.CARD_NO AND B.DEL_CHECK=1
+	                    	 ON T.CARD_NO = B.CARD_NO
 		WHERE C.CARD_NO = #{cardUpNo}
 	</select>
+	
+	<update id="cardDBUpdate" parameterType="hashmap">
+		UPDATE CARDS SET 
+					 CARD_NAME=#{cardName},
+					 CARD_APPLY_URL=#{cardApplyUrl},
+					 CARD_IMG_URL = #{cardImg},
+					 CARD_SUMMARY = #{cardSummary},
+					 CARD_TYPE = #{cardKind}
+					 WHERE CARD_NO=#{cardNo}
+	</update>
+	<update id="cardTypeDBUpdate" parameterType="hashmap">
+		UPDATE CARDTYPES SET 
+					 CARD_TYPE=#{cardType}
+					 WHERE CARD_NO=#{cardNo}
+	</update>
+	
+	<select id="newCardNum" parameterType="String" resultType="String">
+		SELECT MAX(CARD_NO) + 1 AS NEWCARDNUM FROM CARDS
+		WHERE CARD_CMP_NO=#{cardCompany}
+		AND CARD_TYPE=#{cardKind}
+	</select>
+	
+	<insert id="addNewCard" parameterType="hashmap">
+		INSERT INTO CARDS (CARD_NO,CARD_CMP_NO,MANAGER_NO,CARD_NAME,CARD_APPLY_URL,CARD_IMG_URL,CARD_SUMMARY,CARD_TYPE,CLICK_CNT,DEL_CHECK)
+            		VALUES (#{num},#{cardCompany},10000,#{cardName},#{cardUrl},#{addCardImg},#{cardSummary},#{cardKind},0,1)
+	</insert>
+	
+	<insert id="addNewCardType" parameterType="hashmap">
+	INSERT INTO CARDTYPES (CARD_TYPE_NO,CARD_NO,MANAGER_NO,CARD_TYPE)
+				VALUES (CARDTYPES_SEQ.NEXTVAL,#{num},10000,#{cardType})
+	</insert>
 </mapper>

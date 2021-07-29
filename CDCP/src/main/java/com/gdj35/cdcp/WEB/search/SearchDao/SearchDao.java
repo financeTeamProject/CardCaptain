@@ -95,4 +95,29 @@ public class SearchDao implements SearchIDao {
 	public List<HashMap<String, String>> cardUpdatePop(HashMap<String, String> params) throws Throwable {
 		return sql.selectList("search.cardUpdatePop", params);
 	}
+
+	@Override
+	public int cardDBUpdate(HashMap<String, String> params) throws Throwable {
+		return sql.update("search.cardDBUpdate", params);
+	}
+
+	@Override
+	public int cardTypeDBUpdate(HashMap<String, String> params) throws Throwable {
+		return sql.update("search.cardTypeDBUpdate", params);
+	}
+
+	@Override
+	public String newCardNum(HashMap<String, String> params) throws Throwable {
+		return sql.selectOne("search.newCardNum", params);
+	}
+
+	@Override
+	public int addNewCard(HashMap<String, String> params) throws Throwable {
+		return sql.insert("search.addNewCard", params);
+	}
+
+	@Override
+	public int addNewCardType(HashMap<String, String> params) throws Throwable {
+		return sql.insert("search.addNewCardType", params);
+	}
 }

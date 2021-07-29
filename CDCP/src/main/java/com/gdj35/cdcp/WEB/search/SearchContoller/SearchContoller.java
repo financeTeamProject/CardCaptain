@@ -257,9 +257,44 @@ public class SearchContoller {
 	
 	@RequestMapping(value = "/cardUpdate", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
 	@ResponseBody
-	public String cardUpdate(ModelAndView modelAndView,@RequestParam ArrayList<String> option) throws Throwable {
+	public String cardUpdate(ModelAndView modelAndView,@RequestParam HashMap<String,String> params) throws Throwable {
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Object> modelMap = new HashMap<String, Object>();
+		System.out.println("============");
+		System.out.println(params);
+		System.out.println("============");
+		int cards = iservice.cardDBUpdate(params);
+		int type = iservice.cardTypeDBUpdate(params);
+		
+		if(cards > 0 && type > 0) {
+			modelMap.put("message", "success");
+			modelMap.put("cards", cards);
+			modelMap.put("type", type);			
+		} else {
+			modelMap.put("message", "failed");
+		}
+		
+		return mapper.writeValueAsString(modelMap);
+	}
+
+	@RequestMapping(value = "/addCard", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String addCard(ModelAndView mav, 
+			@RequestParam(required = false) HashMap<String,String> params) throws Throwable {
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		String num = iservice.newCardNum(params);
+		params.put("num", num);
+		
+		int addNewCard = iservice.addNewCard(params);
+		int addNewCardType = iservice.addNewCardType(params);
+		
+		if (addNewCard > 0 && addNewCardType > 0) {
+			modelMap.put("message", "success");
+		} else {
+			modelMap.put("message", "failed");
+		}
 		
 		return mapper.writeValueAsString(modelMap);
 	}

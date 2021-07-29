@@ -74,26 +74,6 @@ body{
 	vertical-align: top;
 	cursor: pointer;
 }	
-.menu1:before, .menu1:after{
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 2px;
-  width: 0;
-  background: #1AAB8A;
-  transition: 400ms ease all;
-}
-.menu1:after{
-  right:inherit;
-  top:inherit;
-  left:0;
-  bottom:0;
-}
-.menu1:hover:before, .menu1:hover:after{
-  width:100%;
-  transition:800ms ease all;
-}
 
 	/* header_left 종료 */
 
@@ -759,16 +739,34 @@ $(document).ready(function() {
 		}
 	});
 	
+	//정보수정 버튼
 	$("#update").on("click", function () {
 		var mRPw = $.trim($("#mRPw").val());
 		var mNn = $.trim($("#mNn").val());
 		if(mRPw == "" || mNn == "") {
-			alert("내용을 입력해 주세요.");
+			alert("모든 텍스트를 입력해 주세요.");
 		}
 		update();
-	})
+	});
 
-
+	//회원탈퇴버튼
+	$("#leaveBtn").on("click", function () {
+		var mPw = $.trim($("#mPw").val());
+		var mRPw = $.trim($("#mRPw").val());
+		var sMPw = "${sMPw}";
+		
+		if(mRPw == "") {
+			alert("비밀번호를 입력해 주세요.");
+			$("#mPw").focus();
+		} else if(mPw != mRPw){
+			alert("비밀번호를 재입력 해주세요.")
+		} else if(mRPw == sMPw) {
+			leave();
+		}
+	});
+	
+	
+	//회원정보 수정
 	function update() {
 		var params = $("#updateForm").serialize();
 		
@@ -778,6 +776,31 @@ $(document).ready(function() {
 			dataType: "json",
 			data: params,
 			success: function (res) {
+				if(res.resMsg == "success") {
+					alert("정보가 수정 되었습니다.");
+					location.href = "testALogout";
+				}
+			},
+			error: function (request, status, error) {
+				console.log(error);
+			}
+		});
+	}
+	
+	//회원 탈퇴
+	function leave() {
+		var params = $("#updateForm").serialize();
+		
+		$.ajax({
+			url: "memLeave",
+			type: "post",
+			dataType: "json",
+			data: params,
+			success: function (res) {
+				if(res.resMsg == "success") {
+					alert("회원탈퇴 되었습니다.");
+					location.href = "testALogout";
+				}
 			},
 			error: function (request, status, error) {
 				console.log(error);
@@ -1046,7 +1069,8 @@ $(document).ready(function() {
 			</div>
 			</form>
 		      	<div id="memberButton" class="member_button">
-		        	<input type="button" value="정보수정" id="update" class="update"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="회원탈퇴" id="delete" class="delete"/>
+		        	<input type="button" value="정보수정" id="update" class="update"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		        	<input type="button" value="회원탈퇴" id="leaveBtn" class="leaveBtn"/>
 		      	</div>
 			</div>
 	      	</div>
