@@ -104,5 +104,28 @@ public class RankingDao implements RankingIDao{
 		
 		return sqlSession.update("R.updatelikeCnt", params);
 	}
+	// 관리자페이지 리뷰 목록 불러오기
+	@Override
+	public List<HashMap<String, String>> getReviewList(HashMap<String, String> params) throws Throwable {
+		
+		return sqlSession.selectList("R.getReviewList", params);
+	}
+	// 관리자페이지 리뷰 총 수
+	@Override
+	public int getRCnt(HashMap<String, String> params) throws Throwable {
+		
+		return sqlSession.selectOne("R.getRCnt", params);
+	}
+	// 관리자페이지 상세보기
+	@Override
+	public HashMap<String, String> adminDetail(HashMap<String, String> params) throws Throwable {
+		
+		return sqlSession.selectOne("R.adminDetail", params);
+	}
+	@Override
+	public int reportAdd(HashMap<String, String> params) throws Throwable {
+		
+		return sqlSession.insert("R.reportAdd", params);
+	}
 
 }

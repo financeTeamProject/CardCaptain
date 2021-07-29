@@ -43,4 +43,10 @@ public interface SearchIDao {
 
 	public int cardTypeDBUpdate(HashMap<String, String> params) throws Throwable;
 
+	public String newCardNum(HashMap<String, String> params) throws Throwable;
+
+	public int addNewCard(HashMap<String, String> params) throws Throwable;
+
+	public int addNewCardType(HashMap<String, String> params) throws Throwable;
+
 }

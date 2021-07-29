@@ -280,13 +280,21 @@ public class SearchContoller {
 	@RequestMapping(value = "/addCard", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
 	@ResponseBody
 	public String addCard(ModelAndView mav, 
-			@RequestParam(required = false) HashMap<String,String> params,
-			@RequestParam(required = false) ArrayList<String> benefitOption) throws Throwable {
-		System.out.println("===========");
-		System.out.println(benefitOption);
-		System.out.println("===========");
+			@RequestParam(required = false) HashMap<String,String> params) throws Throwable {
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		String num = iservice.newCardNum(params);
+		params.put("num", num);
+		
+		int addNewCard = iservice.addNewCard(params);
+		int addNewCardType = iservice.addNewCardType(params);
+		
+		if (addNewCard > 0 && addNewCardType > 0) {
+			modelMap.put("message", "success");
+		} else {
+			modelMap.put("message", "failed");
+		}
 		
 		return mapper.writeValueAsString(modelMap);
 	}

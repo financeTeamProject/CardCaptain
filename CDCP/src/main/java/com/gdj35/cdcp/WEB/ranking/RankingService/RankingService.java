@@ -109,6 +109,30 @@ public class RankingService implements RankingIService {
 		
 		return RankingiDao.updatelikeCnt(params);
 	}
+	// 관리자페이지 리뷰 목록 불러오기
+	@Override
+	public List<HashMap<String, String>> getReviewList(HashMap<String, String> params) throws Throwable {
+		
+		return RankingiDao.getReviewList(params);
+	}
+	// 관리자페이지 리뷰 총 수
+	@Override
+	public int getRCnt(HashMap<String, String> params) throws Throwable {
+		
+		return RankingiDao.getRCnt(params);
+	}
+	// 관리자페이지 상세보기
+	@Override
+	public HashMap<String, String> adminDetail(HashMap<String, String> params) throws Throwable {
+		
+		return RankingiDao.adminDetail(params);
+	}
+	// 리뷰 신고
+	@Override
+	public int reportAdd(HashMap<String, String> params) throws Throwable {
+		
+		return RankingiDao.reportAdd(params);
+	}
 
 
 
