@@ -48,4 +48,12 @@ public class UserListDao implements UserIListDao {
 	public int memLeave(HashMap<String, String> params) throws Throwable {
 		return sqlSession.update("user.memLeave", params);
 	}
+	@Override
+	public HashMap<String, String> mDetails(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectOne("user.mDetails", params);
+	}
+	@Override
+	public int mUpdate(HashMap<String, String> params) throws Throwable {
+		return sqlSession.update("user.mUpdate", params);
+	}
 }

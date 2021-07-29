@@ -171,17 +171,103 @@ display: block;
 	color: white;
 }
 /* 내용 영역 */          
-
+input text {
+	width: 100px;
+}
 .content_area {
 	width: 1600px;
 	height: 700px;
 	margin: 0px auto;
 }
+#content_area2 {
+	width: 1600px;
+	height: 700px;
+	margin: 0px auto;
+	display: none;
+}
+#content_area3 {
+	width: 1600px;
+	height: 700px;
+	margin: 0px auto;
+	display: none;
+}
 .contents {
 	width: 100%;
 	height: 80%;
-	background-color: #f5f6f7;
 	margin: 100px auto;
+}
+.contents2 {
+	width: 95%;
+	height: 80%;
+	margin: 100px auto;
+}
+.buttons{
+    margin: 0 auto;
+    text-align: center;
+}
+#paging_wrap #on {
+	background-color: skyblue;
+	color: white;
+	font-size: 12px;
+	height: auto;
+}
+.detail_wrap thead tr { 
+ 	border-top: 1px solid #000; 
+ 	border-bottom: 1px solid #000; 
+ 	background-color: #0047AB; 
+ 	hieght: 30px;
+ 	color: white;
+ 	width: 100%;
+}
+.detail_wrap tbody tr {
+	border-bottom: 1px solid #000;
+	height: 50px;
+	text-align: center;
+	width: 100px;
+	height: 50px;
+}
+.detail_wrap table {
+	border-collapse: collapse;
+}
+.list_wrap thead tr { 
+ 	border-top: 1px solid #000; 
+ 	border-bottom: 1px solid #000; 
+ 	background-color: #0047AB; 
+ 	hieght: 30px;
+ 	color: white;
+}
+.list_wrap table {
+	border-collapse: collapse;
+}
+.list_wrap tbody tr {
+	border-bottom: 1px solid #000;
+	height: 50px;
+	text-align: center;
+}
+.list_wrap tbody tr:hover {
+	background-color: #ff8c0080;
+}
+#paging_wrap span {
+	display: inline-block;
+	padding: 5px;
+	margin-left: 3px;
+	margin-right: 3px;
+	border-width: none;
+	border-radius: 3px;
+	cursor: pointer;
+	width: 50px;
+	text-align: center;
+	font-size: 12px;
+	height: 20px;
+	line-height: 20px;
+}
+.addbtn {
+	width: 45px;
+	height: 25px;
+	float: right;
+}
+#paging_wrap {
+	text-align: center;
 }
 	/* 풋터  ~127번째줄*/
 #footer {
@@ -220,6 +306,8 @@ display: block;
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+	reloadList();
+	
 	/* 카드순위 페이지 이동 */
 	$("#ranking").on("click", function(){
 		location.href = "card_rank";
@@ -244,6 +332,21 @@ $(document).ready(function() {
 		$(".right_content").html("");
 	});
 	
+	// 목록으로
+	$("#listBtn").on("click", function() {
+		$("#content_area1").show();
+		$("#content_area2").css("display","none");
+		$("#goForm").submit();
+ 	});
+	
+	$("#paging_wrap").on("click", "span", function () {
+		$("#page").val($(this).attr("page"));
+		
+		reloadList();
+	});
+
+	
+	
 	// 회원리스트
 	function reloadList() {
 		var params = $("#mList").serialize();
@@ -254,9 +357,9 @@ $(document).ready(function() {
 			dataType: "json",
 			data: params,
 			success: function (res) {
-				drawList(res.Mlist);
+				drawList(res.list);
 				drawPaging(res.pb);
-				console.log(res.Mlist);
+				console.log(res.list);
 			},
 			error: function (request, status, error) {
 				console.log(error);
@@ -264,36 +367,103 @@ $(document).ready(function() {
 		});
 	}
 	
+	// 회원상세
+	function mDetail() {
+		var params = $("#mList").serialize();
+		
+		$.ajax({
+			url: "mDetails",
+			type: "post",
+			dataType: "json",
+			data: params,
+			success: function (res) {
+				drawDetail(res.mDetails)
+				alert(mDetails);
+			},
+			error: function (request, status, error) {
+				console.log(error);
+			}
+		});
+	}
+	
+	// 수정
+	function mDetail() {
+		var params = $("#mList").serialize();
+		
+		$.ajax({
+			url: "mDetails",
+			type: "post",
+			dataType: "json",
+			data: params,
+			success: function (res) {
+				drawDetail(res.mDetails)
+				alert(mDetails);
+			},
+			error: function (request, status, error) {
+				console.log(error);
+			}
+		});
+	}
 	// 목록 그리기
 	function drawList(list) {
 		var html = "";
 		// 	" +  + " : 만들어놓고 붙여넣어도 됨.
 		for(var m of list) {
-			html += "<tr cNo=\"" + m.MEMBER_NO + "\">";
+			html += "<tr mNo=\"" + m.MEMBER_NO + "\">";
+			html += "<td class=\"a\">" + m.MEMBER_RNK + "</td>";
 			html += "<td class=\"a\">" + m.MEMBER_NO + "</td>";
 			html += "<td class=\"b\">" + m.MEMBER_ID + "</td>";
 			html += "<td class=\"c\">" + m.MEMBER_PW + "</td>";
-			html += "<td class=\"d\">" + m.GENDER + "</td>";
+			html += "<td class=\"d\">" + m.MEMBER_BIRTH + "</td>";
 			html += "<td class=\"e\">" + m.CONTACT + "</td>";
 			html += "<td class=\"f\">" + m.NICKNAME + "</td>";
 			html += "<td class=\"g\">" + m.JOIN_DATE + "</td>";
 			html += "<td class=\"h\">" + m.LEAVE_DATE + "</td>";
 			html += "<td class=\"i\">" + m.LEAVE_CHECK + "</td>";
 			html += "<td class=\"j\">" + m.EMAIL + "</td>";
-			html += "<td>" + "<button value=\"추가\" class=\"addbtn\" id=addbtn>추가</button>" + "</td>";
 			html += "</tr>";
 		}
 		$(".list_wrap tbody").html(html);
-/* 		
-		var lists = "";
 		
-		$(".list_wrap tr td button").on("click", function() {
-			lists = $(this).parents().parents().attr("cno");
-			console.log(lists);
-			$("#addcardlist #lists").val(lists);
+		// 회원상세 클릭
+		$(".list_wrap tr td").on("click", function() {
+			mNo = $(this).parents().attr("mNo");
+			$("#content_area1").css("display","none");
+			$("#content_area2").css("display","inline");
+			console.log(mNo);
+			$("#mList #mNo").val(mNo);
 			
-			addcard();	
-		}*/
+			mDetail();
+		});
+	}
+	
+	// 상세 그리기
+	function drawDetail(mDetails) {
+		var html = "";
+		// 	" +  + " : 만들어놓고 붙여넣어도 됨.
+		
+			html += "<tr mNo=\"" + mDetails.MEMBER_NO + "\">";
+			html += "<td>" + "<input type text value=" + mDetails.MEMBER_NO + " name=mId></text>" + "</td>";
+			html += "<td>" + "<input type text value=" + mDetails.MEMBER_ID + "></text>" + "</td>";
+			html += "<td>" + "<input type text value=" + mDetails.MEMBER_PW + "></text>" + "</td>";
+			html += "<td>" + "<input type text value=" + mDetails.MEMBER_BIRTH + "></text>" + "</td>";
+			html += "<td>" + "<input type text value=" + mDetails.CONTACT + "></text>" + "</td>";
+			html += "<td>" + "<input type text value=" + mDetails.NICKNAME + "></text>" + "</td>";
+			html += "<td>" + "<input type text value=" + mDetails.JOIN_DATE + "></text>" + "</td>";
+			html += "<td>" + "<input type text value=" + mDetails.LEAVE_DATE + "></text>" + "</td>";
+			html += "<td>" + "<input type text value=" + mDetails.LEAVE_CHECK + "></text>" + "</td>";
+			html += "<td>" + "<input type text value=" + mDetails.EMAIL + "></text>" + "</td>";
+			html += "</tr>";
+		
+		$(".detail_wrap tbody").html(html);
+		
+		// 수정
+		$("#updateBtn").on("click", function () {
+			$("#content_area2").css("display","none");
+			$("#content_area3").css("display","inline");
+			$("#goForm").submit();
+		});
+		
 	}
 	
 	//페이징 그리기
@@ -388,13 +558,51 @@ $(document).ready(function() {
         </ul>
     </nav>
 <!-- 컨텐츠 영역 -->
-<form action="#" id ="goForm" method="post"></form>
-<div class="content_area">
+<div class="content_area" id="content_area1">
 	<div class="contents">
 		<form action="#" id="mList" method="post">   
-			<input type="hidden" id="page" name="page" value="${page}" />
+			<input type="hidden" id="mNo" name="mNo" value=""/>
+			<input type="hidden" id="page" name="page" value="${page}"/>
 		</form>
 		<div class="list_wrap">
+		<table>
+			<colgroup width="3000px">
+				<col width="5%" />
+				<col width="10%" />
+				<col width="10%" />
+				<col width="10%" />
+				<col width="10%" />
+				<col width="10%" />
+				<col width="10%" />
+				<col width="10%" />
+				<col width="10%" />
+				<col width="5%" />
+				<col width="10%" />
+			</colgroup>
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>회원번호</th>
+					<th>아이디</th>
+					<th>비밀번호</th>
+					<th>생년월일</th>
+					<th>연락처</th>
+					<th>닉네임</th>
+					<th>가입일</th>
+					<th>탈퇴일</th>
+					<th>회원여부</th>
+					<th>이메일</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+		</div><br/><br/>
+		<div id="paging_wrap"></div>
+	</div>
+</div>
+<div  class="content_area" id="content_area2">
+	<div class="contents2">
+		<div class="detail_wrap">
 		<table>
 			<colgroup width="3000px">
 				<col width="10%" />
@@ -418,15 +626,21 @@ $(document).ready(function() {
 					<th>닉네임</th>
 					<th>가입일</th>
 					<th>탈퇴일</th>
-					<th>탈퇴여부</th>
+					<th>회원여부</th>
 					<th>이메일</th>
 				</tr>
 			</thead>
 			<tbody></tbody>
 		</table>
+		</div><br/>
+		<div class="buttons">
+			<input type="button" value="수정" id="updateBtn" />
+			<input type="button" value="삭제" id="deleteBtn" />
+			<input type="button" value="목록으로" id="listBtn" />
 		</div>
 	</div>
 </div>
+
 <!-- 풋터영역 (하단 마무리) -->
 <div id="footer">
 		<div id="footerMenu">

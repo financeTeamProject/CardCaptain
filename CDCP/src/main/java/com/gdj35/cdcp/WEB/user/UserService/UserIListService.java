@@ -26,4 +26,8 @@ public interface UserIListService {
 
 	public int memLeave(HashMap<String, String> params) throws Throwable;
 
+	public HashMap<String, String> mDetails(HashMap<String, String> params) throws Throwable;
+
+	public int mUpdate(HashMap<String, String> params) throws Throwable;
+
 }

@@ -184,7 +184,17 @@ public class UserListContoller {
 	//======================어드민========================
 	
 	@RequestMapping(value="/GJMList")
-	public ModelAndView GJMList(ModelAndView mav) {
+	public ModelAndView GJMList(
+			@RequestParam HashMap<String, String> params,
+			ModelAndView mav) throws Throwable {
+		
+		int page = 1;
+		
+		if(params.get("page") != null) {
+		page = Integer.parseInt(params.get("page"));
+		}
+		
+		mav.addObject("page",page);
 		mav.setViewName("user/GJMList");
 		
 		return mav;
@@ -199,22 +209,72 @@ public class UserListContoller {
 			@RequestParam HashMap<String, String> params) throws Throwable{
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Object> modelMap = new HashMap<String, Object>();
-		
 		int page = Integer.parseInt(params.get("page"));
 		
 		// 페이징
 		int cnt = useriListService.mCnt(params);
-		
-		PagingBean pb = iPagingService.getPagingBean(page, cnt);
+		PagingBean pb = iPagingService.getPagingBean(page, cnt , 5 , 3);
 		
 		params.put("startCnt", Integer.toString(pb.getStartCount()));
 		params.put("endCnt", Integer.toString(pb.getEndCount()));
 		
 		// 리스트
-		List<HashMap<String, String>> Mlist = useriListService.mList(params);
-		
-		modelMap.put("Mlist", Mlist);
+		List<HashMap<String, String>> list = useriListService.mList(params);
+		modelMap.put("list", list);
 		modelMap.put("pb", pb);
+		
+		return mapper.writeValueAsString(modelMap);
+	}
+	
+	// 회원 상세보기
+	@RequestMapping(value="/mDetails",
+			method = RequestMethod.POST,
+			produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String mDetails(
+			@RequestParam HashMap<String, String> params) throws Throwable{
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		System.out.println("===========뭐가지고나오냐===============");
+		System.out.println(params);
+		System.out.println("===========================");
+		
+		HashMap<String, String> mDetails = useriListService.mDetails(params);
+		
+		System.out.println("===========================");
+		System.out.println(mDetails);
+		System.out.println("===========================");
+		if(mDetails != null) {
+		modelMap.put("msg", "success");
+		modelMap.put("mDetails", mDetails);
+		} else {
+			modelMap.put("msg", "error");
+		}
+		return mapper.writeValueAsString(modelMap);
+	}
+	
+	@RequestMapping(value="/mUpdates",
+	method = RequestMethod.POST,
+	produces = "text/json;charsetUTF-8")
+
+	@ResponseBody
+	public String mUpdates(
+		@RequestParam HashMap<String, String> params) throws Throwable {
+	System.out.println(params);
+	ObjectMapper mapper = new ObjectMapper();
+	Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		try {
+			int cnt = useriListService.mUpdate(params);
+			if(cnt > 0) {
+				modelMap.put("resMsg","success");
+			} else {
+				modelMap.put("resMsg","failed");
+			}
+		} catch (Throwable e){
+			e.printStackTrace();
+		}
 		
 		return mapper.writeValueAsString(modelMap);
 	}
