@@ -101,4 +101,19 @@ public class SearchService implements SearchIService {
 	public int cardTypeDBUpdate(HashMap<String, String> params) throws Throwable {
 		return idao.cardTypeDBUpdate(params);
 	}
+
+	@Override
+	public String newCardNum(HashMap<String, String> params) throws Throwable {
+		return idao.newCardNum(params);
+	}
+
+	@Override
+	public int addNewCard(HashMap<String, String> params) throws Throwable {
+		return idao.addNewCard(params);
+	}
+
+	@Override
+	public int addNewCardType(HashMap<String, String> params) throws Throwable {
+		return idao.addNewCardType(params);
+	}
 }
