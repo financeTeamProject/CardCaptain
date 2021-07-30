@@ -600,6 +600,7 @@ $(document).ready(function() {
 		<form action="/cdcp" id="addForm" method="post">
 			<div class="title">아이디
 				<div class="errorMsg" id="errorMsgId"></div>
+				
 	      	</div>
 	      	<input type="text" class="text" placeholder="한글,특수문자 제외 6~16자리를 입력해주세요." id="mId" name="mId"/>
 	     	<div class="title">비밀번호

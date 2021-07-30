@@ -378,6 +378,7 @@ $(document).ready(function() {
 			data: params,
 			success: function (res) {
 				drawDetail(res.mDetails)
+				mPw(res.mPw);
 				alert(mDetails);
 			},
 			error: function (request, status, error) {
@@ -391,13 +392,12 @@ $(document).ready(function() {
 		var params = $("#mList").serialize();
 		
 		$.ajax({
-			url: "mDetails",
+			url: "mUpdates",
 			type: "post",
 			dataType: "json",
 			data: params,
 			success: function (res) {
-				drawDetail(res.mDetails)
-				alert(mDetails);
+				
 			},
 			error: function (request, status, error) {
 				console.log(error);

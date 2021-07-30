@@ -44,7 +44,7 @@ public class Utils {
 		cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
 		byte[] encrypted = cipher.doFinal(value.getBytes()); // 암호화
 
-		String encodeString = DatatypeConverter.printBase64Binary(encrypted); // 바이트 타입의 배열을 문자열로 변환
+		String encodeString = DatatypeConverter.printBase64Binary(encrypted);  // 바이트 타입의 배열을 문자열로 변환
 
 		return encodeString;
 	}

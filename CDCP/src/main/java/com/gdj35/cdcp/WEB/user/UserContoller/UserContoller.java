@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 //import com.gd.test.common.bean.PagingBean;
 import com.gdj35.cdcp.WEB.user.UserService.UserIService;
 import com.gdj35.cdcp.util.Mail;
+import com.gdj35.cdcp.util.Utils;
 
 @Controller
 public class UserContoller {
@@ -35,6 +36,8 @@ public class UserContoller {
 			ObjectMapper mapper = new ObjectMapper();
 			
 			Map<String, Object> modelMap = new HashMap<String, Object>();
+			
+			params.put("mPw",Utils.encryptAES128(params.get("mPw")));
 			
 			HashMap<String,String> data = useriService.getM(params);
 			
@@ -86,6 +89,8 @@ public class UserContoller {
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		System.out.println(params);
 		
+		params.put("mPw",Utils.encryptAES128(params.get("mPw")));
+		
 		try {
 			int cnt = useriService.joinM(params);
 			
@@ -125,7 +130,6 @@ public class UserContoller {
 		
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		
-		
 		HashMap<String,String> data = useriService.getId(params);
 		
 		if(data != null) {
@@ -163,8 +167,10 @@ public class UserContoller {
 			String temp = RandomStringUtils.randomAlphanumeric(6); // 랜덤값 6자리 생성 후 temp에 담음.
 			String result = Mail.sendMail(params.get("checkEmail"), params.get("findType"),temp); // Mail.sendMail조건에 맞게 값을 담고 Mail.java로 연계. 보내는 값 = "랜덤값"
 			
+			
 			modelMap.put("resMsg", "success");
-			modelMap.put("mPw", data.get("MEMBER_PW"));
+			modelMap.put("mPw",Utils.decryptAES128(data.get("MEMBER_PW")));
+			//modelMap.put("mPw", data.get("MEMBER_PW"));
 			modelMap.put("result", result);
 			modelMap.put("temp", temp);
 		}

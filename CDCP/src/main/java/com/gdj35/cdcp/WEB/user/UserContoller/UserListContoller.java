@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gdj35.cdcp.WEB.user.UserService.UserIListService;
 import com.gdj35.cdcp.common.bean.PagingBean;
 import com.gdj35.cdcp.common.service.IPagingService;
+import com.gdj35.cdcp.util.Utils;
 
 @Controller
 public class UserListContoller {
@@ -142,6 +143,8 @@ public class UserListContoller {
 	System.out.println(params);
 	ObjectMapper mapper = new ObjectMapper();
 	Map<String, Object> modelMap = new HashMap<String, Object>();
+	
+	params.put("mPw",Utils.encryptAES128(params.get("mPw")));
 		
 		try {
 			int cnt = useriListService.memUpdate(params);
@@ -166,6 +169,8 @@ public class UserListContoller {
 		@RequestParam HashMap<String, String> params) throws Throwable {
 	ObjectMapper mapper = new ObjectMapper();
 	Map<String, Object> modelMap = new HashMap<String, Object>();
+	
+	params.put("mPw",Utils.encryptAES128(params.get("mPw")));
 
 		try {
 			int cnt = useriListService.memLeave(params);
@@ -213,7 +218,7 @@ public class UserListContoller {
 		
 		// 페이징
 		int cnt = useriListService.mCnt(params);
-		PagingBean pb = iPagingService.getPagingBean(page, cnt , 5 , 3);
+		PagingBean pb = iPagingService.getPagingBean(page, cnt);
 		
 		params.put("startCnt", Integer.toString(pb.getStartCount()));
 		params.put("endCnt", Integer.toString(pb.getEndCount()));
@@ -246,8 +251,10 @@ public class UserListContoller {
 		System.out.println(mDetails);
 		System.out.println("===========================");
 		if(mDetails != null) {
-		modelMap.put("msg", "success");
-		modelMap.put("mDetails", mDetails);
+			modelMap.put("msg", "success");
+			modelMap.put("mDetails", mDetails);
+			modelMap.put("mPw", Utils.decryptAES128(mDetails.get("MEMBER_PW")));
+			System.out.println();
 		} else {
 			modelMap.put("msg", "error");
 		}
@@ -265,6 +272,8 @@ public class UserListContoller {
 	ObjectMapper mapper = new ObjectMapper();
 	Map<String, Object> modelMap = new HashMap<String, Object>();
 		
+	params.put("mPw",Utils.encryptAES128(params.get("mPw")));
+	
 		try {
 			int cnt = useriListService.mUpdate(params);
 			if(cnt > 0) {

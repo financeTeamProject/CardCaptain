@@ -236,7 +236,6 @@ body {
 .errorMsg {
 	width: auto;
 	height: 100%;
-	display:none;
 	vertical-align:top;
     color: #e65f3e;
     font-size: 13px;
@@ -450,7 +449,7 @@ $(document).ready(function() {
  					id = res.mId
  					
  					if(res.resMsg == "success") {
- 						$(".errorMsg").css("display","inline");
+ 						$(".errorMsg").show;
  						$("#errorMsgEmail").html("회원님의 아이디는  \"" + id + "\"  입니다.");
  					} else if(res.resMsg == "failed") {
  						alert("입력하신 회원님의 정보가 일치하지 않습니다.");
@@ -494,9 +493,9 @@ $(document).ready(function() {
  					if(res.resMsg == "success") {
  						pw = res.mPw
  						code = res.temp;
- 						
+ 						alert(pw);
 						alert(code);
-						$("#pw_check").css("display", "inline");
+						$("#pw_check").show();
 						
 						$("#pw_codeBtn").on("click", function () {
 							if($("#pw_codeTxt").val() == "") {
