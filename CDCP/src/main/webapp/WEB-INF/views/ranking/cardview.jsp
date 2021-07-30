@@ -236,6 +236,7 @@
 	}
 /* header_right 종료 */
 /* 헤더 종료 */
+			
 	
 /* ============================================================================ */	
 /* 로그인팝업 */
@@ -980,41 +981,49 @@ $(document).ready(function(){
 
 //클릭을 했을때 클릭한 놈의 부모에서 자식만 바꿔준다. this parent children
 /*비교함 담기  */	
+
 $(document).ready(function(){
 		 var cardNo = [];              
 /* 메인 비교함 버튼 조건 */
-    $("#compareBtn").on("click", function() {
+    $(".compare_btn").on("click", function() {
     	var temp = "";
 		if(cardNo.length > 2) {
 			alert("비교함이 가득 찼습니다.");
 		} else {
-			cardNo.push($(this).prop('id'));
-			$("#bi2").val(cardNo.length);
+			var a = cardNo.push($(this).prop('id'));
+			cardNo.push(a[1]);
+			$("#bi2").val(cardNo.length-1);
+			console.log(cardNo);
 			for(var i=0; i<cardNo.length; i++){
 				for(var j=0; j<i; j++){
 					if(cardNo[i] == cardNo[j]) {
 						alert("동일한 카드가 있습니다.");
-						cardNo.pop();//pop() = 배열의 마지막 요소 제거
-						$("#bi2").val(cardNo.length);
+						cardNo.pop(cardNo.pop());//pop() = 배열의 마지막 요소 제거
+						$("#bi2").val(cardNo.length-1);
 						return false;
 			 		}
 				}	
 			}
 		}
 	});	
+	
+    $("#bi1").on("click",function(){
+		$("#compared1").val(cardNo[0]);
+		$("#compared").attr("action","compareSearch");	
+	});    	
 });
+
 /* 메인 비교함 팝업  */
 	$(document).ready(function(){
 		$("#bi").hide();
-		$("#compareBtn").on("click",function(){
+		$(".compare_btn").on("click",function(){
 			$("#bi").hide();
 			$("#bi").fadeIn();
 		});
 		$("#bi").on("click",function(){
 			makePopup();
 			});
-	   });	
-		
+	  	
 		function makePopup(){
 			var html = "<div class = \"Popup\">"
 				+ "<input type = \"button\" id = \"p1\" value = \"비교함 이동\" readonly = \"readonly\" >"
@@ -1036,6 +1045,7 @@ $(document).ready(function(){
 				$(".Popup").remove();
 			});
 		}
+	 });	
 /* ====================================================================================== */		
 /* 도헌 카드리뷰 페이지 */
 	$(document).ready(function(){
@@ -1751,10 +1761,8 @@ $(document).ready(function(){
 	<div class="new" id="join">|&nbsp;&nbsp;회원 가입</div>
 </div>
 <div class="body">
-<form action = "#" id = "compared" method = "post">	
+	<form action = "#" id = "compared" method = "post">	
 		<input id = "compared1" type = "hidden" name = "comparedd1" value = "">
-		<input id = "compared2" type = "hidden" name = "comparedd2" value = "">
-		<input id = "compared3" type = "hidden" name = "comparedd3" value = "">	
 	</form>
 <!-- 헤더영역 -->
 	<div id="header">
@@ -1823,7 +1831,7 @@ $(document).ready(function(){
 				<input type="hidden" name="cardClick" value="${data[0].CARD_NO}" />
 				<div id="btnSct">
 					<input type="button" value="카드 신청" class="bef_btn" id="bef_btn" onclick='window.open("${data[0].CARD_APPLY_URL}")' />
-					<input type="button" value="비교함 담기" class="compare_btn" id="compareBtn" />
+					<input type="button" value="비교함 담기" class="compare_btn" id="${data[0].CARD_NO}" />
 						<div id = "bi">
 						<input type = "button" value = "비교함 확인" id = "bi1"/>
 						<input type = "button" value = "1" id= "bi2"/>						
