@@ -1469,6 +1469,7 @@ $(document).ready(function(){
 						data: params, //보낼 데이터(문자열 형태)
 						success: function(res){ // 성공 시 다음 함수 실행	
 							if(res.msg == "success"){
+								alert("신고가 접수되었습니다.");
 								closePopup();
 								reloadList();
 							} else if(res.msg == "failed"){
