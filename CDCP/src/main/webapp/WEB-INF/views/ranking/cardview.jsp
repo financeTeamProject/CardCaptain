@@ -1023,7 +1023,7 @@ $(document).ready(function(){
 				$("body").prepend(html);
 				$(".Popup").hide().fadeIn();
 				$("#p1").on("click",function(){
-					location.href = "http://localhost:8090/cdcp/compareSearch";
+					$("#compared").submit();
 				});
 			$("#p2").off("click");
 			$("#p2").on("click",function(){
@@ -1316,7 +1316,8 @@ $(document).ready(function(){
 							success: function(res){ // 성공 시 다음 함수 실행	
 								if(res.msg == "success"){
 									closePopup();
-									reloadList();
+									/* reloadList(); */
+									location.reload();
 								} else if(res.msg == "failed"){
 									alert("삭제에 실패하였습니다.");
 								} else {
@@ -1699,7 +1700,8 @@ $(document).ready(function(){
 						success: function(res){ // 성공 시 다음 함수 실행	
 							if(res.msg == "success"){
 								closePopup();
-								reloadList();
+								/* reloadList(); */
+								location.reload();
 							} else if(res.msg == "failed"){
 								alert("작성에 실패하였습니다.");
 							} else {
@@ -1749,6 +1751,11 @@ $(document).ready(function(){
 	<div class="new" id="join">|&nbsp;&nbsp;회원 가입</div>
 </div>
 <div class="body">
+<form action = "#" id = "compared" method = "post">	
+		<input id = "compared1" type = "hidden" name = "comparedd1" value = "">
+		<input id = "compared2" type = "hidden" name = "comparedd2" value = "">
+		<input id = "compared3" type = "hidden" name = "comparedd3" value = "">	
+	</form>
 <!-- 헤더영역 -->
 	<div id="header">
 		<div id="headerWrap">
