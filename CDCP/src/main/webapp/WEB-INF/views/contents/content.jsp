@@ -9,6 +9,13 @@
 <style type="text/css">
 
 @font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
   font-family: 'Cafe24Ohsquare';	
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff') format('woff');  
 }
@@ -57,7 +64,7 @@ h1 {
 	color: black;
 }
 
-/* 헤더  영역*/
+	/* 헤더 */
 #header {
 	width: 100%;
 	height: 55px;
@@ -66,6 +73,7 @@ h1 {
     border-color: #0047AB;
     font-family: 'GmarketSansMedium';
     min-width: 1830px;
+    background: white;
 }
 #headerWrap {
 	width: 1600px;
@@ -92,7 +100,7 @@ h1 {
     text-align: center;
     margin-top: 10px;
 }
-#headerLeft .menu1 { 
+.menu1 { 
 	display: inline-block;
 	width: 130px;
 	height: 100%;
@@ -102,7 +110,9 @@ h1 {
 	letter-spacing: 2px;
 	vertical-align: top;
 	cursor: pointer;
-}	/* header_left 종료 */
+}	
+
+	/* header_left 종료 */
 
 #headerRight {
 	display: inline-block;
@@ -111,18 +121,6 @@ h1 {
     font-size: 18px;
 	vertical-align: top;
 	text-align: right;
-}
-#imgSearch {
- 	display: inline-block;
-    background-image: url("/cdcp/resources/images/main/search.png");
-    background-repeat: no-repeat;
-    background-size: 30px;
-    width: 30px;
-    height: 25px;
-    cursor: pointer;
-    text-align: center;
-	margin-top: 15px;
-	margin-right: 20px;
 }
 #imgLogin {
  	display: inline-block;
@@ -135,18 +133,6 @@ h1 {
     text-align: center;
 	margin-top: 15px;
 }
-#searchTxt {
-    border-style: solid;
-    border-width: 0 0 1px 0;
-    border-color: #0047AB;
-    outline: 0;
-    caret-color: red;
-    color: #0047AB;
-    box-sizing: border-box;
-    font-size: 13px;
-    letter-spacing: 3px;
-    display: none;
-}
 #Nickname {
     width: auto;
     height: auto;
@@ -156,21 +142,54 @@ h1 {
     letter-spacing: 2px;
     display: none;
 }
+#logNick:hover{
+	color: #1AAB8A;
+}
 #logNick {
-	hight: 12px;
-	width: auto;
 	display: inline-block;
+	color:#0047AB;
+	border:none;
+	position:relative;
+	width: auto;
+	cursor:pointer;
+	transition:800ms ease all;
+	outline:none;
+	margin-top: 18px;
+	letter-spacing: 2px;
+}
+#logNick:before, #logNick:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+#logNick:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+#logNick:hover:before, #logNick:hover:after{
+  width:100%;
+  transition:800ms ease all;
 }
 #logoutBtn {
+	background:#fff;
+	color:#1AAB8A;
+	border:none;
+	position:relative;
+	height:30px;
 	width: 70px;
-	heigth: 40px;
+	cursor:pointer;
+	transition:800ms ease all;
+	outline:none;
 	margin-left: 20px;
-	/* display: none; */
 }
-	/* header_right 종료 */
-	/* 헤더 종료 */
-
-	/* 로그인팝업 */
+/* 로그인팝업 */
 .popinput {
 	width: 50%;
     height: 40px;
@@ -220,13 +239,13 @@ h1 {
 .re {
 	display: inline-block;
 	vertical-align: top;
-	font-size: 11px;
+	font-size: 12px;
     margin: 10px 0 10px 130px;
 }
 .new {
 	display: inline-block;
 	vertical-align: top;
-	font-size: 11px;
+	font-size: 12px;
 	margin: 10px 0 10px 0;
 }
 .re:hover, .new:hover {
@@ -244,8 +263,9 @@ h1 {
     font-size: 13px;
     margin-left: 65px;
 } 
-		/* 로그인팝업종료 */
-
+	/* 로그인팝업종료 */
+	/* header_right 종료 */
+	/* 헤더 종료 */
 .title {
 	
 	width: 700px;
@@ -619,7 +639,9 @@ h1 {
 			});
 			
 			$(".cardcaptain").on("click", function(){
-				location.href = "/cdcp";
+				$("#popup").css("display","none");
+				$(".body").css("display","inline");
+
 			});
 			
 			/* 로그인 */
@@ -640,7 +662,7 @@ h1 {
 						data: params,
 						success: function (res) {
 							if(res.resMsg == "success"){
-								location.href = "/cdcp";
+								location.href = "content";
 								$("#nickName").css("display","inline");
 								$("#imgSearch").css("margin-left","70%");
 								$("#imgLogin").css("display","none");
@@ -668,7 +690,6 @@ h1 {
 			});
 			
 			$("#logNick").on("click", function(){
-				alert($("#sMNm").val());
 				$("#memNo").attr("action");
 				$("#memNo").submit();
 			});
@@ -758,7 +779,20 @@ h1 {
 </script>		
 </head>
 <body>
-<!-- 로그인 팝업 영역 -->
+<!-- 로그인팝업 -->
+<div id="popup">
+	<div class="cardcaptain">&nbsp;&nbsp;&nbsp;&nbsp;Card Captain&nbsp;&nbsp;&nbsp;&nbsp;X</div>
+	<form action="testLogins" id="loginForm" method="post">
+			<input type="email" class="popinput" placeholder="ID" id="mId" name="mId">
+			<input type="password" class="popinput" placeholder="PW" id="mPw" name="mPw"><br/>
+		<span class="errorMsg" id="masage" aria-live="assertive"></span>
+		<input type="button" class="popinput" id="loginBtn" value="로그인"/><br/>
+	</form>
+	<div class="re" id="searchmem">ID/PW 찾기</div>
+	<div class="new" id="join">|&nbsp;&nbsp;회원 가입</div>
+</div>
+<!-- 로그인팝업 종료 -->
+<!-- 로그인팝업 -->
 <div id="popup">
 	<div class="cardcaptain">&nbsp;&nbsp;&nbsp;&nbsp;Card Captain&nbsp;&nbsp;&nbsp;&nbsp;X</div>
 	<form action="testLogins" id="loginForm" method="post">
@@ -792,14 +826,12 @@ h1 {
 				<input type="hidden" name="memAd" value="${sMAd}" id="sMAd"/>
 			</form>
 			<div id="headerRight">
-				<input type="text" id="searchTxt">
-				<div id="imgSearch"></div>
 				<c:choose>
 					<c:when test="${empty sMNm}">
 						<div id="imgLogin"></div>
 					</c:when>
 					<c:otherwise>
-						<div id="logNick">${sMNm}  님</div><input type="button" value="로그아웃" id="logoutBtn" />
+						<div id="logNick">${sMNm}&nbsp;&nbsp;님</div><input type="button" value="로그아웃" id="logoutBtn" />
 					</c:otherwise>
 				</c:choose>
 			</div>
