@@ -420,7 +420,7 @@ public class RankingContoller {
 					mav.addObject("page", page);
 					mav.addObject("pb", pb);
 					
-					mav.setViewName("ranking/adminDh");
+					mav.setViewName("admin/adminDh");
 					
 					return mav;
 				}
