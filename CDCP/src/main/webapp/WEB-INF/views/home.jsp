@@ -842,17 +842,22 @@ $(document).ready(function(){
 		location.href = "testALogout";
 	}); //로그아웃 end
 	
+/* 	$("#logNick").on("click", function(){
+		location.href = "/mypage";
+	}); */
+	
 	/* 마이페이지이동 */
 	$("#logNick").on("click", function(){
-		location.href = "/mypage";
-	});
-	
-	$("#logNick").on("click", function(){
 		//alert($("#sMNm").val());
-		$("#memNo").attr("action");
-		$("#memNo").submit();
+		if($("#sMNo").val() == "10000") {
+			location.href = "/admin";
+		} else {
+			$("#memNo").attr("action");
+			$("#memNo").submit();
+				
+			location.href = "/mypage";
+		}
 	});
-	
 }); // document ready end
 
 /* Map */

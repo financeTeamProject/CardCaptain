@@ -762,6 +762,9 @@ $(document).ready(function() {
 			alert("비밀번호를 재입력 해주세요.")
 		} else if(mRPw == sMPw) {
 			leave();
+			$("#logoutBtn").on("click", function () {
+				location.href = "testALogout";
+			}); //로그아웃 end
 		}
 	});
 	

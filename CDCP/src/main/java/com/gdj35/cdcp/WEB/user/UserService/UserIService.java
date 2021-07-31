@@ -1,8 +1,6 @@
 package com.gdj35.cdcp.WEB.user.UserService;
 
 import java.util.HashMap;
-import java.util.List;
-
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Service;
