@@ -637,6 +637,7 @@ $(document).ready(function() {
 		// 회원상세 클릭
 		$(".list_wrap tr td").on("click", function() {
 			mNo = $(this).parents().attr("mNo");
+			alert(mNo);
 			$("#content_area1").css("display","none");
 			$("#content_area2").css("display","inline");
 			console.log(mNo);

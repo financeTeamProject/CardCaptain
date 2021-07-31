@@ -940,6 +940,7 @@ $(document).ready(function() {
 	function drawAddList(addlist) {
 		var add = "";
 		console.log(addlist);
+		
 		for(var i = 0; i < addlist.length; i++){
 			add += "<tr cNo=\"" + addlist[i].CARD_NO + "\">";
 			add += "<td>" + "" + "</td>";
@@ -949,9 +950,8 @@ $(document).ready(function() {
 			add += "</tr>";
 			
 		}
-		
 		$(".add_wrap tbody").html(add);
-		
+			
 		// 20210725
 		$(".add_wrap tr td button").on("click", function () {
 			var html = "";

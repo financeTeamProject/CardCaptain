@@ -241,7 +241,7 @@ public class UserListContoller {
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		
-		System.out.println("===========뭐가지고나오냐===============");
+		System.out.println("========뭐가지고나오냐=======");
 		System.out.println(params);
 		System.out.println("===========================");
 		
@@ -288,9 +288,5 @@ public class UserListContoller {
 		return mapper.writeValueAsString(modelMap);
 	}
 }
-
-
-
-
 
 
