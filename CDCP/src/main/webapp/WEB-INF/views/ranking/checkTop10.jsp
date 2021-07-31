@@ -734,7 +734,8 @@ $(document).ready(function(){
 		});
 		
 		$(".cardcaptain").on("click", function(){
-			location.href = "/cdcp";
+			$("#popup").css("display","none");
+			$(".body").css("display","inline");
 		});
 		
 		/* 로그인 */

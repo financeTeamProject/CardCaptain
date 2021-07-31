@@ -74,7 +74,9 @@ body{
 		letter-spacing: 2px;
 		vertical-align: top;
 		cursor: pointer;
-	}	/* header_left 종료 */
+	}	
+
+/* header_left 종료 */
 	
 #headerRight {
 	display: inline-block;
@@ -539,7 +541,8 @@ body{
 		});
 		
 		$(".cardcaptain").on("click", function(){
-			location.href = "/cdcp";
+			$("#popup").css("display","none");
+			$(".body").css("display","inline");
 		});
 		
 		/* 로그인 */

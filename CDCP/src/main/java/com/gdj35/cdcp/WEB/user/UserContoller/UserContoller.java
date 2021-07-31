@@ -72,7 +72,7 @@ public class UserContoller {
 	}
 	//로그아웃 2 (내가 원하는 페이지로 이동)
 		@RequestMapping(value="/testALogout2")
-		public ModelAndView testALogouts (HttpSession session,
+		public ModelAndView testALogout2 (HttpSession session,
 				ModelAndView mav) {
 			
 			session.invalidate();
@@ -81,6 +81,17 @@ public class UserContoller {
 			
 			return mav;
 		}
+	//로그아웃 2 (마이)
+			@RequestMapping(value="/testALogout3")
+			public ModelAndView testALogout3 (HttpSession session,
+					ModelAndView mav) {
+					
+				session.invalidate();
+					
+				mav.setViewName("redirect:/");
+					
+				return mav;
+			}
 	
 	//회원가입 페이지
 	@RequestMapping(value = "/join")

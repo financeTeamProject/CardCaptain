@@ -78,17 +78,7 @@ body {
 	height: 100%;
     font-size: 18px;
 	vertical-align: top;
-}
-#imgSearch {
- 	display: inline-block;
-    background-image: url("/cdcp/resources/images/main/search.png");
-    background-repeat: no-repeat;
-    background-size: 30px;
-    width: 30px;
-    height: 25px;
-    cursor: pointer;
-    text-align: center;
-    margin-left: 85%;
+	text-align: right;
 }
 #imgLogin {
  	display: inline-block;
@@ -98,10 +88,142 @@ body {
     width: 30px;
     height: 25px;
     cursor: pointer;
-    margin-top: 15px;
+    text-align: center;
+	margin-top: 15px;
 }
-
-/* header_right 종료 */
+#Nickname {
+    width: auto;
+    height: auto;
+    color: #0047AB;
+    box-sizing: border-box;
+    font-size: 13px;
+    letter-spacing: 2px;
+    display: none;
+}
+#logNick:hover{
+	color: #1AAB8A;
+}
+#logNick {
+	display: inline-block;
+	color:#0047AB;
+	border:none;
+	position:relative;
+	width: auto;
+	cursor:pointer;
+	transition:800ms ease all;
+	outline:none;
+	margin-top: 18px;
+	letter-spacing: 2px;
+}
+#logNick:before, #logNick:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+#logNick:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+#logNick:hover:before, #logNick:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+#logoutBtn {
+	background:#fff;
+	color:#1AAB8A;
+	border:none;
+	position:relative;
+	height:30px;
+	width: 70px;
+	cursor:pointer;
+	transition:800ms ease all;
+	outline:none;
+	margin-left: 20px;
+}
+/* 로그인팝업 */
+.popinput {
+	width: 50%;
+    height: 40px;
+    padding: 0px 20px;
+    border: 1px solid lightgray;
+    outline: none;
+    font-size: 13px;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: #0047AB;
+    outline: 0;
+    text-decoration: none;
+    letter-spacing: 2px;
+    margin: 5px 50px 10px 70px;
+}
+.cardcaptain {
+	width: 100%;
+	height: 95px;
+	line-height: 110px;
+	text-align: center;
+	font-size: 25px;
+	color: #0047AB;
+	letter-spacing: 5px;
+	cursor: pointer;
+}
+#popup {
+	height: 320px;
+	width: 400px;
+	background-color: white;
+	border-radius: 70px;
+	display: none;
+	margin: 300px auto;
+	z-index: 50;
+}
+#loginBtn {
+	margin-bottom: 10px;
+	margin-top: 5px;
+	background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+	background-size: 200%;
+	color: white;
+ 	font-weight: bold;
+	border: none;
+	cursor: pointer;
+	display: inline;
+	margin: 20px 10px 15px 90px;
+}
+.re {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 12px;
+    margin: 10px 0 10px 130px;
+}
+.new {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 12px;
+	margin: 10px 0 10px 0;
+}
+.re:hover, .new:hover {
+	cursor: pointer;
+}
+.error {
+    font-size: 11px;
+    color: red;
+    visibility: hidden;
+}
+.errorMsg {
+	height: 100%;
+    display: none;
+    color: #e65f3e;
+    font-size: 13px;
+    margin-left: 65px;
+} 
+	/* 로그인팝업종료 */
+	/* header_right 종료 */
+	/* 헤더 종료 */
 /* ============================================================================ */
 
 /* 메뉴바영역 */
@@ -543,7 +665,56 @@ $(document).ready(function() {
 		location.href = "/cdcp";
 	}); // headerLogo click end
 	
-
+	$(".cardcaptain").on("click", function(){
+		$("#popup").css("display","none");
+		$(".body").css("display","inline");
+	});
+	
+	/* 로그인 */
+	$("#loginBtn").on("click", function () {
+		if($.trim($("#mId").val()) == "") {
+			alert("아이디를 입력해 주세요.");
+			$("#mId").focus();
+		} else if($.trim($("#mPw").val()) == "") {
+			alert("비밀번호를 입력해 주세요.");
+			$("#mPw").focus();
+		} else {
+			var params = $("#loginForm").serialize();
+			
+			$.ajax({
+				url: "logins",
+				type: "post",
+				dataType: "json",
+				data: params,
+				success: function (res) {
+					if(res.resMsg == "success"){
+						location.href = "/cdcp";
+						$("#nickName").css("display","inline");
+						$("#imgSearch").css("margin-left","70%");
+						$("#imgLogin").css("display","none");
+						$("#logoutBtn").css("display","inline");
+					} else {
+						$(".errorMsg").css("display","inline");
+						$("#masage").html("아이디 또는 비밀번호가 일치하지 않습니다.")
+					}
+				},
+				error: function (request, status, error) {
+					console.log(error);
+				}
+			}); //ajax end
+		}
+	}); //로그인 end
+	
+	/* 로그아웃  */
+	$("#logoutBtn").on("click", function () {
+		location.href = "testALogout3";
+	}); //로그아웃2 end
+	
+	/* 마이페이지이동 */
+	$("#logNick").on("click", function(){
+		$("#memNo").attr("action");
+		$("#memNo").submit();
+	});
 	
 /* ====================================================================================== */	
 	
@@ -744,18 +915,49 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
+<div id="popup">
+	<div class="cardcaptain">&nbsp;&nbsp;&nbsp;&nbsp;Card Captain&nbsp;&nbsp;&nbsp;&nbsp;X</div>
+	<form action="testLogins" id="loginForm" method="post">
+			<input type="email" class="popinput" placeholder="ID" id="mId" name="mId">
+			<input type="password" class="popinput" placeholder="PW" id="mPw" name="mPw"><br/>
+		<span class="errorMsg" id="masage" aria-live="assertive"></span>
+		<input type="button" class="popinput" id="loginBtn" value="로그인"/><br/>
+	</form>
+	<div class="re" id="searchmem">ID/PW 찾기</div>
+	<div class="new" id="join">|&nbsp;&nbsp;회원 가입</div>
+</div>
+	<form action="#" id="goForm" method="post">
+		<input type="hidden" name="cmpNo" id="cmpNo" value="1" />
+	</form>
 <!-- 헤더영역(메뉴바) -->
 <div id="header">
 	<div id="headerWrap">
-	<div id="headerLeft">
-		<div id="headerLogo"></div>
-		<div class="menu1" id="ranking">카드순위</div>
-		<div class="menu1" id="search">카드검색/비교</div>
-		<div class="menu1" id="contents">컨텐츠</div>
-	</div>
-	<div id="headerRight">
-		<div id="imgSearch"></div>
-		<div id="imgLogin"></div>
+		<div id="headerLeft">
+			<div id="headerLogo"></div>
+			<div class="menu1" id="ranking">카드순위</div>
+			<div class="menu1" id="search">카드검색/비교</div>
+			<div class="menu1" id="contents">컨텐츠</div>
+		</div>
+		<form action="mypage" id="memNo" method="post">
+					<input type="hidden" name="memNo" value="${sMNo}" id="sMNo"/>
+					<input type="hidden" name="memId" value="${sMId}" id="sMId"/>
+					<input type="hidden" name="memPW" value="${sMPw}" id="sMPw"/>
+					<input type="hidden" name="memBi" value="${sMBi}" id="sMBi"/>
+					<input type="hidden" name="memGe" value="${sMGe}" id="sMGe"/>
+					<input type="hidden" name="memCo" value="${sMCo}" id="sMCo"/>
+					<input type="hidden" name="memNm" value="${sMNm}" id="sMNm"/>
+					<input type="hidden" name="memNa" value="${sMNa}" id="sMNa"/>
+					<input type="hidden" name="memAd" value="${sMAd}" id="sMAd"/>
+				</form>
+		<div id="headerRight">
+			<c:choose>
+				<c:when test="${empty sMNm}">
+					<div id="imgLogin"></div>
+				</c:when>
+				<c:otherwise>
+					<div id="logNick">${sMNm}&nbsp;&nbsp;님</div><input type="button" value="로그아웃" id="logoutBtn" />
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 </div>

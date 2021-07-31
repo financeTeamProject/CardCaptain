@@ -501,7 +501,8 @@ body {
 		});
 		
 		$(".cardcaptain").on("click", function(){
-			location.href = "/cdcp";
+			$("#loginpopup").css("display","none");
+			$(".body").css("display","inline");
 		});
 		
 		/* 로그인 */
