@@ -348,7 +348,7 @@ $(document).ready(function(){
 	
 	/* 마이페이지이동 */
 	$("#logNick").on("click", function(){
-		alert($("#sMNm").val());
+		//alert($("#sMNm").val());
 		$("#memNo").attr("action");
 		$("#memNo").submit();
 	});
