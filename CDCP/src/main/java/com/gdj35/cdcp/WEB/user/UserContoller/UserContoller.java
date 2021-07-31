@@ -299,7 +299,7 @@ public class UserContoller {
 	@RequestMapping(value = "/admin")
 	public ModelAndView admin(ModelAndView mav) {
 		
-		mav.setViewName("user/admin");
+		mav.setViewName("admin/admin");
 		
 		return mav;
 	}
