@@ -1,7 +1,10 @@
 package com.gdj35.cdcp.WEB.user.UserService;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +43,17 @@ public class UserService implements UserIService {
 	@Override
 	public HashMap<String, String> emailCheck(HashMap<String, String> params) throws Throwable {
 		return useridao.emailCheck(params);
+	}
+	// 로그아웃시 본페이지 유지
+	@Override
+	public void logout(HttpServletResponse response) throws Throwable {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+		out.println("location.href=document.referrer;");
+		out.println("</script>");
+		out.close();
+		
 	}
 
 }

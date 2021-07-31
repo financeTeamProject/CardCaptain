@@ -3,6 +3,7 @@ package com.gdj35.cdcp.WEB.user.UserContoller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.RandomStringUtils;
@@ -60,14 +61,14 @@ public class UserContoller {
 	
 	//로그아웃
 	@RequestMapping(value="/testALogout")
-	public ModelAndView testALogout(HttpSession session,
-			ModelAndView mav) {
+	public void testALogout(HttpSession session,
+			HttpServletResponse response) throws Throwable {
 		
 		session.invalidate();
 		
-		mav.setViewName("redirect:/");
-		
-		return mav;
+		/* mav.setViewName("redirect:/"); */
+		useriService.logout(response);
+	
 	}
 	
 	//회원가입 페이지

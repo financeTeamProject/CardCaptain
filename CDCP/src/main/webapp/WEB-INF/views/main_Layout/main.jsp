@@ -339,6 +339,7 @@ $(document).ready(function(){
 	/* 로그아웃  */
 	$("#logoutBtn").on("click", function () {
 		location.href = "testALogout";
+		
 	}); //로그아웃 end
 	
 	/* 마이페이지이동 */
