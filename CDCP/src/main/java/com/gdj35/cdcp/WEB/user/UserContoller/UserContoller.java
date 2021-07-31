@@ -294,13 +294,4 @@ public class UserContoller {
 		
 		return mav;
 	}
-	
-	//어드민
-	@RequestMapping(value = "/admin")
-	public ModelAndView admin(ModelAndView mav) {
-		
-		mav.setViewName("admin/admin");
-		
-		return mav;
-	}
 }
