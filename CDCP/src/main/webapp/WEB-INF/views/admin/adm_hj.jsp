@@ -286,7 +286,7 @@ body {
             }
 
             .dropdown-content a {
-                color: black;
+                color: white;
                 padding: 12px 16px;
                 text-decoration: none;
                 display: block;
@@ -382,6 +382,12 @@ body {
 	margin: 0px auto;
 }
 
+.list_wrap th, .list_movie th, .list_ctest th {
+	
+	border: 1px solid;
+	color: white;
+}
+
 .list_wrap table, .list_movie table, .list_ctest tabel {
 	border-collapse: collapse;
 }
@@ -389,7 +395,7 @@ body {
 .list_wrap thead tr, .list_movie thead tr, .list_ctest thead tr {
 	border-top: 1px solid #000;
 	border-bottom: 1px solid #000;
-	background-color: orange;
+	background-color: #0047ab;
 	height: 30px; 
 }
 
@@ -495,13 +501,16 @@ $(document).ready(function() {
 	
 	$("#cardMenubar").on("click", function(){
 		location.href = "/cdcp/admin";
-	}); // headerLogo click end
+	}); // cardMenubar click end
 	$("#memMenubar").on("click", function(){
 		location.href = "/cdcp/GJMList";
-	}); // headerLogo click end
+	}); // memMenubar click end
+	$("#reviewMenubar").on("click", function(){
+		location.href = "/cdcp/adminDh2";
+	}); // reviewMenubar click end
 	$("#contentsMenubar").on("click", function(){
 		location.href = "/cdcp/adm_hj";
-	}); // headerLogo click end
+	}); // contentsMenubar click end
 	
 	
 	/* 로그인 */
@@ -561,7 +570,6 @@ $(document).ready(function() {
 	
 	reloadList();
 	reloadList2();
-	reloadList3();
 	
 	$("#writeBtn").on("click", function() {
 		$("#searchTxt").val($("#searchOldTxt").val());
@@ -615,7 +623,7 @@ function reloadList2() {
 	});
 }
 
-function reloadList3() {
+/* function reloadList3() {
 	var params = $("#actionForm").serialize();
 
 	$.ajax({
@@ -631,7 +639,7 @@ function reloadList3() {
 			console.log(error);
 		}
 	});
-}
+} */
 
 //목록그리기
 function drawList(tipcon) {
