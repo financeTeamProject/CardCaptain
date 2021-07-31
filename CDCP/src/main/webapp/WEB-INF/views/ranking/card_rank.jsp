@@ -24,19 +24,6 @@ body{
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Cafe24Ohsquare';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
 body {
 	margin: 0;
 	top: 0;
@@ -563,9 +550,7 @@ body {
 			$("#memNo").submit();
 		});
 		
-		
-		
-		/* 카드사별 top3 페이지 이동 */
+/* 카드사별 top3 페이지 이동 */
 		
 		/* 카드사별 css 효과 */
 		$("#midCmp").hover(function(){
