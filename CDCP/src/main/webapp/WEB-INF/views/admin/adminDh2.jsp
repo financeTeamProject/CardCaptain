@@ -657,6 +657,18 @@ $(document).ready(function() {
 	$("#contents").on("click", function(){
 		location.href = "content";
 	});// contents click end
+	
+// 관리자 페이지 메뉴 이동 버튼	
+	$("#cardMenubar").on("click", function(){
+		location.href = "/cdcp/admin";
+	}); // headerLogo click end
+	$("#memMenubar").on("click", function(){
+		location.href = "/cdcp/GJMList";
+	}); // headerLogo click end
+	$("#contentsMenubar").on("click", function(){
+		location.href = "/cdcp/adm_hj";
+	}); // headerLogo click end
+	
 	/* 메인페이지 이동 */
 	$("#headerLogo").on("click", function(){
 		location.href = "/cdcp";
@@ -965,44 +977,26 @@ $(document).ready(function() {
 	<nav>
         <ul>
         	<li class="dropdown">
-                <div id="smallMeunName">관리자페이지</div>
+                <div id="smallMeunName" >관리자페이지</div>
             </li>
             <li class="dropdown">
-                <div class="dropdown-menu">카드</div>
-                <div class="dropdown-content">
-                    <a href="#" id="addCard">카드등록</a>
-                    <a href="#" id="deleteCard">카드삭제</a>
-                </div>
+                <div class="dropdown-menu" id="cardMenubar">카드</div>
+                
             </li>
             <li class="dropdown">
                 <div class="dropdown-menu" id="reviewMenubar">리뷰</div>
-                <div class="dropdown-content">
-                    <a href="#">리뷰관리</a>
-                    <a href="#">리뷰신고관리</a>
-                    <a href="#">리뷰별점관리</a>
-                    <a href="#">Menu2-4</a>
-                </div>
-                <!--  -->
+                
+              
             </li>
             <li class="dropdown">
-                <div class="dropdown-menu">회원관리</div>
-                <div class="dropdown-content">
-                    <a href="#">회원정보수정</a>
-                    <a href="#">회원가입목록</a>
-                    <a href="#">회원보유카드</a>
-                    <a href="#">Menu3-4</a>
-                </div>
+                <div class="dropdown-menu" id="memMenubar">회원관리</div>
+                
             </li>
             <li class="dropdown">
-                <div class="dropdown-menu">컨텐츠관리</div>
-                <div class="dropdown-content">
-                    <a href="#">소비심리테스트</a>
-                    <a href="#">영상관리</a>
-                    <a href="#">등록기사관리</a>
-                    <a href="#">카드랭킹관리(?)</a>
-                </div>
+                <div class="dropdown-menu" id="contentsMenubar">컨텐츠관리</div>
+                
             </li>
-            <li class="home"><a href="#">Home</a></li>
+            <!-- <li class="home"><a href="#">Home</a></li> -->
         </ul>
     </nav>
 <!-- 컨텐츠 영역 -->

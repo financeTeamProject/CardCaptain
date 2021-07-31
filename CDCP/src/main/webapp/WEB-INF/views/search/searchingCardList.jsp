@@ -617,7 +617,7 @@ $(document).ready(function(){
              data: params,
              success: function (res) {
                 if(res.resMsg == "success"){
-                   location.href = "/cdcp";
+                   location.href = "/search";
                    $("#nickName").css("display","inline");
                    $("#imgSearch").css("margin-left","70%");
                    $("#imgLogin").css("display","none");
