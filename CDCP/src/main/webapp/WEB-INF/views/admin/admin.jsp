@@ -717,6 +717,17 @@ $(document).ready(function() {
 		updateCardRead();
 	});
 	
+	//회원관리 이동
+	$("#reAdmin").on("click", function(){
+		location.href = "/adminDh2";
+	});
+	$("#mAdmin").on("click", function(){
+		location.href = "/GJMList";
+	});
+	$("#conAdmin").on("click", function(){
+		location.href = "/adm_hj";
+	});
+	
 	$(".left_content .content_content").on("click", function() {
 		if($(this).html() == "추가") {
 			getCardRead();
@@ -1168,38 +1179,15 @@ function makeUpdatePopUp(no) {
             </li>
             <li class="dropdown">
                 <div class="dropdown-menu">카드</div>
-                <div class="dropdown-content">
-                    <a href="#" id="addCard">카드등록</a>
-                    <a href="#" id="deleteCard">카드삭제</a>
-                </div>
             </li>
             <li class="dropdown">
-                <div class="dropdown-menu">리뷰</div>
-                <div class="dropdown-content">
-                    <a href="#">리뷰관리</a>
-                    <a href="#">리뷰신고관리</a>
-                    <a href="#">리뷰별점관리</a>
-                    <a href="#">Menu2-4</a>
-                </div>
-                <!--  -->
+                <div class="dropdown-menu" id="reAdmin">리뷰</div>
             </li>
             <li class="dropdown">
-                <div class="dropdown-menu">회원관리</div>
-                <div class="dropdown-content">
-                    <a href="#">회원정보수정</a>
-                    <a href="#">회원가입목록</a>
-                    <a href="#">회원보유카드</a>
-                    <a href="#">Menu3-4</a>
-                </div>
+                <div class="dropdown-menu" id="mAdmin">회원관리</div>
             </li>
             <li class="dropdown">
-                <div class="dropdown-menu">컨텐츠관리</div>
-                <div class="dropdown-content">
-                    <a href="#">소비심리테스트</a>
-                    <a href="#">영상관리</a>
-                    <a href="#">등록기사관리</a>
-                    <a href="#">카드랭킹관리(?)</a>
-                </div>
+                <div class="dropdown-menu" id="conAdmin">컨텐츠관리</div>
             </li>
             <li class="home"><a href="#">Home</a></li>
         </ul>
