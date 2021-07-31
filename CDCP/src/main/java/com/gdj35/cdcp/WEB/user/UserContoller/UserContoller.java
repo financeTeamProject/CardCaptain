@@ -166,7 +166,6 @@ public class UserContoller {
 	}
 	
 	/* pw찾기 - 데이터 가져오기 */
-	@SuppressWarnings("null")
 	@RequestMapping(value="mData2s",
 			method = RequestMethod.POST,
 			produces = "text/json;charset=UTF-8")
@@ -287,7 +286,7 @@ public class UserContoller {
 		}
 		return mapper.writeValueAsString(modelMap);
 	}
-	
+	//마이페이지
 	@RequestMapping(value = "/mypage")
 	public ModelAndView mypage(ModelAndView mav) {
 		
@@ -296,4 +295,12 @@ public class UserContoller {
 		return mav;
 	}
 	
+	//어드민
+	@RequestMapping(value = "/admin")
+	public ModelAndView admin(ModelAndView mav) {
+		
+		mav.setViewName("user/admin");
+		
+		return mav;
+	}
 }
