@@ -29,6 +29,7 @@
 }
 body {
         margin: 0;
+        font-family: 'GmarketSansMedium';
     }
 	/* 헤더 */
 #header {
@@ -367,9 +368,9 @@ body {
 }
 
 .search_area {
-	margin-top: 10px;
+	padding-top: 30px;
 	margin: 0px auto;
-	text-align: right;
+	text-align: left;
 	width: 1000px;
 	
 }
@@ -489,6 +490,19 @@ $(document).ready(function() {
 		$(".body").css("display","inline");
 
 	});
+	
+	// 관리자 페이지 메뉴 이동 버튼	
+	
+	$("#cardMenubar").on("click", function(){
+		location.href = "/cdcp/admin";
+	}); // headerLogo click end
+	$("#memMenubar").on("click", function(){
+		location.href = "/cdcp/GJMList";
+	}); // headerLogo click end
+	$("#contentsMenubar").on("click", function(){
+		location.href = "/cdcp/adm_hj";
+	}); // headerLogo click end
+	
 	
 	/* 로그인 */
 	$("#loginBtn").on("click", function () {
@@ -766,19 +780,19 @@ function drawPaging(pb) {
                 <div id="smallMeunName">관리자페이지</div>
             </li>
             <li class="dropdown">
-                <div class="dropdown-menu">카드</div>
+                <div class="dropdown-menu" id="cardMenubar">카드</div>
                 
             </li>
             <li class="dropdown">
-                <div class="dropdown-menu">리뷰</div>
+                <div class="dropdown-menu" id="reviewMenubar">리뷰</div>
                
             </li>
             <li class="dropdown">
-                <div class="dropdown-menu">회원관리</div>
+                <div class="dropdown-menu" id="memMenubar">회원관리</div>
               
             </li>
             <li class="dropdown">
-                <div class="dropdown-menu">컨텐츠관리</div>
+                <div class="dropdown-menu" id="contentsMenubar">컨텐츠관리</div>
               
             </li>
         </ul>
