@@ -324,7 +324,7 @@ input text {
 	margin: 100px auto;
 }
 .contents2 {
-	width: 95%;
+	width: 1600px;
 	height: 80%;
 	margin: 100px auto;
 }
@@ -624,12 +624,10 @@ $(document).ready(function() {
 			html += "<td class=\"a\">" + m.MEMBER_RNK + "</td>";
 			html += "<td class=\"a\">" + m.MEMBER_NO + "</td>";
 			html += "<td class=\"b\">" + m.MEMBER_ID + "</td>";
-			html += "<td class=\"c\">" + m.MEMBER_PW + "</td>";
 			html += "<td class=\"d\">" + m.MEMBER_BIRTH + "</td>";
 			html += "<td class=\"e\">" + m.CONTACT + "</td>";
 			html += "<td class=\"f\">" + m.NICKNAME + "</td>";
 			html += "<td class=\"g\">" + m.JOIN_DATE + "</td>";
-			html += "<td class=\"h\">" + m.LEAVE_DATE + "</td>";
 			html += "<td class=\"i\">" + m.LEAVE_CHECK + "</td>";
 			html += "<td class=\"j\">" + m.EMAIL + "</td>";
 			html += "</tr>";
@@ -656,12 +654,10 @@ $(document).ready(function() {
 			html += "<tr mNo=\"" + mDetails.MEMBER_NO + "\">";
 			html += "<td>" + "<input type text value=" + mDetails.MEMBER_NO + " name=mId></text>" + "</td>";
 			html += "<td>" + "<input type text value=" + mDetails.MEMBER_ID + "></text>" + "</td>";
-			html += "<td>" + "<input type text value=" + mDetails.MEMBER_PW + "></text>" + "</td>";
 			html += "<td>" + "<input type text value=" + mDetails.MEMBER_BIRTH + "></text>" + "</td>";
 			html += "<td>" + "<input type text value=" + mDetails.CONTACT + "></text>" + "</td>";
 			html += "<td>" + "<input type text value=" + mDetails.NICKNAME + "></text>" + "</td>";
 			html += "<td>" + "<input type text value=" + mDetails.JOIN_DATE + "></text>" + "</td>";
-			html += "<td>" + "<input type text value=" + mDetails.LEAVE_DATE + "></text>" + "</td>";
 			html += "<td>" + "<input type text value=" + mDetails.LEAVE_CHECK + "></text>" + "</td>";
 			html += "<td>" + "<input type text value=" + mDetails.EMAIL + "></text>" + "</td>";
 			html += "</tr>";
@@ -793,8 +789,6 @@ $(document).ready(function() {
 				<col width="10%" />
 				<col width="10%" />
 				<col width="10%" />
-				<col width="10%" />
-				<col width="10%" />
 				<col width="5%" />
 				<col width="10%" />
 			</colgroup>
@@ -803,12 +797,10 @@ $(document).ready(function() {
 					<th>번호</th>
 					<th>회원번호</th>
 					<th>아이디</th>
-					<th>비밀번호</th>
 					<th>생년월일</th>
 					<th>연락처</th>
 					<th>닉네임</th>
 					<th>가입일</th>
-					<th>탈퇴일</th>
 					<th>회원여부</th>
 					<th>이메일</th>
 				</tr>
@@ -832,19 +824,15 @@ $(document).ready(function() {
 				<col width="10%" />
 				<col width="10%" />
 				<col width="10%" />
-				<col width="10%" />
-				<col width="10%" />
 			</colgroup>
 			<thead>
 				<tr>
 					<th>회원번호</th>
 					<th>아이디</th>
-					<th>비밀번호</th>
 					<th>생년월일</th>
 					<th>연락처</th>
 					<th>닉네임</th>
 					<th>가입일</th>
-					<th>탈퇴일</th>
 					<th>회원여부</th>
 					<th>이메일</th>
 				</tr>

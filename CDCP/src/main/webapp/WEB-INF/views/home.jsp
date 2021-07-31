@@ -848,7 +848,7 @@ $(document).ready(function(){
 	
 	/* 마이페이지이동 */
 	$("#logNick").on("click", function(){
-		 alert($("#sMNo").val());
+		 //alert($("#sMNo").val());
 		 
 		 if($("#sMNo").val() == "10000") {
 			 location.href = "/cdcp/admin"; 
