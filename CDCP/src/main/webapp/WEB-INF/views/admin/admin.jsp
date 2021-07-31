@@ -614,6 +614,10 @@ h1 {
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+	if("${sMNo}" != "10000") {
+		alert("권한이 없는 회원입니다.");
+		history.back();
+	}
 	/* 로그인팝업 실행 */
     $("#imgLogin").on("click", function(){
        $("#popup").css("display","block");
@@ -670,7 +674,7 @@ $(document).ready(function() {
     
     /* 로그아웃  */
     $("#logoutBtn").on("click", function () {
-       location.href = "testALogout";
+       location.href = "testALogout3";
     }); //로그아웃 end
     
     /* 마이페이지이동 */
@@ -1180,7 +1184,7 @@ function makeUpdatePopUp(no) {
                 <div id="smallMeunName">관리자페이지</div>
             </li>
             <li class="dropdown">
-                <div class="dropdown-menu">카드</div>
+                <div class="dropdown-menu" id="cAdmin">카드</div>
             </li>
             <li class="dropdown">
                 <div class="dropdown-menu" id="reAdmin">리뷰</div>

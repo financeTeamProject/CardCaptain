@@ -625,6 +625,11 @@ display: block;
 			src = "resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+	if("${sMNo}" != "10000") {
+		alert("권한이 없는 회원입니다.");
+		history.back();
+	}
+	
 	if("${param.searchGbn}" != ""){
 		$("#searchGbn").val("${param.searchGbn}");
 	}

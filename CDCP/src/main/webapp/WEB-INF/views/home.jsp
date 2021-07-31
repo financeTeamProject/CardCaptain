@@ -848,14 +848,15 @@ $(document).ready(function(){
 	
 	/* 마이페이지이동 */
 	$("#logNick").on("click", function(){
-		//alert($("#sMNm").val());
-		if($("#sMNo").val() == "10000") {
-			location.href = "/cdcp/admin";
+		 alert($("#sMNo").val());
+		 
+		 if($("#sMNo").val() == "10000") {
+			 location.href = "/cdcp/admin"; 
 		} else {
 			$("#memNo").attr("action");
 			$("#memNo").submit();
 				
-			location.href = "/cdcp/mypage";
+			location.href = "/cdcp/mypage"; 
 		}
 	});
 }); // document ready end

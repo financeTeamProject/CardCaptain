@@ -454,6 +454,11 @@ body {
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+	if("${sMNo}" != "10000") {
+		alert("권한이 없는 회원입니다.");
+		history.back();
+	}
+	
 	/* 카드순위 페이지 이동 */
 	$("#ranking").on("click", function(){
 		location.href = "card_rank";

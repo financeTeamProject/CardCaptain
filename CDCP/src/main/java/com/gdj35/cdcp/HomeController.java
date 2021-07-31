@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,8 +16,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gdj35.cdcp.WEB.search.SearchService.SearchIService;
 
 /**
@@ -22,8 +28,9 @@ import com.gdj35.cdcp.WEB.search.SearchService.SearchIService;
  */
 @Controller
 public class HomeController {
-	@Autowired public SearchIService iservice;
-	
+	@Autowired
+	public SearchIService iservice;
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	/**
@@ -37,21 +44,21 @@ public class HomeController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 
 		String formattedDate = dateFormat.format(date);
-		
-		//지도 API 카드 랜덤뽑기
+
+		// 지도 API 카드 랜덤뽑기
 		HashMap<String, String> randomCard = iservice.randomCard();
-		HashMap<String,String> place = new HashMap<String, String>();
-		
-		String[] arr = randomCard.get("SHOP_INFO").split(","); 
-		
+		HashMap<String, String> place = new HashMap<String, String>();
+
+		String[] arr = randomCard.get("SHOP_INFO").split(",");
+
 		try {
-			for(int i=0; i<arr.length; i++) {
+			for (int i = 0; i < arr.length; i++) {
 				place.put("shop", arr[i]);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		model.addAttribute("randomCard", randomCard);
 		model.addAttribute("arr", arr);
 		model.addAttribute("serverTime", formattedDate);
@@ -78,13 +85,14 @@ public class HomeController {
 	}
 
 	// 카드검색/비교 페이지 이동
-	 @RequestMapping(value="/search") public ModelAndView search(ModelAndView mav){
-	  
-		 mav.setViewName("search/search");
-		  
-		 return mav; 
-	 }
-	 
+	@RequestMapping(value = "/search")
+	public ModelAndView search(ModelAndView mav) {
+
+		mav.setViewName("search/search");
+
+		return mav;
+	}
+
 	// 컨텐츠 페이지 이동
 	@RequestMapping(value = "/contents")
 	public ModelAndView contents(ModelAndView mav) {
@@ -94,11 +102,13 @@ public class HomeController {
 		return mav;
 	}
 
-	//===== SYOU
+	// 어드민 이동
+	
 	@RequestMapping(value = "/admin")
 	public ModelAndView admin(ModelAndView mav) {
-		//abc
+
 		mav.setViewName("admin/admin");
+
 		return mav;
 	}
 }

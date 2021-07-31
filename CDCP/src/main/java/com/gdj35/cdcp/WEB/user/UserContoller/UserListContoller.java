@@ -200,7 +200,7 @@ public class UserListContoller {
 		}
 		
 		mav.addObject("page",page);
-		mav.setViewName("user/GJMList");
+		mav.setViewName("admin/GJMList");
 		
 		return mav;
 	}

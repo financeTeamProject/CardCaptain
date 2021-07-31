@@ -264,6 +264,10 @@ body {
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	if("${sMNo}" != "10000") {
+		alert("에러발생");
+		history.back();
+	}
 	/* 카드순위 페이지 이동 */
 	$("#headerLogo").on("click", function(){
 		location.href = "/cdcp";
