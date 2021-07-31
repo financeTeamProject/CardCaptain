@@ -1118,11 +1118,14 @@ $(document).ready(function(){
 					success: function (res) {
 						if(res.resMsg == "success"){
 							/* location.href = "/cdcp"; */
+							$("#loginpopup").css("display","none");
+							$(".body").css("display","inline");
+							location.reload();
 							$("#nickName").css("display","inline");
 							$("#imgSearch").css("margin-left","70%");
 							$("#imgLogin").css("display","none");
 							$("#logoutBtn").css("display","inline");
-							history.back(1);
+							
 						} else {
 							$(".errorMsg").css("display","inline");
 							$("#masage").html("아이디 또는 비밀번호가 일치하지 않습니다.");
@@ -1137,7 +1140,7 @@ $(document).ready(function(){
 		
 /* 로그아웃  */
 		$("#logoutBtn").on("click", function (){
-			location.href = "testALogout";
+			location.href = "testALogout2";
 		}); //로그아웃 end
 		
 /* 마이페이지 이동 */

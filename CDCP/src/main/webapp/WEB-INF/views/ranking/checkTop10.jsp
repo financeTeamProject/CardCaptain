@@ -756,7 +756,11 @@ $(document).ready(function(){
 					data: params,
 					success: function (res) {
 						if(res.resMsg == "success"){
-							location.href = "/cdcp";
+							/* location.href = "/cdcp"; */
+							$("#loginpopup").css("display","none");
+							$(".body").css("display","inline");
+							location.reload();
+							
 							$("#nickName").css("display","inline");
 							$("#imgSearch").css("margin-left","70%");
 							$("#imgLogin").css("display","none");

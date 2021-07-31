@@ -53,6 +53,7 @@ public class UserContoller {
 				session.setAttribute("sMAd", data.get("E_ADDRESS"));
 				
 				modelMap.put("resMsg", "success");
+				
 			} else {
 				modelMap.put("resMsg", "failed");
 			}

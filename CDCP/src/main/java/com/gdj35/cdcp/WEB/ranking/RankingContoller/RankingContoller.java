@@ -130,6 +130,7 @@ public class RankingContoller {
 //	카드상세보기 페이지
 	  @RequestMapping(value="/cardview")
 	  public ModelAndView cardview(
+			  HttpSession session,
 			  @RequestParam HashMap<String, String> params, 
 			  ModelAndView mav) throws Throwable {
 		 // 카드 신청 클릭수 증가	  
