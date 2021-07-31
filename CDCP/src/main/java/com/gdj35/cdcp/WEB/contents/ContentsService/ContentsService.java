@@ -50,4 +50,9 @@ public class ContentsService implements ContentsIService{
 		return ContentsiDao.getMovieList(params);
 	}
 
+	@Override
+	public List<HashMap<String, String>> getTestList(HashMap<String, String> params) throws Throwable {
+		return ContentsiDao.getTestList(params);
+	}
+
 }

@@ -484,6 +484,8 @@ $(document).ready(function() {
 		location.href = "/cdcp";
 	}); // headerLogo click end
 	
+	
+	
 	/* 로그인팝업 실행 */
 	$("#imgLogin").on("click", function(){
 		$("#popup").css("display","block");
@@ -640,6 +642,22 @@ function drawList2(movie) {
 	html += "<td>" + v.VIDEO_NAME + "</td>";
 	html += "<td>" + v.VIDEO_LINK + "</td>";
 	html += "<td>" + v.ADD_DATE2 + "</td>";
+	html += "</tr>";
+	}
+	
+	$(".list_movie tbody").html(html);
+}
+
+//목록그리기
+function drawList3(ctest) {
+	var html = "";
+
+	for(var t of movie) {
+	html += "<tr cno=\"" + t.TIPVIDEO_NO + "\">";
+	html += "<td>" + t.TIPVIDEO_NO + "</td>";
+	html += "<td>" + t.VIDEO_NAME + "</td>";
+	html += "<td>" + t.VIDEO_LINK + "</td>";
+	html += "<td>" + t.ADD_DATE2 + "</td>";
 	html += "</tr>";
 	}
 	

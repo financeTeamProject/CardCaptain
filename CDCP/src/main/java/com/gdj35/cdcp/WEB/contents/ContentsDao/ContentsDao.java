@@ -40,4 +40,7 @@ public class ContentsDao implements ContentsIDao{
 	public List<HashMap<String, String>> getMovieList(HashMap<String, String> params) {
 		return sqlSession.selectList("C.getMovieList", params);
 	}
+	public List<HashMap<String, String>> getTestList(HashMap<String, String> params) {
+		return sqlSession.selectList("C.getTestList", params);
+	}
 }
