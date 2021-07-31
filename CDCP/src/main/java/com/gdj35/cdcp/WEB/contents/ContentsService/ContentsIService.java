@@ -21,4 +21,6 @@ public interface ContentsIService {
 
 	public List<HashMap<String, String>> getTestList(HashMap<String, String> params) throws Throwable;
 
+	public int getTestCnt(HashMap<String, String> params) throws Throwable;
+
 }

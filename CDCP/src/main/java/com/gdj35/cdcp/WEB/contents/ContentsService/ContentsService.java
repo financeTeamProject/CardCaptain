@@ -55,4 +55,9 @@ public class ContentsService implements ContentsIService{
 		return ContentsiDao.getTestList(params);
 	}
 
+	@Override
+	public int getTestCnt(HashMap<String, String> params) throws Throwable {
+		return ContentsiDao.getTestCnt(params);
+	}
+
 }

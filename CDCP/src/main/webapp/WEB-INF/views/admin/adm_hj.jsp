@@ -263,21 +263,6 @@ body {
                 font-family: '맑은고딕';
             }
             
-            .home {
-                background-color: darkorange;
-                width: 100px;
-                text-align: center;
-                font-weight: bold;
-                float: right;
-            }
-
-            .home a {
-                display: block;
-                text-decoration: none;
-                color: white;
-                padding: 16px 16px;
-            }
-
             .dropdown {
                 position: relative;
             }
@@ -312,21 +297,18 @@ body {
 
             .dropdown-content a:hover {background-color: #f1f1f1}
 
-            .dropdown-menu:hover:not(.home){
-                background-color: darkorange;
-                color: white;
             }
 /* 내용 영역 */          
 	.content_area {
 		width: 100%;
-		height: 500px;
+		min-height: 1000px;
 		min-width: 1830px;
 	}
 	
 	.contents {
 		display: flex;
 		width: 1600px;
-		height: 500px;
+		height: 600px;
 		margin: 0px auto;
 	}
 .left_content {
@@ -348,6 +330,7 @@ body {
 }
 /* 풋터영역 */
 #footer{
+	margin-top: 100px;
 	width: 100%;
 	height: 100px;
 	float:left;
@@ -391,40 +374,40 @@ body {
 	
 }
 
-.list_wrap, .list_movie {
+.list_wrap, .list_movie, .list_ctest {
 	
 	width: 1000px;
 	height: 170px;
 	margin: 0px auto;
 }
 
-.list_wrap table, .list_movie table {
+.list_wrap table, .list_movie table, .list_ctest tabel {
 	border-collapse: collapse;
 }
 
-.list_wrap thead tr, .list_movie thead tr {
+.list_wrap thead tr, .list_movie thead tr, .list_ctest thead tr {
 	border-top: 1px solid #000;
 	border-bottom: 1px solid #000;
 	background-color: orange;
 	height: 30px; 
 }
 
-.list_wrap tbody tr, .list_movie tbody tr {
+.list_wrap tbody tr, .list_movie tbody tr, .list_ctest tbody tr {
 	border-bottom: 1px solid #000;
 	text-align: center;
 	height: 25px; 
 	cursor: pointer;
 }
 
-.list_wrap tbody tr td:nth-child(2), .list_movie tbody tr td:nth-child(2) {
+.list_wrap tbody tr td:nth-child(2), .list_movie tbody tr td:nth-child(2), .list_ctest tbody tr td:nth-child(2) {
 	text-align: left;
 }
 
-.list_wrap tbody tr:nth-child(2n), .list_movie tbody tr:nth-child(2n) {
+.list_wrap tbody tr:nth-child(2n), .list_movie tbody tr:nth-child(2n), .list_ctest tbody tr:nth-child(2n) {
 	background-color: #ffffcc; 
 }
 
-.list_wrap tbody tr:hover, .list_wrap tbody tr:nth-child(2):hover, .list_movie tbody tr:hover, .list_movie tbody tr:nth-child(2):hover {
+.list_wrap tbody tr:hover, .list_wrap tbody tr:nth-child(2):hover, .list_movie tbody tr:hover, .list_movie tbody tr:nth-child(2):hover, .list_ctest tbody tr:nth-child(2):hover {
 	background-color: #eee;
 	color: white;
 }
@@ -564,11 +547,12 @@ $(document).ready(function() {
 	
 	reloadList();
 	reloadList2();
+	reloadList3();
 	
 	$("#writeBtn").on("click", function() {
 		$("#searchTxt").val($("#searchOldTxt").val());
 		
-		$("#actionForm").attr("action", "lhjtestAdd");
+		$("#actionForm").attr("action", "admAdd");
 		$("#actionForm").submit();
 	});
 	
@@ -616,6 +600,25 @@ function reloadList2() {
 		}
 	});
 }
+
+function reloadList3() {
+	var params = $("#actionForm").serialize();
+
+	$.ajax({
+		url: "adm_hjAjax3",
+		type: "post", 
+		dataType: "json",
+		data: params,	
+		success: function(res) {
+			drawList2(res.ctest);
+			drawPaging(res.pb);
+		},
+		error: function(request, status, error) {
+			console.log(error);
+		}
+	});
+}
+
 //목록그리기
 function drawList(tipcon) {
 	var html = "";
@@ -648,21 +651,20 @@ function drawList2(movie) {
 	$(".list_movie tbody").html(html);
 }
 
-//목록그리기
+/* //목록그리기
 function drawList3(ctest) {
 	var html = "";
 
-	for(var t of movie) {
-	html += "<tr cno=\"" + t.TIPVIDEO_NO + "\">";
-	html += "<td>" + t.TIPVIDEO_NO + "</td>";
-	html += "<td>" + t.VIDEO_NAME + "</td>";
-	html += "<td>" + t.VIDEO_LINK + "</td>";
-	html += "<td>" + t.ADD_DATE2 + "</td>";
+	for(var t of ctest) {
+	html += "<tr tno=\"" + t.TEST_NO + "\">";
+	html += "<td>" + t.TEST_NO + "</td>";
+	html += "<td>" + t.CONTENT + "</td>";
+	html += "<td>" + t.ADD_DATE3 + "</td>";
 	html += "</tr>";
 	}
 	
-	$(".list_movie tbody").html(html);
-}
+	$(".list_ctest tbody").html(html);
+} */
 
 //페이징 그리기
 function drawPaging(pb) {
@@ -693,6 +695,8 @@ function drawPaging(pb) {
 	
 	$(".paging_wrap").html(html);
 }
+
+
 
 
 </script>
@@ -763,39 +767,20 @@ function drawPaging(pb) {
             </li>
             <li class="dropdown">
                 <div class="dropdown-menu">카드</div>
-                <div class="dropdown-content">
-                    <a href="#" id="addCard">카드등록</a>
-                    <a href="#" id="deleteCard">카드삭제</a>
-                </div>
+                
             </li>
             <li class="dropdown">
                 <div class="dropdown-menu">리뷰</div>
-                <div class="dropdown-content">
-                    <a href="#">리뷰관리</a>
-                    <a href="#">리뷰신고관리</a>
-                    <a href="#">리뷰별점관리</a>
-                    <a href="#">Menu2-4</a>
-                </div>
+               
             </li>
             <li class="dropdown">
                 <div class="dropdown-menu">회원관리</div>
-                <div class="dropdown-content">
-                    <a href="#">회원정보수정</a>
-                    <a href="#">회원가입목록</a>
-                    <a href="#">회원보유카드</a>
-                    <a href="#">Menu3-4</a>
-                </div>
+              
             </li>
             <li class="dropdown">
                 <div class="dropdown-menu">컨텐츠관리</div>
-                <div class="dropdown-content">
-                    <a href="#">소비심리테스트</a>
-                    <a href="#">영상관리</a>
-                    <a href="#">등록기사관리</a>
-                    <a href="#">카드랭킹관리(?)</a>
-                </div>
+              
             </li>
-            <li class="home"><a href="#">Home</a></li>
         </ul>
     </nav>
     <form action="#" id ="goForm" method="post"></form>
@@ -862,6 +847,28 @@ function drawPaging(pb) {
 	<div class="paging_wrap"></div>
 </div>
 </div>
+<%-- <div class="list_ctest"> 소비심리테스트
+	<table>
+		<colgroup>
+			<col width="100px" />
+			<col width="500px" />
+			<col width="200px" />
+			<col width="400px" />
+		</colgroup>
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>내용</th>
+				<th>작성일자</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+</div>
+<div class="paging_p">
+	<div class="paging_wrap"></div>
+</div>
+</div> --%>
 <!-- 풋터영역 (하단 마무리) -->
 <div class="rayout">
 	<div id="footer">
