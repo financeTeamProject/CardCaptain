@@ -44,7 +44,7 @@ public class HomeController {
 		
 		String[] arr = randomCard.get("SHOP_INFO").split(","); 
 		
-		try {		
+		try {
 			for(int i=0; i<arr.length; i++) {
 				place.put("shop", arr[i]);
 			}
@@ -99,33 +99,6 @@ public class HomeController {
 	public ModelAndView admin(ModelAndView mav) {
 		//abc
 		mav.setViewName("admin/admin");
-		return mav;
-	}
-	
-	//어드민 리뷰관리 이동
-	@RequestMapping(value = "/adminDh2")
-	public ModelAndView adminDh2(ModelAndView mav) {
-
-		mav.setViewName("admin/adminDh2");
-
-		return mav;
-	}
-	
-	//어드민 회원관리 이동
-	@RequestMapping(value = "/GJMList")
-	public ModelAndView GJMList(ModelAndView mav) {
-		
-		mav.setViewName("admin/GJMList");
-		
-		return mav;
-	}
-	
-	//어드민 컨텐츠관리 이동
-	@RequestMapping(value = "/adm_hj")
-	public ModelAndView adm_hj(ModelAndView mav) {
-		
-		mav.setViewName("admin/adm_hj");
-		
 		return mav;
 	}
 }

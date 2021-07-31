@@ -717,15 +717,17 @@ $(document).ready(function() {
 		updateCardRead();
 	});
 	
-	//회원관리 이동
+	//리뷰관리 이동
 	$("#reAdmin").on("click", function(){
-		location.href = "/adminDh2";
+		location.href = "/cdcp/adminDh2";
 	});
+	//회원관리 이동
 	$("#mAdmin").on("click", function(){
-		location.href = "/GJMList";
+		location.href = "/cdcp/GJMList";
 	});
+	//컨텐츠관리 이동
 	$("#conAdmin").on("click", function(){
-		location.href = "/adm_hj";
+		location.href = "/cdcp/adm_hj";
 	});
 	
 	$(".left_content .content_content").on("click", function() {

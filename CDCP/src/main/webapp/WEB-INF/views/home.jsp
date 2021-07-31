@@ -850,12 +850,12 @@ $(document).ready(function(){
 	$("#logNick").on("click", function(){
 		//alert($("#sMNm").val());
 		if($("#sMNo").val() == "10000") {
-			location.href = "/admin";
+			location.href = "/cdcp/admin";
 		} else {
 			$("#memNo").attr("action");
 			$("#memNo").submit();
 				
-			location.href = "/mypage";
+			location.href = "/cdcp/mypage";
 		}
 	});
 }); // document ready end
