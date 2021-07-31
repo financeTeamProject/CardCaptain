@@ -122,56 +122,57 @@
 
 /* ============================================================================ */		
 /* 헤더  영역*/
-	#header {
-		width: 100%;
-		height: 55px;
-		border-style: solid;
-	    border-width: 0 0 2px 0;
-	    border-color: #0047AB;
-	    font-family: 'GmarketSansMedium';
-	    min-width: 1830px;
-	}
-	#headerWrap {
-		width: 1600px;
-		height: 100%;
-		margin: 0 auto;
-		display: flex;
-	}
-	#headerLeft {
-		display: inline-block;
-		width: 50%;
-		height: 100%;
-	    font-size: 16px;
-		vertical-align: top;
-	}
-	#headerLogo {
-	    display: inline-block;
-	    vertical-align: top;
-	    background-image: url("/cdcp/resources/images/main/logo.png");
-	    background-repeat: no-repeat;
-	    background-size: 120px;
-	    width: 120px;
-	    height: 40px;
-	    cursor: pointer;
-	    text-align: center;
-	    margin-top: 10px;
-	}
-	#headerLeft .menu1 { 
-		display: inline-block;
-		width: 130px;
-		height: 100%;
-		line-height: 65px;
-		color: #0047AB;
-		text-align: center;
-		letter-spacing: 2px;
-		vertical-align: top;
-		cursor: pointer;
-	}	
-/* header_left 종료 */
+#header {
+	width: 100%;
+	height: 55px;
+	border-style: solid;
+    border-width: 0 0 2px 0;
+    border-color: #0047AB;
+    font-family: 'GmarketSansMedium';
+    min-width: 1830px;
+}
+#headerWrap {
+	width: 1600px;
+	height: 100%;
+	margin: 0 auto;
+	display: flex;
+}
+#headerLeft {
+	display: inline-block;
+	width: 50%;
+	height: 100%;
+    font-size: 16px;
+	vertical-align: top;
+}
+#headerLogo {
+    display: inline-block;
+    vertical-align: top;
+    background-image: url("/cdcp/resources/images/main/logo.png");
+    background-repeat: no-repeat;
+    background-size: 120px;
+    width: 120px;
+    height: 40px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 10px;
+}
+.menu1 { 
+	display: inline-block;
+	width: 130px;
+	height: 100%;
+	line-height: 65px;
+	color: #0047AB;
+	text-align: center;
+	letter-spacing: 2px;
+	vertical-align: top;
+	cursor: pointer;
+}	
+
+	/* header_left 종료 */
 
 /* ============================================================================ */		
 /* header_right 시작 */	
-	#headerRight {
+#headerRight {
 		display: inline-block;
 		width: 50%;
 		height: 100%;
@@ -234,86 +235,7 @@
 		margin-left: 20px;
 		/* display: none; */
 	}
-/* header_right 종료 */
-/* 헤더 종료 */
-			
-	
-/* ============================================================================ */	
-/* 로그인팝업 */
-	.popinput {
-		width: 50%;
-	    height: 40px;
-	    padding: 0px 20px;
-	    border: 1px solid lightgray;
-	    outline: none;
-	    font-size: 13px;
-	    border-style: solid;
-	    border-width: 0 0 1px 0;
-	    border-color: #0047AB;
-	    outline: 0;
-	    text-decoration: none;
-	    letter-spacing: 2px;
-	    margin: 5px 50px 10px 70px;
-	}
-	.cardcaptain {
-		width: 100%;
-		height: 95px;
-		line-height: 110px;
-		text-align: center;
-		font-size: 25px;
-		color: #0047AB;
-		letter-spacing: 5px;
-		cursor: pointer;
-	}
-	#loginpopup {
-		height: 320px;
-		width: 400px;
-		background-color: white;
-		border-radius: 70px;
-		display: none;
-		margin: 300px auto;
-		z-index: 50;
-	}
-	#loginBtn {
-		margin-bottom: 10px;
-		margin-top: 5px;
-		background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
-		background-size: 200%;
-		color: white;
-	 	font-weight: bold;
-		border: none;
-		cursor: pointer;
-		display: inline;
-		margin: 20px 10px 15px 90px;
-	}
-	.re {
-		display: inline-block;
-		vertical-align: top;
-		font-size: 11px;
-	    margin: 10px 0 10px 130px;
-	}
-	.new {
-		display: inline-block;
-		vertical-align: top;
-		font-size: 11px;
-		margin: 10px 0 10px 0;
-	}
-	.re:hover, .new:hover {
-		cursor: pointer;
-	}
-	.error {
-	    font-size: 11px;
-	    color: red;
-	    visibility: hidden;
-	}
-	.errorMsg {
-		height: 100%;
-	    display: none;
-	    color: #e65f3e;
-	    font-size: 13px;
-	    margin-left: 65px;
-	} 
-		/* 로그인팝업종료 */
+/* header_right 종료
 	
 /* ============================================================================ */	
 /*	내용 영역	*/	
@@ -1131,7 +1053,6 @@ $(document).ready(function(){
 		
 /* 마이페이지 이동 */
 		$("#logNick").on("click", function(){
-			alert($("#sMNm").val());
 			$("#memNo").attr("action");
 			$("#memNo").submit();
 		});
@@ -1786,8 +1707,6 @@ $(document).ready(function(){
 				<input type="hidden" name="memAd" value="${sMAd}" id="sMAd"/>
 			</form>
 			<div id="headerRight">
-				<input type="text" id="searchTxt">
-				<div id="imgSearch"></div>
 				<c:choose>
 					<c:when test="${empty sMNm}">
 						<div id="imgLogin"></div>

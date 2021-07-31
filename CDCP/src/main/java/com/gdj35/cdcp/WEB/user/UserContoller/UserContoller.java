@@ -59,7 +59,7 @@ public class UserContoller {
 		return mapper.writeValueAsString(modelMap);
 	}
 	
-	//로그아웃
+	//로그아웃 (원래 페이지로 이동)
 	@RequestMapping(value="/testALogout")
 	public void testALogout(HttpSession session,
 			HttpServletResponse response) throws Throwable {
@@ -70,6 +70,17 @@ public class UserContoller {
 		useriService.logout(response);
 	
 	}
+	//로그아웃 2 (내가 원하는 페이지로 이동)
+		@RequestMapping(value="/testALogout2")
+		public ModelAndView testALogouts (HttpSession session,
+				ModelAndView mav) {
+			
+			session.invalidate();
+			
+			mav.setViewName("redirect:/card_rank");
+			
+			return mav;
+		}
 	
 	//회원가입 페이지
 	@RequestMapping(value = "/join")
