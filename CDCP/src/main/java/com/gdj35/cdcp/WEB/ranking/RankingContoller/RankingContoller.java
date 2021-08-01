@@ -454,10 +454,11 @@ public class RankingContoller {
 				// 현재 페이지
 			  	   
 			  try {	    
+				  
+				    // 총 게시글 수
+				    int cnt = RankingiService.getRCnt(params);
+				  
 				  	int page = Integer.parseInt(params.get("page"));
-				  	
-					// 총 게시글 수
-					int cnt = RankingiService.getRCnt(params);
 					
 					// 페이징 정보 취득
 					PagingBean pb = iPagingService.getPagingBean(page, cnt);
