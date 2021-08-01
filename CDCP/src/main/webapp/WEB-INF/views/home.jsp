@@ -275,7 +275,7 @@ ul,li{
 	list-style:none;
 }
 .slide {
-	width: 100%;
+	width: 2300px;
 	height:700px;
 	overflow:hidden;
 	position:relative;
@@ -283,6 +283,7 @@ ul,li{
 	border-style: solid;
     border-width: 0 0 2px 0;
     border-color: #0047AB;
+    margin: 0 auto;
 }
 .slide1 {
 	width: 100%;
@@ -955,9 +956,9 @@ $(document).ready(function(){
 		<ul>	
 			<li>
 			<div id = "li1">
-			<div id = "li1-1">&nbsp;모든 카드를 구원해줄 <br/></div>
-			<div id = "li1-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;문이 열립니다.<br/></div>
-		    <div id = "li1-3">&nbsp;우리가 바로 카드캡틴</div>
+			<div id = "li1-1">&nbsp;&nbsp;&nbsp;&nbsp;모든 카드를 구원해줄 <br/></div>
+			<div id = "li1-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;문이 열립니다.<br/></div>
+		    <div id = "li1-3">&nbsp;&nbsp;&nbsp;&nbsp;우리가 바로 카드캡틴</div>
 		    <!-- <img id = "li1-4" src=  "resources/images/detail/Main_logo.png" > -->
 		    <img id = "scroll1" src=  "resources/images/detail/white_mouse1.png" >
 			</div>			     
