@@ -1840,6 +1840,7 @@ $(document).ready(function(){
 				</div>
 				<form action="#" id="goForm" method="post">
 				<input type="hidden" name="cardClick" value="${data[0].CARD_NO}" />
+				<input type="hidden" name="cardNo" value="${data[0].CARD_NO}" />
 				<div id="btnSct">
 					<input type="button" value="카드 신청" class="bef_btn" id="bef_btn" onclick='window.open("${data[0].CARD_APPLY_URL}")' />
 					<input type="button" value="비교함 담기" class="compare_btn" id="${data[0].CARD_NO}" />
