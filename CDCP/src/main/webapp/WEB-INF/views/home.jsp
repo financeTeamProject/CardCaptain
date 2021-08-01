@@ -925,6 +925,7 @@ $(document).ready(function(){
 				<input type="hidden" name="memNo" value="${sMNo}" id="sMNo"/>
 				<input type="hidden" name="memId" value="${sMId}" id="sMId"/>
 				<input type="hidden" name="memPW" value="${sMPw}" id="sMPw"/>
+				<input type="hidden" name="memPW2" value="${sMPw2}" id="sMPw2"/>
 				<input type="hidden" name="memBi" value="${sMBi}" id="sMBi"/>
 				<input type="hidden" name="memGe" value="${sMGe}" id="sMGe"/>
 				<input type="hidden" name="memCo" value="${sMCo}" id="sMCo"/>

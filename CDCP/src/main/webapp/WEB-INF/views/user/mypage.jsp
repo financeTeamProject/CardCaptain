@@ -753,14 +753,14 @@ $(document).ready(function() {
 	$("#leaveBtn").on("click", function () {
 		var mPw = $.trim($("#mPw").val());
 		var mRPw = $.trim($("#mRPw").val());
-		var sMPw = "${sMPw}";
+		var sMPw2 = "${sMPw2}";
 		
 		if(mRPw == "") {
 			alert("비밀번호를 입력해 주세요.");
 			$("#mPw").focus();
 		} else if(mPw != mRPw){
-			alert("비밀번호를 재입력 해주세요.")
-		} else if(mRPw == sMPw) {
+			alert("비밀번호를 재입력 해주세요.");
+		} else if(mRPw == sMPw2) {
 			leave();
 			$("#logoutBtn").on("click", function () {
 				location.href = "testALogout";
@@ -781,6 +781,7 @@ $(document).ready(function() {
 			success: function (res) {
 				if(res.resMsg == "success") {
 					alert("정보가 수정 되었습니다.");
+					alert("다시 로그인 해주세요.")
 					location.href = "testALogout";
 				}
 			},
@@ -802,7 +803,7 @@ $(document).ready(function() {
 			success: function (res) {
 				if(res.resMsg == "success") {
 					alert("회원탈퇴 되었습니다.");
-					location.href = "testALogout";
+					location.href = "testALogout3";
 				}
 			},
 			error: function (request, status, error) {
@@ -1009,6 +1010,7 @@ $(document).ready(function() {
 			<input type="hidden" name="memNo" value="${sMNo}" id="sMNo"/>
 			<input type="hidden" name="memId" value="${sMId}" id="sMId"/>
 			<input type="hidden" name="memPW" value="${sMPw}" id="sMPw"/>
+			<input type="hidden" name="memPW2" value="${sMPw2}" id="sMPw2"/>
 			<input type="hidden" name="memBi" value="${sMBi}" id="sMBi"/>
 			<input type="hidden" name="memGe" value="${sMGe}" id="sMGe"/>
 			<input type="hidden" name="memCo" value="${sMCo}" id="sMCo"/>

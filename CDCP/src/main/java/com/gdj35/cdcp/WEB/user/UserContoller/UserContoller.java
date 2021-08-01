@@ -46,6 +46,7 @@ public class UserContoller {
 				session.setAttribute("sMNo", data.get("MEMBER_NO"));
 				session.setAttribute("sMId", data.get("MEMBER_ID"));
 				session.setAttribute("sMPw", data.get("MEMBER_PW"));
+				session.setAttribute("sMPw2",Utils.decryptAES128(data.get("MEMBER_PW")));
 				session.setAttribute("sMBi", data.get("MEMBER_BIRTH"));
 				session.setAttribute("sMCo", data.get("CONTACT"));
 				session.setAttribute("sMNm", data.get("NICKNAME"));
