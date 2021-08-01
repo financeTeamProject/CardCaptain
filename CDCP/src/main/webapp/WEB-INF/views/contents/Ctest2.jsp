@@ -164,7 +164,6 @@ label  {
 		    if(found != 0) {
 		        $("#found").val(found);
 		      $("#goForm").html();
-		      alert(found);
 		    $("#goForm").attr("action","Ctest3");
 			$("#goForm").submit();
 		    }
