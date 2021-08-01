@@ -583,6 +583,14 @@ $(document).ready(function() {
 		$("#actionForm").submit();
 	});
 	
+	$("#searchBtn").on("click",function(){
+		
+		$("#page").val(1);	// 페이지에 담겨져 있는것이 아무것도 없어서
+		$("#searchOldTxt").val($("#searchTxt").val());
+		reloadList();
+			
+	});
+	
 	$(".list_wrap tbody").on("click", "tr", function() {
 		$("#sNo").val($(this).attr("sno"));
 		
