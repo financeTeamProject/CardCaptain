@@ -493,8 +493,8 @@ $(document).ready(function() {
  					if(res.resMsg == "success") {
  						pw = res.mPw
  						code = res.temp;
- 						alert(pw);
-						alert(code);
+ 						//alert(pw);
+						//alert(code);
 						$("#pw_check").show();
 						
 						$("#pw_codeBtn").on("click", function () {
