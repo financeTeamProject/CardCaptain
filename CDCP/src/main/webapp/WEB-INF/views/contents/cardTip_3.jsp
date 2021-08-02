@@ -622,8 +622,8 @@ h3 {
 					<strong>카드 활용 꿀팁</strong>
 				</h1>
 				<h2>올해엔 신용카드를 발급받아야 하는 3가지 이유 (feat. 에디터의 뼈저리는 사건)</h2>
-				<div class="contentDate">날짜</div>
-				<div class="uploder">등록한 사람</div>
+				<div class="contentDate">2021.07.19</div>
+				<div class="uploder">이혁준</div>
 			</div>
 			<div id="termes">
 				<div>“나는 아직 신용카드를 사용할 생각이 없어!체크카드만 써도 괜찮은 걸……?”</div>

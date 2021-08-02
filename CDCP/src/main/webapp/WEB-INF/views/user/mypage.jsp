@@ -1224,6 +1224,5 @@ $(document).ready(function() {
 	      <div>Copyright © 2021-2031 CardCaptain All Rights Reserved.</div>
 	   </div>
 	</div>   
-</div>
 </body>
 </html>

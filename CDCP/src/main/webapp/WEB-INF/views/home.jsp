@@ -275,7 +275,7 @@ ul,li{
 	list-style:none;
 }
 .slide {
-	width: 2300px;
+	width: 2540px;
 	height:700px;
 	overflow:hidden;
 	position:relative;

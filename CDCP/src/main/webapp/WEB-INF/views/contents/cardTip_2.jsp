@@ -630,8 +630,8 @@ span {
 			<div id="title_termes">
 			<h1><strong>카드 활용 꿀팁</strong></h1>
 			<h2>새롭게, 또 다시 정리하는 카드론의 모든 것!</h2>
-			<div class="contentDate">날짜</div>
-			<div class="uploder">등록한 사람</div>
+			<div class="contentDate">2021.07.19</div>
+			<div class="uploder">이혁준</div>
 			</div>
 			<div id="termes">
 				<div>

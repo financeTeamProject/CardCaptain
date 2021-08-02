@@ -612,7 +612,8 @@ span {
 			<div id="title_termes">
 			<h1><strong>카드 활용 꿀팁</strong></h1>
 			<h2>올해부터 시행되는 신용점수제! 신용점수 올리기 꿀TIP</h2>
-			<div class="Cdate">날짜 BY 등록한 사람</div>
+			<div class="contentDate">2021.07.19</div>
+			<div class="uploder">이혁준</div>
 			</div>
 			<div class="termes">
 					<div>

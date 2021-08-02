@@ -848,7 +848,6 @@ $(document).ready(function() {
 			$("#deleteBtn").on("click", function(){                                                                                                              
 				if(confirm("삭제하시겠습니까?")){
 					var params = $("#deleteForm").serialize();
-					alert(params);
 					$.ajax({
 						url: "adminDelete", 
 						type: "post", 
