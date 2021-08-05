@@ -147,7 +147,7 @@ input[type="radio"] {
 #resultimg {
 
 	vertical-align: top;
-	background-image: url("/cdcp/resources/images/contentimg/test_food.png");
+	background-image: url("resources/images/contentimg/test_food.png");
 	background-repeat: no-repeat;
 	background-size: 180px;
 	width: 180px;
@@ -176,10 +176,10 @@ input[type="radio"] {
 }
 
 #card_img_1 {
-	background-image: url("/cdcp/resources/images/contentimg/moomincard.png");
+	background-image: url("resources/images/contentimg/moomincard.png");
 }
 #card_img_2 {
-	background-image: url("/cdcp/resources/images/contentimg/moomincard2.png");
+	background-image: url("resources/images/contentimg/moomincard2.png");
 }
 
 </style>
@@ -190,11 +190,11 @@ input[type="radio"] {
 		$(document).ready(function() {
 			
 			$("#goBtn").on("click", function() { 
-				location.href = "/cdcp";
+				location.href = "/CDCP";
 			});
 			
 			$("#resultend").on("click", function() { 
-				location.href = "/cdcp/search";
+				location.href = "/CDCP/search";
 			});
 			
 		});	

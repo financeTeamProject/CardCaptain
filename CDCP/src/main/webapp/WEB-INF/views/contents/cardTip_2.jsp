@@ -108,7 +108,7 @@ h3 {
 #headerLogo {
     display: inline-block;
     vertical-align: top;
-    background-image: url("/cdcp/resources/images/main/logo.png");
+    background-image: url("resources/images/main/logo.png");
     background-repeat: no-repeat;
     background-size: 120px;
     width: 120px;
@@ -141,7 +141,7 @@ h3 {
 }
 #imgLogin {
  	display: inline-block;
-    background-image: url("/cdcp/resources/images/main/login1.png");
+    background-image: url("resources/images/main/login1.png");
     background-repeat: no-repeat;
     background-size: 30px;
     width: 30px;
@@ -332,7 +332,7 @@ h3 {
 }
 
 #title_termes {
-	background-image: url("/cdcp/resources/images/contentimg/card_bgimg.jpg");
+	background-image: url("resources/images/contentimg/card_bgimg.jpg");
 	background-repeat: no-repeat;
 	background-position: center;
 	border: 5px 5px 5px 5px;
@@ -400,7 +400,7 @@ h3 {
 #footerLogo{
 	display: inline-block;
 	vertical-align: top;
-	background-image: url("/cdcp/resources/images/contentimg/logo.png");
+	background-image: url("resources/images/contentimg/logo.png");
 	background-repeat: no-repeat;
 	background-size: 120px;
 	width: 120px;
@@ -433,7 +433,7 @@ h3 {
 }
 
 #tipimg_2 {
-	background-image: url("/cdcp/resources/images/contentimg/tipBackground/card_tip2.jpg");
+	background-image: url("resources/images/contentimg/tipBackground/card_tip2.jpg");
 	background-size: cover;
 	width: 680px;
 	height: 400px;
@@ -441,7 +441,7 @@ h3 {
 }
 
 #tipimg_3 {
-	background-image: url("/cdcp/resources/images/contentimg/tipBackground/card_tip3.jpg");
+	background-image: url("resources/images/contentimg/tipBackground/card_tip3.jpg");
 	background-size: cover;
 	width: 750px;
 	height: 700px;
@@ -449,7 +449,7 @@ h3 {
 }
 
 #tipimg_4 {
-	background-image: url("/cdcp/resources/images/contentimg/tipBackground/card_tip4.png");
+	background-image: url("resources/images/contentimg/tipBackground/card_tip4.png");
 	width: 800px;
 	height: 450px;
 	margin: 0px auto;
@@ -484,7 +484,7 @@ span {
 		
 		/* 메인페이지 이동 */
 		$("#headerLogo").on("click", function(){
-			location.href = "/cdcp";
+			location.href = "/CDCP";
 		}); // headerLogo click end
 		
 		/* 로그인팝업 실행 */

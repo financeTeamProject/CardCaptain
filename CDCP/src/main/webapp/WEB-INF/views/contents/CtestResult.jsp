@@ -146,7 +146,7 @@ input[type="radio"] {
 #resulimg {
 
 	vertical-align: top;
-	background-image: url("/cdcp/resources/images/contentimg/icon_complete.png");
+	background-image: url("resources/images/contentimg/icon_complete.png");
 	background-repeat: no-repeat;
 	background-size: 180px;
 	width: 180px;
