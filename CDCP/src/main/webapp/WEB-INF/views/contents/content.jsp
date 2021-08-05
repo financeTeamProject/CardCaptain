@@ -621,6 +621,9 @@ h1 {
 			
 			$("#img_rayout_4").on("click", function() { // 카드간단용어 중 하나의 박스를 클릭할 시에 카드기사내용 페이지로 이동.
 				location.href = "cardTerms";
+			});
+			$(".img_rayout_4").on("click", function() { // 카드간단용어 중 하나의 박스를 클릭할 시에 카드기사내용 페이지로 이동.
+				location.href = "cardTerms";
 			}); 
 			
 			/* 로그인팝업 실행 */

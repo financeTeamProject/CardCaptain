@@ -94,7 +94,7 @@ h1 {
 #headerLogo {
     display: inline-block;
     vertical-align: top;
-    background-image: url("/cdcp/resources/images/main/logo.png");
+    background-image: url("resources/images/main/logo.png");
     background-repeat: no-repeat;
     background-size: 120px;
     width: 120px;
@@ -124,7 +124,7 @@ h1 {
 }
 #imgSearch {
  	display: inline-block;
-    background-image: url("/cdcp/resources/images/main/search.png");
+    background-image: url("resources/images/main/search.png");
     background-repeat: no-repeat;
     background-size: 30px;
     width: 30px;
@@ -135,7 +135,7 @@ h1 {
 }
 #imgLogin {
  	display: inline-block;
-    background-image: url("/cdcp/resources/images/main/login1.png");
+    background-image: url("resources/images/main/login1.png");
     background-repeat: no-repeat;
     background-size: 30px;
     width: 30px;
@@ -193,7 +193,7 @@ h1 {
 }
 
 #title_termes {
-	background-image: url("/cdcp/resources/images/contentimg/card_bgimg.jpg");
+	background-image: url("resources/images/contentimg/card_bgimg.jpg");
 	background-repeat: no-repeat;
 	background-position: center;
 	border: 5px 5px 5px 5px;
@@ -229,7 +229,7 @@ h1 {
 #guideimg {
 	width: 950px;
 	height: 200px;
-	background-image: url("/cdcp/resources/images/contentimg/guide.jpg");
+	background-image: url("resources/images/contentimg/guide.jpg");
 	background-repeat: no-repeat;
 	margin: 0px auto;
 }
@@ -274,7 +274,7 @@ span {
 #footerLogo{
 	display: inline-block;
 	vertical-align: top;
-	background-image: url("/cdcp/resources/images/contentimg/logo.png");
+	background-image: url("resources/images/contentimg/logo.png");
 	background-repeat: no-repeat;
 	background-size: 120px;
 	width: 120px;
@@ -304,7 +304,7 @@ span {
 		
 		/* 메인페이지 이동 */
 		$("#headerLogo").on("click", function(){
-			location.href = "/cdcp";
+			location.href = "/CDCP";
 		}); // headerLogo click end
 		
 		
