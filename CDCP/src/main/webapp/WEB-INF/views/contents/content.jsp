@@ -91,7 +91,7 @@ h1 {
 #headerLogo {
     display: inline-block;
     vertical-align: top;
-    background-image: url("/cdcp/resources/images/main/logo.png");
+    background-image: url("resources/images/main/logo.png");
     background-repeat: no-repeat;
     background-size: 120px;
     width: 120px;
@@ -124,7 +124,7 @@ h1 {
 }
 #imgLogin {
  	display: inline-block;
-    background-image: url("/cdcp/resources/images/main/login1.png");
+    background-image: url("resources/images/main/login1.png");
     background-repeat: no-repeat;
     background-size: 30px;
     width: 30px;
@@ -281,7 +281,7 @@ h1 {
 }
 
 .img1 {  /* 소비심리테스트 이미지 */
-	background-image: url("/cdcp/resources/images/contentimg/shop.png");
+	background-image: url("resources/images/contentimg/shop.png");
 	margin: 0px auto;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -432,19 +432,19 @@ h1 {
 }
 
 #img_rayout_1 {
-	background-image: url("/cdcp/resources/images/contentimg/card_tip_1.jpg");
+	background-image: url("resources/images/contentimg/card_tip_1.jpg");
 }
 
 #img_rayout_2 {
-	background-image: url("/cdcp/resources/images/contentimg/card_tip_2.jpg");
+	background-image: url("resources/images/contentimg/card_tip_2.jpg");
 }
 
 #img_rayout_3 {
-	background-image: url("/cdcp/resources/images/contentimg/card_tip_3.jpg");
+	background-image: url("resources/images/contentimg/card_tip_3.jpg");
 }
 
 #img_rayout_4 {
-	background-image: url("/cdcp/resources/images/contentimg/card_tip_4.jpg");
+	background-image: url("resources/images/contentimg/card_tip_4.jpg");
 }
 
 
@@ -541,7 +541,7 @@ h1 {
 #footerLogo{
 	display: inline-block;
 	vertical-align: top;
-	background-image: url("/cdcp/resources/images/contentimg/logo.png");
+	background-image: url("resources/images/contentimg/logo.png");
 	background-repeat: no-repeat;
 	background-size: 120px;
 	width: 120px;

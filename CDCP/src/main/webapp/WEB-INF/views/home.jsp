@@ -54,7 +54,7 @@ body {
 #headerLogo {
     display: inline-block;
     vertical-align: top;
-    background-image: url("/cdcp/resources/images/main/logo.png");
+    background-image: url("resources/images/main/logo.png");
     background-repeat: no-repeat;
     background-size: 120px;
     width: 120px;
@@ -87,7 +87,7 @@ body {
 }
 #imgLogin {
  	display: inline-block;
-    background-image: url("/cdcp/resources/images/main/login1.png");
+    background-image: url("resources/images/main/login1.png");
     background-repeat: no-repeat;
     background-size: 30px;
     width: 30px;
@@ -252,7 +252,7 @@ body {
 #footerLogo {
     display: inline-block;
     vertical-align: top;
-    background-image: url("/cdcp/resources/images/main/logo.png");
+    background-image: url("resources/images/main/logo.png");
     background-repeat: no-repeat;
     background-size: 120px;
     width: 120px;
