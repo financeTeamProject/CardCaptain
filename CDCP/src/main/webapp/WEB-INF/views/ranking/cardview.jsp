@@ -147,7 +147,7 @@
 #headerLogo {
     display: inline-block;
     vertical-align: top;
-    background-image: url("/cdcp/resources/images/main/logo.png");
+    background-image: url("resources/images/main/logo.png");
     background-repeat: no-repeat;
     background-size: 120px;
     width: 120px;
@@ -182,7 +182,7 @@
 }
 #imgLogin {
  	display: inline-block;
-    background-image: url("/cdcp/resources/images/main/login1.png");
+    background-image: url("resources/images/main/login1.png");
     background-repeat: no-repeat;
     background-size: 30px;
     width: 30px;
@@ -789,7 +789,7 @@
 	#footerLogo {
 	    display: inline-block;
 	    vertical-align: top;
-	    background-image: url("/cdcp/resources/images/main/logo.png");
+	    background-image: url("/CDCP/resources/images/main/logo.png");
 	    background-repeat: no-repeat;
 	    background-size: 120px;
 	    width: 120px;
@@ -1076,7 +1076,7 @@ $(document).ready(function(){
 		
 /* 메인페이지 이동 */
 		$("#headerLogo").on("click", function(){
-			location.href = "/cdcp";
+			location.href = "/CDCP";
 		}); // headerLogo click end
 	
 /* 로그인팝업 실행 */
@@ -1117,7 +1117,7 @@ $(document).ready(function(){
 					data: params,
 					success: function (res) {
 						if(res.resMsg == "success"){
-							/* location.href = "/cdcp"; */
+							/* location.href = "/CDCP"; */
 							$("#loginpopup").css("display","none");
 							$(".body").css("display","inline");
 							location.reload();
