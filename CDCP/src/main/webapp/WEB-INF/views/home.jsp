@@ -769,7 +769,7 @@ $(document).ready(function(){
 	
 	/* 카드캡틴 로고 클릭시 메인 페이지로 이동 */
 	$("#headerLogo").on("click",function(){
-		location.href = "/cdcp";
+		location.href = "/CDCP";
 	});
 	/* 카드순위 페이지 이동 */
 	$("#ranking").on("click", function(){
@@ -800,7 +800,7 @@ $(document).ready(function(){
 	});
 	
 	$(".cardcaptain").on("click", function(){
-		location.href = "/cdcp";
+		location.href = "/CDCP";
 	});
 	
 	/* 로그인 */
@@ -821,7 +821,7 @@ $(document).ready(function(){
 				data: params,
 				success: function (res) {
 					if(res.resMsg == "success"){
-						location.href = "/cdcp";
+						location.href = "/CDCP";
 						$("#nickName").css("display","inline");
 						$("#imgSearch").css("margin-left","70%");
 						$("#imgLogin").css("display","none");
@@ -852,12 +852,12 @@ $(document).ready(function(){
 		 //alert($("#sMNo").val());
 		 
 		 if($("#sMNo").val() == "10000") {
-			 location.href = "/cdcp/admin"; 
+			 location.href = "/CDCP/admin"; 
 		} else {
 			$("#memNo").attr("action");
 			$("#memNo").submit();
 				
-			location.href = "/cdcp/mypage"; 
+			location.href = "/CDCP/mypage"; 
 		}
 	});
 }); // document ready end
