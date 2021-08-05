@@ -856,7 +856,7 @@ $(document).ready(function(){
 		} else {
 			$("#memNo").attr("action");
 			$("#memNo").submit();
-				
+			
 			location.href = "/CDCP/mypage"; 
 		}
 	});
