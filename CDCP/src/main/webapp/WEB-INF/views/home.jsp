@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, 
+							   maximum-scale=1.0, user-scalable=no"/>
 <title>Insert title here</title>
 <style type="text/css">
 @font-face {
@@ -275,7 +277,7 @@ ul,li{
 	list-style:none;
 }
 .slide {
-	width: 2540px;
+	width: 1900px;
 	height:700px;
 	overflow:hidden;
 	position:relative;
@@ -365,7 +367,7 @@ input#pos1,#pos2,#pos3,#pos4 {
 	font-weight: bold;
 	color : white;
 	position: relative;
-    left: 40%;
+    left: 37.5%;
     top: 30%;
     line-height: 2;
     margin:0 auto;
