@@ -785,7 +785,10 @@ $(document).ready(function(){
 	$("#contents").on("click", function(){
 		location.href = "content";
 	});
-	
+});
+		
+// 로그인		
+$(document).ready(function(){	
 	/* 로그인팝업 실행 */
 	$("#imgLogin").on("click", function(){
 		$("#popup").css("display","block");
@@ -845,10 +848,6 @@ $(document).ready(function(){
 		location.href = "testALogout";
 	}); //로그아웃 end
 	
-/* 	$("#logNick").on("click", function(){
-		location.href = "/mypage";
-	}); */
-	
 	/* 마이페이지이동 */
 	$("#logNick").on("click", function(){
 		 //alert($("#sMNo").val());
@@ -862,7 +861,7 @@ $(document).ready(function(){
 			location.href = "/CDCP/mypage"; 
 		}
 	});
-}); // document ready end
+}); // 로그인 end
 
 /* Map */
 	function sendPlace(obj) {
