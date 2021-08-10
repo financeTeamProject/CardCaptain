@@ -794,16 +794,14 @@ $(document).ready(function(){
 		$("#popup").css("display","block");
 		$(".body").css("display","none");
 	});
-	/* 로그인팝업 실행 */
-	$("#imgSearch").on("click", function(){
-		$("#searchTxt").css("display","inline");
-	});
 	
+	/* 회원가입, ID/PW 찾기 */
 	$("#searchmem, #join").on("click", function() {
 		var ival = $(this).prop("id");
 		$(location).attr('href',ival);
 	});
 	
+	/* 메인으로가기 */
 	$(".cardcaptain").on("click", function(){
 		location.href = "/CDCP";
 	});
@@ -828,7 +826,6 @@ $(document).ready(function(){
 					if(res.resMsg == "success"){
 						location.href = "/CDCP";
 						$("#nickName").css("display","inline");
-						$("#imgSearch").css("margin-left","70%");
 						$("#imgLogin").css("display","none");
 						$("#logoutBtn").css("display","inline");
 					} else {
