@@ -24,6 +24,7 @@ public class UserListContoller {
 	
 	@Autowired IPagingService iPagingService;
 
+	// ========================보유카드등록=============================
 	// 카드리스트
 	@RequestMapping(value="/joincards",
 			method = RequestMethod.POST,
@@ -132,7 +133,9 @@ public class UserListContoller {
 		
 		return mapper.writeValueAsString(modelMap);
 	}
-
+	
+	//==========================회원정보=============================
+	// 회원정보 수정
 	@RequestMapping(value="/memUpdates",
 	method = RequestMethod.POST,
 	produces = "text/json;charsetUTF-8")
@@ -160,6 +163,7 @@ public class UserListContoller {
 		return mapper.writeValueAsString(modelMap);
 	}
 
+	// 회원탈퇴
 	@RequestMapping(value="/memLeave",
 	method = RequestMethod.POST,
 	produces = "text/json;charsetUTF-8")
