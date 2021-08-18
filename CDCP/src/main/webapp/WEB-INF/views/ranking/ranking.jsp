@@ -29,6 +29,7 @@
 			location.href = "cardview";
 		}); // goBtn click end
 		
+		
 	}); // document ready end
 </script>
 </head>
